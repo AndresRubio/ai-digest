@@ -79,6 +79,11 @@ Check and report, rather than assuming:
   appears in any tracked file (`grep -rE 'mail\.google\.com|@gmail\.com' ai-digest/`
   must come back empty) — the site is published publicly, so this is a hard gate, not a
   style note
+- **no paragraph is a wall of text**: every touched topic page keeps its `Current state`
+  as `<p>` paragraphs with the older cycles inside `<details>`, and no `<p>` anywhere on
+  the page runs past ~350 words. A one-line check:
+  `python3 -c "import re,sys;[print(f,len(re.sub(r'<[^>]+>','',p).split())) for f in sys.argv[1:] for p in re.findall(r'<p>(.*?)</p>',open(f).read(),re.S) if len(re.sub(r'<[^>]+>','',p).split())>350]" ai-digest/topics/*.html`
+  should print nothing
 - the index date, the `changed-today` box, the daily-log link, and each **touched** page's
   `Last updated` all agree with the run date — untouched topic pages must keep their
   previous date, so a stale-looking meta on a page no story routed to is correct

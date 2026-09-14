@@ -44,6 +44,15 @@ ul.timeline .label { font-weight: 600; }
 .sources { font-size: 13px; color: var(--muted); }
 .sources a { margin-right: 8px; }
 .current-state { background: #f6f8fa; border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: 6px; }
+/* Current state is long-form prose, newest cycle first. Paragraph it, and keep
+   the older cycles folded away so the block opens at a readable length. */
+.current-state p { margin: 0 0 1em; max-width: 72ch; }
+.current-state p:last-child { margin-bottom: 0; }
+.current-state > p:first-child { font-size: 1.05em; }
+.current-state details { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 14px; }
+.current-state summary { cursor: pointer; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.current-state summary:hover { color: var(--accent); }
+.current-state details[open] summary { margin-bottom: 16px; }
 .changed-today { background: #fff8c5; border-left: 3px solid #d4a72c; padding: 12px 16px; border-radius: 6px; margin-bottom: 24px; }
 code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
 footer { color: var(--muted); font-size: 12px; margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); }

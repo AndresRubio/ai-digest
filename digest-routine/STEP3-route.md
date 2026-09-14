@@ -49,17 +49,42 @@ new story into the existing argument — extend the thread, note where it confir
 contradicts what the section already claims, and keep the section readable end to end.
 Do not append a stranded sentence at the end.
 
+Sections are **multiple `<p>` paragraphs**, one per item or argument, each roughly
+120–250 words and none over ~350. A section that has grown into a single long paragraph
+is a defect: break it at the sentence that starts the next item. (Fixed site-wide on
+2026-09-14 — the pages had accreted paragraphs of up to 1,065 words.)
+
 **c. Rewrite the `Current state` div.** Same discipline, one level up: it opens with the
 most recent cycle and narrates backwards. Lead it with today's stories and their
-through-line, then compress what was previously leading. This div is allowed to be long
-— the existing ones are — but every run should leave it coherent rather than accreted.
+through-line, then compress what was previously leading. Every run should leave it
+coherent rather than accreted.
+
+Its structure is fixed, and a run must preserve it:
+
+```html
+      <div class="current-state">
+        <p>Today's cycle: the lead story and its through-line.</p>
+        <p>The rest of this cycle, one paragraph per thread.</p>
+        <details>
+          <summary>Earlier cycles</summary>
+          <p>Everything older, still newest-first, one paragraph per cycle or thread.</p>
+        </details>
+      </div>
+```
+
+The div as a whole is allowed to be long, but what shows **before** `<details>` is the
+budget that matters: three to five paragraphs, roughly 500–900 words. When today's
+material pushes an older paragraph out of that budget, move it inside `<details>` —
+do not let the visible part grow. Never emit the div as one unbroken run of text.
 
 **d. Update the meta line** to `<div class="meta">Last updated: YYYY-MM-DD</div>`.
 
 ## 3.3 Constraints
 
 - Never edit `styles.css`. Every class you need already exists: `timeline`, `date`,
-  `label`, `sources`, `current-state`, `changed-today`, `meta`.
+  `label`, `sources`, `current-state`, `changed-today`, `meta`. (It was last changed on
+  2026-09-14, on user instruction, to add paragraph and `<details>` rules inside
+  `.current-state`. Use those elements; do not add more.)
 - Never rewrite historical timeline entries. Their wording and dates stay. (The one
   sanctioned exception was 2026-09-14, when every Gmail link site-wide was stripped to
   plain-text source names on user instruction; entry text was untouched.)

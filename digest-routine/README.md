@@ -124,6 +124,9 @@ context.
 - `ai-digest/styles.css` is never edited. Every class needed already exists.
 - Topic pages are **not** append-only: `Current state` and the `<h3>` sections are
   rewritten each run so they read as continuous prose. Only `ul.timeline` is prepend.
+- Prose is **paragraphed**, never a single block: `<h3>` sections run 120–250 words per
+  `<p>`, and `Current state` shows three to five paragraphs with everything older folded
+  into `<details><summary>Earlier cycles</summary>`. See STEP3 §3.2b–c.
 - Historical entry text is never touched.
 - **No `mail.google.com` URL and no Gmail address appears anywhere in `ai-digest/`.**
 - A day with no qualifying stories gets a `run-log.md` line and no page.
