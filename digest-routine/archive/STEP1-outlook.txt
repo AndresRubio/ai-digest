@@ -1,0 +1,35 @@
+STEP 1 — INGEST FROM OUTLOOK  (improved scanner)
+Load the Outlook email search tool schema via ToolSearch: query "select:mcp__d0f384bc-308f-47ce-a97e-193708515cee__outlook_email_search".
+
+SCAN SCOPE
+- Target UNREAD messages plus anything received in the LAST 7 DAYS (read or unread). This clears the backlog of unopened newsletters, not just the last 24h.
+- When the tool supports it, set the unread/isRead filter so unread items are always included even if older than 7 days.
+- De-duplicate by message id; fall back to normalized subject when id is missing.
+- Track which message ids were turned into stories so the same unread item is not re-processed on later runs (note them in the daily log).
+
+PRIORITY ALLOWLIST — always scan these senders first (added on top of the existing newsletter list, not replacing it):
+- Substack — any address ending in "@substack.com" or with "substack" in the sender/domain (covers all your individual Substack subscriptions).
+- Ollama — sender domain "ollama.com" / "ollama.ai", or sender name containing "Ollama".
+- Lou from Ona — sender name containing "Lou" with "Ona", or domain "ona.com" / "ona.ai" / "getona". (Ona is the company formerly known as Gitpod.)
+- Decoding ML / "Decoding" magazine — sender or subject containing "Decoding ML" or "Decoding" newsletter (Paul Iusztin); domain "decodingml.com" or its substack.
+- MarkTechPost / "Marketpost" — sender or subject containing "MarkTechPost" / "MarketPost"; domain "marktechpost.com".
+- NVIDIA — sender domain "nvidia.com" (e.g. info/news/developer subdomains), or sender name containing "NVIDIA"; also catch NVIDIA developer/AI newsletter subjects.
+
+EXISTING NEWSLETTER ALLOWLIST (keep, secondary priority):
+substack, beehiiv, tldr ai, import ai, ben's bites, the rundown, alpha signal, smol.ai, the batch, and similar substantive AI newsletters.
+
+QUERIES — run a sender-targeted pass AND a keyword pass, then union the results:
+A. Sender pass (run one query per allowlist sender above, scoped to unread + last 7 days). This guarantees the named priority sources are caught even if their subject lines do not contain obvious AI keywords.
+B. Keyword pass (scoped to unread + last 7 days):
+   - "AI" OR "artificial intelligence"
+   - "LLM" OR "large language model"
+   - "GPT" OR "Claude" OR "Gemini" OR "Anthropic" OR "OpenAI"
+   - "agents" OR "agentic"
+   - "model release" OR "benchmark" OR "eval" OR "RLHF" OR "fine-tuning"
+
+FILTERING
+- Keep newsletters / substantive AI news. The five priority senders are always kept.
+- Drop personal email, calendar invites, receipts, and pure marketing/promotional blasts.
+- If a priority sender's email is clearly non-AI (e.g., a billing notice from Substack), drop it.
+
+EDGE CASE: if more than ~25 qualifying unread items are found on the first improved run (backlog), process the most recent 25 and note the remaining count in the daily log rather than skipping them silently.

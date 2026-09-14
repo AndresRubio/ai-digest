@@ -1,0 +1,372 @@
+{
+  "_comment": "REDACTED EXAMPLE, committed for review. The live file is digest-routine/sources.json, which is gitignored because accounts[].email must hold the real Gmail address for STEP 1.1's connector cross-check to work. Allowlist for the AI digest routine. Edit this file to add or remove sources; never edit the scheduled task. Tier A is scanned by dedicated sender queries and always kept when AI-substantive. Tier B and C are kept only when they clear the story quality bar in STEP2. drop is checked before anything else.",
+  "version": 1,
+  "updated": "2026-09-10",
+  "accounts": [
+    {
+      "email": "<primary-inbox>@gmail.com",
+      "provider": "gmail",
+      "status": "authorized",
+      "aliases": [
+        "<undotted-alias>@gmail.com"
+      ],
+      "note": "Primary newsletter inbox. TLDR arrives at the undotted alias; everything else at the dotted form. Gmail treats both as one mailbox.",
+      "backfill": "30d",
+      "backfillState": "done",
+      "backfillNote": "30d backfill complete on 2026-09-10. The window's final 10 messages (TLDR AI + TLDR general for Aug 12-14, AI Supremacy Aug 13, Parlance Labs Aug 23, MLOps Community Aug 13 and Aug 20) were processed in that run, and two duplicate Substack copies were collapsed. The Aug 12 DeepLearning.AI course mail was dropped as course promotion, matching the recorded precedent for hello@deeplearning.ai. Aug 10-11 rolled out of the window on their own. The account now uses the normal unread + last-7-days window.",
+      "backfillCompletedOn": "2026-09-10"
+    }
+  ],
+  "_accounts_comment": "The inboxes the routine scans. As of 2026-09-08 this is a SINGLE-ACCOUNT setup by user instruction: <redacted> is the only source. A previous account (<redacted>) was retired on 2026-09-08 and deliberately removed - do not re-add it, and do not report it as missing. STEP 1 still discovers connectors at run time and reconciles against this list: an account here with no live connector is reported as de-authorized rather than silently skipped, and a live connector missing from here is treated as newly added (appended with backfill '30d' / backfillState 'pending', giving it one catch-up pass over its last month before the normal unread + last-7-days window). Authorize a connector and the next run does the rest. Order matters only for tie-breaking when one newsletter reaches two inboxes: the first-listed account's permalink is cited.",
+  "tierA_priority": [
+    {
+      "name": "MarkTechPost",
+      "match": [
+        "marktechpost.com",
+        "marktechpost",
+        "marketpost"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "Decoding AI (Paul Iusztin)",
+      "match": [
+        "decodingml.com",
+        "decodingai.com",
+        "decoding ai",
+        "decoding ml",
+        "iusztin"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "Vanishing Gradients (Hugo Bowne-Anderson)",
+      "match": [
+        "hugobowne",
+        "vanishing gradients",
+        "bowne-anderson"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "Sebastian Raschka",
+      "match": [
+        "raschka",
+        "magazine.sebastianraschka.com"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "Substack (any)",
+      "match": [
+        "substack.com",
+        "substackcdn.com",
+        "substack"
+      ],
+      "status": "active",
+      "note": "Catch-all for Substack senders not named individually. Confirmed arriving at andres.rubio.saz: simonw@, aisupremacy+ai-world-@, aiinhealthcare@, no-reply@substack.com. Named Substack authors above take precedence; this rule exists to catch new subscriptions before anyone edits this file."
+    },
+    {
+      "name": "Ona (formerly Gitpod)",
+      "match": [
+        "ona.com",
+        "ona.ai",
+        "getona",
+        "gitpod.io"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "TLDR AI",
+      "match": [
+        "dan@tldrnewsletter.com",
+        "tldrnewsletter.com"
+      ],
+      "status": "active",
+      "edition_filter": "tldr-ai-only",
+      "note": "Two editions arrive daily from the SAME sender address. Only the AI edition qualifies - see tldr_rules below. Sender is dan@tldrnewsletter.com; the tldr.tech domain never appears in From and was removed from match."
+    },
+    {
+      "name": "Import AI",
+      "match": [
+        "importai",
+        "jack clark"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "Ben's Bites",
+      "match": [
+        "bensbites",
+        "ben's bites"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "The Rundown AI",
+      "match": [
+        "therundown.ai",
+        "the rundown"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "AlphaSignal",
+      "match": [
+        "alphasignal.ai",
+        "alpha signal"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "smol.ai",
+      "match": [
+        "smol.ai",
+        "buttondown.email/ainews",
+        "ainews"
+      ],
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "Ollama",
+      "match": [
+        "ollama.com",
+        "ollama.ai",
+        "hello@ollama.com"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Arrived only at the retired andres.yodars inbox; not present in andres.rubio.saz. Kept in the allowlist so it is picked up automatically if ever subscribed here."
+    },
+    {
+      "name": "The Batch (DeepLearning.AI)",
+      "match": [
+        "deeplearning.ai",
+        "thebatch@deeplearning.ai"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "NVIDIA",
+      "match": [
+        "nvidia.com",
+        "news@nvidia.com",
+        "nvidia developer"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Arrived only at the retired andres.yodars inbox; not present in andres.rubio.saz. Kept in the allowlist so it is picked up automatically if ever subscribed here."
+    },
+    {
+      "name": "Simon Willison",
+      "match": [
+        "simonw@substack.com",
+        "simonwillison.net"
+      ],
+      "status": "active",
+      "note": "User-flagged as important. Practitioner-level LLM/tooling analysis."
+    },
+    {
+      "name": "Unwind AI",
+      "match": [
+        "unwindai@mail.beehiiv.com",
+        "unwindai"
+      ],
+      "status": "active",
+      "note": "User-flagged as important. Agent/tooling builds and tutorials."
+    },
+    {
+      "name": "AI Supremacy",
+      "match": [
+        "aisupremacy",
+        "aisupremacy+ai-world-@substack.com"
+      ],
+      "status": "active",
+      "note": "AI industry analysis."
+    },
+    {
+      "name": "AI in Healthcare",
+      "match": [
+        "aiinhealthcare@substack.com"
+      ],
+      "status": "active",
+      "note": "Domain applications; keep only technically substantive items."
+    }
+  ],
+  "tierB_labs": [
+    {
+      "name": "Anthropic",
+      "match": [
+        "email.claude.com",
+        "anthropic.com"
+      ],
+      "note": "Arrived only at the retired andres.yodars inbox; not present in andres.rubio.saz. Kept in the allowlist so it is picked up automatically if ever subscribed here.",
+      "status": "not-yet-arriving"
+    },
+    {
+      "name": "OpenAI",
+      "match": [
+        "email.openai.com",
+        "openai.com"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "Google AI",
+      "match": [
+        "google.com/ai",
+        "deepmind",
+        "googleaiupdates"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Not seen at andres.rubio.saz as of 2026-09-08; queried each run so it is picked up if it appears."
+    },
+    {
+      "name": "Mistral",
+      "match": [
+        "mistral.ai"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Not seen at andres.rubio.saz as of 2026-09-08; queried each run so it is picked up if it appears."
+    },
+    {
+      "name": "Cursor",
+      "match": [
+        "mail.cursor.com",
+        "cursor.com"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Arrived only at the retired andres.yodars inbox; not present in andres.rubio.saz. Kept in the allowlist so it is picked up automatically if ever subscribed here."
+    },
+    {
+      "name": "Hugging Face",
+      "match": [
+        "huggingface.co"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Not seen at andres.rubio.saz as of 2026-09-08; queried each run so it is picked up if it appears."
+    }
+  ],
+  "tierC_vendor": [
+    {
+      "name": "Mermaid",
+      "match": [
+        "mermaid.ai"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Arrived only at the retired andres.yodars inbox; not present in andres.rubio.saz. Kept in the allowlist so it is picked up automatically if ever subscribed here."
+    },
+    {
+      "name": "Rime",
+      "match": [
+        "rime.ai"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Arrived only at the retired andres.yodars inbox; not present in andres.rubio.saz. Kept in the allowlist so it is picked up automatically if ever subscribed here."
+    },
+    {
+      "name": "TwelveLabs",
+      "match": [
+        "twelvelabs.io"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Arrived only at the retired andres.yodars inbox; not present in andres.rubio.saz. Kept in the allowlist so it is picked up automatically if ever subscribed here."
+    },
+    {
+      "name": "Napkin",
+      "match": [
+        "napkin.ai"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Arrived only at the retired andres.yodars inbox; not present in andres.rubio.saz. Kept in the allowlist so it is picked up automatically if ever subscribed here."
+    },
+    {
+      "name": "Monologue",
+      "match": [
+        "hey.monologue.to",
+        "monologue.to"
+      ],
+      "status": "not-yet-arriving",
+      "note": "Arrived only at the retired andres.yodars inbox; not present in andres.rubio.saz. Kept in the allowlist so it is picked up automatically if ever subscribed here."
+    }
+  ],
+  "drop": {
+    "_comment": "Checked first. A match here means the message is never fetched, even from a Tier A sender.",
+    "senders": [
+      "invoice+statements@mail.anthropic.com",
+      "no-reply@scaleway.net",
+      "noreply-accounts@google.com",
+      "no-reply@accounts.google.com",
+      "noreply@github.com",
+      "noreply@discord.com",
+      "noreply@x.ai",
+      "support@updates.linear.app"
+    ],
+    "subject_patterns": [
+      "receipt",
+      "invoice",
+      "your payment",
+      "subscription is confirmed",
+      "billing",
+      "security alert",
+      "new login",
+      "you shared some google account data",
+      "requesting updated permissions",
+      "mentioned you in",
+      "book your",
+      "register now",
+      "save your seat",
+      "join us on",
+      "livestream:",
+      "webinar",
+      "passes are going fast",
+      "demo day",
+      "unsubscribe confirmation"
+    ]
+  },
+  "keyword_pass": [
+    "AI OR \"artificial intelligence\"",
+    "LLM OR \"large language model\"",
+    "GPT OR Claude OR Gemini OR Anthropic OR OpenAI",
+    "agents OR agentic",
+    "\"model release\" OR benchmark OR eval OR RLHF OR fine-tuning"
+  ],
+  "topics": [
+    "agents",
+    "applications",
+    "embodied-and-robotics",
+    "evals-and-benchmarks",
+    "industry-and-business",
+    "infrastructure",
+    "model-releases",
+    "research-papers",
+    "safety-and-policy",
+    "tools-and-devex",
+    "training-and-rl"
+  ],
+  "tldr_rules": {
+    "_comment": "TLDR sends two editions a day from dan@tldrnewsletter.com. Distinguish them by the header line in the body, NOT by size or arrival time.",
+    "keep_edition": "Prefer the edition whose body header reads 'TLDR AI <date>' and take it under the section rules below. Do NOT discard the general tech edition unseen: scan it and lift only items that would have qualified in the AI edition (a released model, tool, benchmark, method or infrastructure change relevant to an AI engineer) and that the AI edition has not already covered. Some genuine AI releases land only in the general edition - Claude Fable 5.1's GA on 2026-09-02 is the worked example. Everything else in that edition - consumer hardware, executive moves, regulatory filings, market news - is dropped.",
+    "keep_sections": [
+      "HEADLINES & LAUNCHES",
+      "DEEP DIVES & ANALYSIS",
+      "ENGINEERING & RESEARCH"
+    ],
+    "conditional_sections": {
+      "sections": [
+        "MISCELLANEOUS",
+        "QUICK LINKS"
+      ],
+      "rule": "Keep an item only if it changes what an AI engineer can build, run, or rely on - a released artifact, a benchmark result, a method, a capability claim, or an infrastructure change. Drop pure market and finance items (IPO timing, bond markets, share prices) and executive/personnel news."
+    },
+    "always_drop": [
+      "any item marked (SPONSOR)",
+      "job postings, including TLDR's own",
+      "the referral / 'get free TLDR swag' block",
+      "'Want to advertise in TLDR'",
+      "'Want to work at TLDR'",
+      "consumer gadget and non-AI tech news",
+      "'Love TLDR? Tell your friends'"
+    ],
+    "rationale": "User instruction 2026-09-07: AI news from an AI engineer's perspective only - no deals, no marketing, developer-relevant news only."
+  },
+  "_verified": "Sender presence verified against andres.rubio.saz on 2026-09-08. Confirmed arriving: dan@tldrnewsletter.com, thebatch@deeplearning.ai, simonw@substack.com, unwindai@mail.beehiiv.com, aisupremacy@substack.com, aiinhealthcare@substack.com, noreply@email.openai.com. Confirmed ABSENT: ollama.com, nvidia.com, email.claude.com, marktechpost.com, decodingml.com, tldr.tech, and all tierC vendors. Absent senders stay in the allowlist - they cost one query each and are picked up the day they appear."
+}

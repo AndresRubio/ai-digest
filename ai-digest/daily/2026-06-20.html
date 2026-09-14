@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AI Digest Log — 2026-06-20 — AI Knowledge Base</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>AI Knowledge Base</h2>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+      </ul>
+      <h2>Topics</h2>
+      <ul>
+        <li><a href="../topics/agents.html">Agents &amp; agentic systems</a></li>
+        <li><a href="../topics/applications.html">Applications &amp; case studies</a></li>
+        <li><a href="../topics/evals-and-benchmarks.html">Evals &amp; benchmarks</a></li>
+        <li><a href="../topics/industry-and-business.html">Industry &amp; business</a></li>
+        <li><a href="../topics/infrastructure.html">Infrastructure &amp; compute</a></li>
+        <li><a href="../topics/model-releases.html">Model releases &amp; updates</a></li>
+        <li><a href="../topics/research-papers.html">Research papers</a></li>
+        <li><a href="../topics/safety-and-policy.html">Safety, alignment &amp; policy</a></li>
+        <li><a href="../topics/tools-and-devex.html">Tools, IDEs &amp; developer experience</a></li>
+        <li><a href="../topics/training-and-rl.html">Training, post-training &amp; RL</a></li>
+      </ul>
+    </aside>
+    <main>
+      <h1>AI Digest Log — 2026-06-20</h1>
+      <ul>
+        <li>Newsletters scanned: 1 — <em>MarkTechPost AI Intelligence Brief ("The Week AI Memory Got a Brain and Agents Got a Directory", Jun 19)</em></li>
+        <li>Distinct stories captured: 6</li>
+        <li>Topics updated: <a href="../topics/agents.html">Agents &amp; agentic systems</a>, <a href="../topics/model-releases.html">Model releases &amp; updates</a>, <a href="../topics/research-papers.html">Research papers</a>, <a href="../topics/infrastructure.html">Infrastructure &amp; compute</a>, <a href="../topics/safety-and-policy.html">Safety, alignment &amp; policy</a>, <a href="../topics/tools-and-devex.html">Tools, IDEs &amp; developer experience</a></li>
+        <li>New topic pages created: none</li>
+        <li>New sub-sections added: "Agent memory" (Agents); "Retrieval &amp; embedding models" (Model releases); "Attention &amp; long-context architecture" and "Retrieval-model architecture" (Research papers); "Pre-deployment behavioral testing" (Safety &amp; policy)</li>
+      </ul>
+      <h2>Stories captured</h2>
+      <ul>
+        <li><strong>Perplexity Brain</strong> (Jun 18) — self-improving agent memory: a context graph of the agent's work, synthesized overnight into an LLM wiki for future runs ($200/mo Computer plan). → Agents, Tools &amp; DevEx</li>
+        <li><strong>Vercel Eve</strong> (Jun 17) — open-source agent framework where an agent is a directory of files; durable workflows, auto-wired channels, one-command deploy (npm <code>eve</code>). → Agents, Tools &amp; DevEx</li>
+        <li><strong>MiniMax Sparse Attention (MSA)</strong> (Jun 17) — two-branch block-sparse attention; 28.4× less per-token compute at 1M ctx vs dense GQA at on-par quality (14.2×/7.6× faster prefill/decode on H800), GQA-native. → Research papers, Infrastructure</li>
+        <li><strong>Hermes async subagents</strong> (Nous Research, Jun 16) — delegated work runs in the background without blocking the parent chat. → Agents</li>
+        <li><strong>OpenAI Deployment Simulation</strong> (Jun 16) — replays real prior-model conversations through a candidate model to flag behavioral drift before release; catches issues synthetic evals miss. → Safety &amp; policy</li>
+        <li><strong>Liquid AI LFM2.5-Embedding-350M + LFM2.5-ColBERT-350M</strong> (Jun 19) — multilingual (11 lang) retrieval models built by patching a causal decoder into a bidirectional encoder; beat larger dedicated embedding models. → Model releases, Research papers</li>
+      </ul>
+      <h2>Notable themes today</h2>
+      <p>The agent infrastructure layer is being assembled primitive by primitive — memory (Perplexity Brain), framework ergonomics (Vercel Eve), and multi-agent parallelism (Hermes async subagents) all advanced in the same week. The deeper-tech thread is efficiency at long context (MiniMax Sparse Attention) and the reuse of generative pretrains for retrieval (Liquid AI's decoder-to-encoder LFM2.5), while OpenAI's Deployment Simulation adds a credible pre-launch safety check by replaying real traffic.</p>
+      <footer>Generated automatically by the AI digest task.</footer>
+    </main>
+  </div>
+</body>
+</html>

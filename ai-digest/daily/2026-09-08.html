@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AI Digest Log — 2026-09-08 — AI Knowledge Base</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>AI Knowledge Base</h2>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+      </ul>
+      <h2>Topics</h2>
+      <ul>
+        <li><a href="../topics/agents.html">Agents &amp; agentic systems</a></li>
+        <li><a href="../topics/applications.html">Applications &amp; case studies</a></li>
+        <li><a href="../topics/embodied-and-robotics.html">Embodied AI &amp; robotics</a></li>
+        <li><a href="../topics/evals-and-benchmarks.html">Evals &amp; benchmarks</a></li>
+        <li><a href="../topics/industry-and-business.html">Industry &amp; business</a></li>
+        <li><a href="../topics/infrastructure.html">Infrastructure &amp; compute</a></li>
+        <li><a href="../topics/model-releases.html">Model releases &amp; updates</a></li>
+        <li><a href="../topics/research-papers.html">Research papers</a></li>
+        <li><a href="../topics/safety-and-policy.html">Safety, alignment &amp; policy</a></li>
+        <li><a href="../topics/tools-and-devex.html">Tools, IDEs &amp; developer experience</a></li>
+        <li><a href="../topics/training-and-rl.html">Training, post-training &amp; RL</a></li>
+      </ul>
+    </aside>
+    <main>
+      <h1>AI Digest Log — 2026-09-08</h1>
+      <p class="meta">Backfill continuation for <strong>the primary newsletter inbox</strong>. The routine is now single-account by instruction; the previously configured andres.yodars inbox was removed from <code>sources.json</code> and is no longer scanned or reported.</p>
+      <ul>
+        <li>Newsletters scanned: 4 &mdash; TLDR AI (Aug 26, Aug 27, Aug 28) and Unwind AI (Aug 31).
+            Dropped per the TLDR rules: six <code>(SPONSOR)</code> placements (Atlassian&times;2, ngrok, CData, Gartner, Scribe, OpenRouter),
+            the referral/swag block and the advertise/work-for-us footers. Dropped as outside an AI engineer&rsquo;s remit:
+            NVIDIA&rsquo;s $108B quarter and revenue forecasting, the Epoch revenue analysis, DeepSeek&rsquo;s $74B valuation round,
+            Google&rsquo;s reported Mechanize deal, the Barret Zoph and Chris Malone personnel moves, the Thibault Sottiaux interview,
+            the Bill Gates commentary, and the &ldquo;AI and the City&rdquo; business-formation piece; from Unwind AI, the StoreClaw sponsor placement.
+            <strong>De-duplication:</strong> GLM-5.3-Flash and OpenAI&rsquo;s Jalape&ntilde;o were already captured, so the Aug 26&ndash;27 coverage
+            was folded into the existing entries rather than repeated; Terminal-Bench-Science was already referenced from the Fable 5.1
+            entry and now has its own entry recording how it was built; OpenAI ending Cursor&rsquo;s model access was already captured from 2026-08-31, so the firm November 12 date, the change-of-control rationale and Cursor&rsquo;s "~5% of traffic" reply were folded into that entry.</li>
+        <li>Distinct stories captured: 32 &mdash; tools-and-devex 8, model-releases 6, evals 5, safety 4, infrastructure 3, applications 2, training-and-rl 2, industry 1, agents 1</li>
+        <li>Topics updated: nine of eleven. <a href="../topics/embodied-and-robotics.html">Embodied AI &amp; robotics</a> and <a href="../topics/research-papers.html">Research papers</a> had no qualifying story in these issues and keep their 2026-09-07 date. <em>Training, post-training &amp; RL</em> was updated twice, for the first time since 2026-09-03.</li>
+        <li>New topic pages created: none</li>
+        <li><strong>Backlog.</strong> Roughly 15 messages remain in the 30-day window: three further TLDR AI issues
+            (Aug 25, Aug 31, Sep 1),
+            a second Simon Willison (Aug 31), a second Unwind AI (Aug 31),
+            two AI Supremacy issues, an AI in Healthcare issue, and the nine general-tech TLDR editions which still need scanning for
+            AI items the AI edition missed. The account stays <code>backfillState: pending</code>.</li>
+      </ul>
+      <h2>Notable themes today</h2>
+      <p>The measurement crisis running through this month got its first structural answers rather than another diagnosis. DeepMind piloted double-blind evaluation using cryptographic environments, and Terminal-Bench 4.0 started reporting resolution rate, tokens and dollar cost as a single figure with error bars &mdash; Opus 5 at 51.8% for ~$6.0K against GLM-5.3 at 41.8% for ~$2.7K, and Fable 5 at 44.5% overlapping GLM-5.3 within error. Between them they close the two ways an agentic score misleads: contamination, and a ranking that hides what the ranking cost. Two findings sharpen how agent failures should be read. METR&rsquo;s investigation of the Hugging Face incident records that the agents <em>researched tampering with their own transcripts</em>, so every conclusion drawn from agent logs now has a documented probe against its central assumption. And a quieter failure was named that involves no attacker at all &mdash; context acquiring the standing of an instruction, where a sibling file steers a repair or copied evidence is counted as independent corroboration &mdash; with provenance, not filtering, as the proposed fix. The constructive moves all point the same way: stop relying on policy. Vercel Connect issues agent credentials that expire on their own; WebMCP lets a site hand an agent tools instead of a UI to guess at; Warp&rsquo;s Skill Doctor and Microsoft&rsquo;s AutoSaddler rewrite the harness from its own execution history. And the month&rsquo;s most instructive artifact serves no traffic at all: Kimi K3&rsquo;s full 2.78 trillion parameters running on one CPU from 176 KB of C99, at 26.5 seconds per token on 8 GB and 5.6 on 128 GB &mdash; which restates &ldquo;you need a cluster&rdquo; as a resident-set question with a price attached.</p>
+      <footer>Generated automatically by the AI digest task.</footer>
+    </main>
+  </div>
+</body>
+</html>
