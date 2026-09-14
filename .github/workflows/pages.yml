@@ -44,8 +44,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # enablement: true turns Pages on (source: GitHub Actions) via the API using
-      # this workflow's pages:write permission, so the repo needs no manual setup.
+      # Force the Pages source to "GitHub Actions".
+      #
+      # enablement: true below only *enables* Pages; if Pages was already on in
+      # legacy "deploy from a branch" mode it leaves build_type alone. That mode
+      # publishes the repo root, which has no index.html, and its builder runs
+      # after this workflow and overwrites the deployment — the site 404s and the
+      # real pages end up at /ai-digest/ai-digest/. Setting build_type=workflow
+      # makes this workflow authoritative and stops the branch builder.
+      - name: Set Pages source to GitHub Actions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          code=$(curl -sS -o /tmp/pages.json -w '%{http_code}' -X PUT \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" \
+            -d '{"build_type":"workflow"}') || true
+          echo "PUT /pages -> HTTP $code"; cat /tmp/pages.json 2>/dev/null || true
+          if [ "$code" != "204" ] && [ "$code" != "200" ]; then
+            echo "::warning::Could not set the Pages source automatically. Set it by hand: Settings -> Pages -> Build and deployment -> Source: GitHub Actions."
+          fi
+
+      # enablement: true turns Pages on if it is off entirely.
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:

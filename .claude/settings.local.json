@@ -44,7 +44,12 @@
       "Bash(curl -s -o /dev/null -w \"  HTTP %{http_code}\\\\n\" https://api.github.com/repos/AndresRubio/ai-digest/pages)",
       "Bash(curl -s https://api.github.com/repos/AndresRubio/ai-digest/pages)",
       "Bash(curl -s \"https://api.github.com/repos/AndresRubio/ai-digest/actions/runs/34868190441/jobs\")",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(curl -s -o /dev/null -w \"  /ai-digest       -> HTTP %{http_code}  redirect: %{redirect_url}\\\\n\" https://andresrubio.github.io/ai-digest)",
+      "Bash(curl -s -o /dev/null -w \"  /ai-digest/      -> HTTP %{http_code}\\\\n\" https://andresrubio.github.io/ai-digest/)",
+      "Bash(curl -s https://andresrubio.github.io/ai-digest/)",
+      "Bash(curl -s \"https://api.github.com/repos/AndresRubio/ai-digest/actions/runs?per_page=8\")",
+      "Bash(curl -s \"https://api.github.com/repos/AndresRubio/ai-digest/deployments?environment=github-pages&per_page=5\")"
     ],
     "deny": [
       "mcp__74ffd4a8-ffa4-4112-b84a-7123ff1ec349__trash_thread",
