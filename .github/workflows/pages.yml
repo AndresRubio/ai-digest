@@ -44,8 +44,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # enablement: true turns Pages on (source: GitHub Actions) via the API using
+      # this workflow's pages:write permission, so the repo needs no manual setup.
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       # The site root is ai-digest/, not the repo root: digest-routine/ and docs/
       # are the routine and its design notes, and are not part of the published site.
