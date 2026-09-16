@@ -21,21 +21,35 @@ concurrency:
 
 jobs:
   guard:
-    name: Check for leaked mailbox links
+    name: Check for leaked identity
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # The digest is built from a private Gmail inbox. Nothing that identifies
-      # that mailbox may reach a public page, so fail the deploy rather than
-      # publish it. Mirrors the STEP 5.3 gate in digest-routine/.
-      - name: No Gmail addresses or mailbox URLs in the site
+      # The digest is built from a private Gmail inbox and this repo is public,
+      # so the whole tree is screened -- not just the site. The mailbox patterns
+      # live in a repository secret, never in this file: a regex naming the
+      # mailboxes would publish them in the file meant to prevent exactly that.
+      - name: No mailbox identifiers anywhere in the repo
+        env:
+          IDENTITY_PATTERNS: ${{ secrets.IDENTITY_PATTERNS }}
         run: |
-          if grep -rInE 'mail\.google\.com|[A-Za-z0-9._%+-]+@gmail\.com' ai-digest/; then
-            echo "::error::Found a Gmail address or mailbox URL in ai-digest/ — refusing to publish."
+          # Fail closed. A guard that no-ops when misconfigured is worse than no
+          # guard, because it reports green.
+          if [ -z "$IDENTITY_PATTERNS" ]; then
+            echo "::error::IDENTITY_PATTERNS secret is unset. Refusing to publish unscreened."
             exit 1
           fi
-          echo "Clean: no Gmail addresses or mailbox URLs in ai-digest/."
+          if grep -rInEi "$IDENTITY_PATTERNS" --exclude-dir=.git . ; then
+            echo "::error::Found a mailbox identifier -- refusing to publish."
+            exit 1
+          fi
+          if grep -rInE 'mail\.google\.com|[A-Za-z0-9._%+-]+@gmail\.com' \
+               --exclude-dir=.git --exclude=pages.yml . ; then
+            echo "::error::Found a Gmail address or mailbox URL -- refusing to publish."
+            exit 1
+          fi
+          echo "Clean: no mailbox identifiers, Gmail addresses or mailbox URLs."
 
   build:
     name: Build

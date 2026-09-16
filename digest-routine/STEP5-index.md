@@ -79,6 +79,14 @@ Check and report, rather than assuming:
   appears in any tracked file (`grep -rE 'mail\.google\.com|@gmail\.com' ai-digest/`
   must come back empty) — the site is published publicly, so this is a hard gate, not a
   style note
+- **no mailbox identifier appears in any tracked file.** Derive the local-parts from
+  `digest-routine/sources.json` (gitignored, so the literals never enter the repo) and grep
+  the tracked tree for them:
+  `python3 -c "import re;s=open('digest-routine/sources.json').read();lp={a.split('@')[0] for a in re.findall(r'[A-Za-z0-9._%+-]+@gmail\.com',s)};lp|={p.replace('.','') for p in lp};print('|'.join(sorted(p for p in lp if len(p)>4)))"`
+  then `git grep -InEi "<that pattern>"` must come back empty. This catches what the
+  `@gmail.com` gate above cannot: a bare mailbox name with no domain attached, which is how
+  20 identifiers reached the public repo before 2026-09-16. If `sources.json` is absent,
+  report the check as **skipped**, never as passed.
 - **no paragraph is a wall of text**: every touched topic page keeps its `Current state`
   as `<p>` paragraphs with the older cycles inside `<details>`, and no `<p>` anywhere on
   the page runs past ~350 words. A one-line check:

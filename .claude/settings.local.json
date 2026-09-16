@@ -72,7 +72,8 @@
       "Bash(bash /tmp/idcheck.sh)",
       "Bash(echo \"exit=$?\")",
       "Bash(echo \"grep_exit=$?\")",
-      "Bash(git status *)"
+      "Bash(git status *)",
+      "Bash(IDENTITY_PATTERNS='' bash -c 'if [ -z \"$IDENTITY_PATTERNS\" ]; then echo \"fail-closed OK\"; exit 0; fi; echo \"BUG: did not fail closed\"')"
     ],
     "deny": [
       "mcp__74ffd4a8-ffa4-4112-b84a-7123ff1ec349__trash_thread",

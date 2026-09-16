@@ -50,8 +50,10 @@ hard gates in STEP 5.3:
 
 `digest-routine/sources.json` is **gitignored**, because `accounts[].email` has to hold
 the real Gmail address for STEP 1.1's connector cross-check. The full allowlist is
-published as `sources.example.json` with only the account identity redacted, so the
-routine stays reviewable.
+published as `sources.example.json` with the account identity redacted from both the
+`accounts[].email` field and the prose `note` fields, so the routine stays reviewable.
+Until 2026-09-16 the notes still named the mailboxes; that is what the identity gate in
+STEP 5.3 and the `pages.yml` guard now exist to prevent recurring.
 
 ## Which inbox this reads
 
