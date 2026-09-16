@@ -73,7 +73,19 @@
       "Bash(echo \"exit=$?\")",
       "Bash(echo \"grep_exit=$?\")",
       "Bash(git status *)",
-      "Bash(IDENTITY_PATTERNS='' bash -c 'if [ -z \"$IDENTITY_PATTERNS\" ]; then echo \"fail-closed OK\"; exit 0; fi; echo \"BUG: did not fail closed\"')"
+      "Bash(IDENTITY_PATTERNS='' bash -c 'if [ -z \"$IDENTITY_PATTERNS\" ]; then echo \"fail-closed OK\"; exit 0; fi; echo \"BUG: did not fail closed\"')",
+      "Bash(IDENTITY_PATTERNS='' bash -c ' *)",
+      "Bash(IDENTITY_PATTERNS=' ' bash -c ' *)",
+      "Bash(bash -c ' *)",
+      "Bash(env -u IDENTITY_PATTERNS bash /tmp/guard_script.sh)",
+      "Bash(echo \"exit code: $?\")",
+      "Bash(IDENTITY_PATTERNS=\"   \" bash /tmp/guard_script.sh)",
+      "Bash(IDENTITY_PATTERNS=\"\\(abc\" bash /tmp/guard_script.sh)",
+      "Bash(IDENTITY_PATTERNS=\"zzz_no_such_pattern_should_never_match_zzz\" bash /tmp/guard_script.sh)",
+      "Bash(mkdir -p /tmp/guard_test_sandbox2)",
+      "Bash(echo \"some line containing TESTMARKERPATTERN in it\")",
+      "Bash(IDENTITY_PATTERNS=\"TESTMARKERPATTERN\" bash /tmp/guard_script.sh)",
+      "Bash(rm -rf /tmp/guard_test_sandbox /tmp/guard_test_sandbox2)"
     ],
     "deny": [
       "mcp__74ffd4a8-ffa4-4112-b84a-7123ff1ec349__trash_thread",

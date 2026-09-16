@@ -36,19 +36,45 @@ jobs:
         run: |
           # Fail closed. A guard that no-ops when misconfigured is worse than no
           # guard, because it reports green.
+          #
+          # Trim whitespace first so a whitespace-only secret is reported as
+          # unset, not as a pattern that happens to match nearly every line.
+          IDENTITY_PATTERNS="$(printf '%s' "$IDENTITY_PATTERNS" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
           if [ -z "$IDENTITY_PATTERNS" ]; then
             echo "::error::IDENTITY_PATTERNS secret is unset. Refusing to publish unscreened."
             exit 1
           fi
-          if grep -rInEi "$IDENTITY_PATTERNS" --exclude-dir=.git . ; then
+
+          # grep exits 0 (match), 1 (no match) or 2+ (the scan itself broke,
+          # e.g. a malformed regex). `if grep ...; then` only reacts to exit 0,
+          # so a broken scan would fall straight through to the "Clean" line --
+          # exactly the silent no-op this guard exists to prevent. Capture the
+          # exit status explicitly and fail closed on anything but "no match".
+          set +e
+          grep -rInEi "$IDENTITY_PATTERNS" --exclude-dir=.git .
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then
             echo "::error::Found a mailbox identifier -- refusing to publish."
             exit 1
-          fi
-          if grep -rInE 'mail\.google\.com|[A-Za-z0-9._%+-]+@gmail\.com' \
-               --exclude-dir=.git --exclude=pages.yml . ; then
-            echo "::error::Found a Gmail address or mailbox URL -- refusing to publish."
+          elif [ "$rc" -ne 1 ]; then
+            echo "::error::Identity scan failed (grep exit $rc) -- refusing to publish unscreened."
             exit 1
           fi
+
+          set +e
+          grep -rInE 'mail\.google\.com|[A-Za-z0-9._%+-]+@gmail\.com' \
+               --exclude-dir=.git --exclude=pages.yml .
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then
+            echo "::error::Found a Gmail address or mailbox URL -- refusing to publish."
+            exit 1
+          elif [ "$rc" -ne 1 ]; then
+            echo "::error::Gmail/mailbox URL scan failed (grep exit $rc) -- refusing to publish unscreened."
+            exit 1
+          fi
+
           echo "Clean: no mailbox identifiers, Gmail addresses or mailbox URLs."
 
   build:
