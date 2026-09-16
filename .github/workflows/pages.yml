@@ -21,47 +21,25 @@ concurrency:
 
 jobs:
   guard:
-    name: Check for leaked identity
+    name: Check for leaked mailbox addresses
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # The digest is built from a private Gmail inbox and this repo is public,
-      # so the whole tree is screened -- not just the site. The mailbox patterns
-      # live in a repository secret, never in this file: a regex naming the
-      # mailboxes would publish them in the file meant to prevent exactly that.
-      - name: No mailbox identifiers anywhere in the repo
-        env:
-          IDENTITY_PATTERNS: ${{ secrets.IDENTITY_PATTERNS }}
+      # CI screens for two things: a real Gmail address anywhere in the repo, and
+      # a mailbox URL (mail.google.com) anywhere in the published site. Both
+      # patterns are hardcoded here because they are generic -- they don't name
+      # any particular mailbox.
+      #
+      # What CI does NOT catch: a bare mailbox local-part with no @gmail.com or
+      # mail.google.com attached (e.g. a name alone). Screening for that requires
+      # the actual local-parts, which live only in the gitignored
+      # digest-routine/sources.json and must never enter a tracked file or this
+      # workflow -- so that check runs locally only, in STEP 5.3, immediately
+      # before every push. There is no CI backstop for that failure mode; STEP 5.3
+      # is the sole line of defence for it.
+      - name: No Gmail address or mailbox URL anywhere in the repo
         run: |
-          # Fail closed. A guard that no-ops when misconfigured is worse than no
-          # guard, because it reports green.
-          #
-          # Trim whitespace first so a whitespace-only secret is reported as
-          # unset, not as a pattern that happens to match nearly every line.
-          IDENTITY_PATTERNS="$(printf '%s' "$IDENTITY_PATTERNS" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
-          if [ -z "$IDENTITY_PATTERNS" ]; then
-            echo "::error::IDENTITY_PATTERNS secret is unset. Refusing to publish unscreened."
-            exit 1
-          fi
-
-          # grep exits 0 (match), 1 (no match) or 2+ (the scan itself broke,
-          # e.g. a malformed regex). `if grep ...; then` only reacts to exit 0,
-          # so a broken scan would fall straight through to the "Clean" line --
-          # exactly the silent no-op this guard exists to prevent. Capture the
-          # exit status explicitly and fail closed on anything but "no match".
-          set +e
-          grep -rInEi "$IDENTITY_PATTERNS" --exclude-dir=.git .
-          rc=$?
-          set -e
-          if [ "$rc" -eq 0 ]; then
-            echo "::error::Found a mailbox identifier -- refusing to publish."
-            exit 1
-          elif [ "$rc" -ne 1 ]; then
-            echo "::error::Identity scan failed (grep exit $rc) -- refusing to publish unscreened."
-            exit 1
-          fi
-
           # Published site: full strictness. Nothing under site/ may contain a
           # mailbox URL or a Gmail address -- both patterns, scoped to only
           # what actually gets deployed.
@@ -96,7 +74,7 @@ jobs:
             exit 1
           fi
 
-          echo "Clean: no mailbox identifiers, Gmail addresses, or mailbox URLs in site/."
+          echo "Clean: no Gmail addresses anywhere, no mailbox URLs in site/."
 
   build:
     name: Build

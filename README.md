@@ -30,5 +30,10 @@ name, so the destructive ones never enter its context.
 
 **No mailbox identifier reaches the site.** This repo and the site are both public. Sources
 are cited by newsletter name and date, never as a link into a mailbox. `pages.yml` screens
-every push and fails the deploy rather than publish a violation; STEP 5.3 runs the same check
-locally. The patterns live in a repository secret, never in a tracked file.
+every push for a real Gmail address anywhere in the repo and a mailbox URL anywhere in
+`site/`, and fails the deploy rather than publish a violation. A bare mailbox local-part
+with no `@gmail.com` or `mail.google.com` attached is a different failure mode that CI
+cannot screen for without putting the actual local-parts in a tracked file — so that check
+runs locally only, in STEP 5.3, reading its patterns from the gitignored
+`digest-routine/sources.json` immediately before every push. It is the sole line of
+defence for that failure mode, not a backstop for a CI gate.
