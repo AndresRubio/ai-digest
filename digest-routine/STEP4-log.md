@@ -14,7 +14,7 @@ routine runs weekdays only.
 
 ## 4.2 Otherwise
 
-Write `ai-digest/daily/YYYY-MM-DD.html` using the existing template: the standard
+Write `site/daily/YYYY-MM-DD.html` using the existing template: the standard
 `<!doctype html>` head with `<link rel="stylesheet" href="../styles.css">`, the shared
 sidebar with `../` prefixes, and `<h1>AI Digest Log — YYYY-MM-DD</h1>`.
 

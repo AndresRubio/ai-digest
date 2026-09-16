@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'ai-digest/**'
+      - 'site/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -93,12 +93,12 @@ jobs:
         with:
           enablement: true
 
-      # The site root is ai-digest/, not the repo root: digest-routine/ and docs/
+      # The site root is site/, not the repo root: digest-routine/ and docs/
       # are the routine and its design notes, and are not part of the published site.
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp -R ai-digest/. _site/
+          cp -R site/. _site/
           # Serve the files as-is: no Jekyll processing, no _-prefixed path stripping.
           touch _site/.nojekyll
           echo "Publishing $(find _site -name '*.html' | wc -l) HTML pages."

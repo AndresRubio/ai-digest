@@ -1,6 +1,6 @@
 # AI digest routine
 
-Builds `../ai-digest/` — a static AI-news knowledge base — from newsletter email in
+Builds `../site/` — a static AI-news knowledge base — from newsletter email in
 Gmail. Runs weekday mornings.
 
 ## How it runs
@@ -15,8 +15,8 @@ scheduled task.**
 | `STEP1-ingest.md` | Finds every connected Gmail account, scans unread + last 7 days, filters, fetches bodies |
 | `STEP2-extract.md` | Splits newsletters into discrete stories, applies the quality bar, de-duplicates |
 | `STEP3-route.md` | Routes stories to topic pages and rewrites those pages' prose |
-| `STEP4-log.md` | Writes `ai-digest/daily/YYYY-MM-DD.html` |
-| `STEP5-index.md` | Updates `ai-digest/index.html`, closes out the ledger, verifies |
+| `STEP4-log.md` | Writes `site/daily/YYYY-MM-DD.html` |
+| `STEP5-index.md` | Updates `site/index.html`, closes out the ledger, verifies |
 
 ## Editing what gets picked up
 
@@ -123,14 +123,14 @@ context.
 
 ## Conventions the site depends on
 
-- `ai-digest/styles.css` is never edited. Every class needed already exists.
+- `site/styles.css` is never edited. Every class needed already exists.
 - Topic pages are **not** append-only: `Current state` and the `<h3>` sections are
   rewritten each run so they read as continuous prose. Only `ul.timeline` is prepend.
 - Prose is **paragraphed**, never a single block: `<h3>` sections run 120–250 words per
   `<p>`, and `Current state` shows three to five paragraphs with everything older folded
   into `<details><summary>Earlier cycles</summary>`. See STEP3 §3.2b–c.
 - Historical entry text is never touched.
-- **No `mail.google.com` URL and no Gmail address appears anywhere in `ai-digest/`.**
+- **No `mail.google.com` URL and no Gmail address appears anywhere in `site/`.**
 - A day with no qualifying stories gets a `run-log.md` line and no page.
 
 ## History

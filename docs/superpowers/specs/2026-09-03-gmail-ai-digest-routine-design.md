@@ -5,9 +5,9 @@ Status: approved, pending implementation
 
 ## Problem
 
-`ai-digest/` is a hand-shaped static knowledge base about AI news, built daily from
+`site/` is a hand-shaped static knowledge base about AI news, built daily from
 newsletter email. Its last update was 2026-08-04. The original ingest spec
-(`ai-digest/STEP1-improved.txt`) targets Outlook; the user is moving to Gmail and may
+(`site/STEP1-improved.txt`) targets Outlook; the user is moving to Gmail and may
 connect several Gmail accounts over time. The routine needs to be re-expressed against
 Gmail, run automatically on weekday mornings, and stay editable as subscriptions change.
 
@@ -49,7 +49,7 @@ Discord mention notifications, service login alerts.
 
 ```
 mywiki 2/
-  ai-digest/                  # published static site, shape unchanged
+  site/                  # published static site, shape unchanged
     index.html  styles.css
     topics/*.html  daily/YYYY-MM-DD.html
   digest-routine/
@@ -66,7 +66,7 @@ mywiki 2/
     archive/STEP1-outlook.txt # superseded original
 ```
 
-`ai-digest/` contains only the site. All machinery is in `digest-routine/`.
+`site/` contains only the site. All machinery is in `digest-routine/`.
 
 ## The five steps
 
@@ -121,7 +121,7 @@ Cross-link between topic pages with relative hrefs where a story spans two topic
 the existing pages already do.
 
 ### STEP4 — daily log
-Write `ai-digest/daily/YYYY-MM-DD.html` following the existing template: sidebar, a
+Write `site/daily/YYYY-MM-DD.html` following the existing template: sidebar, a
 `<ul>` of run stats (newsletters scanned with names, distinct stories captured, topics
 updated as links, new pages or sub-sections created, plus any de-duplication or backlog
 notes), then a `Notable themes today` paragraph.
@@ -130,7 +130,7 @@ If a run yields zero stories, write no page — append a line to `state/run-log.
 instead. The daily index then lists only days that have content.
 
 ### STEP5 — index
-Update `ai-digest/index.html`: the `Last updated` meta, the yellow `changed-today` box
+Update `site/index.html`: the `Last updated` meta, the yellow `changed-today` box
 (one `<li>` per touched topic, linked, with a one-line summary), the topic descriptions
 if a topic's remit changed, and prepend the new date to the daily-log list.
 
@@ -141,7 +141,7 @@ Finally, append the run's message ids to `state/processed.json` and a summary li
 
 A weekday 08:00 scheduled task whose prompt is thin:
 
-> Work in `/Users/autobot/Downloads/mywiki 2`. Read `digest-routine/STEP1-ingest.md`
+> Work in `/Users/autobot/Desktop/projects/ai-digest`. Read `digest-routine/STEP1-ingest.md`
 > through `STEP5-index.md` in order and follow them exactly. Do not modify Gmail.
 
 All logic stays in the files, so editing the allowlist never means editing the cron job.

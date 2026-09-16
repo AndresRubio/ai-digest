@@ -1,6 +1,6 @@
 # STEP 5 — Update the index and close the run
 
-## 5.1 `ai-digest/index.html`
+## 5.1 `site/index.html`
 
 Four edits, in order:
 
@@ -75,8 +75,8 @@ Check and report, rather than assuming:
 - every timeline entry *added this run* has a date, a label, a summary, and at least one
   source (older entries may legitimately carry a plain-text source with no link — do not
   flag those)
-- **no `mail.google.com` URL appears anywhere in `ai-digest/`**, and no Gmail address
-  appears in any tracked file (`grep -rE 'mail\.google\.com|@gmail\.com' ai-digest/`
+- **no `mail.google.com` URL appears anywhere in `site/`**, and no Gmail address
+  appears in any tracked file (`grep -rE 'mail\.google\.com|@gmail\.com' site/`
   must come back empty) — the site is published publicly, so this is a hard gate, not a
   style note
 - **no mailbox identifier appears in any tracked file.** Derive the local-parts from
@@ -90,7 +90,7 @@ Check and report, rather than assuming:
 - **no paragraph is a wall of text**: every touched topic page keeps its `Current state`
   as `<p>` paragraphs with the older cycles inside `<details>`, and no `<p>` anywhere on
   the page runs past ~350 words. A one-line check:
-  `python3 -c "import re,sys;[print(f,len(re.sub(r'<[^>]+>','',p).split())) for f in sys.argv[1:] for p in re.findall(r'<p>(.*?)</p>',open(f).read(),re.S) if len(re.sub(r'<[^>]+>','',p).split())>350]" ai-digest/topics/*.html`
+  `python3 -c "import re,sys;[print(f,len(re.sub(r'<[^>]+>','',p).split())) for f in sys.argv[1:] for p in re.findall(r'<p>(.*?)</p>',open(f).read(),re.S) if len(re.sub(r'<[^>]+>','',p).split())>350]" site/topics/*.html`
   should print nothing
 - the index date, the `changed-today` box, the daily-log link, and each **touched** page's
   `Last updated` all agree with the run date — untouched topic pages must keep their
