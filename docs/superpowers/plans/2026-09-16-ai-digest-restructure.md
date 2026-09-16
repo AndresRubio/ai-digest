@@ -24,7 +24,7 @@
 |---|---|---|
 | `/tmp/redact.py` (scratch, not committed) | Derives local-parts from `sources.json`, applies context-keyed replacements | 1 |
 | `ai-digest/daily/2026-09-08.html`, `2026-09-09.html` | Published pages carrying a mailbox name | 1 |
-| `digest-routine/sources.example.json` | Public allowlist; 14 identity refs in prose notes | 1 |
+| `digest-routine/sources.example.json` | Public allowlist; 23 identity refs over 14 prose-note lines | 1 |
 | `digest-routine/state/processed.json`, `run-log.md` | Ledger and log; 4 identity refs | 1 |
 | `.github/workflows/pages.yml` | Deploy gate: widen scope, read patterns from secret, fail closed | 2 |
 | `digest-routine/STEP5-index.md` | Adds the derived local identity check to §5.3 | 2 |
@@ -35,7 +35,7 @@
 
 ---
 
-### Task 1: Redact the 20 identity occurrences
+### Task 1: Redact the identity occurrences (20 lines / 29 occurrences)
 
 **Files:**
 - Create: `/tmp/redact.py` (scratch — never committed)
@@ -73,7 +73,7 @@ echo "PASS: no identity in tracked files"
 chmod +x /tmp/idcheck.sh && /tmp/idcheck.sh
 ```
 
-Expected: prints the 20 matching lines, then `FAIL: identity found in tracked files`, exit 1.
+Expected: prints 20 matching lines (29 occurrences), then `FAIL: identity found in tracked files`, exit 1.
 
 - [ ] **Step 3: Write the redaction script**
 
@@ -141,7 +141,9 @@ for f in ("digest-routine/sources.example.json", "digest-routine/state/processed
 cd "/Users/autobot/Desktop/projects/mywiki 2" && python3 /tmp/redact.py
 ```
 
-Expected: `1, 1, 14, 3, 1` per file, `total: 20`, and both `valid JSON:` lines.
+Expected per file: `1, 1, 23, 3, 1` occurrences, `total: 29`, and both `valid JSON:` lines.
+Those are *occurrence* counts. The same files hold only 20 matching *lines*, because 9 lines in
+`sources.example.json` carry both local-parts; `git grep -c` reports the line figure.
 
 - [ ] **Step 5: Run the check to verify it now passes**
 
@@ -166,8 +168,8 @@ Expected: 5 files changed; the second command prints nothing — every changed l
 git add -A && git commit -F - <<'EOF'
 Redact mailbox identifiers from tracked files
 
-The repo is public and 20 occurrences of the owner's Gmail local-parts
-were tracked across five files, two of them on the published site.
+The repo is public and the owner's Gmail local-parts were tracked across
+five files -- 20 lines, 29 occurrences -- two of them on the published site.
 
 Replaced with the role names already used elsewhere in the log
 ("the primary inbox", "the retired account"). Entry facts are unchanged;

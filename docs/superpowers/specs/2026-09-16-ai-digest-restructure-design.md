@@ -10,8 +10,8 @@ Three things, discovered together.
 1. **The project is badly named on disk.** The repo is `ai-digest`, the folder is `mywiki 2`,
    and the published site lives in a nested `ai-digest/` inside it. Nothing about the layout
    tells you what the project is.
-2. **The repo is public and leaks the owner's mailbox names.** 20 occurrences of two Gmail
-   local-parts across 5 tracked files. Two of them are on the live website.
+2. **The repo is public and leaks the owner's mailbox names.** Two Gmail local-parts across
+   5 tracked files -- 20 matching lines, 29 occurrences. Two of them are on the live website.
 3. **The deploy gate does not catch it.** `pages.yml` greps for `mail.google.com` and
    `…@gmail.com`. A bare local-part has neither, so the guard passes. It was written against
    "a mailbox link or full address", not "the mailbox name".
@@ -71,13 +71,13 @@ Nothing else leaked: non-newsletter correspondence appears in no tracked file, a
 Runs first and ships as its own commit, so the privacy fix is live regardless of what
 happens to the restructure.
 
-### 1.1 Redact 20 occurrences in 5 files
+### 1.1 Redact the identity occurrences in 5 files (20 lines / 29 occurrences)
 
 | File | Hits | Replacement |
 |---|---|---|
 | `ai-digest/daily/2026-09-08.html` | 1 | "the previously configured secondary inbox" |
 | `ai-digest/daily/2026-09-09.html` | 1 | "the retired account" |
-| `digest-routine/sources.example.json` | 14 | "the primary inbox" / "the retired inbox" |
+| `digest-routine/sources.example.json` | 14 lines / 23 | "the primary inbox" / "the retired inbox" |
 | `digest-routine/state/processed.json` | 3 | "the retired account" |
 | `digest-routine/state/run-log.md` | 1 | "the retired account" |
 
