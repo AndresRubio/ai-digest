@@ -62,20 +62,41 @@ jobs:
             exit 1
           fi
 
+          # Published site: full strictness. Nothing under site/ may contain a
+          # mailbox URL or a Gmail address -- both patterns, scoped to only
+          # what actually gets deployed.
           set +e
           grep -rInE 'mail\.google\.com|[A-Za-z0-9._%+-]+@gmail\.com' \
+               --exclude-dir=.git --exclude=pages.yml site/
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then
+            echo "::error::Found a Gmail address or mailbox URL in site/ -- refusing to publish."
+            exit 1
+          elif [ "$rc" -ne 1 ]; then
+            echo "::error::site/ Gmail/mailbox URL scan failed (grep exit $rc) -- refusing to publish unscreened."
+            exit 1
+          fi
+
+          # Whole repo: real addresses only. An actual Gmail address is a leak
+          # wherever it appears, but the bare mail.google.com domain is not --
+          # this repo's own routine docs legitimately name it as the pattern
+          # the guard exists to catch, and scanning the whole tree for it
+          # would fail the build on its own documentation.
+          set +e
+          grep -rInE '[A-Za-z0-9._%+-]+@gmail\.com' \
                --exclude-dir=.git --exclude=pages.yml .
           rc=$?
           set -e
           if [ "$rc" -eq 0 ]; then
-            echo "::error::Found a Gmail address or mailbox URL -- refusing to publish."
+            echo "::error::Found a Gmail address -- refusing to publish."
             exit 1
           elif [ "$rc" -ne 1 ]; then
-            echo "::error::Gmail/mailbox URL scan failed (grep exit $rc) -- refusing to publish unscreened."
+            echo "::error::Gmail address scan failed (grep exit $rc) -- refusing to publish unscreened."
             exit 1
           fi
 
-          echo "Clean: no mailbox identifiers, Gmail addresses or mailbox URLs."
+          echo "Clean: no mailbox identifiers, Gmail addresses, or mailbox URLs in site/."
 
   build:
     name: Build
