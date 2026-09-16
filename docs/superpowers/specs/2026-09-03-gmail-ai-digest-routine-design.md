@@ -48,7 +48,7 @@ Discord mention notifications, service login alerts.
 ## Layout
 
 ```
-mywiki 2/
+ai-digest/
   site/                  # published static site, shape unchanged
     index.html  styles.css
     topics/*.html  daily/YYYY-MM-DD.html
