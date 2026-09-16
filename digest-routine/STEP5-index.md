@@ -76,18 +76,25 @@ Check and report, rather than assuming:
   source (older entries may legitimately carry a plain-text source with no link — do not
   flag those)
 - **no `mail.google.com` URL appears anywhere in `site/`**, and no Gmail address
-  appears in any tracked file (`grep -rE 'mail\.google\.com|@gmail\.com' site/`
-  must come back empty) — the site is published publicly, so this is a hard gate, not a
-  style note
-- **no mailbox identifier appears in any tracked file. This is the only place this check
+  appears in any tracked file:
+  `/usr/bin/grep -rInE 'mail\.google\.com|@gmail\.com' site/` must come back empty —
+  the site is published publicly, so this is a hard gate, not a style note.
+  **Call `grep` by its absolute path here.** Claude Code's shell shadows `grep` with
+  ugrep run as `--ignore-files`, which honours `.gitignore` and so skips paths a plain
+  `grep -r` would scan. That makes a bare `grep` report clean for the wrong reason.
+  `/usr/bin/grep` is the same GNU-compatible behaviour `pages.yml` gets on the runner,
+  and it scans files this run has written but not yet committed.
+- **no mailbox identifier appears anywhere in the working tree. This is the only place this check
   runs — `pages.yml` does not and cannot run it in CI**, because the patterns come from the
   gitignored `digest-routine/sources.json` and must never enter a tracked file, including
   the workflow itself. There is no CI backstop for this failure mode: if this step is
   skipped or its result ignored, a bare local-part can reach the public repo undetected.
-  Derive the local-parts from `digest-routine/sources.json` and grep the tracked tree for
+  Derive the local-parts from `digest-routine/sources.json` and grep the working tree for
   them:
   `python3 -c "import re;s=open('digest-routine/sources.json').read();lp={a.split('@')[0] for a in re.findall(r'[A-Za-z0-9._%+-]+@gmail\.com',s)};lp|={p.replace('.','') for p in lp};print('|'.join(sorted(p for p in lp if len(p)>4)))"`
-  then `git grep -InEi "<that pattern>"` must come back empty. This catches what the
+  then `git grep --untracked -InEi "<that pattern>"` must come back empty.
+  `--untracked` is load-bearing: the pages this run just wrote are not staged yet,
+  and a plain `git grep` would skip the very files most likely to carry a leak. This catches what the
   `@gmail.com` gate in `pages.yml` cannot: a bare mailbox name with no domain attached,
   which is how 20 identifiers reached the public repo before 2026-09-16. If `sources.json`
   is absent, report the check as **skipped**, never as passed — a skip is not a pass, and
