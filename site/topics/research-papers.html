@@ -199,7 +199,7 @@
           <span class="when">2026-08-25</span>
           <h4><a href="https://alexzhang13.github.io/blog/2026/spec-ptc/">Speculative Programmatic Tool Calling &mdash; launch the tool call before the code is written</a></h4>
           <p>sPTC predicts likely tool calls from partially generated code and pre-launches them, so searches, sub-agents and API calls run alongside token generation instead of after it. The authors describe it as a JIT compiler for the agent loop and report a 1&ndash;1.2&times; runtime speed-up, concentrated where it should be: memory-bound local models and high-volume serving, where generation and tool latency can genuinely overlap.</p>
-          <p>The modest multiplier is the honest part of the result. The failure mode is the one speculation always has: a mispredicted call is work done for nothing, which matters more when the call has side effects than when it is a wasted forward pass.</p>
+          <p>The modest multiplier is the honest part of the result &mdash; this is a scheduling win, not an architectural one. The failure mode is the one speculation always has: a mispredicted call is work done for nothing, which matters more when the call has side effects than when it is a wasted forward pass.</p>
           <div class="sources"><a href="https://alexzhang13.github.io/blog/2026/spec-ptc/">alexzhang13.github.io</a> &middot; <span class="via">via TLDR AI (Aug 25), Unwind AI (Aug 25)</span></div>
         </article>
 
