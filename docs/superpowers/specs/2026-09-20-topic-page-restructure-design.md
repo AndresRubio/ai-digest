@@ -43,18 +43,29 @@ story with two sources.
 are on a page there is no way to see what sections exist or jump to one. Sections run 101 to
 1,560 words with no entry point.
 
-**3. Link capture has drifted.** Coverage of timeline entries carrying a real public URL:
+**3. 186 entries link to the owner's mailbox, and real-source coverage is far worse than a
+naive count suggests.** An earlier draft of this spec counted any `href="http…"` as a source
+link and concluded coverage had *degraded* from 100% in May to 28% in August. That was wrong.
+186 of those links are `outlook.office365.com/owa/?ItemID=…` permalinks — dead for every
+reader, and a mailbox identifier on a public site. Excluding them:
 
-| Month | Coverage |
-|---|---|
-| 2026-05 | 18/18 — 100% |
-| 2026-06 | 90/90 — 100% |
-| 2026-07 | 75/103 — 72% |
-| 2026-08 | 51/181 — **28%** |
-| 2026-09 | 159/249 — 63% |
+| Month | Real public source | Entries linking to the mailbox |
+|---|---|---|
+| 2026-05 | 0/18 — **0%** | 18 |
+| 2026-06 | 5/90 — **5%** | 88 |
+| 2026-07 | 9/103 — 8% | 66 |
+| 2026-08 | 38/181 — 20% | 14 |
+| 2026-09 | 159/249 — **63%** | 0 |
+| **All** | **211/641 — 32%** | **186** |
 
-May and June prove the sources do carry URLs. This is discipline that slipped, not a limit of
-the material.
+The real trend is the opposite of the earlier claim: source-link discipline has been steadily
+*improving*, and reached 0 mailbox links in September. What the site carries is a pre-Gmail
+Outlook legacy that the Gmail-era guard was never written to catch.
+
+Two consequences. The 186 mailbox links are a **live violation of the project's second
+unbendable rule** and must be removed regardless of this restructure. And only 32% of
+historical entries can gain a real link without researching the open web, so 430 entries will
+render as unlinked — honestly, rather than pointing at an inbox.
 
 What is *not* broken: the `Current state` block. Its `<details>` fold works — visible portion
 is 492–565 words across every page, inside STEP 3.2c's 500–900 budget. Leave it alone.
@@ -171,10 +182,15 @@ Per page:
 6. Rebuild the section index and rewrite the timeline as an index.
 7. Leave `Current state` untouched.
 
-**Link repair is in scope but bounded.** Where a timeline entry carries no URL, do not go
-hunting the open web. Fill a URL only where another entry on the site already cites the same
-artifact. Everything else renders honestly as unlinked. The 28% August gap is documented, not
-retroactively invented.
+**Mailbox-link removal is mandatory and comes first.** All 186 `outlook.office365.com`
+permalinks are stripped across all eleven pages before any restructuring, as its own commit.
+The link is removed; the plain-text newsletter name stays. This is a leak fix, not a style
+change, and it is not contingent on the rest of this work landing.
+
+**Link repair beyond that is bounded.** Where an entry carries no real URL, do not go hunting
+the open web. Fill one only where another entry on the site already cites the same artifact.
+The remaining ~430 entries render as unlinked with an explicit note. A gap stated plainly is
+better than a guessed URL, and far better than a link into the owner's inbox.
 
 Not in scope: `site/daily/*.html` (78 files) and `site/index.html` keep their current
 structure. Historical timeline entry wording and dates are not rewritten — the STEP 3.3 rule
@@ -203,8 +219,10 @@ best-effort. When it names none, the story records that explicitly.
 
 ## Verification
 
-- No page contains a `mail.google.com` URL or a Gmail address. `pages.yml` gates this; the
-  STEP 5.3 local check for bare mailbox local-parts runs before push as always.
+- No page contains a `mail.google.com` URL, an `outlook.office365.com` / `/owa/?ItemID`
+  permalink, or a Gmail address. `pages.yml` gates the first and third today; this work adds
+  the Outlook pattern to that gate, since its absence is why 186 of them reached production.
+  The STEP 5.3 local check for bare mailbox local-parts runs before push as always.
 - Every `<article class="story">` has either a linked `<h4>` or `class="unlinked"` plus an
   explicit no-URL note. No silent third state.
 - Every `.section-index` anchor resolves to a `<section id>` on the same page, and every
