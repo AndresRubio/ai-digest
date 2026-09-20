@@ -56,265 +56,466 @@
         </details>
       </div>
 
-      <h3>Creative media</h3>
-      <p>The newest entry is a rights deal rather than a model: Universal Music and ElevenLabs are launching a platform for remixes and mashups drawn from UMG's licensed catalogue (Sep 11), a fortnight after <strong>Suno v6</strong> replaced its entire model line with one trained on licensed Warner and BMG material. Two launches in two weeks, both leading with provenance rather than fidelity, is enough to call the shift: in generative music the scarce input is now catalogue clearance, and model quality has stopped being the thing that distinguishes an offering. Open-weights generative audio is the other recent entry. Combined with ByteDance's recent unified video and existing open image generators, the open creative-media stack is now broadly usable end-to-end. MisoTTS extends this into emotive speech: an 8B model conditioning on text plus prior audio (residual vector quantization over 32 codebooks) for tone-tracking output, claiming ~110ms latency vs. cited 700ms/300ms for ElevenLabs/Sesame — though it's half-duplex and single-turn today. Runway's <strong>Solaris</strong> (Sep 1) extends generative media into the interface itself: an Interface World Model producing real-time interactive interfaces frame by frame as the user acts, with rendering and interaction handled jointly and no intermediate representation emitted for a browser to draw.</p>
-      <p><strong>Roblox</strong> (Sep 11) is the same territory approached from distribution rather than capability. At its developer conference it widened generative game creation to Serbia and Singapore, added desktop access, promised a prompt-based scene generator later this year, expanded NPC capabilities, and &mdash; the part that matters &mdash; made games playable outside Roblox itself, with a dedicated creator card and wallet alongside. Prompt-to-content in the hands of a large amateur creator base is not new here; removing the walls around where the output runs is, and it turns generated games into portable artifacts rather than platform-locked ones, which is the same move the licensed-catalogue deals above make for music by fixing rights rather than reach. The rollout method is worth copying independently of the product: generative creation is being shipped the way a risky deployment is, one market at a time, rather than switched on globally.</p>
-      <p>Set against <a href="applications.html">Atlas</a> and Worlds 2, it is the same interactivity threshold applied to a different surface &mdash; and Runway names the second use plainly, training agents in environments dynamic enough to be worth training in, which is the harder half of what agent training environments currently lack. Gemini Omni 1.1 Flash's 360p draft mode, meanwhile, closes the loop on cost from the other direction: iterate at a third the price, then upscale the take you keep. The licensing question this category has deferred got its first expensive answer on Sep 9. <strong>Suno v6</strong> is trained on music licensed from major labels including Warner and BMG, and it <em>replaces</em> the previous models rather than shipping beside them as a compliant tier &mdash; retraining the product and retiring the version that prompted the copyright suits, instead of defending it. Whatever the litigation eventually decides, the industry now has a revealed price for the answer, and every other media-generation vendor can read it.</p>
-      <p>At the production end, <strong>Taste Labs</strong> (Sep 16) shipped a Brand API for design agents built on three primitives instead of a general taste pitch: extract existing brand context, search a curated brand index, and verify generated work against the brand before it ships. The third primitive is what distinguishes it from a longer prompt. Generating with a brand description in context yields output that is plausibly on-brand and unfalsifiable; a separate verification call turns conformance into a checkable property with a result, which is the same structural move as evaluating work outside the system that produced it &mdash; the principle this wiki keeps rediscovering in code review, security auditing and agent evaluation, arriving here in design. Paired with <a href="tools-and-devex.html">Inspo</a>&rsquo;s 832-site reference corpus published the same day, the two ends of agent-generated design now have artifacts rather than instructions: references before generation, a check afterwards. The question neither answers is what conformance is being measured against, and it is the whole question &mdash; a brand check either encodes something a designer would recognise as judgement or collapses into palette and font matching, and nothing published so far says which.</p>
+      <nav class="section-index">
+        <h2>On this page</h2>
+        <ul>
+          <li><a href="#creative-media">Creative media <span class="n">11</span></a></li>
+          <li><a href="#physical-ai-and-robotics">Physical AI &amp; robotics <span class="n">1</span></a></li>
+          <li><a href="#speech-to-text-in-production">Speech-to-text in production <span class="n">3</span></a></li>
+          <li><a href="#voice-agent-architecture-and-latency-budgets">Voice agent architecture &amp; latency budgets <span class="n">1</span></a></li>
+          <li><a href="#healthcare-ai-and-deployment-economics">Healthcare AI &amp; deployment economics <span class="n">9</span></a></li>
+          <li><a href="#knowledge-work-productivity">Knowledge-work productivity <span class="n">7</span></a></li>
+          <li><a href="#agentic-data-science">Agentic data science <span class="n">1</span></a></li>
+          <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">7</span></a></li>
+          <li><a href="#product-search-and-e-commerce">Product search &amp; e-commerce <span class="n">1</span></a></li>
+          <li><a href="#access-to-frontier-models-in-research">Access to frontier models in research <span class="n">1</span></a></li>
+        </ul>
+      </nav>
 
-      <h3>Physical AI &amp; robotics</h3>
-      <p>NVIDIA's Cosmos 3 brings an open "world model" stack to physical-AI teams (robotics, autonomous vehicles, warehouse monitoring), unifying physical reasoning, world generation, and action that earlier Cosmos releases kept separate. It ships fully open — Nano (16B) and Super (64B) checkpoints, six synthetic-data-generation datasets, training recipes, and the HUE benchmark — lowering the barrier to building simulation and embodied-agent applications. See <a href="model-releases.html">Model releases</a> for architecture detail.</p>
+      <section class="topic-section" id="creative-media">
+        <h3>Creative media</h3>
+        <p class="lead">Generation, interactive world models, and the rights to train on &mdash; three threads that keep arriving together. Two launches a fortnight apart lead with catalogue clearance rather than fidelity, which is a claim about where the binding constraint now sits. For each entry, establish what was licensed and where the output is allowed to run.</p>
 
-      <h3>Speech-to-text in production</h3>
-      <p>Transcription is becoming a fast, multilingual commodity. Microsoft's MAI-Transcribe-1.5 leads the accuracy-speed Pareto frontier at its tier (2.4% WER, 43 languages, best-in-class FLEURS, an hour of audio in under 15 seconds, up to 5× faster than Gemini 3.1 / Scribe v2 / GPT-4o-Transcribe on long audio) and is available on Azure AI Foundry for cloud workloads. NVIDIA's Nemotron 3.5 ASR covers the on-device/streaming case — one 600M checkpoint, 40 locales, native punctuation and runtime language switching, fully local via ONNX. Between them, applications spanning meeting capture, captioning, and voice agents now have both a hosted high-accuracy option and a local real-time option. See <a href="model-releases.html">Model releases</a> for model detail.</p>
+        <article class="story" id="taste-labs-brand-api">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://tastelabs.com/">Taste Labs ships a Brand API that lets a design agent check its output before shipping it</a></h4>
+          <p>Taste Labs launched a Brand API for AI design agents built on three primitives rather than a general &ldquo;AI for taste&rdquo; pitch: extract existing brand context, search a curated brand index, and verify generated work against the brand before it ships. The third is the one that makes it more than a style prompt &mdash; generation with a brand description in context produces output that is plausibly on-brand and unverifiable, while a separate verification call makes conformance a checkable property with a pass or fail. That is the same structural move as running evaluation outside the model that produced the work.</p>
+          <p>It is the design counterpart to <a href="tools-and-devex.html">Inspo</a>&rsquo;s corpus of real sites published the same day &mdash; one supplies references before generation, the other a check afterwards. What is unstated is how the verification judges conformance, which is exactly where a brand check either encodes something a designer would recognise as judgement or reduces to colour and font matching.</p>
+          <div class="sources"><a href="https://tastelabs.com/">Taste Labs</a> (vendor homepage) &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
+        </article>
 
-      <h3>Voice agent architecture &amp; latency budgets</h3>
-      <p>Building a voice agent is, in practice, an exercise in allocating a fixed latency budget — roughly 700 to 800 milliseconds per conversational turn — across pipeline stages before a conversation stops feeling human. Cascading architectures (separate STT, LLM, and TTS stages) preserve inspection points for guardrails, compliance, and error-catching, but latency accumulates at every handoff; native speech-to-speech models (OpenAI's Realtime API, Google's Gemini Live) remove those handoffs and buy back latency, at the cost of the checkpoints where a cascading pipeline would catch a transcription error or block a compliance violation. Open components (Whisper for transcription, Kokoro for synthesis) are competitive on quality but carry real self-hosting infrastructure costs that only beat closed APIs past a certain scale. The practical guidance: voice earns its keep in hands-busy, phone-native, or accessibility contexts — not simply wherever a user could otherwise type — and the honest current failure modes (noisy-environment transcription errors, barge-in handling, PII exposure) are the real gating question for 2026 deployments, not whether a voice agent can be shipped at all.</p>
+        <article class="story" id="roblox-generative-games">
+          <span class="when">2026-09-11</span>
+          <h4><a href="https://techcrunch.com/2026/09/11/roblox-is-making-it-easier-to-build-games-with-ai-and-play-them-outside-roblox/">Roblox widens generative game creation and lets the games run outside Roblox</a></h4>
+          <p>At its annual developer conference Roblox extended its generative-AI game-creation feature to Serbia and Singapore, added desktop access, and said a prompt-based scene generator will arrive later this year, alongside expanded NPC capabilities and the ability to publish games playable outside Roblox itself. It also launched a dedicated card and wallet for creators.</p>
+          <p>The combination matters more than any single feature: a platform with a large amateur creator base is shipping prompt-to-content generation and simultaneously removing the walls around where the output can run, which turns generated games into portable artifacts rather than platform-locked ones &mdash; the same move the licensed-catalogue music deals make by fixing rights rather than reach. The staged geographic rollout is worth noting as method, since generative creation is being released the way a risky deployment is, a market at a time.</p>
+          <div class="sources"><a href="https://techcrunch.com/2026/09/11/roblox-is-making-it-easier-to-build-games-with-ai-and-play-them-outside-roblox/">TechCrunch</a> &middot; <span class="via">via TLDR (Sep 14)</span></div>
+        </article>
 
-      <h3>Healthcare AI &amp; deployment economics</h3>
-      <p>Before any deployment question comes a measurement one, and a Sep 12 survey of the literature makes it concrete: healthcare analytics computed from structured data alone miss about 37.7% of documented diagnoses, because a diagnosis code is a billing artifact and a note is a clinical record. The specific gaps are large and repeatedly measured &mdash; HEDIS rates from claims alone 20.4 points below chart-reviewed rates across 283 commercial plans, Medicare smoking prevalence at 2.01% against a survey's 10.03%, coded inpatient obesity at 15.4% against measured BMI at 41.9%, CKD codes present for 14.4% of a Kaiser cohort whose labs defined the condition. The finding that changes the trajectory concerns ambient scribes: in 20,302 matched primary-care visits, AI-scribed notes recorded more neuropsychiatric symptoms while the odds of a referral, new diagnosis code or prescription <em>dropped</em> (adjusted OR 0.83 versus unscribed, 0.97 for human scribes). More documented, less coded, in the same encounter.</p>
-      <p>That reframes the economics this section tracks: an AI deployment that lengthens the note by ~20% a visit widens the measurement error in every downstream quality rate, risk score and gap-closure list unless something reads the note, and the requirements for that something &mdash; validated accuracy on clinical text, assertion and temporal handling, provenance to the source sentence, execution inside the customer's environment on identified data, with deterministic logic computing the measure over extracted facts &mdash; are the same ones the fact-level provenance work arrived at from the regulatory direction. A production case study sharpens what "shipping" a healthcare agent then requires. Maven Clinic's <strong>Maven Assistant</strong> — described by Staff AI Engineer William Horton the day after it reached its first external users — routes member requests through a lead agent to four narrower specialists (appointments, provider search, health questions, Maven support), deliberately holding the toolset to 15-20 tools rather than exposing one model to hundreds of choices, with hard guardrails running before dynamic routing. The release discipline is consequence-scaled rather than uniform: "for a lot of our tool-call evaluation, I'll accept that it runs ten times and passes nine times... going for ten out of ten is just not worth the effort," per Horton, while answers that could influence tens of thousands of dollars in benefits are withheld and self-harm language is routed directly to human support. The team's core practice is converting production failures into the permanent eval suite — a bad trace becomes a regression case, deterministic code verifies tool calls, and LLM judges (calibrated against human labels) cover clinical-accuracy behavior that resists an exact-match check — so the test set and the product both improve from real usage rather than only from synthetic benchmarks.</p>
-      <p>The planned four-month follow-up happened on schedule: Horton returned to the podcast (July 25) to report the agent now serves 100% of users (up from the 20% launch rollout), weekly conversation volume is up roughly tenfold, and real usage overturned part of the original roadmap — 50-60% of early conversations turned out to be basic health questions rather than the provider-search and appointment-booking tools the team had prioritized building. The team has since moved from Gemini Flash models toward newer OpenAI models, expanded to over 1,000 deterministic test scenarios alongside LLM judges, and now treats every model swap as a trigger to re-audit the harness rather than assume the newer model is simply better in every dimension — in one instance, a newer model correctly flagged a mocked "upcoming" appointment that had already happened, a behavior change the team had to go verify rather than take on faith. The regulatory version of that instinct now has a specification. The FDA's December 2025 real-world-evidence guidance, operational since February 2026, makes relevance and reliability <em>per-fact</em> properties of a submission: every clinical assertion carries its source document, exact span, extraction model and prompt version, confidence, detected conflicts and resolution. The write-up of what that costs to build &mdash; 42 capabilities across ingestion, extraction, privacy, reasoning, audit and versioning, two to three years of engineering, with per-fact source coordinates, parallel identified/de-identified datasets and point-in-time reconstruction all unretrofittable &mdash; is the most concrete answer this page has seen to what &ldquo;regulated deployment&rdquo; actually means.</p>
-      <p>Its sharpest consequence generalizes well past healthcare: a hosted frontier model is neither deterministic run-to-run nor pinnable across years, so an extraction step run through one cannot be reproduced in 2028 when that version has been retired. The same source reports a healthcare-specific small model at 96% F1 on PHI detection against 79% for GPT-4o, 83% for AWS Comprehend Medical and 91% for Azure, at over 80% lower cost &mdash; which turns &ldquo;use a small specialist model&rdquo; from a cost argument into an auditability one.</p>
-      <p>Healthcare is emerging as a setting where the unit of work is a whole patient — a large object (a cancer patient's record can run to thousands of pages, modeled at ~1M tokens) processed in multiple passes (de-identification, extraction, summarization/reasoning, conflict resolution with explicit chain-of-thought for auditability). At that scale, per-token API pricing collapses: David Talby's (John Snow Labs) cost model puts a locally deployed medical LLM at ~$95K (10K patients) to ~$1.04M (1M patients), versus $128K–$300K up to $12.8M–$30M via frontier APIs (GPT-5.4, Gemini-3.1-Pro, Claude-Opus-4.6). The multiple grows from ~1.35× at pilot scale to ~28.75× at a million patients because per-token cost is linear while per-server licensing plus infrastructure is sublinear (a 100× patient increase needed only 15× the nodes). The deeper point: when the marginal token is free, teams stop rationing and process every page of every record, changing what the data work can attempt. Talby notes the cost case sits on top of a separate accuracy case (the Medical LLM ranks first or tied-first across 13 clinical/biomedical benchmarks; 98.4% primary-site accuracy in a PHUSE study). That accuracy case sharpened on July 25: John Snow Labs' <strong>Medical LLM – Medium</strong> ranked first on all 15 clinical/biomedical benchmarks in the MedHELM suite, averaging 80.9 against 76.5, 75.0, and 74.7 for the newest OpenAI, Anthropic, and Google frontier releases respectively — running on a single GPU with per-server annual licensing (no per-token cost), modeled at roughly 12-29x cheaper than frontier APIs at population scale (1 million patients). The margin over frontier models is near-zero on saturated exam-style benchmarks and widest on operational tasks (clinical-note error-catching, medication Q&amp;A) — a reminder, consistent with the construct-validity dispute below, that an average leaderboard score can hide where a specialized model actually earns its edge. See <a href="infrastructure.html">Infrastructure</a> for the compute angle.</p>
+        <article class="story" id="umg-elevenlabs-remix">
+          <span class="when">2026-09-11</span>
+          <h4><a href="https://www.theverge.com/ai-artificial-intelligence/993465/universal-music-elevenlabs-ai">Universal Music and ElevenLabs launch a licensed-catalogue remix platform</a></h4>
+          <p>UMG is building an AI music platform with ElevenLabs that lets users create remixes and mashups from UMG&rsquo;s licensed catalogue. It is the second licensing-first launch in a fortnight after <a href="#suno-v6">Suno v6</a>&rsquo;s Warner and BMG training deal, and the two together mark the same shift: the constraint on generative music has stopped being model quality and become catalogue rights.</p>
+          <div class="sources"><a href="https://www.theverge.com/ai-artificial-intelligence/993465/universal-music-elevenlabs-ai">The Verge</a> &middot; <span class="via">via TLDR AI (Sep 11)</span></div>
+        </article>
 
-      <p>Beyond cost, the same author has pressed the evaluation question — do benchmark wins translate into clinical value? A July 2026 Nature Medicine Brief Communication reported general-purpose models (GPT-5.2, Gemini 3.1 Pro, Claude Opus 4.6) beating commercial clinical tools OpenEvidence and Wolters Kluwer's UpToDate Expert AI, and its title generalized that to outperforming "specialized clinical AI tools on medical benchmarks" — drawing a retraction request and a rebuttal from Talby. His deployment-side point: the tests measured single-turn general medical Q&amp;A, whereas applied clinical AI is multi-step and record-grounded — chart summarization, discharge instructions, tumor-stage extraction from pathology, medication reconciliation, catching an error in a note — so exam-style leaderboards don't establish real-world readiness. Benchmark-methodology detail on the <a href="evals-and-benchmarks.html">Evals &amp; benchmarks</a> page.</p>
+        <details>
+          <summary>Earlier in this section (8)</summary>
 
-      <p>A related failure mode is inherited rather than measured: <strong>cognitive bias</strong> (Aug 1). Clinical LLMs trained on clinician-written notes absorb the documented diagnostic biases of the clinicians who wrote them &mdash; anchoring being the canonical case, one of the best-studied problems in patient safety since Graber, Franklin, and Gordon's 2005 work in <em>Archives of Internal Medicine</em>. A frontier model handed a clinical note about a 52-year-old with chest pain can be steered by the note's framing even when its underlying medical knowledge is correct &mdash; which connects this page's deployment thread to the evals-side argument (July 31) that bias failure modes need their own deterministic benchmarks, separate from knowledge tests.</p>
+          <article class="story" id="suno-v6">
+            <span class="when">2026-09-09</span>
+            <h4><a href="https://techcrunch.com/2026/09/09/suno-replaces-its-ai-models-with-a-new-one-trained-on-licensed-music-as-copyright-suits-pile-up/">Suno v6 replaces the whole model line with one trained on licensed Warner and BMG catalogue</a></h4>
+            <p>Suno retired its existing models in favour of <strong>Suno v6</strong>, trained on music licensed from major labels including Warner and BMG, as copyright suits against it accumulate. The move is notable for being a replacement rather than an addition: the licensed model is the product now, not a compliant tier sold alongside the original.</p>
+            <p>It is the first frontier-scale generative music system to answer the training-data question by retraining rather than by arguing fair use, and it sets a price on the answer that every other media-generation vendor can now read &mdash; relicensing the corpus and discarding the model trained on the old one.</p>
+            <div class="sources"><a href="https://techcrunch.com/2026/09/09/suno-replaces-its-ai-models-with-a-new-one-trained-on-licensed-music-as-copyright-suits-pile-up/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Sep 10)</span></div>
+          </article>
 
-      <p>A third healthcare thread is the training-data unlock. <strong>NeuroVFM</strong> (University of Michigan, published in Nature Medicine) is a neuroimaging foundation model trained on 5.24M <em>uncurated</em> clinical MRI and CT volumes pulled straight from hospital systems — no radiology-report labels, no curation — using the self-supervised Vol-JEPA architecture. The applied significance is that it turns the messy scan archives every health system already stores into a generalist brain-imaging model, sidestepping the labeled-data bottleneck that has capped medical AI; the weights are open. It reframes "we don't have labeled data" as "we already have the data" — the real unlock for medical AI at scale. (Architecture/method detail on the <a href="research-papers.html">Research papers</a> page.)</p>
+          <article class="story unlinked" id="runway-worlds-2">
+            <span class="when">2026-09-04</span>
+            <h4>Runway GWM Worlds 2 &mdash; an interactive world model generating 720p at 24fps in real time</h4>
+            <p>A world model that generates interactive environments in real time at 720p, 24 frames per second, with 48 kHz audio. The user steers with text actions and camera motion, and sessions continue from each input with no preset length &mdash; the distinction from video generation being that there is no fixed clip to render, only a state that responds.</p>
+            <p>It arrives alongside a broader argument that world models are the next paradigm, with LeCun, Hassabis and Fei-Fei Li converging on models built for decisions rather than generation.</p>
+            <div class="sources"><span class="via">via TLDR AI (Sep 4), TLDR AI (Sep 3) &mdash; no public URL given</span></div>
+          </article>
 
-      <h3>Knowledge-work productivity</h3>
-      <p>Evidence is accumulating that autonomous agents, not chat, drive the largest applied productivity gains. A Perplexity/Harvard study tracked knowledge workers over three months using an autonomous agent ("Computer") versus search alone, finding tasks completed in 87% less time at 94% lower cost with higher satisfaction. The framing — a measured shift from chat interfaces to autonomous agents — gives applied teams a concrete benchmark for where agent investment pays off. (Study angle on the <a href="research-papers.html">Research papers</a> page.) PostHog's <strong>Replay Vision</strong> (Sep 10) is a useful corrective on where that work actually goes. Letting a model watch a session recording sounds like a model capability, but session replays are DOM mutation streams rather than video, so the shippable engineering was a custom rasterizer rendering them to frames across hundreds of concurrent jobs on many pods &mdash; more than 370 years of recorded sessions turned into roughly 3.5 million videos since it went to production in March. The pattern recurs across this page: the model was ready for the modality before the data existed in a shape any model could consume, and the deployable artifact was the conversion pipeline.</p>
-      <p>Pinecone published the same lesson on Sep 16 with the clearest support-deployment numbers on this page, and the artifact this time is knowledge rather than a conversion. After adding <strong>Nexus</strong>, a curated store its support agent queries on every ticket, eligible tickets reaching the agent rose from 76.5% to 94.2%, tickets it meaningfully assists on from 60.5% to 87.8%, and tickets it closes with no person involved from 24.6% to 55.1%. What Nexus holds is the join keys, the freshness caveats and the queries that turn a vague report into an answerable one &mdash; what a support engineer knows and almost none of which was written down. Curating it once is what lets the agent run its own checks and ask the customer only what the customer alone can supply, which is why the assist rate and the unassisted-closure rate rose together instead of trading against each other. The generalisable claim is that retrieval over the documentation was never the blocker, because the documentation never contained the operational knowledge; the deployable artifact is tacit knowledge made explicit, and the model was the easy part again. Anthropic&rsquo;s <strong>Salesforce in Claude</strong> beta the same day is the packaged version of the same bet &mdash; CRM records, pipeline actions, Slack deal context and 37 named sales skills inside the assistant &mdash; where the skill count is a claim about how much of a job has been decomposed rather than about the model, and pulling Slack context in addresses precisely the input that never reaches the CRM. Its unaddressed half is the write path: an assistant that updates pipeline records is changing what other processes treat as ground truth, and the announcement describes the capability without the review in front of it.</p>
+          <article class="story unlinked" id="gemini-agentic-video">
+            <span class="when">2026-09-02</span>
+            <h4>Gemini makes long-video understanding agentic &mdash; up to 88% fewer tokens by letting the model choose what to watch</h4>
+            <p>Instead of sampling a video at a fixed frame rate and hoping the decisive moment landed in context, Gemini&rsquo;s agentic video understanding lets the model decide which parts to inspect and through which channel &mdash; frames, audio, or transcript. It can skim, search, zoom in, rewatch, and pull evidence only where the question demands it.</p>
+            <p>Google reports up to 88% lower token usage, up to 66% lower cost and up to 7% better accuracy, available through the Gemini API in AI Studio and the Gemini Enterprise Agent Platform. It is the retrieval-becomes-agentic pattern this wiki has tracked in text, arriving in video: the win comes from <em>not</em> ingesting most of the input.</p>
+            <div class="sources"><span class="via">via Unwind AI (Sep 2) &mdash; no public URL given</span></div>
+          </article>
 
-      <h3>Agentic data science</h3>
-      <p>Hugo Bowne-Anderson is framing "agentic data science" as a domain reframing of agentic AI: use agents to unlock the original promise of data science (better decisions) rather than treat it as another vertical for generic coding agents. The proposed shape includes agent harnesses with causal eval layers to measure outcome improvement, and agentic dashboards that replace static BI with chat-based inquiry into models.</p>
+          <article class="story unlinked" id="world-labs-atlas">
+            <span class="when">2026-09-02</span>
+            <h4>World Labs&rsquo; Atlas &mdash; a world model with actual camera control</h4>
+            <p>Fei-Fei Li&rsquo;s World Labs released Atlas, working across text, images, video and 3D. Two capabilities separate it from video generation: it generates video along <em>precise camera paths</em> rather than responding to vague &ldquo;pan left&rdquo; prompting, and it reconstructs scenes from sparse images or video into point clouds and Gaussian splats.</p>
+            <p>The second is the one with downstream consequences &mdash; a reconstruction usable by robotics, VFX and game tooling is an asset a pipeline can consume, where a rendered clip is not.</p>
+            <div class="sources"><span class="via">via Unwind AI (Sep 2) &mdash; no public URL given</span></div>
+          </article>
 
-      <h3>Drug discovery &amp; biomedicine</h3>
-      <p>Beyond deploying LLMs in care delivery (the Maven and Medical-LLM threads above), AI is showing up one step earlier in the pipeline: discovery. The opening entry is Stanford’s July 31 result using AI over human protein data to identify a naturally-occurring peptide with Ozempic-comparable efficacy for obesity treatment and reduced side effects &mdash; model-driven mining of existing biological data standing in for synthetic-chemistry search. Worth tracking separately from clinical deployment because the evaluation regime (wet-lab validation, trials) and the economics (one discovery amortized across a drug program) differ entirely from per-conversation agent economics. <strong>Rentosertib</strong> (Sep 8) is the first candidate in this thread to produce a result outside the indication it was designed for: developed with AI assistance for idiopathic pulmonary fibrosis, trial data now shows it also reduced biological age markers as scored by six separate &ldquo;aging clocks&rdquo; &mdash; themselves ML models trained to predict morbidity and mortality, so the readout is one model's output evaluated by others. It is a secondary observation rather than an endpoint, and the drug remains years from approval even for lung disease. The tooling side moved the same week: OpenAI's <strong>Rosalind Workbench</strong> entered research preview inside the ChatGPT app, giving life-science users one environment for their existing tools, specialized biology models and recurring analysis workflows &mdash; packaging rather than discovery, but packaging is the stated bottleneck in a field where the tooling has always been the barrier.</p>
-      <p>Two releases in this cycle change what a lab without frontier compute can attempt. DeepMind's <strong>AlphaGenome Atlas</strong> (Sep 9) converts a model into a queryable resource: one petabyte of precomputed predictions for the regulatory effect of every possible single-nucleotide human variant &mdash; all 9 billion &mdash; each carrying a single impact score for triage, with no code to write and no inference to run. For fundamental biology, disease research and treatment development, the binding constraint was rarely the science and often the compute, and this removes it. <strong>GenBio's AIDO Cell</strong> (Aug 19) is a world model of a cell that simulates both its natural state and its response to successive perturbations, initially for K562 and HepG2, with an academic collaborator programme being prepared; the successive part is what distinguishes it from single-shot property prediction, since hypothesis generation depends on following consequences through several steps. <strong>Outer Biosciences</strong> is the speculative counterpart, training on measured responses of living donated human skin tissue rather than on published assay data &mdash; a genuinely different training signal, with nothing yet published to evaluate it against. A Sep 10 analysis proposes personalised cancer-vaccine design as the cleanest available test of whether genome language models have learned transferable biology or merely fitted their corpus. The pipeline runs five steps that each demand different knowledge &mdash; identify a patient's mutations, predict which resulting peptides are presented on the cell surface, predict which of those provoke an immune response, rank the targets, design the RNA that encodes them &mdash; and every stage has to be right for the output to be a candidate medicine rather than a plausible sequence. What makes it a test rather than another application is the denominator: the target is one person, so there is no population average for a wrong answer to hide inside, which is exactly the property the benchmark-shaped results in this field usually lack.</p>
+          <article class="story" id="runway-solaris">
+            <span class="when">2026-09-01</span>
+            <h4><a href="https://runway.com/news/research/introducing-solaris">Runway&rsquo;s Solaris generates the interface frame by frame, with no intermediate representation</a></h4>
+            <p>Solaris is an Interface World Model: it produces real-time interactive interfaces frame by frame as the user interacts, handling rendering and interaction jointly rather than emitting markup that a browser then draws. Beyond building interfaces, the stated use is training agents in environments that change under them &mdash; which is the harder half of what agent training environments currently lack.</p>
+            <p>Set against <a href="#world-labs-atlas">Atlas</a> and <a href="#runway-worlds-2">Worlds 2</a>, it is the same interactivity threshold applied to a different surface.</p>
+            <div class="sources"><a href="https://runway.com/news/research/introducing-solaris">Runway</a> &middot; <span class="via">via TLDR AI (Sep 1)</span></div>
+          </article>
 
-      <h3>Product search &amp; e-commerce</h3>
-      <p>A newer applied thread is search that reasons rather than matches. Onton's <strong>Ontology 1</strong> (Aug 3) is a neurosymbolic search model for e-commerce: instead of trusting seller labels, it reasons from properties more likely to be objective — fiber, weave, construction — in an explicit knowledge graph you can inspect, and flags claims the product data contradicts. On Subtext-Decor-90 (three independent LLM judges) it reaches P@10 0.630 vs Google Shopping's 0.543 and Amazon's 0.469 while indexing ~1% of their catalogs, winning 52 of 90 queries outright; judge agreement is modest (Krippendorff's alpha 0.465) but all three judges rank the engines identically. Live on Onton.com with no public API or open weights. The pattern worth tracking: an inspectable-reasoning layer beating catalog scale, and benchmark scoring by LLM-judge panels (with agreement statistics reported) becoming the norm for search quality.</p>
+          <article class="story unlinked" id="gemini-omni-1-1-flash">
+            <span class="when">2026-08-28</span>
+            <h4>Gemini Omni 1.1 Flash adds scene extension, frame interpolation and 4K upscaling</h4>
+            <p>Google shipped controls for extending scenes, interpolating between first and last frames, 4K upscaling and faster iteration through the Gemini API. Read alongside fal&rsquo;s <strong>H3 Max</strong> &mdash; a post-trained MiniMax H3 generating a 5-second video in under 3 seconds &mdash; and the SGLang Diffusion benchmark reaching 1.95&times; lossless speedup on 8&times;H200 (6.24&times; with step reuse and sparse attention), the week&rsquo;s video story is entirely about iteration latency rather than output quality.</p>
+            <p>Google has since made the loop explicit: Omni 1.1 Flash can render rough 360p drafts before you pay for a full-resolution take, up to 60% faster and about a third the cost of 720p, so you test several directions and upscale one. Video generation is becoming something you can direct in a loop instead of commission and wait for.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 28), Unwind AI (Aug 28) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="misotts">
+            <span class="when">2026-06-04</span>
+            <h4>MisoTTS brings emotive speech to the open creative stack</h4>
+            <p>Miso Labs open-sourced an 8B text-to-speech model that conditions on both text and prior audio so output tracks speaker tone; residual vector quantization (32 codebooks &times; 2,048-way) widens sonic range without growing the model, with one-shot voice cloning from a ~10s clip and ~110ms claimed latency, against cited figures of 700ms and 300ms for ElevenLabs and Sesame.</p>
+            <p>Weights are under a modified MIT license; it is half-duplex and single-turn for now, with the API pending.</p>
+            <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="stability-ai-audio">
+            <span class="when">2026-05-28</span>
+            <h4>Stability AI goes open on audio</h4>
+            <p>Stability AI released an open-weights audio model, expanding the open creative-media stack. Combined with ByteDance&rsquo;s unified video work and the existing open image generators, the open creative stack became broadly usable end to end.</p>
+            <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="physical-ai-and-robotics">
+        <h3>Physical AI &amp; robotics</h3>
+        <p class="lead">One entry, and it is released surface area rather than a deployment: checkpoints, datasets, recipes and a benchmark shipped together for teams building simulation and embodied agents. Nobody has yet reported building on it here, so read it as what is now available rather than as demonstrated capability.</p>
+
+        <article class="story unlinked" id="nvidia-cosmos-3">
+          <span class="when">2026-06-03</span>
+          <h4>NVIDIA Cosmos 3 &mdash; open world models for physical AI</h4>
+          <p>NVIDIA&rsquo;s GTC Taipei keynote detailed Cosmos 3, an open family of world models for robotics, autonomous vehicles and warehouse monitoring, unifying physical reasoning, world generation and action that earlier Cosmos releases kept separate. It ships fully open &mdash; Nano (16B) and Super (64B) checkpoints, six synthetic-data-generation datasets, training recipes and the HUE benchmark &mdash; with claimed open-source state of the art on R-Bench.</p>
+          <p>For applied teams the significance is the lowered barrier to building simulation and embodied-agent applications without training a world model first. See <a href="model-releases.html">Model releases</a> for architecture detail.</p>
+          <div class="sources"><span class="via">via NVIDIA GTC email, MarkTechPost newsletter &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="speech-to-text-in-production">
+        <h3>Speech-to-text in production</h3>
+        <p class="lead">Three releases covering the hosted, the on-device and the translated case, which between them turn transcription into a commodity building block. Every accuracy and latency figure here is published by the vendor and none carries a deployment report, so the thing to establish for each is which audio it was measured on.</p>
+
+        <article class="story unlinked" id="gradium-speech-translation">
+          <span class="when">2026-06-26</span>
+          <h4>Gradium ships real-time speech translation (stt-translate &amp; s2s-translate)</h4>
+          <p>Gradium released two streaming real-time speech-translation models &mdash; stt-translate (speech&rarr;text) and s2s-translate (speech&rarr;speech) &mdash; both covering English, French, German, Spanish and Portuguese, and both reportedly beating gpt-realtime-translate on accuracy and latency at launch. The API is available now.</p>
+          <p>Collapsing the usual three-model stack of ASR, translation and TTS into a single end-to-end model removes the latency introduced at each hop, which makes it an opening benchmark target for teams building multilingual voice agents &mdash; the same budget the <a href="#voice-agent-architecture-and-latency-budgets">latency-budget</a> argument below is about. The comparison is the vendor&rsquo;s own.</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="mai-transcribe-1-5">
+          <span class="when">2026-06-09</span>
+          <h4>Microsoft MAI-Transcribe-1.5 makes fast multilingual STT a commodity</h4>
+          <p>Microsoft&rsquo;s speech-to-text release hits 2.4% WER across 43 languages, transcribes an hour of audio in under 15 seconds, and leads the accuracy-speed Pareto frontier at its tier &mdash; best-in-class FLEURS, and up to 5&times; faster than Gemini 3.1, Scribe v2 and GPT-4o-Transcribe on long audio.</p>
+          <p>It is available on Azure AI Foundry, which makes it a drop-in high-accuracy transcription block for cloud workloads such as meeting capture and captioning. See <a href="model-releases.html">Model releases</a> for model detail.</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="nemotron-3-5-asr">
+          <span class="when">2026-06-09</span>
+          <h4>NVIDIA Nemotron 3.5 ASR &mdash; local real-time transcription, 40 locales</h4>
+          <p>A single 600M-parameter cache-aware streaming model transcribes 40 language-locale pairs in real time with native punctuation, capitalization and runtime language switching, running fully local via ONNX and distributed through NGC, Hugging Face and the Together AI API.</p>
+          <p>It covers the on-device and streaming end that <a href="#mai-transcribe-1-5">MAI-Transcribe-1.5</a> does not, so applications spanning meeting capture, captioning and voice agents now have both a hosted high-accuracy option and a local real-time one.</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="voice-agent-architecture-and-latency-budgets">
+        <h3>Voice agent architecture &amp; latency budgets</h3>
+        <p class="lead">A single design essay, kept apart because its claim is that the choices are not independent: each one spends part of the same per-turn latency budget. What to check is whether the budget it names holds for your own traffic, and which inspection points a lower-latency path removes.</p>
+
+        <article class="story" id="voice-agent-latency-budget">
+          <span class="when">2026-07-27</span>
+          <h4><a href="https://open.substack.com/pub/boringbot/p/voice-agents-a-deep-dive">Voice agent architecture reframed as a latency-budget allocation problem</a></h4>
+          <p>The essay argues every voice-agent design choice &mdash; cascading STT/LLM/TTS against native speech-to-speech (OpenAI&rsquo;s Realtime API, Google&rsquo;s Gemini Live), open self-hosted components (Whisper, Kokoro) against closed APIs &mdash; is really an allocation decision inside a roughly 700 to 800 millisecond per-turn budget. Cascading pipelines preserve the inspection points where a transcription error is caught or a compliance violation blocked, and pay for them in latency at every handoff; speech-to-speech removes the handoffs and the checkpoints together. Open components are competitive on quality but carry self-hosting costs that only beat closed APIs past a certain scale.</p>
+          <p>Its practical guidance is that voice earns its keep in hands-busy, phone-native or accessibility contexts rather than wherever a user could otherwise type, and that the gating question for 2026 deployments is the honest failure modes &mdash; noisy-environment transcription errors, barge-in handling, PII exposure &mdash; not whether a voice agent can be shipped at all. It also flags a widening trust gap: consumer preference for human agents is reportedly climbing even as blind listening tests show AI voices are largely indistinguishable from human ones.</p>
+          <div class="sources"><a href="https://open.substack.com/pub/boringbot/p/voice-agents-a-deep-dive">The Production Gap (Hamza Farooq)</a> &mdash; deep-dive essay</div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="healthcare-ai-and-deployment-economics">
+        <h3>Healthcare AI &amp; deployment economics</h3>
+        <p class="lead">Measurement, cost, provenance and evaluation, and each entry argues the deployment question is settled before a model is chosen. Several come from one vendor writing about the market it sells into, so the separation worth making in each case is between the measured finding and the commercial case it supports.</p>
+
+        <article class="story" id="structured-data-gap">
+          <span class="when">2026-09-12</span>
+          <h4><a href="https://www.talby.com/p/healthcare-analytics-built-on-structured">Structured data alone misses 37.7% of documented diagnoses &mdash; and ambient scribes widen the gap</a></h4>
+          <p>A survey of the measurement literature puts hard numbers on what claims-and-codes analytics cannot see. At a London teaching hospital a year after a full Epic rollout, 516 patients&rsquo; problem lists held 2,841 diagnoses and chart review of the notes found 1,722 more &mdash; 37.7% of diagnoses existed only in free text. Administrative-only HEDIS rates ran 20.4 points below chart-reviewed rates across 283 commercial plans; Medicare claims identified 2.01% of beneficiaries as smokers where BRFSS found 10.03%; the National Inpatient Sample codes obesity at 15.4% where measured BMI puts it at 41.9%; 14.4% of a Kaiser cohort with eGFR 10&ndash;59 carried a CKD code. The explanation is structural rather than sloppy, since a code is produced at billing time under coding rules.</p>
+          <p>The ambient-scribe finding is the one that changes the direction of travel: in 20,302 matched primary-care visits, AI-scribed notes documented significantly more neuropsychiatric symptoms while the odds of a resulting referral, diagnosis code or prescription <em>fell</em> (adjusted OR 0.83 against unscribed visits, 0.97 for human scribes). Notes are growing about 20% per visit and the coded fraction is not, so the gap widens precisely where AI is being deployed. The requirements that implies for extraction &mdash; assertion and temporal handling, provenance to the source sentence, execution on identified data inside the customer&rsquo;s environment, deterministic measure logic over extracted facts &mdash; are the ones the <a href="#fact-level-provenance">fact-level provenance</a> write-up reached from the regulatory side.</p>
+          <div class="sources"><a href="https://www.talby.com/p/healthcare-analytics-built-on-structured">John Snow Labs</a> (analysis write-up) &middot; <span class="via">via AI in Healthcare (Sep 12)</span></div>
+        </article>
+
+        <article class="story unlinked" id="fact-level-provenance">
+          <span class="when">2026-09-05</span>
+          <h4>Fact-level provenance: 42 capabilities, and why a hosted API cannot pass the audit</h4>
+          <p>The FDA&rsquo;s December 2025 real-world-evidence guidance, operational since February 2026, treats relevance and reliability as per-fact properties rather than per-dataset ones: a reviewer asking where a single value came from should get the source document, the exact span, the model and prompt version, the extraction confidence, the conflicts detected and the rule or reviewer that resolved them. Meeting that takes 42 distinct capabilities across ingestion, extraction, privacy, reasoning, audit and versioning &mdash; two to three years of engineering &mdash; and several of them, notably per-fact source coordinates and point-in-time reconstruction, only work if designed in from the first sprint.</p>
+          <p>The sharpest architectural consequence generalises well past healthcare: a hosted frontier model is neither deterministic across runs nor pinnable across years, so an extraction step run through one cannot be reproduced when that version has been retired. A peer-reviewed comparison puts a healthcare-specific small model at 96% F1 on PHI detection against 79% for GPT-4o, 83% for AWS Comprehend Medical and 91% for Azure, at over 80% lower cost &mdash; which turns &ldquo;use a small specialist model&rdquo; from a cost argument into an auditability one.</p>
+          <div class="sources"><span class="via">via AI in Healthcare (Sep 5) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="overit-breakup-rct">
+          <span class="when">2026-08-12</span>
+          <h4>A single 20-minute chatbot session measurably reduced breakup distress in a randomized trial</h4>
+          <p>Thomas Menzel (TU Munich / Cambridge) with Michel Schimpf and Thomas Boh&eacute; built <em>overit</em>, an app on Claude Sonnet 4.5 that walks a user through four phases &mdash; open questions about the breakup, eliciting a self-limiting belief, offering a contradicting interpretation, then consolidating what changed &mdash; capped at 18 turns and grounded in memory reconsolidation theory. In a randomized controlled trial with 171 participants, one roughly 20-minute conversation cut Breakup Distress Scale scores from 35.3 to 26.6 after seven days against 35.9 to 32.2 in the control group, still holding at one month (26.0 against 29.0), with 61.7% reporting a &ldquo;sudden insight&rdquo; against 19.3% of controls.</p>
+          <p>Single-session matters because multi-session therapeutic chatbots lose users to attrition before the benefit lands. The architectural detail is the transferable part: each user turn triggers two separate model calls &mdash; one to evaluate which of five therapeutic milestones the conversation has reached, one to generate the reply &mdash; which is what keeps the model challenging the user rather than sycophantically agreeing, and is a usable template for any goal-directed conversational agent.</p>
+          <div class="sources"><span class="via">via The Batch (Aug 13) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story unlinked" id="clinical-llm-cognitive-bias">
+            <span class="when">2026-08-03</span>
+            <h4>Clinical LLMs inherit cognitive bias from the doctors whose notes trained them</h4>
+            <p>An AI-in-healthcare essay argues LLM diagnostic bias is not a new AI-invented problem but an inherited one: models trained on clinician-written notes absorb documented diagnostic biases such as anchoring, one of the best-studied problems in patient safety since Graber, Franklin and Gordon&rsquo;s 2005 work in <em>Archives of Internal Medicine</em>. A frontier model given a clinical note about a 52-year-old with chest pain can be steered by the note&rsquo;s framing even when its underlying medical knowledge is correct.</p>
+            <p>It connects this page&rsquo;s deployment thread to the evals-side argument that bias failure modes need their own deterministic benchmarks, separate from knowledge tests.</p>
+            <div class="sources"><span class="via">via AI in Healthcare (Aug 1) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="maven-assistant">
+            <span class="when">2026-07-25</span>
+            <h4>Maven Assistant, from launch-day evals to a 100% rollout four months later</h4>
+            <p>William Horton (Staff AI Engineer, Maven Clinic) described the architecture and evaluation practice behind <strong>Maven Assistant</strong> the day after it reached its first external users (Jul 18). A lead agent routes member requests to four narrower specialists &mdash; appointments, provider search, health questions, Maven support &mdash; across a deliberately small toolset of 15 to 20 tools, with hard guardrails running before dynamic routing. Release thresholds scale with the consequence of a wrong answer: nine passes out of ten can be acceptable for a cheap failure, while answers that could influence tens of thousands of dollars in benefits are withheld and self-harm language routes straight to human support. The core practice is converting production failures into the permanent eval suite, with deterministic code verifying tool calls and LLM judges calibrated against human labels covering what resists an exact-match check.</p>
+            <p>The four-month follow-up landed on schedule (Jul 25): the agent now serves 100% of users, up from the 20% it launched to, weekly conversation volume has grown roughly tenfold, and real usage overturned part of the roadmap &mdash; 50-60% of early conversations turned out to be basic health questions rather than the provider-search and appointment-booking tools the team had built out first. The team moved from Gemini Flash models toward newer OpenAI models, now runs over 1,000 deterministic test scenarios alongside LLM judges, and treats a model swap as a trigger to re-audit the harness rather than assume improvement: a newer model correctly flagged a mocked &ldquo;upcoming&rdquo; appointment that had already happened, a good outcome that was still a behaviour change the team had to go verify.</p>
+            <div class="sources"><span class="via">via Vanishing Gradients (Hugo Bowne-Anderson), Jul 18 and Jul 25 &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="medical-llm-medium">
+            <span class="when">2026-07-25</span>
+            <h4>John Snow Labs&rsquo; Medical LLM &ndash; Medium ranks first on all 15 MedHELM benchmarks</h4>
+            <p>Medical LLM &ndash; Medium ranks first on all 15 clinical and biomedical benchmarks in the MedHELM suite, averaging 80.9 against 76.5, 75.0 and 74.7 for the newest OpenAI, Anthropic and Google frontier releases respectively. It runs on a single GPU under per-server annual licensing with no per-token cost, modeled at roughly 12-29&times; cheaper than frontier APIs at population scale of a million patients &mdash; which extends the <a href="#healthcare-cost-model">cost model</a> already on this page.</p>
+            <p>The caveat is in the distribution rather than the average: margins over frontier models are near-zero on saturated exam-style benchmarks and widest on operational tasks such as clinical-note error-catching and medication Q&amp;A, so a single leaderboard average hides where a specialized model actually earns its edge. The evaluation is published by the model&rsquo;s vendor.</p>
+            <div class="sources"><span class="via">via AI in Healthcare (David Talby) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="neurovfm">
+            <span class="when">2026-07-14</span>
+            <h4>NeuroVFM &mdash; a brain-imaging foundation model built from uncurated hospital archives</h4>
+            <p>University of Michigan researchers trained NeuroVFM on 5.24M real clinical MRI and CT volumes with no radiology-report labels and no curation, using the self-supervised Vol-JEPA architecture; it is published in Nature Medicine with open weights.</p>
+            <p>For applied medical AI it is a template: the uncurated scan archives every health system already holds can be turned into a generalist imaging model, which reframes &ldquo;we don&rsquo;t have labeled data&rdquo; as &ldquo;we already have the data&rdquo; and loosens the labeled-data bottleneck that has long capped clinical AI at scale. (Architecture and method detail on the <a href="research-papers.html">Research papers</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 13) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story" id="medical-benchmark-dispute">
+            <span class="when">2026-07-13</span>
+            <h4><a href="https://www.talby.com/p/when-the-title-outruns-the-study">Medical-benchmark dispute: exam scores vs. clinical deployment</a></h4>
+            <p>David Talby (John Snow Labs) argued that a viral Nature Medicine result &mdash; general-purpose models (GPT-5.2, Gemini 3.1 Pro, Claude Opus 4.6) beating the clinical tools OpenEvidence and UpToDate Expert AI across MedQA, HealthBench and 1,800 real clinician queries &mdash; measured only single-turn medical question-answering. The paper&rsquo;s title generalised that to outperforming specialized clinical AI tools on medical benchmarks, which drew his retraction request and rebuttal.</p>
+            <p>His deployment-side point is that real clinical applications &mdash; chart summarization, discharge instructions, tumor-stage extraction from pathology, medication reconciliation, catching an error in a note &mdash; are multi-step and record-grounded, so exam-style wins do not establish deployment readiness. He also flags that HealthBench was built by OpenAI, a possible benchmark-developer advantage. He is the vendor of a competing clinical model. Benchmark-methodology detail on the <a href="evals-and-benchmarks.html">Evals &amp; benchmarks</a> page.</p>
+            <div class="sources"><a href="https://www.talby.com/p/when-the-title-outruns-the-study">AI in Healthcare (David Talby, Substack)</a> &mdash; commentary post</div>
+          </article>
+
+          <article class="story" id="healthcare-cost-model">
+            <span class="when">2026-06-21</span>
+            <h4><a href="https://www.talby.com/p/a-cost-model-for-patient-level-healthcare">Cost model: local medical LLM up to ~29&times; cheaper than frontier APIs at scale</a></h4>
+            <p>David Talby (John Snow Labs) published a cost model for patient-level healthcare AI built on an oncology real-world-evidence workload of roughly 1M tokens per patient across four passes &mdash; de-identification, extraction, summarization and reasoning, conflict resolution with explicit chain-of-thought for auditability. A locally deployed medical LLM runs about $95K at 10,000 patients against $128K&ndash;$300K via API (1.35&times;&ndash;3.17&times;), and about $1.04M at a million patients against $12.8M&ndash;$30M via API (12.3&times;&ndash;28.75&times;, comparing GPT-5.4, Gemini-3.1-Pro and Claude-Opus-4.6).</p>
+            <p>The gap widens because per-token pricing is linear in data volume while per-server licensing plus infrastructure scales sublinearly &mdash; a 100&times; patient increase needed only 15&times; the nodes &mdash; so at production volume the deployment model, not the API vendor, is the cost decision. The deeper point is that when the marginal token is free teams stop rationing and process every page of every record. The model is published by a vendor selling the local option. See <a href="infrastructure.html">Infrastructure</a> for the compute angle.</p>
+            <div class="sources"><a href="https://www.talby.com/p/a-cost-model-for-patient-level-healthcare">AI in Healthcare (David Talby, Substack)</a> &mdash; analysis post</div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="knowledge-work-productivity">
+        <h3>Knowledge-work productivity</h3>
+        <p class="lead">What each of these deploys is not the model but something that had to be built first &mdash; a curated store, a conversion pipeline, accumulated task context. The headline percentages are published by the parties they favour, so the mechanism described carries more weight here than the number attached to it.</p>
+
+        <article class="story" id="pinecone-nexus">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://www.pinecone.io/blog/">Pinecone&rsquo;s support agent closes 55.1% of tickets with no person, up from 24.6%</a></h4>
+          <p>Pinecone published before-and-after numbers for its support agent after adding <strong>Nexus</strong>, a curated artifact the agent queries on every ticket. Eligible tickets reaching the agent went from 76.5% to 94.2%, tickets it meaningfully assists on from 60.5% to 87.8%, and tickets it closes with no person involved from 24.6% to 55.1%.</p>
+          <p>What Nexus contains is the interesting part: the join keys, the freshness caveats and the queries that turn a vague question into an answerable one &mdash; the knowledge a support engineer holds and almost none of which is written down anywhere. Curating it once lets the agent run its own checks and ask the customer only what the customer alone can answer, which is why the assist rate and the no-human rate moved together rather than trading off. The transferable finding is that the blocker was never retrieval over the documentation but that the documentation never contained the operational knowledge. Three published percentages with a stated mechanism is more than most deployment claims here carry, though they remain self-reported and no quality measure accompanies the closure rate.</p>
+          <div class="sources"><a href="https://www.pinecone.io/blog/">Pinecone blog</a> (index page) &middot; <span class="via">via Pinecone (Sep 16)</span></div>
+        </article>
+
+        <article class="story" id="salesforce-in-claude">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://claude.com/blog/salesforce-in-claude">Salesforce in Claude puts CRM records, pipeline actions and 37 sales skills inside the assistant</a></h4>
+          <p>Anthropic shipped a beta putting Salesforce inside Claude for paid plans: CRM records, pipeline actions, Slack deal context and 37 named sales skills, so reading, summarising, drafting and updating happen in the assistant rather than in the system of record. The count is the part to note, because thirty-seven skills is a claim about how much of a job has been decomposed rather than about the model &mdash; the domain-harness argument applied to a CRM, where the value is the encoded procedure rather than the connection. Pulling Slack deal context alongside the records matters for the same reason: the missing input for most sales questions is the conversation that never reached the CRM, which is the enterprise version of the <a href="#pinecone-nexus">tacit knowledge</a> problem Pinecone&rsquo;s support agent answered with a curated artifact.</p>
+          <p>The risk this creates is the write path. An assistant that can update pipeline records is making changes to the system other processes read as ground truth, and the announcement describes the capability without describing what review sits in front of it.</p>
+          <div class="sources"><a href="https://claude.com/blog/salesforce-in-claude">Anthropic</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
+        </article>
+
+        <article class="story" id="posthog-replay-vision">
+          <span class="when">2026-09-10</span>
+          <h4><a href="https://posthog.com/blog/multimodal-models-need-video">PostHog built a rasterizer so models can watch session replays: 370 years of recordings into 3.5M videos</a></h4>
+          <p>PostHog&rsquo;s Replay Vision lets a model actually watch a session recording rather than read a description of one, and the engineering is the story. Session replays are not video &mdash; they are DOM mutation streams &mdash; so PostHog wrote a custom rasterizer that renders them to frames, running hundreds of concurrent jobs across many pods. Since going to production in March it has rasterized more than 370 years of recorded sessions into roughly 3.5 million videos.</p>
+          <p>It is a concrete instance of the general pattern this page keeps meeting: the model was ready for the modality before the data was in a shape any model could consume, and the deployable work was the conversion pipeline.</p>
+          <div class="sources"><a href="https://posthog.com/blog/multimodal-models-need-video">PostHog</a> &middot; <span class="via">via TLDR (Sep 10)</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story unlinked" id="codex-outside-engineering">
+            <span class="when">2026-08-24</span>
+            <h4>Codex adoption is growing fastest outside engineering: legal 108&times;, sales 41&times;</h4>
+            <p>a16z reports that since February the fastest-growing Codex adopters have been non-engineering functions &mdash; legal up 108&times;, sales and recruiting 41&times;, marketing 26&times;, healthcare 24&times;.</p>
+            <p>The interpretation offered, and it is the useful one, is that these users are not vibe-coding: they are converting repeatable knowledge work into Codex-shaped tasks. Growth multiples off a small base overstate the absolute shift, but the direction matches the enterprise deployment patterns this page has been tracking since July.</p>
+            <div class="sources"><span class="via">via Unwind AI (Aug 24) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="harvey-ii">
+            <span class="when">2026-08-19</span>
+            <h4>Harvey II starts each legal task with context, memory and preferences from the last one</h4>
+            <p>Harvey II lets legal AI agents begin work with the context, memory and preferences accumulated from prior tasks rather than reconstructing the setup each time. In professional-services work the repeated setup <em>is</em> the cost &mdash; the same matter, the same client conventions, the same document set, re-explained per session.</p>
+            <p>Harvey separately post-trained a Kimi K3 base with asynchronous RL inside long-horizon legal environments and routes specialized diligence, review-table and firm-knowledge capabilities as tools; results are vendor-authored throughout. (Training detail on the <a href="training-and-rl.html">Training</a> page.)</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 19), TLDR AI (Aug 21) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="riemann-adjacent-result">
+            <span class="when">2026-08-17</span>
+            <h4>A non-mathematician prompting mostly &ldquo;keep going&rdquo; produced a Riemann-adjacent result</h4>
+            <p>Anthropic employee Jarred Sumner used the Claude app on his phone to attack the Riemann hypothesis. The model did not solve it, but produced a related finding that a Stanford number theorist called the most impressive result AI has produced in mathematics so far. Sumner&rsquo;s formal mathematical education ended after one semester of high-school geometry, and most of his prompting was variations of &ldquo;keep going&rdquo; and &ldquo;believe in yourself.&rdquo;</p>
+            <p>It is a striking datapoint about where the expertise bottleneck now sits &mdash; and, read beside the <a href="research-papers.html">Navier&ndash;Stokes provenance dispute</a>, about how hard these results are to attribute.</p>
+            <div class="sources"><span class="via">via TLDR (Aug 17) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="perplexity-harvard-agents">
+            <span class="when">2026-06-09</span>
+            <h4>Perplexity/Harvard: autonomous agents finish work 87% faster, 94% cheaper</h4>
+            <p>Perplexity, with Harvard, published research on the shift from chat interfaces to autonomous agents, using its &ldquo;Computer&rdquo; agent. Over three months, workers using Computer finished tasks in 87% less time at 94% lower cost than search alone, with higher satisfaction.</p>
+            <p>It is the concrete field datapoint behind the claim that agent autonomy, not chat, drives the largest applied productivity gains, and it gives applied teams a benchmark for where agent investment pays off. One of the two authors sells the agent. (Study angle on the <a href="research-papers.html">Research papers</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="agentic-data-science">
+        <h3>Agentic data science</h3>
+        <p class="lead">One entry, and it is an agenda rather than a result: agents pointed at better decisions instead of faster code, with a causal evaluation layer attached. Nothing has been built against it yet, so what would settle it is the first harness that measures an outcome rather than a task.</p>
+
+        <article class="story unlinked" id="agentic-data-science-essay">
+          <span class="when">2026-06-01</span>
+          <h4>&ldquo;The Agentic Data Science Research Lab&rdquo; essay</h4>
+          <p>Hugo Bowne-Anderson published an essay arguing AI agents can unlock the original promise of data science &mdash; making better decisions, not coding faster &mdash; rather than treating it as another vertical for generic coding agents. It calls for agent harnesses paired with causal eval layers that measure outcome improvement, and agentic dashboards offering chat-driven inquiry into models instead of static BI.</p>
+          <p>It positions the work as a research-lab agenda, which is to say a proposed shape rather than anything measured.</p>
+          <div class="sources"><span class="via">via Vanishing Gradients (Hugo Bowne-Anderson Substack) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="drug-discovery-and-biomedicine">
+        <h3>Drug discovery &amp; biomedicine</h3>
+        <p class="lead">Discovery runs on a different clock from a deployed agent: wet-lab validation, trials, and one result amortised across a whole drug programme. Most entries here announce a capability rather than report a validated outcome, so the question each one has to answer is what has been tested outside the model.</p>
+
+        <article class="story" id="genome-lm-cancer-vaccine">
+          <span class="when">2026-09-10</span>
+          <h4><a href="https://www.radicalnumerics.ai/blog/omnii-cancer-vaccines">Genome language models as a direct test: designing a cancer vaccine for one specific patient</a></h4>
+          <p>A long analysis frames personalised cancer-vaccine design as an unusually clean test of whether genome language models have learned transferable biology rather than pattern-matched their corpus. The pipeline has five steps that each demand different knowledge &mdash; identify the patient&rsquo;s mutations, predict which resulting peptides are presented on the cell surface, predict which of those provoke an immune response, rank the targets, and design the RNA that encodes them &mdash; and a model has to be right at every stage for the output to be a candidate medicine rather than a plausible-looking sequence.</p>
+          <p>That is the property that makes it a test: the target is a single person, so there is no population-level average to hide a wrong answer in &mdash; which is exactly what the benchmark-shaped results in this field usually lack.</p>
+          <div class="sources"><a href="https://www.radicalnumerics.ai/blog/omnii-cancer-vaccines">Radical Numerics</a> (analysis post) &middot; <span class="via">via TLDR (Sep 10)</span></div>
+        </article>
+
+        <article class="story unlinked" id="alphagenome-atlas">
+          <span class="when">2026-09-09</span>
+          <h4>AlphaGenome Atlas gives genomics labs a variant impact score without an inference budget</h4>
+          <p>Google DeepMind&rsquo;s AlphaGenome Atlas is an online repository of precomputed AlphaGenome predictions covering all 9 billion possible single-nucleotide human variants, at one petabyte. Scientists can use it without writing code or running the model, and each variant carries a single impact score showing at a glance whether it is likely to matter.</p>
+          <p>That is a deployment decision more than a scientific one, and it is the decision that determines whether fundamental-biology, disease and treatment work can use the model at all &mdash; the binding constraint for most labs was rarely the science and often the compute. (Method detail on the <a href="research-papers.html">Research papers</a> page.)</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 9), TLDR (Sep 9) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="rentosertib">
+          <span class="when">2026-09-08</span>
+          <h4>Rentosertib, designed with AI for lung disease, moved six aging clocks</h4>
+          <p>Rentosertib was developed with AI assistance for idiopathic pulmonary fibrosis; clinical trial data now shows it also reduced biological age markers as measured by six separate &ldquo;aging clocks&rdquo; &mdash; themselves ML models trained to predict morbidity and mortality, so the readout is one model&rsquo;s output evaluated by others.</p>
+          <p>The drug is still years from regulatory approval even for its original indication, and the result is a secondary observation, not an endpoint.</p>
+          <div class="sources"><span class="via">via TLDR (Sep 8) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="rosalind-workbench">
+            <span class="when">2026-08-31</span>
+            <h4><a href="https://developers.openai.com/blog/rosalind-workbench">OpenAI&rsquo;s Rosalind Workbench puts life-science tooling inside ChatGPT</a></h4>
+            <p>Rosalind Workbench is a research-preview environment in the ChatGPT app giving life-science users a single place to run their existing tools, reach specialized biology models and define recurring data-analysis workflows.</p>
+            <p>It is a guided surface over frontier models plus scientific tooling rather than a new model &mdash; the same packaging bet as <a href="tools-and-devex.html">Claudeforce</a>, aimed at a field where the tooling rather than the model has always been the barrier.</p>
+            <div class="sources"><a href="https://developers.openai.com/blog/rosalind-workbench">OpenAI</a> &middot; <span class="via">via TLDR AI (Aug 31)</span></div>
+          </article>
+
+          <article class="story unlinked" id="outer-biosciences">
+            <span class="when">2026-08-24</span>
+            <h4>Outer Biosciences trains models on living human skin tissue</h4>
+            <p>Outer Biosciences keeps donated human skin tissue alive, measures how it responds to compounds, and trains models on the resulting biological data. The approach sits between in-silico prediction and animal testing: the training signal comes from real human tissue responding in real time rather than from published assay results.</p>
+            <p>It is early and the company has published no model or benchmark, so the entry records the approach rather than any validated capability.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 24) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="aido-cell">
+            <span class="when">2026-08-19</span>
+            <h4>GenBio&rsquo;s AIDO Cell simulates a cell&rsquo;s natural state and its response to successive perturbations</h4>
+            <p>GenBio announced a world model of a cell that simulates both its natural state and its responses to successive perturbations, currently supporting K562 and HepG2 &mdash; two of the most widely used immortalized human cell lines in biomedical research. An early-access academic collaborator programme is being prepared.</p>
+            <p>The capability that matters is <em>successive</em> perturbation: following predicted consequences across biological levels is what generates hypotheses, and doing it one intervention at a time is what wet-lab work already does slowly.</p>
+            <div class="sources"><span class="via">via TLDR (Aug 19) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="stanford-peptide-ozempic">
+            <span class="when">2026-07-31</span>
+            <h4>Stanford researchers use AI on human protein data to find a natural Ozempic alternative</h4>
+            <p>Working toward a non-synthetic alternative to GLP-1 drugs for obesity treatment, Stanford researchers used AI to analyze human protein data and found a peptide delivering comparable results to Ozempic with reduced side effects.</p>
+            <p>It opened this thread on the page as a concrete instance of model-driven mining of existing biological data standing in for synthetic-chemistry search &mdash; worth tracking separately from clinical deployment because both the evaluation regime and the economics differ entirely from per-conversation agent work.</p>
+            <div class="sources"><span class="via">via AI Loves Data (Jul 31) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="product-search-and-e-commerce">
+        <h3>Product search &amp; e-commerce</h3>
+        <p class="lead">One entry, and the scoring is as interesting as the system: a panel of LLM judges with its agreement statistic published rather than omitted. What that leaves open is whether the panel is measuring search quality or measuring its own agreement.</p>
+
+        <article class="story unlinked" id="onton-ontology-1">
+          <span class="when">2026-08-04</span>
+          <h4>Onton Ontology 1 &mdash; neurosymbolic e-commerce search that reasons from properties, not seller labels</h4>
+          <p>Ontology 1 reasons from product properties more likely to be objective &mdash; fiber, weave, construction &mdash; inside an explicit, inspectable knowledge graph rather than trusting seller labels, and flags claims the product data contradicts. On Subtext-Decor-90, scored by three independent LLM judges, it reaches P@10 0.630 against Google Shopping&rsquo;s 0.543 and Amazon&rsquo;s 0.469 while indexing roughly 1% of their catalogs, winning 52 of 90 queries outright.</p>
+          <p>Judge agreement is modest at Krippendorff&rsquo;s alpha 0.465, though all three judges rank the engines identically. It is live on Onton.com with no public API or open weights. The pattern worth tracking is an inspectable-reasoning layer beating catalog scale in a domain where the incumbent advantage is catalog size, and LLM-judge panels reporting agreement statistics becoming the norm for search quality.</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (Aug 3) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="access-to-frontier-models-in-research">
+        <h3>Access to frontier models in research</h3>
+        <p class="lead">One entry, and it is not a capability: what a research group can attempt depends on whose verification it passes and what terms arrive attached to the access. Read it for the eligibility gate and the data terms rather than for the number of seats.</p>
+
+        <article class="story unlinked" id="claude-academic-seats">
+          <span class="when">2026-08-31</span>
+          <h4>Anthropic opens 10,000 free Claude seats to verified academic researchers</h4>
+          <p>Ten thousand standard seats free for one year, with premium seats carrying 5&times; usage limits at $15 per month, gated to verified principal investigators or equivalents at academic and non-profit research institutions.</p>
+          <p>It is recorded here for the access shape rather than the generosity: eligibility runs through institutional verification, which sets who can build on frontier models in research settings &mdash; and it sits alongside the same company&rsquo;s enterprise retention terms (see <a href="safety-and-policy.html">Safety &amp; policy</a>) that led the ARC Prize Foundation to decline testing rather than expose private data.</p>
+          <div class="sources"><span class="via">via Unwind AI (Aug 31) &mdash; no public URL given</span></div>
+        </article>
+      </section>
 
       <h2>Timeline</h2>
-      <ul class="timeline">
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">Pinecone&rsquo;s support agent closes 55.1% of tickets with no person, up from 24.6%</span> &mdash; Pinecone published before-and-after numbers for its support agent after adding <strong>Nexus</strong>, a curated artifact the agent queries on every ticket. Eligible tickets reaching the agent went from 76.5% to 94.2%, tickets it meaningfully assists on from 60.5% to 87.8%, and tickets it closes with no person involved from 24.6% to 55.1%. What Nexus contains is the interesting part: the join keys, the freshness caveats, and the queries that turn a vague question into an answerable one &mdash; the knowledge a support engineer holds and almost none of which is written down anywhere. Curating it once lets the agent run its own checks and ask the customer only what the customer alone can answer, which is why the assist rate and the no-human rate moved together rather than trading off. The transferable finding is that the blocker was never retrieval over the documentation; it was that the documentation never contained the operational knowledge in the first place, so the deployable artifact is the tacit knowledge made explicit. Three published percentages with a stated mechanism is more than most deployment claims on this page carry, though they remain self-reported and no quality measure accompanies the closure rate.
-          <div class="sources">Sources: Pinecone (Sep 16) <a href="https://www.pinecone.io/blog/">Pinecone</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">Salesforce in Claude puts CRM records, pipeline actions and 37 sales skills inside the assistant</span> &mdash; Anthropic shipped a beta putting Salesforce inside Claude for paid plans: CRM records, pipeline actions, Slack deal context and 37 named sales skills, so reading, summarising, drafting and updating happen in the assistant rather than in the system of record. The count is the part to note, because thirty-seven skills is a claim about how much of a job has been decomposed rather than about the model &mdash; it is the domain-harness argument applied to a CRM, where the value is the encoded procedure rather than the connection. Pulling Slack deal context alongside the records matters for the same reason: the missing input for most sales questions is the conversation that never reached the CRM, which is the enterprise version of the <a href="applications.html">tacit knowledge</a> problem Pinecone&rsquo;s support agent answered with a curated artifact. The risk this creates is the write path. An assistant that can update pipeline records is making changes to the system other processes read as ground truth, and the announcement describes the capability without describing what review sits in front of it.
-          <div class="sources">Sources: Unwind AI (Sep 16) <a href="https://claude.com/blog/salesforce-in-claude">Anthropic</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">Taste Labs ships a Brand API that lets a design agent check its output before shipping it</span> &mdash; Taste Labs launched a Brand API for AI design agents built on three primitives rather than a general &ldquo;AI for taste&rdquo; pitch: extract existing brand context, search a curated brand index, and verify generated work against the brand before it ships. The third is the one that makes it more than a style prompt. Generation with a brand description in context produces output that is plausibly on-brand and unverifiable; a separate verification call makes conformance a checkable property with a pass or fail, which is the same structural move as running evaluation outside the model that produced the work. It is the design counterpart to <a href="tools-and-devex.html">Inspo</a>&rsquo;s corpus of real sites the same day &mdash; one supplies references before generation, the other a check afterwards &mdash; and between them the two ends of the agent-design problem now have artifacts rather than prompts. What is unstated is how the verification judges conformance, which is exactly where a brand check either encodes something real or reduces to colour and font matching.
-          <div class="sources">Sources: Unwind AI (Sep 16) <a href="https://tastelabs.com/">Taste Labs</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-12</span>
-          <span class="label">Structured data alone misses 37.7% of documented diagnoses &mdash; and ambient scribes widen the gap</span> &mdash; A survey of the measurement literature puts hard numbers on what claims-and-codes analytics cannot see. At a London teaching hospital a year after a full Epic rollout, 516 patients&rsquo; problem lists held 2,841 diagnoses and chart review of the notes found 1,722 more &mdash; 37.7% of diagnoses existed only in free text. Administrative-only HEDIS rates ran 20.4 points below chart-reviewed rates across 283 commercial plans; Medicare claims identified 2.01% of beneficiaries as smokers where BRFSS found 10.03%; the National Inpatient Sample codes obesity at 15.4% where measured BMI puts it at 41.9%; 14.4% of a Kaiser cohort with eGFR 10&ndash;59 carried a CKD code. The ambient-scribe finding is the one that changes direction of travel: in 20,302 matched primary-care visits, AI-scribed notes documented significantly more neuropsychiatric symptoms while the odds of a resulting referral, diagnosis code or prescription <em>fell</em> (adjusted OR 0.83 against unscribed visits, 0.97 for human scribes). Notes are growing about 20% per visit; the coded fraction is not.
-          <div class="sources">Sources: AI in Healthcare (Sep 12) <a href="https://www.talby.com/p/healthcare-analytics-built-on-structured">John Snow Labs</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-11</span>
-          <span class="label">Roblox widens generative game creation and lets the games run outside Roblox</span> &mdash; At its annual developer conference Roblox extended its generative-AI game-creation feature to Serbia and Singapore, added desktop access, and said a prompt-based scene generator will arrive later this year, alongside expanded NPC capabilities and the ability to publish games playable outside Roblox itself. It also launched a dedicated card and wallet for creators. The interesting part is the combination rather than any single feature: a platform with a large amateur creator base is shipping prompt-to-content generation and simultaneously removing the walls around where the output can run, which turns generated games into portable artifacts rather than platform-locked ones. The staged geographic rollout is worth noting as method &mdash; generative creation tools are being released the way a risky deployment is, a market at a time.
-          <div class="sources">Sources: TLDR (Sep 14) <a href="https://techcrunch.com/2026/09/11/roblox-is-making-it-easier-to-build-games-with-ai-and-play-them-outside-roblox/">TechCrunch</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-11</span>
-          <span class="label">Universal Music and ElevenLabs launch a licensed-catalogue remix platform</span> &mdash; UMG is building an AI music platform with ElevenLabs that lets users create remixes and mashups from UMG&rsquo;s licensed catalogue. It is the second licensing-first launch in a fortnight after <a href="applications.html">Suno v6</a>&rsquo;s Warner and BMG training deal, and the two together mark the same shift: the constraint on generative music has stopped being model quality and become catalogue rights.
-          <div class="sources">Sources: TLDR AI (Sep 11) <a href="https://www.theverge.com/ai-artificial-intelligence/993465/universal-music-elevenlabs-ai">The Verge</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-10</span>
-          <span class="label">PostHog built a rasterizer so models can watch session replays: 370 years of recordings into 3.5M videos</span> &mdash; PostHog&rsquo;s Replay Vision lets a model actually watch a session recording rather than read a description of one, and the engineering is the story. Session replays are not video &mdash; they are DOM mutation streams &mdash; so PostHog wrote a custom rasterizer that renders them to frames, running hundreds of concurrent jobs across many pods. Since going to production in March it has rasterized more than 370 years of recorded sessions into roughly 3.5 million videos. It is a concrete instance of the general pattern this page keeps meeting: the model was ready for the modality before the data was in a shape any model could consume, and the deployable work was the conversion pipeline.
-          <div class="sources">Sources: TLDR (Sep 10) <a href="https://posthog.com/blog/multimodal-models-need-video">PostHog</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-10</span>
-          <span class="label">Genome language models as a direct test: designing a cancer vaccine for one specific patient</span> &mdash; A long analysis frames personalised cancer-vaccine design as an unusually clean test of whether genome language models have learned transferable biology rather than pattern-matched their corpus. The pipeline has five steps that each demand different knowledge &mdash; identify the patient&rsquo;s mutations, predict which resulting peptides are presented on the cell surface, predict which of those provoke an immune response, rank the targets, and design the RNA that encodes them &mdash; and a model has to be right at every stage for the output to be a candidate medicine for one individual rather than a plausible-looking sequence. That is the property that makes it a test: the target is a single person, so there is no population-level average to hide a wrong answer in.
-          <div class="sources">Sources: TLDR (Sep 10) <a href="https://www.radicalnumerics.ai/blog/omnii-cancer-vaccines">Radical Numerics</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">Suno v6 replaces the whole model line with one trained on licensed Warner and BMG catalogue</span> &mdash; Suno retired its existing models in favour of <strong>Suno v6</strong>, trained on music licensed from major labels including Warner and BMG, as copyright suits against it accumulate. The move is notable for being a replacement rather than an addition: the licensed model is the product now, not a compliant tier sold alongside the original. It is the first frontier-scale generative music system to answer the training-data question by retraining rather than by arguing fair use, and it sets a price on the answer that every other media-generation vendor can now read &mdash; relicensing the corpus and discarding the model trained on the old one.
-          <div class="sources">Sources: TLDR AI (Sep 10) <a href="https://techcrunch.com/2026/09/09/suno-replaces-its-ai-models-with-a-new-one-trained-on-licensed-music-as-copyright-suits-pile-up/">TechCrunch</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">AlphaGenome Atlas gives genomics labs a variant impact score without an inference budget</span> &mdash; Google DeepMind's AlphaGenome Atlas is an online repository of precomputed AlphaGenome predictions covering all 9 billion possible single-nucleotide human variants, at one petabyte. Scientists can use it without writing code or running the model, and each variant carries a single impact score showing at a glance whether it is likely to matter. That is a deployment decision more than a scientific one, and it is the decision that determines whether fundamental-biology, disease and treatment work can use the model at all. (Method detail on the <a href="research-papers.html">Research papers</a> page.)
-          <div class="sources">Sources: TLDR AI (Sep 9) TLDR (Sep 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-08</span>
-          <span class="label">Rentosertib, designed with AI for lung disease, moved six aging clocks</span> &mdash; Rentosertib was developed with AI assistance for idiopathic pulmonary fibrosis; clinical trial data now shows it also reduced biological age markers as measured by six separate &ldquo;aging clocks&rdquo; &mdash; themselves ML models trained to predict morbidity and mortality. The drug is still years from regulatory approval even for its original indication, and the result is a secondary observation, not an endpoint.
-          <div class="sources">Sources: TLDR (Sep 8)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-05</span>
-          <span class="label">Fact-level provenance: 42 capabilities, and why a hosted API cannot pass the audit</span> &mdash; The FDA's December 2025 real-world-evidence guidance, operational since February 2026, treats relevance and reliability as per-fact properties rather than per-dataset ones. Meeting that takes 42 distinct capabilities across ingestion, extraction, privacy, reasoning, audit and versioning &mdash; two to three years of engineering &mdash; and several of them only work if designed in from the first sprint. The sharpest architectural consequence: a hosted frontier model is neither deterministic nor pinnable, so an extraction step run through one cannot be reproduced in two years when that version has been retired. A peer-reviewed comparison puts a healthcare-specific small model at 96% F1 on PHI detection against 79% for GPT-4o, at over 80% lower cost.
-          <div class="sources">Sources: AI in Healthcare (Sep 5)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-01</span>
-          <span class="label">Runway's Solaris generates the interface frame by frame, with no intermediate representation</span> &mdash; Solaris is an Interface World Model: it produces real-time interactive interfaces frame by frame as the user interacts, handling rendering and interaction jointly rather than emitting markup that a browser then draws. Beyond building interfaces, the stated use is training agents in environments that change under them &mdash; which is the harder half of what agent training environments currently lack.
-          <div class="sources">Sources: TLDR AI (Sep 1) <a href="https://runway.com/news/research/introducing-solaris">Runway</a></div>
-        </li>
-        <li>
-          <span class="date">2026-08-31</span>
-          <span class="label">OpenAI's Rosalind Workbench puts life-science tooling inside ChatGPT</span> &mdash; Rosalind Workbench is a research-preview environment in the ChatGPT app giving life-science users a single place to run their existing tools, reach specialized biology models and define recurring data-analysis workflows. It is a guided surface over frontier models plus scientific tooling rather than a new model &mdash; the same packaging bet as <a href="tools-and-devex.html">Claudeforce</a>, aimed at a field where the tooling is the barrier.
-          <div class="sources">Sources: TLDR AI (Aug 31) <a href="https://developers.openai.com/blog/rosalind-workbench">OpenAI</a></div>
-        </li>
-        <li>
-          <span class="date">2026-08-31</span>
-          <span class="label">Anthropic opens 10,000 free Claude seats to verified academic researchers</span> &mdash; Ten thousand standard seats free for one year, with premium seats carrying 5&times; usage limits at $15 per month, gated to verified principal investigators or equivalents at academic and non-profit research institutions. Recorded here for the access shape rather than the generosity: eligibility runs through institutional verification, which sets who can build on frontier models in research settings &mdash; and it sits alongside the same company&rsquo;s enterprise retention terms (see <a href="safety-and-policy.html">Safety &amp; policy</a>) that led the ARC Prize Foundation to decline testing rather than expose private data.
-          <div class="sources">Sources: Unwind AI (Aug 31)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-28</span>
-          <span class="label">Gemini Omni 1.1 Flash adds scene extension, frame interpolation and 4K upscaling</span> &mdash; Google shipped controls for extending scenes, interpolating between first and last frames, 4K upscaling and faster iteration through the Gemini API. Read alongside fal&rsquo;s <strong>H3 Max</strong> &mdash; a post-trained MiniMax H3 generating a 5-second video in under 3 seconds &mdash; and the SGLang Diffusion benchmark reaching 1.95&times; lossless speedup on 8&times;H200 (6.24&times; with step reuse and sparse attention), the week&rsquo;s video story is entirely about iteration latency rather than output quality. Google has since made the loop explicit: Omni 1.1 Flash can render rough 360p drafts before you pay for a full-resolution take, up to 60% faster and about a third the cost of 720p, so you test several directions and upscale one. Video generation is becoming something you can direct in a loop instead of commission and wait for.
-          <div class="sources">Sources: TLDR AI (Aug 28) Unwind AI (Aug 28)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-02</span>
-          <span class="label">Gemini makes long-video understanding agentic &mdash; 88% fewer tokens by letting the model choose what to watch</span> &mdash; Instead of sampling a video at a fixed frame rate and hoping the decisive moment landed in context, Gemini&rsquo;s agentic video understanding lets the model decide which parts to inspect and through which channel &mdash; frames, audio, or transcript. It can skim, search, zoom in, rewatch, and pull evidence only where the question demands it. Google reports up to 88% lower token usage, up to 66% lower cost, and up to 7% better accuracy, available through the Gemini API in AI Studio and the Gemini Enterprise Agent Platform. It is the retrieval-becomes-agentic pattern this wiki has tracked in text, arriving in video: the win comes from <em>not</em> ingesting most of the input.
-          <div class="sources">Sources: Unwind AI (Sep 2)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-02</span>
-          <span class="label">World Labs&rsquo; Atlas &mdash; a world model with actual camera control</span> &mdash; Fei-Fei Li&rsquo;s World Labs released Atlas, working across text, images, video and 3D. Two capabilities separate it from video generation: it generates video along <em>precise camera paths</em> rather than responding to vague &ldquo;pan left&rdquo; prompting, and it reconstructs scenes from sparse images or video into point clouds and Gaussian splats. The second is the one with downstream consequences &mdash; a reconstruction usable by robotics, VFX and game tooling is an asset a pipeline can consume, where a rendered clip is not.
-          <div class="sources">Sources: Unwind AI (Sep 2)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-04</span>
-          <span class="label">Runway GWM Worlds 2 &mdash; an interactive world model generating 720p at 24fps in real time</span> &mdash; A world model that generates interactive environments in real time at 720p, 24 frames per second, with 48 kHz audio. The user steers with text actions and camera motion, and sessions continue from each input with no preset length &mdash; the distinction from video generation being that there is no fixed clip to render, only a state that responds. It arrives alongside a broader argument that world models are the next paradigm, with LeCun, Hassabis and Fei-Fei Li converging on models built for decisions rather than generation.
-          <div class="sources">Sources: TLDR AI (Sep 4) TLDR AI (Sep 3)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-24</span>
-          <span class="label">Codex adoption is growing fastest outside engineering: legal 108&times;, sales 41&times;</span> &mdash; a16z reports that since February the fastest-growing Codex adopters have been non-engineering functions &mdash; legal up 108&times;, sales and recruiting 41&times;, marketing 26&times;, healthcare 24&times;. The interpretation offered, and it is the useful one, is that these users are not vibe-coding: they are converting repeatable knowledge work into Codex-shaped tasks. Growth multiples off a small base overstate the absolute shift, but the direction matches the enterprise deployment patterns this page has been tracking since July.
-          <div class="sources">Sources: Unwind AI (Aug 24)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-24</span>
-          <span class="label">Outer Biosciences trains models on living human skin tissue</span> &mdash; Outer Biosciences keeps donated human skin tissue alive, measures how it responds to compounds, and trains models on the resulting biological data. The approach sits between in-silico prediction and animal testing: the training signal comes from real human tissue responding in real time rather than from published assay results. It is early and the company has published no model or benchmark, so the entry records the approach rather than any validated capability.
-          <div class="sources">Sources: TLDR AI (Aug 24)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-19</span>
-          <span class="label">GenBio's AIDO Cell simulates a cell's natural state and its response to successive perturbations</span> &mdash; GenBio announced a world model of a cell that simulates both its natural state and its responses to successive perturbations, currently supporting K562 and HepG2 &mdash; two of the most widely used immortalized human cell lines in biomedical research. An early-access academic collaborator programme is being prepared. The capability that matters is <em>successive</em> perturbation: following predicted consequences across biological levels is what generates hypotheses, and doing it one intervention at a time is what wet-lab work already does slowly.
-          <div class="sources">Sources: TLDR (Aug 19)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-19</span>
-          <span class="label">Harvey II starts each legal task with context, memory and preferences from the last one</span> &mdash; Harvey II lets legal AI agents begin work with the context, memory and preferences accumulated from prior tasks rather than reconstructing the setup each time. In professional-services work the repeated setup <em>is</em> the cost &mdash; the same matter, the same client conventions, the same document set, re-explained per session. Harvey separately post-trained a Kimi K3 base with asynchronous RL inside long-horizon legal environments and routes specialized diligence, review-table and firm-knowledge capabilities as tools; results are vendor-authored throughout. (Training detail on the <a href="training-and-rl.html">Training</a> page.)
-          <div class="sources">Sources: TLDR AI (Aug 19) TLDR AI (Aug 21)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-17</span>
-          <span class="label">A non-mathematician prompting mostly &ldquo;keep going&rdquo; produced a Riemann-adjacent result</span> &mdash; Anthropic employee Jarred Sumner used the Claude app on his phone to attack the Riemann hypothesis. The model did not solve it, but produced a related finding that a Stanford number theorist called the most impressive result AI has produced in mathematics so far. Sumner's formal mathematical education ended after one semester of high-school geometry, and most of his prompting was variations of &ldquo;keep going&rdquo; and &ldquo;believe in yourself.&rdquo; It is a striking datapoint about where the expertise bottleneck now sits &mdash; and, read beside the <a href="research-papers.html">Navier&ndash;Stokes provenance dispute</a>, about how hard these results are to attribute.
-          <div class="sources">Sources: TLDR (Aug 17)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-12</span>
-          <span class="label">A single 20-minute chatbot session measurably reduced breakup distress in a randomized trial</span> &mdash; Thomas Menzel (TU Munich / Cambridge) with Michel Schimpf and Thomas Boh&neacute; built <em>overit</em>, an app on Claude Sonnet 4.5 that walks a user through four phases &mdash; open questions about the breakup, eliciting a self-limiting belief, offering a contradicting interpretation, then consolidating what changed &mdash; capped at 18 turns and grounded in memory reconsolidation theory. In a randomized controlled trial with 171 participants, one ~20-minute conversation cut Breakup Distress Scale scores from 35.3 to 26.6 after seven days against 35.9 to 32.2 in the control group, still holding at one month (26.0 vs 29.0); 61.7% reported a &ldquo;sudden insight&rdquo; against 19.3% of controls. The architectural detail is the transferable part: each user turn triggers two separate model calls &mdash; one to evaluate which of five therapeutic milestones the conversation has reached, one to generate the reply &mdash; which is what keeps the model challenging the user rather than sycophantically agreeing, and is a usable template for any goal-directed conversational agent.
-          <div class="sources">Sources: The Batch (Aug 13)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-04</span>
-          <span class="label">Onton Ontology 1 — neurosymbolic e-commerce search 2.7&times; more accurate than the biggest engines</span> &mdash; Ontology 1 reasons from objective product properties (fiber, weave, construction) in an explicit, inspectable knowledge graph rather than trusting seller labels, and flags contradicted claims. On Subtext-Decor-90, scored by three independent LLM judges, it reaches P@10 0.630 vs Google Shopping's 0.543 and Amazon's 0.469 while indexing ~1% of their catalogs, winning 52 of 90 queries; judge agreement is modest (Krippendorff's alpha 0.465) but all three judges rank the engines identically. Live on Onton.com; no public API or open weights.
-          <div class="sources">Sources: MarkTechPost AI (Aug 3)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-03</span>
-          <span class="label">Clinical LLMs inherit cognitive bias from the doctors whose notes trained them</span> &mdash; An AI-in-healthcare essay argues LLM diagnostic bias is not a new AI-invented problem but an inherited one: models trained on clinician-written notes absorb documented diagnostic biases such as anchoring (studied since Graber, Franklin &amp; Gordon's 2005 patient-safety work). A frontier model given a clinical note about a 52-year-old with chest pain can be steered by the note's framing even when its medical knowledge is correct.
-          <div class="sources">Sources: AI in Healthcare (Aug 1)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-31</span>
-          <span class="label">Stanford researchers use AI on human protein data to find a natural Ozempic alternative</span> &mdash; Working toward a non-synthetic alternative to GLP-1 drugs for obesity treatment, Stanford researchers used AI to analyze human protein data and found a peptide delivering comparable results to Ozempic with reduced side effects.
-          <div class="sources">Sources: AI Loves Data (Jul 31)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-27</span>
-          <span class="label">Voice agent architecture reframed as a latency-budget allocation problem</span> &mdash; A deep-dive essay argues every voice-agent design choice — cascading STT/LLM/TTS vs. native speech-to-speech (OpenAI Realtime API, Gemini Live), open (Whisper/Kokoro) vs. closed components — is an allocation decision within a roughly 700-800ms per-turn latency budget, and flags a widening trust gap: consumer preference for human agents is reportedly climbing even as blind tests show AI voices are largely indistinguishable from human ones.
-          <div class="sources">Sources: <a href="https://open.substack.com/pub/boringbot/p/voice-agents-a-deep-dive">The Production Gap (Hamza Farooq)</a></div>
-        </li>
-        <li>
-          <span class="date">2026-07-25</span>
-          <span class="label">Maven Clinic's four-month follow-up: Maven Assistant goes from 20% to 100% rollout</span> &mdash; William Horton returned to the Vanishing Gradients podcast four months after Maven Assistant's initial rollout: the healthcare agent is now available to 100% of users (up from 20%), weekly conversation volume has grown roughly tenfold, and real usage overturned part of the roadmap — 50-60% of early conversations turned out to be basic health questions rather than the provider-search and appointment-booking tools the team had built out. The team moved from Gemini Flash models toward newer OpenAI models, now runs over 1,000 deterministic test scenarios alongside LLM judges, and treats model swaps (e.g. a newer model correctly flagging a mocked "upcoming" appointment that had already happened) as a trigger to re-audit the harness rather than assume improvement.
-          <div class="sources">Sources: Vanishing Gradients (Hugo Bowne-Anderson)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-25</span>
-          <span class="label">John Snow Labs' Medical LLM – Medium ranks first on all 15 MedHELM benchmarks</span> &mdash; John Snow Labs' Medical LLM – Medium ranks first on all 15 clinical/biomedical benchmarks in the MedHELM suite, averaging 80.9 against 76.5, 75.0, and 74.7 for the newest OpenAI, Anthropic, and Google frontier releases respectively. It runs on a single GPU with per-server annual licensing (no per-token cost), modeled at roughly 12-29x cheaper than frontier APIs at population scale (1 million patients), though margins over frontier models are near-zero on saturated exam-style benchmarks and widest on operational tasks (clinical-note error-catching, medication Q&amp;A).
-          <div class="sources">Sources: AI in Healthcare (David Talby)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-18</span>
-          <span class="label">Maven Clinic details Maven Assistant — evals and release thresholds for a production healthcare agent</span> &mdash; William Horton (Staff AI Engineer, Maven Clinic) described the architecture and evaluation practice behind Maven Assistant, a healthcare agent that reached its first external users, the day after launch. A lead agent routes to four narrower specialists across a deliberately small toolset (15-20 tools), release thresholds scale with the consequence of a wrong answer (nine-of-ten passes can be acceptable for a cheap failure, but benefits-affecting answers are withheld and self-harm language routes to humans), and production failures are converted directly into regression cases and LLM-judge eval improvements rather than treated as one-off bugs.
-          <div class="sources">Sources: Vanishing Gradients (Hugo Bowne-Anderson)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-14</span>
-          <span class="label">NeuroVFM — a brain-imaging foundation model built from uncurated hospital archives</span> &mdash; University of Michigan researchers trained NeuroVFM on 5.24M real clinical MRI and CT volumes with no radiology-report labels and no curation, using the self-supervised Vol-JEPA architecture; published in Nature Medicine with open weights. For applied medical AI it is a template: the uncurated scan archives every health system already holds can be turned into a generalist imaging model, loosening the labeled-data bottleneck that has long limited clinical AI at scale. (Architecture/method detail on the <a href="research-papers.html">Research papers</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 13)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-13</span>
-          <span class="label">Medical-benchmark dispute: exam scores vs. clinical deployment</span> — David Talby (John Snow Labs), whose June cost model appears below, argued that a viral Nature Medicine result — general-purpose models (GPT-5.2, Gemini 3.1 Pro, Claude Opus 4.6) beating clinical tools OpenEvidence and UpToDate Expert AI across MedQA, HealthBench, and 1,800 real clinician queries — measured only single-turn medical question-answering. Real clinical applications (chart summarization, discharge instructions, tumor-stage extraction, medication reconciliation) are multi-step and record-grounded, so exam-style wins don't establish deployment readiness; he also flags that HealthBench was built by OpenAI, a possible benchmark-developer advantage. Benchmark-methodology detail on the <a href="evals-and-benchmarks.html">Evals &amp; benchmarks</a> page.
-          <div class="sources">Sources: <a href="https://www.talby.com/p/when-the-title-outruns-the-study">AI in Healthcare (David Talby, Substack)</a></div>
-        </li>
-        <li>
-          <span class="date">2026-06-26</span>
-          <span class="label">Gradium ships real-time speech translation (stt-translate &amp; s2s-translate)</span> — Gradium released two streaming real-time speech-translation models — stt-translate (speech→text) and s2s-translate (speech→speech) — both covering English, French, German, Spanish, and Portuguese, and both reportedly beating gpt-realtime-translate on accuracy and latency at launch. By collapsing the usual three-model stack (ASR + translation + TTS) into a single end-to-end model, it removes the latency introduced at each hop — a strong opening benchmark for teams building multilingual voice agents or real-time translation features. API available now.
-          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-21</span>
-          <span class="label">Cost model: local medical LLM up to ~29× cheaper than frontier APIs at scale</span> — David Talby (John Snow Labs) published a cost model for patient-level healthcare AI built on an oncology real-world-evidence workload (~1M tokens/patient × 4 passes). A locally deployed medical LLM runs ~$95K at 10K patients vs $128K–$300K via API (1.35×–3.17×), and ~$1.04M at 1M patients vs $12.8M–$30M via API (12.3×–28.75×, comparing GPT-5.4, Gemini-3.1-Pro, Claude-Opus-4.6). The gap widens because per-token pricing is linear while per-server infrastructure scales sublinearly; at production volume the deployment model, not the API vendor, is the cost decision.
-          <div class="sources">Sources: <a href="https://www.talby.com/p/a-cost-model-for-patient-level-healthcare">AI in Healthcare (David Talby, Substack)</a></div>
-        </li>
-        <li>
-          <span class="date">2026-06-09</span>
-          <span class="label">Microsoft MAI-Transcribe-1.5 makes fast multilingual STT a commodity</span> — Microsoft's speech-to-text release hits 2.4% WER across 43 languages, transcribes an hour of audio in under 15 seconds, and leads the accuracy-speed Pareto frontier (best-in-class FLEURS; up to 5× faster than Gemini 3.1, Scribe v2, GPT-4o-Transcribe on long audio). Available on Azure AI Foundry — a drop-in high-accuracy transcription block for applications.
-          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-09</span>
-          <span class="label">NVIDIA Nemotron 3.5 ASR — local real-time transcription, 40 locales</span> — A single 600M-parameter cache-aware streaming model transcribing 40 language-locale pairs in real time with native punctuation, capitalization, and runtime language switching, running fully local via ONNX (NGC, Hugging Face, Together AI API). Pairs with MAI-Transcribe-1.5 to cover the on-device/streaming end of the transcription stack.
-          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-09</span>
-          <span class="label">Perplexity/Harvard: autonomous agents finish work 87% faster, 94% cheaper</span> — Perplexity, with Harvard, published research on the shift from chat interfaces to autonomous agents (its "Computer" agent). Over three months, workers using Computer finished tasks in 87% less time at 94% lower cost than search alone, with higher satisfaction — concrete field data on where agent autonomy beats chat.
-          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-04</span>
-          <span class="label">MisoTTS brings emotive speech to the open creative stack</span> — Miso Labs open-sourced an 8B text-to-speech model that conditions on both text and prior audio so output tracks speaker tone; residual vector quantization (32 codebooks × 2,048-way) widens sonic range without growing the model, with one-shot voice cloning from a ~10s clip and ~110ms claimed latency. Weights under a modified MIT license; half-duplex/single-turn for now, API pending.
-          <div class="sources">Sources: MarkTechPost newsletter</div>
-        </li>
-        <li>
-          <span class="date">2026-06-03</span>
-          <span class="label">NVIDIA Cosmos 3 — open world models for physical AI</span> — NVIDIA's GTC Taipei keynote (and MarkTechPost's follow-up) detailed Cosmos 3, an open family of world models for robotics, autonomous vehicles, and warehouse monitoring, unifying physical reasoning, world generation, and action. Ships open: Nano (16B) and Super (64B) checkpoints, six SDG datasets, training recipes, and the HUE benchmark, with claimed open-source SOTA on R-Bench.
-          <div class="sources">Sources: NVIDIA GTC email, MarkTechPost newsletter</div>
-        </li>
-        <li>
-          <span class="date">2026-06-01</span>
-          <span class="label">"The Agentic Data Science Research Lab" essay</span> — Hugo Bowne-Anderson published an essay arguing AI agents can unlock the original promise of data science — making better decisions, not coding faster. Calls for agent harnesses paired with causal eval layers and agentic dashboards (chat-driven inquiry into models) instead of static BI. Positions the work as a research-lab agenda.
-          <div class="sources">Vanishing Gradients (Hugo Bowne-Anderson Substack)</div>
-        </li>
-        <li>
-          <span class="date">2026-05-28</span>
-          <span class="label">Stability AI goes open on audio</span> — Stability AI released an open-weights audio model, expanding the open creative-media stack.
-          <div class="sources">MarkTechPost newsletter</div>
-        </li>
+      <ul class="timeline index">
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#pinecone-nexus">Pinecone&rsquo;s support agent closes 55.1% of tickets with no person, up from 24.6%</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#salesforce-in-claude">Salesforce in Claude puts CRM records, pipeline actions and 37 sales skills inside the assistant</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#taste-labs-brand-api">Taste Labs ships a Brand API that lets a design agent check its output before shipping it</a></span></li>
+        <li><span class="date">2026-09-12</span><span class="label"><a href="#structured-data-gap">Structured data alone misses 37.7% of documented diagnoses &mdash; and ambient scribes widen the gap</a></span></li>
+        <li><span class="date">2026-09-11</span><span class="label"><a href="#roblox-generative-games">Roblox widens generative game creation and lets the games run outside Roblox</a></span></li>
+        <li><span class="date">2026-09-11</span><span class="label"><a href="#umg-elevenlabs-remix">Universal Music and ElevenLabs launch a licensed-catalogue remix platform</a></span></li>
+        <li><span class="date">2026-09-10</span><span class="label"><a href="#posthog-replay-vision">PostHog built a rasterizer so models can watch session replays</a></span></li>
+        <li><span class="date">2026-09-10</span><span class="label"><a href="#genome-lm-cancer-vaccine">Genome language models as a direct test: designing a cancer vaccine for one specific patient</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#suno-v6">Suno v6 replaces the whole model line with one trained on licensed Warner and BMG catalogue</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#alphagenome-atlas">AlphaGenome Atlas gives genomics labs a variant impact score without an inference budget</a></span></li>
+        <li><span class="date">2026-09-08</span><span class="label"><a href="#rentosertib">Rentosertib, designed with AI for lung disease, moved six aging clocks</a></span></li>
+        <li><span class="date">2026-09-05</span><span class="label"><a href="#fact-level-provenance">Fact-level provenance: 42 capabilities, and why a hosted API cannot pass the audit</a></span></li>
+        <li><span class="date">2026-09-04</span><span class="label"><a href="#runway-worlds-2">Runway GWM Worlds 2 &mdash; an interactive world model generating 720p at 24fps in real time</a></span></li>
+        <li><span class="date">2026-09-02</span><span class="label"><a href="#gemini-agentic-video">Gemini makes long-video understanding agentic by letting the model choose what to watch</a></span></li>
+        <li><span class="date">2026-09-02</span><span class="label"><a href="#world-labs-atlas">World Labs&rsquo; Atlas &mdash; a world model with actual camera control</a></span></li>
+        <li><span class="date">2026-09-01</span><span class="label"><a href="#runway-solaris">Runway&rsquo;s Solaris generates the interface frame by frame, with no intermediate representation</a></span></li>
+        <li><span class="date">2026-08-31</span><span class="label"><a href="#rosalind-workbench">OpenAI&rsquo;s Rosalind Workbench puts life-science tooling inside ChatGPT</a></span></li>
+        <li><span class="date">2026-08-31</span><span class="label"><a href="#claude-academic-seats">Anthropic opens 10,000 free Claude seats to verified academic researchers</a></span></li>
+        <li><span class="date">2026-08-28</span><span class="label"><a href="#gemini-omni-1-1-flash">Gemini Omni 1.1 Flash adds scene extension, frame interpolation and 4K upscaling</a></span></li>
+        <li><span class="date">2026-08-24</span><span class="label"><a href="#codex-outside-engineering">Codex adoption is growing fastest outside engineering: legal 108&times;, sales 41&times;</a></span></li>
+        <li><span class="date">2026-08-24</span><span class="label"><a href="#outer-biosciences">Outer Biosciences trains models on living human skin tissue</a></span></li>
+        <li><span class="date">2026-08-19</span><span class="label"><a href="#harvey-ii">Harvey II starts each legal task with context, memory and preferences from the last one</a></span></li>
+        <li><span class="date">2026-08-19</span><span class="label"><a href="#aido-cell">GenBio&rsquo;s AIDO Cell simulates a cell&rsquo;s natural state and its response to successive perturbations</a></span></li>
+        <li><span class="date">2026-08-17</span><span class="label"><a href="#riemann-adjacent-result">A non-mathematician prompting mostly &ldquo;keep going&rdquo; produced a Riemann-adjacent result</a></span></li>
+        <li><span class="date">2026-08-12</span><span class="label"><a href="#overit-breakup-rct">A single 20-minute chatbot session measurably reduced breakup distress in a randomized trial</a></span></li>
+        <li><span class="date">2026-08-04</span><span class="label"><a href="#onton-ontology-1">Onton Ontology 1 &mdash; neurosymbolic e-commerce search that reasons from properties, not seller labels</a></span></li>
+        <li><span class="date">2026-08-03</span><span class="label"><a href="#clinical-llm-cognitive-bias">Clinical LLMs inherit cognitive bias from the doctors whose notes trained them</a></span></li>
+        <li><span class="date">2026-07-31</span><span class="label"><a href="#stanford-peptide-ozempic">Stanford researchers use AI on human protein data to find a natural Ozempic alternative</a></span></li>
+        <li><span class="date">2026-07-27</span><span class="label"><a href="#voice-agent-latency-budget">Voice agent architecture reframed as a latency-budget allocation problem</a></span></li>
+        <li><span class="date">2026-07-25</span><span class="label"><a href="#maven-assistant">Maven Assistant, from launch-day evals to a 100% rollout four months later</a></span></li>
+        <li><span class="date">2026-07-25</span><span class="label"><a href="#medical-llm-medium">John Snow Labs&rsquo; Medical LLM &ndash; Medium ranks first on all 15 MedHELM benchmarks</a></span></li>
+        <li><span class="date">2026-07-14</span><span class="label"><a href="#neurovfm">NeuroVFM &mdash; a brain-imaging foundation model built from uncurated hospital archives</a></span></li>
+        <li><span class="date">2026-07-13</span><span class="label"><a href="#medical-benchmark-dispute">Medical-benchmark dispute: exam scores vs. clinical deployment</a></span></li>
+        <li><span class="date">2026-06-26</span><span class="label"><a href="#gradium-speech-translation">Gradium ships real-time speech translation (stt-translate &amp; s2s-translate)</a></span></li>
+        <li><span class="date">2026-06-21</span><span class="label"><a href="#healthcare-cost-model">Cost model: local medical LLM up to ~29&times; cheaper than frontier APIs at scale</a></span></li>
+        <li><span class="date">2026-06-09</span><span class="label"><a href="#mai-transcribe-1-5">Microsoft MAI-Transcribe-1.5 makes fast multilingual STT a commodity</a></span></li>
+        <li><span class="date">2026-06-09</span><span class="label"><a href="#nemotron-3-5-asr">NVIDIA Nemotron 3.5 ASR &mdash; local real-time transcription, 40 locales</a></span></li>
+        <li><span class="date">2026-06-09</span><span class="label"><a href="#perplexity-harvard-agents">Perplexity/Harvard: autonomous agents finish work 87% faster, 94% cheaper</a></span></li>
+        <li><span class="date">2026-06-04</span><span class="label"><a href="#misotts">MisoTTS brings emotive speech to the open creative stack</a></span></li>
+        <li><span class="date">2026-06-03</span><span class="label"><a href="#nvidia-cosmos-3">NVIDIA Cosmos 3 &mdash; open world models for physical AI</a></span></li>
+        <li><span class="date">2026-06-01</span><span class="label"><a href="#agentic-data-science-essay">&ldquo;The Agentic Data Science Research Lab&rdquo; essay</a></span></li>
+        <li><span class="date">2026-05-28</span><span class="label"><a href="#stability-ai-audio">Stability AI goes open on audio</a></span></li>
       </ul>
 
       <footer>Generated automatically by the AI digest task.</footer>
