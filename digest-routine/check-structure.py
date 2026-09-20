@@ -34,6 +34,7 @@ INDEX_LINK_RE = re.compile(r'<a href="#([^"]+)">(.*?)</a>', re.S)
 TIMELINE_INDEX_RE = re.compile(r'<ul class="timeline index">(.*?)</ul>', re.S)
 SECTION_INDEX_RE = re.compile(r'<nav class="section-index">(.*?)</nav>', re.S)
 COUNT_RE = re.compile(r'<span class="n">(\d+)</span>')
+ABS_URL_HREF_RE = re.compile(r'href="https?://[^"/]+')
 
 
 def _text(html_fragment):
@@ -65,6 +66,40 @@ def check_anchors_resolve(paths):
         for frag, _label in INDEX_LINK_RE.findall(text):
             if frag not in known:
                 out.append("%s dangling fragment #%s" % (p, frag))
+    return out
+
+
+def check_flat_structure(paths):
+    """Reject nested <section>/<article> tags before any other check trusts them.
+
+    SECTION_RE and STORY_RE are non-greedy regexes that assume a flat,
+    non-nested structure: a topic-section body contains only articles, and a
+    story body contains no article of its own. If a topic-section body
+    nests another <section>, the non-greedy match stops at that inner
+    </section> and silently truncates the captured body, hiding every
+    <article class="story"> that follows it from check_index_counts and
+    check_lead_length. This check enforces the flat-structure assumption
+    directly (by scanning for a nested opening tag) so that assumption is
+    safe for the rest of the checks to rely on; it fails loudly instead of
+    letting a truncated parse pass quietly.
+    """
+    out = []
+    for p in paths:
+        text = open(p, encoding="utf-8").read()
+        if not _converted(text):
+            continue
+        for sid, body in SECTION_RE.findall(text):
+            if "<section" in body:
+                out.append(
+                    "%s section #%s contains a nested <section>; nesting is "
+                    "not supported, structure checks cannot be trusted" % (p, sid)
+                )
+        for _classes, sid, body in STORY_RE.findall(text):
+            if "<article" in body:
+                out.append(
+                    "%s story #%s contains a nested <article>; nesting is "
+                    "not supported, structure checks cannot be trusted" % (p, sid)
+                )
     return out
 
 
@@ -132,7 +167,7 @@ def check_story_link_state(paths):
             if not head:
                 out.append("%s story #%s has no <h4>" % (p, sid))
                 continue
-            linked = 'href="http' in head.group(1)
+            linked = bool(ABS_URL_HREF_RE.search(head.group(1)))
             marked = "unlinked" in classes
             if linked and marked:
                 out.append("%s story #%s is linked but marked unlinked" % (p, sid))
@@ -204,6 +239,7 @@ def check_sidebar_consistency(paths):
 CHECKS = [
     check_no_mailbox_links,
     check_anchors_resolve,
+    check_flat_structure,
     check_index_counts,
     check_lead_length,
     check_story_link_state,
