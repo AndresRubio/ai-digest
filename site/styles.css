@@ -56,3 +56,62 @@ ul.timeline .label { font-weight: 600; }
 .changed-today { background: #fff8c5; border-left: 3px solid #d4a72c; padding: 12px 16px; border-radius: 6px; margin-bottom: 24px; }
 code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
 footer { color: var(--muted); font-size: 12px; margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+/* ---------------------------------------------------------------------------
+   Topic-page story structure (added 2026-09-20, on user instruction).
+   A story appears once, under its heading, with its source as the headline
+   link. Nothing above this comment was modified: site/daily/ and index.html
+   depend on those rules.
+   --------------------------------------------------------------------------- */
+
+/* In-page section index, sits under the Current state block */
+.section-index { margin: 28px 0 8px; padding: 14px 18px; background: var(--sidebar-bg);
+  border: 1px solid var(--border); border-radius: 6px; }
+.section-index h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--muted); margin: 0 0 10px; border: 0; padding: 0; }
+.section-index ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.section-index a { font-size: 13px; text-decoration: none; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 20px; padding: 4px 11px; display: inline-block; }
+.section-index a:hover { border-color: var(--accent); background: #ddf4ff; }
+.section-index .n { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* A topic section: short synthesis lead, then linked stories */
+.topic-section { margin-top: 34px; scroll-margin-top: 16px; }
+.topic-section > h3 { margin-top: 0; }
+.topic-section > .lead { max-width: 72ch; margin: 0.3em 0 1.2em; }
+
+/* One story: date, linked headline, summary, sources */
+.story { padding: 14px 0 14px 16px; border-left: 2px solid var(--border);
+  margin-bottom: 4px; scroll-margin-top: 16px; }
+.story:hover { border-left-color: var(--accent); }
+.story h4 { font-size: 15.5px; margin: 0 0 5px; line-height: 1.4; font-weight: 600; }
+.story h4 a { text-decoration: none; }
+.story h4 a:hover { text-decoration: underline; }
+.story h4 a[href]::after { content: " \2197"; font-size: 0.8em; color: var(--muted); font-weight: 400; }
+.story .when { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums;
+  text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 3px; }
+.story p { margin: 0 0 7px; max-width: 72ch; font-size: 14.5px; }
+.story .sources { font-size: 12.5px; }
+.story .sources a { margin-right: 0; }
+.story .via { color: var(--muted); }
+
+/* Older stories in a section fold away */
+.topic-section details { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 12px; }
+.topic-section summary { cursor: pointer; font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.topic-section summary:hover { color: var(--accent); }
+
+/* Timeline in index form: one line per story */
+ul.timeline.index li { padding: 7px 0; display: grid; grid-template-columns: 92px 1fr;
+  gap: 12px; align-items: baseline; }
+ul.timeline.index .label { font-weight: 500; font-size: 14px; }
+ul.timeline.index .label a { text-decoration: none; }
+ul.timeline.index .label a:hover { text-decoration: underline; }
+
+/* Narrow screens: the sidebar stacks and the timeline index drops to one column */
+@media (max-width: 720px) {
+  .layout { grid-template-columns: 1fr; }
+  aside.sidebar { position: static; height: auto; }
+  main { padding: 24px 16px; }
+  ul.timeline.index li { grid-template-columns: 1fr; gap: 2px; }
+}
