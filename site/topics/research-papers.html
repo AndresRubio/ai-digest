@@ -130,7 +130,7 @@
           <span class="when">2026-09-14</span>
           <h4><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/">Recurrent Looped Transformer carries latent state across every prompt and response token</a></h4>
           <p>The Recurrent Looped Transformer pairs a causal encoder with a recurrent decoder that carries its final hidden state, and a layerwise sliding-window attention cache, across every prompt and response token rather than resetting per step. The encoder builds a global key&ndash;value memory while the decoder extends one continuous latent computation as the sequence grows, so reasoning depth is unbounded in time rather than fixed by the number of stacked layers.</p>
-          <p>The authors present it as three kinds of co-design at once &mdash; latent reasoning with unbounded temporal depth, model with hardware, and model with RL algorithm &mdash; and are explicit that reasoning gains, hardware efficiency and RL scaling all remain to be established. That candour is the reason to record it: it is published as a proposal with its claims unmade rather than as a result.</p>
+          <p>The authors present it as three kinds of co-design at once &mdash; latent reasoning with unbounded temporal depth, model with hardware, and model with RL algorithm &mdash; and are explicit that reasoning gains, hardware efficiency and RL scaling all remain to be established. That candour is the reason to record it: it is the architectural form of the <a href="#gpt-6-astra-looped-transformer">looped-transformer reading</a> elsewhere on this page, published as a proposal with its claims unmade rather than as a result.</p>
           <div class="sources"><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/">Project page</a> &middot; <span class="via">via TLDR AI (Sep 14)</span></div>
         </article>
 
@@ -199,14 +199,14 @@
           <span class="when">2026-08-25</span>
           <h4><a href="https://alexzhang13.github.io/blog/2026/spec-ptc/">Speculative Programmatic Tool Calling &mdash; launch the tool call before the code is written</a></h4>
           <p>sPTC predicts likely tool calls from partially generated code and pre-launches them, so searches, sub-agents and API calls run alongside token generation instead of after it. The authors describe it as a JIT compiler for the agent loop and report a 1&ndash;1.2&times; runtime speed-up, concentrated where it should be: memory-bound local models and high-volume serving, where generation and tool latency can genuinely overlap.</p>
-          <p>The modest multiplier is the honest part of the result &mdash; this is a scheduling win, not an architectural one. The failure mode is the one speculation always has: a mispredicted call is work done for nothing, which matters more when the call has side effects than when it is a wasted forward pass.</p>
+          <p>The modest multiplier is the honest part of the result. The failure mode is the one speculation always has: a mispredicted call is work done for nothing, which matters more when the call has side effects than when it is a wasted forward pass.</p>
           <div class="sources"><a href="https://alexzhang13.github.io/blog/2026/spec-ptc/">alexzhang13.github.io</a> &middot; <span class="via">via TLDR AI (Aug 25), Unwind AI (Aug 25)</span></div>
         </article>
 
         <article class="story unlinked" id="eagle-3-1">
           <span class="when">2026-05-28</span>
           <h4>EAGLE 3.1 &mdash; speculative decoding without attention drift</h4>
-          <p>New version of the EAGLE speculative-decoding method that reduces attention drift, improving acceptance rates at long contexts. The drift had been undercutting acceptance rates in the earlier line, so the fix is to the part of the method that decides how often a speculated token survives.</p>
+          <p>New version of the EAGLE speculative-decoding method that reduces attention drift, improving acceptance rates at long contexts. It builds on the EAGLE speculative-decoding line, where attention drift had been undercutting acceptance rates.</p>
           <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
         </article>
       </section>
@@ -266,7 +266,7 @@
 
       <section class="topic-section" id="architecture-analysis-and-practitioner-synthesis">
         <h3>Architecture analysis &amp; practitioner synthesis</h3>
-        <p class="lead">Writeups rather than releases: a closed model read from its behaviour, an open one read from its code, a tool read by its own critic. The useful ones name what they cannot see. Judge them on whether the author separates inference from disclosure &mdash; each of these does, explicitly.</p>
+        <p class="lead">Nothing here is a release; all of it is someone reading work they did not build. That makes the reading only as good as its access, so the thing to check first is what the author could actually see &mdash; published behaviour, open weights, or a system someone else has already critiqued.</p>
 
         <article class="story" id="gpt-6-astra-looped-transformer">
           <span class="when">2026-09-10</span>
@@ -313,7 +313,7 @@
           <span class="when">2026-09-09</span>
           <h4><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">OpenAI claims a Navier&ndash;Stokes proof from 10,000 agents &mdash; and a provenance dispute follows</a></h4>
           <p>OpenAI announced that an internal system produced a proof resolving the Navier&ndash;Stokes existence and smoothness problem, showing that smooth three-dimensional fluid dynamics can develop a finite-time singularity, with both an analytical proof and a Lean formalization &mdash; reportedly from about 10,000 agents exchanging 2.7 million messages and generating 130 billion output tokens over 88 hours. It has not been independently reviewed or accepted by the Clay Mathematics Institute. NYU mathematician Tristan Buckmaster and Anthropic researcher Levent Alp&ouml;ge published a closely related fluid-equations result one day before the announcement, and Buckmaster says his team had already fed related unpublished drafts into OpenAI&rsquo;s Codex.</p>
-          <p>Both sides have now published timelines. OpenAI says it heard the rumour on Sep 1, launched agents against every open Millennium Prize problem, reached the resolution on Sep 5 about 88 hours later, and spent a further 17 hours on Lean formalization via GPT-6 Astra &mdash; a campaign that would cost on the order of $15 million at Astra&rsquo;s public API prices, though the internal model&rsquo;s economics are unknown. It says no researcher or agent saw the other team&rsquo;s work before publication and no specific user data was accessed, while conceding it cannot rule out that de-identified data derived from product usage improved its models; Buckmaster says he asked twice whether the model had been trained on their Codex sessions and got an answer only about lookup.</p>
+          <p>Both sides have now published timelines. OpenAI says it heard the rumour on Sep 1, launched agents against every open Millennium Prize problem, reached the resolution on Sep 5 about 88 hours later, and spent a further 17 hours on Lean formalization via GPT-6 Astra; across all attempted problems the agents sent 4.9 million messages and used roughly 300 billion output tokens, of which Navier&ndash;Stokes alone took 2.7 million messages and about 130 billion &mdash; a campaign that would cost on the order of $15 million at Astra&rsquo;s public API prices, though the internal model&rsquo;s economics are unknown. It says no researcher or agent saw the other team&rsquo;s work before publication and no specific user data was accessed, while conceding it cannot rule out that de-identified data derived from product usage improved its models; it also notes the two proofs differ, including in what is proved in the Euler case. Buckmaster says he asked twice whether the model had been trained on their Codex sessions and got an answer only about lookup.</p>
           <p>OpenAI offered a joint announcement, but told him Alp&ouml;ge could not be a co-author because he works for Anthropic &mdash; which is the detail that converts a provenance question into an institutional one.</p>
           <div class="sources"><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">Simon Willison (Sep 14)</a> &middot; <span class="via">via Substack notes (Sep 12), TLDR AI (Sep 9), TLDR (Sep 9), Unwind AI (Sep 9), The Code (Sep 9)</span></div>
         </article>
@@ -329,7 +329,7 @@
 
       <section class="topic-section" id="verifiers-and-runtime-monitors">
         <h3>Verifiers &amp; runtime monitors</h3>
-        <p class="lead">If an agent loop needs something that can judge partial progress, the judge becomes the component worth measuring. Both entries make one cheaper &mdash; one by dropping training, one by dropping the score history. Judge them on what the cheaper check misses, which both papers report rather than hide.</p>
+        <p class="lead">If an agent loop needs something that can judge partial progress, the judge becomes the component worth measuring. Both entries make one cheaper &mdash; one by dropping training, one by dropping the score history. Ask what the cheaper check stops catching, and whether either paper says.</p>
 
         <article class="story unlinked" id="llm-as-a-verifier">
           <span class="when">2026-09-07</span>
@@ -350,7 +350,7 @@
 
       <section class="topic-section" id="pretraining-on-a-consumer-budget">
         <h3>Pretraining on a consumer budget</h3>
-        <p class="lead">The counter-current to the trillion-parameter releases: a documented path to pretraining that fits on one card and one invoice. What matters is whether the recipe is reproducible end to end &mdash; data, code and weights &mdash; and whether the budget figure and the baseline comparison come from anyone but the authors.</p>
+        <p class="lead">The only entry here whose claim is about price rather than capability, which is also the claim this page is least equipped to check: nobody replicates a pretraining run to verify a budget.</p>
 
         <article class="story unlinked" id="puro-2b">
           <span class="when">2026-09-01</span>
