@@ -21,11 +21,11 @@
 - **`.lead` hard cap: 60 words.** Story summary: 2–4 sentences.
 - **A section shows its newest 3 stories**; older ones go inside `<details>`.
 - **Never fabricate a source URL.** No real URL → `class="unlinked"` on the `<article>` and an explicit note in `.sources`.
-- Commit after every task. Do not push until Task 12.
+- Commit after every task. Do not push until the final verification task.
 
 ---
 
-### Task 1: Strip the 186 mailbox permalinks from the published site
+### Task 1: Strip the 192 mailbox permalinks from the published site
 
 This is a live privacy fix and lands first, independent of everything else. All eleven topic pages carry `outlook.office365.com/owa/?ItemID=…` links — dead for readers, and a mailbox identifier on a public site.
 
@@ -642,7 +642,7 @@ Smallest page (30 entries, 10 sections, 8,888 words). It establishes the shape e
 
 **Interfaces:**
 - Consumes: CSS classes from Task 3, checker from Task 4.
-- Produces: the canonical converted-page shape that Tasks 6–11 replicate verbatim in structure.
+- Produces: the canonical converted-page shape that Tasks 6–15 replicate verbatim in structure.
 
 - [ ] **Step 1: Inventory the page before touching it**
 
@@ -784,7 +784,7 @@ Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>"
 
 ---
 
-### Tasks 6–11: Convert the remaining ten pages
+### Tasks 6–15: Convert the remaining ten pages (one page per task)
 
 Each page is its own task, its own checker run, and its own commit, in ascending size so the shape is well-practised before the hardest pages. **Follow Task 5's Steps 1–6 exactly**, substituting the page and its known merge cases. Do not batch pages into one commit: a reviewer must be able to reject one page while approving its neighbour.
 
@@ -794,19 +794,19 @@ Each page is its own task, its own checker run, and its own commit, in ascending
 | 7 | `embodied-and-robotics.html` | 32 | 7 | 8,824 |
 | 8 | `applications.html` | 43 | 9 | 11,653 |
 | 9 | `industry-and-business.html` | 50 | 6 | 13,282 |
-| 9 | `evals-and-benchmarks.html` | 52 | 9 | 14,128 |
-| 10 | `infrastructure.html` | 65 | 11 | 17,183 |
-| 10 | `safety-and-policy.html` | 66 | 12 | 19,625 |
-| 11 | `agents.html` | 84 | 12 | 19,857 |
-| 11 | `model-releases.html` | 92 | 11 | 21,511 |
-| 11 | `tools-and-devex.html` | 98 | 11 | 23,643 |
+| 10 | `evals-and-benchmarks.html` | 52 | 9 | 14,128 |
+| 11 | `infrastructure.html` | 65 | 11 | 17,183 |
+| 12 | `safety-and-policy.html` | 66 | 12 | 19,625 |
+| 13 | `agents.html` | 84 | 12 | 19,857 |
+| 14 | `model-releases.html` | 92 | 11 | 21,511 |
+| 15 | `tools-and-devex.html` | 98 | 11 | 23,643 |
 
 Two page-specific notes:
 
 - **`agents.html` and `tools-and-devex.html` overlap heavily** — "The agentic harness" exists on both (1,560 and 659 words). Keep both sections; each keeps the stories routed to its own page, and the leads cross-link with a relative `<a href="tools-and-devex.html">` as the pages already do. Do not move stories between pages: STEP 3.1 assigns one story to one page, and re-routing history is out of scope.
 - **`tools-and-devex.html` holds the site's only prose external link.** Preserve it — Step 4's "source URLs lost: 0" check will catch it if dropped.
 
-Each of Tasks 6–11 ends with:
+Each of Tasks 6–15 ends with:
 
 ```bash
 python3 digest-routine/check-structure.py
@@ -816,7 +816,7 @@ Expected: no failures for any page converted so far.
 
 ---
 
-### Task 12: Rewrite the routine so runs produce the new structure
+### Task 16: Rewrite the routine so runs produce the new structure
 
 Without this, the next digest run writes prose paragraphs back onto the converted pages.
 
@@ -992,7 +992,7 @@ Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>"
 
 ---
 
-### Task 13: Full-site verification and push
+### Task 17: Full-site verification and push
 
 **Files:** none modified — this task only verifies and pushes.
 
@@ -1103,13 +1103,13 @@ Expected: the first four are non-zero, `outlook.office365.com` is **0**.
 
 ## Self-Review
 
-**Spec coverage.** Section shape → Task 5 Step 2 (and 6–11). Section index → Tasks 3, 4, 5, 12 Step 3. Timeline index → Tasks 3, 4, 5, 12 Step 3. Story id + fold-opening anchors → Tasks 4 (`check_anchors_resolve`), 5 Step 5. CSS additions with no existing rule modified → Task 3, verified by `comm`. Backfill all eleven → Tasks 5–11. Mailbox-link removal first → Task 1. Bounded link repair → Task 5 Step 2 item 6 and the `unlinked` markup; no task researches the open web. STEP 2.4 / 3.2 / 3.3 / 5.3 → Task 12. Verification list → Task 4's checks plus Task 13. Outlook pattern added to the CI gate → Task 2.
+**Spec coverage.** Section shape → Task 5 Step 2 (and 6–11). Section index → Tasks 3, 4, 5, 16 Step 3. Timeline index → Tasks 3, 4, 5, 16 Step 3. Story id + fold-opening anchors → Tasks 4 (`check_anchors_resolve`), 5 Step 5. CSS additions with no existing rule modified → Task 3, verified by `comm`. Backfill all eleven → Tasks 5–15. Mailbox-link removal first → Task 1. Bounded link repair → Task 5 Step 2 item 6 and the `unlinked` markup; no task researches the open web. STEP 2.4 / 3.2 / 3.3 / 5.3 → Task 16. Verification list → Task 4's checks plus Task 17. Outlook pattern added to the CI gate → Task 2.
 
 **Gap found and closed:** the spec's verification list requires "each `.lead` is ≤60 words" and "no duplicate id", neither of which the original Task 4 draft asserted. Both are now in `check_lead_length` and `check_anchors_resolve`.
 
 **Placeholder scan:** no TBD/TODO. The one `<!-- older <article …> -->` comment in Task 5 Step 2 is inside illustrative target markup whose full shape is given immediately above and below it, and Task 5's Step 1 inventory enumerates every entry that fills it.
 
-**Type consistency:** every checker is `check_*(paths) -> list[str]`; all eight are registered in `CHECKS`; `main()` calls each with `sorted(glob.glob(TOPICS))`. `_text`, `_words`, `_converted` are defined once in Task 4 and used only there. Class names match across Task 3 (CSS), Task 4 (regexes), Task 5 (markup) and Task 12 (routine docs): `section-index`, `topic-section`, `lead`, `story`, `when`, `unlinked`, `via`, `timeline index`.
+**Type consistency:** every checker is `check_*(paths) -> list[str]`; all eight are registered in `CHECKS`; `main()` calls each with `sorted(glob.glob(TOPICS))`. `_text`, `_words`, `_converted` are defined once in Task 4 and used only there. Class names match across Task 3 (CSS), Task 4 (regexes), Task 5 (markup) and Task 16 (routine docs): `section-index`, `topic-section`, `lead`, `story`, `when`, `unlinked`, `via`, `timeline index`.
 
 **The checker in Tasks 1 and 4 was executed before this plan shipped.** The two Python blocks
 were extracted, assembled exactly as the two tasks instruct, and compiled clean on Python
@@ -1121,4 +1121,4 @@ it stands today it reports `check_no_mailbox_links FAIL (186)` and `check_anchor
 FAIL (11)`, totalling 197 — which is exactly what Task 4 Step 2 tells the implementer to
 expect. The code in this plan runs as written; it is not pseudocode.
 
-**Known risk:** Tasks 5–11 are the bulk of the effort and are genuinely manual — 641 entries reconciled against 104 sections, with merge decisions the checker cannot make. The checker catches structural breakage, not a bad lead or a wrong merge. Tasks 6–11 therefore each need a human or reviewing-agent read of the prose, not just a green checker.
+**Known risk:** Tasks 5–15 are the bulk of the effort and are genuinely manual — 641 entries reconciled against 104 sections, with merge decisions the checker cannot make. The checker catches structural breakage, not a bad lead or a wrong merge. Tasks 6–15 therefore each need a human or reviewing-agent read of the prose, not just a green checker.
