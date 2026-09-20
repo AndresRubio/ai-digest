@@ -124,11 +124,18 @@ context.
 ## Conventions the site depends on
 
 - `site/styles.css` is never edited. Every class needed already exists.
-- Topic pages are **not** append-only: `Current state` and the `<h3>` sections are
-  rewritten each run so they read as continuous prose. Only `ul.timeline` is prepend.
-- Prose is **paragraphed**, never a single block: `<h3>` sections run 120–250 words per
-  `<p>`, and `Current state` shows three to five paragraphs with everything older folded
-  into `<details><summary>Earlier cycles</summary>`. See STEP3 §3.2b–c.
+- Topic pages come in two shapes while the site is mid-conversion (started 2026-09-20),
+  and STEP3 §3.2 branches on which. They are **not** append-only either way:
+  `Current state` is rewritten every run, on every page. On an unconverted page the
+  `<h3>` sections are rewritten with it; on a converted page story items are prepended
+  and then left as written. Only the timeline list is prepend — `ul.timeline` before
+  conversion, `ul.timeline index` after.
+- Prose is **paragraphed**, never a single block. On an unconverted page the `<h3>`
+  sections run 120–250 words per `<p>` (STEP3 §3.2-legacy **L2**); a converted page has
+  no such sections — each `<section class="topic-section">` opens with a
+  `<p class="lead">` capped at 60 words, then story items (§3.2-new **N1**–**N7**).
+  `Current state` is the same either way: three to five paragraphs with everything older
+  folded into `<details><summary>Earlier cycles</summary>` (§3.2-shared **S1**).
 - Historical entry text is never touched.
 - **No `mail.google.com` URL and no Gmail address appears anywhere in `site/`.**
 - A day with no qualifying stories gets a `run-log.md` line and no page.

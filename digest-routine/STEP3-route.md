@@ -65,8 +65,7 @@ conversion broke the daily update.
 
 *(Renumbered 2026-09-21 from the old single a–d sequence, which is now split across three
 blocks. The old labels map: **a → L1**, **b → L2**, **c → S1**, **d → S2**. Anything
-elsewhere in the repo citing §3.2a–d — `digest-routine/README.md` cites "§3.2b–c" — means
-L2 and S1 under this numbering.)*
+still citing the old letters means these steps.)*
 
 ### §3.2-legacy (unconverted pages only)
 
