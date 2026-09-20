@@ -89,7 +89,7 @@
           <span class="when">2026-07-31</span>
           <h4>Tencent open-sources AngelSpec, training two speculative drafters instead of one average-case compromise</h4>
           <p>AngelSpec is a unified training framework for speculative decoding on Tencent&rsquo;s Hy3 models that ships an autoregressive MTP drafter for open-ended chat and a block-parallel drafter, <strong>DFly</strong>, for code and maths &mdash; on the observation that production traffic is not an average. DFly reaches a mean accepted length of 4.79 on Hy3-A21B against 3.69 for DFlash and 3.00 for MTP on the same model.</p>
-          <p>End to end it reports a 1.98&ndash;2.40&times; speedup on HY3-295B-A21B at tensor parallelism 8, measured across concurrency 4 to 64 &mdash; a range rather than a point, because the gain falls as the server fills. Seven checkpoints and six draft architectures ship behind one config-driven pipeline. The figures are Tencent&rsquo;s own.</p>
+          <p>End to end it reports a 1.98&ndash;2.40&times; speedup on HY3-295B-A21B at tensor parallelism 8, measured across concurrency 4 to 64. Seven checkpoints and six draft architectures ship behind one config-driven pipeline. The figures are Tencent&rsquo;s own.</p>
           <div class="sources"><span class="via">via MarkTechPost AI (Jul 30) &mdash; no public URL given</span></div>
         </article>
 
@@ -123,7 +123,7 @@
           <article class="story unlinked" id="minimax-sparse-attention">
             <span class="when">2026-06-20</span>
             <h4>MiniMax Sparse Attention quantified: 28.4&times; less attention compute at 1M context than dense GQA</h4>
-            <p>MSA is a two-branch block-sparse attention design, local plus global, measured at a 28.4&times; reduction in per-token attention compute at 1M context against dense GQA at on-par quality &mdash; the comparator and the context length both being load-bearing, since the ratio collapses at short context. On an H800 that translates to 14.2&times; faster prefill and 7.6&times; faster decode. The measured configuration is a 109B MoE trained on 3T tokens.</p>
+            <p>MSA is a two-branch block-sparse attention design, local plus global, measured at a 28.4&times; reduction in per-token attention compute at 1M context against dense GQA at on-par quality &mdash; the comparator and the context length both being load-bearing. On an H800 that translates to 14.2&times; faster prefill and 7.6&times; faster decode. The measured configuration is a 109B MoE trained on 3T tokens.</p>
             <p>MSA is GQA-native, so it drops into the attention block of an existing GQA model without an architectural redesign, which is what lowers adoption cost from retraining to swapping an implementation. It shipped in production three weeks earlier than this measurement, on <strong>MiniMax M3</strong> (June 1, launched on Ollama Cloud), supporting context windows up to 1M tokens. (Method angle on the <a href="research-papers.html">Research papers</a> page.)</p>
             <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief; Ollama announcement email (Jun 1) &mdash; no public URL given</span></div>
           </article>
@@ -160,7 +160,7 @@
           <span class="when">2026-09-11</span>
           <h4><a href="https://github.com/Edge0-AI/edge0/">Edge0 runs a 35B MoE on Apple Silicon in roughly 2.9 GB of live memory by streaming experts from SSD</a></h4>
           <p>Edge0 serves sparse mixture-of-experts models on Apple Silicon by treating the SSD as the weight store and streaming experts in as they are routed to, rather than loading the model into RAM. Its 35B model occupies 23 GB on disk but roughly 2.9 GB of active memory, and reaches 14.9&ndash;17.7 tokens per second on an M4 Pro Mac mini.</p>
-          <p>Sparsity is the enabling property &mdash; only a fraction of the weights are touched per token &mdash; so the technique does not carry to dense models, and SSD read bandwidth rather than compute sets the ceiling. Read against the quantization work below, the two are complementary compressions: QAT cuts the bytes per parameter, Edge0 cuts the parameters resident at once, and nobody has published numbers for a model that is both.</p>
+          <p>Sparsity is the enabling property &mdash; only a fraction of the weights are touched per token &mdash; so the technique does not carry to dense models, and SSD read bandwidth rather than compute sets the ceiling. Read against the <a href="#gemma-4-qat">quantization work below</a>, the two are complementary compressions: QAT cuts the bytes per parameter, Edge0 cuts the parameters resident at once, and nobody has published numbers for a model that is both.</p>
           <div class="sources"><a href="https://github.com/Edge0-AI/edge0/">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 11)</span></div>
         </article>
 
@@ -215,7 +215,7 @@
 
       <section class="topic-section" id="high-throughput-serving-of-large-moes">
         <h3>High-throughput serving of large MoEs</h3>
-        <p class="lead">Sparse activation breaks the link between parameter count and serving cost; runtime and kernel engineering collect the rest. One entry optimises the datacentre at batch 1, one whatever bandwidth a personal machine happens to have, two change the architecture and the number format. Each rate below is per GPU class and per batch size.</p>
+        <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format. None of these makes a model smaller. Every rate here is only as meaningful as the GPU and batch size beside it.</p>
 
         <article class="story unlinked" id="cohere-megakernel">
           <span class="when">2026-09-09</span>
@@ -247,7 +247,7 @@
           <article class="story unlinked" id="nemotron-3-ultra">
             <span class="when">2026-06-09</span>
             <h4>Nemotron 3 Ultra pairs hybrid Mamba-Transformer layers with NVFP4 for higher throughput</h4>
-            <p>NVIDIA&rsquo;s open 550B model with 55B active combines hybrid Mamba-Transformer layers, which make long-context attention cheaper, with LatentMoE routing and NVFP4 four-bit float quantization. Reported as up to 5&times; higher throughput rather than a flat 5&times;, and across GPU architectures rather than on one named part; the weaker reading is the one used here, and no baseline stack is named.</p>
+            <p>NVIDIA&rsquo;s open 550B model with 55B active combines hybrid Mamba-Transformer layers, which make long-context attention cheaper, with LatentMoE routing and NVFP4 four-bit float quantization. Reported as up to 5&times; higher throughput rather than a flat 5&times;, and across GPU architectures rather than on one named part; the weaker reading is the one used here.</p>
             <p>It is an architecture-and-format answer to decoupling serving cost from parameter count, aimed at long-running agentic workloads. (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
             <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
           </article>
@@ -299,7 +299,7 @@
           <span class="when">2026-09-16</span>
           <h4><a href="https://www.tomshardware.com/pc-components/gpus/nvidias-rtx-5090-vanishes-from-online-retail-in-the-us-third-party-sellers-now-demand-as-much-as-usd9-500-for-nvidias-fastest-gpu">RTX 5090s vanish from US retail, with third-party listings reaching $9,500</a></h4>
           <p>First-party RTX 5090 inventory has effectively disappeared from US online retail, leaving third-party listings running roughly $6,400 to $9,500 against a Micro Center in-store price of about $4,299. A consumer flagship is priced beside professional GPUs because its 32&nbsp;GB of GDDR7 made it local AI infrastructure rather than a gaming part, and the market is pricing the memory.</p>
-          <p>That lands on the local-inference thread running through this page. <a href="#edge0">Edge0</a> streaming a 35B MoE in roughly 2.9&nbsp;GB of live memory, Rapid-MLX recommending the largest model a machine can hold, the sub-2-bit quantization work: each is an argument about what consumer hardware can do, and each quietly assumes the hardware can be bought at list. At two to three times list, running locally to avoid API charges is a different calculation, and the memory-capacity-first server designs below become more interesting rather than less.</p>
+          <p>That lands on the local-inference thread running through this page. <a href="#edge0">Edge0</a> streaming a 35B MoE in roughly 2.9&nbsp;GB of live memory, Rapid-MLX recommending the largest model a machine can hold, the sub-2-bit quantization work: each is an argument about what consumer hardware can do, and each quietly assumes the hardware can be bought at list. At two to three times list, running locally to avoid API charges is a different calculation, and the memory-capacity-first server designs in this section &mdash; <a href="#positron-asimov">Positron&rsquo;s commodity LPDDR5X</a> among them &mdash; become more interesting rather than less.</p>
           <div class="sources"><a href="https://www.tomshardware.com/pc-components/gpus/nvidias-rtx-5090-vanishes-from-online-retail-in-the-us-third-party-sellers-now-demand-as-much-as-usd9-500-for-nvidias-fastest-gpu">Tom&rsquo;s Hardware</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
         </article>
 
@@ -357,7 +357,7 @@
           <article class="story unlinked" id="ultrafast-cerebras">
             <span class="when">2026-08-25</span>
             <h4>Speed becomes the third axis: OpenAI and Cerebras preview Ultrafast, and two more models ship on the same pitch</h4>
-            <p>Ultrafast is an API tier serving GPT-5.6 Sol on Cerebras hardware rather than OpenAI&rsquo;s. Reported as up to 750 output tokens per second against the 65 tok/s Artificial Analysis measures on OpenAI&rsquo;s own API &mdash; about 11&times; at the ceiling rather than a flat 11&times;, which is the reading used here &mdash; and 83 seconds per GDPval task against 7.7 minutes for standard Sol. The clearest single figure is a completed run: all 2,500 Humanity&rsquo;s Last Exam questions in 11 hours 11 minutes, against 78 hours 27 minutes for Claude Fable 5.</p>
+            <p>Ultrafast is an API tier serving GPT-5.6 Sol on Cerebras hardware rather than OpenAI&rsquo;s. Reported as up to 750 output tokens per second against the 65 tok/s Artificial Analysis measures on OpenAI&rsquo;s own API: about 11&times; at the ceiling, not a flat 11&times;. And 83 seconds per GDPval task against 7.7 minutes. The clearest single figure is a completed run: all 2,500 Humanity&rsquo;s Last Exam questions in 11 hours 11 minutes, against 78 hours 27 minutes for Claude Fable 5.</p>
             <p>The mechanism is memory rather than arithmetic &mdash; Cerebras holds the weights in 44GB of on-chip SRAM, skipping the external-memory round trips that bottleneck GPU inference. Two releases the same week led with the same pitch: Gemini 3.7 Flash at 330 tok/s measured with 13.2s to first token, and Nemotron 3.5 Lightning at 302 tok/s with 7.5s. OpenAI also published first results for <a href="#openai-jalapeno">Jalape&ntilde;o</a>.</p>
             <p>Latency and throughput are separate goods and these announcements conflate them: GPT-5.6 Sol&rsquo;s time to first token is an unusually high 97.2 seconds at maximum reasoning against 14.5 for GPT-5.5, and no latency figure has been published for Ultrafast at all.</p>
             <div class="sources"><span class="via">via The Batch (Aug 27) &mdash; no public URL given</span></div>
@@ -414,7 +414,7 @@
 
       <section class="topic-section" id="vector-index-and-rag-pipeline-economics">
         <h3>Vector-index &amp; RAG-pipeline economics</h3>
-        <p class="lead">Two moves run through this section: collapse the keyword engine beside the vector store into one index, and re-price a read by what it returns rather than by how often you run it. Upstream, building and serving the index gets the same treatment. Most figures here are the vendor&rsquo;s own, on the vendor&rsquo;s corpus.</p>
+        <p class="lead">Each entry here removes or re-prices a piece of the retrieval stack that had been treated as fixed: the keyword engine beside the vector store, the data store under it, the clustering that builds the index, the ceiling you sharded around, and the assumption that a read costs the same whatever it returns.</p>
 
         <article class="story" id="planetscale-tin">
           <span class="when">2026-09-16</span>
@@ -479,7 +479,7 @@
           <article class="story unlinked" id="flash-kmeans">
             <span class="when">2026-06-16</span>
             <h4>Flash-KMeans: IO-aware exact K-Means, reported ~200&times; faster than FAISS on GPUs</h4>
-            <p>Flash-KMeans is an IO-aware reimplementation of <em>exact</em> K-Means &mdash; not an approximation &mdash; built around GPU memory bottlenecks using Triton kernels with batched, memory-efficient access patterns, the same insight FlashAttention applied to attention. Reported speedups: ~200&times; over FAISS, ~30&times; over cuML, and 17.9&times; end to end over the best baselines on an H200. The first two figures are kernel-level and the third is end to end, which is the gap worth holding onto.</p>
+            <p>Flash-KMeans is an IO-aware reimplementation of <em>exact</em> K-Means &mdash; not an approximation &mdash; built around GPU memory bottlenecks using Triton kernels with batched, memory-efficient access patterns, the same insight FlashAttention applied to attention. Reported speedups: ~200&times; over FAISS, ~30&times; over cuML, and 17.9&times; end to end over the best baselines on an H200.</p>
             <p>K-Means underlies vector quantization, embedding clustering and RAG index building, so it directly cuts the cost and time of building and refreshing vector indexes at scale. Open source on GitHub, drop-in for FAISS clustering. (Method angle on the <a href="research-papers.html">Research papers</a> page.)</p>
             <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
           </article>
@@ -588,7 +588,7 @@
         <article class="story" id="meta-zgateway">
           <span class="when">2026-09-03</span>
           <h4><a href="https://engineering.fb.com/2026/09/03/core-infra/zgateway-proxy-zippydb-meta/">Meta&rsquo;s ZGateway fronts ZippyDB with a stateless proxy tier at over 1B ops/sec</a></h4>
-          <p><strong>ZGateway</strong> is a stateless proxy tier unifying traffic to ZippyDB, Meta&rsquo;s distributed key-value store, handling more than one billion operations per second. It carries roughly 40% of ZippyDB traffic at about 6% overhead &mdash; overhead measured on the share it carries, and the figure this pattern usually leaves unstated.</p>
+          <p><strong>ZGateway</strong> is a stateless proxy tier unifying traffic to ZippyDB, Meta&rsquo;s distributed key-value store, handling more than one billion operations per second. It carries roughly 40% of ZippyDB traffic at about 6% overhead &mdash; the figure this pattern usually leaves unstated.</p>
           <p>Six percent is the whole argument. A proxy tier buys routing, protocol translation and client-library churn that can be redeployed without touching either the storage layer or the callers, and the open question has always been what that indirection costs at the top of the load curve. It is not deployable outside Meta, so the artifact is the number rather than the software, and it is a useful one to hold against the instinct to push routing logic back into the client to save a hop.</p>
           <div class="sources"><a href="https://engineering.fb.com/2026/09/03/core-infra/zgateway-proxy-zippydb-meta/">Meta Engineering</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
         </article>
@@ -623,7 +623,7 @@
           <article class="story unlinked" id="ramp-router">
             <span class="when">2026-08-20</span>
             <h4>Ramp&rsquo;s Router picks the cheapest model that still clears the bar, and claims 40%</h4>
-            <p>Router matches each request to the lowest-cost model meeting its performance requirement, reacting to live latency and failure rates rather than a static ranking. Ramp claims an average 40% reduction in AI cost &mdash; an average across its own traffic mix, vendor-stated, and best read as a ceiling.</p>
+            <p>Router matches each request to the lowest-cost model meeting its performance requirement, reacting to live latency and failure rates rather than a static ranking. Ramp claims an average 40% reduction in AI cost &mdash; a vendor-stated average.</p>
             <p>The framing is the useful part: engineering keeps the best model for each workload while finance sees lower inference spend. It is the same mechanism <a href="#uber-agent-spend">Uber</a> built in-house and measured at 52% off peak cost per session for one model, so the pattern behind the averages is now corroborated from two directions.</p>
             <div class="sources"><span class="via">via TLDR AI (Aug 20) &mdash; no public URL given</span></div>
           </article>
