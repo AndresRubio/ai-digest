@@ -173,8 +173,11 @@ Per page:
 1. Parse existing timeline entries → candidate story items (they already hold label, summary,
    sources, and a URL where one was captured).
 2. Merge duplicate entries for one artifact into a single story carrying every source.
-3. Assign each story to a section, using the existing `<h3>` set. Keep the headings; do not
-   invent new ones during conversion.
+3. Assign each story to a section, starting from the existing `<h3>` set. Keep every
+   existing heading, its wording and its order. **New sections are allowed where a story
+   genuinely fits none of them** (user ruling, 2026-09-20, after the pilot found 7 of 30
+   such stories). Add one only when no existing heading honestly describes the story --
+   misfiling is the worse outcome. Prefer a grouping the page's `Current state` already makes.
 4. Reduce each existing prose section to its `.lead` — ≤60 words. Where the prose carries a
    fact absent from the matching story summary, move the fact into the summary before cutting.
 5. Where prose describes a story with no timeline entry, create the story item from the prose

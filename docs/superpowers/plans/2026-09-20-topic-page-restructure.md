@@ -20,7 +20,9 @@
 - **`Current state` blocks are already correct** — visible portion 492–565 words behind a working `<details>`. Leave them alone.
 - **`.lead` hard cap: 60 words.** Story summary: 2–4 sentences.
 - **A section shows its newest 3 stories**; older ones go inside `<details>`.
-- **Never fabricate a source URL.** No real URL → `class="unlinked"` on the `<article>` and an explicit note in `.sources`.
+- **Never fabricate a source URL**, and never research the open web for one. No real URL → `class="unlinked"` on the `<article>` and an explicit note in `.sources`.
+- **A commentary or analysis page is an acceptable headline link** when it is the only real URL an entry carries (user ruling, 2026-09-20). A reader getting somewhere real beats an unlinked story; `.sources` should still make plain what kind of page it is.
+- **New sections are allowed where a story genuinely fits no existing heading** (user ruling, 2026-09-20). Keep every existing heading, its wording and its order; add one only when no existing heading honestly describes the story. Prefer a grouping the page's own `Current state` prose already makes. A new section takes the same `.lead` discipline.
 - Commit after every task. Do not push until the final verification task.
 
 ---
