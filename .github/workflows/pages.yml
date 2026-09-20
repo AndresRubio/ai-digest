@@ -27,7 +27,10 @@ jobs:
       - uses: actions/checkout@v4
 
       # CI screens for two things: a real Gmail address anywhere in the repo, and
-      # a mailbox URL (mail.google.com) anywhere in the published site. Both
+      # a mailbox URL anywhere in the published site -- Gmail (mail.google.com)
+      # and Outlook Web (outlook.office365.com, /owa/?ItemID). The Outlook
+      # patterns were added 2026-09-20 after 192 OWA permalinks, left over from
+      # the pre-Gmail era, were found live on all eleven topic pages. Both
       # patterns are hardcoded here because they are generic -- they don't name
       # any particular mailbox.
       #
@@ -44,7 +47,7 @@ jobs:
           # mailbox URL or a Gmail address -- both patterns, scoped to only
           # what actually gets deployed.
           set +e
-          grep -rInE 'mail\.google\.com|[A-Za-z0-9._%+-]+@gmail\.com' \
+          grep -rInE 'mail\.google\.com|outlook\.office365\.com|outlook\.live\.com|/owa/\?ItemID|[A-Za-z0-9._%+-]+@gmail\.com' \
                --exclude-dir=.git --exclude=pages.yml site/
           rc=$?
           set -e
