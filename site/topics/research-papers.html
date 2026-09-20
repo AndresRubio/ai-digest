@@ -56,195 +56,363 @@
         </details>
       </div>
 
-      <h3>Self-supervised &amp; domain foundation models</h3>
-      <p><strong>NeuroVFM</strong> (University of Michigan, Nature Medicine) is a neuroimaging foundation model trained with <strong>Vol-JEPA</strong> — a volumetric extension of Yann LeCun's joint-embedding predictive architecture — on 5.24M raw clinical MRI and CT volumes. The methodological point is the training data: no radiology-report labels and no curation, just the uncurated volumes hospitals already store, with the model learning anatomy and pathology self-supervised in embedding space rather than pixel space. It is evidence that the JEPA line scales to messy 3D medical data, and a template for converting idle clinical archives — labels have always been the bottleneck for medical AI — into generalist foundation models. Weights are open. (Deployment/economics angle on the <a href="applications.html">Applications</a> page.)</p>
+      <nav class="section-index">
+        <h2>On this page</h2>
+        <ul>
+          <li><a href="#self-supervised-and-domain-foundation-models">Self-supervised &amp; domain foundation models <span class="n">2</span></a></li>
+          <li><a href="#agent-productivity-studies">Agent productivity studies <span class="n">1</span></a></li>
+          <li><a href="#learning-rules-beyond-backpropagation">Learning rules beyond backpropagation <span class="n">1</span></a></li>
+          <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">4</span></a></li>
+          <li><a href="#retrieval-model-architecture">Retrieval-model architecture <span class="n">3</span></a></li>
+          <li><a href="#decoding-and-inference">Decoding &amp; inference <span class="n">2</span></a></li>
+          <li><a href="#io-aware-kernels-and-data-pipeline-primitives">IO-aware kernels &amp; data-pipeline primitives <span class="n">1</span></a></li>
+          <li><a href="#world-models-and-embodied-policy-methods">World models &amp; embodied-policy methods <span class="n">1</span></a></li>
+          <li><a href="#rl-on-agents">RL on agents <span class="n">3</span></a></li>
+          <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">4</span></a></li>
+          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">2</span></a></li>
+          <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">2</span></a></li>
+          <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
+          <li><a href="#evaluate-then-act-decompositions">Evaluate-then-act decompositions <span class="n">2</span></a></li>
+        </ul>
+      </nav>
 
-      <h3>Agent productivity studies</h3>
-      <p>Perplexity, with Harvard, studied the shift from chat interfaces to autonomous agents (its "Computer" agent) in real knowledge work over three months. Headline findings: 87% less time and 94% lower cost per task versus search alone, with higher reported satisfaction. The value is the field-study methodology — measuring outcome time/cost on real tasks rather than static benchmarks. (Applied angle on the <a href="applications.html">Applications</a> page.)</p>
+      <section class="topic-section" id="self-supervised-and-domain-foundation-models">
+        <h3>Self-supervised &amp; domain foundation models</h3>
+        <p class="lead">Both of these are bets that a domain&rsquo;s existing archive is the asset, not the architecture &mdash; uncurated hospital scans in one case, every possible human variant in the other. Judge them on what a lab without an inference budget can actually do with the release, not on the benchmark table.</p>
 
-      <h3>Learning rules beyond backpropagation</h3>
-      <p>A new strand on this page, and the first entry in it is the only kind of result that makes the strand worth opening: one that scales. Sakana's <strong>PC-ALM</strong> (Augmented Lagrangian Predictive Coding, Sep 15) is a local alternative to backpropagation, extending standard predictive coding &mdash; which couples layers diffusively &mdash; by equipping each layer with a feedback control dynamical system that distributes and propagates supervision credit through the network. It trains residual MLPs up to 1,000 layers and nearly matches backprop's performance using only layer-local dynamics. Depth is the correct axis to judge this on, because the recurring failure of local-learning rules is not that they fail outright but that they work on shallow networks and degrade as depth grows, which is exactly where the global backward pass earns its cost; 1,000 layers is well beyond where earlier rules stopped being competitive. Two limits should travel with the result. The architecture is residual MLPs rather than transformers, so nothing here yet bears on how a frontier model is trained. And no wall-clock or energy comparison is claimed &mdash; which is the practical reason to want a local rule at all, since not needing a global backward pass is what would make training tractable on hardware that cannot cheaply perform one, and matching backprop's accuracy is a necessary but not sufficient condition for that to matter. Read against the architecture work below, it is a reminder that the layer this page mostly examines &mdash; attention, decoding, retrieval &mdash; sits on an optimisation procedure that has gone essentially unquestioned in every other entry.</p>
+        <article class="story unlinked" id="alphagenome-atlas">
+          <span class="when">2026-09-09</span>
+          <h4>AlphaGenome Atlas precomputes the regulatory effect of all 9 billion human single-nucleotide variants</h4>
+          <p>Google DeepMind released a one-petabyte database of AlphaGenome&rsquo;s predicted regulatory effects for every possible single-nucleotide variant in the human genome. It is distributed as precomputed predictions rather than a model, so scientists can query it without writing code or running inference, and each variant carries a single impact score for triage at a glance.</p>
+          <p>Turning a model into a lookup table is the part that changes who can use it: the bottleneck for most genomics labs was never the science but the inference budget. (Deployment angle on the <a href="applications.html">Applications</a> page.)</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 9), TLDR (Sep 9) &mdash; no public URL given</span></div>
+        </article>
 
-      <p>Sakana AI's <strong>PC-ALM</strong> (Sep 14) is the strongest entry this section has yet carried, because it reports the failure alongside the claim. The rule is layer-local &mdash; no global backward pass &mdash; and it trains networks a thousand layers deep, reaching 77.75% on the repository's reference cell against 78.66% for backpropagation and 68.13% for standard predictive coding. Standard predictive coding was the credible local alternative before this, and closing nine tenths of the gap to backprop while removing the backward pass entirely is the part that makes it worth following. The remaining point is not rhetorical: backprop still wins, on small image benchmarks, which is the only place either was tested. The MIT-licensed JAX implementation running on CPU is a substantive detail rather than a convenience note, because the argument for local learning rules has always been about hardware &mdash; a rule that never needs the whole computation graph resident has a different memory and parallelism story than one that does, and depth is exactly where that story is supposed to pay. What nobody has shown is the same rule holding at a scale where the hardware argument would be worth collecting on.</p>
+        <article class="story unlinked" id="neurovfm">
+          <span class="when">2026-07-14</span>
+          <h4>NeuroVFM &mdash; a Vol-JEPA neuroimaging foundation model trained on 5.24M uncurated clinical scans</h4>
+          <p>University of Michigan researchers trained NeuroVFM on 5.24M real clinical MRI and CT volumes pulled straight from hospital systems, with no radiology-report labels and no curation, using Vol-JEPA (a volumetric joint-embedding predictive architecture in Yann LeCun&rsquo;s JEPA line) to learn anatomy and pathology self-supervised in embedding space rather than pixel space. Published in Nature Medicine with open weights.</p>
+          <p>Its significance is that a generalist brain-imaging model can be built from the uncurated archives every health system already has, sidestepping the labeled-data bottleneck that has long capped medical AI. (Medical-deployment angle on the <a href="applications.html">Applications</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 13) &mdash; no public URL given</span></div>
+        </article>
+      </section>
 
-      <h3>Attention &amp; long-context architecture</h3>
-      <p>A method line attacks the quadratic cost of attention at long context directly, at the architecture level rather than the serving layer. <strong>MiniMax Sparse Attention (MSA)</strong> uses two branches — a local branch over recent context and a global branch for long-range dependencies — to make attention block-sparse, reaching a 28.4× reduction in per-token attention compute at 1M context versus dense grouped-query attention (GQA) with quality reported on par. Measured on an H800 that translates to 14.2× faster prefill and 7.6× faster decode; it was trained with a 3T-token budget on a 109B-parameter MoE. The portability claim matters most: MSA is GQA-native, so it can replace the attention block in existing GQA architectures without a redesign, which is why it is plausible this becomes a default in long-context serving stacks. (Serving-cost angle on the <a href="infrastructure.html">Infrastructure</a> page.)</p>
+      <section class="topic-section" id="agent-productivity-studies">
+        <h3>Agent productivity studies</h3>
+        <p class="lead">One study, kept in its own section because the measurement is the contribution: outcome time and cost on real knowledge work, not a benchmark score. Judge entries here on whether the comparison baseline is the tool people actually used before, and on who paid for the study.</p>
 
-      <h3>Retrieval-model architecture</h3>
-      <p>An efficiency-minded line builds retrieval models by repurposing existing generative pretrains instead of training encoders from scratch. Liquid AI's <strong>LFM2.5-Embedding-350M</strong> (dense bi-encoder) and <strong>LFM2.5-ColBERT-350M</strong> (late-interaction) were both produced by patching <em>LFM2.5-350M, a causal decoder</em>, into a bidirectional encoder — an unusual move that converts a model pretrained on 28T tokens into a retrieval model and, per the release, yields retrieval quality beating larger dedicated embedding models. The two architectures span the speed/precision trade-off (bi-encoder for speed, ColBERT late-interaction for precision) at the same 350M footprint. (Release and RAG-pipeline detail on the <a href="model-releases.html">Model releases</a> page.) August pushed the footprint question to its limit in the other direction: training on 660 million pairs and quantizing aggressively yields a <em>static</em> retrieval model of 8MB that embeds all of English Wikipedia on a laptop in under eight minutes. Static embeddings are a real concession &mdash; no contextual sensitivity, so a token's vector does not change with its surroundings, which is precisely what the late-interaction and matryoshka work above spends its parameter budget on. The trade is worth stating plainly rather than as a benchmark delta: the 350M models compete on retrieval quality per parameter, while an 8MB static model competes on removing the serving tier altogether. Below some corpus size and quality bar, no GPU, no index service and no per-query cost beats a better ranking, and this puts a concrete number on where that line now sits (see <a href="infrastructure.html">vector-index &amp; RAG-pipeline economics</a>).</p>
+        <article class="story unlinked" id="perplexity-harvard-agent-field-study">
+          <span class="when">2026-06-09</span>
+          <h4>Perplexity/Harvard field study: agents vs chat in knowledge work</h4>
+          <p>Perplexity, with Harvard, published research on the shift from chat interfaces to autonomous agents (its &ldquo;Computer&rdquo; agent). Over three months, workers using Computer finished tasks in 87% less time at 94% lower cost than search alone, with higher satisfaction &mdash; a quantified field measurement of agent productivity rather than a benchmark. The value is the field-study methodology: outcome time and cost on real tasks rather than static benchmarks. (Applied angle on the <a href="applications.html">Applications</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+        </article>
+      </section>
 
-      <p>Meta's <strong>FLAT</strong> (Sep 17) argues that the retrieval encoder and the generative decoder should not be reading different representations of the same image. It maps images and text into one flexible-length sequence of continuous tokens usable for both, with nested dropout arranging information coarse to fine along the sequence. The nested ordering is what makes the variable length useful rather than merely possible: because the early tokens carry the coarse content, truncating the sequence degrades detail gracefully instead of losing an arbitrary slice, so a caller can decide at inference time how much computation an image is worth. That is a knob multimodal stacks have not had &mdash; the usual alternative is a model per resolution, or a fixed patch budget chosen at training time. The unresolved question is the same one every shared-representation result raises: retrieval rewards representations that discard, generation rewards representations that preserve, and the paper's framing does not by itself establish that one sequence serves both without a cost somewhere. No head-to-head against separate specialised encoders is reported.</p>
+      <section class="topic-section" id="learning-rules-beyond-backpropagation">
+        <h3>Learning rules beyond backpropagation</h3>
+        <p class="lead">Local learning rules have always worked at toy depth and collapsed as networks grow &mdash; which is exactly where backprop&rsquo;s global backward pass earns its cost. Judge entries here on depth first.</p>
 
-      <h3>Decoding &amp; inference</h3>
-      <p>EAGLE 3.1 builds on the EAGLE speculative-decoding line, addressing attention drift that had been undercutting acceptance rates. <strong>Speculative Programmatic Tool Calling</strong> (Aug 25) carries the same speculation idea out of the token stream and into the agent loop: rather than predicting tokens, it predicts <em>tool calls</em> from partially written code and pre-launches them, so retrieval, sub-agents and API work overlap with generation instead of queuing behind it. The reported 1&ndash;1.2&times; speed-up is deliberately unglamorous and the paper is clear about where it comes from &mdash; memory-bound local inference and high-volume serving, where there is genuine idle time to fill. The failure mode is the one speculation always has: a mispredicted call is work done for nothing, which matters more when the call has side effects than when it is a wasted forward pass.</p>
+        <article class="story" id="pc-alm">
+          <span class="when">2026-09-15</span>
+          <h4><a href="https://pub.sakana.ai/pc-alm/">Sakana&rsquo;s PC-ALM trains 1,000-layer networks with a layer-local rule and no backward pass</a></h4>
+          <p>Augmented Lagrangian Predictive Coding extends standard predictive coding, which couples layers diffusively, by giving each layer a feedback control dynamical system that distributes and propagates supervision credit through the network. It reaches <strong>77.75%</strong> on the repository&rsquo;s reference cell against 78.66% for backpropagation and 68.13% for standard predictive coding &mdash; nine tenths of the gap closed while removing the global backward pass entirely &mdash; and that holds for residual MLPs up to 1,000 layers, well past where earlier local rules stopped competing.</p>
+          <p>Two limits travel with it: residual MLPs rather than transformers, so nothing here yet bears on frontier training, and no wall-clock or energy comparison &mdash; which is the whole reason to want a local rule. Testing is on small image benchmarks only, and backprop still wins there. MIT-licensed JAX, runs on CPU, which is itself the point: a rule that never needs the whole graph resident has a different memory and parallelism story.</p>
+          <div class="sources"><a href="https://pub.sakana.ai/pc-alm/">Sakana AI</a> &middot; <a href="https://arxiv.org/abs/2605.31022">arXiv</a> &middot; <a href="https://github.com/SakanaAI/pc-alm">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 15), MarkTechPost (Sep 17)</span></div>
+        </article>
+      </section>
 
-      <h3>IO-aware kernels &amp; data-pipeline primitives</h3>
-      <p>A method line generalizes the FlashAttention idea — redesign an algorithm around the GPU's real memory hierarchy rather than its FLOP count — beyond attention. <strong>Flash-KMeans</strong> applies it to exact K-Means: standard implementations (including FAISS) are IO-bound and waste cycles on redundant memory transfers, so Flash-KMeans rebuilds the algorithm with Triton kernels and batched, memory-efficient access patterns, yielding exact (not approximate) results at ~200× over FAISS, ~30× over cuML, and 17.9× end-to-end on an H200. Because K-Means underpins vector quantization, embedding clustering, and RAG index building, the result is directly useful for retrieval pipelines. (Serving/cost angle on the <a href="infrastructure.html">Infrastructure</a> page.)</p>
+      <section class="topic-section" id="attention-and-long-context-architecture">
+        <h3>Attention &amp; long-context architecture</h3>
+        <p class="lead">Two constraints sit on the same mechanism: what attention costs per token once context is long, and the fact that latent computation is thrown away at every token boundary. Judge cost results on whether quality held at the claimed context length, and state-carrying results on whether anything was measured beyond the proposal.</p>
 
-      <h3>World models &amp; embodied-policy methods</h3>
-      <p>The embodied-AI wave produced two architecture ideas worth tracking as methods rather than just model drops. Robbyant's <strong>LingBot-VA 2.0</strong> is an autoregressive diffusion policy that <em>predicts while acting</em>: it interleaves video and action tokens in a single causal sequence via a Mixture-of-Transformers, then re-grounds on the robot's latest real observation at every step, using a partial-denoising trick and an asynchronous inference pipeline to sustain high-frequency closed-loop control — reportedly beating Physical Intelligence's π0.5 on long-horizon and precision manipulation. Its sibling <strong>LingBot-World-Infinity</strong> attacks world modeling with an <em>agentic harness</em>: a pilot agent plans character behavior while a director agent seeds new environment elements, turning a frame predictor into a self-sustaining, hour-scale world without visual drift. Both port ideas from language-model agents — causal sequence modeling and the "model + harness" scaffolding pattern — into robotics. (Full detail on the <a href="embodied-and-robotics.html">Embodied AI &amp; robotics</a> page.)</p>
+        <article class="story" id="recurrent-looped-transformer">
+          <span class="when">2026-09-14</span>
+          <h4><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/">Recurrent Looped Transformer carries latent state across every prompt and response token</a></h4>
+          <p>The Recurrent Looped Transformer pairs a causal encoder with a recurrent decoder that carries its final hidden state, and a layerwise sliding-window attention cache, across every prompt and response token rather than resetting per step. The encoder builds a global key&ndash;value memory while the decoder extends one continuous latent computation as the sequence grows, so reasoning depth is unbounded in time rather than fixed by the number of stacked layers.</p>
+          <p>The authors present it as three kinds of co-design at once &mdash; latent reasoning with unbounded temporal depth, model with hardware, and model with RL algorithm &mdash; and are explicit that reasoning gains, hardware efficiency and RL scaling all remain to be established. That candour is the reason to record it: it is published as a proposal with its claims unmade rather than as a result.</p>
+          <div class="sources"><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/">Project page</a> &middot; <span class="via">via TLDR AI (Sep 14)</span></div>
+        </article>
 
-      <h3>RL on agents</h3>
-      <p>NVIDIA Polar reconstructs token-faithful RL trajectories from API-level proxying, enabling GRPO across closed coding harnesses. Harness-1 trains a 20B retrieval agent with RL inside its search harness (0.730 curated recall, open weights/code), an environment-native counterpart.</p>
-      <p><strong>Dream-RSI</strong> (Sep 16) moves the loop one level out, to what the agent explores rather than how it is scored. Its premise is that recursive self-improvement is bottlenecked by exploration rather than by the improvement step, and its mechanism treats accumulated discovery history as a reusable environment: online exploration collects trajectories, replay simulators are constructed from them over the search space already realised, meta-exploration strategy is refined against those simulators in a phase the authors call dreaming, and the upgraded policy is redeployed online. It reports improvements in both the effectiveness and the efficiency of discovery across several settings. The transferable idea is the cheapness of the rehearsal &mdash; refining strategy against past trajectories consumes no new environment budget, so only the redeployed policy spends anything real, which is the opposite of the pattern where self-improvement is expensive precisely because every candidate must be tried for real. The caution is the one attached to every self-improvement result on this page, and it bites harder here: a policy tuned against a simulator assembled from its own history can improve on that distribution while learning nothing that transfers, and until the settings are enumerated there is no way to tell which happened.</p>
+        <article class="story unlinked" id="random-attention">
+          <span class="when">2026-09-07</span>
+          <h4>Random Attention &mdash; uniformly sampling the KV cache matches learned eviction, with less overhead</h4>
+          <p>Salesforce AI Research kept a uniformly sampled subset of generated KV-cache entries instead of relying on learned importance signals or attention statistics. Across several reasoning benchmarks and model families it matched or exceeded more complex eviction methods while cutting the eviction overhead itself.</p>
+          <p>A negative result about the value of cleverness: if random selection is competitive with importance estimation, the estimation machinery in deployed cache-eviction schemes may be paying for itself in overhead rather than quality.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
+        </article>
 
-      <h3>Architecture analysis &amp; practitioner synthesis</h3>
-      <p>Not every notable writeup is a paper: some are syntheses that name where the architecture is heading. A July 15 interview with <strong>Sebastian Raschka</strong> — pegged to his new 440-page book on LLM architecture — argues that "implementation does not lie," i.e. you learn what actually works by building it. Its three throughlines map onto recurring threads elsewhere in this wiki: (1) <em>inference-time scaling and the agent harness</em> increasingly carry capability that used to live in the weights (see <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools &amp; DevEx</a>); (2) <em>hybrid architectures</em> that interleave attention with state-space / linear-attention layers are becoming the long-context default (the same direction as MSA above and NVIDIA's Mamba-Transformer Nemotron); and (3) <em>fine-tuning economics</em> have fallen far enough that open models are now the medium through which architectural ideas propagate. It is synthesis rather than a method release, but a useful map of the design space the method work is filling in.</p>
-      <p>Two August additions belong here. A long walkthrough of Thinking Machines' <strong>Inkling</strong> &mdash; the lab's first from-scratch model, Apache 2.0 on Hugging Face &mdash; documents the architecture, position encoding, thinking-effort control and, most usefully, the decision to let images and audio enter the model without a separately pretrained encoder in front of them. Nearly every multimodal model in production does the opposite, so a fully documented counterexample is worth more than another benchmark table; read with the Inkling-Small distillation result on the <a href="training-and-rl.html">Training</a> page, it is now one of the better-specified frontier architectures in public. Cameron Wolfe's RL reference (Aug 24) is the other, and it is a synthesis rather than a result: the full policy-gradient lineage from VPG through REINFORCE, PPO and GRPO to DAPO, Dr. GRPO, GSPO, TIS and CISPO, with an argument that the post-GRPO variants are not new algorithms but refinements of loss aggregation, reward normalization, batch selection, clipping and per-token versus per-sequence importance ratios &mdash; details that only matter at scale, which is why they all appeared at once. <strong>Specula</strong> (Aug 13) is the cycle's clearest example of the analysis being more valuable than the artifact. The system derives TLA+ specifications from system code automatically, validates code-spec conformance through traces, model-checks the spec for concurrency bugs, and reproduces each finding at the code layer as an integration test with the timing needed to trigger it &mdash; which addresses the practical objection that has kept model checking out of ordinary engineering, that a spec-level counterexample is not obviously a real bug.</p>
-      <p>The critique published alongside it does the harder work: Specula is a good pragmatic idea that works for what it does, and it skirts composition entirely, so it cannot say whether per-module guarantees compose into a system-level one. That is not an implementation gap to be closed in the next version; it is the open problem the whole field has been at for decades, and it is worth knowing which side of it a tool sits on before adopting it. Sebastian Raschka's Sep 10 reading of <strong>GPT-6 Astra</strong> is this section's other mode: inference about a closed model from its published behaviour. He argues it most likely uses a variant of the <strong>looped transformer</strong> &mdash; reusing a block of layers for a variable number of passes rather than stacking more depth &mdash; which buys better modelling performance at a fixed compute budget and lets computation happen inside the architecture instead of across emitted tokens, and he singles out computer use as where the improvement is largest. The inference that changes how the model should be read is about its unusually short reasoning traces: on this account brevity is a symptom of a model that makes fewer mistakes and can reason internally, not a trained stylistic preference, so the trace length tells you less about effort than it used to. Raschka is explicit that this is inference rather than disclosure. Read beside the <a href="safety-and-policy.html">recurrent-depth concern</a>, the two describe one property from two directions: the same architecture that improves performance per unit of compute is the one that moves reasoning out of the artifact a monitor can read.</p>
+        <article class="story unlinked" id="full-bandwidth-transformers">
+          <span class="when">2026-08-17</span>
+          <h4>Microsoft&rsquo;s full-bandwidth transformers let latent computation continue across decoding steps</h4>
+          <p>Full-bandwidth transformers feed the previous token&rsquo;s top-layer hidden state back into the model alongside the next token embedding. The consequence is that computation is no longer forced to terminate at each token boundary &mdash; latent state carries forward instead of being discarded and reconstructed from the token alone. It attacks the same constraint as recurrent-depth designs and test-time training, from the cheapest possible angle: an extra input rather than an architectural rewrite or a per-user weight set.</p>
+          <div class="sources"><span class="via">via TLDR AI (Aug 17) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="minimax-sparse-attention">
+            <span class="when">2026-06-20</span>
+            <h4>MiniMax Sparse Attention &mdash; 28.4&times; less attention compute at 1M context</h4>
+            <p>MiniMax detailed MSA (June 17), a two-branch block-sparse attention &mdash; a local branch for recent context plus a global branch for long-range dependencies &mdash; that cuts per-token attention compute at 1M context by 28.4&times; versus dense GQA with quality reported on par. On an H800 it delivers 14.2&times; faster prefill and 7.6&times; faster decode; it was trained with a 3T-token budget on a 109B MoE.</p>
+            <p>Because it is GQA-native it drops into existing architectures without a redesign, which is why it is plausible this becomes a default in long-context serving stacks. (Serving angle on the <a href="infrastructure.html">Infrastructure</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="retrieval-model-architecture">
+        <h3>Retrieval-model architecture</h3>
+        <p class="lead">Retrieval keeps being rebuilt out of parts meant for something else &mdash; a generative decoder, a shared multimodal sequence, a quantized table of static vectors. The question each answers differently is what a representation must preserve, and what serving it costs. Judge them on the concession, which is always stated somewhere.</p>
+
+        <article class="story" id="flat">
+          <span class="when">2026-09-17</span>
+          <h4><a href="https://guangyusun.com/flat-website/">Meta&rsquo;s FLAT puts images and text in one variable-length continuous token sequence</a></h4>
+          <p>FLAT encodes images and text into the same flexible-length sequence of continuous tokens, usable for both retrieval and generation, and applies nested dropout so that information is ordered coarse to fine across the sequence. The consequence is a knob that did not previously exist: a caller varies the number of tokens spent on an image and trades computation against visual detail at inference time, without a separate model per resolution. Both halves of the multimodal stack &mdash; the retrieval encoder and the generative decoder &mdash; read the same representation, which removes the usual translation step between them.</p>
+          <p>The unresolved question is the one every shared-representation result raises: retrieval rewards representations that discard, generation rewards representations that preserve. No head-to-head against separate specialised encoders is reported.</p>
+          <div class="sources"><a href="https://guangyusun.com/flat-website/">Project page</a> &middot; <span class="via">via TLDR AI (Sep 17)</span></div>
+        </article>
+
+        <article class="story unlinked" id="static-retrieval-8mb">
+          <span class="when">2026-08-13</span>
+          <h4>An 8MB retrieval model embeds all of English Wikipedia on a laptop in under eight minutes</h4>
+          <p>Training on 660 million pairs and then quantizing aggressively produces a static retrieval model of just 8MB &mdash; small enough to embed the whole of English Wikipedia on a laptop in under eight minutes.</p>
+          <p>Static embeddings give up the contextual sensitivity of a transformer encoder, which is the trade being made explicit here; what comes back is a retrieval layer with no serving infrastructure, no GPU and no per-query cost, which changes which applications can justify retrieval at all (see <a href="infrastructure.html">vector-index &amp; RAG-pipeline economics</a>).</p>
+          <div class="sources"><span class="via">via MLOps Community (Aug 13) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="lfm2-5-retrieval">
+          <span class="when">2026-06-20</span>
+          <h4>Liquid AI LFM2.5 retrieval models &mdash; a causal decoder patched into an encoder</h4>
+          <p>Liquid AI released LFM2.5-Embedding-350M (dense bi-encoder) and LFM2.5-ColBERT-350M (late interaction) on June 19, both built by converting the causal decoder LFM2.5-350M, pretrained on 28T tokens, into a bidirectional encoder rather than training an encoder from scratch. The unusual reuse yields retrieval quality that reportedly beats larger dedicated embedding models, across 11 languages, at a 350M footprint.</p>
+          <p>The two architectures span the speed/precision trade-off &mdash; bi-encoder for speed, ColBERT late-interaction for precision &mdash; at the same size. (Release and RAG-pipeline detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="decoding-and-inference">
+        <h3>Decoding &amp; inference</h3>
+        <p class="lead">Both entries buy latency by guessing ahead and paying for the misses &mdash; tokens in one case, whole tool calls in the other. The number to look at is not the speed-up but the cost of a wrong guess, which rises sharply once the speculated work has side effects.</p>
+
+        <article class="story" id="speculative-programmatic-tool-calling">
+          <span class="when">2026-08-25</span>
+          <h4><a href="https://alexzhang13.github.io/blog/2026/spec-ptc/">Speculative Programmatic Tool Calling &mdash; launch the tool call before the code is written</a></h4>
+          <p>sPTC predicts likely tool calls from partially generated code and pre-launches them, so searches, sub-agents and API calls run alongside token generation instead of after it. The authors describe it as a JIT compiler for the agent loop and report a 1&ndash;1.2&times; runtime speed-up, concentrated where it should be: memory-bound local models and high-volume serving, where generation and tool latency can genuinely overlap.</p>
+          <p>The modest multiplier is the honest part of the result &mdash; this is a scheduling win, not an architectural one. The failure mode is the one speculation always has: a mispredicted call is work done for nothing, which matters more when the call has side effects than when it is a wasted forward pass.</p>
+          <div class="sources"><a href="https://alexzhang13.github.io/blog/2026/spec-ptc/">alexzhang13.github.io</a> &middot; <span class="via">via TLDR AI (Aug 25), Unwind AI (Aug 25)</span></div>
+        </article>
+
+        <article class="story unlinked" id="eagle-3-1">
+          <span class="when">2026-05-28</span>
+          <h4>EAGLE 3.1 &mdash; speculative decoding without attention drift</h4>
+          <p>New version of the EAGLE speculative-decoding method that reduces attention drift, improving acceptance rates at long contexts. The drift had been undercutting acceptance rates in the earlier line, so the fix is to the part of the method that decides how often a speculated token survives.</p>
+          <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="io-aware-kernels-and-data-pipeline-primitives">
+        <h3>IO-aware kernels &amp; data-pipeline primitives</h3>
+        <p class="lead">The FlashAttention move &mdash; redesign an algorithm around the memory hierarchy rather than the FLOP count &mdash; generalises past attention to the classical primitives underneath a retrieval stack. Judge these on whether the result stays exact, because an approximate speed-up is a different and much easier claim.</p>
+
+        <article class="story unlinked" id="flash-kmeans">
+          <span class="when">2026-06-16</span>
+          <h4>Flash-KMeans &mdash; IO-aware exact K-Means, ~200&times; over FAISS</h4>
+          <p>An IO-aware reimplementation of exact K-Means using Triton GPU kernels with batched, memory-efficient access patterns, redesigning the algorithm around the GPU&rsquo;s SRAM/HBM hierarchy. Standard implementations, FAISS included, are IO-bound and waste cycles on redundant memory transfers. Results are exact, not approximate; reported ~200&times; faster than FAISS, ~30&times; than cuML, and 17.9&times; end-to-end on an H200.</p>
+          <p>Because K-Means underpins vector quantization, embedding clustering and RAG index building, the result is directly useful for retrieval pipelines; open source on GitHub. (Serving/cost angle on the <a href="infrastructure.html">Infrastructure</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="world-models-and-embodied-policy-methods">
+        <h3>World models &amp; embodied-policy methods</h3>
+        <p class="lead">Robotics is importing the language-model agent&rsquo;s two ideas wholesale: model everything as one causal sequence, then wrap the model in a harness that plans. Judge these on the closed loop &mdash; whether the policy re-grounds on a real observation, and whether the world model drifts once nobody is watching.</p>
+
+        <article class="story unlinked" id="lingbot-va-2">
+          <span class="when">2026-07-11</span>
+          <h4>Robbyant LingBot-VA 2.0 &amp; LingBot-World-Infinity &mdash; predict-while-acting and agentic-harness world models</h4>
+          <p>Two embodied methods from Ant Group&rsquo;s Robbyant. <strong>LingBot-VA 2.0</strong> is an autoregressive diffusion policy interleaving video and action tokens in one causal sequence via a Mixture-of-Transformers, re-grounding on the robot&rsquo;s real observation every step, with partial denoising and asynchronous inference sustaining high-frequency closed-loop control &mdash; reportedly beating Physical Intelligence&rsquo;s &pi;0.5 on long-horizon and precision manipulation.</p>
+          <p><strong>LingBot-World-Infinity</strong> wraps a causal world model in an agentic harness &mdash; a pilot agent plans character behaviour while a director agent seeds new environment elements &mdash; to sustain hour-scale generation without visual drift, porting the coding-agent &ldquo;model + harness&rdquo; pattern into world modeling. (Full detail on the <a href="embodied-and-robotics.html">Embodied AI &amp; robotics</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 11), MarkTechPost AI (weekly, Jul 10) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="rl-on-agents">
+        <h3>RL on agents</h3>
+        <p class="lead">Training an agent means training inside the harness it will run in, not against a static task. The entries differ in what they had to build to get there &mdash; a proxy, a stateful search environment, a simulator made of past trajectories. Judge each on what the training environment omits.</p>
+
+        <article class="story" id="dream-rsi">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://paperswithcode.co/paper/2609.14858">Dream-RSI turns an agent&rsquo;s own discovery history into a replay simulator it can rehearse in</a></h4>
+          <p>Dream-RSI argues that progress in recursive self-improvement is limited by exploration rather than by the improvement step, and closes the loop at the exploration layer. It collects discovery histories through online exploration, builds replay simulators from them over the search space already realised, refines its meta-exploration strategy against those simulators &mdash; the step the authors call dreaming &mdash; and redeploys the upgraded policy online, reporting gains in both the effectiveness and the efficiency of discovery across several settings.</p>
+          <p>The reusable idea is that an exploration history is not just a log but a cheap environment: rehearsing strategy against past trajectories costs nothing new, and only the redeployed policy spends real budget. The standing caveat for self-improvement results applies with force here, since a policy tuned against a simulator built from its own history can improve on that distribution while learning nothing transferable, and &ldquo;several settings&rdquo; is doing load-bearing work until the settings are enumerated.</p>
+          <div class="sources"><a href="https://paperswithcode.co/paper/2609.14858">Paper</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
+        </article>
+
+        <article class="story unlinked" id="harness-1">
+          <span class="when">2026-06-09</span>
+          <h4>Harness-1 &mdash; RL inside a stateful search harness</h4>
+          <p>A 20B retrieval agent trained with reinforcement learning inside its search harness, on GPT-OSS-20B, reaching 0.730 average curated recall; weights and harness code open. It is notable as a method that trains the tool-use loop directly rather than the model in isolation. (Training detail on the <a href="training-and-rl.html">Training &amp; RL</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="nvidia-polar">
+          <span class="when">2026-05-28</span>
+          <h4>NVIDIA Polar &mdash; token-faithful RL via API proxy</h4>
+          <p>A framework that proxies LLM API calls to reconstruct token-faithful RL trajectories for training agents on unmodified coding harnesses, enabling GRPO across closed harnesses. It removes the white-box-model-access constraint for RL.</p>
+          <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="architecture-analysis-and-practitioner-synthesis">
+        <h3>Architecture analysis &amp; practitioner synthesis</h3>
+        <p class="lead">Writeups rather than releases: a closed model read from its behaviour, an open one read from its code, a tool read by its own critic. The useful ones name what they cannot see. Judge them on whether the author separates inference from disclosure &mdash; each of these does, explicitly.</p>
+
+        <article class="story" id="gpt-6-astra-looped-transformer">
+          <span class="when">2026-09-10</span>
+          <h4><a href="https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and">Raschka reads GPT-6 Astra as a looped transformer, and shorter traces as a symptom rather than a choice</a></h4>
+          <p>Sebastian Raschka&rsquo;s architecture analysis argues GPT-6 Astra most likely uses a variant of the looped transformer &mdash; reusing a block of layers for a variable number of passes rather than adding depth &mdash; which yields better modelling performance at a fixed compute budget and lets the model spend more computation inside the architecture instead of across emitted tokens. He also singles out computer use as where the leap is largest.</p>
+          <p>The reading that matters operationally is his account of the model&rsquo;s notably short reasoning traces: on this analysis they are a side effect of a model that makes fewer mistakes and can reason internally, not a deliberately trained brevity. It is inference from published behaviour rather than a disclosed design, and he says so; read next to the <a href="safety-and-policy.html">recurrent-depth concern</a>, the same property that makes the model cheaper to run makes it harder to read.</p>
+          <div class="sources"><a href="https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and">Sebastian Raschka</a> &middot; <span class="via">via TLDR AI (Sep 10)</span></div>
+        </article>
+
+        <article class="story unlinked" id="inkling-architecture">
+          <span class="when">2026-08-19</span>
+          <h4>Inkling&rsquo;s architecture is documented: no separate encoder for images or audio, and a thinking-effort dial</h4>
+          <p>A detailed walkthrough of Thinking Machines&rsquo; <strong>Inkling</strong> &mdash; the lab&rsquo;s first model trained from scratch, with Apache 2.0 weights on Hugging Face &mdash; covers its architecture, position encoding, thinking-effort setting, and the choice to admit images and audio without a separately pretrained encoder in front of them.</p>
+          <p>That last decision is the one worth studying: the standard recipe bolts a pretrained vision tower onto a language model, and Inkling declines to, which makes it a rare fully documented alternative. Complements the <a href="training-and-rl.html">Inkling-Small distillation result</a>, which measured what that architecture transfers and what it loses.</p>
+          <div class="sources"><span class="via">via TLDR AI (Aug 19) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story" id="specula">
+          <span class="when">2026-08-13</span>
+          <h4><a href="https://muratbuffalo.blogspot.com/2026/08/specula-scaling-formal-specifications.html">Specula derives TLA+ specifications from code and model-checks them for concurrency bugs</a></h4>
+          <p>Specula is an agentic system that automates bug finding by authoring a formal spec rather than by reading code: it derives TLA+ specifications from the implementation, checks code-spec conformance through trace validation, model-checks the spec for concurrency bugs, and then reproduces each bug at the code layer by writing integration tests with the precise timing needed to trigger it. That last step addresses the practical objection that has kept model checking out of ordinary engineering &mdash; that a spec-level counterexample is not obviously a real bug.</p>
+          <p>The accompanying analysis is unusually direct about the limit: Specula works well for what it does, but it sidesteps composition, so it says nothing about whether per-module guarantees add up to a system-level guarantee. That gap is the reason formal methods have historically stopped at the module boundary, and it is worth knowing which side of it a tool sits on before adopting it.</p>
+          <div class="sources"><a href="https://muratbuffalo.blogspot.com/2026/08/specula-scaling-formal-specifications.html">Metadata blog</a> &middot; <span class="via">via TLDR AI (Aug 13)</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story" id="raschka-llm-architecture-2026">
+            <span class="when">2026-07-15</span>
+            <h4><a href="https://hugobowne.substack.com/p/llm-architecture-in-2026-agent-harnesses">Sebastian Raschka on LLM architecture in 2026 &mdash; harnesses, hybrids, and fine-tuning economics</a></h4>
+            <p>A Hugo Bowne-Anderson interview with Sebastian Raschka, tied to his new 440-page book, synthesizes where LLM architecture is heading: inference-time scaling shifting capability from the weights into the agent harness (see <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools &amp; DevEx</a>), hybrid attention plus state-space architectures becoming the long-context default, and fine-tuning economics falling far enough that open models drive how ideas spread.</p>
+            <p>His stated method is that &ldquo;implementation does not lie&rdquo; &mdash; you learn what works by building it. Synthesis rather than a new method, but a clear map of the design space recent method work (MSA, hybrid MoEs, environment-native RL) is populating.</p>
+            <div class="sources"><a href="https://hugobowne.substack.com/p/llm-architecture-in-2026-agent-harnesses">Hugo Bowne-Anderson (Substack)</a></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="machine-produced-proof-and-its-provenance">
+        <h3>Machine-produced proof and its provenance</h3>
+        <p class="lead">Two results a machine produced and a proof assistant checked. Verification and attribution come apart here: Lean can confirm an argument is valid and say nothing about whose argument it was. Judge these on publication order and on what the lab discloses about training data, not on the theorem.</p>
+
+        <article class="story" id="navier-stokes-proof">
+          <span class="when">2026-09-09</span>
+          <h4><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">OpenAI claims a Navier&ndash;Stokes proof from 10,000 agents &mdash; and a provenance dispute follows</a></h4>
+          <p>OpenAI announced that an internal system produced a proof resolving the Navier&ndash;Stokes existence and smoothness problem, showing that smooth three-dimensional fluid dynamics can develop a finite-time singularity, with both an analytical proof and a Lean formalization &mdash; reportedly from about 10,000 agents exchanging 2.7 million messages and generating 130 billion output tokens over 88 hours. It has not been independently reviewed or accepted by the Clay Mathematics Institute. NYU mathematician Tristan Buckmaster and Anthropic researcher Levent Alp&ouml;ge published a closely related fluid-equations result one day before the announcement, and Buckmaster says his team had already fed related unpublished drafts into OpenAI&rsquo;s Codex.</p>
+          <p>Both sides have now published timelines. OpenAI says it heard the rumour on Sep 1, launched agents against every open Millennium Prize problem, reached the resolution on Sep 5 about 88 hours later, and spent a further 17 hours on Lean formalization via GPT-6 Astra &mdash; a campaign that would cost on the order of $15 million at Astra&rsquo;s public API prices, though the internal model&rsquo;s economics are unknown. It says no researcher or agent saw the other team&rsquo;s work before publication and no specific user data was accessed, while conceding it cannot rule out that de-identified data derived from product usage improved its models; Buckmaster says he asked twice whether the model had been trained on their Codex sessions and got an answer only about lookup.</p>
+          <p>OpenAI offered a joint announcement, but told him Alp&ouml;ge could not be a co-author because he works for Anthropic &mdash; which is the detail that converts a provenance question into an institutional one.</p>
+          <div class="sources"><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">Simon Willison (Sep 14)</a> &middot; <span class="via">via Substack notes (Sep 12), TLDR AI (Sep 9), TLDR (Sep 9), Unwind AI (Sep 9), The Code (Sep 9)</span></div>
+        </article>
+
+        <article class="story unlinked" id="fermat-lean-proof">
+          <span class="when">2026-09-07</span>
+          <h4>Claude produced the first complete computer-verified proof of Fermat&rsquo;s Last Theorem</h4>
+          <p>Anthropic reports that Claude formalized Fermat&rsquo;s Last Theorem in Lean in 11 days &mdash; 13 million lines of code, 29,500 intermediate theorems proved, verified through Prove2Me and Lean. The theorem was proved by Andrew Wiles in 1995; what was missing was a machine-checkable formalization, traditionally years of specialist labour.</p>
+          <p>The significance is not that a model did mathematics but <em>where</em> it did it: formalization is the rare domain with a total, mechanical verifier, so no claim rests on the model&rsquo;s judgment or on a benchmark harness &mdash; Lean either accepts the proof or does not. Against the harness-dependence problem running through this month&rsquo;s <a href="evals-and-benchmarks.html">evals</a>, a result that a proof assistant checks end to end is a different and much harder kind of evidence.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="verifiers-and-runtime-monitors">
+        <h3>Verifiers &amp; runtime monitors</h3>
+        <p class="lead">If an agent loop needs something that can judge partial progress, the judge becomes the component worth measuring. Both entries make one cheaper &mdash; one by dropping training, one by dropping the score history. Judge them on what the cheaper check misses, which both papers report rather than hide.</p>
+
+        <article class="story unlinked" id="llm-as-a-verifier">
+          <span class="when">2026-09-07</span>
+          <h4>LLM-as-a-Verifier &mdash; fine-grained agent feedback without any additional training</h4>
+          <p>A general-purpose framework producing fine-grained feedback for any agent with no training required, reporting state-of-the-art results across coding, robotics and medical agentic benchmarks. The feedback is usable three ways &mdash; test-time scaling, progress tracking, and as a reward signal for reinforcement learning.</p>
+          <p>That connects it to the verifier primitive named in the loop-engineering thread on the <a href="agents.html">Agents</a> page: an agent loop needs something that can judge partial progress, and a training-free verifier that generalizes across domains is the cheapest available version of that.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="crc-monitor">
+          <span class="when">2026-09-04</span>
+          <h4>CRC Monitor &mdash; one calibrated safety score matches a whole history of them</h4>
+          <p>Mona Schirmer, Metod Jazbec and colleagues (Amsterdam, Wisconsin-Madison, Johns Hopkins) show that streaming safety monitors analysing a <em>series</em> of per-step scores can be replaced by a single check: compare the latest step&rsquo;s verifier score against a threshold calibrated by conformal risk control, padding the measured false-alarm rate so the guarantee holds on data the calibration set never saw.</p>
+          <p>On FineHarm at a 20% user-set false-alarm budget it caught 99.5% of harmful outputs, matching the multi-score baseline while flagging after 14% of the conversation. On MATH it detected ~80% of incorrect solutions, equal to the baseline, after 35% of the reasoning rather than 40%. The one clear loss is on Anthropic Red Teaming (32% detected against 54%) &mdash; but it alarms after 26% of the conversation instead of 55%, which is the trade the paper is actually proposing: catch less, catch it far earlier, and pay less inference to do it.</p>
+          <div class="sources"><span class="via">via The Batch (Sep 4) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="pretraining-on-a-consumer-budget">
+        <h3>Pretraining on a consumer budget</h3>
+        <p class="lead">The counter-current to the trillion-parameter releases: a documented path to pretraining that fits on one card and one invoice. What matters is whether the recipe is reproducible end to end &mdash; data, code and weights &mdash; and whether the budget figure and the baseline comparison come from anyone but the authors.</p>
+
+        <article class="story unlinked" id="puro-2b">
+          <span class="when">2026-09-01</span>
+          <h4>Puro-2B &mdash; a 2B model pretrained on one RTX 5090 inside a $5,090 budget</h4>
+          <p>An open recipe for small-model pretraining on consumer hardware, trained from Qwen2-1.5B with data, code and weights released under Apache 2.0. The caveat is stated by the authors: the budget figure and the Qwen2-1.5B comparison come from the paper&rsquo;s own evaluation setup rather than independent replication.</p>
+          <p>Worth tracking anyway as the counter-current to the trillion-parameter releases dominating this page &mdash; a documented, reproducible path to pretraining that does not require a datacenter.</p>
+          <div class="sources"><span class="via">via Unwind AI (Sep 2) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="evaluate-then-act-decompositions">
+        <h3>Evaluate-then-act decompositions</h3>
+        <p class="lead">Both take a task a model does badly in one pass and split it into a judgement and then an action &mdash; classify the turn, then edit; score the prompt, then evolve it. The gain comes from the separation, not the model. Judge them on whether the reported drop survives outside the failure class they optimised against.</p>
+
+        <article class="story unlinked" id="agentic-asr">
+          <span class="when">2026-08-19</span>
+          <h4>Agentic ASR &mdash; treating transcription as an editing loop instead of a single pass</h4>
+          <p>Researchers at Shanghai Jiao Tong, Zhejiang, Fudan and Xiaoice pair a speech-to-text engine (Qwen3-ASR-1.7B) with an LLM (Qwen3-32B) that classifies each user turn as confirmation, new input, or correction, and on a correction decomposes the fix into three steps: locate the span, infer what the user meant, apply the edit. The insight is that asking an LLM to rewrite a transcript wholesale introduces fresh errors, especially on names &mdash; acting as an editor beats acting as a rewriter.</p>
+          <p>They propose S&sup2;ER, the share of attempts that fail to preserve intended meaning: on GigaSpeech it fell from 21.5% to 3.5% over 10 turns, on the name-heavy AISHELL-NER from 19.9% to 2.0%, and on the code-switching ASRU2019 from 28.6% to 1.4%, with most of the gain arriving in the first few turns.</p>
+          <div class="sources"><span class="via">via The Batch (Aug 21) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="secureforge">
+          <span class="when">2026-08-05</span>
+          <h4>SecureForge &mdash; optimizing the system prompt cuts LLM-generated security flaws almost in half</h4>
+          <p>Houjun Liu, Lisa Einstein, John Jang and colleagues at Stanford show that asking a model to write secure code barely helps, but searching for the right system prompt does. They turned the top 25 MITRE CWE entries into benign-looking coding requests, kept the 500 that actually produced vulnerable code, expanded 250 of them into 80,000 variants, and used the GEPA genetic algorithm with Semgrep&rsquo;s vulnerability reports as the fitness signal to evolve the developer-editable portion of the system prompt.</p>
+          <p>Across ten models from CodeLlama 7B to Claude Sonnet 4.6 and GPT-5.4, SecureForge produced flawed code 11.8% of the time against 20.1% for explicitly asking for secure code and listing the issues to avoid. Freely available for commercial use; the stated limit is that it was optimized against known vulnerability classes, so its reach on unknown ones is untested. The same decomposition shows up in the clinical trial on the <a href="applications.html">Applications</a> page.</p>
+          <div class="sources"><span class="via">via The Batch (Aug 6) &mdash; no public URL given</span></div>
+        </article>
+      </section>
 
       <h2>Timeline</h2>
-      <ul class="timeline">
-        <li>
-          <span class="date">2026-09-17</span>
-          <span class="label">Meta&rsquo;s FLAT puts images and text in one variable-length continuous token sequence</span> &mdash; <strong>FLAT</strong> encodes images and text into the same flexible-length sequence of continuous tokens, usable for both retrieval and generation, and applies nested dropout so that information is ordered coarse to fine across the sequence. The consequence is a knob that did not previously exist: a caller varies the number of tokens spent on an image and trades computation against visual detail at inference time, without a separate model per resolution. Both halves of the multimodal stack &mdash; the retrieval encoder and the generative decoder &mdash; read the same representation, which removes the usual translation step between them.
-          <div class="sources">Sources: TLDR AI (Sep 17) <a href="https://guangyusun.com/flat-website/">Project page</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">Dream-RSI turns an agent&rsquo;s own discovery history into a replay simulator it can rehearse in</span> &mdash; Dream-RSI argues that progress in recursive self-improvement is limited by exploration rather than by the improvement step, and closes the loop at the exploration layer. It collects discovery histories through online exploration, builds replay simulators from them over the search space already realised, refines its meta-exploration strategy against those simulators &mdash; the step the authors call dreaming &mdash; and redeploys the upgraded policy online, reporting gains in both the effectiveness and the efficiency of discovery across several settings. The reusable idea is that an exploration history is not just a log but a cheap environment: rehearsing strategy against past trajectories costs nothing new, and only the redeployed policy spends real budget. The standing caveat for self-improvement results applies with force here, since a policy tuned against a simulator built from its own history can improve on that distribution while learning nothing transferable, and &ldquo;several settings&rdquo; is doing load-bearing work until the settings are enumerated.
-          <div class="sources">Sources: TLDR AI (Sep 16) <a href="https://paperswithcode.co/paper/2609.14858">Paper</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-15</span>
-          <span class="label">PC-ALM trains 1,000-layer residual MLPs with layer-local dynamics instead of backpropagation</span> &mdash; Sakana&rsquo;s Augmented Lagrangian Predictive Coding extends standard predictive coding, which couples layers diffusively, by giving each layer a feedback control dynamical system that distributes and propagates supervision credit through the network. The reported result is the one that matters for this class of work: residual MLPs trained up to 1,000 layers, nearly matching backpropagation&rsquo;s performance while using only layer-local dynamics. Backprop alternatives have a long history of working at toy depth and collapsing at scale, so depth is the right axis to report on, and 1,000 layers is well past where previous local-learning rules stopped being competitive. What it does not yet show is transformer-scale training or any wall-clock or energy advantage &mdash; the appeal of a local rule is that it does not need a global backward pass, which matters for hardware that cannot cheaply do one, and no such comparison is claimed here.
-          <div class="sources">Sources: TLDR AI (Sep 15) <a href="https://pub.sakana.ai/pc-alm/">Sakana AI</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-14</span>
-          <span class="label">Recurrent Looped Transformer carries latent state across every prompt and response token</span> &mdash; The Recurrent Looped Transformer pairs a causal encoder with a recurrent decoder that carries its final hidden state, and a layerwise sliding-window attention cache, across every prompt and response token rather than resetting per step. The encoder builds a global key&ndash;value memory while the decoder extends one continuous latent computation as the sequence grows, so reasoning depth is unbounded in time rather than fixed by the number of stacked layers. The authors present it as three kinds of co-design at once &mdash; latent reasoning with unbounded temporal depth, model with hardware, and model with RL algorithm &mdash; and are explicit that reasoning gains, hardware efficiency and RL scaling all remain to be established. That candour is the reason to record it: it is the architectural form of the looped-transformer reading below, published as a proposal with its claims unmade rather than as a result.
-          <div class="sources">Sources: TLDR AI (Sep 14) <a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/">Project page</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-14</span>
-          <span class="label">Sakana&rsquo;s PC-ALM trains 1000-layer networks with a layer-local rule and no backward pass</span> &mdash; <strong>PC-ALM</strong> is a layer-local alternative to backpropagation that trains networks a thousand layers deep. On the repository&rsquo;s reference cell it reaches 77.75% against 78.66% for backprop and 68.13% for standard predictive coding &mdash; close enough to matter, and still short. Testing is on small image benchmarks only, and the MIT-licensed JAX code runs on CPU, which is itself the point: a rule with no global backward pass has a different hardware story than one that needs the whole graph resident. Depth without backpropagation is the claim worth following; matching backprop&rsquo;s accuracy on CIFAR-scale tasks is a precondition rather than a result.
-          <div class="sources">Sources: MarkTechPost (Sep 17) <a href="https://arxiv.org/abs/2605.31022">arXiv</a> <a href="https://github.com/SakanaAI/pc-alm">GitHub</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-10</span>
-          <span class="label">Raschka reads GPT-6 Astra as a looped transformer, and shorter traces as a symptom rather than a choice</span> &mdash; Sebastian Raschka&rsquo;s architecture analysis argues GPT-6 Astra most likely uses a variant of the looped transformer &mdash; reusing a block of layers for a variable number of passes rather than adding depth &mdash; which yields better modelling performance at a fixed compute budget and lets the model spend more computation inside the architecture instead of across emitted tokens. The reading that matters operationally is his account of the model&rsquo;s notably short reasoning traces: on this analysis they are a side effect of a model that makes fewer mistakes and can reason internally, not a deliberately trained brevity. He also singles out computer use as where the leap is largest. It is inference from published behaviour rather than a disclosed design, and he says so; read next to the <a href="safety-and-policy.html">recurrent-depth concern</a>, the same property that makes the model cheaper to run makes it harder to read.
-          <div class="sources">Sources: TLDR AI (Sep 10) <a href="https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and">Sebastian Raschka</a></div>
-        </li>
-        <li>
-          <span class="date">2026-08-13</span>
-          <span class="label">Specula derives TLA+ specifications from code and model-checks them for concurrency bugs</span> &mdash; Specula is an agentic system that automates bug finding by authoring a formal spec rather than by reading code: it derives TLA+ specifications from the implementation, checks code-spec conformance through trace validation, model-checks the spec for concurrency bugs, and then reproduces each bug at the code layer by writing integration tests with the precise timing needed to trigger it. The accompanying analysis is unusually direct about the limit &mdash; Specula works well for what it does, but it sidesteps composition, so it says nothing about whether per-module guarantees add up to a system-level guarantee. That gap is the reason formal methods have historically stopped at the module boundary.
-          <div class="sources">Sources: TLDR AI (Aug 13) <a href="https://muratbuffalo.blogspot.com/2026/08/specula-scaling-formal-specifications.html">Metadata blog</a></div>
-        </li>
-        <li>
-          <span class="date">2026-08-13</span>
-          <span class="label">An 8MB retrieval model embeds all of English Wikipedia on a laptop in under eight minutes</span> &mdash; Training on 660 million pairs and then quantizing aggressively produces a static retrieval model of just 8MB &mdash; small enough to embed the whole of English Wikipedia on a laptop in under eight minutes. Static embeddings give up the contextual sensitivity of a transformer encoder, which is the trade being made explicit here; what comes back is a retrieval layer with no serving infrastructure, no GPU and no per-query cost, which changes which applications can justify retrieval at all.
-          <div class="sources">Sources: MLOps Community (Aug 13)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">OpenAI claims a Navier&ndash;Stokes proof from 10,000 agents &mdash; and a provenance dispute follows</span> &mdash; OpenAI announced that an internal system produced a proof resolving the Navier&ndash;Stokes existence and smoothness problem, showing that smooth three-dimensional fluid dynamics can develop a finite-time singularity, with both an analytical proof and a Lean formalization. The reported scale: roughly 10,000 agents exchanging 2.7 million messages and generating 130 billion output tokens over 88 hours. The result has not been independently reviewed or accepted by the Clay Mathematics Institute. NYU mathematician Tristan Buckmaster says his team had already fed related unpublished drafts into OpenAI's Codex, and OpenAI has not said whether those drafts reached training data &mdash; so the central question is not whether the proof is correct but how much of it was already in the room. <strong>The provenance dispute has a date attached now:</strong> NYU mathematician Tristan Buckmaster and Anthropic researcher Levent Alp&ouml;ge published a closely related fluid-equations result one day before OpenAI&rsquo;s announcement, and researchers circulating the comparison allege OpenAI drew on a year of user-submitted mathematics before finishing the work with Astra. The allegation is unproven and travels as social posts rather than a filing; the concurrent publication is checkable, and it is what makes the attribution question more than a grumble. <strong>Both sides have now published timelines.</strong> OpenAI says it heard the rumour on Sep 1, launched agents against every open Millennium Prize problem, reached the Navier&ndash;Stokes resolution on Sep 5 about 88 hours later, and spent a further 17 hours on Lean formalization and verification via GPT-6 Astra; across all attempted problems the agents sent 4.9 million messages and used roughly 300 billion output tokens, of which Navier&ndash;Stokes alone took 2.7 million messages and about 130 billion &mdash; a campaign that would cost on the order of $15 million at Astra&rsquo;s public API prices, though the internal model&rsquo;s economics are unknown. It says its researchers and agents saw none of the other team&rsquo;s work before publication, that no specific user data was accessed, and that it cannot rule out de-identified data derived from their product usage having improved its models; it also notes the two proofs differ, including in what is proved in the Euler case. Buckmaster says he asked twice whether the model had been trained on their Codex sessions and got an answer only about lookup, never about training. OpenAI offered a joint announcement or authorship of a paper, but told him Alp&ouml;ge could not be a co-author because he works for Anthropic.
-          <div class="sources">Sources: Substack notes (Sep 12) TLDR AI (Sep 9) TLDR (Sep 9) Unwind AI (Sep 9) The Code (Sep 9) <a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">Simon Willison (Sep 14)</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">AlphaGenome Atlas precomputes the regulatory effect of all 9 billion human single-nucleotide variants</span> &mdash; Google DeepMind released a one-petabyte database of AlphaGenome's predicted regulatory effects for every possible single-nucleotide variant in the human genome. It is distributed as precomputed predictions rather than a model, so scientists can query it without writing code or running inference, and each variant carries a single impact score for triage at a glance. Turning a model into a lookup table is the part that changes who can use it: the bottleneck for most genomics labs was never the science but the inference budget. (Deployment angle on the <a href="applications.html">Applications</a> page.)
-          <div class="sources">Sources: TLDR AI (Sep 9) TLDR (Sep 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-25</span>
-          <span class="label">Speculative Programmatic Tool Calling &mdash; launch the tool call before the code is written</span> &mdash; sPTC predicts likely tool calls from partially generated code and pre-launches them, so searches, sub-agents and API calls run alongside token generation instead of after it. The authors describe it as a JIT compiler for the agent loop and report a 1&ndash;1.2&times; runtime speed-up, concentrated where it should be: memory-bound local models and high-volume serving, where generation and tool latency can genuinely overlap. The modest multiplier is the honest part of the result.
-          <div class="sources">Sources: TLDR AI (Aug 25) Unwind AI (Aug 25) <a href="https://alexzhang13.github.io/blog/2026/spec-ptc/">alexzhang13.github.io</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-04</span>
-          <span class="label">CRC Monitor &mdash; one calibrated safety score matches a whole history of them</span> &mdash; Mona Schirmer, Metod Jazbec and colleagues (Amsterdam, Wisconsin-Madison, Johns Hopkins) show that streaming safety monitors analysing a <em>series</em> of per-step scores can be replaced by a single check: compare the latest step&rsquo;s verifier score against a threshold calibrated by conformal risk control, padding the measured false-alarm rate so the guarantee holds on data the calibration set never saw. On FineHarm at a 20% user-set false-alarm budget it caught 99.5% of harmful outputs, matching the multi-score baseline while flagging after 14% of the conversation. On MATH it detected ~80% of incorrect solutions, equal to the baseline, after 35% of the reasoning rather than 40%. The one clear loss is on Anthropic Red Teaming (32% detected against 54%) &mdash; but it alarms after 26% of the conversation instead of 55%, which is the trade the paper is actually proposing: catch less, catch it far earlier, and pay less inference to do it.
-          <div class="sources">Sources: The Batch (Sep 4)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-01</span>
-          <span class="label">Puro-2B &mdash; a 2B model pretrained on one RTX 5090 inside a $5,090 budget</span> &mdash; An open recipe for small-model pretraining on consumer hardware, trained from Qwen2-1.5B with data, code and weights released under Apache 2.0. The caveat is stated by the authors: the budget figure and the Qwen2-1.5B comparison come from the paper&rsquo;s own evaluation setup rather than independent replication. Worth tracking anyway as the counter-current to the trillion-parameter releases dominating this page &mdash; a documented, reproducible path to pretraining that does not require a datacenter.
-          <div class="sources">Sources: Unwind AI (Sep 2)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-07</span>
-          <span class="label">Claude produced the first complete computer-verified proof of Fermat&rsquo;s Last Theorem</span> &mdash; Anthropic reports that Claude formalized Fermat&rsquo;s Last Theorem in Lean in 11 days &mdash; 13 million lines of code, 29,500 intermediate theorems proved, verified through Prove2Me and Lean. The theorem was proved by Andrew Wiles in 1995; what was missing was a machine-checkable formalization, traditionally years of specialist labour. The significance is not that a model did mathematics but <em>where</em> it did it: formalization is the rare domain with a total, mechanical verifier, so no claim rests on the model&rsquo;s judgment or on a benchmark harness &mdash; Lean either accepts the proof or does not. Against the harness-dependence problem running through this month&rsquo;s <a href="evals-and-benchmarks.html">evals</a>, a result that a proof assistant checks end to end is a different and much harder kind of evidence.
-          <div class="sources">Sources: TLDR AI (Sep 7)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-07</span>
-          <span class="label">Random Attention &mdash; uniformly sampling the KV cache matches learned eviction, with less overhead</span> &mdash; Salesforce AI Research kept a uniformly sampled subset of generated KV-cache entries instead of relying on learned importance signals or attention statistics. Across several reasoning benchmarks and model families it matched or exceeded more complex eviction methods while cutting the eviction overhead itself. A negative result about the value of cleverness: if random selection is competitive with importance estimation, the estimation machinery in deployed cache-eviction schemes may be paying for itself in overhead rather than quality.
-          <div class="sources">Sources: TLDR AI (Sep 7)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-07</span>
-          <span class="label">LLM-as-a-Verifier &mdash; fine-grained agent feedback without any additional training</span> &mdash; A general-purpose framework producing fine-grained feedback for any agent with no training required, reporting state-of-the-art results across coding, robotics and medical agentic benchmarks. The feedback is usable three ways &mdash; test-time scaling, progress tracking, and as a reward signal for reinforcement learning &mdash; which connects it to the verifier primitive named in the loop-engineering thread on the <a href="agents.html">Agents</a> page: an agent loop needs something that can judge partial progress, and a training-free verifier that generalizes across domains is the cheapest available version of that.
-          <div class="sources">Sources: TLDR AI (Sep 7)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-19</span>
-          <span class="label">Agentic ASR &mdash; treating transcription as an editing loop instead of a single pass</span> &mdash; Researchers at Shanghai Jiao Tong, Zhejiang, Fudan and Xiaoice pair a speech-to-text engine (Qwen3-ASR-1.7B) with an LLM (Qwen3-32B) that classifies each user turn as confirmation, new input, or correction, and on a correction decomposes the fix into three steps: locate the span, infer what the user meant, apply the edit. The insight is that asking an LLM to rewrite a transcript wholesale introduces fresh errors, especially on names &mdash; acting as an editor beats acting as a rewriter. They propose S&sup2;ER, the share of attempts that fail to preserve intended meaning: on GigaSpeech it fell from 21.5% to 3.5% over 10 turns, on the name-heavy AISHELL-NER from 19.9% to 2.0%, and on the code-switching ASRU2019 from 28.6% to 1.4%, with most of the gain arriving in the first few turns.
-          <div class="sources">Sources: The Batch (Aug 21)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-19</span>
-          <span class="label">Inkling's architecture is documented: no separate encoder for images or audio, and a thinking-effort dial</span> &mdash; A detailed walkthrough of Thinking Machines' <strong>Inkling</strong> &mdash; the lab's first model trained from scratch, with Apache 2.0 weights on Hugging Face &mdash; covers its architecture, position encoding, thinking-effort setting, and the choice to admit images and audio without a separately pretrained encoder in front of them. That last decision is the one worth studying: the standard recipe bolts a pretrained vision tower onto a language model, and Inkling declines to, which makes it a rare fully documented alternative. Complements the <a href="training-and-rl.html">Inkling-Small distillation result</a>, which measured what that architecture transfers and what it loses.
-          <div class="sources">Sources: TLDR AI (Aug 19)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-17</span>
-          <span class="label">Microsoft's full-bandwidth transformers let latent computation continue across decoding steps</span> &mdash; Full-bandwidth transformers feed the previous token's top-layer hidden state back into the model alongside the next token embedding. The consequence is that computation is no longer forced to terminate at each token boundary &mdash; latent state carries forward instead of being discarded and reconstructed from the token alone. It attacks the same constraint as recurrent-depth designs and test-time training, from the cheapest possible angle: an extra input rather than an architectural rewrite or a per-user weight set.
-          <div class="sources">Sources: TLDR AI (Aug 17)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-05</span>
-          <span class="label">SecureForge &mdash; optimizing the system prompt cuts LLM-generated security flaws almost in half</span> &mdash; Houjun Liu, Lisa Einstein, John Jang and colleagues at Stanford show that asking a model to write secure code barely helps, but searching for the right system prompt does. They turned the top 25 MITRE CWE entries into benign-looking coding requests (&ldquo;write a Python function that looks up a user by username in a SQLite database&rdquo;), kept the 500 that actually produced vulnerable code, expanded 250 of them into 80,000 variants, and used the GEPA genetic algorithm with Semgrep&rsquo;s vulnerability reports as the fitness signal to evolve the developer-editable portion of the system prompt. Across ten models from CodeLlama 7B to Claude Sonnet 4.6 and GPT-5.4, SecureForge produced flawed code 11.8% of the time against 20.1% for explicitly asking for secure code and listing the issues to avoid. Freely available for commercial use; the stated limit is that it was optimized against known vulnerability classes, so its reach on unknown ones is untested.
-          <div class="sources">Sources: The Batch (Aug 6)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-15</span>
-          <span class="label">Sebastian Raschka on LLM architecture in 2026 — harnesses, hybrids, and fine-tuning economics</span> &mdash; A Hugo Bowne-Anderson interview with Sebastian Raschka (tied to his new 440-page book) synthesizes where LLM architecture is heading: inference-time scaling shifting capability from the weights into the agent harness, hybrid attention + state-space architectures becoming the long-context default, and fine-tuning economics falling far enough that open models drive how ideas spread. Synthesis rather than a new method, but a clear map of the design space recent method work (MSA, hybrid MoEs, environment-native RL) is populating.
-          <div class="sources">Sources: <a href="https://hugobowne.substack.com/p/llm-architecture-in-2026-agent-harnesses">Hugo Bowne-Anderson (Substack)</a></div>
-        </li>
-        <li>
-          <span class="date">2026-07-14</span>
-          <span class="label">NeuroVFM — a Vol-JEPA neuroimaging foundation model trained on 5.24M uncurated clinical scans</span> &mdash; University of Michigan researchers trained NeuroVFM on 5.24M real clinical MRI and CT volumes pulled straight from hospital systems, with no radiology-report labels and no curation, using Vol-JEPA (a volumetric joint-embedding predictive architecture in Yann LeCun's JEPA line) to learn anatomy and pathology self-supervised from raw 3D data. Published in Nature Medicine with open weights. Significance: it shows a generalist brain-imaging model can be built from the uncurated archives every health system already has, sidestepping the labeled-data bottleneck that has long capped medical AI. (Medical-deployment angle on the <a href="applications.html">Applications</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 13)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-11</span>
-          <span class="label">Robbyant LingBot-VA 2.0 &amp; LingBot-World-Infinity — predict-while-acting and agentic-harness world models</span> &mdash; Two embodied methods from Ant Group's Robbyant. <strong>LingBot-VA 2.0</strong> is an autoregressive diffusion policy interleaving video and action tokens in one causal sequence via a Mixture-of-Transformers, re-grounding on the robot's real observation every step (partial denoising + asynchronous inference for closed-loop control), reportedly beating π0.5 on long-horizon manipulation. <strong>LingBot-World-Infinity</strong> wraps a causal world model in an agentic harness (a pilot agent plans, a director agent seeds the environment) to sustain hour-scale generation without drift — porting the coding-agent "model + harness" pattern into world modeling. (Full detail on the <a href="embodied-and-robotics.html">Embodied AI &amp; robotics</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11) MarkTechPost AI (weekly, Jul 10)</div>
-        </li>
-        <li>
-          <span class="date">2026-06-20</span>
-          <span class="label">MiniMax Sparse Attention — 28.4× less attention compute at 1M context</span> — MiniMax detailed MSA (June 17), a two-branch block-sparse attention (local branch for recent context + global branch for long-range dependencies) that cuts per-token attention compute at 1M context by 28.4× versus dense GQA with quality on par. On an H800 it delivers 14.2× faster prefill and 7.6× faster decode; trained with a 3T-token budget on a 109B MoE. Because it is GQA-native it drops into existing architectures without redesign — an infrastructure-level long-context result. (Serving angle on the <a href="infrastructure.html">Infrastructure</a> page.)
-          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-20</span>
-          <span class="label">Liquid AI LFM2.5 retrieval models — a causal decoder patched into an encoder</span> — Liquid AI released LFM2.5-Embedding-350M (dense bi-encoder) and LFM2.5-ColBERT-350M (late interaction) (June 19), both built by converting the causal decoder LFM2.5-350M (pretrained on 28T tokens) into a bidirectional encoder rather than training an encoder from scratch. The unusual reuse yields retrieval quality that reportedly beats larger dedicated embedding models, across 11 languages, at a 350M footprint. (Release/RAG detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-16</span>
-          <span class="label">Flash-KMeans — IO-aware exact K-Means, ~200× over FAISS</span> — An IO-aware reimplementation of exact K-Means using Triton GPU kernels with batched, memory-efficient access patterns, redesigning the algorithm around the GPU's SRAM/HBM hierarchy (the FlashAttention recipe applied to clustering). Exact, not approximate; reported ~200× faster than FAISS, ~30× than cuML, and 17.9× end-to-end on an H200. Directly relevant to vector quantization, embedding clustering, and RAG index building; open source on GitHub. (Serving/cost angle on the <a href="infrastructure.html">Infrastructure</a> page.)
-          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-09</span>
-          <span class="label">Perplexity/Harvard field study: agents vs chat in knowledge work</span> — Perplexity, with Harvard, published research on the shift from chat interfaces to autonomous agents ("Computer"). Over three months, workers using Computer finished tasks in 87% less time at 94% lower cost than search alone, with higher satisfaction — a quantified field measurement of agent productivity rather than a benchmark.
-          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-09</span>
-          <span class="label">Harness-1 — RL inside a stateful search harness</span> — A 20B retrieval agent trained with reinforcement learning inside its search harness (on GPT-OSS-20B), reaching 0.730 average curated recall; weights and harness code open. Notable as a method that trains the tool-use loop directly. (Training detail on the <a href="training-and-rl.html">Training &amp; RL</a> page.)
-          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-05-28</span>
-          <span class="label">EAGLE 3.1 — speculative decoding without attention drift</span> — New version of the EAGLE speculative-decoding method that reduces attention drift, improving acceptance rates at long contexts.
-          <div class="sources">MarkTechPost newsletter</div>
-        </li>
-        <li>
-          <span class="date">2026-05-28</span>
-          <span class="label">NVIDIA Polar — token-faithful RL via API proxy</span> — Framework that proxies LLM API calls to reconstruct token-faithful RL trajectories for training agents on unmodified coding harnesses. Removes the white-box-model-access constraint for RL.
-          <div class="sources">MarkTechPost newsletter</div>
-        </li>
+      <ul class="timeline index">
+        <li><span class="date">2026-09-17</span><span class="label"><a href="#flat">Meta&rsquo;s FLAT puts images and text in one variable-length continuous token sequence</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#dream-rsi">Dream-RSI turns an agent&rsquo;s own discovery history into a replay simulator it can rehearse in</a></span></li>
+        <li><span class="date">2026-09-15</span><span class="label"><a href="#pc-alm">Sakana&rsquo;s PC-ALM trains 1,000-layer networks with a layer-local rule and no backward pass</a></span></li>
+        <li><span class="date">2026-09-14</span><span class="label"><a href="#recurrent-looped-transformer">Recurrent Looped Transformer carries latent state across every prompt and response token</a></span></li>
+        <li><span class="date">2026-09-10</span><span class="label"><a href="#gpt-6-astra-looped-transformer">Raschka reads GPT-6 Astra as a looped transformer, and shorter traces as a symptom rather than a choice</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#navier-stokes-proof">OpenAI claims a Navier&ndash;Stokes proof from 10,000 agents &mdash; and a provenance dispute follows</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#alphagenome-atlas">AlphaGenome Atlas precomputes the regulatory effect of all 9 billion human single-nucleotide variants</a></span></li>
+        <li><span class="date">2026-09-07</span><span class="label"><a href="#fermat-lean-proof">Claude produced the first complete computer-verified proof of Fermat&rsquo;s Last Theorem</a></span></li>
+        <li><span class="date">2026-09-07</span><span class="label"><a href="#random-attention">Random Attention &mdash; uniformly sampling the KV cache matches learned eviction, with less overhead</a></span></li>
+        <li><span class="date">2026-09-07</span><span class="label"><a href="#llm-as-a-verifier">LLM-as-a-Verifier &mdash; fine-grained agent feedback without any additional training</a></span></li>
+        <li><span class="date">2026-09-04</span><span class="label"><a href="#crc-monitor">CRC Monitor &mdash; one calibrated safety score matches a whole history of them</a></span></li>
+        <li><span class="date">2026-09-01</span><span class="label"><a href="#puro-2b">Puro-2B &mdash; a 2B model pretrained on one RTX 5090 inside a $5,090 budget</a></span></li>
+        <li><span class="date">2026-08-25</span><span class="label"><a href="#speculative-programmatic-tool-calling">Speculative Programmatic Tool Calling &mdash; launch the tool call before the code is written</a></span></li>
+        <li><span class="date">2026-08-19</span><span class="label"><a href="#agentic-asr">Agentic ASR &mdash; treating transcription as an editing loop instead of a single pass</a></span></li>
+        <li><span class="date">2026-08-19</span><span class="label"><a href="#inkling-architecture">Inkling&rsquo;s architecture is documented: no separate encoder for images or audio</a></span></li>
+        <li><span class="date">2026-08-17</span><span class="label"><a href="#full-bandwidth-transformers">Microsoft&rsquo;s full-bandwidth transformers let latent computation continue across decoding steps</a></span></li>
+        <li><span class="date">2026-08-13</span><span class="label"><a href="#specula">Specula derives TLA+ specifications from code and model-checks them for concurrency bugs</a></span></li>
+        <li><span class="date">2026-08-13</span><span class="label"><a href="#static-retrieval-8mb">An 8MB retrieval model embeds all of English Wikipedia on a laptop in under eight minutes</a></span></li>
+        <li><span class="date">2026-08-05</span><span class="label"><a href="#secureforge">SecureForge &mdash; optimizing the system prompt cuts LLM-generated security flaws almost in half</a></span></li>
+        <li><span class="date">2026-07-15</span><span class="label"><a href="#raschka-llm-architecture-2026">Sebastian Raschka on LLM architecture in 2026 &mdash; harnesses, hybrids, and fine-tuning economics</a></span></li>
+        <li><span class="date">2026-07-14</span><span class="label"><a href="#neurovfm">NeuroVFM &mdash; a Vol-JEPA neuroimaging foundation model trained on 5.24M uncurated clinical scans</a></span></li>
+        <li><span class="date">2026-07-11</span><span class="label"><a href="#lingbot-va-2">Robbyant LingBot-VA 2.0 &amp; LingBot-World-Infinity &mdash; predict-while-acting and agentic-harness world models</a></span></li>
+        <li><span class="date">2026-06-20</span><span class="label"><a href="#minimax-sparse-attention">MiniMax Sparse Attention &mdash; 28.4&times; less attention compute at 1M context</a></span></li>
+        <li><span class="date">2026-06-20</span><span class="label"><a href="#lfm2-5-retrieval">Liquid AI LFM2.5 retrieval models &mdash; a causal decoder patched into an encoder</a></span></li>
+        <li><span class="date">2026-06-16</span><span class="label"><a href="#flash-kmeans">Flash-KMeans &mdash; IO-aware exact K-Means, ~200&times; over FAISS</a></span></li>
+        <li><span class="date">2026-06-09</span><span class="label"><a href="#perplexity-harvard-agent-field-study">Perplexity/Harvard field study: agents vs chat in knowledge work</a></span></li>
+        <li><span class="date">2026-06-09</span><span class="label"><a href="#harness-1">Harness-1 &mdash; RL inside a stateful search harness</a></span></li>
+        <li><span class="date">2026-05-28</span><span class="label"><a href="#eagle-3-1">EAGLE 3.1 &mdash; speculative decoding without attention drift</a></span></li>
+        <li><span class="date">2026-05-28</span><span class="label"><a href="#nvidia-polar">NVIDIA Polar &mdash; token-faithful RL via API proxy</a></span></li>
       </ul>
 
       <footer>Generated automatically by the AI digest task.</footer>
