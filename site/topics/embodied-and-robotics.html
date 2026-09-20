@@ -54,200 +54,361 @@
         </details>
       </div>
 
-      <h3>Robbyant's open embodied stack</h3>
-      <p>Ant Group's robotics unit <strong>Robbyant</strong> shipped a deliberately layered set of open releases meant to be composed, not used in isolation — described by MarkTechPost as covering "how a robot sees, how it acts, how it imagines the world, and how it controls its own body in real time." The four layers: <strong>LingBot-Vision</strong> (perception — dense spatial geometry), <strong>LingBot-VLA 2.0</strong> (action — one policy across 20 embodiments), <strong>LingBot-World-Infinity</strong> (imagination — a controllable world model), and <strong>LingBot-VA 2.0</strong> (real-time control — a video-action policy). All are open-weight and freely downloadable, which is what makes the release notable: it is the most aggressive open push in embodied AI so far, and a clear signal that China's labs intend to lead the hardware wave with open models the way they have been pushing open LLMs.</p>
+      <nav class="section-index">
+        <h2>On this page</h2>
+        <ul>
+          <li><a href="#robbyants-open-embodied-stack">Robbyant&rsquo;s open embodied stack <span class="n">1</span></a></li>
+          <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
+          <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">6</span></a></li>
+          <li><a href="#world-models">World models <span class="n">9</span></a></li>
+          <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">5</span></a></li>
+          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">9</span></a></li>
+          <li><a href="#low-cost-and-map-less-navigation">Low-cost &amp; map-less navigation <span class="n">1</span></a></li>
+        </ul>
+      </nav>
 
-      <h3>Perception foundations</h3>
-      <p><strong>LingBot-Vision</strong> is a 1B self-supervised Vision Transformer built for <em>dense spatial perception</em> — pixel-precise depth and surface boundaries — rather than the semantic-label invariance most vision backbones optimize for. It leads NYU-Depth v2 RMSE (ahead of Meta's DINOv3) and reportedly rivals or beats foundation models up to 7× larger on dense tasks. The design bet is that robots don't fail because they can't name an object; they fail because they don't know precisely <em>where</em> its edges are in 3D space, so prioritizing geometry over semantics is the right base layer for everything stacked on top. (Release detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+      <section class="topic-section" id="robbyants-open-embodied-stack">
+        <h3>Robbyant's open embodied stack</h3>
+        <p class="lead">One company shipped four open-weight models in five days, and each layer is filed under the heading that describes it: perception, action, world model. What is left here is the release read as one thing. Judge it on whether the four layers are genuinely composable or four models that happened to arrive in one week.</p>
 
-      <h3>Vision-language-action &amp; video-action policies</h3>
-      <p>The scaling evidence under this whole category firmed up on Sep 11: larger video models with more pre-training compute produce better real robot performance, measured through Direct Video-Action models, and the gains are largest on hard physical tasks rather than concentrated on easy ones. Two details matter for anyone building here. First, the improvement tracks how well the model predicts held-out web video, which says the transferable thing being learned is general physical prediction rather than anything robot-specific &mdash; the assumption the cross-embodiment policies below rest on, now with a measurement behind it. Second, DINO FD, computed offline on the pre-trained model, predicts downstream robot efficiency, so a scaling decision can be made without building a policy and putting it on hardware. Two complementary control models sit on top of perception. <strong>LingBot-VLA 2.0</strong> is a 6B vision-language-action model that maps <strong>20 different robot configurations</strong> into one shared action space, trained on robot trajectories plus 10,000+ hours of egocentric video and targeting precision manipulation, long-horizon execution, and cross-embodiment generalization — a direct shot at robotics' hardest problem, which is not one smart robot but one model that works across every robot a company owns. <strong>LingBot-VA 2.0</strong>, billed as the industry's first embodied-native video-action world model, takes a different tack: an autoregressive diffusion model that <em>predicts while acting</em>, interleaving video and action tokens in a single causal sequence via a Mixture-of-Transformers and re-grounding on the robot's latest real observation every step. A partial-denoising trick plus an asynchronous inference pipeline let it run high-frequency closed-loop control, reportedly outperforming SOTA policies — including Physical Intelligence's <strong>π0.5</strong> — on long-horizon and precision manipulation. Re-grounding on reality every step (while staying causal) is what the release argues separates a lab demo from a deployable robot. Physical Intelligence's π0.5/π0.7 remain the reference cross-embodiment policies most new VLA work benchmarks against. (Method angle on the <a href="research-papers.html">Research papers</a> page.)</p>
+        <article class="story unlinked" id="robbyant-four-model-stack">
+          <span class="when">2026-07-11</span>
+          <h4>Robbyant completes a four-model open embodied stack in five days</h4>
+          <p>MarkTechPost&rsquo;s &ldquo;Week of Physical AI&rdquo; recap frames Ant Group&rsquo;s Robbyant releases as one connected stack rather than four announcements: <a href="#lingbot-vision">LingBot-Vision</a> for perception, <a href="#lingbot-vla-2">LingBot-VLA 2.0</a> for action, <a href="#lingbot-world-infinity">LingBot-World-Infinity</a> for imagination and <a href="#lingbot-va-2">LingBot-VA 2.0</a> for real-time control &mdash; covering, in the recap&rsquo;s words, how a robot sees, acts, imagines the world and controls its own body.</p>
+          <p>All four are open-weight and freely downloadable, which is what makes the week notable: it is the most aggressive open push in embodied AI so far, and a signal that China&rsquo;s labs intend to lead the hardware wave with open models the way they have been pushing open LLMs.</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 11) &mdash; no public URL given</span></div>
+        </article>
+      </section>
 
-      <p>Two Sep 14 arrivals attack the same cost, and neither has shipped anything checkable. Reward AI's <strong>OM-1</strong> is a policy trained entirely on human demonstrations captured through a 7-DoF sensorized glove &mdash; no teleoperation, no on-robot data &mdash; with the company claiming a new task takes under 30 minutes of human demonstration. The appeal is structural rather than incremental: a glove worn by a person is not bound to an embodiment or a lab rig, so it sidesteps exactly the problem the shared-platform argument below was raised to solve. Nothing is public &mdash; no weights, code, paper or success rates &mdash; so the 30 minutes is a claim. Skild AI's <strong>S1</strong>, released in late August and profiled on Sep 17, pushes the same idea to its limit: an in-context learning foundation model that Skild says learns an unseen task from a single video prompt with no fine-tuning, including tasks that take ten minutes to execute. The company reports over $100 million in 2026 revenue, which is the only verifiable number attached to it, and the outlet carrying the profile says outright that the &ldquo;GPT-3 moment&rdquo; framing is an industry marketing idea. Both belong on this page as the strongest current claims in demonstration-efficient learning, and both are currently claims &mdash; the field's expensive input is still the demonstration, and neither release lets anyone else check that it has become cheap.</p>
+      <section class="topic-section" id="perception-foundations">
+        <h3>Perception foundations</h3>
+        <p class="lead">One entry, and the claim under it is a bet rather than a benchmark: that robots fail for not knowing where an edge is, not for failing to name what it belongs to. The evidence is a depth leaderboard, so the thing to establish is whether geometry-first pre-training pays off away from depth tasks.</p>
 
-      <h3>World models</h3>
-      <p><strong>LingBot-World-Infinity</strong> (the roundup name for what the July 10 brief covered as <strong>LingBot-World 2.0</strong>) is described as the only interactive world model to hit <em>hour-level, effectively infinite</em> generation without visual drift, running coherently for a full hour on a single GPU. A distilled real-time variant drives 720p at 60fps, and it ships as a 14B model plus a 1.3B single-GPU version. Its distinguishing feature is an <em>agentic harness</em>: a <strong>pilot agent</strong> plans character behavior while a <strong>director agent</strong> seeds new environment elements, turning a passive frame predictor into a self-sustaining world. The conceptual leap is borrowing the "model + harness" pattern from coding agents (Codex-style scaffolding) and applying it to world modeling — a robot that can imagine the near future can plan against it. This sits alongside NVIDIA's open <strong>Cosmos 3</strong> world-foundation-model family (see <a href="model-releases.html">Model releases</a>) as the open-weight side of world modeling. (Architecture angle on the <a href="research-papers.html">Research papers</a> page.) Black Forest Labs added a generative-modeling angle on the same convergence (July 28): a flow-based model extended to drive robot control, per this week's MarkTechPost roundup — reported only as a headline item with no further technical detail available. The commercial weight behind this thread grew sharply in late August. <strong>Veeda</strong> &mdash; ex-NVIDIA researchers including Sanja Fidler, with University of Toronto ties &mdash; raised a $90 million seed led by Khosla Ventures and Radical Ventures to build multimodal world models, one of the largest seed rounds ever raised by a Canadian startup, and by the reporting there are now around half a dozen comparably funded world-model startups.</p>
-      <p><strong>ByteDance</strong> adds a fourth serious platform entrant alongside Runway, World Labs and Google, preparing a real-time spatial video model that generates interactive worlds responding to Pico VR users' voice and movement, possibly within the month. The distinction that matters across all of them is the one <a href="applications.html">Atlas and Solaris</a> already drew: generating a world is not the same as generating one that stays consistent while someone acts inside it, and only the interactive ones are useful as training environments. NVIDIA's <strong>WorldTrace</strong> (Aug 12) attacks the consistency half directly and cheaply. Long autoregressive video rollouts degrade because compressed memories of earlier state fall outside the positional range the model was trained on; WorldTrace assigns those memories stable, in-distribution positional offsets so they stay reachable however far the rollout runs. It requires no retraining, which matters more than the mechanism: it means rollout coherence can be improved on models that already exist, rather than being fixed on the next training run.</p>
-      <p>That does not by itself make a generated world interactive &mdash; it addresses whether the world remembers, not whether it responds correctly to being acted upon &mdash; but memory over long horizons is a precondition for the interactive case, and it has been the cheaper of the two to get wrong.</p>
-      <p><strong>Odyssey-3</strong> (Sep 16) makes the largest scope claim this section has recorded and supplies the least evidence for it. Odyssey Systems describes a foundation world model on an autoregressive diffusion transformer, trained to simulate highly diverse scenarios and positioned as general-purpose physical intelligence &mdash; one learned understanding of physics, dynamics, cause and effect and human behaviour, applied to controlling robots, powering humanoids, driving vehicles, piloting drones, training other models and playing video games. The open question every entry above has been circling is exactly the one this asserts: whether physical understanding acquired in one domain transfers to another, or whether &ldquo;understands physics&rdquo; is a label over a set of domain-specific competences that share a vocabulary and nothing else. Odyssey publishes no cross-domain benchmark, so the claim stands on the architecture and the framing. The architecture is the more interesting half regardless of how the breadth claim resolves. Autoregressive diffusion combines sequential commitment with iterative refinement, which maps onto the two properties the rollout work above keeps trading off &mdash; a policy needs to commit to an action now, and a simulator needs the frame to be right &mdash; and treating them as separable rather than as a single knob is a real design position, whatever the generality turns out to be worth.</p>
+        <article class="story unlinked" id="lingbot-vision">
+          <span class="when">2026-07-09</span>
+          <h4>LingBot-Vision &mdash; a 1B boundary-centric vision model beats 7&times;-larger models on dense perception</h4>
+          <p>Robbyant&rsquo;s <strong>LingBot-Vision</strong> is a 1B self-supervised Vision Transformer optimised for <em>dense spatial perception</em> &mdash; pixel-precise depth and surface boundaries &mdash; rather than the semantic-label invariance most vision backbones are trained for. It leads NYU-Depth v2 RMSE ahead of Meta&rsquo;s DINOv3 and reportedly rivals or beats foundation models up to 7&times; larger on dense tasks, with weights on Hugging Face.</p>
+          <p>The design bet is that robots do not fail because they cannot name an object; they fail because they do not know precisely where its edges sit in 3D space, which makes geometry rather than semantics the right base layer for the rest of the stack. (Release detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 8) &mdash; no public URL given</span></div>
+        </article>
+      </section>
 
-      <h3>The competitive landscape</h3>
-      <p>MarkTechPost's July 11 ranking of who is "actually leading in physical AI" — scored on model quality, open-source impact, and real deployment rather than valuation or press — reads: <strong>1. NVIDIA</strong> (the platform: Cosmos world models, the GB300 stack, Isaac Lab sim-to-real; wins by powering everyone else); <strong>2. Ant Group / Robbyant</strong> (the open-source surge: four open models in five days); <strong>3. Google DeepMind</strong> (the generalist: Gemini Robotics and the RT lineage, but mostly closed); <strong>4. Physical Intelligence (π)</strong> (the pure-play: π0.5/π0.7 reference policies, founded 2024 by Stanford's Chelsea Finn, openpi on GitHub); <strong>5. Unitree Robotics</strong> (accessible hardware); <strong>6. Figure AI + Tesla Optimus</strong> (the deployment bet); <strong>7. Agility Robotics</strong> (the warehouse proof). The recurring divide is open vs. closed: the top open players (Robbyant, π, Unitree) publish weights and SDKs the field can build on, while the vertically-integrated hardware players (Figure, Tesla) keep model stacks closed and compete on proprietary fleet-scale training data. (Business framing on the <a href="industry-and-business.html">Industry &amp; business</a> page.) That "mostly closed" framing aged quickly: with <strong>Gemini Robotics 2</strong> (July 30) &mdash; whole-body control, dexterity, and multi-robot collaboration across three shipped models, including an on-device VLA &mdash; DeepMind is now releasing physical-AI models at the cadence of the labs ranked around it, not just publishing research. The driving segment is now being contested with the same architecture.</p>
-      <p>Alibaba's <strong>Qwen-Drive</strong> (Sep 8) is a vision-language foundation model for autonomous driving trained in stages that integrate perception, language and planning objectives, and the claim it makes is about retention rather than peak performance: it reaches specialized driving competence while keeping broad visual understanding and instruction-following, on a recommended 24GB+ GPU. That is the same argument the cross-embodiment VLA work makes &mdash; that specialization should not cost generality &mdash; applied to the one embodiment with a mature, safety-critical incumbent stack to displace. Underneath the whole landscape sits a supply question that August made visible: tens of thousands of workers in India are being paid to film their own jobs in first person so the footage can train robots to do them. The bottleneck is not hardware and increasingly not algorithms &mdash; it is that first-person video of ordinary manual work does not exist at scale, because until recently there was no reason to record it. Unlike text, this corpus cannot be scraped; it has to be commissioned, which turns training data into a recurring operating cost and a labour supply chain rather than a one-time acquisition. That is a structural advantage for whoever can commission at scale, and it goes some way to explaining the geography of the competitive picture above.</p>
+      <section class="topic-section" id="vision-language-action-and-video-action-policies">
+        <h3>Vision-language-action &amp; video-action policies</h3>
+        <p class="lead">The expensive input on this page is the demonstration, and the two newest entries claim it has become cheap. Neither publishes weights, code or a success rate; the scaling study and the open policies publish numbers. Judge each on what somebody outside the company could check.</p>
 
-      <h3>Hardware &amp; real-world deployment</h3>
-      <p>Beyond models, the credibility test is robots doing real work. <strong>Unitree</strong> ships the most accessible full-size humanoids — the G1 from $16,000 and the research-grade H1 at $90K, both with open SDKs, ROS 2 support, and 3D LiDAR — and has demonstrated reliability with a 1.9km autonomous marathon (April 2026) and synchronized multi-robot performances. <strong>Figure AI</strong> has Figure 03 live in BMW's Spartanburg and Leipzig plants (12,000 units/year capacity) and raised $675M from NVIDIA, Microsoft, Jeff Bezos, and OpenAI; <strong>Tesla Optimus</strong> targets 50,000+ units at its own factories — both winning on the flywheel of proprietary data generated by deployed robots. <strong>Agility Robotics</strong> is the quiet proof-of-concept: 75 Digit units inside Amazon's Spanaway, WA fulfillment center (as of April 2026) have moved over 100,000 totes, and Agility became the first humanoid-robot company to go public ($2.5B deal). Moving 100k totes in a live warehouse is, per the brief, the most credible deployment data in the field.</p>
-      <p>Two September datapoints extend the deployment picture at opposite price points. <strong>XPeng</strong> began production of its IRON humanoid on a line running more than 80% of core processes automatically, with mass production targeted by the end of the year &mdash; the automation percentage being the harder claim, since it speaks to unit economics rather than to whether the robot walks convincingly. At the other end, Hugging Face's <strong>Microduck</strong> puts a complete sim-to-real loop at $399: a 25cm open-source robot that picks up 800g with its beak, rights itself after a fall, crouches and skates, with behaviours trained in simulation and deployed directly to hardware, and the SDK, simulator and full RL training stack published. The field's data flywheel has always favoured whoever has robots in the world; a $399 platform with the training stack attached is the first credible attempt to widen who can spin one. August produced the sharpest available contrast between demonstration and deployment. The Beijing <strong>World Humanoid Robot Games</strong> put 2,000+ robots through 51 events and 1,000+ competitions, with Chinese humanoids breaking human records including the 100-metre sprint &mdash; on tasks that are controlled and repeatable, which is where robots have always done best, and experts on the record said mass deployment remains distant. <strong>Unitree's</strong> founder named the threshold that would falsify that caution: 80% of voice-instructed tasks completed in unfamiliar surroundings, two to ten years away, with the specific failure being that execution collapses when objects or surroundings shift slightly.</p>
-      <p>On the road the picture is inverted, because the technology is ahead of the paperwork: Amazon's <strong>Zoox</strong> carries public passengers in vehicles with no dashboard, pedals or steering wheel across San Francisco and Las Vegas, while Tesla's Cybercab &mdash; equally control-free &mdash; lacks the approval to do so. <strong>Waymo</strong> added its own 5nm silicon to cut the latency between raw sensor data and driver response, a vertical-integration move made from a position of 220.6 million rider-only miles rather than in place of them.</p>
-      <p>Two Sep 16 releases attack the two constraints that actually gate humanoid deployment, and neither is about capability. <strong>Agility Robotics</strong> showed a humanoid built to work beside people without a cage, taking precautions autonomously when it detects someone at a distance &mdash; moving aside, standing still to let them pass, or squatting into a seated position when a person comes too close &mdash; with early access in the first half of 2027 and general availability by the end of it. The graded response is the design worth isolating, and the squat in particular, because a stopped humanoid is still a heavy mass at head height and lowering the centre of gravity is a materially different safety claim from halting. The constraint it targets is the separation distance a safety certification demands, which is what keeps humanoids in fenced cells rather than any deficiency in what they can do. What is missing is everything a safety case is built from: sensing range, false-negative rate, and the standard the behaviour is being certified against. <strong>OpenArm</strong> from Enactic addresses the other constraint by publishing an open-source humanoid arm for teleoperation, imitation learning and physical AI research. Set against the recruitment of tens of thousands of human demonstrators described above, the point is not that the hardware is cheap but that it is shared: the expensive input to every policy on this page is the demonstration, and demonstrations collected on bespoke per-lab rigs carry those rigs' idiosyncrasies into the dataset, so a common platform is what makes one group's trajectories worth anything to another. No performance or durability figures were published with it.</p>
+        <article class="story" id="skild-s1">
+          <span class="when">2026-09-17</span>
+          <h4><a href="https://www.skild.ai/">Skild AI&rsquo;s S1 claims one-shot learning of 10-minute tasks from a single video</a></h4>
+          <p>Skild AI&rsquo;s <strong>S1</strong>, released in late August, is pitched as an in-context learning foundation model for robotics: the company says it learns a previously unseen task from one video prompt with no fine-tuning, including tasks that take ten minutes to perform. Skild reports passing $100 million in revenue during 2026, which is the only figure attached to it that is not a capability claim.</p>
+          <p>No success rates, benchmarks or independent reproductions have been published, and the outlet carrying the profile says plainly that the &ldquo;GPT-3 moment&rdquo; framing is an industry marketing idea. It is recorded here as the strongest current claim in robot in-context learning, and as one with nothing checkable attached to it yet.</p>
+          <div class="sources"><a href="https://www.skild.ai/">Skild AI company site</a> &middot; <span class="via">via AI Supremacy (Sep 17)</span></div>
+        </article>
 
-      <p>NVIDIA supplied the tooling half of the same problem on Sep 14 by open-sourcing <strong>OSMO</strong> under Apache 2.0. A workflow names its target platform &mdash; <code>gb200</code>, <code>rtx-pro-6000</code>, <code>jetson-agx-thor</code> &mdash; and OSMO routes each task to a matching pool, so datacentre training, simulation and on-robot testing on a Jetson are all described in one YAML file. Helm charts ship on NGC, with a local KIND quickstart for anyone who wants to try it without a cluster. It is the least exciting item in this cycle and probably the most immediately useful: physical AI is the one field that routinely spans three unrelated compute targets, and the handoffs between them have been per-lab scripting that no paper describes and nobody can reproduce. A common orchestration layer does for the compute what the shared hardware platform above does for the demonstrations.</p>
+        <article class="story" id="om-1">
+          <span class="when">2026-09-14</span>
+          <h4><a href="https://www.rewardai.com/blog/OM-1/">Reward AI&rsquo;s OM-1 trains a robot policy from a sensorized glove, with no teleoperation at all</a></h4>
+          <p><strong>OM-1</strong> is a robot policy trained entirely on human demonstrations captured through a 7-DoF sensorized glove &mdash; no teleoperation and no on-robot data. Reward AI says a new task takes under 30 minutes of human demonstration.</p>
+          <p>The appeal is structural rather than incremental: a glove worn by a person is not tied to an embodiment or a lab rig, so it sidesteps the problem the <a href="#openarm">shared-platform argument</a> was raised to solve. Nothing has shipped &mdash; no weights, no code, no paper and no success rates &mdash; which leaves the 30-minute figure an unverified claim rather than a result.</p>
+          <div class="sources"><a href="https://www.rewardai.com/blog/OM-1/">Reward AI</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
+        </article>
 
-      <h3>Low-cost &amp; map-less navigation</h3>
-      <p>A cost-down thread runs alongside the full embodied stacks: getting useful navigation out of the cheapest possible sensor suite. <strong>Mistral's Robostral Navigate</strong> (8B, the lab's first embodied model) takes an RGB image plus a plain-language instruction and moves a robot through a space with <em>no LiDAR, no depth sensors, and no pre-built map</em>, reaching 76.6% on R2R-CE (validation unseen). It was built entirely in-house and trained purely in simulation on ~400,000 paths across 6,000 environments — evidence that vision-language navigation can be learned in sim and deployed on commodity cameras. The significance is economic: hitting SOTA-class numbers on a single RGB camera removes the sensor bill-of-materials that keeps most capable robots in the lab, and it marks a European frontier lab entering a field so far led by China's open releases and the US hardware pure-plays.</p>
+        <article class="story" id="scaling-web-video-pretraining">
+          <span class="when">2026-09-11</span>
+          <h4><a href="https://www.rhoda.ai/research/scaling-web-video-pretraining">Scaling web-video pre-training keeps paying off on real robots, and DINO FD predicts how much</a></h4>
+          <p>Larger video models and more pre-training compute improve real-world robot task performance, measured through Direct Video-Action models, with the advantage widening on genuinely hard physical work such as complex industrial unpacking rather than saturating on easy tasks. The mechanism the study identifies is that robot gains track better prediction of held-out web video, which says the transferable thing being learned is general physical prediction rather than anything robot-specific &mdash; the assumption the <a href="#lingbot-vla-2">cross-embodiment policies</a> rest on, now with a measurement behind it.</p>
+          <p>The practically useful half is DINO FD, a pre-training quality metric computed offline without touching a robot, which predicts downstream robot efficiency. That gives a cheap signal for a scaling decision that has until now required building the policy and running it on hardware, which is the expensive part of every result on this page.</p>
+          <div class="sources"><a href="https://www.rhoda.ai/research/scaling-web-video-pretraining">Rhoda research</a> &middot; <span class="via">via TLDR AI (Sep 11)</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story unlinked" id="gpt-6-astra-robot-arms">
+            <span class="when">2026-09-07</span>
+            <h4>GPT-6 Astra on robot arms: 19 of 20 on the easy task, 2 of 20 on the hard one</h4>
+            <p>Researchers gave GPT-6 Astra control of YAM arms under an Inspect Robots agent policy on two manipulation tasks. Picking up a red block and placing it in a bowl succeeded in 19 of 20 trials. Inserting a round blue puzzle piece &mdash; gripping it by a central knob and seating it in the matching groove &mdash; succeeded twice in 20. Astra completes the bowl task far more often than Fable at roughly half the cost per run.</p>
+            <p>The 19/20-versus-2/20 gap on tasks that read as similarly simple is the same alignment-and-tolerance wall that separated unscrewing a light bulb (92%) from screwing one in (36%) for <a href="#gemini-robotics-2">Gemini Robotics 2</a>: a general model driving arms clears coarse pick-and-place and stalls where the task requires establishing precise alignment before force is applied.</p>
+            <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="lingbot-va-2">
+            <span class="when">2026-07-11</span>
+            <h4>Robbyant LingBot-VA 2.0 &mdash; first embodied-native video-action world model (predicts while acting)</h4>
+            <p>An autoregressive diffusion model that interleaves video and action tokens in one causal sequence via a Mixture-of-Transformers and re-grounds on the robot&rsquo;s latest real observation at every step. A partial-denoising trick plus an asynchronous inference pipeline enable high-frequency closed-loop control, reportedly beating SOTA policies including Physical Intelligence&rsquo;s <strong>&pi;0.5</strong> on long-horizon and precision manipulation.</p>
+            <p>Re-grounding on reality every step while staying causal is what the release argues separates a lab demo from a deployable robot. &pi;0.5 and &pi;0.7 remain the reference cross-embodiment policies most new VLA work benchmarks against. (Method angle on the <a href="research-papers.html">Research papers</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 11) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="lingbot-vla-2">
+            <span class="when">2026-07-09</span>
+            <h4>Robbyant LingBot-VLA 2.0 &mdash; open 6B vision-language-action model across 20 robot embodiments</h4>
+            <p>A 6B vision-language-action model trained on robot trajectories spanning <strong>20 robot configurations</strong> plus 10,000+ hours of egocentric video, all folded into one shared action space, targeting precision manipulation, long-horizon execution and cross-embodiment generalization. Weights and code are open.</p>
+            <p>It aims at what the release treats as robotics&rsquo; hardest problem: not one smart robot but one model that works across every robot a company owns. It is the control layer of <a href="#robbyant-four-model-stack">Robbyant&rsquo;s stack</a>. (Release detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 9) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="world-models">
+        <h3>World models</h3>
+        <p class="lead">Nine entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+
+        <article class="story" id="odyssey-3">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://odyssey.systems/introducing-odyssey-3">Odyssey-3 is an autoregressive diffusion transformer sold as one policy for robots, cars and drones</a></h4>
+          <p>Odyssey Systems released <strong>Odyssey-3</strong>, a foundation world model built on an autoregressive diffusion transformer and trained to simulate highly diverse scenarios, positioned as general-purpose physical intelligence: controlling robots, powering humanoids, driving vehicles, piloting drones, training other AIs and playing video games from one learned understanding of physics, dynamics, cause and effect and human behaviour.</p>
+          <p>The breadth claim is the whole release and also the thing to weigh carefully. Every world model here so far has been evaluated within a domain, and the open question has been whether physical understanding learned in one transfers to another, or whether &ldquo;understands physics&rdquo; decomposes into domain-specific competences that share a name. Odyssey asserts the first and publishes no cross-domain benchmark establishing it.</p>
+          <p>The architecture is worth keeping regardless of how the breadth claim resolves: autoregressive diffusion pairs sequential commitment for control with iterative refinement for fidelity, which are the two properties the <a href="#worldtrace">rollout-quality work</a> keeps trading against each other, and treating them as separable is a real design position.</p>
+          <div class="sources"><a href="https://odyssey.systems/introducing-odyssey-3">Odyssey</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
+        </article>
+
+        <article class="story unlinked" id="bytedance-spatial-video">
+          <span class="when">2026-09-08</span>
+          <h4>ByteDance readies a real-time spatial video model that responds to Pico headset users</h4>
+          <p>ByteDance plans to launch an AI model generating real-time spatial video, creating interactive virtual worlds that react to Pico VR users&rsquo; voices and movements, possibly as soon as next month. It puts a fourth serious entrant alongside Runway, World Labs and Google in the race to make world models interactive rather than merely generative &mdash; and the first with a headset of its own to ship them into.</p>
+          <p>The distinction that matters across all four is the one <a href="applications.html">Atlas and Solaris</a> already drew: generating a world is not the same as generating one that stays consistent while someone acts inside it, and only the interactive ones are useful as training environments.</p>
+          <div class="sources"><span class="via">via TLDR (Sep 8), TLDR AI (Sep 8) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="veeda-seed">
+          <span class="when">2026-08-19</span>
+          <h4>Veeda raises a $90M seed for multimodal world models</h4>
+          <p>Veeda, founded by former NVIDIA researchers including Sanja Fidler and with University of Toronto ties, raised $90 million led by Khosla Ventures and Radical Ventures &mdash; one of the largest seed rounds ever raised by a Canadian startup. The stated target is multimodal world models for robotics.</p>
+          <p>By the reporting there are now roughly half a dozen comparably funded world-model startups, which is the clearest collective signal yet that the field considers LLM-only robotics a dead end. It is a statement about where money is going rather than about any model, since Veeda has shipped nothing to evaluate.</p>
+          <div class="sources"><span class="via">via AI Supremacy (Aug 26) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="worldtrace">
+            <span class="when">2026-08-12</span>
+            <h4><a href="https://research.nvidia.com/labs/sil/projects/WorldTrace/">NVIDIA&rsquo;s WorldTrace keeps long video rollouts coherent without any retraining</a></h4>
+            <p>WorldTrace is a training-free framework for memory in video world models: it keeps compressed memories reachable during long autoregressive rollouts by assigning them stable, in-distribution positional offsets, so the model can attend to earlier state without its positional encodings drifting out of the range it was trained on.</p>
+            <p>Training-free is the load-bearing word &mdash; it is a decoding-time change to an existing model rather than a new one, which turns long-horizon rollout consistency from a training-budget problem into a deployment one. It does not by itself make a generated world interactive, since it addresses whether the world remembers rather than whether it responds correctly to being acted upon; memory over long horizons is a precondition for the interactive case, and the cheaper of the two to get wrong.</p>
+            <div class="sources"><a href="https://research.nvidia.com/labs/sil/projects/WorldTrace/">NVIDIA project page</a> &middot; <span class="via">via TLDR AI (Aug 12)</span></div>
+          </article>
+
+          <article class="story unlinked" id="black-forest-labs-flow-robots">
+            <span class="when">2026-07-29</span>
+            <h4>Black Forest Labs ships a flow-based model that drives robots</h4>
+            <p>Black Forest Labs released a flow-matching model extended to robot control, adding a generative-modelling angle to the same convergence this section tracks. It is reported only as a headline item in MarkTechPost&rsquo;s weekly roundup (&ldquo;a Flow Model That Drives Robots&rdquo;), with no further technical detail available in the digest.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 28) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="photon-1">
+            <span class="when">2026-07-26</span>
+            <h4>Induction Labs releases Photon-1 &mdash; an &ldquo;imagination model&rdquo; trained on ~18 years of screen recordings</h4>
+            <p>Induction Labs released Photon-1, its first &ldquo;imagination model,&rdquo; trained on the equivalent of roughly 18 years of screen recordings with no action labels. From a single pretraining run it can simulate desktops, play tournament-level checkers after fine-tuning on 20,000 games, and model billiard-ball physics.</p>
+            <p>The interesting property is one pretrained model generalizing across strikingly different simulated domains rather than a bespoke model per task &mdash; a smaller-scale version of the transfer question <a href="#odyssey-3">Odyssey-3</a> later asserts outright.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="open-dreamer">
+            <span class="when">2026-07-26</span>
+            <h4>Open-Dreamer publishes a full JAX/Flax NNX reproduction of the Dreamer 4 training recipe</h4>
+            <p>Open-Dreamer, a JAX/Flax NNX reproduction of the Dreamer 4 world-model pipeline, published its complete training recipe &mdash; code and configs &mdash; trained on Minecraft/VPT-style data.</p>
+            <p>A published, reproducible recipe rather than weights alone is what lets a technique spread beyond the lab that invented it, which is why it sits beside the open world-model releases here rather than behind them.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="cosmos-3-edge">
+            <span class="when">2026-07-22</span>
+            <h4>NVIDIA reportedly puts a world model on a robot with &ldquo;Cosmos 3 Edge&rdquo;</h4>
+            <p>NVIDIA reportedly put a world model on a robot with &ldquo;Cosmos 3 Edge,&rdquo; mentioned only as a headline item in a MarkTechPost weekly roundup with no further detail available.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="lingbot-world-infinity">
+            <span class="when">2026-07-11</span>
+            <h4>Robbyant LingBot-World-Infinity &mdash; open causal world model with an agentic harness</h4>
+            <p>An open causal, action-conditioned world model reported as the only interactive one to reach hour-level, effectively infinite generation without visual drift, running coherently for a full hour on a single GPU. A distilled real-time variant drives 720p at 60fps, and it ships as a 14B model plus a 1.3B single-GPU version. (It was covered as <strong>LingBot-World 2.0</strong> in the July 10 brief.)</p>
+            <p>Its distinguishing feature is an <em>agentic harness</em>: a <strong>pilot agent</strong> plans character behaviour while a <strong>director agent</strong> seeds new environment elements, turning a passive frame predictor into a self-sustaining world. The conceptual leap is borrowing the &ldquo;model + harness&rdquo; pattern from coding agents and applying it to world modelling &mdash; a robot that can imagine the near future can plan against it. It sits alongside NVIDIA&rsquo;s open <strong>Cosmos 3</strong> world-foundation-model family (see <a href="model-releases.html">Model releases</a>) as the open-weight side of world modelling. (Architecture angle on the <a href="research-papers.html">Research papers</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 11), MarkTechPost AI (weekly, Jul 10) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="the-competitive-landscape">
+        <h3>The competitive landscape</h3>
+        <p class="lead">Who leads is scored here on model quality, open-source impact and real deployment rather than valuation. The open-versus-closed split runs through every entry, and the newer ones move the ranking rather than confirm it. One item is not about models at all: the training footage has to be commissioned, which makes it a labour supply chain.</p>
+
+        <article class="story" id="qwen-drive">
+          <span class="when">2026-09-08</span>
+          <h4><a href="https://github.com/QwenLM/Qwen-Drive-1.0">Qwen-Drive &mdash; a driving foundation model that keeps its general vision</a></h4>
+          <p>Alibaba&rsquo;s Qwen-Drive is a vision-language foundation model for autonomous driving, trained in stages that integrate perception, language and planning objectives. The claim worth noting is about retention rather than peak performance: the model reaches specialized driving competence while retaining broad visual understanding and instruction-following. A 24GB+ GPU is recommended, which puts it within reach of a single workstation.</p>
+          <p>That is the same argument the <a href="#lingbot-vla-2">cross-embodiment VLA work</a> makes &mdash; that specialization should not cost generality &mdash; applied to the one embodiment with a mature, safety-critical incumbent stack to displace.</p>
+          <div class="sources"><a href="https://github.com/QwenLM/Qwen-Drive-1.0">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 8)</span></div>
+        </article>
+
+        <article class="story unlinked" id="india-first-person-video">
+          <span class="when">2026-08-13</span>
+          <h4>Tens of thousands of workers in India are filming their own jobs to supply robot training data</h4>
+          <p>Robotics companies are recruiting workers in India at scale to record their work in first person, and feeding the footage into systems meant to teach robots physical tasks. The bottleneck being addressed is data, not hardware and increasingly not algorithms: real footage of humans doing mundane manual work barely exists, because until recently nobody had a reason to collect it.</p>
+          <p>It is the embodied-AI counterpart to the web-scrape moment in language modelling, with the difference that this corpus has to be commissioned rather than found &mdash; which turns training data into a recurring operating cost and a labour supply chain rather than a one-time acquisition, and the people generating it are training their own replacements. That is a structural advantage for whoever can commission at scale, and it goes some way to explaining the geography of the ranking below.</p>
+          <div class="sources"><span class="via">via TLDR (Aug 13) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="gemini-robotics-2">
+          <span class="when">2026-07-31</span>
+          <h4>Google DeepMind ships Gemini Robotics 2 &mdash; three physical-AI models for whole-body control, dexterity and multi-robot collaboration</h4>
+          <p>Gemini Robotics 2 comprises a VLA, an embodied-reasoning VLM and an on-device VLA; one checkpoint drives the Apollo 2 humanoid with two different hands plus a Franka Duo gripper, targeting whole-body control &mdash; walk to the shelf, then place the object &mdash; rather than table-top tasks. It moves DeepMind out of the &ldquo;mostly closed generalist&rdquo; slot in the <a href="#physical-ai-leaderboard">July ranking</a>: it is now shipping physical-AI models at the cadence of the labs ranked around it, not just publishing research.</p>
+          <p>Independent reporting on Aug 12 filled in the numbers the announcement omitted. Self-reported success is 45.7&ndash;76.3% on whole-body pick-ups (76.3% from a shelf, 45.7% from the floor), 74.2&ndash;89.6% on gripper tasks and 32&ndash;92% on fine finger work &mdash; a spread best illustrated by unscrewing a light bulb succeeding 92% of the time against 36% for screwing one in, since the reverse task must establish alignment before it can rotate. Google published no model card, base model, parameter count or training-data breakdown, and no outside group has tested it.</p>
+          <p>Shipped alongside is <strong>ASIMOV-Agentic</strong>, a safety benchmark whose finding applies to the field rather than to one model: no system Google tested, its own included, could both catch hazards and avoid stopping for nothing &mdash; holding needless stops under 5% meant missing more than 40% of the moments a person came too close. That is why Google recommends running these models alongside conventional physical safety equipment rather than in place of it.</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (Jul 30) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story unlinked" id="physical-ai-leaderboard">
+            <span class="when">2026-07-11</span>
+            <h4>&ldquo;Who&rsquo;s actually leading in physical AI&rdquo; &mdash; a seven-way landscape</h4>
+            <p>MarkTechPost ranked the field on model quality, open-source impact and real deployment rather than valuation or press: <strong>1.</strong> NVIDIA, the platform everyone builds on (Cosmos world models, Isaac Lab sim-to-real, the GB300 stack); <strong>2.</strong> Ant Group / <a href="#robbyant-four-model-stack">Robbyant</a>, the open-source surge; <strong>3.</strong> Google DeepMind, the generalist, then mostly closed; <strong>4.</strong> Physical Intelligence, the pure-play behind the &pi;0.5/&pi;0.7 reference policies, founded 2024 by Stanford&rsquo;s Chelsea Finn; <strong>5.</strong> Unitree, accessible hardware; <strong>6.</strong> Figure AI and Tesla Optimus, the deployment bet; <strong>7.</strong> Agility Robotics, the warehouse proof.</p>
+            <p>The dividing line is open versus closed: the top open players publish weights and SDKs the field can build on, while the vertically-integrated hardware players keep their model stacks closed and compete on proprietary fleet-scale training data. The deployment evidence behind the bottom half, as this page records it: Figure 03 is live in BMW&rsquo;s Spartanburg and Leipzig plants (12,000 units/year capacity) with $675M raised from NVIDIA, Microsoft, Jeff Bezos and OpenAI; Tesla Optimus targets 50,000+ units at its own factories; and 75 Agility Digit units inside Amazon&rsquo;s Spanaway, WA fulfillment center had moved over 100,000 totes as of April 2026, with Agility the first humanoid-robot company to go public in a $2.5B deal &mdash; per the brief, the most credible deployment data in the field. (Business framing on the <a href="industry-and-business.html">Industry &amp; business</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 11) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="meta-enters-physical-ai">
+            <span class="when">2026-07-11</span>
+            <h4>Meta enters physical AI as Ant Group&rsquo;s open surge leads the week</h4>
+            <p>MarkTechPost&rsquo;s July 10 brief headlined the physical-AI wave &mdash; <a href="#lingbot-world-infinity">Robbyant&rsquo;s world model</a> staying coherent for a full hour on a single GPU &mdash; alongside Meta&rsquo;s move into the space and its first paid model.</p>
+            <p>The framing positioned open Chinese releases as leading the embodied wave while US incumbents entered from the model side, which is the same divide the <a href="#physical-ai-leaderboard">ranking</a> draws a day later. (Meta Muse Spark 1.1 detail on the <a href="model-releases.html">Model releases</a> and <a href="industry-and-business.html">Industry &amp; business</a> pages.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 10) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="hardware-and-real-world-deployment">
+        <h3>Hardware &amp; real-world deployment</h3>
+        <p class="lead">Beyond models, the credibility test is robots doing real work, and the constraints that gate it are not capability: the separation distance a safety certification demands, the cost of collecting demonstrations, and the scripting between three unrelated compute targets. Watch which entries publish the numbers a safety or unit-economics case would need.</p>
+
+        <article class="story" id="agility-cageless-humanoid">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/">Agility&rsquo;s next humanoid stops, moves aside or squats when a person gets close</a></h4>
+          <p>Agility Robotics showed a humanoid engineered to work near people without a cage, taking precautions autonomously when it detects a person at a distance: moving to avoid them, standing still so they can pass, or squatting into a seated position when someone gets too close. Early access falls in the first half of 2027, with general availability by the end of that year.</p>
+          <p>The design decision worth isolating is that the responses are graded by proximity and that the most extreme one lowers the robot&rsquo;s centre of mass and reach rather than merely halting it &mdash; a stopped humanoid is still a heavy object at head height, so squatting is a materially different safety claim from stopping. The constraint it targets is the separation distance safety certification demands, which is what keeps humanoids in fenced cells rather than any limit on what they can do.</p>
+          <p>What Agility has not published is the sensing range, the false-negative rate, or which standard the behaviour is being certified against, and those are the numbers a safety case is made of.</p>
+          <div class="sources"><a href="https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/">Ars Technica</a> &middot; <span class="via">via TLDR (Sep 16)</span></div>
+        </article>
+
+        <article class="story" id="openarm">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://github.com/enactic/OpenArm">OpenArm publishes an open-source humanoid arm for teleoperation and imitation learning</a></h4>
+          <p>Enactic released <strong>OpenArm</strong>, an open-source humanoid arm intended for teleoperation, imitation learning and physical AI research. The contribution is to the data problem rather than to capability: every policy result on this page depends on demonstrations, and demonstrations depend on hardware that can be teleoperated, which has meant either a research platform priced out of most labs or a bespoke rig whose idiosyncrasies are baked into whatever dataset it produces.</p>
+          <p>An open design addresses both at once, and the value is standardisation rather than price &mdash; a shared platform makes collected trajectories comparable across groups in a way per-lab rigs never are. Set against the <a href="#india-first-person-video">recruitment of tens of thousands of human demonstrators</a>, the expensive input is the demonstration, so standardising what captures it is what lets one lab&rsquo;s data be worth anything to another. No performance or durability figures accompany the release.</p>
+          <div class="sources"><a href="https://github.com/enactic/OpenArm">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
+        </article>
+
+        <article class="story" id="nvidia-osmo">
+          <span class="when">2026-09-14</span>
+          <h4><a href="https://github.com/NVIDIA/OSMO">NVIDIA open-sources OSMO, one YAML across physical-AI training, simulation and robot testing</a></h4>
+          <p>NVIDIA released <strong>OSMO</strong> under Apache 2.0: a workflow names a target platform such as <code>gb200</code>, <code>rtx-pro-6000</code> or <code>jetson-agx-thor</code>, and OSMO routes each task to a matching pool, so datacentre training, simulation and on-robot testing on a Jetson are all described in the same file. Helm charts ship on NGC, with a local KIND quickstart for anyone who wants to try it without a cluster.</p>
+          <p>It is the least exciting item in its cycle and probably the most immediately useful: physical AI is the one field that routinely spans three unrelated compute targets, and the handoffs between them have been per-lab scripting that no paper describes and nobody can reproduce. A common orchestration layer does for the compute what a <a href="#openarm">shared hardware platform</a> does for the demonstrations.</p>
+          <div class="sources"><a href="https://github.com/NVIDIA/OSMO">GitHub</a> &middot; <a href="https://developer.nvidia.com/osmo">NVIDIA</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="xpeng-iron">
+            <span class="when">2026-09-08</span>
+            <h4><a href="https://electrek.co/2026/09/07/xpeng-iron-humanoid-robot-production-line/">XPeng starts IRON production with over 80% of core processes automated</a></h4>
+            <p>XPeng&rsquo;s IRON humanoid is in production on a line where more than 80% of core processes run automatically, with mass production targeted by the end of the year. The robot went viral last year for a gait smooth enough that people accused the company of hiding a person in the suit.</p>
+            <p>The automation figure is the more consequential number, and the harder claim: it speaks to unit economics rather than to whether the robot walks convincingly, which is the difference between a demonstrator and a product.</p>
+            <div class="sources"><a href="https://electrek.co/2026/09/07/xpeng-iron-humanoid-robot-production-line/">Electrek</a> &middot; <span class="via">via TLDR (Sep 8)</span></div>
+          </article>
+
+          <article class="story" id="microduck">
+            <span class="when">2026-08-28</span>
+            <h4><a href="https://techcrunch.com/2026/08/27/hugging-face-is-selling-a-cute-399-open-source-duck-robot-microduck/">Hugging Face&rsquo;s $399 Microduck ships the RL training stack with the robot</a></h4>
+            <p>Microduck is a 25cm open-source robot selling for $399 before Christmas: it waddles, picks up objects to 800 grams with its beak, rights itself after a fall, crouches and roller-skates. Behaviours are trained in simulation and deployed directly to hardware, and the SDK, simulator and full RL training stack are on GitHub.</p>
+            <p>The price is the point &mdash; sim-to-real becomes something you practise rather than read about. The field&rsquo;s data flywheel has always favoured whoever has robots in the world, and a $399 platform with the training stack attached is the first credible attempt to widen who can spin one.</p>
+            <div class="sources"><a href="https://techcrunch.com/2026/08/27/hugging-face-is-selling-a-cute-399-open-source-duck-robot-microduck/">TechCrunch</a> &middot; <span class="via">via TLDR (Aug 28)</span></div>
+          </article>
+
+          <article class="story unlinked" id="humanoid-robot-games">
+            <span class="when">2026-08-24</span>
+            <h4>Chinese humanoids beat human records at the Beijing games, on tasks robots rarely fail</h4>
+            <p>The opening day of the World Humanoid Robot Games in Beijing saw Chinese humanoids break records set by humans, including Usain Bolt&rsquo;s 100-metre mark. More than 2,000 robots took part across 51 events and over 1,000 competitions including running, table tennis and soccer.</p>
+            <p>Experts quoted alongside the results are blunt that mass real-world deployment remains distant and that these machines are still used mainly for demonstrations, performances and research. The reason is visible in the events chosen: sprinting is a controlled, repeatable task, which is precisely the class where robots already do well.</p>
+            <div class="sources"><span class="via">via TLDR (Aug 24), TLDR (Aug 25) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="zoox-no-controls">
+            <span class="when">2026-08-24</span>
+            <h4>Zoox carries passengers with no dashboard, no pedals and no steering wheel</h4>
+            <p>Amazon&rsquo;s all-electric Zoox robotaxis are the first to offer public rides without standard driver controls: no dashboard, no pedals, bidirectional driving, four passengers seated facing each other. They are rolling out across San Francisco and Las Vegas.</p>
+            <p>The regulatory contrast is the substance &mdash; Tesla&rsquo;s Cybercab also lacks a steering wheel and pedals but has not received the approval Zoox has to carry the public, which makes approval rather than capability the current binding constraint.</p>
+            <div class="sources"><span class="via">via TLDR (Aug 24) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="waymo-5nm">
+            <span class="when">2026-08-21</span>
+            <h4>Waymo designs its own 5nm chip to turn sensor data into driving decisions faster</h4>
+            <p>Waymo&rsquo;s first custom silicon, built on TSMC&rsquo;s 5nm process, is designed to convert raw sensor data into driver responses as quickly as possible.</p>
+            <p>Bringing the inference path in-house is the same vertical move Tesla made years earlier, arriving from the opposite direction: Waymo has 220.6 million reported rider-only miles behind its stack, and is optimizing the latency of a system whose behaviour it has already validated at that scale rather than in place of validating it.</p>
+            <div class="sources"><span class="via">via TLDR (Aug 21) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="unitree-threshold">
+            <span class="when">2026-08-20</span>
+            <h4>Unitree&rsquo;s founder names the threshold for humanoid mass market: 80% of voice-instructed tasks</h4>
+            <p>Unitree&rsquo;s founder says humanoids reach the mass market once they can handle 80% of tasks given by voice instruction in unfamiliar surroundings, and puts that between two and ten years away. The diagnosis behind the estimate is the useful part: robots already perform well in test conditions, and execution collapses once objects or surroundings shift even slightly. The company plans to spend nearly half its recent IPO proceeds on embodied AI, which it treats as the gap between humanoid robots and human workers.</p>
+            <p>Unitree is also the accessible-hardware entry in the <a href="#physical-ai-leaderboard">ranking</a>: the G1 from $16,000 and the research-grade H1 at $90K, both with open SDKs, ROS 2 support and 3D LiDAR, with a 1.9km autonomous marathon in April 2026 and synchronized multi-robot performances as its reliability demonstrations.</p>
+            <div class="sources"><span class="via">via TLDR (Aug 20) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="low-cost-and-map-less-navigation">
+        <h3>Low-cost &amp; map-less navigation</h3>
+        <p class="lead">One entry, and what it argues is about the bill of materials rather than the model: an RGB camera with no LiDAR, no depth sensor and no map is the cheapest suite a useful robot can carry. The training ran entirely in simulation, so what to watch is how much survives contact with a real floor.</p>
+
+        <article class="story unlinked" id="robostral-navigate">
+          <span class="when">2026-07-15</span>
+          <h4>Mistral Robostral Navigate &mdash; an 8B model that steers robots with a single RGB camera</h4>
+          <p>Mistral&rsquo;s first embodied model takes an RGB image plus a plain-language instruction and navigates a robot through a space with no LiDAR, no depth sensors and no pre-built map. The 8B model hits <strong>76.6% on R2R-CE</strong> (validation unseen), was built fully in-house, and trained entirely in simulation on ~400,000 paths across 6,000 environments.</p>
+          <p>The significance is economic: SOTA-class numbers on a single commodity camera remove the sensor bill-of-materials that keeps most capable robots in the lab, which is what pulls robotics toward hobbyist and low-cost commercial builds. It also marks a European frontier lab entering a field led so far by China&rsquo;s open releases and the US deployment pure-plays.</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 14) &mdash; no public URL given</span></div>
+        </article>
+      </section>
 
       <h2>Timeline</h2>
-      <ul class="timeline">
-        <li>
-          <span class="date">2026-09-17</span>
-          <span class="label">Skild AI&rsquo;s S1 claims one-shot learning of 10-minute tasks from a single video</span> &mdash; Skild AI&rsquo;s <strong>S1</strong>, released in late August, is pitched as an in-context learning foundation model for robotics: the company says it learns a previously unseen task from one video prompt with no fine-tuning, including tasks that take ten minutes to perform. Skild reports passing $100 million in revenue during 2026, which is the only figure here that is not a capability claim. No success rates, benchmarks or independent reproductions have been published, and the outlet carrying it says plainly that the &ldquo;GPT-3 moment&rdquo; framing is an industry marketing idea. Recorded as the strongest current claim in robot in-context learning, and as one with nothing checkable attached to it yet.
-          <div class="sources">Sources: AI Supremacy (Sep 17) <a href="https://www.skild.ai/">Skild AI</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">Odyssey-3 is an autoregressive diffusion transformer sold as one policy for robots, cars and drones</span> &mdash; Odyssey Systems released <strong>Odyssey-3</strong>, a foundation world model built on an autoregressive diffusion transformer and trained to simulate highly diverse scenarios, which it positions as general-purpose physical intelligence: controlling robots, powering humanoids, driving vehicles, piloting drones, training other AIs and playing video games from one learned understanding of physics, dynamics, cause and effect and human behaviour. The breadth claim is the whole release and also the thing to weigh carefully. Every world model on this page so far has been evaluated within a domain, and the open question has been whether physical understanding learned in one transfers to another, or whether &ldquo;understands physics&rdquo; decomposes into a set of domain-specific competences that happen to share a name. Odyssey asserts the first and publishes no cross-domain benchmark establishing it. The architectural choice is worth noting independently of the claim: autoregressive diffusion is a bet that a world model needs sequential commitment for control and iterative refinement for fidelity, which are the two properties the rollout-quality and long-horizon-memory work below keep trading against each other.
-          <div class="sources">Sources: TLDR AI (Sep 16) <a href="https://odyssey.systems/introducing-odyssey-3">Odyssey</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">Agility&rsquo;s next humanoid stops, moves aside or squats when a person gets close</span> &mdash; Agility Robotics showed a humanoid engineered to work near people without a cage, which takes precautions autonomously when it detects a person at a distance: moving to avoid them, standing still so they can pass, or squatting into a seated position when someone gets too close. Early access falls in the first half of 2027 with general availability by the end of that year. The design decision worth isolating is that the responses are graded by proximity and that the most extreme one lowers the robot&rsquo;s centre of mass and reach rather than merely halting it &mdash; a stopped humanoid is still a heavy object at head height, and squatting is a different safety claim from stopping. Read against the deployment economics below, this targets the constraint that actually limits humanoid deployment in warehouses, which has never been capability but the separation distance safety certification demands. What Agility has not published is the sensing range, the false-negative rate, or which standard the behaviour is being certified against, and those are the numbers a safety case is made of.
-          <div class="sources">Sources: TLDR (Sep 16) <a href="https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/">Ars Technica</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">OpenArm publishes an open-source humanoid arm for teleoperation and imitation learning</span> &mdash; Enactic released <strong>OpenArm</strong>, an open-source humanoid arm intended for teleoperation, imitation learning and physical AI research. The contribution is to the data problem rather than to capability. Every policy result on this page depends on demonstrations, and demonstrations depend on hardware that can be teleoperated &mdash; which has meant either a research platform priced out of most labs or a bespoke rig whose idiosyncrasies are baked into whatever dataset it produces. An open hardware design addresses both at once, because a shared platform makes collected trajectories comparable across groups in a way that per-lab rigs never are. That matters more than it sounds given the recruitment of tens of thousands of human demonstrators recorded below: the expensive input is the demonstration, and standardising the thing that captures it is what lets one lab&rsquo;s data be worth anything to another. No performance or durability figures accompany the release.
-          <div class="sources">Sources: TLDR AI (Sep 16) <a href="https://github.com/enactic/OpenArm">GitHub</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-14</span>
-          <span class="label">Reward AI&rsquo;s OM-1 trains a robot policy from a sensorized glove, with no teleoperation at all</span> &mdash; <strong>OM-1</strong> is a robot policy trained entirely on human demonstrations captured through a 7-DoF sensorized glove &mdash; no teleoperation and no on-robot data. Reward AI says a new task takes under 30 minutes of human demonstration. If it holds, it removes the per-robot data collection step that makes every policy on this page expensive, because a glove worn by a person is not tied to an embodiment or a lab rig. Nothing has shipped: no weights, no code, no paper and no success rates, which leaves the 30-minute figure as an unverified claim rather than a result.
-          <div class="sources">Sources: MarkTechPost (Sep 17) <a href="https://www.rewardai.com/blog/OM-1/">Reward AI</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-14</span>
-          <span class="label">NVIDIA open-sources OSMO, one YAML across physical-AI training, simulation and robot testing</span> &mdash; NVIDIA released <strong>OSMO</strong> under Apache 2.0: a workflow names a target platform such as <code>gb200</code>, <code>rtx-pro-6000</code> or <code>jetson-agx-thor</code>, and OSMO routes each task to a matching pool, so training on datacentre GPUs, simulation, and on-robot testing on a Jetson are described in the same file. Helm charts ship on NGC with a local KIND quickstart. It is the unglamorous piece the field has been missing &mdash; physical-AI work spans three distinct compute targets, and until now the handoffs between them were per-lab scripting.
-          <div class="sources">Sources: MarkTechPost (Sep 17) <a href="https://github.com/NVIDIA/OSMO">GitHub</a> <a href="https://developer.nvidia.com/osmo">NVIDIA</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-11</span>
-          <span class="label">Scaling web-video pre-training keeps paying off on real robots, and DINO FD predicts how much</span> &mdash; Larger video models and more pre-training compute improve real robot task performance, measured through Direct Video-Action models, with the largest models pulling ahead on genuinely hard physical work such as complex industrial unpacking. The mechanism the study identifies is that the gains track better prediction of held-out web video &mdash; and that DINO FD, a pre-training quality metric computed without touching a robot, predicts downstream robot efficiency. That last point is the practically useful one: it gives a cheap offline signal for a scaling decision that otherwise has to be validated on hardware.
-          <div class="sources">Sources: TLDR AI (Sep 11) <a href="https://www.rhoda.ai/research/scaling-web-video-pretraining">Rhoda research</a></div>
-        </li>
-        <li>
-          <span class="date">2026-08-12</span>
-          <span class="label">NVIDIA&rsquo;s WorldTrace keeps long video rollouts coherent without any retraining</span> &mdash; WorldTrace is a training-free framework for memory in video world models: it keeps compressed memories reachable during long autoregressive rollouts by assigning them stable, in-distribution positional offsets, so the model can attend to earlier state without the positional encodings drifting out of the range it was trained on. Training-free is the load-bearing word &mdash; it is a decoding-time change to an existing model rather than a new one, which is what makes long-horizon video generation a deployment question rather than a training-budget question.
-          <div class="sources">Sources: TLDR AI (Aug 12) <a href="https://research.nvidia.com/labs/sil/projects/WorldTrace/">NVIDIA project page</a></div>
-        </li>
-        <li>
-          <span class="date">2026-08-13</span>
-          <span class="label">Tens of thousands of workers in India are filming their own jobs to supply robot training data</span> &mdash; Robotics companies are recruiting workers in India at scale to record their work in first person, and feeding the footage into systems meant to teach robots physical tasks. The bottleneck being addressed is data, not hardware or algorithms: real footage of humans doing mundane manual work barely exists, because until recently nobody had a reason to collect it. It is the embodied-AI counterpart to the web-scrape moment in language modelling, with the difference that this corpus has to be commissioned rather than found &mdash; and the people generating it are training their own replacements.
-          <div class="sources">Sources: TLDR (Aug 13)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-08</span>
-          <span class="label">Qwen-Drive &mdash; a driving foundation model that keeps its general vision</span> &mdash; Qwen-Drive is a vision-language foundation model for autonomous driving, trained in stages that integrate perception, language and planning objectives. The claim worth noting is what it does not lose: the model reaches specialized driving competence while retaining broad visual understanding and instruction-following. A 24GB+ GPU is recommended, which puts it inside reach of a single workstation.
-          <div class="sources">Sources: TLDR AI (Sep 8) <a href="https://github.com/QwenLM/Qwen-Drive-1.0">GitHub</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-08</span>
-          <span class="label">XPeng starts IRON production with over 80% of core processes automated</span> &mdash; XPeng's IRON humanoid is in production on a line where more than 80% of core processes run automatically, with mass production targeted by the end of the year. The robot went viral last year for a gait smooth enough that people accused the company of hiding a person in the suit. The automation figure is the more consequential number: it is the difference between a demonstrator and a product.
-          <div class="sources">Sources: TLDR (Sep 8) <a href="https://electrek.co/2026/09/07/xpeng-iron-humanoid-robot-production-line/">Electrek</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-08</span>
-          <span class="label">ByteDance readies a real-time spatial video model that responds to Pico headset users</span> &mdash; ByteDance plans to launch an AI model generating real-time spatial video, creating interactive virtual worlds that react to Pico VR users' voices and movements, possibly as soon as next month. It puts a fourth serious entrant alongside Runway, World Labs and Google in the race to make world models interactive rather than merely generative &mdash; and the first with a headset to ship them into.
-          <div class="sources">Sources: TLDR (Sep 8) TLDR AI (Sep 8)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-28</span>
-          <span class="label">Hugging Face's $399 Microduck ships the RL training stack with the robot</span> &mdash; Microduck is a 25cm open-source robot selling for $399 before Christmas: it waddles, picks up objects to 800 grams with its beak, rights itself after a fall, crouches and roller-skates. Behaviours are trained in simulation and deployed directly to hardware, and the SDK, simulator and full RL training stack are on GitHub. The price is the point &mdash; sim-to-real becomes a thing you can practise rather than read about.
-          <div class="sources">Sources: TLDR (Aug 28) <a href="https://techcrunch.com/2026/08/27/hugging-face-is-selling-a-cute-399-open-source-duck-robot-microduck/">TechCrunch</a></div>
-        </li>
-        <li>
-          <span class="date">2026-08-24</span>
-          <span class="label">Chinese humanoids beat human records at the Beijing games, on tasks robots rarely fail</span> &mdash; The opening day of the World Humanoid Robot Games in Beijing saw Chinese humanoids break records set by humans, including Usain Bolt's 100-metre mark. More than 2,000 robots took part across 51 events and over 1,000 competitions including running, table tennis and soccer. Experts quoted alongside the results are blunt that mass real-world deployment remains distant and that these machines are still used mainly for demonstrations, performances and research &mdash; sprinting is a controlled, repeatable task, which is precisely the class where robots already do well.
-          <div class="sources">Sources: TLDR (Aug 24) TLDR (Aug 25)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-24</span>
-          <span class="label">Zoox carries passengers with no dashboard, no pedals and no steering wheel</span> &mdash; Amazon's all-electric Zoox robotaxis are the first to offer public rides without standard driver controls: no dashboard, no pedals, bidirectional driving, four passengers seated facing each other. They are rolling out across San Francisco and Las Vegas. The regulatory contrast is the substance &mdash; Tesla's Cybercab also lacks a steering wheel and pedals but has not received the approval Zoox has to carry the public, which makes approval rather than capability the current binding constraint.
-          <div class="sources">Sources: TLDR (Aug 24)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-21</span>
-          <span class="label">Waymo designs its own 5nm chip to turn sensor data into driving decisions faster</span> &mdash; Waymo's first custom silicon, built on TSMC's 5nm process, is designed to convert raw sensor data into driver responses as quickly as possible. Bringing the inference path in-house is the same vertical move Tesla made years earlier, arriving from the opposite direction &mdash; Waymo has 220.6 million reported rider-only miles behind its stack, and is now optimizing the latency of a system whose behaviour it has already validated at scale.
-          <div class="sources">Sources: TLDR (Aug 21)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-20</span>
-          <span class="label">Unitree's founder names the threshold for humanoid mass market: 80% of voice-instructed tasks</span> &mdash; Unitree's founder says humanoids reach the mass market once they can handle 80% of tasks given by voice instruction in unfamiliar surroundings, and puts that between two and ten years away. The diagnosis behind the estimate is the useful part: robots already perform well in test conditions, and execution collapses once objects or surroundings shift even slightly. The company plans to spend nearly half its recent IPO proceeds on embodied AI, which it treats as the gap between humanoid robots and human workers.
-          <div class="sources">Sources: TLDR (Aug 20)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-19</span>
-          <span class="label">Veeda raises a $90M seed for multimodal world models</span> &mdash; Veeda, founded by former NVIDIA researchers including Sanja Fidler with ties to the University of Toronto, raised $90 million led by Khosla Ventures and Radical Ventures &mdash; one of the largest seed rounds ever raised by a Canadian startup. The stated target is multimodal world models for robotics. Roughly half a dozen well-funded world-model startups now exist, which is the clearest signal yet that the field considers LLM-only robotics a dead end.
-          <div class="sources">Sources: AI Supremacy (Aug 26)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-07</span>
-          <span class="label">GPT-6 Astra on robot arms: 19 of 20 on the easy task, 2 of 20 on the hard one</span> &mdash; Researchers gave GPT-6 Astra control of YAM arms under an Inspect Robots agent policy on two manipulation tasks. Picking up a red block and placing it in a bowl succeeded in 19 of 20 trials. Inserting a round blue puzzle piece &mdash; gripping it by a central knob and seating it in the matching groove &mdash; succeeded twice in 20. Astra completes the bowl task far more often than Fable at roughly half the cost per run. The 19/20-versus-2/20 gap on tasks that read as similarly simple is the same alignment-and-tolerance wall that separated unscrewing a light bulb (92%) from screwing one in (36%) for Gemini Robotics 2: a general model driving arms clears coarse pick-and-place and stalls where the task requires establishing precise alignment before force is applied.
-          <div class="sources">Sources: TLDR AI (Sep 7)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-31</span>
-          <span class="label">Google DeepMind ships Gemini Robotics 2 — three physical-AI models for whole-body control, dexterity, and multi-robot collaboration</span> &mdash; Gemini Robotics 2 comprises a VLA, an embodied-reasoning VLM, and an on-device VLA; one checkpoint drives the Apollo 2 humanoid with two different hands plus a Franka Duo gripper, targeting whole-body control (walk to the shelf, then place the object) rather than table-top tasks. Independent reporting on Aug 12 filled in the numbers Google's announcement omitted: self-reported success is 45.7&ndash;76.3% on whole-body pick-ups (76.3% from a shelf, 45.7% from the floor), 74.2&ndash;89.6% on gripper tasks, and 32&ndash;92% on fine finger work &mdash; a spread best illustrated by unscrewing a light bulb succeeding 92% of the time against 36% for screwing one in, since the reverse task must establish alignment before it can rotate. Google published no model card, base model, parameter count or training-data breakdown, and no outside group has tested it. Shipped alongside is <strong>ASIMOV-Agentic</strong>, a safety benchmark on which no system Google tested &mdash; its own included &mdash; could both catch hazards and avoid stopping for nothing: holding needless stops under 5% meant missing more than 40% of the moments a person came too close, which is why Google recommends running these models alongside conventional physical safety equipment rather than in place of it. DeepMind reports multi-finger dexterity of 32&ndash;92% depending on the task, an unusually candid limits disclosure.
-          <div class="sources">Sources: MarkTechPost AI (Jul 30)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-29</span>
-          <span class="label">Black Forest Labs ships a flow-based model that drives robots</span> &mdash; Black Forest Labs released a flow-matching model extended to robot control, reported as a headline item in MarkTechPost's weekly roundup ("a Flow Model That Drives Robots") with no further technical detail available in the digest.
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 28)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-26</span>
-          <span class="label">Induction Labs releases Photon-1 — an "imagination model" trained on ~18 years of screen recordings</span> &mdash; Induction Labs released Photon-1, its first "imagination model," trained on the equivalent of roughly 18 years of screen recordings with no action labels; from a single pretraining run it can simulate desktops, play tournament-level checkers (after fine-tuning on 20,000 games), and model billiard-ball physics.
-          <div class="sources">Sources: MarkTechPost AI</div>
-        </li>
-        <li>
-          <span class="date">2026-07-26</span>
-          <span class="label">Open-Dreamer publishes a full JAX/Flax NNX reproduction of the Dreamer 4 training recipe</span> &mdash; Open-Dreamer, a JAX/Flax NNX reproduction of the Dreamer 4 world-model pipeline, published its complete training recipe (code and configs), trained on Minecraft/VPT-style data.
-          <div class="sources">Sources: MarkTechPost AI</div>
-        </li>
-        <li>
-          <span class="date">2026-07-22</span>
-          <span class="label">NVIDIA reportedly puts a world model on a robot with "Cosmos 3 Edge"</span> &mdash; NVIDIA reportedly put a world model on a robot with "Cosmos 3 Edge," mentioned only as a headline item in a MarkTechPost weekly roundup with no further detail available.
-          <div class="sources">Sources: MarkTechPost AI</div>
-        </li>
-        <li>
-          <span class="date">2026-07-15</span>
-          <span class="label">Mistral Robostral Navigate — an 8B model that steers robots with a single RGB camera</span> &mdash; Mistral's first embodied model takes an RGB image plus a plain-language instruction and navigates a robot through a space with no LiDAR, no depth sensors, and no map. The 8B model hits 76.6% on R2R-CE (validation unseen), was built fully in-house, and trained entirely in simulation on ~400,000 paths across 6,000 environments. Map-less, single-camera navigation is the cheapest hardware path to useful robots — SOTA-class numbers on commodity sensors are what pull robotics out of the lab — and it marks a European frontier lab entering a field led so far by China's open labs and US deployment pure-plays.
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 14)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-11</span>
-          <span class="label">Robbyant completes a four-model open embodied stack in five days</span> &mdash; MarkTechPost's "Week of Physical AI" recap frames Ant Group's Robbyant releases as one connected stack — LingBot-Vision (perception), LingBot-VLA 2.0 (action), LingBot-World-Infinity (world model), and LingBot-VA 2.0 (video-action control) — shipped open-weight across five days. Read together, it is the most aggressive open push in embodied AI to date and a signal that China's labs intend to lead the robotics wave with open models.
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-11</span>
-          <span class="label">Robbyant LingBot-World-Infinity — open causal world model with an agentic harness</span> &mdash; An open causal, action-conditioned world model reported as the only interactive one to reach hour-level (effectively infinite) generation without visual drift, running coherently for a full hour on a single GPU; a distilled variant drives 720p at 60fps. It ships as a 14B model plus a 1.3B single-GPU version and introduces an agentic harness — a pilot agent plans character behavior while a director agent seeds environment elements — porting the coding-agent "model + harness" pattern to world modeling. (Covered as LingBot-World 2.0 in the July 10 brief; architecture angle on the <a href="research-papers.html">Research papers</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11) MarkTechPost AI (weekly, Jul 10)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-11</span>
-          <span class="label">Robbyant LingBot-VA 2.0 — first embodied-native video-action world model (predicts while acting)</span> &mdash; An autoregressive diffusion model that interleaves video and action tokens in one causal sequence via a Mixture-of-Transformers and re-grounds on the robot's latest real observation every step. A partial-denoising trick plus asynchronous inference enable high-frequency closed-loop control, reportedly beating SOTA policies including Physical Intelligence's π0.5 on long-horizon and precision manipulation. Re-grounding on reality every step — while staying causal — is what the release argues separates a demo from a deployable robot. (Method angle on the <a href="research-papers.html">Research papers</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-11</span>
-          <span class="label">"Who's actually leading in physical AI" — a seven-way landscape</span> &mdash; MarkTechPost ranked the field by model quality, open-source impact, and real deployment: NVIDIA (platform — Cosmos, Isaac Lab, GB300), Ant Group/Robbyant (open-source surge), Google DeepMind (Gemini Robotics, mostly closed), Physical Intelligence (π0.5/π0.7 reference policies), Unitree (accessible humanoids), Figure + Tesla Optimus (deployment bet), and Agility Robotics (warehouse proof). The dividing line is open vs. closed — open publishers the field builds on versus vertically-integrated players competing on proprietary fleet data. (Business framing on the <a href="industry-and-business.html">Industry &amp; business</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-11</span>
-          <span class="label">Meta enters physical AI as Ant Group's open surge leads the week</span> &mdash; MarkTechPost's July 10 brief headlined the physical-AI wave — Robbyant's world model staying coherent for a full hour on a single GPU — alongside Meta's move into the space and its first paid model. The framing positioned open Chinese releases as leading the embodied wave while US incumbents entered from the model side. (Meta Muse Spark 1.1 detail on the <a href="model-releases.html">Model releases</a> and <a href="industry-and-business.html">Industry &amp; business</a> pages.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 10)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-09</span>
-          <span class="label">Robbyant LingBot-VLA 2.0 — open 6B vision-language-action model across 20 robot embodiments</span> &mdash; A 6B VLA model trained on robot trajectories spanning 20 robot configurations plus 10,000 hours of egocentric footage, all folded into one unified action space, targeting cross-embodiment generalization and lab-to-real reliability; weights and code open. The control layer of Robbyant's embodied stack. (Release detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-09</span>
-          <span class="label">Robbyant LingBot-Vision — 1B boundary-centric vision model beats 7×-larger models on dense perception</span> &mdash; Reported in the July 8 brief: a 1B boundary-centric Vision Transformer optimizing dense spatial perception (pixel-precise depth and boundaries) over semantic labels, leading NYU-Depth v2 RMSE ahead of DINOv3 and rivaling or beating models up to 7× larger on dense tasks; weights on Hugging Face. The perception base layer of Robbyant's stack. (Release detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 8)</div>
-        </li>
+      <ul class="timeline index">
+        <li><span class="date">2026-09-17</span><span class="label"><a href="#skild-s1">Skild AI&rsquo;s S1 claims one-shot learning of 10-minute tasks from a single video</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#odyssey-3">Odyssey-3 is an autoregressive diffusion transformer sold as one policy for robots, cars and drones</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#agility-cageless-humanoid">Agility&rsquo;s next humanoid stops, moves aside or squats when a person gets close</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#openarm">OpenArm publishes an open-source humanoid arm for teleoperation and imitation learning</a></span></li>
+        <li><span class="date">2026-09-14</span><span class="label"><a href="#om-1">Reward AI&rsquo;s OM-1 trains a robot policy from a sensorized glove, with no teleoperation at all</a></span></li>
+        <li><span class="date">2026-09-14</span><span class="label"><a href="#nvidia-osmo">NVIDIA open-sources OSMO, one YAML across physical-AI training, simulation and robot testing</a></span></li>
+        <li><span class="date">2026-09-11</span><span class="label"><a href="#scaling-web-video-pretraining">Scaling web-video pre-training keeps paying off on real robots, and DINO FD predicts how much</a></span></li>
+        <li><span class="date">2026-09-08</span><span class="label"><a href="#qwen-drive">Qwen-Drive &mdash; a driving foundation model that keeps its general vision</a></span></li>
+        <li><span class="date">2026-09-08</span><span class="label"><a href="#xpeng-iron">XPeng starts IRON production with over 80% of core processes automated</a></span></li>
+        <li><span class="date">2026-09-08</span><span class="label"><a href="#bytedance-spatial-video">ByteDance readies a real-time spatial video model that responds to Pico headset users</a></span></li>
+        <li><span class="date">2026-09-07</span><span class="label"><a href="#gpt-6-astra-robot-arms">GPT-6 Astra on robot arms: 19 of 20 on the easy task, 2 of 20 on the hard one</a></span></li>
+        <li><span class="date">2026-08-28</span><span class="label"><a href="#microduck">Hugging Face&rsquo;s $399 Microduck ships the RL training stack with the robot</a></span></li>
+        <li><span class="date">2026-08-24</span><span class="label"><a href="#humanoid-robot-games">Chinese humanoids beat human records at the Beijing games, on tasks robots rarely fail</a></span></li>
+        <li><span class="date">2026-08-24</span><span class="label"><a href="#zoox-no-controls">Zoox carries passengers with no dashboard, no pedals and no steering wheel</a></span></li>
+        <li><span class="date">2026-08-21</span><span class="label"><a href="#waymo-5nm">Waymo designs its own 5nm chip to turn sensor data into driving decisions faster</a></span></li>
+        <li><span class="date">2026-08-20</span><span class="label"><a href="#unitree-threshold">Unitree&rsquo;s founder names the threshold for humanoid mass market: 80% of voice-instructed tasks</a></span></li>
+        <li><span class="date">2026-08-19</span><span class="label"><a href="#veeda-seed">Veeda raises a $90M seed for multimodal world models</a></span></li>
+        <li><span class="date">2026-08-13</span><span class="label"><a href="#india-first-person-video">Tens of thousands of workers in India are filming their own jobs to supply robot training data</a></span></li>
+        <li><span class="date">2026-08-12</span><span class="label"><a href="#worldtrace">NVIDIA&rsquo;s WorldTrace keeps long video rollouts coherent without any retraining</a></span></li>
+        <li><span class="date">2026-07-31</span><span class="label"><a href="#gemini-robotics-2">Google DeepMind ships Gemini Robotics 2 &mdash; three physical-AI models for whole-body control and dexterity</a></span></li>
+        <li><span class="date">2026-07-29</span><span class="label"><a href="#black-forest-labs-flow-robots">Black Forest Labs ships a flow-based model that drives robots</a></span></li>
+        <li><span class="date">2026-07-26</span><span class="label"><a href="#photon-1">Induction Labs releases Photon-1 &mdash; an &ldquo;imagination model&rdquo; trained on ~18 years of screen recordings</a></span></li>
+        <li><span class="date">2026-07-26</span><span class="label"><a href="#open-dreamer">Open-Dreamer publishes a full JAX/Flax NNX reproduction of the Dreamer 4 training recipe</a></span></li>
+        <li><span class="date">2026-07-22</span><span class="label"><a href="#cosmos-3-edge">NVIDIA reportedly puts a world model on a robot with &ldquo;Cosmos 3 Edge&rdquo;</a></span></li>
+        <li><span class="date">2026-07-15</span><span class="label"><a href="#robostral-navigate">Mistral Robostral Navigate &mdash; an 8B model that steers robots with a single RGB camera</a></span></li>
+        <li><span class="date">2026-07-11</span><span class="label"><a href="#robbyant-four-model-stack">Robbyant completes a four-model open embodied stack in five days</a></span></li>
+        <li><span class="date">2026-07-11</span><span class="label"><a href="#lingbot-world-infinity">Robbyant LingBot-World-Infinity &mdash; open causal world model with an agentic harness</a></span></li>
+        <li><span class="date">2026-07-11</span><span class="label"><a href="#lingbot-va-2">Robbyant LingBot-VA 2.0 &mdash; first embodied-native video-action world model (predicts while acting)</a></span></li>
+        <li><span class="date">2026-07-11</span><span class="label"><a href="#physical-ai-leaderboard">&ldquo;Who&rsquo;s actually leading in physical AI&rdquo; &mdash; a seven-way landscape</a></span></li>
+        <li><span class="date">2026-07-11</span><span class="label"><a href="#meta-enters-physical-ai">Meta enters physical AI as Ant Group&rsquo;s open surge leads the week</a></span></li>
+        <li><span class="date">2026-07-09</span><span class="label"><a href="#lingbot-vla-2">Robbyant LingBot-VLA 2.0 &mdash; open 6B vision-language-action model across 20 robot embodiments</a></span></li>
+        <li><span class="date">2026-07-09</span><span class="label"><a href="#lingbot-vision">Robbyant LingBot-Vision &mdash; 1B boundary-centric vision model beats 7&times;-larger models on dense perception</a></span></li>
       </ul>
 
       <footer>Generated automatically by the AI digest task.</footer>
