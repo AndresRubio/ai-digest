@@ -24,10 +24,47 @@ as the existing pages already do.
 
 **Create a new topic page only** when three or more stories share a theme that fits none
 of the eleven. Prefer a new `<h3>` sub-section on an existing page — that is how
-"Security benchmarks" and "Product search & e-commerce" were added. A new page also needs
-adding to the sidebar `<ul>` of **every** page in the site and to the index topic list.
+"Security benchmarks" and "Product search & e-commerce" were added. On a **converted**
+page a sub-section is not a bare `<h3>` — it is a whole
+`<section class="topic-section" id="…">`, built as §3.2-new n1 describes. A new page also
+needs adding to the sidebar `<ul>` of **every** page in the site and to the index topic
+list.
 
 ## 3.2 Per touched page, in order
+
+**FIRST, detect which format the page is in.** The site is mid-conversion (started
+2026-09-20). Check the page for `<section class="topic-section"`:
+
+- **Present — the page is converted.** Use the story-item instructions in §3.2-new below.
+  Do **not** write `<h3>` prose sections onto it; that would undo the conversion and fail
+  `digest-routine/check-structure.py`.
+- **Absent — the page is not converted yet.** Use the legacy instructions in §3.2-legacy
+  below, unchanged from before, and leave the page's structure as you found it.
+
+Never convert a page as a side effect of a daily run. Conversion is its own task.
+Run `python3 digest-routine/check-structure.py` before finishing either way; a converted
+page must come back clean.
+
+Detect **per page**, not once per run. A single run routinely touches one converted page
+and one unconverted page in the same sitting; take the branch that matches the file open
+in front of you each time.
+
+**What the branch decides, and what it does not.** The branch governs how a story enters
+the page body and how that page's timeline is written — sub-steps **a** and **b** for a
+legacy page, the whole of §3.2-new for a converted page. Sub-steps **c** (rewrite the
+`Current state` div) and **d** (update the meta line) are **not legacy-only**: run both on
+every touched page in either format. A converted page still carries a
+`<div class="current-state">` block in the same place, with the same paragraph and
+`<details>` discipline, and still needs its `Last updated` date moved to the run date.
+They are written out once, below, under §3.2-legacy, because that is where they have
+always lived — read them from there even when you took the §3.2-new branch. Their text is
+not duplicated anywhere else in this file.
+
+### §3.2-legacy (unconverted pages)
+
+Sub-steps **a** and **b** are for a page with **no** `<section class="topic-section"` —
+on a converted page do §3.2-new instead. Sub-steps **c** and **d**, further down, are for
+every touched page in either format.
 
 **a. Prepend the timeline entry.** Insert at the top of `<ul class="timeline">`:
 
@@ -54,6 +91,9 @@ Sections are **multiple `<p>` paragraphs**, one per item or argument, each rough
 is a defect: break it at the sentence that starts the next item. (Fixed site-wide on
 2026-09-14 — the pages had accreted paragraphs of up to 1,065 words.)
 
+*(Sub-steps **c** and **d** below apply to **both** branches. Run them on every touched
+page, whether you arrived here from §3.2-legacy or from §3.2-new.)*
+
 **c. Rewrite the `Current state` div.** Same discipline, one level up: it opens with the
 most recent cycle and narrates backwards. Lead it with today's stories and their
 through-line, then compress what was previously leading. Every run should leave it
@@ -79,10 +119,190 @@ do not let the visible part grow. Never emit the div as one unbroken run of text
 
 **d. Update the meta line** to `<div class="meta">Last updated: YYYY-MM-DD</div>`.
 
+### §3.2-new (converted pages)
+
+Use this branch when the page **does** contain `<section class="topic-section"`. It
+replaces sub-steps **a** and **b** only. `site/topics/research-papers.html` is a worked
+example of the finished shape, but everything you need is written out here — do not go
+looking in another task file or another document for markup.
+
+A converted page is built from four moving parts, and this branch touches all four:
+
+1. `<nav class="section-index">` — one chip per section, each carrying a story count.
+2. `<section class="topic-section" id="…">` — a heading, one `<p class="lead">`, its
+   newest three stories, then an optional `<details>` fold holding the older ones.
+3. `<article class="story" id="…">` — one story.
+4. `<ul class="timeline index">` at the foot of the page — one line per story on the
+   page, newest first, each linking that story's own `#id`.
+
+The old flat `<ul class="timeline">` with `.sources` inside each `<li>` **does not exist
+on a converted page** and must not be recreated. Its history now lives in the stories, and
+the list at the foot of the page is `<ul class="timeline index">`, which is a different
+thing: a bare index of links, no summaries, no sources. Do not be fooled by the substring
+match — `<ul class="timeline index">` is not the legacy `<ul class="timeline">`, and
+§3.2a does not apply to it.
+
+**n1. Pick the section the story belongs in.** Read the existing `<h3>` headings and place
+the story under the one that honestly describes it. Keep every existing heading, its
+wording and its order exactly as they are.
+
+**New sections are allowed** where a story genuinely fits no existing heading (user
+ruling, 2026-09-20). Add one only when no existing heading honestly describes the story;
+prefer a grouping the page's own `Current state` prose already makes. A new section takes
+the same `.lead` discipline as every other, gets its own chip in the nav, and goes after
+the section it is closest to in subject — or immediately before the `<h2>Timeline</h2>`
+heading if nothing is close. Its skeleton, at six spaces of indentation:
+
+```html
+      <section class="topic-section" id="kebab-case-of-the-heading">
+        <h3>Heading text</h3>
+        <p class="lead">What the section is about and what to judge entries on.</p>
+
+        <!-- stories go here, newest first -->
+      </section>
+```
+
+The section `id` is the kebab-case form of its heading text (`Retrieval-model
+architecture` → `retrieval-model-architecture`), lowercase, ASCII, hyphen-separated, no
+entities and no punctuation.
+
+**n2. Write the story.** One `<article class="story">` per story, `id` set to the
+kebab-case **artifact name** — the model, paper, tool, company or result the story is
+about (`PC-ALM` → `pc-alm`, `Dream-RSI` → `dream-rsi`, `LFM2.5 retrieval models` →
+`lfm2-5-retrieval`). The `id` must be **unique across the whole page**; the checker fails
+on duplicates. If the obvious name is already taken, qualify it rather than reusing it.
+
+Linked form, when the story has a real public URL — eight spaces of indentation:
+
+```html
+        <article class="story" id="artifact-name">
+          <span class="when">YYYY-MM-DD</span>
+          <h4><a href="https://example.com/post">Headline that states the result</a></h4>
+          <p>What was released or shown, with the concrete numbers.</p>
+          <p>Why it matters, and the limit the authors state.</p>
+          <div class="sources"><a href="https://example.com/post">Publisher</a> &middot; <a href="https://arxiv.org/abs/0000.00000">arXiv</a> &middot; <span class="via">via Newsletter (Mon D)</span></div>
+        </article>
+```
+
+Unlinked form, when no real URL is available:
+
+```html
+        <article class="story unlinked" id="artifact-name">
+          <span class="when">YYYY-MM-DD</span>
+          <h4>Headline that states the result</h4>
+          <p>What was released or shown, with the concrete numbers.</p>
+          <div class="sources"><span class="via">via Newsletter (Mon D) &mdash; no public URL given</span></div>
+        </article>
+```
+
+Rules the checker enforces on this markup, all of them hard:
+
+- **`<span class="when">` is required** and must be exactly `YYYY-MM-DD`. It is the date
+  of the story, the same date the timeline line carries — not the run date.
+- **The headline link must be a real absolute URL**, lowercase `https://` or `http://`
+  followed by a host. A relative link does not count as linked. **Never fabricate a URL
+  and never research the open web for one.** No URL in the source material → use the
+  unlinked form: `class="story unlinked"`, a plain-text `<h4>` with no `<a>`, and the
+  words `no public URL given` inside `.sources`. Those three go together; a story that is
+  linked *and* marked `unlinked`, or unlinked with no stated reason, fails the checker.
+  A commentary or analysis page is an acceptable headline link when it is the only real
+  URL an entry carries (user ruling, 2026-09-20) — a reader getting somewhere real beats
+  an unlinked story, and `.sources` should still make plain what kind of page it is.
+- **Body: one to three `<p>`, 2–4 sentences in total.** No `<p>` anywhere on the
+  page may run past 350 words.
+- **No nesting.** A story body must never contain another `<article`, and a
+  `topic-section` body must never contain another `<section`. The checker's parser assumes
+  a flat structure and fails loudly if it is broken.
+- **No mailbox identifier may ever reach the site.** No `mail.google.com`, no
+  `outlook.office365.com`, no `/owa/?ItemID`, no Gmail address — not in an `href`, not in
+  `.sources`, not in a comment. Newsletter names are **plain text** inside
+  `<span class="via">`, never links. The only `<a>` elements in a `.sources` div are
+  canonical public URLs. This is the project's second unbendable rule and `.sources` is
+  exactly where it gets broken.
+- Cross-links to another topic page stay relative (`<a href="agents.html">`). A cross-link
+  to another story *on this page* uses that story's `#id` and the id must exist — every
+  `#fragment` anywhere on the page is checked, including ones inside story prose.
+
+**n3. Prepend the story to its section.** It goes immediately after that section's
+`<p class="lead">`, above the existing stories, because sections run newest-first.
+If the story is *older* than stories already in the section — a backfill — insert it in
+date order rather than at the top, so the section stays newest-first; if that puts it
+below the newest three it belongs inside the `<details>` fold from the start (n4).
+
+**n4. Fold anything past the newest three.** A section shows its **newest 3** stories
+directly; every older one lives inside a `<details>` that is the **last** child of the
+section, after the visible stories and still inside `</section>`. Adding a fourth story
+therefore pushes the oldest visible one down into the fold.
+
+If the section already has a fold, move the displaced story to the **top** of it (the
+fold is newest-first too) and increment the number in the `<summary>`. If it has none,
+create one — eight spaces for `<details>`, ten for the articles inside it:
+
+```html
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="older-artifact-name">
+            <span class="when">YYYY-MM-DD</span>
+            <h4>Headline of the displaced story</h4>
+            <p>Its existing text, moved unchanged.</p>
+            <div class="sources"><span class="via">via Newsletter (Mon D) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+```
+
+Moving a story into the fold is a **move, not a rewrite**: its wording, date, id and
+sources travel with it untouched. The count in the `<summary>` is the number of articles
+inside that `<details>`, and nothing else.
+
+**n5. Update the `.lead` only if the through-line actually changed.** One `<p class="lead">`
+per section, **60 words maximum**, directly under the `<h3>`. It says what the section is
+about and what to judge entries on — it is not a summary of today's story. Most runs leave
+every lead alone. Rewrite one only when the new story genuinely changes what the section
+is about; then keep it under 60 words. A section with zero leads, two leads, or a lead
+over 60 words fails the checker.
+
+**n6. Rebuild the `<nav class="section-index">` chips.** One `<li>` per section, in the
+same order the sections appear on the page, ten spaces of indentation:
+
+```html
+          <li><a href="#section-id">Section heading <span class="n">3</span></a></li>
+```
+
+The number is that section's **real** story count — **visible stories plus folded ones**.
+Adding a story raises its section's count by one even when the story lands in the fold.
+Add a chip when you added a section; never drop one. Every section must have a chip and
+every chip must point at a section that exists.
+
+**n7. Add one line to `<ul class="timeline index">`.** The list sits under
+`<h2>Timeline</h2>` at the foot of `<main>`, is strictly newest-first, and carries exactly
+one line per story on the page — folded stories included. Eight spaces of indentation:
+
+```html
+        <li><span class="date">YYYY-MM-DD</span><span class="label"><a href="#artifact-name">Headline text</a></span></li>
+```
+
+The date matches the story's `<span class="when">`. The link is the story's own `#id`, and
+a fragment that does not resolve fails the checker. The label is the headline as plain
+text (it may be trimmed if the headline is long); there is **no** `.sources` div and no
+summary on these lines — the sources live in the story. Insert the new line in date order,
+above any line with an older date. Never rewrite an existing line's wording or date.
+
+**n8. Then do §3.2c and §3.2d above** — rewrite the `Current state` div and update the
+meta line. They are written under §3.2-legacy but they apply here too, and a converted
+page is not finished without them.
+
+**n9. Run the checker.** `python3 digest-routine/check-structure.py`. Any failure naming a
+page you touched is yours to fix before finishing. Lines reading
+`… not converted yet (no topic-section)` for pages you did not touch are the expected
+mid-conversion state and are not your run's failure.
+
 ## 3.3 Constraints
 
 - Never edit `styles.css`. Every class you need already exists: `timeline`, `date`,
-  `label`, `sources`, `current-state`, `changed-today`, `meta`. (It was last changed on
+  `label`, `sources`, `current-state`, `changed-today`, `meta` — and, on a converted page,
+  `topic-section`, `story`, `unlinked`, `lead`, `when`, `via`, `section-index`, `n` and
+  `timeline index`. (It was last changed on
   2026-09-14, on user instruction, to add paragraph and `<details>` rules inside
   `.current-state`. Use those elements; do not add more.)
 - Never rewrite historical timeline entries. Their wording and dates stay. (The one

@@ -74,7 +74,10 @@ Check and report, rather than assuming:
   same depth once each page's own `class="active"` marker is normalized away
 - every timeline entry *added this run* has a date, a label, a summary, and at least one
   source (older entries may legitimately carry a plain-text source with no link — do not
-  flag those)
+  flag those). **On a converted page this applies to the story, not to the timeline
+  line.** A converted page's `<ul class="timeline index">` line carries only a date and a
+  linked label by design — no summary and no sources, because both live in the
+  `<article class="story">` it points at. Check the story for them there.
 - **no `mail.google.com` URL appears anywhere in `site/`**, and no Gmail address
   appears in any tracked file:
   `/usr/bin/grep -rInE 'mail\.google\.com|@gmail\.com' site/` must come back empty —
@@ -107,6 +110,17 @@ Check and report, rather than assuming:
 - the index date, the `changed-today` box, the daily-log link, and each **touched** page's
   `Last updated` all agree with the run date — untouched topic pages must keep their
   previous date, so a stale-looking meta on a page no story routed to is correct
+- **the structural gate passes.** Run `python3 digest-routine/check-structure.py` and paste
+  the result. Every check other than `check_anchors_resolve` must report `PASS`, and the
+  only `check_anchors_resolve` lines allowed are ones reading
+  `… not converted yet (no topic-section)` for pages that have not been converted yet —
+  that is the expected mid-conversion state and is not a failure of the run. While any
+  such page remains the script exits 1; once every page is converted the required exit
+  code is 0. **Any other line, on any check, is a blocker** — in particular a duplicate
+  id, a dangling `#fragment`, a nested `<section>`/`<article>`, a wrong section-index
+  count, an over-long or missing `.lead`, a story that is neither linked nor marked
+  `unlinked`, or an out-of-order timeline. Fix it before reporting the run complete;
+  never resolve a `not converted yet` line by converting the page, which is its own task.
 - `processed.json` grew by exactly the number of messages STEP 1 retained
 
 If any check fails, fix it before reporting the run complete. State plainly what ran and
