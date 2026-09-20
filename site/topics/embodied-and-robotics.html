@@ -186,12 +186,12 @@
         <li>
           <span class="date">2026-07-31</span>
           <span class="label">Google DeepMind ships Gemini Robotics 2 — three physical-AI models for whole-body control, dexterity, and multi-robot collaboration</span> &mdash; Gemini Robotics 2 comprises a VLA, an embodied-reasoning VLM, and an on-device VLA; one checkpoint drives the Apollo 2 humanoid with two different hands plus a Franka Duo gripper, targeting whole-body control (walk to the shelf, then place the object) rather than table-top tasks. Independent reporting on Aug 12 filled in the numbers Google's announcement omitted: self-reported success is 45.7&ndash;76.3% on whole-body pick-ups (76.3% from a shelf, 45.7% from the floor), 74.2&ndash;89.6% on gripper tasks, and 32&ndash;92% on fine finger work &mdash; a spread best illustrated by unscrewing a light bulb succeeding 92% of the time against 36% for screwing one in, since the reverse task must establish alignment before it can rotate. Google published no model card, base model, parameter count or training-data breakdown, and no outside group has tested it. Shipped alongside is <strong>ASIMOV-Agentic</strong>, a safety benchmark on which no system Google tested &mdash; its own included &mdash; could both catch hazards and avoid stopping for nothing: holding needless stops under 5% meant missing more than 40% of the moments a person came too close, which is why Google recommends running these models alongside conventional physical safety equipment rather than in place of it. DeepMind reports multi-finger dexterity of 32&ndash;92% depending on the task, an unusually candid limits disclosure.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAVHyNHgAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (Jul 30)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (Jul 30)</div>
         </li>
         <li>
           <span class="date">2026-07-29</span>
           <span class="label">Black Forest Labs ships a flow-based model that drives robots</span> &mdash; Black Forest Labs released a flow-matching model extended to robot control, reported as a headline item in MarkTechPost's weekly roundup ("a Flow Model That Drives Robots") with no further technical detail available in the digest.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAU4lf5GAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 28)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 28)</div>
         </li>
         <li>
           <span class="date">2026-07-26</span>
@@ -211,42 +211,42 @@
         <li>
           <span class="date">2026-07-15</span>
           <span class="label">Mistral Robostral Navigate — an 8B model that steers robots with a single RGB camera</span> &mdash; Mistral's first embodied model takes an RGB image plus a plain-language instruction and navigates a robot through a space with no LiDAR, no depth sensors, and no map. The 8B model hits 76.6% on R2R-CE (validation unseen), was built fully in-house, and trained entirely in simulation on ~400,000 paths across 6,000 environments. Map-less, single-camera navigation is the cheapest hardware path to useful robots — SOTA-class numbers on commodity sensors are what pull robotics out of the lab — and it marks a European frontier lab entering a field led so far by China's open labs and US deployment pure-plays.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUSAwWFAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 14)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 14)</div>
         </li>
         <li>
           <span class="date">2026-07-11</span>
           <span class="label">Robbyant completes a four-model open embodied stack in five days</span> &mdash; MarkTechPost's "Week of Physical AI" recap frames Ant Group's Robbyant releases as one connected stack — LingBot-Vision (perception), LingBot-VLA 2.0 (action), LingBot-World-Infinity (world model), and LingBot-VA 2.0 (video-action control) — shipped open-weight across five days. Read together, it is the most aggressive open push in embodied AI to date and a signal that China's labs intend to lead the robotics wave with open models.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffkAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 11)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11)</div>
         </li>
         <li>
           <span class="date">2026-07-11</span>
           <span class="label">Robbyant LingBot-World-Infinity — open causal world model with an agentic harness</span> &mdash; An open causal, action-conditioned world model reported as the only interactive one to reach hour-level (effectively infinite) generation without visual drift, running coherently for a full hour on a single GPU; a distilled variant drives 720p at 60fps. It ships as a 14B model plus a 1.3B single-GPU version and introduces an agentic harness — a pilot agent plans character behavior while a director agent seeds environment elements — porting the coding-agent "model + harness" pattern to world modeling. (Covered as LingBot-World 2.0 in the July 10 brief; architecture angle on the <a href="research-papers.html">Research papers</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffkAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 11)</a> <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffHAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 10)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11) MarkTechPost AI (weekly, Jul 10)</div>
         </li>
         <li>
           <span class="date">2026-07-11</span>
           <span class="label">Robbyant LingBot-VA 2.0 — first embodied-native video-action world model (predicts while acting)</span> &mdash; An autoregressive diffusion model that interleaves video and action tokens in one causal sequence via a Mixture-of-Transformers and re-grounds on the robot's latest real observation every step. A partial-denoising trick plus asynchronous inference enable high-frequency closed-loop control, reportedly beating SOTA policies including Physical Intelligence's π0.5 on long-horizon and precision manipulation. Re-grounding on reality every step — while staying causal — is what the release argues separates a demo from a deployable robot. (Method angle on the <a href="research-papers.html">Research papers</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffkAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 11)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11)</div>
         </li>
         <li>
           <span class="date">2026-07-11</span>
           <span class="label">"Who's actually leading in physical AI" — a seven-way landscape</span> &mdash; MarkTechPost ranked the field by model quality, open-source impact, and real deployment: NVIDIA (platform — Cosmos, Isaac Lab, GB300), Ant Group/Robbyant (open-source surge), Google DeepMind (Gemini Robotics, mostly closed), Physical Intelligence (π0.5/π0.7 reference policies), Unitree (accessible humanoids), Figure + Tesla Optimus (deployment bet), and Agility Robotics (warehouse proof). The dividing line is open vs. closed — open publishers the field builds on versus vertically-integrated players competing on proprietary fleet data. (Business framing on the <a href="industry-and-business.html">Industry &amp; business</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffkAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 11)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11)</div>
         </li>
         <li>
           <span class="date">2026-07-11</span>
           <span class="label">Meta enters physical AI as Ant Group's open surge leads the week</span> &mdash; MarkTechPost's July 10 brief headlined the physical-AI wave — Robbyant's world model staying coherent for a full hour on a single GPU — alongside Meta's move into the space and its first paid model. The framing positioned open Chinese releases as leading the embodied wave while US incumbents entered from the model side. (Meta Muse Spark 1.1 detail on the <a href="model-releases.html">Model releases</a> and <a href="industry-and-business.html">Industry &amp; business</a> pages.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffHAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 10)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 10)</div>
         </li>
         <li>
           <span class="date">2026-07-09</span>
           <span class="label">Robbyant LingBot-VLA 2.0 — open 6B vision-language-action model across 20 robot embodiments</span> &mdash; A 6B VLA model trained on robot trajectories spanning 20 robot configurations plus 10,000 hours of egocentric footage, all folded into one unified action space, targeting cross-embodiment generalization and lab-to-real reliability; weights and code open. The control layer of Robbyant's embodied stack. (Release detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAT6GB7uAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 9)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 9)</div>
         </li>
         <li>
           <span class="date">2026-07-09</span>
           <span class="label">Robbyant LingBot-Vision — 1B boundary-centric vision model beats 7×-larger models on dense perception</span> &mdash; Reported in the July 8 brief: a 1B boundary-centric Vision Transformer optimizing dense spatial perception (pixel-precise depth and boundaries) over semantic labels, leading NYU-Depth v2 RMSE ahead of DINOv3 and rivaling or beating models up to 7× larger on dense tasks; weights on Hugging Face. The perception base layer of Robbyant's stack. (Release detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAT6GB7DAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 8)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 8)</div>
         </li>
       </ul>
 

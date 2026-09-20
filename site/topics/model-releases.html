@@ -365,37 +365,37 @@
         <li>
           <span class="date">2026-08-04</span>
           <span class="label">Qwen3.8-Max ships — the 2.4T MoE flagship goes live as a hosted API, open weights promised next week</span> &mdash; Alibaba's Qwen3.8-Max, previewed July 20, is now a hosted OpenAI-compatible endpoint: 1M-token context, $2.00 input / $6.00 output per 1M tokens with implicit cache reads at $0.25 (cached input 8&times; cheaper than fresh), 86.6 on Terminal-Bench 2.1, and FrontierSWE up from 40.7 to 73.5 against its predecessor. Open weights are said to follow next week alongside an open Qwen3.8-27B — the checkpoint that fits ordinary on-premise hardware. The activated-parameter count is still undisclosed, so open-weights serving cost cannot yet be modeled.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAVOoFxKAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (Aug 3)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (Aug 3)</div>
         </li>
         <li>
           <span class="date">2026-08-04</span>
           <span class="label">Thinking Machines Lab Inkling-Small — a 276B/12B-active open MoE that beats its 975B teacher on one GPU</span> &mdash; Inkling-Small is a quarter the size of the 975B Inkling it was partly distilled from, and comes out ahead of it: SWE-bench Verified 80.2% vs 77.6%, Humanity's Last Exam 31.6% vs 29.7%, ARC-AGI-2 40.1% vs 36.5%. Apache 2.0 weights; native reasoning over text, images, and audio with 1M-token context; the NVFP4 checkpoint needs 180GB aggregated VRAM on a single B300 against 600GB for BF16. The honest trade: factual recall regressed, with SimpleQA Verified at 20.6% vs the teacher's 43.9%.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAVOoFxKAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (Aug 3)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (Aug 3)</div>
         </li>
         <li>
           <span class="date">2026-08-04</span>
           <span class="label">AMD Instella-MoE-16B-A3B — a fully open MoE recipe trained end-to-end on Instinct GPUs</span> &mdash; AMD published not just a checkpoint but the complete recipe: weights from every training stage, data mixtures, training configs, and inference code for a 16B-total / 2.8B-active MoE (2 shared experts + 6 routed from 64) trained from scratch on Instinct MI300X and MI325X. Gated MLA and FarSkip-Collective deliver a 12.7% pre-training speedup and up to 39.2% lower time-to-first-token under expert parallelism; the base checkpoint averages 76.7, the strongest among fully open models. Weights are research-only (ResearchRAIL); the MIT-licensed training code is the more reusable asset.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAVOoFxKAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (Aug 3)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (Aug 3)</div>
         </li>
         <li>
           <span class="date">2026-08-03</span>
           <span class="label">DeepSeek-V4-Flash-0731 — a 20-point agentic jump from re-post-training alone, now on Ollama's cloud</span> &mdash; DeepSeek upgraded V4-Flash with major agentic and coding gains while leaving the architecture and size unchanged: Terminal Bench 2.1 moves 61.8 to 82.7, DeepSWE 7.3 to 54.4, beating V4-Pro (Preview) on every agentic benchmark DeepSeek published, at $0.28 per 1M output tokens vs $0.87 for V4-Pro. Weights are MIT and ungated (~110GB at 3-bit); all figures are vendor-reported on an unreleased harness. Independent confirmation arrived Aug 6: Artificial Analysis put the official 284B-total / 13B-active release at 50 on its Intelligence Index &mdash; 10 points above the April preview and 6 above the larger V4-Pro at the time &mdash; and on its Pareto frontier for intelligence versus cost per task, at $0.03 per benchmark task against $0.05 for the comparably capable GPT-5.6 Luna. By Aug 3 it was live on <a href="https://ollama.com/library/deepseek-v4-flash:0731-cloud">Ollama's cloud</a> with three reasoning-effort levels, launchable into Claude Code, Hermes, and OpenClaw.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAVOoFwuAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (Aug 1)</a> <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAVOoFw1AAA%3D&exvsurl=1&viewmodel=ReadMessageItem">Ollama newsletter (Aug 3)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (Aug 1) Ollama newsletter (Aug 3)</div>
         </li>
         <li>
           <span class="date">2026-08-03</span>
           <span class="label">MiniMax H3 — omni-modal video model generating 15-second 2K clips with native stereo audio</span> &mdash; H3 folds text-to-video, image-to-video, first-and-last-frame, subject reference, and editing into one pretraining paradigm with relationships expressed in natural language. Output is 2K, 4&ndash;15 seconds (integer durations), native stereo; H3-VAE compression claims 4&times; effective sequence length and training throughput is up ~30%. Open weights promised in the coming days but not shipped &mdash; API-only today.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAVOoFwuAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (Aug 1)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (Aug 1)</div>
         </li>
         <li>
           <span class="date">2026-07-31</span>
           <span class="label">PolyAI Dialog-RSN-1 — an audio-native dialog model fusing turn-taking, ASR, function calling, and response</span> &mdash; Rather than reading an ASR transcript, Dialog-RSN-1 listens to the audio itself, preserving tone and hesitation; turn-taking is the first output token (EMPTY, ONGOING, COMPLETE) and TTS stays separate. PolyAI reports sub-300ms responses, +11% relative containment at a restaurant group, and &minus;37% latency at an insurer. English only, available only through PolyAI &mdash; no open weights, no public API.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAVHyNHgAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (Jul 30)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (Jul 30)</div>
         </li>
         <li>
           <span class="date">2026-07-31</span>
           <span class="label">Liquid AI LFM2.5-Encoder-230M/350M — bidirectional encoders that stay fast at 8K context on CPU</span> &mdash; Two encoder releases aimed at the always-on classifier/router/filter tier: 8,192-token context (roughly 13&ndash;15 pages in one forward pass), with the 350M posting an 81.02 mean across 17 tasks (fourth of 14, behind only much larger models) and the 230M completing an 8K CPU forward pass in ~28s versus 90s+ for ModernBERT-base. LFM Open License v1.0, 15 languages; evaluation harness open under Apache-2.0.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAVHyNHgAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (Jul 30)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (Jul 30)</div>
         </li>
         <li>
           <span class="date">2026-07-25</span>
@@ -420,167 +420,167 @@
         <li>
           <span class="date">2026-07-18</span>
           <span class="label">Moonshot AI ships Kimi K3 — a 2.8T-parameter open MoE, the largest open-weight model to date</span> &mdash; Moonshot released Kimi K3, an open-weight Mixture-of-Experts model at 2.8 trillion parameters with native multimodal reasoning and a 1M-token context window — the largest open-weight model shipped to date, surpassing Thinking Machines Lab's 975B Inkling and Tencent's 295B Hy3 from the same week. The headline architecture, Kimi Delta Attention, delivers up to 6.3x faster decoding at million-token context, the mechanism that keeps a model this large and this long-context economically viable rather than unusably slow or expensive.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUbmhBKAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 17)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 17)</div>
         </li>
         <li>
           <span class="date">2026-07-18</span>
           <span class="label">NVIDIA Nemotron-3-Embed-8B ranks #1 on RTEB</span> &mdash; NVIDIA open-sourced Nemotron-3-Embed, a multilingual embedding collection at 1B and 8B sizes. The 8B checkpoint, built on Ministral-3-8B and mapping text into 4096-dim dense vectors, ranks #1 overall on RTEB (the Retrieval Embedding Benchmark) at a score of 78.5, while lowering token spend versus rival embedding models — a strong open candidate for the retrieval backbone of enterprise agent and RAG stacks.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUbmhBKAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 17)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 17)</div>
         </li>
         <li>
           <span class="date">2026-07-17</span>
           <span class="label">Thinking Machines Lab releases Inkling — a 975B open-weights multimodal MoE with controllable thinking effort</span> &mdash; Mira Murati's lab shipped its first model as open-weights: Inkling, a Mixture-of-Experts transformer with 975B total / 41B active parameters, native reasoning over text, image, and audio, a context window up to 1M tokens, and a headline "controllable thinking effort" feature that lets you dial how long it reasons against cost. It isn't #1 on every benchmark, but is positioned as the strongest open base built to be fine-tuned — the most credible open challenger to closed frontier labs yet.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUSAwW2AAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 16)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 16)</div>
         </li>
         <li>
           <span class="date">2026-07-17</span>
           <span class="label">PrismML Bonsai 27B — sub-2-bit Qwen3.6-27B builds that run on an iPhone</span> &mdash; PrismML compressed Qwen3.6-27B into low-bit builds with no re-pretraining and no multi-GPU rig: a ternary build (1.71 bits/weight) keeps 94.6% of FP16 quality at 5.9GB, and a 1-bit build holds 89.5% at 3.9GB — small enough to run locally on an iPhone 17 Pro, with 262K context and vision input intact. 27B-class intelligence running entirely on a phone, offline, is a different product category than API calls; if sub-2-bit quantization keeps landing at ~90% quality, on-device becomes the default for privacy-sensitive and latency-critical apps. (Deployment-economics angle on the <a href="infrastructure.html">Infrastructure &amp; compute</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUSAwW2AAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 16)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 16)</div>
         </li>
         <li>
           <span class="date">2026-07-17</span>
           <span class="label">Soofi Consortium releases Soofi S 30B-A3B — an open bilingual German/English hybrid MoE</span> &mdash; A European consortium released an open bilingual base model on a hybrid Mamba-Transformer MoE architecture, activating 3.2B of 31.6B parameters, purpose-built for German and English rather than English-first with a multilingual afterthought. Sovereign, language-specific open models are becoming a real category — a hybrid-architecture base tuned for one language pair signals Europe building foundational infrastructure it controls, not just fine-tuning American weights.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUSAwW2AAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 16)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 16)</div>
         </li>
         <li>
           <span class="date">2026-07-11</span>
           <span class="label">Meta Muse Spark 1.1 — Meta's first paid model, priced under OpenAI and Anthropic</span> &mdash; Reported in MarkTechPost's July 10 brief: Meta launched Muse Spark 1.1, notably its first <em>paid</em> model rather than an open-weights Llama release, undercutting both OpenAI and Anthropic on price while rivaling their models on certain benchmarks (though not their strongest tiers). The pricing and the shift to a paid API mark Meta's clearest move yet from open-weights distribution toward competing as a commercial model vendor. (Fuller detail was not available in the brief; pricing-strategy angle on the <a href="industry-and-business.html">Industry &amp; business</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffHAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 10)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 10)</div>
         </li>
         <li>
           <span class="date">2026-07-11</span>
           <span class="label">Robbyant completes its open embodied stack — LingBot-World-Infinity + LingBot-VA 2.0</span> &mdash; Ant Group's Robbyant added two more open models to complete a four-model embodied stack: <strong>LingBot-World-Infinity</strong>, a causal world model with an agentic harness (pilot + director agents) reaching hour-level generation without drift on a single GPU (14B + 1.3B versions), and <strong>LingBot-VA 2.0</strong>, an autoregressive video-action policy that predicts while acting and reportedly beats π0.5 on long-horizon manipulation. Full detail, timeline, and the physical-AI landscape now live on the <a href="embodied-and-robotics.html">Embodied AI &amp; robotics</a> page.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffkAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 11)</a> <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffHAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 10)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11) MarkTechPost AI (weekly, Jul 10)</div>
         </li>
         <li>
           <span class="date">2026-07-09</span>
           <span class="label">SpaceXAI + Cursor launch Grok 4.5 — a 1.5T coding model co-trained on Cursor's data</span> &mdash; Grok 4.5 is a 1.5-trillion-parameter model trained across tens of thousands of NVIDIA GB300 GPUs with Cursor's proprietary coding data folded into the training mix, shipping simultaneously in Grok Build, inside Cursor, and via API at $2 input — positioned as a cheaper, coding-first alternative to Opus-class models. It is the first frontier model built in direct partnership with a coding-tool company rather than integrated after the fact; if the Cursor-data edge holds up in independent benchmarks, leverage in the coding-agent stack shifts toward tool companies, not just model labs. (Business angle on the <a href="industry-and-business.html">Industry &amp; business</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAT6GB7uAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 9)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 9)</div>
         </li>
         <li>
           <span class="date">2026-07-09</span>
           <span class="label">OpenAI GPT-Live — voice models that listen and speak simultaneously</span> &mdash; OpenAI launched GPT-Live-1 and GPT-Live-1 mini, real-time voice models built for full-duplex conversation (talking while still listening, the way people interrupt and backchannel) rather than the turn-based approach every prior voice model used under the hood. Rolling out in ChatGPT Voice, using OpenAI's current frontier model for reasoning and search underneath. The same weekly brief separately teased a GPT-5.6 launch clearing government review, without further detail.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAT6GB7uAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 9)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 9)</div>
         </li>
         <li>
           <span class="date">2026-07-09</span>
           <span class="label">Robbyant LingBot-VLA 2.0 — open 6B vision-language-action model across 20 robot embodiments</span> &mdash; Ant Group's Robbyant released LingBot-VLA 2.0, a 6B vision-language-action model trained on robot trajectories spanning 20 robot configurations and 10,000 hours of egocentric footage, all folded into one unified action space. Rather than chasing a single benchmark, it targets cross-embodiment generalization, lab-demo-to-real-world reliability, and closing the loop from foundation pretraining to deployable application; full weights and code are open-sourced. The control-side follow-up to LingBot-Vision in Robbyant's open embodied-AI stack.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAT6GB7uAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 9)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 9)</div>
         </li>
         <li>
           <span class="date">2026-07-09</span>
           <span class="label">Tencent Hy3 — open 295B MoE (21B active) under Apache 2.0</span> &mdash; Reported in MarkTechPost's July 8 brief: Tencent released Hy3, a sparse 295B mixture-of-experts model that activates only 21B parameters per token, plus a 3.8B multi-token-prediction layer and a 256K context window, targeting reasoning, agentic workflows, and long-context tasks. Fully open under Apache 2.0 (weights and code). A 295B-class model at 21B-active serving cost puts frontier-scale reasoning within reach of teams that can't afford dense 295B inference, extending the China open-weight surge alongside GLM-5.2. (Enterprise-token-spend angle on the <a href="industry-and-business.html">Industry &amp; business</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAT6GB7DAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 8)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 8)</div>
         </li>
         <li>
           <span class="date">2026-07-09</span>
           <span class="label">NVIDIA Audex — unified audio-text LLM that keeps its text intelligence</span> &mdash; Reported in MarkTechPost's July 8 brief: NVIDIA released Audex (Nemotron-Labs-Audex-30B-A3B), built on the Nemotron-Cascade-2-30B-A3B text MoE, adding speech recognition, translation, TTS, and audio generation inside the same decoder without regressing the backbone's text-reasoning quality — the usual tax when bolting audio onto a language model. If it holds up under scrutiny, one model can replace separate ASR, TTS, and text-reasoning stacks with no quality compromise on any of them.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAT6GB7DAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 8)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 8)</div>
         </li>
         <li>
           <span class="date">2026-07-09</span>
           <span class="label">Robbyant LingBot-Vision — 1B boundary-centric vision model beats 7×-larger models on dense perception</span> &mdash; Reported in MarkTechPost's July 8 brief: Ant Group's Robbyant open-sourced LingBot-Vision, a 1B-parameter Vision Transformer using boundary-centric pretraining that prioritizes dense spatial perception (pixel-precise depth and boundaries) over semantic invariance, reportedly rivaling or beating foundation models up to 7× larger — including DINOv3 — on NYU-Depth v2 RMSE and other dense benchmarks. Weights on Hugging Face. A direct unlock for robotics perception stacks without frontier-scale compute, and the perception half of Robbyant's embodied-AI stack.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAT6GB7DAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 8)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 8)</div>
         </li>
         <li>
           <span class="date">2026-06-26</span>
           <span class="label">DeepReinforce Ornith-1.0 — open agentic-coding family (9B–397B) that learns its own RL scaffolds</span> — DeepReinforce released Ornith-1.0, an MIT-licensed family of agentic coding models in four sizes: 9B dense (matches mid-tier closed models), 32B dense (single-GPU), 72B dense (reportedly matches Claude Opus 4.7 on SWE-bench), and 397B MoE (full frontier). Rather than following hardcoded scaffolding from the inference harness, the models generate their own task-decomposition strategies and refine them through RL during training — the self-scaffolding making them more adaptable to new task types. The strongest open option for teams building agentic coding infrastructure without closed-model API costs. Weights on Hugging Face. (Training angle on the <a href="training-and-rl.html">Training &amp; RL</a> page; DevEx angle on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAATepNnQAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-20</span>
           <span class="label">Liquid AI LFM2.5 — multilingual embedding + ColBERT retrieval at 350M</span> — Liquid AI released LFM2.5-Embedding-350M (dense bi-encoder) and LFM2.5-ColBERT-350M (late interaction) (June 19): two retrieval patterns in one release, both 350M params, both trained on 28T tokens, covering 11 languages and available on Hugging Face. Both were built by patching the causal decoder LFM2.5-350M into a bidirectional encoder — reusing a generative pretrain for retrieval — and reportedly beat larger dedicated embedding models. Pitched as a drop-in upgrade for multilingual RAG pipelines. (Architecture angle on the <a href="research-papers.html">Research papers</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAATRhuvTAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-17</span>
           <span class="label">Z.ai GLM-5.2 goes generally available, US-hosted on Ollama's cloud</span> — Ollama announced GLM-5.2 is live on its US-hosted cloud (NVIDIA Blackwell datacenter GPUs, privacy policy and zero-data-retention), confirming the model as <strong>MIT-licensed</strong> (previously "pending") and "currently the strongest open model for coding and agentic tasks" at 1M-token context. It can be launched into Claude Code, the Codex App, Hermes, and OpenClaw via <code>ollama launch glm-5.2:cloud</code>, with direct API access also supported — moving GLM-5.2 from June 14 announcement to a usable, US-hosted endpoint inside common harnesses. (DevEx integration angle on the <a href="tools-and-devex.html">Tools &amp; DevEx</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAATRhuujAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">Ollama newsletter</a></div>
+          <div class="sources">Sources: Ollama newsletter</div>
         </li>
         <li>
           <span class="date">2026-06-16</span>
           <span class="label">Anthropic disables Claude Fable 5 &amp; Mythos 5 after US export-control order</span> — A US export-control directive issued June 12 named Claude Fable 5 and Mythos 5 specifically; Anthropic complied within hours, suspending access for all foreign nationals across every tier. Fable 5 had shipped June 9 with a record 95% SWE-bench Verified, making this the first government-ordered mid-deployment withdrawal of a frontier model. (Policy implications on the <a href="safety-and-policy.html">Safety &amp; policy</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAATKa4ZrAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-16</span>
           <span class="label">Z.ai GLM-5.2 — usable 1M context, two thinking levels, no launch benchmarks</span> — Z.ai released GLM-5.2 (June 14) with a usable (not synthetic needle-in-haystack) 1M-token context window, two thinking-effort levels (High and Max), MIT weights pending, and native Claude Code / OpenClaw integration. It shipped intentionally without benchmarks — positioning real-workload evaluation over leaderboards — and pitches the 1M context for long-horizon coding agents and document-heavy pipelines.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAATKa4ZrAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-13</span>
           <span class="label">Claude Fable 5 benchmarks + Mythos 5 sibling config surface</span> — Coverage of Anthropic's Claude Fable 5 detailed its record benchmarks (95.0% SWE-bench Verified, beating Opus 4.8's prior-record 88.6%; 80.3% SWE-bench Pro vs. GPT-5.5's 58.6%) and revealed that Fable 5 is one of two configurations of the same base model. The sibling, Mythos 5, runs the identical weights with cyber/bio/chem safeguards lifted and is restricted to government and critical-infrastructure partners only — i.e. the most capable coding model released publicly ships with guardrails on, and the unguarded version is not generally available. (Benchmark detail on the <a href="evals-and-benchmarks.html">Evals &amp; benchmarks</a> page; restricted-config implications on the <a href="safety-and-policy.html">Safety &amp; policy</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAS%2BtL88AAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-13</span>
           <span class="label">Cohere North Mini Code — 30B MoE, 3B active, beats 120B+ on coding</span> — Cohere released North Mini Code (June 11), a 30B-total / 3B-active mixture-of-experts coding model under Apache 2.0, scoring 27.6 on the AA coding intelligence index and reportedly outperforming dense models up to 120B+. With only 3B active parameters it is laptop-deployable, edge-viable, and sub-cent-per-call — an MoE-efficiency result rather than a scale one, and a strong option for sovereign, local-first coding agents.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAS%2BtL88AAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-13</span>
           <span class="label">Google DiffusionGemma — 26B MoE, parallel text generation at 1,000+ tok/s</span> — Google released DiffusionGemma (June 10), an experimental 26B MoE (Apache 2.0) that generates 256-token blocks in parallel via bidirectional attention and iterative self-correction, shifting the bottleneck from memory bandwidth to compute. It reaches 1,000+ tok/s on an H100 and 700+ on an RTX 5090 (up to 4× faster than autoregressive). Output quality trails standard Gemma 4; it is a research proof-of-concept, not a production replacement. (Throughput angle on the <a href="infrastructure.html">Infrastructure</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAS%2BtL88AAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-13</span>
           <span class="label">Google Gemini 3.5 Live Translate — voice-preserving streaming speech-to-speech</span> — Google released Gemini 3.5 Live Translate (June 9), streaming speech-to-speech translation across 70+ languages with automatic language detection and near-real-time latency that preserves the speaker's original intonation, pacing, and pitch instead of a robotic translation voice. Available via the Gemini Live API, Google AI Studio, Google Meet, and Google Translate (Android + iOS) — making real-time multilingual voice a standard API call.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAS%2BtL88AAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-13</span>
           <span class="label">Moonshot Kimi K2.7 Code lands on Ollama's US-hosted cloud</span> — Moonshot AI's coding-focused agentic model Kimi K2.7 Code became available on Ollama's cloud, hosted in the US on NVIDIA B300 GPUs with private, non-trained data handling. K2.7 Code improves end-to-end completion on real-world, long-horizon coding tasks while using ~30% fewer thinking tokens, and supports a 256K-token context window with vision input; it integrates with Claude Code, Codex, OpenCode, and Cline via <code>ollama launch</code>. (DevEx integration angle on the <a href="tools-and-devex.html">Tools &amp; DevEx</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAATEk6luAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">Ollama newsletter</a></div>
+          <div class="sources">Sources: Ollama newsletter</div>
         </li>
         <li>
           <span class="date">2026-06-10</span>
           <span class="label">Anthropic releases Claude Fable 5</span> — Anthropic introduced Claude Fable 5, its next-generation model for agents, coding, and hard knowledge work. It works independently longer than any prior generally available Claude, plans across stages, and verifies its own work; priced at $10 input / $50 output per million tokens. It ships with Claude Managed Agents (a long-running-agent harness, public beta), an advisor strategy (worker models call Fable 5 mid-task to check plans and evaluate work), cyber/biology safety classifiers that return errors on blocked requests (uncharged), and an opt-in fallback to Opus 4.8. Available on the Claude API, AWS, GCP, and Microsoft Foundry; a 30-day data-retention period is required.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASz2c1aAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">Anthropic email announcement</a></div>
+          <div class="sources">Sources: Anthropic email announcement</div>
         </li>
         <li>
           <span class="date">2026-06-09</span>
           <span class="label">Xiaomi MiMo + TileRT push a 1T-param MoE past 1,000 tok/s on commodity GPUs</span> — Xiaomi's MiMo-V2.5-Pro-UltraSpeed, with the TileRT runtime, runs a 1.02-trillion-parameter MIT-licensed MoE (42B active params, 1M-token context, trained in FP8 across 27T tokens) at over 1,000 tokens/second on commodity GPU hardware — positioning trillion-parameter inference as a deployment target rather than a lab benchmark.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASteznqAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Dev Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
         </li>
         <li>
           <span class="date">2026-06-09</span>
           <span class="label">NVIDIA Nemotron 3 Ultra — open 550B hybrid Mamba-Transformer MoE for agents</span> — NVIDIA released Nemotron 3 Ultra, a 550B-total / 55B-active MoE with hybrid Mamba-Transformer layers, LatentMoE expert routing, and NVFP4 quantization delivering up to 5× higher throughput across GPU architectures. Trained via multi-teacher on-policy distillation from 10+ domain-specific teachers, with a 1M-token context window and explicit tuning for complex, long-running agentic workflows.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASteznqAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Dev Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
         </li>
         <li>
           <span class="date">2026-06-09</span>
           <span class="label">Microsoft MAI-Transcribe-1.5 — 2.4% WER, 43 languages, 1hr of audio in &lt;15s</span> — Microsoft introduced MAI-Transcribe-1.5, a speech-to-text model leading the accuracy-speed Pareto frontier at its tier: 2.4% word error rate, 43-language coverage, best-in-class FLEURS accuracy, and up to 5× faster than Gemini 3.1, Scribe v2, and GPT-4o-Transcribe on long audio (a full hour transcribed in under 15 seconds). Available on Azure AI Foundry.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASteznqAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Dev Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
         </li>
         <li>
           <span class="date">2026-06-09</span>
           <span class="label">NVIDIA Nemotron 3.5 ASR — 600M streaming, 40 locales, fully local</span> — NVIDIA released Nemotron 3.5 ASR, a single 600M-parameter cache-aware streaming checkpoint transcribing 40 language-locale pairs in real time (English, Spanish, German, French, Italian, Arabic, Japanese, Korean, and more) with native punctuation, capitalization, and runtime-configurable language switching. Runs fully local via ONNX; available on NGC, Hugging Face, and the Together AI API.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASteznqAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Dev Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
         </li>
         <li>
           <span class="date">2026-06-08</span>
           <span class="label">Gemma 4 12B + QAT weights for all sizes</span> — Google DeepMind's Gemma 4 added a 12B model built to power local agents on a 16GB laptop, with benchmark performance nearing the 26B model for multi-step reasoning and agentic workflows. New quantization-aware-trained (QAT) weights shipped across all Gemma 4 sizes (e2b, e4b, 12B, 26B, 31B), reducing memory footprint and speeding output at near-full quality, with faster runs across Apple, AMD, Intel, NVIDIA, and Qualcomm hardware.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASteznLAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">Ollama newsletter</a></div>
+          <div class="sources">Sources: Ollama newsletter</div>
         </li>
         <li>
           <span class="date">2026-06-04</span>
           <span class="label">Six open-weights model drops in one week</span> — MarkTechPost rounded up six notable releases: <strong>Gemma 4 12B</strong> (Google DeepMind; encoder-free multimodal — a 35M vision embedder replaces a 550M encoder, raw 16kHz audio projected directly; nears the 26B MoE at under half the memory; Apache 2.0, on HF/Kaggle, works with llama.cpp/MLX/vLLM/Ollama/LM Studio); <strong>NVIDIA Cosmos 3</strong> (open world model; two-tower mixture-of-transformers pairing an autoregressive VLM reasoner with a diffusion generator; Nano 16B / Super 64B; claims open-source SOTA on R-Bench); <strong>Qwen3.7-Plus</strong> (Alibaba multimodal agent on Bailian; deep reasoning, self-programming, tool use; ranked #16 in Vision Arena); <strong>JetBrains Mellum2</strong> (12B MoE, 2.5B active, 8/64 experts per token, 131K context, MTP speculative-decoding head; Apache 2.0); <strong>MisoTTS</strong> (Miso Labs; 8B emotive TTS, residual vector quantization, one-shot voice cloning from ~10s, ~110ms latency; modified MIT); and <strong>OpenJarvis</strong> (Stanford/Lambda; on-device personal-agent framework). Throughline: open weights are the default for serious releases and capable models keep shrinking onto local hardware.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASigBG1AAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost newsletter</a></div>
+          <div class="sources">Sources: MarkTechPost newsletter</div>
         </li>
         <li>
           <span class="date">2026-06-03</span>
           <span class="label">NVIDIA reveals Cosmos 3, RTX Spark PC &amp; Vera Rubin at GTC Taipei</span> — Jensen Huang's GTC Taipei keynote unveiled the Vera CPU "for the age of AI," Vera Rubin ramping into full production, the RTX Spark personal-AI PC (1-petaflop superchip, with Microsoft), the DGX Station for Windows, a humanoid-robot reference design on Isaac GR00T, and the Cosmos 3 open world-model family for physical AI. Framing: "tokens are profitable, compute is revenue, the age of the AI factory is here."
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASXC1CsAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">NVIDIA GTC email</a></div>
+          <div class="sources">Sources: NVIDIA GTC email</div>
         </li>
         <li>
           <span class="date">2026-06-01</span>
           <span class="label">MiniMax M3 launches on Ollama Cloud</span> — MiniMax M3 is now available via Ollama's Cloud, targeting coding and agentic tasks with multimodal support. Powered by the proprietary MiniMax Sparse Attention (MSA) architecture, M3 supports context up to 1M tokens and integrates directly with Claude Code, Hermes Agent, and OpenClaw via simple `ollama launch` commands.
-          <div class="sources"><a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASXC1BhAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">Ollama announcement email</a></div>
+          <div class="sources">Ollama announcement email</div>
         </li>
         <li>
           <span class="date">2026-05-28</span>
           <span class="label">Claude Opus 4.8 released</span> — Anthropic's most intelligent Opus to date, with improvements in coding, long-running autonomous agents, and reasoning on complex enterprise problems; 1M context; $5 input / $25 output per million tokens; available on Anthropic API, AWS, Google Cloud, and Microsoft Foundry. Ships with Fast mode (~2.5× faster generation at 2× standard pricing), mid-conversation system messages, self-hosted sandboxes (beta), and MCP tunnels (research preview).
-          <div class="sources"><a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASRkmKlAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">Anthropic email announcement</a></div>
+          <div class="sources">Anthropic email announcement</div>
         </li>
       </ul>
 

@@ -203,47 +203,47 @@
         <li>
           <span class="date">2026-07-14</span>
           <span class="label">NeuroVFM — a Vol-JEPA neuroimaging foundation model trained on 5.24M uncurated clinical scans</span> &mdash; University of Michigan researchers trained NeuroVFM on 5.24M real clinical MRI and CT volumes pulled straight from hospital systems, with no radiology-report labels and no curation, using Vol-JEPA (a volumetric joint-embedding predictive architecture in Yann LeCun's JEPA line) to learn anatomy and pathology self-supervised from raw 3D data. Published in Nature Medicine with open weights. Significance: it shows a generalist brain-imaging model can be built from the uncurated archives every health system already has, sidestepping the labeled-data bottleneck that has long capped medical AI. (Medical-deployment angle on the <a href="applications.html">Applications</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAUSAwVdAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 13)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 13)</div>
         </li>
         <li>
           <span class="date">2026-07-11</span>
           <span class="label">Robbyant LingBot-VA 2.0 &amp; LingBot-World-Infinity — predict-while-acting and agentic-harness world models</span> &mdash; Two embodied methods from Ant Group's Robbyant. <strong>LingBot-VA 2.0</strong> is an autoregressive diffusion policy interleaving video and action tokens in one causal sequence via a Mixture-of-Transformers, re-grounding on the robot's real observation every step (partial denoising + asynchronous inference for closed-loop control), reportedly beating π0.5 on long-horizon manipulation. <strong>LingBot-World-Infinity</strong> wraps a causal world model in an agentic harness (a pilot agent plans, a director agent seeds the environment) to sustain hour-scale generation without drift — porting the coding-agent "model + harness" pattern into world modeling. (Full detail on the <a href="embodied-and-robotics.html">Embodied AI &amp; robotics</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffkAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 11)</a> <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAAUMKffHAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI (weekly, Jul 10)</a></div>
+          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11) MarkTechPost AI (weekly, Jul 10)</div>
         </li>
         <li>
           <span class="date">2026-06-20</span>
           <span class="label">MiniMax Sparse Attention — 28.4× less attention compute at 1M context</span> — MiniMax detailed MSA (June 17), a two-branch block-sparse attention (local branch for recent context + global branch for long-range dependencies) that cuts per-token attention compute at 1M context by 28.4× versus dense GQA with quality on par. On an H800 it delivers 14.2× faster prefill and 7.6× faster decode; trained with a 3T-token budget on a 109B MoE. Because it is GQA-native it drops into existing architectures without redesign — an infrastructure-level long-context result. (Serving angle on the <a href="infrastructure.html">Infrastructure</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAATRhuvTAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-20</span>
           <span class="label">Liquid AI LFM2.5 retrieval models — a causal decoder patched into an encoder</span> — Liquid AI released LFM2.5-Embedding-350M (dense bi-encoder) and LFM2.5-ColBERT-350M (late interaction) (June 19), both built by converting the causal decoder LFM2.5-350M (pretrained on 28T tokens) into a bidirectional encoder rather than training an encoder from scratch. The unusual reuse yields retrieval quality that reportedly beats larger dedicated embedding models, across 11 languages, at a 350M footprint. (Release/RAG detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAATRhuvTAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-16</span>
           <span class="label">Flash-KMeans — IO-aware exact K-Means, ~200× over FAISS</span> — An IO-aware reimplementation of exact K-Means using Triton GPU kernels with batched, memory-efficient access patterns, redesigning the algorithm around the GPU's SRAM/HBM hierarchy (the FlashAttention recipe applied to clustering). Exact, not approximate; reported ~200× faster than FAISS, ~30× than cuML, and 17.9× end-to-end on an H200. Directly relevant to vector quantization, embedding clustering, and RAG index building; open source on GitHub. (Serving/cost angle on the <a href="infrastructure.html">Infrastructure</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAATKa4ZrAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Intelligence Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
         </li>
         <li>
           <span class="date">2026-06-09</span>
           <span class="label">Perplexity/Harvard field study: agents vs chat in knowledge work</span> — Perplexity, with Harvard, published research on the shift from chat interfaces to autonomous agents ("Computer"). Over three months, workers using Computer finished tasks in 87% less time at 94% lower cost than search alone, with higher satisfaction — a quantified field measurement of agent productivity rather than a benchmark.
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASteznqAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Dev Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
         </li>
         <li>
           <span class="date">2026-06-09</span>
           <span class="label">Harness-1 — RL inside a stateful search harness</span> — A 20B retrieval agent trained with reinforcement learning inside its search harness (on GPT-OSS-20B), reaching 0.730 average curated recall; weights and harness code open. Notable as a method that trains the tool-use loop directly. (Training detail on the <a href="training-and-rl.html">Training &amp; RL</a> page.)
-          <div class="sources">Sources: <a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASteznqAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost AI Dev Brief</a></div>
+          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
         </li>
         <li>
           <span class="date">2026-05-28</span>
           <span class="label">EAGLE 3.1 — speculative decoding without attention drift</span> — New version of the EAGLE speculative-decoding method that reduces attention drift, improving acceptance rates at long contexts.
-          <div class="sources"><a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASRkmKaAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost newsletter</a></div>
+          <div class="sources">MarkTechPost newsletter</div>
         </li>
         <li>
           <span class="date">2026-05-28</span>
           <span class="label">NVIDIA Polar — token-faithful RL via API proxy</span> — Framework that proxies LLM API calls to reconstruct token-faithful RL trajectories for training agents on unmodified coding harnesses. Removes the white-box-model-access constraint for RL.
-          <div class="sources"><a href="https://outlook.office365.com/owa/?ItemID=AAMkAGZiYjQxNTUzLTExZGItNDE4Mi1iMGViLTIzY2M1ODI2MzMwZQBGAAAAAAB3d2m%2FYRwRTa%2FWCBiMH1lIBwBQc%2Bl5IZIIR7HqrGs0o60HAAAAAAEMAABQc%2Bl5IZIIR7HqrGs0o60HAASRkmKaAAA%3D&exvsurl=1&viewmodel=ReadMessageItem">MarkTechPost newsletter</a></div>
+          <div class="sources">MarkTechPost newsletter</div>
         </li>
       </ul>
 
