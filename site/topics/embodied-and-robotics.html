@@ -143,7 +143,7 @@
           <article class="story unlinked" id="lingbot-vla-2">
             <span class="when">2026-07-09</span>
             <h4>Robbyant LingBot-VLA 2.0 &mdash; open 6B vision-language-action model across 20 robot embodiments</h4>
-            <p>A 6B vision-language-action model trained on robot trajectories spanning <strong>20 robot configurations</strong> plus 10,000+ hours of egocentric video, all folded into one shared action space, targeting precision manipulation, long-horizon execution and cross-embodiment generalization. Weights and code are open.</p>
+            <p>A 6B vision-language-action model trained on robot trajectories spanning <strong>20 robot configurations</strong> plus 10,000 hours of egocentric video, all folded into one shared action space, targeting precision manipulation, long-horizon execution and cross-embodiment generalization. Weights and code are open.</p>
             <p>It aims at what the release treats as robotics&rsquo; hardest problem: not one smart robot but one model that works across every robot a company owns. It is the control layer of <a href="#robbyant-four-model-stack">Robbyant&rsquo;s stack</a>. (Release detail on the <a href="model-releases.html">Model releases</a> page.)</p>
             <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 9) &mdash; no public URL given</span></div>
           </article>
@@ -175,7 +175,7 @@
           <span class="when">2026-08-19</span>
           <h4>Veeda raises a $90M seed for multimodal world models</h4>
           <p>Veeda, founded by former NVIDIA researchers including Sanja Fidler and with University of Toronto ties, raised $90 million led by Khosla Ventures and Radical Ventures &mdash; one of the largest seed rounds ever raised by a Canadian startup. The stated target is multimodal world models for robotics.</p>
-          <p>By the reporting there are now roughly half a dozen comparably funded world-model startups, which is the clearest collective signal yet that the field considers LLM-only robotics a dead end. It is a statement about where money is going rather than about any model, since Veeda has shipped nothing to evaluate.</p>
+          <p>By the reporting there are now roughly half a dozen well-funded world-model startups, which is the clearest collective signal yet that the field considers LLM-only robotics a dead end. It is a statement about where money is going rather than about any model.</p>
           <div class="sources"><span class="via">via AI Supremacy (Aug 26) &mdash; no public URL given</span></div>
         </article>
 
@@ -209,7 +209,7 @@
             <span class="when">2026-07-26</span>
             <h4>Open-Dreamer publishes a full JAX/Flax NNX reproduction of the Dreamer 4 training recipe</h4>
             <p>Open-Dreamer, a JAX/Flax NNX reproduction of the Dreamer 4 world-model pipeline, published its complete training recipe &mdash; code and configs &mdash; trained on Minecraft/VPT-style data.</p>
-            <p>A published, reproducible recipe rather than weights alone is what lets a technique spread beyond the lab that invented it, which is why it sits beside the open world-model releases here rather than behind them.</p>
+            <p>A published, reproducible recipe rather than weights alone is what lets a technique spread beyond the lab that invented it, which is why it complements the <a href="#lingbot-world-infinity">LingBot-World-Infinity</a>/Cosmos 3 world-model thread this section already tracks.</p>
             <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
           </article>
 
@@ -232,7 +232,7 @@
 
       <section class="topic-section" id="the-competitive-landscape">
         <h3>The competitive landscape</h3>
-        <p class="lead">Who leads is scored here on model quality, open-source impact and real deployment rather than valuation. The open-versus-closed split runs through every entry, and the newer ones move the ranking rather than confirm it. One item is not about models at all: the training footage has to be commissioned, which makes it a labour supply chain.</p>
+        <p class="lead">Five entries about position rather than capability: who publishes, who ships, and who can pay to have the training footage made. The rankings age fastest, since one release can move them. Judge each on whether its advantage is reproducible by a competitor or bought with something a competitor does not have.</p>
 
         <article class="story" id="qwen-drive">
           <span class="when">2026-09-08</span>
@@ -246,7 +246,7 @@
           <span class="when">2026-08-13</span>
           <h4>Tens of thousands of workers in India are filming their own jobs to supply robot training data</h4>
           <p>Robotics companies are recruiting workers in India at scale to record their work in first person, and feeding the footage into systems meant to teach robots physical tasks. The bottleneck being addressed is data, not hardware and increasingly not algorithms: real footage of humans doing mundane manual work barely exists, because until recently nobody had a reason to collect it.</p>
-          <p>It is the embodied-AI counterpart to the web-scrape moment in language modelling, with the difference that this corpus has to be commissioned rather than found &mdash; which turns training data into a recurring operating cost and a labour supply chain rather than a one-time acquisition, and the people generating it are training their own replacements. That is a structural advantage for whoever can commission at scale, and it goes some way to explaining the geography of the ranking below.</p>
+          <p>It is the embodied-AI counterpart to the web-scrape moment in language modelling, with the difference that this corpus has to be commissioned rather than found &mdash; which turns training data into a recurring operating cost and a labour supply chain rather than a one-time acquisition, and the people generating it are training their own replacements. That is a structural advantage for whoever can commission at scale, and it goes some way to explaining the geography of the <a href="#physical-ai-leaderboard">ranking below</a>.</p>
           <div class="sources"><span class="via">via TLDR (Aug 13) &mdash; no public URL given</span></div>
         </article>
 
@@ -254,7 +254,7 @@
           <span class="when">2026-07-31</span>
           <h4>Google DeepMind ships Gemini Robotics 2 &mdash; three physical-AI models for whole-body control, dexterity and multi-robot collaboration</h4>
           <p>Gemini Robotics 2 comprises a VLA, an embodied-reasoning VLM and an on-device VLA; one checkpoint drives the Apollo 2 humanoid with two different hands plus a Franka Duo gripper, targeting whole-body control &mdash; walk to the shelf, then place the object &mdash; rather than table-top tasks. It moves DeepMind out of the &ldquo;mostly closed generalist&rdquo; slot in the <a href="#physical-ai-leaderboard">July ranking</a>: it is now shipping physical-AI models at the cadence of the labs ranked around it, not just publishing research.</p>
-          <p>Independent reporting on Aug 12 filled in the numbers the announcement omitted. Self-reported success is 45.7&ndash;76.3% on whole-body pick-ups (76.3% from a shelf, 45.7% from the floor), 74.2&ndash;89.6% on gripper tasks and 32&ndash;92% on fine finger work &mdash; a spread best illustrated by unscrewing a light bulb succeeding 92% of the time against 36% for screwing one in, since the reverse task must establish alignment before it can rotate. Google published no model card, base model, parameter count or training-data breakdown, and no outside group has tested it.</p>
+          <p>Independent reporting on Aug 12 filled in the numbers the announcement omitted. Self-reported success is 45.7&ndash;76.3% on whole-body pick-ups (76.3% from a shelf, 45.7% from the floor), 74.2&ndash;89.6% on gripper tasks and 32&ndash;92% on fine finger work &mdash; a spread best illustrated by unscrewing a light bulb succeeding 92% of the time against 36% for screwing one in, since the reverse task must establish alignment before it can rotate. DeepMind reports that 32&ndash;92% finger range itself and says plainly that unscrewing a bulb is solved while tying a trash bag is not, which is an unusually candid limits disclosure for a launch. What is missing is the rest: Google published no model card, base model, parameter count or training-data breakdown, and no outside group has tested it.</p>
           <p>Shipped alongside is <strong>ASIMOV-Agentic</strong>, a safety benchmark whose finding applies to the field rather than to one model: no system Google tested, its own included, could both catch hazards and avoid stopping for nothing &mdash; holding needless stops under 5% meant missing more than 40% of the moments a person came too close. That is why Google recommends running these models alongside conventional physical safety equipment rather than in place of it.</p>
           <div class="sources"><span class="via">via MarkTechPost AI (Jul 30) &mdash; no public URL given</span></div>
         </article>
@@ -282,7 +282,7 @@
 
       <section class="topic-section" id="hardware-and-real-world-deployment">
         <h3>Hardware &amp; real-world deployment</h3>
-        <p class="lead">Beyond models, the credibility test is robots doing real work, and the constraints that gate it are not capability: the separation distance a safety certification demands, the cost of collecting demonstrations, and the scripting between three unrelated compute targets. Watch which entries publish the numbers a safety or unit-economics case would need.</p>
+        <p class="lead">These entries are about the gap between a robot working and a robot deployed: safety certification, regulatory approval, unit economics, the price of demonstrations, the plumbing between three compute targets, and generalization outside test conditions. Ask of each whether its evidence is work actually done or a performance under chosen conditions.</p>
 
         <article class="story" id="agility-cageless-humanoid">
           <span class="when">2026-09-16</span>
@@ -364,7 +364,7 @@
 
       <section class="topic-section" id="low-cost-and-map-less-navigation">
         <h3>Low-cost &amp; map-less navigation</h3>
-        <p class="lead">One entry, and what it argues is about the bill of materials rather than the model: an RGB camera with no LiDAR, no depth sensor and no map is the cheapest suite a useful robot can carry. The training ran entirely in simulation, so what to watch is how much survives contact with a real floor.</p>
+        <p class="lead">A cost-down thread runs alongside the full embodied stacks on this page: how much capability survives when the sensor budget is cut to the cheapest thing that still sees. The evidence here is a simulator and a benchmark rather than a building, so judge it on the distance between the two.</p>
 
         <article class="story unlinked" id="robostral-navigate">
           <span class="when">2026-07-15</span>
