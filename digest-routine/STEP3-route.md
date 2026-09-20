@@ -26,7 +26,7 @@ as the existing pages already do.
 of the eleven. Prefer a new `<h3>` sub-section on an existing page — that is how
 "Security benchmarks" and "Product search & e-commerce" were added. On a **converted**
 page a sub-section is not a bare `<h3>` — it is a whole
-`<section class="topic-section" id="…">`, built as §3.2-new n1 describes. A new page also
+`<section class="topic-section" id="…">`, built as §3.2-new N1 describes. A new page also
 needs adding to the sidebar `<ul>` of **every** page in the site and to the index topic
 list.
 
@@ -49,24 +49,32 @@ Detect **per page**, not once per run. A single run routinely touches one conver
 and one unconverted page in the same sitting; take the branch that matches the file open
 in front of you each time.
 
-**What the branch decides, and what it does not.** The branch governs how a story enters
-the page body and how that page's timeline is written — sub-steps **a** and **b** for a
-legacy page, the whole of §3.2-new for a converted page. Sub-steps **c** (rewrite the
-`Current state` div) and **d** (update the meta line) are **not legacy-only**: run both on
-every touched page in either format. A converted page still carries a
-`<div class="current-state">` block in the same place, with the same paragraph and
-`<details>` discipline, and still needs its `Last updated` date moved to the run date.
-They are written out once, below, under §3.2-legacy, because that is where they have
-always lived — read them from there even when you took the §3.2-new branch. Their text is
-not duplicated anywhere else in this file.
+**§3.2 is three blocks, and every touched page passes through exactly two of them:**
 
-### §3.2-legacy (unconverted pages)
+| Block | Steps | When |
+|---|---|---|
+| `§3.2-legacy (unconverted pages only)` | **L1**, **L2** | page has **no** `<section class="topic-section"` |
+| `§3.2-new (converted pages only)` | **N1**–**N9** | page **has** `<section class="topic-section"` |
+| `§3.2-shared (BOTH branches, always)` | **S1**, **S2** | **every** touched page, whichever branch ran |
 
-Sub-steps **a** and **b** are for a page with **no** `<section class="topic-section"` —
-on a converted page do §3.2-new instead. Sub-steps **c** and **d**, further down, are for
-every touched page in either format.
+Pick **one** of the first two blocks by the detection test above, run it end to end, then
+run **§3.2-shared** — it is the common tail and it is never optional. A page is not
+finished until S1 and S2 have run on it. Skipping them on a converted page leaves its
+`Current state` stale and its `Last updated` date wrong, which reads as though the
+conversion broke the daily update.
 
-**a. Prepend the timeline entry.** Insert at the top of `<ul class="timeline">`:
+*(Renumbered 2026-09-21 from the old single a–d sequence, which is now split across three
+blocks. The old labels map: **a → L1**, **b → L2**, **c → S1**, **d → S2**. Anything
+elsewhere in the repo citing §3.2a–d — `digest-routine/README.md` cites "§3.2b–c" — means
+L2 and S1 under this numbering.)*
+
+### §3.2-legacy (unconverted pages only)
+
+Run **L1** and **L2** only when the page has **no** `<section class="topic-section"`. On a
+converted page skip this whole block and use §3.2-new instead. Either way, continue into
+§3.2-shared afterwards.
+
+**L1. Prepend the timeline entry.** Insert at the top of `<ul class="timeline">`:
 
 ```html
         <li>
@@ -81,7 +89,7 @@ the site (STEP 1.6). Multiple sources go space-separated inside the one `.source
 with any canonical public URLs as the only `<a>` elements.
 Keep the list strictly newest-first. Match the existing indentation (8 spaces for `<li>`).
 
-**b. Rewrite the relevant `<h3>` section.** These are living prose, not logs. Work the
+**L2. Rewrite the relevant `<h3>` section.** These are living prose, not logs. Work the
 new story into the existing argument — extend the thread, note where it confirms or
 contradicts what the section already claims, and keep the section readable end to end.
 Do not append a stranded sentence at the end.
@@ -91,40 +99,15 @@ Sections are **multiple `<p>` paragraphs**, one per item or argument, each rough
 is a defect: break it at the sentence that starts the next item. (Fixed site-wide on
 2026-09-14 — the pages had accreted paragraphs of up to 1,065 words.)
 
-*(Sub-steps **c** and **d** below apply to **both** branches. Run them on every touched
-page, whether you arrived here from §3.2-legacy or from §3.2-new.)*
+**End of §3.2-legacy. Now go to §3.2-shared** and run S1 and S2 on this page.
 
-**c. Rewrite the `Current state` div.** Same discipline, one level up: it opens with the
-most recent cycle and narrates backwards. Lead it with today's stories and their
-through-line, then compress what was previously leading. Every run should leave it
-coherent rather than accreted.
+### §3.2-new (converted pages only)
 
-Its structure is fixed, and a run must preserve it:
-
-```html
-      <div class="current-state">
-        <p>Today's cycle: the lead story and its through-line.</p>
-        <p>The rest of this cycle, one paragraph per thread.</p>
-        <details>
-          <summary>Earlier cycles</summary>
-          <p>Everything older, still newest-first, one paragraph per cycle or thread.</p>
-        </details>
-      </div>
-```
-
-The div as a whole is allowed to be long, but what shows **before** `<details>` is the
-budget that matters: three to five paragraphs, roughly 500–900 words. When today's
-material pushes an older paragraph out of that budget, move it inside `<details>` —
-do not let the visible part grow. Never emit the div as one unbroken run of text.
-
-**d. Update the meta line** to `<div class="meta">Last updated: YYYY-MM-DD</div>`.
-
-### §3.2-new (converted pages)
-
-Use this branch when the page **does** contain `<section class="topic-section"`. It
-replaces sub-steps **a** and **b** only. `site/topics/research-papers.html` is a worked
-example of the finished shape, but everything you need is written out here — do not go
-looking in another task file or another document for markup.
+Run **N1**–**N9** when the page **does** contain `<section class="topic-section"`. This
+block replaces L1 and L2; it does **not** replace S1 and S2, which run afterwards.
+`site/topics/research-papers.html` is a worked example of the finished shape, but
+everything you need is written out here — do not go looking in another task file or
+another document for markup.
 
 A converted page is built from four moving parts, and this branch touches all four:
 
@@ -140,9 +123,9 @@ on a converted page** and must not be recreated. Its history now lives in the st
 the list at the foot of the page is `<ul class="timeline index">`, which is a different
 thing: a bare index of links, no summaries, no sources. Do not be fooled by the substring
 match — `<ul class="timeline index">` is not the legacy `<ul class="timeline">`, and
-§3.2a does not apply to it.
+**L1 does not apply to it.**
 
-**n1. Pick the section the story belongs in.** Read the existing `<h3>` headings and place
+**N1. Pick the section the story belongs in.** Read the existing `<h3>` headings and place
 the story under the one that honestly describes it. Keep every existing heading, its
 wording and its order exactly as they are.
 
@@ -166,7 +149,7 @@ The section `id` is the kebab-case form of its heading text (`Retrieval-model
 architecture` → `retrieval-model-architecture`), lowercase, ASCII, hyphen-separated, no
 entities and no punctuation.
 
-**n2. Write the story.** One `<article class="story">` per story, `id` set to the
+**N2. Write the story.** One `<article class="story">` per story, `id` set to the
 kebab-case **artifact name** — the model, paper, tool, company or result the story is
 about (`PC-ALM` → `pc-alm`, `Dream-RSI` → `dream-rsi`, `LFM2.5 retrieval models` →
 `lfm2-5-retrieval`). The `id` must be **unique across the whole page**; the checker fails
@@ -223,13 +206,13 @@ Rules the checker enforces on this markup, all of them hard:
   to another story *on this page* uses that story's `#id` and the id must exist — every
   `#fragment` anywhere on the page is checked, including ones inside story prose.
 
-**n3. Prepend the story to its section.** It goes immediately after that section's
+**N3. Prepend the story to its section.** It goes immediately after that section's
 `<p class="lead">`, above the existing stories, because sections run newest-first.
 If the story is *older* than stories already in the section — a backfill — insert it in
 date order rather than at the top, so the section stays newest-first; if that puts it
-below the newest three it belongs inside the `<details>` fold from the start (n4).
+below the newest three it belongs inside the `<details>` fold from the start (N4).
 
-**n4. Fold anything past the newest three.** A section shows its **newest 3** stories
+**N4. Fold anything past the newest three.** A section shows its **newest 3** stories
 directly; every older one lives inside a `<details>` that is the **last** child of the
 section, after the visible stories and still inside `</section>`. Adding a fourth story
 therefore pushes the oldest visible one down into the fold.
@@ -255,14 +238,14 @@ Moving a story into the fold is a **move, not a rewrite**: its wording, date, id
 sources travel with it untouched. The count in the `<summary>` is the number of articles
 inside that `<details>`, and nothing else.
 
-**n5. Update the `.lead` only if the through-line actually changed.** One `<p class="lead">`
+**N5. Update the `.lead` only if the through-line actually changed.** One `<p class="lead">`
 per section, **60 words maximum**, directly under the `<h3>`. It says what the section is
 about and what to judge entries on — it is not a summary of today's story. Most runs leave
 every lead alone. Rewrite one only when the new story genuinely changes what the section
 is about; then keep it under 60 words. A section with zero leads, two leads, or a lead
 over 60 words fails the checker.
 
-**n6. Rebuild the `<nav class="section-index">` chips.** One `<li>` per section, in the
+**N6. Rebuild the `<nav class="section-index">` chips.** One `<li>` per section, in the
 same order the sections appear on the page, ten spaces of indentation:
 
 ```html
@@ -274,7 +257,7 @@ Adding a story raises its section's count by one even when the story lands in th
 Add a chip when you added a section; never drop one. Every section must have a chip and
 every chip must point at a section that exists.
 
-**n7. Add one line to `<ul class="timeline index">`.** The list sits under
+**N7. Add one line to `<ul class="timeline index">`.** The list sits under
 `<h2>Timeline</h2>` at the foot of `<main>`, is strictly newest-first, and carries exactly
 one line per story on the page — folded stories included. Eight spaces of indentation:
 
@@ -288,14 +271,56 @@ text (it may be trimmed if the headline is long); there is **no** `.sources` div
 summary on these lines — the sources live in the story. Insert the new line in date order,
 above any line with an older date. Never rewrite an existing line's wording or date.
 
-**n8. Then do §3.2c and §3.2d above** — rewrite the `Current state` div and update the
-meta line. They are written under §3.2-legacy but they apply here too, and a converted
-page is not finished without them.
+**N8. End of §3.2-new. Now go to §3.2-shared** and run S1 and S2 on this page — rewrite
+the `Current state` div and update the meta line. A converted page has both and is not
+finished without them.
 
-**n9. Run the checker.** `python3 digest-routine/check-structure.py`. Any failure naming a
+**N9. Run the checker.** `python3 digest-routine/check-structure.py`. Any failure naming a
 page you touched is yours to fix before finishing. Lines reading
 `… not converted yet (no topic-section)` for pages you did not touch are the expected
 mid-conversion state and are not your run's failure.
+
+### §3.2-shared (BOTH branches, always)
+
+**These two steps run on every touched page, whichever branch above applied.** A
+converted page and an unconverted page both carry a `<div class="current-state">` block
+and a `<div class="meta">` line, in the same place, with the same rules. Do not skip this
+block because you came out of §3.2-new; nothing here is legacy.
+
+**S1. Rewrite the `Current state` div.** Same discipline, one level up: it opens with the
+most recent cycle and narrates backwards. Lead it with today's stories and their
+through-line, then compress what was previously leading. Every run should leave it
+coherent rather than accreted.
+
+Its structure is fixed, and a run must preserve it:
+
+```html
+      <div class="current-state">
+        <p>Today's cycle: the lead story and its through-line.</p>
+        <p>The rest of this cycle, one paragraph per thread.</p>
+        <details>
+          <summary>Earlier cycles</summary>
+          <p>Everything older, still newest-first, one paragraph per cycle or thread.</p>
+        </details>
+      </div>
+```
+
+The div as a whole is allowed to be long, but what shows **before** `<details>` is the
+budget that matters: three to five paragraphs, roughly 500–900 words. When today's
+material pushes an older paragraph out of that budget, move it inside `<details>` —
+do not let the visible part grow. Never emit the div as one unbroken run of text.
+
+On a converted page this `<details>` is the one inside `<div class="current-state">`, and
+it is a different thing from the per-section `Earlier in this section (N)` fold in N4.
+Do not merge them and do not move stories into this one.
+
+**S2. Update the meta line** to `<div class="meta">Last updated: YYYY-MM-DD</div>`.
+
+That date is the **run date**, on every page this run touched — converted or not. Pages
+no story routed to keep their previous date.
+
+**The page is now finished.** Move to the next touched page and start again at the
+detection test at the top of §3.2.
 
 ## 3.3 Constraints
 
