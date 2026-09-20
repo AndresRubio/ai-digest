@@ -53,178 +53,355 @@
           <p>On the scaling side, NVIDIA's Nemotron 3 Ultra showed frontier open MoEs are increasingly built via multi-teacher on-policy distillation from many domain-specific teacher models rather than single-teacher distillation — and the distillation thread got its strongest datapoint yet on Aug 3: Thinking Machines Lab's <strong>Inkling-Small</strong> (276B/12B-active), distilled in part from the lab's own 975B Inkling, <em>beats its teacher</em> on SWE-bench Verified (80.2% vs 77.6%), Humanity's Last Exam (31.6% vs 29.7%), and ARC-AGI-2 (40.1% vs 36.5%) at a quarter the size, while factual recall regresses sharply (SimpleQA Verified 20.6% vs 43.9%) — a clean empirical picture of what distillation transfers (reasoning capability) and what it loses (parametric knowledge).</p>
         </details>
       </div>
+      <nav class="section-index">
+        <h2>On this page</h2>
+        <ul>
+          <li><a href="#rl-on-black-box-models">RL on black-box models <span class="n">2</span></a></li>
+          <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">3</span></a></li>
+          <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">3</span></a></li>
+          <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">2</span></a></li>
+          <li><a href="#rl-compiled-out-of-the-serving-path">RL compiled out of the serving path <span class="n">1</span></a></li>
+          <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">2</span></a></li>
+          <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">2</span></a></li>
+          <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
+          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">4</span></a></li>
+          <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">3</span></a></li>
+          <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
+          <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">4</span></a></li>
+        </ul>
+      </nav>
 
-      <h3>RL on black-box models</h3>
-      <p>The pattern emerging this week is to wrap a commercial coding agent (Codex, Claude Code, Qwen Code) and reconstruct training signal from the proxy layer. GRPO is the workhorse algorithm. The implication is that organizations no longer need to choose between using the best frontier coding agent and being able to fine-tune their stack. At the opposite end of the budget, the same algorithm is now demonstrable on a laptop: a circulated recipe runs GRPO directly on Qwen3.5-0.8B-Base with no SFT stage at all, using Countdown-Tasks-3to4 and a rule-based reward that simply checks whether the arithmetic target was hit (Sep 8). The rule-based reward is what makes it tractable &mdash; nothing to train, and nothing for the policy to exploit except the task &mdash; which is also why it teaches the mechanics honestly while proving nothing about how the loop behaves once the reward is a model.</p>
+      <section class="topic-section" id="rl-on-black-box-models">
+        <h3>RL on black-box models</h3>
+        <p class="lead">Both entries are GRPO; what differs is where the training signal has to be manufactured. One reconstructs it from outside a commercial agent, the other gets it free from arithmetic. Judge each on what the reward can be made to do that the task did not intend.</p>
 
-      <h3>RL inside the agent harness</h3>
-      <p>A complementary approach trains the agent directly within the stateful environment it will operate in, so the policy learns the full tool-use loop rather than just next-token prediction &mdash; and Salesforce's Sep 11 result shows what happens when that coupling is ignored. Training a smaller model on expert agent trajectories degrades its performance if the harness it runs in has already been tuned: the two optimisations target the same behaviour, so the later one partly reverses the earlier. The practical consequence is an ordering constraint nobody had written down &mdash; distil first and tune the harness after, or accept that a fine-tune applied to a mature scaffold can be a regression rather than an upgrade. It also explains a puzzle this section has recorded twice: teams reporting that a well-supported small model beat their own distilled version of it. Harness-1 (20B, on GPT-OSS-20B) is the constructive case, trained with RL inside a search harness and learning how and when to search, not just what to retrieve — reaching 0.730 average curated recall with both weights and harness code open.</p>
-      <p>This "environment-native" RL is the open-source mirror of Polar's proxy approach: instead of instrumenting a closed harness, build an open one and train inside it. See <a href="agents.html">Agents → agentic retrieval</a> for the deployment angle. The August write-up on training a coding agent with TRL makes the sharpest version of the argument. Rather than recreating the agent's tool loop inside the training rig, each rollout runs inside the deployed harness itself, so TRL trains on the model calls the agent actually issued and rewards them against hidden tests. What this preserves is the loop's genuine behaviour &mdash; its retries, its tool-call formatting, the places where it stalls &mdash; none of which survives a reconstruction faithfully, and all of which the policy will meet in production. Framed that way it is ordinary train/serve skew, the problem feature stores were invented to solve, showing up one abstraction layer higher. The cost is that the harness has to be instrumentable and cheap to run thousands of times, which is why this direction keeps favouring open harnesses over closed ones.</p>
+        <article class="story" id="grpo-on-a-laptop">
+          <span class="when">2026-09-08</span>
+          <h4><a href="https://huggingface.co/Qwen/Qwen3.5-0.8B-Base">A complete GRPO loop that runs on a 0.8B base model with no SFT</a></h4>
+          <p>The recipe: take Qwen3.5-0.8B-Base, skip supervised fine-tuning entirely, and run GRPO on Countdown-Tasks-3to4 with a rule-based reward that simply checks whether the arithmetic target was reached. No cluster is required, and there is no reward model to train &mdash; and therefore no reward model to be gamed.</p>
+          <p>It is circulated as a suggested experiment rather than a validated result. The rule-based reward is what makes it tractable and also what bounds it: the loop teaches the mechanics honestly while proving nothing about how it behaves once the reward is itself a model. What it does change is reach &mdash; the whole loop now fits on a single machine.</p>
+          <div class="sources"><a href="https://huggingface.co/Qwen/Qwen3.5-0.8B-Base">Qwen3.5-0.8B-Base model card</a> &middot; <span class="via">via Unwind AI (Sep 8)</span></div>
+        </article>
 
-      <h3>Distillation at frontier scale</h3>
-      <p>NVIDIA's Nemotron 3 Ultra (550B/55B-active) was trained via multi-teacher on-policy distillation from 10+ domain-specific teacher models — a signal that the largest open MoEs are increasingly assembled by distilling many specialist teachers on-policy rather than relying on a single teacher or pure pre-training. (Model detail on the <a href="model-releases.html">Model releases</a> page.) The student-beats-teacher result arrived Aug 3: Thinking Machines Lab's <strong>Inkling-Small</strong>, distilled in part from the 975B Inkling, outscores it on SWE-bench Verified, Humanity's Last Exam, and ARC-AGI-2 at a quarter the total size (276B/12B active) — while SimpleQA Verified falls from 43.9% to 20.6%. The pattern to internalize: distillation can concentrate reasoning ability into a smaller model beyond the teacher's own level, but parametric factual recall is what gets paid for it, which argues for pairing distilled models with retrieval rather than treating them as drop-in replacements.</p>
+        <article class="story unlinked" id="nvidia-polar">
+          <span class="when">2026-05-28</span>
+          <h4>NVIDIA Polar &mdash; GRPO RL across Codex, Claude Code, Qwen Code</h4>
+          <p>Polar proxies LLM API calls to reconstruct token-faithful RL trajectories, so agents can be trained on unmodified commercial coding harnesses using plain GRPO. It removes the white-box-model-access constraint typical of RL systems, which is what makes the training signal recoverable from the proxy layer at all.</p>
+          <p>The implication is that an organisation no longer has to choose between using the best frontier coding agent and being able to fine-tune its stack.</p>
+          <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
+        </article>
+      </section>
 
-      <p>Google Research's <strong>Retrieve-for-Train</strong> (Sep 16) distils something other than a model: it distils the reinforcement learning itself out of the serving path. RL runs once, offline, and is compiled into a 53.9M-parameter diffusion model that then generates every retrieval direction in one pass rather than deciding them sequentially at query time. At batch size 8 the fan-out takes 0.07 seconds against roughly 1.46 seconds, which Google reports as a 12&times; to 20&times; speedup depending on the setting. The framing is the part that generalises past search. Most of this page treats RL as something a model carries with it &mdash; a policy learned during post-training and executed at inference &mdash; and R4T points out that when RL is used to learn a <em>search</em> policy, the policy never has to run as a policy in production. It can be amortised into a generator that emits the whole decision at once, which converts an inference-time cost into a training-time one. That trade is only available where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns; but for any fan-out chosen before the results arrive, it is the right shape.</p>
+      <section class="topic-section" id="rl-inside-the-agent-harness">
+        <h3>RL inside the agent harness</h3>
+        <p class="lead">Train in the harness the agent will actually run in, and the policy learns the loop rather than an approximation of it. The catch surfaces here too: model and scaffold optimise the same behaviour, so the order you tune them in changes the result. Ask what each training environment leaves out.</p>
 
-      <h3>Targeted post-training for failure modes</h3>
-      <p>Distinct from training the whole agent loop, a lighter class of post-training targets one specific pathology. Liquid AI's open <strong>Antidoom</strong> uses <strong>Final Token Preference Optimization (FTPO)</strong> to attack "doom loops" — the failure mode where a reasoning model repeats or spirals instead of converging on an answer, silently burning tokens and latency with no useful output. In testing, doom-loop rates fell by up to 90% (reported cases dropping to roughly 1.4%), and because less looping means cleaner trajectories, eval scores improved across the board rather than trading off. Code and blog are public. It is a template for a broader pattern: cheap, open, preference-based fixes aimed at named production failure modes rather than general capability.</p>
-      <p>Sep 16 adds the version of that instinct that operates during training rather than after it. A write-up on RL for LLMs titled after the idea of <em>never giving up</em> observes that standard RL performs disproportionately badly on a training set&rsquo;s hardest problems, and that one scalar value per problem is too little to judge a large model&rsquo;s progress on it. The remedy is budgetary: reduce the compute spent on problems the model already solves and redirect it toward the hard ones, reportedly with substantial improvements on difficult tasks. The mechanism is that easy problems stop yielding gradient signal long before the rollouts allocated to them are exhausted, so uniform sampling keeps buying steps that teach nothing while the informative problems stay undersampled &mdash; the same diagnosis the failure-driven environment work below reaches from the other end, with TRACE constructing an environment around a repeated failure instead of resampling toward one. The difference is where the concentration happens, and this is the cheaper of the two, since it needs no new environments. What is not available is the arithmetic: the post reports direction rather than a benchmark table, so neither the size of the gain nor what the reallocation costs on the easy problems can be checked from outside.</p>
+        <article class="story" id="salesforce-distillation-harness">
+          <span class="when">2026-09-11</span>
+          <h4><a href="https://arxiv.org/abs/2609.09134">Training a small model on expert trajectories can hurt once its harness is already tuned</a></h4>
+          <p>Salesforce found that directly training smaller models on expert agent trajectories degrades performance when the harness around them has already been optimised &mdash; the distillation and the scaffolding are optimising the same behaviour, and applied in that order the second one undoes the first.</p>
+          <p>The practical consequence is an ordering constraint nobody had written down: distil first and tune the harness after, or accept that a fine-tune applied to a mature scaffold can be a regression rather than an upgrade. It also explains a puzzle this section has recorded twice, of teams reporting that a well-supported small model beat their own distilled version of it. It is the training-side statement of the argument the <a href="agents.html">agents</a> page makes about harnesses: model and scaffold are not independent variables, and tuning them separately can leave you worse off than tuning either alone.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2609.09134">arXiv 2609.09134</a> &middot; <span class="via">via TLDR AI (Sep 11)</span></div>
+        </article>
 
-      <h3>Failure-driven RL environments</h3>
-      <p>A distinct idea is to let an agent's <em>own recurring failures</em> generate its training curriculum. Stanford's <strong>TRACE</strong> watches for a failure that repeats, then runs a four-step, LLM-driven pipeline to synthesize a capability-targeted RL environment around that specific weakness and trains a <strong>LoRA adapter</strong> to fix it — no hand-authored training tasks. Where the environment-native methods above build one harness and train inside it, TRACE builds a <em>fresh, narrow</em> environment per failure mode; where Antidoom targets one general pathology (doom loops), TRACE targets whatever this particular agent keeps getting wrong. The result is a self-improving loop in which every reproducible bug becomes a small, cheap post-training run rather than a prompt patch or a full fine-tune. (Agent-reliability framing on the <a href="agents.html">Agents</a> page.)</p>
+        <article class="story unlinked" id="trl-deployed-harness">
+          <span class="when">2026-08-13</span>
+          <h4>TRL trains a coding agent inside its deployed harness rather than a reconstruction of it</h4>
+          <p>The usual way to train an agent is to rebuild its tool loop inside the training rig, which means optimising against an approximation of the thing that will actually run. This approach instead runs each rollout inside the deployed harness, letting TRL train on the model calls the agent genuinely made and rewarding them against hidden tests, so the policy is shaped by the real loop &mdash; its retries, its tool-call formatting, the places where it stalls &mdash; none of which survives a reconstruction faithfully.</p>
+          <p>It closes the train/serve gap at the harness level, which is where agent performance has been quietly leaking; framed that way it is ordinary train/serve skew showing up one abstraction layer higher. The cost is that the harness has to be instrumentable and cheap to run thousands of times, which is why this direction keeps favouring open harnesses over closed ones.</p>
+          <div class="sources"><span class="via">via MLOps Community (Aug 13) &mdash; no public URL given</span></div>
+        </article>
 
-      <h3>RL environment infrastructure</h3>
-      <p>As post-training moves from static datasets to RL environments, the tooling for <em>defining</em> those environments is hardening into shared infrastructure. Prime Intellect's <strong>Verifiers v1</strong> (0.2.0) overhauls its environment library by decomposing an RL environment into three composable parts — <strong>tasksets</strong> (the problems), <strong>harnesses</strong> (how the agent interacts), and <strong>runtimes</strong> (where it executes) — tightly integrated with the Environments Hub so any task can be init'd, developed, evaluated, and pushed as a reusable environment through the Prime CLI. Where TRACE and Harness-1 build environments for a specific failure or agent, Verifiers v1 is the plumbing layer beneath them: an open, composable standard for the environment itself, the kind of quiet primitive an ecosystem ends up standardizing on. Moonshot's <strong>AgentENV</strong> (open-sourced July 28) is a second instance of the same idea at production scale: the RL sandbox that actually powered Kimi K3's agentic RL training, framed by Moonshot as addressing the overlooked half of agentic RL — environment throughput — while most public attention stays on the policy model itself. The funding side of that infrastructure is starting to be treated as a lever too: Thinking Machines is granting up to $50K of <a href="training-and-rl.html">Tinker</a> credits for open-weight safety research (Aug 28), specifically on safer open models, hazardous-data filtering, tamper-resistant safety training and reward hacking. Paying in compute rather than cash selects for groups that will actually run experiments, and it turns a fine-tuning product into a directed research programme &mdash; which is a quieter form of the same influence over what gets studied that owning the environment already confers.</p>
-      <p><strong>Miles v0.1</strong> (Aug 19) is the third full instance of this pattern and the most complete: an open system bundling rollout generation, sandboxing, asynchronous training, replay, model updates and multi-hardware support, with the canonical worked shape being many copies of a coding agent attempting tasks in isolated environments, scoring the attempts, feeding results back, and pushing updated weights to workers without halting the pipeline. <strong>Agent Lightning v1.0</strong> (Aug 20) approaches the same layer from minimalism &mdash; 3,500 lines, explicitly designed to accept an arbitrary agent harness so that retokenization and training-stability problems can be studied rather than hidden &mdash; and reports a 14.6-point improvement for Qwen3.5-9B on SWE-bench Verified from only 6,000 training examples. Between Verifiers v1's composable tasksets/harnesses/runtimes, AgentENV's production sandbox, Miles' asynchronous pipeline and Agent Lightning's harness-agnostic loop, the environment layer now has four credible open implementations and no shared standard, which is roughly where the serving layer stood two years ago. A Sep 10 analysis argues that this layer is no longer one input among several but the binding constraint. Under the name <strong>recursive synthetic improvement</strong> it enumerates where model-generated material has displaced human data across the whole pipeline &mdash; the judge that scores outputs, the corpus trained on them, the teacher that distils, the curriculum that orders tasks, and the RL environments the policy learns in &mdash; and draws the infrastructural conclusion: once models generate, evaluate and improve their own training data, the scarce inputs become scalable environments and on-policy learning capacity, which is what lets capability extend past imitation of an existing corpus.</p>
-      <p>It is the general statement of specific results already on this page. GLM-5.3 reached the top of the open tier on agent-built, agent-graded environments with no architecture change, and DeepReinforce's Ornith-1.5 closed the loop one step further by generating its own training tasks. Google Research's <strong>ToolGrad</strong> (Sep 14) applies the same inversion to supervised tool-use data, and the result is the cleanest statement yet of why environment construction beats environment sampling. The standard pipeline invents a plausible user request and then hopes an agent can find a call sequence that satisfies it &mdash; which silently produces training data teaching a model to attempt things no API composition supports. ToolGrad builds a verified API chain first and writes the question that chain answers second, so validity is structural rather than filtered: 99.8% success across 16,000 real APIs. A Gemma 3 12B trained on 500 such examples matched Gemini 2.5 Pro on tool use with APIs neither had seen, which puts the data-efficiency gain on the same order as the environment-quality gains recorded above and for the same underlying reason. Where a task has checkable structure, generating from the structure toward the prompt dominates sampling prompts and discarding failures. The analysis is a synthesis rather than a result, and the caveat it inherits is the one attached to each of its examples: every claim of a self-improving loop on this page is still vendor-reported.</p>
+        <article class="story unlinked" id="harness-1">
+          <span class="when">2026-06-09</span>
+          <h4>Harness-1 &mdash; RL-trained 20B retrieval agent inside a stateful search harness</h4>
+          <p>Harness-1 trains a 20B search agent with reinforcement learning inside a stateful search harness on GPT-OSS-20B, reaching 0.730 average curated recall. Because the harness is part of training, the agent learns how and when to search rather than just what to retrieve; weights and harness code are fully open.</p>
+          <p>It is the environment-native counterpart to proxy-based RL like <a href="#nvidia-polar">Polar</a>: instead of instrumenting a closed harness, build an open one and train inside it. (Deployment angle at <a href="agents.html">Agents &rarr; agentic retrieval</a>.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="expertise-in-the-training-signal">
+        <h3>Expertise in the training signal</h3>
+        <p class="lead">One argument, two vendor tests of it: domain knowledge encoded in a scaffold is paid for on every inference, and a scaffold only helps up to the base model&rsquo;s own ceiling. Put the expertise in the training signal instead. Both tests are vendor-authored and domain-bound, which is the limit to read them against.</p>
+
+        <article class="story unlinked" id="thinking-machines-scaffolding-ceiling">
+          <span class="when">2026-08-28</span>
+          <h4>Thinking Machines: scaffolding hits a ceiling, so put the task expertise in the training signal</h4>
+          <p>A text-to-SQL result with a general claim behind it. Wrapping scaffolding around a text-to-SQL model improves performance, but only up to a limit set by the base model&rsquo;s own capability &mdash; so the domain knowledge encoded in that scaffold is being applied at the wrong layer, paid for on every inference instead of once during training.</p>
+          <p>The argument is that expert judgment belongs <em>inside</em> the training process, as task-specific RL signal, because that is what scales. It is a useful counterweight to the harness-centric view on the <a href="agents.html">Agents</a> page: harness engineering buys real capability, and this names where it stops buying it.</p>
+          <div class="sources"><span class="via">via TLDR AI (Aug 28) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="taolive-harness-aware-training">
+          <span class="when">2026-08-21</span>
+          <h4>TaoLive trains a 35B model to read whichever harness it is handed</h4>
+          <p>Harness-Aware Training is a post-training recipe rather than an architecture. TaoLive varies skill names and wording, tool schemas, prompt structure and hook behaviour throughout supervised fine-tuning and agentic RL, teaching a compact 35B model to interpret the harness it currently receives instead of memorizing one fixed interface.</p>
+          <p>It is a direct answer to the brittleness that shows up whenever a harness is refactored under a fine-tuned model. The evaluation is vendor-authored and concentrated in live commerce, which limits how far the result travels.</p>
+          <div class="sources"><span class="via">via TLDR AI (Aug 21) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="harvey-legal-rl">
+          <span class="when">2026-08-21</span>
+          <h4>Harvey post-trains a Kimi K3 base with async RL in long-horizon legal environments</h4>
+          <p>Harvey post-trained a Kimi K3 base using asynchronous reinforcement learning inside realistic long-horizon legal environments, then trained separate capabilities for diligence, review tables and firm knowledge that the main system routes to as tools or subagents.</p>
+          <p>The decision-changing idea is that a professional-services model improves by learning the workflow and harness rather than by ingesting more legal text &mdash; the same claim Thinking Machines made about putting expertise in the training signal, tested in a domain with real clients. Every reported result is vendor-authored and task-specific. (Deployment angle on the <a href="applications.html">Applications</a> page.)</p>
+          <div class="sources"><span class="via">via TLDR AI (Aug 21) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="distillation-at-frontier-scale">
+        <h3>Distillation at frontier scale</h3>
+        <p class="lead">Frontier open models are increasingly assembled by distilling teachers rather than trained straight through. The number to look for is not the win but the regression: reasoning can transfer past the teacher&rsquo;s own level while parametric recall is what pays for it.</p>
+
+        <article class="story unlinked" id="inkling-small">
+          <span class="when">2026-08-04</span>
+          <h4>Inkling-Small beats its 975B teacher &mdash; distillation transfers reasoning, costs recall</h4>
+          <p>Thinking Machines Lab&rsquo;s Inkling-Small (276B total / 12B active, Apache 2.0), distilled in part from the lab&rsquo;s 975B Inkling, outscores its teacher on SWE-bench Verified (80.2% vs 77.6%), Humanity&rsquo;s Last Exam (31.6% vs 29.7%) and ARC-AGI-2 (40.1% vs 36.5%) at a quarter the total size &mdash; while factual recall regresses sharply, SimpleQA Verified falling from 43.9% to 20.6%.</p>
+          <p>It is the cleanest public datapoint yet on what frontier-scale distillation transfers and what it loses, and the practical reading is to pair distilled models with retrieval rather than treat them as drop-in replacements. (Release detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (Aug 3) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="nemotron-3-ultra">
+          <span class="when">2026-06-09</span>
+          <h4>Nemotron 3 Ultra trained via multi-teacher on-policy distillation</h4>
+          <p>NVIDIA&rsquo;s 550B/55B-active open MoE was built by distilling on-policy from more than ten domain-specific teacher models, illustrating that frontier open MoEs increasingly rely on multi-teacher distillation rather than on a single teacher or pure pre-training. (Full release detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="rl-compiled-out-of-the-serving-path">
+        <h3>RL compiled out of the serving path</h3>
+        <p class="lead">Everywhere else on this page RL produces a policy the model carries into production. The one entry here does the opposite: it runs the RL once and compiles the result into a generator. Worth reading for the trade it names, which is what the move costs in flexibility.</p>
+
+        <article class="story" id="retrieve-for-train">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Retrieve-for-Train compiles an RL policy into a 53.9M diffusion retriever, 12&ndash;20&times; faster fan-out</a></h4>
+          <p>Google Research&rsquo;s <strong>R4T</strong> moves reinforcement learning out of the serving path entirely. The RL runs once, offline, and its result is compiled into a 53.9M-parameter diffusion model that then generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 the fan-out takes 0.07 seconds against roughly 1.46 seconds, a 12&times; to 20&times; speedup depending on the setting.</p>
+          <p>The generalisable move is the framing: where RL is used to learn a <em>search</em> policy, the policy does not have to be executed as a policy at inference &mdash; it can be amortised into a generator, and the inference-time cost of RL becomes a training-time cost instead. The limit is built into that trade, since it only works where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns. For any fan-out settled before the results arrive, it is the right shape, and it is the first item on this page to treat RL as a compilation step.</p>
+          <div class="sources"><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Google Research</a> &middot; <a href="https://arxiv.org/abs/2603.06397">Paper</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="targeted-post-training-for-failure-modes">
+        <h3>Targeted post-training for failure modes</h3>
+        <p class="lead">Neither entry chases general capability; each aims at one named way training or inference goes wrong &mdash; rollouts spent on problems already solved, and reasoning that spirals instead of stopping. Check in each case whether the fix was measured or only reported as a direction.</p>
+
+        <article class="story" id="never-giving-up">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://mnoukhov.github.io/posts/ngu/">&ldquo;Never Giving Up&rdquo; reallocates RL compute from easy problems to the ones standard RL abandons</a></h4>
+          <p>A write-up on RL for LLMs starts from a failure that averages hide: standard RL performs disproportionately badly on the hardest problems in a training set, and a single scalar value per problem is not enough to evaluate a large language model&rsquo;s progress on one. The proposed fix is an allocation change rather than an algorithm change &mdash; spend less compute on problems the model already solves, and redirect it to the hard ones &mdash; and it reports substantial improvements on difficult tasks.</p>
+          <p>The reasoning is that easy problems stop producing gradient signal long before the budget assigned to them runs out, so uniform sampling keeps paying for rollouts that teach nothing while the problems that would teach something are undersampled. That makes it a sibling of the <a href="#failure-driven-rl-environments">failure-driven environment work</a> on this page, arriving at concentrated effort from the sampling side rather than by constructing new environments, and it is the cheaper of the two because it needs no new environments. The write-up reports direction rather than a benchmark table, so the size of the effect and the cost of the reallocation on the easy problems are not yet independently checkable.</p>
+          <div class="sources"><a href="https://mnoukhov.github.io/posts/ngu/">Michael Noukhovitch</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
+        </article>
+
+        <article class="story unlinked" id="antidoom">
+          <span class="when">2026-07-09</span>
+          <h4>Liquid AI Antidoom &mdash; FTPO training cuts reasoning-model &ldquo;doom loops&rdquo; by as much as 90%</h4>
+          <p>Liquid AI open-sourced Antidoom, a training method using <strong>Final Token Preference Optimization (FTPO)</strong> to target the failure mode where a reasoning model gets stuck repeating or spiraling instead of converging on an answer, silently burning tokens and latency with no useful output. Doom-loop rates dropped by as much as 90%, with reported cases falling to roughly 1.4%.</p>
+          <p>Because less looping means cleaner trajectories, eval scores improved across the board as a direct result rather than trading off against the fix, and the code and blog are public. It is a template for a broader pattern: cheap, open, preference-based fixes aimed at named production failure modes rather than at general capability.</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 8) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="rl-algorithms-and-credit-assignment">
+        <h3>RL algorithms &amp; credit assignment</h3>
+        <p class="lead">Two entries about the loss and the reward rather than the environment around them: one hands out partial credit while keeping the optimum fixed, one traces how the policy-gradient family reached its current shape. The claim worth extracting from each is an invariance, not a score.</p>
+
+        <article class="story unlinked" id="progressive-point-matching">
+          <span class="when">2026-09-09</span>
+          <h4>Progressive Point Matching gives long-horizon RL partial credit without changing the optimum</h4>
+          <p>Progressive Point Matching awards partial credit during long-horizon RL while leaving the optimal objective unchanged, improving training efficiency as tasks get longer. That invariance is the whole claim: the standard way to make sparse long-horizon rewards trainable is to shape them, and shaping usually moves what the policy is optimizing for.</p>
+          <p>It addresses the same credit-assignment problem as process rewards, from the objective side rather than the annotation side.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="policy-gradient-reference">
+          <span class="when">2026-08-24</span>
+          <h4>A single reference traces RL for LLMs from the vanilla policy gradient to CISPO</h4>
+          <p>Cameron Wolfe published a standalone guide covering RL fundamentals, the full evolution of policy-gradient algorithms used to train LLMs, and current open research areas. The spine is the progression: VPG establishes the shape, REINFORCE makes it a Monte Carlo estimate with a baseline, PPO adds a learned critic plus importance ratios and clipping, GRPO drops the critic by comparing completions within a group, and DAPO, Dr. GRPO, GSPO, TIS and CISPO refine loss aggregation, reward normalization, batch selection, clipping and per-token versus per-sequence ratios.</p>
+          <p>The finding most likely to change practice sits in the advanced sections: <strong>on-policy RL is naturally robust to catastrophic forgetting where SFT is not</strong>, because on-policy updates stay near behaviour already plausible under the model &mdash; measured as low KL drift from the initial model, and correlated with reduced forgetting. If that holds, new capabilities can be added in sequential RL phases without the multi-task retraining that has been assumed necessary.</p>
+          <div class="sources"><span class="via">via Deep (Learning) Focus (Aug 24) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="failure-driven-rl-environments">
+        <h3>Failure-driven RL environments</h3>
+        <p class="lead">The environment idea kept apart from the rest: build it after the fact, around a failure the agent has already produced, and train only the capability that failed. Judge it on whether a fresh narrow environment per bug really stays cheaper than the fine-tune it replaces.</p>
+
+        <article class="story unlinked" id="trace">
+          <span class="when">2026-07-14</span>
+          <h4>Stanford TRACE &mdash; turning recurring agent failures into capability-targeted RL environments</h4>
+          <p>Stanford introduced <strong>TRACE</strong>, which watches an agent fail the same way repeatedly, then automatically constructs a targeted RL environment around that specific weakness and trains a <strong>LoRA adapter</strong> to close the gap &mdash; a four-step, LLM-driven pipeline with no hand-built training tasks.</p>
+          <p>Where the environment-native methods elsewhere on this page build one harness and train inside it, TRACE builds a fresh, narrow environment per failure mode; where <a href="#antidoom">Antidoom</a> targets one general pathology, TRACE targets whatever this particular agent keeps getting wrong. Instead of retraining the whole model it patches the exact capability that keeps failing, so every reproducible bug becomes a small, cheap post-training run rather than a prompt patch or a full fine-tune. (Agent-reliability angle on the <a href="agents.html">Agents</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 13) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="rl-environment-infrastructure">
+        <h3>RL environment infrastructure</h3>
+        <p class="lead">Four open implementations of the same layer &mdash; define the task, run the agent, score the attempt, update the weights &mdash; and no shared standard between them, which is roughly where the serving layer stood two years ago. Judge each on what it makes reusable, not on the algorithm it happens to ship with.</p>
+
+        <article class="story unlinked" id="agent-lightning-v1">
+          <span class="when">2026-08-20</span>
+          <h4>Agent Lightning v1.0 lifts Qwen3.5-9B by 14.6 points on SWE-bench Verified with 6K examples</h4>
+          <p>Agent Lightning v1.0 is a 3,500-line framework for harnessed agentic RL, explicitly designed to accept an arbitrary agent harness so that problems like retokenization and training stability can be studied directly rather than hidden. Evaluated across several agent tasks, it improves Qwen3.5-9B on SWE-bench Verified by 14.6 points using just 6,000 training examples.</p>
+          <p>The sample efficiency is the notable figure. This is the framework release behind the <a href="tools-and-devex.html">v1.0.1 skill</a> that later installed into Claude Code, Codex and Cursor.</p>
+          <div class="sources"><span class="via">via TLDR AI (Aug 20) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="miles-v0-1">
+          <span class="when">2026-08-19</span>
+          <h4>Miles v0.1 packages the whole asynchronous RL loop as one open system</h4>
+          <p>Miles v0.1 is an open system for improving agents with RL after initial training, bundling rollout generation, sandboxing, asynchronous training, replay, model updates and multi-hardware support. The canonical worked shape is a coding agent: many copies attempt tasks in isolated environments, attempts are scored, results feed back into training, and updated weights reach the workers without stopping the pipeline.</p>
+          <p>It belongs beside Prime Intellect&rsquo;s Verifiers v1 and Moonshot&rsquo;s AgentENV as a third bet that the RL <em>plumbing</em>, not the algorithm, is what most teams are missing.</p>
+          <div class="sources"><span class="via">via TLDR AI (Aug 19) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="agentenv">
+          <span class="when">2026-07-29</span>
+          <h4>Moonshot open-sources AgentENV &mdash; the RL sandbox behind Kimi K3&rsquo;s agentic training</h4>
+          <p>Moonshot AI open-sourced AgentENV, the RL environment and sandbox infrastructure that powered the agentic RL training behind Kimi K3, framed by Moonshot as addressing the overlooked half of agentic RL &mdash; environment throughput &mdash; rather than the policy model itself.</p>
+          <p>It is a second concrete instance at production scale, after Prime Intellect&rsquo;s Verifiers v1, of treating environment throughput as core agentic-RL infrastructure worth open-sourcing on its own.</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 28) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="verifiers-v1">
+            <span class="when">2026-07-15</span>
+            <h4>Prime Intellect Verifiers v1 &mdash; a rebuilt, composable stack for agentic RL and evals</h4>
+            <p>Verifiers v1 (0.2.0) overhauls Prime Intellect&rsquo;s environment library, decomposing an RL environment into three composable parts &mdash; <strong>tasksets</strong> (the problems), <strong>harnesses</strong> (how the agent interacts) and <strong>runtimes</strong> (where it executes) &mdash; tightly integrated with the Environments Hub, so any task can be init&rsquo;d, developed, evaluated and pushed as a reusable environment through the Prime CLI.</p>
+            <p>Where <a href="#trace">TRACE</a> and <a href="#harness-1">Harness-1</a> build environments for a specific failure or a specific agent, Verifiers v1 is the plumbing layer beneath them. As post-training shifts from static datasets to RL environments, a clean open standard for defining them becomes the new infrastructure layer the field builds on &mdash; the kind of quiet primitive an ecosystem ends up standardizing on.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 14) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="self-generated-training-data-and-curricula">
+        <h3>Self-generated training data &amp; curricula</h3>
+        <p class="lead">What used to be human-supplied &mdash; the corpus, the judge, the curriculum, the scaffold &mdash; is increasingly produced by models instead. These three show the move working in one place each, and they share one caveat: every self-improving-loop claim on this page is still vendor-reported.</p>
+
+        <article class="story" id="toolgrad">
+          <span class="when">2026-09-14</span>
+          <h4><a href="https://research.google/blog/toolgrad-efficient-tool-use-dataset-generation-with-textual-gradients">ToolGrad builds the API chain first and writes the question afterwards &mdash; 99.8% valid across 16,000 APIs</a></h4>
+          <p>Google Research inverted how tool-use training data is generated. The standard recipe invents a plausible user request and then hopes an agent can find a working call sequence for it, which fails whenever no such sequence exists and quietly produces training data teaching the model to attempt impossible compositions. <strong>ToolGrad</strong> constructs a verified API chain first and then writes the user question that chain answers, so every example is valid by construction: a 99.8% success rate across 16,000 real APIs, against generation pipelines where a large fraction of attempts are discarded.</p>
+          <p>The downstream number is the striking one &mdash; a Gemma 3 12B fine-tuned on just 500 of these examples matched Gemini 2.5 Pro on a tool-use test using APIs neither model had seen. It is the lesson this page keeps arriving at from the RL side: where a task has checkable structure, generating from the structure toward the prompt beats sampling prompts and filtering, and it makes 500 well-formed examples worth more than a much larger filtered corpus.</p>
+          <div class="sources"><a href="https://research.google/blog/toolgrad-efficient-tool-use-dataset-generation-with-textual-gradients">Google Research</a> &middot; <span class="via">via TLDR AI (Sep 14)</span></div>
+        </article>
+
+        <article class="story unlinked" id="recursive-synthetic-improvement">
+          <span class="when">2026-09-10</span>
+          <h4>&lsquo;Recursive synthetic improvement&rsquo; names the loop the frontier now runs on: judges, teachers, curricula and environments all model-generated</h4>
+          <p>A long analysis argues that frontier progress has moved almost entirely onto recursive synthetic data loops, and enumerates where the recursion actually sits: the judge that scores outputs, the corpus that trains on them, the teacher that distils, the curriculum that orders tasks, and the RL environments the policy is trained in are each increasingly model-generated.</p>
+          <p>The consequence it draws is about infrastructure rather than method &mdash; once models generate, evaluate and improve their own training data, the scarce input becomes scalable environments and on-policy learning capacity, which is what lets capability extend past imitation of the existing corpus. It is the general case of specific results this page already tracks: GLM-5.3&rsquo;s agent-built, agent-graded RL environments reaching the top of the open tier with no architecture change, and DeepReinforce&rsquo;s Ornith-1.5 generating its own training tasks. Being a synthesis rather than a result, it inherits their caveat &mdash; every claim of a self-improving loop here is still vendor-reported.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 10) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="ornith-1-0">
+          <span class="when">2026-06-26</span>
+          <h4>Ornith-1.0 learns its own RL scaffolds during training</h4>
+          <p>DeepReinforce&rsquo;s open Ornith-1.0 agentic-coding family (9B&ndash;397B, MIT) is trained so the model generates its own task-decomposition strategies and refines them with RL, rather than relying on hardcoded scaffolding supplied by the inference harness at run time. The claim is that self-scaffolded models adapt to new task types better than those bound to a fixed harness &mdash; a training-side counterpart to the harness-commoditization trend.</p>
+          <p>The 72B checkpoint reportedly matches Claude Opus 4.7 on SWE-bench. (Model-lineup angle on the <a href="model-releases.html">Model releases</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="hosted-fine-tuning">
+        <h3>Hosted fine-tuning</h3>
+        <p class="lead">Both entries concern the same fine-tuning API, and both are really about access: who has competitive weights they are permitted to train, and who can afford the compute to train them. What to watch is what the platform owner chooses to subsidise.</p>
+
+        <article class="story unlinked" id="glm-5-3-tinker">
+          <span class="when">2026-08-31</span>
+          <h4>GLM-5.3 becomes fine-tunable through Thinking Machines&rsquo; Tinker API</h4>
+          <p>Tinker exposes LoRA fine-tuning, SFT, RL, DPO and distillation against GLM-5.3 &mdash; currently the strongest open-weights model on coding evaluations including Terminal-Bench 3.0 and DeepSWE 1.1.</p>
+          <p>The significance is the pairing rather than either half: the strongest open coding checkpoint becoming adaptable through a hosted training API removes the two things that usually block domain adaptation, which are access to competitive weights and the infrastructure to train against them. It is the cheap counterpart to Thomson Reuters spending $40M to retrain Qwen (see <a href="model-releases.html">Model releases</a>), and it makes the argument on this page &mdash; that task expertise belongs in the training signal &mdash; actionable for teams that could not previously act on it.</p>
+          <div class="sources"><span class="via">via Unwind AI (Aug 31) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story" id="tinker-safety-grants">
+          <span class="when">2026-08-28</span>
+          <h4><a href="http://thinkingmachines.ai/news/safety-research-grants/">Thinking Machines puts up to $50K of Tinker credits behind open-weight safety research</a></h4>
+          <p>The grants fund work on Tinker studying safer open models, hazardous-data filtering, tamper-resistant safety training and reward hacking. It is compute rather than cash, which narrows it to groups that actually want to run experiments.</p>
+          <p>It extends the Tinker fine-tuning API from a product into a research programme with a stated agenda &mdash; a quieter form of the same influence over what gets studied that owning the environment already confers.</p>
+          <div class="sources"><a href="http://thinkingmachines.ai/news/safety-research-grants/">Thinking Machines</a> &middot; <span class="via">via Unwind AI (Aug 28)</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="pretraining-efficiency-and-data">
+        <h3>Pretraining efficiency &amp; data</h3>
+        <p class="lead">Everything here sits before post-training: what a run costs, how much efficiency the recipe still hides, and what the corpus contains. The budget and efficiency figures are reported by whoever made the run; only the six-year analysis is outside work. Check who measured, and against what baseline.</p>
+
+        <article class="story" id="little-lm">
+          <span class="when">2026-09-11</span>
+          <h4><a href="https://hugovergnes.github.io/little-lm-3-8b/">little-lm &mdash; a 3.8B model trained from scratch for $998</a></h4>
+          <p>One engineer trained little-lm, a 3.8-billion-parameter language model, on 65.3 billion tokens using eight rented B200s for 43 hours, for a total bill of $998. It scored 0.384 on CORE, against GPT-2&rsquo;s 0.2565 and 0.310 for a similarly priced nanochat run.</p>
+          <p>The write-up publishes the architecture, training configuration, failed experiments and the optimisations that kept it inside the budget, which is the part that makes it reproducible rather than merely impressive &mdash; and what puts a floor under what pretraining costs.</p>
+          <div class="sources"><a href="https://hugovergnes.github.io/little-lm-3-8b/">Write-up</a> &middot; <span class="via">via Unwind AI (Sep 11)</span></div>
+        </article>
+
+        <article class="story unlinked" id="magic-pretraining-efficiency">
+          <span class="when">2026-09-09</span>
+          <h4>Magic claims a pretraining recipe 10&times; more compute-efficient than open-weight baselines</h4>
+          <p>Magic published its pretraining work, claiming its recipe is more than ten times more compute-efficient than that of leading open-weight base models &mdash; the argument being that a small lab without frontier compute can only compete on algorithmic efficiency. The company&rsquo;s stated thesis is that pretraining, agentic RL and long context are jointly sufficient to build superhuman coding agents and automate AI R&amp;D. The efficiency multiple is self-reported and the comparison baseline is not independently fixed, so it is a claim to track rather than a result to build on.</p>
+          <p><strong>Sharpened on Sep 11:</strong> Magic now says the recipe matched DeepSeek V4 using 50&times; fewer FLOPs, and that a larger $4 million run beat publicly available open base models, crediting dozens of improvements across architecture, optimisation, data and training stability rather than one trick. The model is not public and every figure is self-reported &mdash; but if it holds, frontier pretraining has far more algorithmic slack than the compute budgets imply.</p>
+          <div class="sources"><span class="via">via Unwind AI (Sep 11), TLDR AI (Sep 9) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="data-vs-model-compute-efficiency">
+          <span class="when">2026-09-09</span>
+          <h4>Between 2019 and 2025, data improvements delivered 3.24&times; more compute efficiency than model improvements</h4>
+          <p>An analysis of six years of pretraining progress finds that <strong>3.24&times;</strong> more compute-efficiency gain came from data improvements than from model improvements, and that the two are largely independent rather than compounding. Most model research, on this reading, consisted of removing or pushing back constraints on scaling rather than making the architecture better per token.</p>
+          <p>Two qualifications carry real weight: data improvements may matter less at larger scale, and small models see the largest gains from data quality &mdash; which is consistent with the small-model results now arriving monthly.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="the-stack-v3">
+            <span class="when">2026-08-05</span>
+            <h4>The Stack v3 &mdash; 4.9T tokens of GitHub, delivered as whole repositories rather than loose files</h4>
+            <p>Hugging Face published the first refresh of the largest open source-code dataset in two years: <strong>stack-v3-train</strong> at 15.9TB / ~4.9 trillion tokens across 713 languages from 173M repositories (deduplicated, quality-filtered, PII-scrubbed), plus <strong>stack-v3-full</strong> at 113.7TB raw from 224M repositories for teams applying their own filters, under an Open Data Commons Attribution licence with a knowledge cutoff of August 7, 2025.</p>
+            <p>The structural change matters more than the size: v2 recorded which files made up a repository but shipped only identifiers, while v3 delivers repositories whole &mdash; the form agentic coding assistants need to learn how a function in one file depends on a definition in another. Deduplication now runs across all languages at once with measured rather than estimated overlap, correcting a v2 bug that had discarded more files than intended.</p>
+            <p>The caveats are stated plainly: licence labels come from error-prone automated detection, unlicensed files are retained in the training set, published secrets may survive, and the corpus may contain malicious code. A 2025 GitHub crawl also necessarily contains a large volume of model-written code, so the next generation of coding models trains partly on the output of this one.</p>
+            <div class="sources"><span class="via">via The Batch (Aug 6) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
 
       <h2>Timeline</h2>
-      <ul class="timeline">
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">&ldquo;Never Giving Up&rdquo; reallocates RL compute from easy problems to the ones standard RL abandons</span> &mdash; A write-up on RL for LLMs starts from a failure that averages hide: standard RL performs disproportionately badly on the hardest problems in a training set, and a single scalar value per problem is not enough to evaluate a large language model&rsquo;s progress on one. The proposed fix is an allocation change rather than an algorithm change &mdash; spend less compute on problems the model already solves, and redirect it to the hard ones &mdash; and it reports substantial improvements on difficult tasks. The reasoning is that easy problems stop producing gradient signal long before the budget assigned to them runs out, so uniform sampling keeps paying for rollouts that teach nothing while the problems that would teach something are undersampled. That makes it a sibling of the failure-driven environment work on this page, arriving at concentrated effort from the sampling side rather than by constructing new environments. The write-up reports direction rather than a benchmark table, so the size of the effect and the cost of the reallocation are not yet independently checkable.
-          <div class="sources">Sources: TLDR AI (Sep 16) <a href="https://mnoukhov.github.io/posts/ngu/">Michael Noukhovitch</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">Retrieve-for-Train compiles an RL policy into a 53.9M diffusion retriever, 12&ndash;20x faster fan-out</span> &mdash; Google Research&rsquo;s <strong>R4T</strong> moves reinforcement learning out of the serving path entirely. The RL runs once, offline, and its result is compiled into a 53.9M-parameter diffusion model that then generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 the fan-out takes 0.07 seconds against roughly 1.46 seconds, a 12&times; to 20&times; speedup depending on the setting. The generalisable move is the framing: where RL is used to learn a search policy, the policy does not have to be executed as a policy at inference &mdash; it can be amortised into a generator, and the inference-time cost of RL becomes a training-time cost instead.
-          <div class="sources">Sources: MarkTechPost (Sep 17) <a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Google Research</a> <a href="https://arxiv.org/abs/2603.06397">Paper</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-14</span>
-          <span class="label">ToolGrad builds the API chain first and writes the question afterwards &mdash; 99.8% valid across 16,000 APIs</span> &mdash; Google Research inverted how tool-use training data is generated. The standard recipe invents a plausible user request and then hopes an agent can find a working call sequence for it, which fails whenever no such sequence exists and quietly produces training data teaching the model to attempt impossible things. <strong>ToolGrad</strong> constructs a verified API chain first and then writes the user question that chain answers, so every example is valid by construction: a 99.8% success rate across 16,000 real APIs, against generation pipelines where a large fraction of attempts are discarded. The downstream number is the striking one &mdash; a Gemma 3 12B fine-tuned on just 500 of these examples matched Gemini 2.5 Pro on a tool-use test using APIs neither had seen. The general lesson is the one this page keeps arriving at from the RL side: when a task has a checkable structure, generating from the structure toward the prompt beats sampling prompts and filtering.
-          <div class="sources">Sources: TLDR AI (Sep 14) <a href="https://research.google/blog/toolgrad-efficient-tool-use-dataset-generation-with-textual-gradients">Google Research</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-11</span>
-          <span class="label">little-lm &mdash; a 3.8B model trained from scratch for $998</span> &mdash; One engineer trained little-lm, a 3.8-billion-parameter language model, on 65.3 billion tokens using eight rented B200s for 43 hours, for a total bill of $998. It scored 0.384 on CORE, against GPT-2&rsquo;s 0.2565 and 0.310 for a similarly priced nanochat run. The write-up publishes the architecture, training configuration, failed experiments and the optimisations that kept it inside the budget, which is the part that makes it reproducible rather than merely impressive.
-          <div class="sources">Sources: Unwind AI (Sep 11) <a href="https://hugovergnes.github.io/little-lm-3-8b/">Write-up</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-11</span>
-          <span class="label">Training a small model on expert trajectories can hurt once its harness is already tuned</span> &mdash; Salesforce found that directly training smaller models on expert agent trajectories degrades performance when the harness around them has already been optimised &mdash; the distillation and the scaffolding are optimising the same behaviour, and applied in that order the second one undoes the first. It is the training-side statement of the argument the <a href="agents.html">agents</a> page makes about harnesses: model and scaffold are not independent variables, and tuning them separately can leave you worse off than tuning either alone.
-          <div class="sources">Sources: TLDR AI (Sep 11) <a href="https://arxiv.org/abs/2609.09134">arXiv 2609.09134</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-10</span>
-          <span class="label">&lsquo;Recursive synthetic improvement&rsquo; names the loop the frontier now runs on: judges, teachers, curricula and environments all model-generated</span> &mdash; A long analysis argues that frontier progress has moved almost entirely onto recursive synthetic data loops, and enumerates where the recursion actually sits: the judge that scores outputs, the corpus that trains on them, the teacher that distils, the curriculum that orders tasks, and the RL environments the policy is trained in are each increasingly model-generated. The consequence it draws is about infrastructure rather than method &mdash; once models generate, evaluate and improve their own training data, the scarce input becomes scalable environments and on-policy learning capacity, which is what lets capability extend past imitation of the existing corpus. It is the general case of the specific results this page already tracks: GLM-5.3&rsquo;s agent-built, agent-graded RL environments, and DeepReinforce&rsquo;s Ornith-1.5 generating its own training tasks.
-          <div class="sources">Sources: TLDR AI (Sep 10)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-13</span>
-          <span class="label">TRL trains a coding agent inside its deployed harness rather than a reconstruction of it</span> &mdash; The usual way to train an agent is to rebuild its tool loop inside the training rig, which means optimising against an approximation of the thing that will actually run. This approach instead runs each rollout inside the deployed harness, letting TRL train on the model calls it genuinely made and on hidden-test rewards, so the policy is shaped by the real tool loop including its quirks and failure modes. It closes the train/serve gap at the harness level, which is where agent performance has been quietly leaking.
-          <div class="sources">Sources: MLOps Community (Aug 13)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">Magic claims a pretraining recipe 10&times; more compute-efficient than open-weight baselines</span> &mdash; Magic published its pretraining work, claiming its recipe is more than ten times more compute-efficient than that of leading open-weight base models &mdash; the argument being that a small lab without frontier compute can only compete on algorithmic efficiency. The company's stated thesis is that pretraining, agentic RL and long context are jointly sufficient to build superhuman coding agents and automate AI R&amp;D. The efficiency multiple is self-reported and the comparison baseline is not independently fixed, so it is a claim to track rather than a result to build on. <strong>Sharpened on Sep 11:</strong> Magic now says the recipe matched DeepSeek V4 using 50&times; fewer FLOPs, and that a larger $4 million run beat publicly available open base models. It credits dozens of improvements across architecture, optimisation, data and training stability rather than one trick. The model is not public and every figure is self-reported &mdash; but if it holds, frontier pretraining has far more algorithmic slack than the compute budgets imply.
-          <div class="sources">Sources: Unwind AI (Sep 11) TLDR AI (Sep 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">Between 2019 and 2025, data improvements delivered 3.24&times; more compute efficiency than model improvements</span> &mdash; An analysis of six years of pretraining progress finds that 3.24&times; more compute-efficiency gain came from data improvements than from model improvements, and that the two are largely independent rather than compounding. Most model research, on this reading, consisted of removing or pushing back constraints on scaling rather than making the architecture better per token. Two qualifications carry real weight: data improvements may matter less at larger scale, and small models see the largest gains from data quality &mdash; which is consistent with the small-model results now arriving monthly.
-          <div class="sources">Sources: TLDR AI (Sep 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">Progressive Point Matching gives long-horizon RL partial credit without changing the optimum</span> &mdash; Progressive Point Matching awards partial credit during long-horizon RL while leaving the optimal objective unchanged, improving training efficiency as tasks get longer. That invariance is the whole claim: the standard way to make sparse long-horizon rewards trainable is to shape them, and shaping usually moves what the policy is optimizing for. It addresses the same credit-assignment problem as process rewards, from the objective side rather than the annotation side.
-          <div class="sources">Sources: TLDR AI (Sep 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-08</span>
-          <span class="label">A complete GRPO loop that runs on a 0.8B base model with no SFT</span> &mdash; The recipe: take Qwen3.5-0.8B-Base, skip supervised fine-tuning entirely, and run GRPO on Countdown-Tasks-3to4 with a rule-based reward that simply checks whether the arithmetic target was reached. No cluster required. It is circulated as a suggested experiment rather than a validated result, and the rule-based reward is what makes it tractable &mdash; no reward model to train, and no reward model to be gamed.
-          <div class="sources">Sources: Unwind AI (Sep 8) <a href="https://huggingface.co/Qwen/Qwen3.5-0.8B-Base">Hugging Face</a></div>
-        </li>
-        <li>
-          <span class="date">2026-08-28</span>
-          <span class="label">Thinking Machines puts up to $50K of Tinker credits behind open-weight safety research</span> &mdash; The grants fund work on Tinker studying safer open models, hazardous-data filtering, tamper-resistant safety training and reward hacking. It is compute rather than cash, which narrows it to groups that actually want to run experiments &mdash; and it extends the <a href="training-and-rl.html">Tinker fine-tuning API</a> from a product into a research programme with a stated agenda.
-          <div class="sources">Sources: Unwind AI (Aug 28) <a href="http://thinkingmachines.ai/news/safety-research-grants/">Thinking Machines</a></div>
-        </li>
-        <li>
-          <span class="date">2026-08-31</span>
-          <span class="label">GLM-5.3 becomes fine-tunable through Thinking Machines&rsquo; Tinker API</span> &mdash; Tinker exposes LoRA fine-tuning, SFT, RL, DPO and distillation against GLM-5.3 &mdash; currently the strongest open-weights model on coding evaluations including Terminal-Bench 3.0 and DeepSWE 1.1. The significance is the pairing rather than either half: the strongest open coding checkpoint becoming adaptable through a hosted training API removes the two things that usually block domain adaptation, which are access to competitive weights and the infrastructure to train against them. It is the cheap counterpart to Thomson Reuters spending $40M to retrain Qwen (see <a href="model-releases.html">Model releases</a>), and it makes the argument on this page &mdash; that task expertise belongs in the training signal &mdash; actionable for teams that could not previously act on it.
-          <div class="sources">Sources: Unwind AI (Aug 31)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-28</span>
-          <span class="label">Thinking Machines: scaffolding hits a ceiling, so put the task expertise in the training signal</span> &mdash; A text-to-SQL result with a general claim behind it. Wrapping scaffolding around a text-to-SQL model improves performance, but only up to a limit set by the base model&rsquo;s own capability &mdash; so the domain knowledge encoded in that scaffold is being applied at the wrong layer. The argument is that expert judgment belongs <em>inside</em> the training process, as task-specific RL signal, because that is what scales; the scaffold is a way of paying for the same knowledge every inference instead of once. It is a useful counterweight to the harness-centric view on the <a href="agents.html">Agents</a> page: harness engineering buys real capability, and this names where it stops buying it.
-          <div class="sources">Sources: TLDR AI (Aug 28)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-24</span>
-          <span class="label">A single reference traces RL for LLMs from the vanilla policy gradient to CISPO</span> &mdash; Cameron Wolfe published a standalone guide covering RL fundamentals, the full evolution of policy-gradient algorithms used to train LLMs, and current open research areas. The spine is the progression: VPG establishes the shape, REINFORCE makes it a Monte Carlo estimate with a baseline, PPO adds a learned critic plus importance ratios and clipping, GRPO drops the critic by comparing completions within a group, and DAPO, Dr. GRPO, GSPO, TIS and CISPO refine loss aggregation, reward normalization, batch selection, clipping and per-token versus per-sequence ratios. The finding most likely to change practice sits in the advanced sections: on-policy RL is naturally robust to catastrophic forgetting where SFT is not, because on-policy updates stay near behaviour already plausible under the model &mdash; measured as low KL drift, and correlated with reduced forgetting.
-          <div class="sources">Sources: Deep (Learning) Focus (Aug 24)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-21</span>
-          <span class="label">TaoLive trains a 35B model to read whichever harness it is handed</span> &mdash; Harness-Aware Training is a post-training recipe rather than an architecture. TaoLive varies skill names and wording, tool schemas, prompt structure and hook behaviour throughout supervised fine-tuning and agentic RL, teaching a compact 35B model to interpret the harness it currently receives instead of memorizing one fixed interface. It is a direct answer to the brittleness that shows up whenever a harness is refactored under a fine-tuned model. The evaluation is vendor-authored and concentrated in live commerce, which limits how far the result travels.
-          <div class="sources">Sources: TLDR AI (Aug 21)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-21</span>
-          <span class="label">Harvey post-trains a Kimi K3 base with async RL in long-horizon legal environments</span> &mdash; Harvey post-trained a Kimi K3 base using asynchronous reinforcement learning inside realistic long-horizon legal environments, then trained separate capabilities for diligence, review tables and firm knowledge that the main system routes to as tools or subagents. The decision-changing idea is that a professional-services model improves by learning the workflow and harness rather than by ingesting more legal text &mdash; the same claim Thinking Machines made about putting expertise in the training signal, tested in a domain with real clients. Every reported result is vendor-authored and task-specific. (Deployment angle on the <a href="applications.html">Applications</a> page.)
-          <div class="sources">Sources: TLDR AI (Aug 21)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-20</span>
-          <span class="label">Agent Lightning v1.0 lifts Qwen3.5-9B by 14.6 points on SWE-bench Verified with 6K examples</span> &mdash; Agent Lightning v1.0 is a 3,500-line framework for harnessed agentic RL, designed to accept an arbitrary agent harness so that problems like retokenization and training stability can be studied directly. Evaluated across several agent tasks, it improves Qwen3.5-9B on SWE-bench Verified by 14.6 points using just 6,000 training examples. The sample efficiency is the notable figure. This is the framework release behind the <a href="tools-and-devex.html">v1.0.1 skill</a> that later installed into Claude Code, Codex and Cursor.
-          <div class="sources">Sources: TLDR AI (Aug 20)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-19</span>
-          <span class="label">Miles v0.1 packages the whole asynchronous RL loop as one open system</span> &mdash; Miles v0.1 is an open system for improving agents with RL after initial training, bundling rollout generation, sandboxing, asynchronous training, replay, model updates and multi-hardware support. The worked shape is a coding agent: many copies attempt tasks in isolated environments, attempts are scored, results feed back into training, and updated weights reach the workers without stopping the pipeline. It belongs beside Prime Intellect's Verifiers v1 and Moonshot's AgentENV as a third bet that the RL <em>plumbing</em>, not the algorithm, is what most teams are missing.
-          <div class="sources">Sources: TLDR AI (Aug 19)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-05</span>
-          <span class="label">The Stack v3 &mdash; 4.9T tokens of GitHub, delivered as whole repositories rather than loose files</span> &mdash; Hugging Face published the first refresh of the largest open source-code dataset in two years: <strong>stack-v3-train</strong> at 15.9TB / ~4.9 trillion tokens across 713 languages from 173M repositories (deduplicated, quality-filtered, PII-scrubbed), plus <strong>stack-v3-full</strong> at 113.7TB raw from 224M repositories for teams applying their own filters, under an Open Data Commons Attribution licence with a knowledge cutoff of August 7, 2025. The structural change matters more than the size: v2 recorded which files made up a repository but shipped only identifiers, while v3 delivers repositories whole &mdash; the form agentic coding assistants need to learn how a function in one file depends on a definition in another. Deduplication now runs across all languages at once with measured rather than estimated overlap, correcting a v2 bug that had discarded more files than intended. The caveats are stated plainly: licence labels come from error-prone automated detection, unlicensed files are retained in the training set, published secrets may survive, and the corpus may contain malicious code.
-          <div class="sources">Sources: The Batch (Aug 6)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-04</span>
-          <span class="label">Inkling-Small beats its 975B teacher — distillation transfers reasoning, costs recall</span> &mdash; Thinking Machines Lab's Inkling-Small (276B total / 12B active, Apache 2.0), distilled in part from the lab's 975B Inkling, outscores its teacher on SWE-bench Verified (80.2% vs 77.6%), Humanity's Last Exam (31.6% vs 29.7%), and ARC-AGI-2 (40.1% vs 36.5%) — while factual recall regresses sharply (SimpleQA Verified 20.6% vs 43.9%). The cleanest public datapoint yet on what frontier-scale distillation transfers and what it loses. (Release detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (Aug 3)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-29</span>
-          <span class="label">Moonshot open-sources AgentENV — the RL sandbox behind Kimi K3's agentic training</span> &mdash; Moonshot AI open-sourced AgentENV, the RL environment/sandbox infrastructure that powered the agentic RL training behind Kimi K3, framed as addressing the overlooked half of agentic RL — environment throughput — rather than the policy model itself.
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 28)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-15</span>
-          <span class="label">Prime Intellect Verifiers v1 — a rebuilt, composable stack for agentic RL and evals</span> &mdash; Verifiers v1 (0.2.0) overhauls Prime Intellect's environment library, decomposing RL environments into composable tasksets, harnesses, and runtimes and integrating tightly with the Environments Hub, so any task can be turned into a reusable RL environment you init, develop, eval, and push via the Prime CLI. As post-training shifts from static datasets to RL environments, a clean open standard for defining them becomes the new infrastructure layer the field builds on.
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 14)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-14</span>
-          <span class="label">Stanford TRACE — turning recurring agent failures into capability-targeted RL environments</span> &mdash; Stanford introduced TRACE, which watches an agent fail the same way repeatedly, then automatically constructs a targeted RL environment around that specific weakness and trains a LoRA adapter to close the gap — a four-step, LLM-driven pipeline with no hand-built training tasks. Instead of retraining the whole model, it patches the exact capability that keeps failing, making recurring failures the training signal — a cheaper, more targeted path to reliable agents than full fine-tuning runs. (Agent-reliability angle on the <a href="agents.html">Agents</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 13)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-09</span>
-          <span class="label">Liquid AI Antidoom — FTPO training cuts reasoning-model "doom loops" ~90%</span> &mdash; Reported in MarkTechPost's July 8 brief: Liquid AI open-sourced Antidoom, a training method using Final Token Preference Optimization (FTPO) to target the failure mode where reasoning models get stuck repeating or spiraling instead of converging. Doom-loop rates dropped as much as 90% (reported cases to ~1.4%), with eval scores improving across the board as a direct result of less looping. Code and blog public — a rare lightweight, open training fix that also raises raw scores.
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 8)</div>
-        </li>
-        <li>
-          <span class="date">2026-06-26</span>
-          <span class="label">Ornith-1.0 learns its own RL scaffolds during training</span> — DeepReinforce's open Ornith-1.0 agentic-coding family (9B–397B, MIT) is trained so the model generates its own task-decomposition strategies and refines them with RL, rather than relying on hardcoded scaffolding supplied by the inference harness at run time. The claim is that self-scaffolded models adapt to new task types better than those bound to a fixed harness — a training-side counterpart to the harness-commoditization trend. The 72B checkpoint reportedly matches Claude Opus 4.7 on SWE-bench. (Model-lineup angle on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: MarkTechPost AI Intelligence Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-09</span>
-          <span class="label">Harness-1 — RL-trained 20B retrieval agent inside a stateful search harness</span> — Harness-1 trains a 20B search agent with reinforcement learning inside a stateful search harness on GPT-OSS-20B, reaching 0.730 average curated recall. The agent learns how and when to search rather than just what to retrieve; weights and harness code are fully open. An environment-native counterpart to proxy-based RL like Polar.
-          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-09</span>
-          <span class="label">Nemotron 3 Ultra trained via multi-teacher on-policy distillation</span> — NVIDIA's 550B open MoE was built by distilling on-policy from 10+ domain-specific teacher models, illustrating that frontier open MoEs increasingly rely on multi-teacher distillation rather than a single teacher. (Full release detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: MarkTechPost AI Dev Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-05-28</span>
-          <span class="label">NVIDIA Polar — GRPO RL across Codex, Claude Code, Qwen Code</span> — A framework that proxies LLM API calls to reconstruct token-faithful RL trajectories for training agents on unmodified coding harnesses. Removes the white-box-model-access constraint typical of RL systems and uses simple GRPO.
-          <div class="sources">MarkTechPost newsletter</div>
-        </li>
+      <ul class="timeline index">
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#never-giving-up">&ldquo;Never Giving Up&rdquo; reallocates RL compute from easy problems to the ones standard RL abandons</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#retrieve-for-train">Retrieve-for-Train compiles an RL policy into a 53.9M diffusion retriever</a></span></li>
+        <li><span class="date">2026-09-14</span><span class="label"><a href="#toolgrad">ToolGrad builds the API chain first and writes the question afterwards</a></span></li>
+        <li><span class="date">2026-09-11</span><span class="label"><a href="#little-lm">little-lm &mdash; a 3.8B model trained from scratch for $998</a></span></li>
+        <li><span class="date">2026-09-11</span><span class="label"><a href="#salesforce-distillation-harness">Training a small model on expert trajectories can hurt once its harness is already tuned</a></span></li>
+        <li><span class="date">2026-09-10</span><span class="label"><a href="#recursive-synthetic-improvement">&lsquo;Recursive synthetic improvement&rsquo; names the loop the frontier now runs on</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#magic-pretraining-efficiency">Magic claims a pretraining recipe 10&times; more compute-efficient than open-weight baselines</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#data-vs-model-compute-efficiency">Between 2019 and 2025, data improvements delivered 3.24&times; more compute efficiency than model improvements</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#progressive-point-matching">Progressive Point Matching gives long-horizon RL partial credit without changing the optimum</a></span></li>
+        <li><span class="date">2026-09-08</span><span class="label"><a href="#grpo-on-a-laptop">A complete GRPO loop that runs on a 0.8B base model with no SFT</a></span></li>
+        <li><span class="date">2026-08-31</span><span class="label"><a href="#glm-5-3-tinker">GLM-5.3 becomes fine-tunable through Thinking Machines&rsquo; Tinker API</a></span></li>
+        <li><span class="date">2026-08-28</span><span class="label"><a href="#tinker-safety-grants">Thinking Machines puts up to $50K of Tinker credits behind open-weight safety research</a></span></li>
+        <li><span class="date">2026-08-28</span><span class="label"><a href="#thinking-machines-scaffolding-ceiling">Thinking Machines: scaffolding hits a ceiling, so put the task expertise in the training signal</a></span></li>
+        <li><span class="date">2026-08-24</span><span class="label"><a href="#policy-gradient-reference">A single reference traces RL for LLMs from the vanilla policy gradient to CISPO</a></span></li>
+        <li><span class="date">2026-08-21</span><span class="label"><a href="#taolive-harness-aware-training">TaoLive trains a 35B model to read whichever harness it is handed</a></span></li>
+        <li><span class="date">2026-08-21</span><span class="label"><a href="#harvey-legal-rl">Harvey post-trains a Kimi K3 base with async RL in long-horizon legal environments</a></span></li>
+        <li><span class="date">2026-08-20</span><span class="label"><a href="#agent-lightning-v1">Agent Lightning v1.0 lifts Qwen3.5-9B by 14.6 points on SWE-bench Verified with 6K examples</a></span></li>
+        <li><span class="date">2026-08-19</span><span class="label"><a href="#miles-v0-1">Miles v0.1 packages the whole asynchronous RL loop as one open system</a></span></li>
+        <li><span class="date">2026-08-13</span><span class="label"><a href="#trl-deployed-harness">TRL trains a coding agent inside its deployed harness rather than a reconstruction of it</a></span></li>
+        <li><span class="date">2026-08-05</span><span class="label"><a href="#the-stack-v3">The Stack v3 &mdash; 4.9T tokens of GitHub, delivered as whole repositories</a></span></li>
+        <li><span class="date">2026-08-04</span><span class="label"><a href="#inkling-small">Inkling-Small beats its 975B teacher &mdash; distillation transfers reasoning, costs recall</a></span></li>
+        <li><span class="date">2026-07-29</span><span class="label"><a href="#agentenv">Moonshot open-sources AgentENV &mdash; the RL sandbox behind Kimi K3&rsquo;s agentic training</a></span></li>
+        <li><span class="date">2026-07-15</span><span class="label"><a href="#verifiers-v1">Prime Intellect Verifiers v1 &mdash; a rebuilt, composable stack for agentic RL and evals</a></span></li>
+        <li><span class="date">2026-07-14</span><span class="label"><a href="#trace">Stanford TRACE &mdash; turning recurring agent failures into capability-targeted RL environments</a></span></li>
+        <li><span class="date">2026-07-09</span><span class="label"><a href="#antidoom">Liquid AI Antidoom &mdash; FTPO training cuts reasoning-model &ldquo;doom loops&rdquo; by as much as 90%</a></span></li>
+        <li><span class="date">2026-06-26</span><span class="label"><a href="#ornith-1-0">Ornith-1.0 learns its own RL scaffolds during training</a></span></li>
+        <li><span class="date">2026-06-09</span><span class="label"><a href="#harness-1">Harness-1 &mdash; RL-trained 20B retrieval agent inside a stateful search harness</a></span></li>
+        <li><span class="date">2026-06-09</span><span class="label"><a href="#nemotron-3-ultra">Nemotron 3 Ultra trained via multi-teacher on-policy distillation</a></span></li>
+        <li><span class="date">2026-05-28</span><span class="label"><a href="#nvidia-polar">NVIDIA Polar &mdash; GRPO RL across Codex, Claude Code, Qwen Code</a></span></li>
       </ul>
 
       <footer>Generated automatically by the AI digest task.</footer>
