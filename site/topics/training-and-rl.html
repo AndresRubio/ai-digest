@@ -59,8 +59,7 @@
           <li><a href="#rl-on-black-box-models">RL on black-box models <span class="n">2</span></a></li>
           <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">3</span></a></li>
           <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">3</span></a></li>
-          <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">2</span></a></li>
-          <li><a href="#rl-compiled-out-of-the-serving-path">RL compiled out of the serving path <span class="n">1</span></a></li>
+          <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">3</span></a></li>
           <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">2</span></a></li>
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
@@ -73,7 +72,7 @@
 
       <section class="topic-section" id="rl-on-black-box-models">
         <h3>RL on black-box models</h3>
-        <p class="lead">Both entries are GRPO; what differs is where the training signal has to be manufactured. One reconstructs it from outside a commercial agent, the other gets it free from arithmetic. Judge each on what the reward can be made to do that the task did not intend.</p>
+        <p class="lead">Both entries are GRPO, at opposite ends of the budget. One reconstructs a training signal from outside a commercial agent it cannot see into; the other runs on an open 0.8B base model where the reward is just arithmetic. Judge each on what the reward can be made to do that the task did not intend.</p>
 
         <article class="story" id="grpo-on-a-laptop">
           <span class="when">2026-09-08</span>
@@ -123,7 +122,7 @@
 
       <section class="topic-section" id="expertise-in-the-training-signal">
         <h3>Expertise in the training signal</h3>
-        <p class="lead">One argument, two vendor tests of it: domain knowledge encoded in a scaffold is paid for on every inference, and a scaffold only helps up to the base model&rsquo;s own ceiling. Put the expertise in the training signal instead. Both tests are vendor-authored and domain-bound, which is the limit to read them against.</p>
+        <p class="lead">A scaffold only helps up to the base model&rsquo;s own ceiling, and whatever domain knowledge it encodes is re-paid on every inference. One entry argues that; the other two are vendor attempts to act on it. Both of those are vendor-authored and bounded to a single domain, so read them for the mechanism rather than the score.</p>
 
         <article class="story unlinked" id="thinking-machines-scaffolding-ceiling">
           <span class="when">2026-08-28</span>
@@ -152,7 +151,15 @@
 
       <section class="topic-section" id="distillation-at-frontier-scale">
         <h3>Distillation at frontier scale</h3>
-        <p class="lead">Frontier open models are increasingly assembled by distilling teachers rather than trained straight through. The number to look for is not the win but the regression: reasoning can transfer past the teacher&rsquo;s own level while parametric recall is what pays for it.</p>
+        <p class="lead">Distillation here covers two things: compressing a teacher model into a smaller student, and compiling a learned policy out of the serving path altogether. Both deliberately discard something to buy the saving. What each one gives up is the thing to establish &mdash; parametric recall in one case, the ability to react mid-loop in the other.</p>
+
+        <article class="story" id="retrieve-for-train">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Retrieve-for-Train compiles an RL policy into a 53.9M diffusion retriever, 12&ndash;20&times; faster fan-out</a></h4>
+          <p>Google Research&rsquo;s <strong>R4T</strong> distils something other than a model: it distils the reinforcement learning itself out of the serving path. The RL runs once, offline, and its result is compiled into a 53.9M-parameter diffusion model that then generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 the fan-out takes 0.07 seconds against roughly 1.46 seconds, a 12&times; to 20&times; speedup depending on the setting.</p>
+          <p>The generalisable move is the framing: where RL is used to learn a <em>search</em> policy, the policy does not have to be executed as a policy at inference &mdash; it can be amortised into a generator, and the inference-time cost of RL becomes a training-time cost instead. The limit is built into that trade, since it only works where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns. For any fan-out settled before the results arrive, it is the right shape, and it is the first item on this page to treat RL as a compilation step.</p>
+          <div class="sources"><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Google Research</a> &middot; <a href="https://arxiv.org/abs/2603.06397">Paper</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
+        </article>
 
         <article class="story unlinked" id="inkling-small">
           <span class="when">2026-08-04</span>
@@ -167,19 +174,6 @@
           <h4>Nemotron 3 Ultra trained via multi-teacher on-policy distillation</h4>
           <p>NVIDIA&rsquo;s 550B/55B-active open MoE was built by distilling on-policy from more than ten domain-specific teacher models, illustrating that frontier open MoEs increasingly rely on multi-teacher distillation rather than on a single teacher or pure pre-training. (Full release detail on the <a href="model-releases.html">Model releases</a> page.)</p>
           <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
-        </article>
-      </section>
-
-      <section class="topic-section" id="rl-compiled-out-of-the-serving-path">
-        <h3>RL compiled out of the serving path</h3>
-        <p class="lead">Everywhere else on this page RL produces a policy the model carries into production. The one entry here does the opposite: it runs the RL once and compiles the result into a generator. Worth reading for the trade it names, which is what the move costs in flexibility.</p>
-
-        <article class="story" id="retrieve-for-train">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Retrieve-for-Train compiles an RL policy into a 53.9M diffusion retriever, 12&ndash;20&times; faster fan-out</a></h4>
-          <p>Google Research&rsquo;s <strong>R4T</strong> moves reinforcement learning out of the serving path entirely. The RL runs once, offline, and its result is compiled into a 53.9M-parameter diffusion model that then generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 the fan-out takes 0.07 seconds against roughly 1.46 seconds, a 12&times; to 20&times; speedup depending on the setting.</p>
-          <p>The generalisable move is the framing: where RL is used to learn a <em>search</em> policy, the policy does not have to be executed as a policy at inference &mdash; it can be amortised into a generator, and the inference-time cost of RL becomes a training-time cost instead. The limit is built into that trade, since it only works where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns. For any fan-out settled before the results arrive, it is the right shape, and it is the first item on this page to treat RL as a compilation step.</p>
-          <div class="sources"><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Google Research</a> &middot; <a href="https://arxiv.org/abs/2603.06397">Paper</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
         </article>
       </section>
 
@@ -324,7 +318,7 @@
           <span class="when">2026-08-28</span>
           <h4><a href="http://thinkingmachines.ai/news/safety-research-grants/">Thinking Machines puts up to $50K of Tinker credits behind open-weight safety research</a></h4>
           <p>The grants fund work on Tinker studying safer open models, hazardous-data filtering, tamper-resistant safety training and reward hacking. It is compute rather than cash, which narrows it to groups that actually want to run experiments.</p>
-          <p>It extends the Tinker fine-tuning API from a product into a research programme with a stated agenda &mdash; a quieter form of the same influence over what gets studied that owning the environment already confers.</p>
+          <p>It extends the <a href="#glm-5-3-tinker">Tinker fine-tuning API</a> from a product into a research programme with a stated agenda &mdash; a quieter form of the same influence over what gets studied that owning the environment already confers.</p>
           <div class="sources"><a href="http://thinkingmachines.ai/news/safety-research-grants/">Thinking Machines</a> &middot; <span class="via">via Unwind AI (Aug 28)</span></div>
         </article>
       </section>
