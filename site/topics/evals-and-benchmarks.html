@@ -126,13 +126,13 @@
 
       <section class="topic-section" id="scores-denominated-in-money">
         <h3>Scores denominated in money</h3>
-        <p class="lead">The measurements here are denominated in money rather than rank: cost per solved task, dollars per leaderboard position, the price of a chart axis, and what a discount does to usage. Each says something a resolution rate alone cannot, and each carries a caveat about what the denominator actually covers.</p>
+        <p class="lead">Money is the unit here rather than rank. In each case the dollar figure overturns or narrows what the score alone would support, and in each case it is only as good as its denominator &mdash; per task, per solve, per artifact, per developer who stayed.</p>
 
         <article class="story unlinked" id="deepseek-v41-flash-bug-hunt">
           <span class="when">2026-09-11</span>
           <h4>DeepSeek V4.1-Flash fixes 24 of 105 planted bugs for $1.08, where the leaders fix 27</h4>
           <p>On Bug Hunt Bench, V4.1-Flash at max effort fixed <strong>24 of 105 planted bugs</strong> across two repositories for <strong>$1.08</strong>, against 27 each for Opus 5 Max at $51.33 and Grok 4.6 Max at $16.96; its high-effort setting fixed 19 for $0.31. On OpenDesign Arena it scored 81.2 of 100 against GPT-6 Astra&rsquo;s 82.7 at $0.023 per artifact instead of $1.61, and averaged 5.3 minutes per task against 11.1.</p>
-          <p>The aggregate hides the shape: it beat Astra on landing pages and trailed it on dashboards, so the cheap model is not uniformly 98% as good &mdash; it is better at some of the work and worse at the rest. One discrepancy is worth stating rather than quietly resolving: the original entry&rsquo;s headline billed this as 89% of the leaders&rsquo; score for 2% of the bill, where 2% holds against Opus 5 Max&rsquo;s $51.33 and not against Grok 4.6 Max&rsquo;s $16.96, on which the same $1.08 is about 6%, so both denominators are given here.</p>
+          <p>The aggregate hides the shape: it beat Astra on landing pages and trailed it on dashboards, so the cheap model is not uniformly 98% as good &mdash; it is better at some of the work and worse at the rest. Billed as 2% of the leaders&rsquo; bill; $1.08 is 2% of Opus 5 Max&rsquo;s $51.33 but about 6% of Grok 4.6 Max&rsquo;s $16.96, so both denominators are given here.</p>
           <div class="sources"><span class="via">via Unwind AI (Sep 11), The Code (Sep 11) &mdash; no public URL given</span></div>
         </article>
 
@@ -159,7 +159,7 @@
             <span class="when">2026-08-28</span>
             <h4>OpenAI&rsquo;s price cuts moved Luna usage 13.8&times;, and nearly a third of the developers who switched stayed</h4>
             <p>Between July 27 and August 14 OpenAI discounted parts of its lineup, and OpenRouter&rsquo;s routing data shows Luna token usage rising <strong>13.8&times;</strong> and Terra <strong>5.6&times;</strong>, while Sol &mdash; held at list price &mdash; moved only 1.1&times;. Most of the gain came from <em>other labs</em> rather than cannibalising OpenAI&rsquo;s own models.</p>
-            <p>A rare clean measurement of demand elasticity at the model layer: price moves market share between vendors, and a meaningful slice of the switch is permanent. The hedge is carried deliberately: the original entry&rsquo;s headline said a third of the usage stayed, where its own body counts nearly a third of the <em>developers</em> who tried a discounted model and kept using it after prices returned, so the weaker reading is the one reproduced here.</p>
+            <p>A rare clean measurement of demand elasticity at the model layer: price moves market share between vendors, and a meaningful slice of the switch is permanent. Billed as a third of the usage staying; the measured figure is nearly a third of the <em>developers</em> who switched and kept the discounted model after prices returned.</p>
             <div class="sources"><span class="via">via TLDR AI (Aug 28) &mdash; no public URL given</span></div>
           </article>
 
@@ -181,7 +181,7 @@
           <span class="when">2026-06-13</span>
           <h4>Sub-5B-active MoEs are reported topping coding benchmarks against dense models of up to 120B+</h4>
           <p>A MarkTechPost trend-watch documented the active-parameter efficiency race: MoE models with under 5B active parameters now beat dense models on coding benchmarks. Cited examples are Cohere&rsquo;s North Mini Code (<strong>3B active</strong>), DeepSeek-V4-Pro (49B active, matching the dense frontier), NVIDIA Nemotron Ultra (55B active, long-agent state of the art) and the hybrid Zamba2-VL 7B (10&times; faster time-to-first-token). &ldquo;Score per active parameter&rdquo; is now a reported benchmark axis, which reframes efficiency from a deployment footnote into a headline dimension: total params up, active params down, quality up.</p>
-          <p>The hedge is carried deliberately: the original entry&rsquo;s headline billed this as topping coding benchmarks against dense 120B+ models flat, where its own body says North Mini Code beats dense models of <em>up to</em> 120B+ and the page&rsquo;s prose calls the result reported rather than verified, so the weaker reading is the one reproduced here. (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+          <p>Billed as topping coding benchmarks against dense 120B+ models; the claim is North Mini Code beating dense models of <em>up to</em> 120B+, reported rather than verified, the reading used here. (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
           <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
         </article>
       </section>
@@ -288,7 +288,7 @@
 
       <section class="topic-section" id="construct-validity-benchmark-scope">
         <h3>Construct validity &amp; benchmark scope</h3>
-        <p class="lead">A score can be wrong in ways the score cannot show: the questions were broken, the index was revised, the model memorised the answer key, a module cheated its way through, or the condition the test needed no longer exists. Every entry here is about the distance between what a number is called and what it measured.</p>
+        <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and one finds the observing condition itself disappearing.</p>
 
         <article class="story" id="dan-luu-bad-benchmarks">
           <span class="when">2026-09-15</span>
@@ -369,7 +369,7 @@
             <span class="when">2026-09-07</span>
             <h4>Artificial Analysis rewrote its Intelligence Index twice in four days, and the ranking flipped</h4>
             <p>On Sep 4 the v4.2 index retired GPQA-Diamond as saturated, added two harder tests and doubled the share scored on private tests to <strong>40%</strong>, which Artificial Analysis says reduces labs&rsquo; ability to game it; the organisation called this an expedited interim release because the frontier was moving too fast to wait for the completed v5. On Sep 7 v4.3 upgraded Terminal-Bench to v4.0 and replaced &tau;&sup3;-Banking with AutomationBench-AA.</p>
-            <p>Claude Fable 5.1 had led v4.2 by two points over GPT-6 Astra; after v4.3 the two tied at <strong>53</strong>. Nothing about either model changed in between, which is the whole point: a top score now has a shelf life measured against the evaluation&rsquo;s revision schedule rather than the model&rsquo;s. Both revisions are defensible individually &mdash; a saturated component measures nothing &mdash; so the lesson is that &ldquo;first on the Intelligence Index&rdquo; is a claim about an index version, and almost nobody quoting it says which.</p>
+            <p>Claude Fable 5.1 had led v4.2 by two points over GPT-6 Astra; after v4.3 the two tied at <strong>53</strong>. Nothing about either model changed in between, which is the whole point: a top score now has a shelf life measured against the evaluation&rsquo;s revision schedule rather than the model&rsquo;s. Both revisions are defensible individually &mdash; a saturated component measures nothing &mdash; so the lesson is that &ldquo;first on the Intelligence Index&rdquo; is a claim about an index version, and almost nobody quoting it says which. The v4.3 Terminal-Bench 4.0 upgrade overlaps the <a href="#aa-agent-index-hardening">agent-index hardening</a> recorded a day later, kept as a separate story because the sources report the two separately and give different figures.</p>
             <div class="sources"><span class="via">via The Batch (Sep 11) &mdash; no public URL given</span></div>
           </article>
 
@@ -377,7 +377,7 @@
             <span class="when">2026-08-28</span>
             <h4>DeepMind pilots double-blind AI evaluation using cryptographic environments</h4>
             <p>The first double-blind evaluation setup for AI models, using cryptographic environments to prevent benchmark contamination &mdash; neither the model developer nor the evaluated system can see the test content in a form that could leak into training data.</p>
-            <p>This is the structural answer to the problem the rest of this page keeps documenting from the symptom end: if a score can be inflated by scaffolding or by a harness, it can equally be inflated by contamination, and the current defence is mostly trust. A cryptographic construction replaces that trust with a mechanism. It is a pilot, with no results attached to it here.</p>
+            <p>This is the structural answer to the problem the rest of this page keeps documenting from the symptom end: if a score can be inflated by scaffolding (<a href="#arc-agi-3-harness">ARC-AGI-3</a>) or by a harness (<a href="#arena-ai-harness-tax">Terminal-Bench</a>), it can equally be inflated by contamination, and the current defence is mostly trust. A cryptographic construction replaces that trust with a mechanism. It is a pilot, with no results attached to it here.</p>
             <div class="sources"><span class="via">via TLDR AI (Aug 28) &mdash; no public URL given</span></div>
           </article>
 
@@ -409,7 +409,7 @@
             <span class="when">2026-08-18</span>
             <h4>Constraining one pipeline&rsquo;s decomposer to its assigned role erased 86% of its apparent RL gains</h4>
             <p>Compound LLM pipelines can improve on system-level metrics while a specialized module abandons its assigned role &mdash; &ldquo;role drift&rdquo; that end-to-end scores cannot see. When one pipeline&rsquo;s decomposer was constrained to stay in role by a technique called Role Anchor, <strong>86% of its apparent RL gains disappeared</strong>.</p>
-            <p>The lesson generalizes past RL: any multi-module system evaluated only end to end can be optimizing a shortcut through its own architecture, and the only way to find out is to measure the modules separately. The 86% is for this one pipeline, not a general rate.</p>
+            <p>The lesson generalizes past RL: any multi-module system evaluated only end to end can be optimizing a shortcut through its own architecture, and the only way to find out is to measure the modules separately. The 86% is for this one pipeline, not a general rate. Billed as 86% of the gains coming from one module feeding another the answers; what is shown is a module abandoning its assigned role, which is the claim used here.</p>
             <div class="sources"><span class="via">via TLDR AI (Aug 18) &mdash; no public URL given</span></div>
           </article>
 
@@ -481,7 +481,7 @@
           <span class="when">2026-09-09</span>
           <h4>Hyper-&tau;-bench: a developer agent passes 23.9% alone and 82.2% paired with an engineer</h4>
           <p>Sierra&rsquo;s Hyper-&tau;-bench drops a developer agent into a sandboxed workspace containing a simulated business&rsquo;s records plus a simulated client it can message at any time. The agent has to recover the spec from evidence, design an architecture, and turn the business&rsquo;s actions into tools until it has a working customer-service agent &mdash; which must then serve from a fixed model menu within a per-conversation cost budget.</p>
-          <p>Claude Opus 5 at max reasoning inside Claude Code passes <strong>23.9%</strong> of held-out evaluation tasks working alone. One discrepancy is worth stating rather than quietly resolving: the original entry&rsquo;s headline attributed the paired <strong>82.2%</strong> to Claude Opus 5 as well, where its own body credits &ldquo;the same class of model&rdquo; paired with an engineer who has deep context, so the weaker attribution is the one used here. What is being measured is the contribution of human context, and it is currently worth more than three times the model working unaided.</p>
+          <p>Claude Opus 5 at max reasoning inside Claude Code passes <strong>23.9%</strong> of held-out evaluation tasks working alone. Billed as Claude Opus 5 reaching <strong>82.2%</strong> when paired with an engineer; the result is for the same class of model rather than that checkpoint, the reading used here. What is being measured is the contribution of human context, and it is currently worth more than three times the model working unaided. Set beside <a href="#dig-bench">dig.bench</a>, the two isolate the same missing faculty from opposite ends: forming a correct model of a situation nobody has described.</p>
           <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
         </article>
 
@@ -497,7 +497,7 @@
           <span class="when">2026-08-18</span>
           <h4>dig.bench asks whether an agent can experiment its way to a game&rsquo;s hidden rules</h4>
           <p>dig.bench contains <strong>70 text-based games</strong>, 21 publicly released, in which the rules are unknown and the agent must experiment to discover them; progress is scored by whether the game is beaten within a step limit. Humans make the necessary discoveries even on the hardest tier, while the best models struggle there.</p>
-          <p>It isolates a capability most agent benchmarks assume rather than test &mdash; forming and revising a hypothesis about an environment &mdash; and sits naturally beside <a href="#terminal-bench-science">Terminal-Bench-Science</a> in measuring the research loop rather than the task.</p>
+          <p>It isolates a capability most agent benchmarks assume rather than test &mdash; forming and revising a hypothesis about an environment &mdash; and sits naturally beside <a href="#terminal-bench-science">Terminal-Bench-Science</a> in measuring the research loop rather than the task. Set against <a href="#hyper-tau-bench">Hyper-&tau;-bench</a>, the two isolate the same missing faculty from opposite ends: forming a correct model of a situation nobody has described.</p>
           <div class="sources"><span class="via">via TLDR AI (Aug 18) &mdash; no public URL given</span></div>
         </article>
 
@@ -524,7 +524,7 @@
             <span class="when">2026-07-15</span>
             <h4><a href="https://parlance-labs.com/blog/posts/auto-evals/">&ldquo;Do Automated Evals Work?&rdquo; &mdash; the best eval agent recovered 87% of human-flagged failures</a></h4>
             <p>Hamel Husain and Antaripa Saha masked expert labels on 100 real production traces from an apartment-leasing agent and asked Braintrust&rsquo;s Loop, Arize&rsquo;s Alyx and LangSmith&rsquo;s Engine to find the failures unaided; a general coding agent can attempt the same job from a folder of logs. The best of the three recovered <strong>87%</strong> of human-flagged failures, and every system surfaced issues the humans had missed.</p>
-            <p>All of them missed interactions that &ldquo;looked correct&rdquo; yet delivered a poor user experience, and each added false positives. The verdict is to automate error analysis to accelerate it but keep a human in the loop, because criteria drift &mdash; you discover grading criteria by reading outputs &mdash; is exactly what a fully automated pass skips. One hundred traces from one production agent is the scope of the result.</p>
+            <p>All of them missed interactions that &ldquo;looked correct&rdquo; yet delivered a poor user experience, and each added false positives. The verdict is to automate error analysis to accelerate it but keep a human in the loop, because criteria drift &mdash; you discover grading criteria by reading outputs &mdash; is exactly what a fully automated pass skips. One hundred traces from one production agent is the scope of the result. Billed as new eval agents recovering 87% of failures; 87% is the best of the three systems, not the class, which is the reading used here.</p>
             <div class="sources"><a href="https://parlance-labs.com/blog/posts/auto-evals/">Parlance Labs (Hamel Husain)</a></div>
           </article>
         </details>
@@ -567,7 +567,7 @@
           <span class="when">2026-07-25</span>
           <h4>Open ASR roundup: NVIDIA&rsquo;s Parakeet RNNT 1.1B tops the leaderboard, beating Whisper large-v3</h4>
           <p>A roundup of open speech-recognition models found NVIDIA&rsquo;s Parakeet RNNT 1.1B topping the Open ASR Leaderboard, beating Whisper large-v3 on <em>average word error rate</em>, with NVIDIA&rsquo;s Canary 1B leading multilingual transcription and translation.</p>
-          <p>An average word error rate across that leaderboard&rsquo;s sets is the whole of the claim &mdash; and the ASR memorization tests recorded elsewhere on this page are the reason to hold such a ranking loosely.</p>
+          <p>An average word error rate across that leaderboard&rsquo;s sets is the whole of the claim &mdash; and the <a href="#asr-benchmaxxing-tests">ASR memorization tests</a> recorded on this page are the reason to hold such a ranking loosely.</p>
           <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
         </article>
       </section>
