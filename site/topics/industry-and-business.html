@@ -62,293 +62,554 @@
         </details>
       </div>
 
-      <h3>M&amp;A and consolidation</h3>
-      <p>OpenAI's agreement to acquire Ona (June 11) is an early signal that frontier labs will buy, not just build, the enterprise agent runtime — trusted, customer-controlled cloud environments where agent work persists across devices and lives inside the systems software actually runs in. Ona's CEO framed the logic as complementary: Ona supplies the secure enterprise execution layer, OpenAI supplies frontier intelligence, product polish, and research/distribution scale. The deal remains subject to customary closing conditions including regulatory approval, with both companies operating independently until close. See <a href="agents.html">Agents &amp; agentic systems</a> for the technical context on enterprise agent runtimes. The consumer side got its own datapoint on July 31: <strong>Midjourney acquired Co-Star</strong> (terms undisclosed), the AI-plus-human astrology app &mdash; an image-generation platform buying a consumer-personalization audience, showing AI consolidation extending beyond the enterprise agent stack. August supplied the two clearest instances of the pattern. <strong>Stripe's acquisition of OpenRouter</strong> for more than $7 billion (Aug 16&ndash;17) took a company valued at $1.3 billion in May and routing over 10 trillion tokens a day; the case made for the price is that cross-network traffic across 80+ providers is behavioural data on model usage that no individual lab or provider possesses, which makes the router a strategic asset rather than a margin business.</p>
-      <p>It also explains the sudden competition one layer up, where <a href="agents.html">AgentSky and Monid</a> are trying to do for harnesses what OpenRouter did for models. Nvidia demonstrated a different instrument entirely, twice: it licensed Groq's technology non-exclusively and hired its senior team, then paid <strong>$6 billion to license Poolside's technology and hire the bulk of its engineers</strong> &mdash; 109 offers &mdash; alongside a $1 billion investment at a $12 billion pre-money. Neither is an acquisition, and that is the design: the capability transfers, the cap table stays separate, and no merger review attaches. Groq's subsequent $350 million raise at $3.5 billion, rebuilding around an inference cloud that pairs its own LPUs with Nvidia systems, shows what is left of a company afterwards. <strong>Listen Labs</strong> (Sep 9) shows the pattern reaching the application layer, and shows it through the round that did not happen. The company &mdash; voice AI running customer research interviews, roughly $30 million annualized &mdash; signed a term sheet for a $125 million Series C at a $1.5 billion valuation and then let it lapse, reportedly because Salesforce has been in talks to buy it outright at around $2 billion, some 65&times; revenue. The lapsed round is the datapoint: at these multiples the financing that would keep a profitable-shaped AI application independent is worth less to its owners than the acquisition, so consolidation is now happening before the growth-stage market gets to price the company at all.</p>
-      <p>OpenAI's acquisition of <strong>Glass Imaging</strong> (Sep 15, above $300 million) is a different instrument again, and the first of its kind in this section. Everything catalogued above buys something that makes the model better, sells the model to more people, or acquires the runtime the model executes in &mdash; Ona's enterprise execution layer, OpenRouter's cross-provider traffic, Poolside's engineers. Glass Imaging makes computational photography for smartphone cameras, claiming DSLR-grade output from phone optics, and was founded in 2019 by two former Apple camera engineers. None of that is an AI capability in the sense this page normally means; it is component expertise for a physical product, bought while OpenAI builds an unannounced device with Jony Ive. A frontier lab acquiring into a hardware supply chain before announcing the hardware is a vertical move rather than a horizontal one, and it belongs beside the tiered-access pattern below as evidence of the same underlying calculation: if the model layer is where competition is fiercest and margins are contested, the places to own are the ones a competitor cannot rent.</p>
+      <nav class="section-index">
+        <h2>On this page</h2>
+        <ul>
+          <li><a href="#m-a-and-consolidation">M&amp;A and consolidation <span class="n">9</span></a></li>
+          <li><a href="#frontier-lab-strategy">Frontier-lab strategy <span class="n">8</span></a></li>
+          <li><a href="#pricing-and-monetisation">Pricing and monetisation <span class="n">9</span></a></li>
+          <li><a href="#revenue-and-the-ipo-race">Revenue and the IPO race <span class="n">5</span></a></li>
+          <li><a href="#funding-rounds">Funding rounds <span class="n">3</span></a></li>
+          <li><a href="#compute-economics">Compute economics <span class="n">5</span></a></li>
+          <li><a href="#open-weights-and-model-sourcing">Open weights and model sourcing <span class="n">5</span></a></li>
+          <li><a href="#regulatory-and-legal-risk">Regulatory &amp; legal risk <span class="n">1</span></a></li>
+          <li><a href="#conferences-and-ecosystem">Conferences &amp; ecosystem <span class="n">1</span></a></li>
+          <li><a href="#model-labs-and-coding-tools-converge">Model labs and coding tools converge <span class="n">3</span></a></li>
+          <li><a href="#physical-ai-market-structure">Physical-AI market structure <span class="n">1</span></a></li>
+        </ul>
+      </nav>
 
-      <h3>Frontier-lab strategy</h3>
-      <p>Anthropic is using Opus updates to ship enterprise deployment features (sandboxes, MCP tunnels) and pricing/perf trade-offs (Fast mode) rather than chasing a new model name every quarter. Meanwhile the open-weight competition is increasingly Chinese: Tencent's Hy3 (295B MoE, 21B active, Apache 2.0) and Z.ai's GLM-5.2 (MIT, US-hosted on Ollama) now ship frontier-class reasoning fast enough to pull cost-sensitive enterprise token spend toward self-hostable open models and away from premium closed APIs. Meta is shifting posture too: its first paid model, <strong>Muse Spark 1.1</strong> (July 10), undercuts OpenAI and Anthropic on price — the open-weights incumbent now competing directly as a paid-API vendor, pressuring mid-tier pricing across the board. (Model detail on the <a href="model-releases.html">Model releases</a> page.) The strategic stakes of the Chinese open-weight surge got a name on Aug 3, when Sebastian Raschka (Vanishing Gradients podcast) posed the leadership question directly: if the developer ecosystem standardizes on Kimi K3, DeepSeek V4, and their successors as the default build-on layer, leadership in AI accrues to whoever owns the weights developers depend on — with open weights valued precisely because they preserve an alternative when a closed vendor's access or pricing changes.</p>
-      <p>On the closed side, the pricing model itself is now in play. OpenAI has started testing <strong>outcome-based billing</strong> with a small number of major accounts &mdash; payment on completion rather than per token (Sep 1) &mdash; with terms, customers and prices unannounced. It arrives at the same problem from the opposite direction as <a href="industry-and-business.html">Ollama's move to transparent per-token pricing</a>: token billing makes an agent's cost unforecastable in advance and its value unattributable afterwards, and vendors are experimenting at both ends of that complaint. The seat side moved too: ChatGPT Business gained a $100-a-month Premium tier (Aug 27) bundling ChatGPT, ChatGPT Work, Codex, connectors and admin controls, whose actual selling point for engineering teams is the removal of the five-hour usage window. And the consumer surface is now a real business independently of any of it &mdash; ChatGPT Ads hit a $1 billion annualized run rate in under 200 days. The financial picture behind those strategies inverted in August.</p>
-      <p>Anthropic's annualized run rate reached $65 billion at the end of July, from $47 billion in May and more than seven times its year-end-2025 pace, with 6,000 customers at $100,000+ per year and a projected profitable Q3; OpenAI grew 18% quarter over quarter to above $40 billion with deepening losses. Anthropic passed OpenAI in sales for the first time, and the enterprise-first strategy outperformed the consumer-first one in the quarter immediately preceding both companies' IPOs &mdash; OpenAI's CFO has told staff it will be public by 2027 or sooner against an $852 billion valuation. ChatGPT's fourth consecutive monthly user record, 1.06 billion MAU in August, sharpens rather than softens the problem, since it shows users and revenue moving at different rates. Meanwhile enterprise spend is drifting to cheaper tiers even inside a single vendor: Opus 5 overtook Fable 5 in corporate spending within a month at half the price, and Ramp's July data has Opus 4.8 at 28.0% of Anthropic spend against Fable 5's 8.0%. The caveat worth carrying into any procurement conversation is that cheaper models may need more attempts, longer prompts and more human review &mdash; cost per successful task, not per token, is what actually moved.</p>
-      <p>Two August entries stake out the ends of the strategic spectrum. At one end, Anthropic's IPO is being discussed above a $2 trillion valuation on projected annualized revenue of $100&ndash;120 billion by the end of 2026 &mdash; the maximal version of the centralised-frontier bet, where scale in capital and compute is the product. At the other, <strong>River AI</strong> (Aug 12&ndash;13) is a two-month-old company with General Catalyst leading its seed/Series A, building an open-source personal-AI stack on the premise that the user should own the hardware, the data and the model outright. The differentiating claim is technical rather than ideological: continual learning exposed as an API that updates the weights, with a stated 20-minute training run, which puts personalisation in the parameters rather than the context window. Igor Babuschkin's track record &mdash; DeepMind, OpenAI, xAI co-founder &mdash; is why the bet is funded at this size this early, and it is a direct wager that the open-weights spending shift showing up in Ramp's numbers keeps going.</p>
-      <p>The pricing question at the top of the market turned out to be the wrong question. A Sep 14 analysis observes that Anthropic, Google and OpenAI each shipped their strongest model <em>twice</em> this month &mdash; a public paid tier, and a vetted identity-gated tier carrying the sharper capabilities &mdash; while public list prices barely moved. Mythos, Flash Cyber and Astra's advanced path all ask for an organisation ID, a government ID or trusted-defender status rather than a larger budget. Read alongside the outcome-based billing experiment above, the two developments describe a market splitting along a seam that is not price at all: at the commodity end labs are experimenting with how to charge, and at the frontier they have stopped using charging as the allocation mechanism. For a buyer that changes the planning question from what they can afford to whether they qualify, and it makes capability access a function of institutional standing &mdash; which is a durable advantage for incumbents and a new class of risk for anyone whose product depends on the top tier. The same structure is tracked on the <a href="safety-and-policy.html">Safety &amp; policy</a> page as tiered access, where the unresolved question is who audits the qualification.</p>
-      <p>Anthropic's own position this cycle is the sharpest illustration of how commercial and safety arguments have become hard to separate. Its CEO published a call to pace frontier development roughly seven weeks before an IPO, while the company tells investors it expects a second consecutive profitable quarter on gross margins above 80% before partner revenue share and before training cost, and while committing to more than 14.8GW of compute. Texas paused new data-centre approvals in August, and the US Census Bureau's adoption survey, updated Aug 23, still finds 22% of businesses reporting AI use. None of that establishes bad faith &mdash; a compute-constrained leader would want a slowdown, and a lab that believed its own risk case would also argue for one, and both can be true at once. What it does establish is that the two positions need reconciling in public rather than being held in separate documents, and the reconciliation has not been offered. Set against the $2 trillion valuation discussion above, the notable thing is that the risk argument is being made <em>to</em> the market rather than despite it.</p>
-      <p>A Sep 15 analysis states the reconciliation problem in its general form, and its conclusion is more interesting than the cynicism it starts from. The observation is that the rules the frontier labs have proposed would protect capital already committed, preserve the price premium on frontier access, and defer billions in competitive spending &mdash; so the safety argument and the commercial interest point the same way, and neither should be accepted at face value merely because the other exists. But the second half is the part that actually constrains anyone's behaviour: no lab can economically slow down unilaterally, because unilateral restraint hands the frontier to whoever declines to match it. That is a cleaner explanation than bad faith for why every proposal routes through government enforcement rather than a voluntary pact, and it converges with the antitrust reading on the <a href="safety-and-policy.html">Safety &amp; policy</a> page from the opposite direction &mdash; one says a private agreement would be illegal, the other says it would be unstable even if it were legal. For anyone forecasting frontier cadence, the practical consequence is that the pacing question is now a legislative one, and the labs' own incentives are the reason it cannot resolve anywhere else.</p>
-      <p>The consumer product direction sharpened the same week from an unexpected corner of Anthropic's roadmap. Code found ahead of any announcement indicates <strong>Claude Money</strong>, a personal-finance surface letting users link bank accounts and ask Claude about spending and plans, with the design intent being persistent access to financial context rather than uploading statements per conversation. Account types, data provider, supported actions and timing are all unknown, so it is a direction rather than a product. Its significance here is positional: Anthropic is the enterprise-first lab on this page, the one whose run rate came from 6,000 six-figure business customers rather than from a consumer surface, and whose IPO case rests on that mix. A mass-market product built on standing access to personal financial data is a different business with a different regulatory perimeter, arriving weeks before the offering. Set beside the ChatGPT Ads run rate on the other side of the comparison, both leaders now appear to be building toward the revenue shape they spent the last two years distinguishing themselves from.</p>
-      <p>Apple's Sep 9 announcement is the same economics arriving at the opposite end of the market. <strong>Siri AI</strong> ships in beta with the OS 27 releases on September 14 carrying daily usage caps, language and regional restrictions, and a stated plan to charge for expanded access later &mdash; with Apple explicit that limits vary by feature, request complexity, system demand and system policy, and that rollout is paced to available server capacity. Reporting on the same launch has the new Siri backed by Google's Gemini models rather than Apple's own, which makes the metering read differently again: the company with the largest install base and the strongest historical preference for bundling is rationing an assistant, on someone else's models, because inference capacity is the constraint. Every consumer-facing assistant with a flat price is making the same arithmetic somewhere less visibly.</p>
+      <section class="topic-section" id="m-a-and-consolidation">
+        <h3>M&amp;A and consolidation</h3>
+        <p class="lead">Three instruments run through this section and they buy different things: an outright purchase, a licence plus mass hiring that carries no merger review, and acquisition talks that end a funding round before it closes. Read each entry for what actually transfers &mdash; engineers, traffic data, a runtime &mdash; and for what deliberately stays separate.</p>
 
-      <p>The strategic case for open, ownable models gained a marquee proponent: <strong>Thinking Machines Lab</strong>, Mira Murati's ~$50B research lab, published a technical argument that AI should not be a locked API you rent but a <em>distributed, customizable</em> system — with human values and domain knowledge encoded directly into fine-tuned weights that users own and continue to train. Coming from OpenAI's former CTO, it is a deliberate shot across the bow of the closed-frontier-API business model and reframes the open-vs-closed debate from a licensing/cost preference into a control-and-sovereignty question — timed to a moment when export controls keep pulling closed models offline and Chinese open weights are surging. (Sovereignty/policy angle on the <a href="safety-and-policy.html">Safety &amp; policy</a> page.)</p>
-      <p>Sep 16 produced the first quantified sign that this page&rsquo;s longest-running competitive assumption is contested. <strong>OpenRouter</strong> reported its users spending more on OpenAI models than on Anthropic models last week, the first time in more than two and a half years, driven by GPT-5.6 and GPT-6 Astra. The measure is narrow in a useful way: realised developer spend through one aggregator, not survey preference or enterprise commitment, so it records what traffic was actually routed to and weights it by price. Two confounds keep it from being decisive &mdash; weighting by dollars cannot distinguish more requests from more expensive ones, and OpenRouter&rsquo;s population skews toward developers comparing models rather than toward committed production deployments. A single week does not overturn Anthropic&rsquo;s coding-agent position, but it is the first number showing pressure on it where the routing decisions get made. The commercial motion on the other side of the same week is the withdrawal: OpenAI retires <strong>GPT-5.5</strong> from ChatGPT, ChatGPT Work and Codex on October 14, pushing users to GPT-5.6 Sol or GPT-6 Astra. Deprecation with a date is routine and worth recording anyway, because the systems most likely to have pinned that ID are the ones nobody is watching &mdash; CI jobs, scripts, evaluation harnesses with months-old baselines &mdash; and every published comparison anchored on GPT-5.5 stops being reproducible on the same day, which affects more numbers than the migration does. <strong>Codex for OSS</strong> doubling from 5,000 to 10,000 maintainers is the third face of it: six months of ChatGPT Pro plus possible API credits for review, triage, releases and maintenance automation, after a first round that included $160,000 through GitHub Sponsors and $600,000 for the Rust Foundation. The sums are small against frontier compute and that is the point &mdash; maintainers are the population whose tooling choices propagate furthest per person, and the targeted work is the part of maintenance that exhausts them rather than the part they enjoy. Nobody has published whether the first cohort&rsquo;s triage latency or release cadence actually moved.</p>
+        <article class="story unlinked" id="glass-imaging">
+          <span class="when">2026-09-15</span>
+          <h4>OpenAI buys Glass Imaging, a computational-camera startup, at above $300 million</h4>
+          <p>OpenAI quietly acquired Glass Imaging, which develops AI-based smartphone camera processing that it <em>claims</em> reaches DSLR-grade image quality from phone optics, in a deal valuing the company above $300 million. Glass Imaging was founded in 2019 by two former Apple employees who had worked on camera technology there. OpenAI has not said what it intends to do with it, but the acquisition lands while it builds an unannounced device with Jony Ive.</p>
+          <p>It is a different instrument from the <a href="#openai-ona">Ona</a> or <a href="#nvidia-poolside">Poolside</a> transactions: not a capability that makes the model better, not an enterprise runtime to sell, but component expertise for hardware &mdash; the first time a frontier lab has bought into the physical supply chain of a product it has not yet announced. The reading is vertical rather than horizontal: if the model layer is where margins are contested, the places worth owning are the ones a competitor cannot rent.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 15) &mdash; no public URL given</span></div>
+        </article>
 
-      <p>OpenAI's <strong>Sponsored Agents</strong> (Sep 17) is the most consequential monetisation move on this page in some time, and its significance is architectural rather than financial. Clicking an ad in ChatGPT no longer opens a link; it starts a conversation with an agent the sponsoring business supplies. Around it OpenAI shipped AI-assisted ad creation in ChatGPT Work, new Ads Manager creative tools, and HubSpot and Shopify integrations, which together describe an advertising business rather than an experiment. What an advertiser buys here is not placement beside an answer but a conversational surface <em>inside</em> the assistant, and that changes what the product is in a way a banner never did. Every prior ad format was visually separable from the content around it; a sponsored agent is the same interaction shape as the assistant itself, so the distinction between the model's reasoning and a paid party's reasoning has to be carried by disclosure design that has not been published. Nothing about spend model, targeting or labelling was described. Set against the subscription and API revenue lines this page tracks, the strategic reading is straightforward &mdash; the free tier is being converted from a funnel into inventory, and the unit being sold is attention inside a trusted conversation.</p>
+        <article class="story unlinked" id="listen-labs">
+          <span class="when">2026-09-09</span>
+          <h4>Listen Labs let a $1.5B Series C lapse while Salesforce talks a ~$2B acquisition</h4>
+          <p>Listen Labs, which runs customer research interviews with voice AI, signed a term sheet for a $125 million Series C at a $1.5 billion valuation and then never closed it &mdash; <em>reportedly</em> because Salesforce has been in talks to buy the company outright at around $2 billion. The company is described as roughly $30 million in annualized revenue, which puts the discussed price at about 65&times; revenue. Nothing about the talks has been confirmed by either party.</p>
+          <p>The round that did not happen is the datapoint. At these multiples the financing that would keep an application-layer AI company independent is worth less to its owners than the acquisition, so consolidation now happens before the growth-stage market gets to price the company at all &mdash; the same pattern as the <a href="#stripe-openrouter">Stripe/OpenRouter</a> and <a href="#nvidia-hugging-face">Nvidia/Hugging Face</a> deals, reaching one layer further down the stack.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 10) &mdash; no public URL given</span></div>
+        </article>
 
-      <h3>Compute economics</h3>
-      <p>The sharpest recent evidence that compute, not demand, is the binding constraint is OpenAI declining revenue for it: on Sep 10 it paused new sign-ups to the $200-a-month Pro plan while GPT-6 Astra rolled out across Pro, Plus, Enterprise and Business. A lab that turns away its most profitable subscribers is reporting a supply limit, and the timing sharpens the point &mdash; Astra is the model that spends markedly fewer tokens per task than its predecessor, so efficiency per unit of work did not translate into slack in aggregate. That is what elastic demand looks like from the supply side, and it is the same dynamic the <a href="infrastructure.html">spot market for inference</a> is priced around. NVIDIA meanwhile frames compute itself as the product: "tokens are profitable, compute is revenue." The GTC Taipei lineup (Vera CPU for agents, Vera Rubin in full production, RTX Spark and DGX Station desk-side machines) ties hardware demand directly to agentic and RL workloads, positioning NVIDIA as the toll-collector of the agent era rather than a participant in the model race. The buy side has now published a figure large enough to test that framing.</p>
-      <p>Anthropic has signed <strong>$517 billion of compute across 14.8GW in eleven months</strong>, mostly with Google and AWS, including Akamai and Fluidstack, $45bn with Nscale, and $35bn with Nvidia-backed Lambda where Nvidia holds the data-centre lease itself &mdash; a structure that puts the chip vendor on both sides of the transaction, and one reason credit-default swaps on Nvidia debt have been repricing. The constraint that makes those numbers interesting is not money: a 2027 forecast puts compute production ahead of energizable capacity by around 15GW, delayed on interconnections, transformers, cooling and permitting (see <a href="infrastructure.html">Infrastructure &amp; compute</a>). Gigawatts, not dollars, are what the leases are actually competing for. Epoch's Anthropic case study (Aug 14) is the most direct evidence yet for that ordering. Tracing how the company financed its buildout, it finds most of the capital was committed <em>before</em> revenue spiked, which means financing was not gating the expansion even at the point where the revenue case was weakest. Institutional investors lent against commitments to long-term payments, especially where a more established organisation stood behind part of the risk &mdash; a structure that decouples the buildout from current earnings entirely. If that generalises, the standard bear case about frontier compute running out of money is aimed at the wrong constraint, and the interesting question is not who can raise but who can energise. Ramp's demand-side index points at the other end of the same pipe: model-serving platforms reached 6.1% of AI-using businesses while frontier-API adoption growth slowed, so the incremental dollar is increasingly buying open weights on rented hardware rather than a frontier API call.</p>
+        <article class="story unlinked" id="nvidia-hugging-face">
+          <span class="when">2026-09-04</span>
+          <h4>NVIDIA acquires Hugging Face for $12.93 billion</h4>
+          <p>NVIDIA confirmed the acquisition of the platform hosting three million models and serving more than 18 million developers. Jensen Huang said Hugging Face will stay open and that NVIDIA compute will not be required to build or deploy on it.</p>
+          <p>That commitment is now what the entire open-weights distribution layer rests on, since a single vendor of accelerators owns the default place open models are published and fetched from. Whatever the operating reality proves to be, the structural fact is that the commons of open-model distribution is no longer neutrally owned.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 4) &mdash; no public URL given</span></div>
+        </article>
 
-      <h3>Regulatory &amp; legal risk</h3>
-      <p>State-level enforcement is now live: Florida's suit against OpenAI is the first US state lawsuit against an AI company. See <a href="safety-and-policy.html">Safety, alignment &amp; policy</a> for detail. The signal for the industry is that internal safety-warning handling now carries litigation exposure.</p>
+        <details>
+          <summary>Earlier in this section (6)</summary>
 
-      <h3>Conferences &amp; ecosystem</h3>
-      <p>Applied AI Summit 2026 is positioning around real-world deployment, governance, and evaluation — the practitioner side of the field.</p>
+          <article class="story unlinked" id="nvidia-poolside">
+            <span class="when">2026-08-21</span>
+            <h4>Nvidia pays $6B to license Poolside&rsquo;s technology and hire most of its engineers</h4>
+            <p>Nvidia will invest $1 billion in Poolside at a $12 billion pre-money valuation and pay $6 billion to license its technology and hire the bulk of its engineering team, with 109 employees receiving offers. The $6 billion buys a licence and a hiring wave, not the company.</p>
+            <p>That structure &mdash; non-exclusive licence plus mass hiring rather than acquisition &mdash; is the same one Nvidia used with <a href="#groq-350m">Groq</a> weeks earlier, and it moves the capability across without triggering merger review. Nvidia frames the investment as building a US alternative to Chinese AI; the mechanism it is actually establishing is a way to absorb a lab without buying one.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 21), TLDR (Aug 24) &mdash; no public URL given</span></div>
+          </article>
 
-      <h3>Model labs and coding tools converge</h3>
-      <p>A new competitive axis opened July 9 with <strong>Grok 4.5</strong>, co-trained by SpaceXAI and Cursor on Cursor's proprietary coding data and shipped inside Cursor, in Grok Build, and via API at $2 input. Until now frontier models were trained in isolation and integrated into IDEs afterward; a model built in direct partnership with the coding tool that generates the usage data points to a different balance of power — if the data advantage holds, leverage in the coding-agent stack shifts toward the tool companies that own distribution and telemetry, not only the labs that train weights. The aggressive $2-input price also applies direct pressure to the premium coding tier (Opus/Fable-class). (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
-      <p>That convergence completed its second stage on Sep 16, and the mechanism this time is distribution rather than co-training. <strong>Grok Bot</strong>, SpaceX AI&rsquo;s autonomous agent platform built in collaboration with Cursor, is now included directly in paid Cursor subscriptions including Pro and Teams &mdash; introduced on August 11, three days before SpaceX completed its $60 billion acquisition of Cursor, and positioned as an AI teammate given real work rather than as a chat product, the same category Meta&rsquo;s Muse entered on September 8. This page recorded that acquisition as consolidation of a coding tool. Shipping a first-party agent into the acquired product&rsquo;s paid tiers is what turns an owned tool into an owned distribution channel, and the base it reaches is developers who chose Cursor for the IDE rather than for anyone&rsquo;s agent &mdash; which is precisely the advantage Microsoft has held with Copilot by incumbency, acquired here by purchase. Grok 4.5&rsquo;s co-training showed a tool company&rsquo;s data improving a model; this shows a model company using a tool company&rsquo;s install base, and the second is the more durable asset of the two. Nothing independent has been published on adoption or on what Grok Bot actually does well, and the source is competitive analysis rather than a technical evaluation, so the strategic reading is firmer here than the product one.</p>
+          <article class="story unlinked" id="groq-350m">
+            <span class="when">2026-08-18</span>
+            <h4>Groq raises $350M at $3.5B after Nvidia licensed its technology and took its senior staff</h4>
+            <p>Groq raised $350 million at a $3.5 billion valuation following Nvidia&rsquo;s non-exclusive licensing deal and its hiring of senior team members. What remains is a rebuild around an inference cloud that combines Groq&rsquo;s own LPUs with Nvidia systems &mdash; the company that positioned itself as the alternative to Nvidia now selling a product that includes Nvidia.</p>
+            <p>Read with the <a href="#nvidia-poolside">Poolside</a> deal three days later, it is the clearest picture yet of what Nvidia&rsquo;s capital position lets it do to competitors without acquiring them, and of what is left of a company afterwards.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 18) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="stripe-openrouter">
+            <span class="when">2026-08-17</span>
+            <h4>Stripe buys OpenRouter for over $7 billion, five times its May valuation</h4>
+            <p>Stripe agreed to acquire OpenRouter for more than $7 billion; the model-routing startup had been valued at $1.3 billion after a May funding round. OpenRouter handles over 10 trillion tokens a day across 80+ providers, and the strategic case made for the price is that this cross-network traffic is behavioural data on model use that no individual provider or lab possesses &mdash; positioning Stripe as a neutral party in routing the way it is in payments.</p>
+            <p>It also explains why routing became the contested layer: whoever runs it sees everyone&rsquo;s traffic. The same competition is now visible one layer up, where <a href="agents.html">AgentSky and Monid</a> are trying to do for harnesses what OpenRouter did for models.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 17), TLDR (Aug 17), TLDR AI (Aug 20) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="spacex-cursor-close">
+            <span class="when">2026-08-14</span>
+            <h4>SpaceX closes its ~$60B all-stock acquisition of Cursor &mdash; then Cursor ships Origin</h4>
+            <p>The acquisition that began as a compute deal completed on August 14, days after Grok 4.6 launched. The sequence is the story: in April Cursor agreed to train on SpaceX&rsquo;s Colossus supercomputer under a deal that carried an option to buy; Cursor&rsquo;s coding-agent data plus SpaceXAI&rsquo;s compute produced Grok 4.5 in July, which lifted Grok from 38 to 56 on Artificial Analysis&rsquo; Intelligence Index; SpaceX exercised the option in June.</p>
+            <p>Three days after closing, Cursor introduced <strong>Origin</strong>, a code-hosting service comparable to GitHub but designed for the volume of code agents generate &mdash; the acquirer moving straight from the model layer into the substrate agents write into. The distribution consequences are tracked under <a href="#grok-bot-in-cursor">Grok Bot</a>, and the supply consequences under <a href="#openai-cuts-off-cursor">OpenAI&rsquo;s cut-off</a>.</p>
+            <div class="sources"><span class="via">via The Batch (Aug 21) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="midjourney-costar">
+            <span class="when">2026-07-31</span>
+            <h4>Midjourney acquires astrology app Co-Star</h4>
+            <p>Midjourney, one of the first online image-generation platforms, acquired Co-Star, the astrology app that uses AI and human input to generate horoscopes and birth charts. Deal details were not disclosed.</p>
+            <p>It is a consumer-audience acquisition rather than an agent-stack one &mdash; an image-generation platform buying a personalization brand, which is a reminder that AI consolidation runs on distribution and audience as well as on the runtime layer this section mostly tracks.</p>
+            <div class="sources"><span class="via">via AI Loves Data (Jul 31) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story" id="openai-ona">
+            <span class="when">2026-06-12</span>
+            <h4><a href="https://ona.com/stories/ona-joins-openai">OpenAI to acquire Ona, folding it into the Codex team</a></h4>
+            <p>Ona, an enterprise agentic-coding platform reporting weekly agent sessions up 13&times; in production this year, announced an agreement to join OpenAI as part of the Codex team. Ona contributes trusted, customer-controlled cloud environments for long-running enterprise agent work; OpenAI contributes frontier models, product polish and distribution scale.</p>
+            <p>The deal remains subject to customary closing conditions including regulatory approval, and both companies operate independently until close. It is the early signal that frontier labs will buy rather than only build the enterprise agent runtime &mdash; see <a href="agents.html">Agents &amp; agentic systems</a> for the technical context.</p>
+            <div class="sources"><a href="https://ona.com/stories/ona-joins-openai">Ona announcement</a> &middot; <span class="via">via Ona newsletter (email)</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="frontier-lab-strategy">
+        <h3>Frontier-lab strategy</h3>
+        <p class="lead">What a lab argues and what it has contracted to do are separate documents, and several entries here only make sense read against both. Judge each on whether the commercial position is disclosed alongside the argument, and on whether anyone outside the company can check the numbers being quoted.</p>
+
+        <article class="story" id="openrouter-spend-crossover">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://threadreaderapp.com/thread/2099898254905549220.html">OpenRouter users spent more on OpenAI than Anthropic for the first time in two and a half years</a></h4>
+          <p>OpenRouter reported that in the past week its users spent more money on OpenAI models than on Anthropic models &mdash; the first time in two and a half years &mdash; driven by GPT-5.6 and GPT-6 Astra usage. The measure is narrow in a useful way: realised developer spend through one aggregator, not survey preference, enterprise commitment or benchmark position, so it records what traffic was actually routed to, weighted by price.</p>
+          <p>Two confounds keep it from being decisive. Weighting by dollars conflates volume with cost per token, so a shift toward more expensive models registers identically to a shift in how many requests go where; and OpenRouter&rsquo;s population skews toward developers comparing models rather than toward committed production deployments. One week does not overturn Anthropic&rsquo;s coding-agent position, but it is the first quantified sign of pressure on it where the routing decisions get made.</p>
+          <div class="sources"><a href="https://threadreaderapp.com/thread/2099898254905549220.html">OpenRouter</a> &middot; <span class="via">via TLDR (Sep 16), The Code (Sep 16)</span></div>
+        </article>
+
+        <article class="story" id="gpt-5-5-retirement">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://threadreaderapp.com/thread/2099954190600876533.html">GPT-5.5 is retired from ChatGPT, ChatGPT Work and Codex on October 14</a></h4>
+          <p>OpenAI will remove GPT-5.5 from ChatGPT, ChatGPT Work and Codex on October 14, steering developers toward GPT-5.6 Sol or GPT-6 Astra. It is a routine deprecation with a date, which is precisely why it is worth recording: a model ID disappearing from an API is a breaking change for anything that pinned it, and the systems most likely to have done so are the ones nobody is currently looking at &mdash; scripts, CI jobs, evaluation harnesses whose baselines were fixed months ago.</p>
+          <p>Comparative benchmarks anchored on GPT-5.5 also stop being reproducible on that date, which quietly affects more published numbers than the migration does. Read with the <a href="#openrouter-spend-crossover">OpenRouter spend figure</a> from the same day, the two are one commercial motion from opposite ends: usage moving toward the new lineup, and the old lineup withdrawn so the rest follows.</p>
+          <div class="sources"><a href="https://threadreaderapp.com/thread/2099954190600876533.html">OpenAI</a> &middot; <span class="via">via Unwind AI (Sep 16), The Code (Sep 16)</span></div>
+        </article>
+
+        <article class="story" id="codex-for-oss">
+          <span class="when">2026-09-16</span>
+          <h4><a href="https://openai.com/form/codex-for-oss/">OpenAI doubles Codex for OSS to 10,000 maintainers after $760K in first-round funding</a></h4>
+          <p>OpenAI is expanding Codex for OSS from 5,000 to 10,000 maintainers, with selected applicants receiving six months of ChatGPT Pro plus potential API credits for review, triage, releases and maintenance automation. The first six months also included $160,000 distributed through GitHub Sponsors and $600,000 for the Rust Foundation.</p>
+          <p>The sums are modest against frontier compute budgets and that is rather the point: this is distribution spending. Maintainers are the population whose tooling choices propagate furthest per person, since the harness a widely depended-upon project adopts becomes the harness its contributors learn, and the named work is the part of maintenance that burns people out rather than the part they enjoy. Nobody has published whether the first cohort&rsquo;s triage latency or release cadence actually moved.</p>
+          <div class="sources"><a href="https://openai.com/form/codex-for-oss/">OpenAI</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="frontier-slowdown-economics">
+            <span class="when">2026-09-15</span>
+            <h4><a href="https://cogito-ergo-sum.dev/frontier-economics">The labs proposing a slowdown are also the parties it pays &mdash; and cannot slow alone</a></h4>
+            <p>An analysis of the pacing debate makes the economic argument its participants have left implicit. The rules the frontier labs have proposed would protect capital already committed, preserve the price premium on frontier access, and defer billions in competitive spending &mdash; so a safety argument and a commercial interest point the same way, and neither should be taken at face value on the strength of the other.</p>
+            <p>The second half cuts against the cynical reading and is the part that constrains behaviour: no lab can economically slow down unilaterally, because unilateral restraint transfers the frontier to whoever declines to match it. That is a cleaner explanation than bad faith for why every proposal routes through government enforcement rather than a voluntary pact, and it converges from the opposite direction with the antitrust reading on the <a href="safety-and-policy.html">Safety &amp; policy</a> page &mdash; one says a private agreement would be illegal, the other that it would be unstable even if it were legal.</p>
+            <div class="sources"><a href="https://cogito-ergo-sum.dev/frontier-economics">Frontier economics</a> (commentary) &middot; <span class="via">via TLDR AI (Sep 15)</span></div>
+          </article>
+
+          <article class="story" id="claude-money">
+            <span class="when">2026-09-15</span>
+            <h4><a href="https://www.testingcatalog.com/anthropic-prepares-claude-money-for-personal-finance/">Anthropic is preparing Claude Money, which would link bank accounts directly to the model</a></h4>
+            <p>Code found ahead of any announcement indicates Anthropic is building Claude Money, letting users connect bank accounts and ask Claude about spending, plans and other financial questions. The design intent visible in it is persistent access to a user&rsquo;s financial context rather than the current pattern of uploading statements per conversation. Account types, the data provider, the supported actions and the launch timing are all unknown, so this is a direction rather than a product.</p>
+            <p>What makes it worth recording is where it sits. Anthropic already ships third-party personal-finance connectors and finance-specific agents for professional users; the consumer version would be the first case of this page&rsquo;s enterprise-first lab &mdash; the one whose <a href="#anthropic-65b-run-rate">run rate came from 6,000 six-figure business customers</a> &mdash; building a mass-market product on standing access to personal financial data, weeks before an offering. Set beside the <a href="#chatgpt-ads">ChatGPT Ads run rate</a>, both leaders appear to be building toward the revenue shape they spent two years distinguishing themselves from.</p>
+            <div class="sources"><a href="https://www.testingcatalog.com/anthropic-prepares-claude-money-for-personal-finance/">TestingCatalog</a> &middot; <span class="via">via TLDR AI (Sep 15)</span></div>
+          </article>
+
+          <article class="story unlinked" id="anthropic-slowdown-vs-ipo">
+            <span class="when">2026-09-14</span>
+            <h4>Anthropic calls for a slowdown seven weeks before an IPO, while contracting 14.8GW</h4>
+            <p>The commercial context around Amodei&rsquo;s pacing essay is worth recording as its own datapoint, because the numbers are checkable even where the motives are not. Anthropic is telling investors it expects a second consecutive profitable quarter with gross margins above 80% <em>before</em> revenue shared with distribution partners and <em>before</em> training cost, with an IPO roughly seven weeks out, while committing to expanding to more than 14.8GW of compute.</p>
+            <p>Texas, the largest US data-centre state, paused new approvals in August, and the US Census Bureau&rsquo;s adoption survey, updated Aug 23, still finds only 22% of businesses reporting AI use. None of that establishes bad faith &mdash; a compute-constrained leader would want a slowdown, and a lab that believed its own risk case would argue for one, and both can be true at once. What it does establish is that the two positions need reconciling in public, and the reconciliation has not been offered.</p>
+            <div class="sources"><span class="via">via AI Supremacy (Sep 14) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="siri-ai-beta">
+            <span class="when">2026-09-09</span>
+            <h4>Siri AI ships in beta on September 14 with daily usage caps and a paid tier promised</h4>
+            <p>Apple&rsquo;s long-delayed assistant arrives with the OS 27 releases on September 14 and stays labelled beta, carrying daily usage caps, language and regional restrictions, and a stated intention to sell expanded access later. Apple is explicit about why: limits vary by feature, request complexity, system demand and system policy, and access is paced to available server capacity. Coverage of the same launch reports the new Siri is backed by Google&rsquo;s Gemini models rather than Apple&rsquo;s own.</p>
+            <p>It shipped on Sep 15 with a second form of rationing attached: only Apple Intelligence-capable devices get Siri AI at all, so iOS 27 splits the installed base into phones that receive the assistant and phones that do not. Apple states that it does not store user data and that neither Apple nor Google can access what Siri reads from a user&rsquo;s private information &mdash; a claim about a Gemini-backed assistant with access to personal data that rests on architecture nobody outside Apple can inspect. The company with the largest install base and the strongest preference for bundling is metering an assistant, on someone else&rsquo;s models, because inference capacity is the constraint.</p>
+            <div class="sources"><span class="via">via TLDR AI (Sep 10), TLDR (Sep 10), The Code (Sep 10), TLDR (Sep 15) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="claudeforce">
+            <span class="when">2026-08-26</span>
+            <h4>Salesforce and Anthropic ship &ldquo;Claudeforce&rdquo; &mdash; 37 pre-built sales skills inside Claude</h4>
+            <p>A Claude plugin with 37 pre-built skills for reading Salesforce data and updating records, with Slack integration planned. Benioff framed it as an answer to &ldquo;SaaSpocalypse&rdquo; concerns &mdash; the thesis that capable agents dissolve the value of seat-priced application software.</p>
+            <p>The counter-move is the instructive part: rather than resisting the agent, the system of record ships the skills that let the agent operate it, betting that owning the data and the workflow outlasts owning the interface. Compare the &ldquo;incumbents are coming&rdquo; argument recorded elsewhere on this page.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 27) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="pricing-and-monetisation">
+        <h3>Pricing and monetisation</h3>
+        <p class="lead">Vendors are experimenting at both ends of one complaint: token billing makes an agent&rsquo;s cost unforecastable beforehand and its value unattributable afterwards. Watch what each scheme moves the risk onto &mdash; the buyer, the vendor, or a third party paying for attention &mdash; and note where list prices did not move at all.</p>
+
+        <article class="story" id="sponsored-agents">
+          <span class="when">2026-09-17</span>
+          <h4><a href="https://openai.com/">OpenAI turns the ChatGPT ad into an agent the advertiser controls</a></h4>
+          <p>OpenAI announced <strong>Sponsored Agents</strong>: clicking an ad in ChatGPT starts a conversation with an agent the sponsoring business supplies, rather than opening a link. Alongside it came AI-assisted ad creation inside ChatGPT Work, new creative tools in Ads Manager, and integrations with HubSpot and Shopify &mdash; together an advertising business rather than an experiment.</p>
+          <p>The change worth recording is structural rather than commercial. An advertiser is no longer buying placement next to an answer but a conversational surface inside the assistant, and every prior ad format was visually separable from the content around it. A sponsored agent has the same interaction shape as the assistant itself, so the boundary between the model&rsquo;s reasoning and a paid party&rsquo;s reasoning rests entirely on disclosure design &mdash; and no disclosure design, spend model or targeting detail was published. Read against the subscription and API lines this page tracks, the free tier is being converted from a funnel into inventory.</p>
+          <div class="sources"><a href="https://openai.com/">OpenAI</a> (vendor homepage) &middot; <span class="via">via TLDR AI (Sep 17)</span></div>
+        </article>
+
+        <article class="story" id="frontier-shipped-twice">
+          <span class="when">2026-09-14</span>
+          <h4><a href="https://okaneland.com/signal/the-frontier-twice">Every frontier lab now ships its best model twice, and the second copy is not for sale</a></h4>
+          <p>Anthropic, Google and OpenAI each released their strongest model in two forms this month: a public paid tier, and a vetted, identity-gated tier carrying the sharper capabilities. Public list prices barely moved. What the second tier asks for instead of money is an organisation ID, a government ID, or trusted-defender status &mdash; Mythos, Flash Cyber and Astra&rsquo;s advanced path all sit behind one of those.</p>
+          <p>It is easy to miss precisely because nothing on a pricing page changed. Price stopped being the allocation mechanism at the top of the market and identity replaced it, which turns the buyer&rsquo;s planning question from what they can afford into whether they qualify &mdash; a durable advantage for institutional incumbents and a new dependency risk for anyone whose product needs the top tier. Set beside <a href="#outcome-based-billing">outcome-based billing</a>, the market is splitting along a seam that is not price at all. (Governance angle on the <a href="safety-and-policy.html">Safety &amp; policy</a> page, where the same pattern is tracked as tiered access.)</p>
+          <div class="sources"><a href="https://okaneland.com/signal/the-frontier-twice">Okaneland</a> (analysis) &middot; <span class="via">via TLDR AI (Sep 14)</span></div>
+        </article>
+
+        <article class="story unlinked" id="outcome-based-billing">
+          <span class="when">2026-09-01</span>
+          <h4>OpenAI starts billing some accounts only when the work completes</h4>
+          <p>OpenAI is testing outcome-based pricing with a small number of major accounts: they pay when the model actually finishes the job. Terms, customers and prices are unannounced.</p>
+          <p>The motivation is the one every finance team has hit &mdash; token billing makes an agent&rsquo;s cost unforecastable and its value unattributable &mdash; and it is the same pressure that produced <a href="#ollama-per-token-pricing">Ollama&rsquo;s move to transparent per-token pricing</a> from the opposite direction.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 1) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story unlinked" id="ollama-per-token-pricing">
+            <span class="when">2026-09-01</span>
+            <h4>Ollama moves to transparent per-token pricing with no rate windows</h4>
+            <p>Ollama restructured Pro, Max and Team onto published per-token rates with a monthly credit pool rather than opaque quotas: Pro at $20 per month including $60 of usage, Max at $100 including $300, and a new Team plan at $500 including $1,000 of shared usage across unlimited seats with no per-seat limits. Overflow continues at the same per-token rate.</p>
+            <p>The pointed detail is the removal of 5-hour and weekly limits &mdash; the throttling pattern subscription coding-agent plans have converged on. Every request runs on dedicated compute in the US and Europe, plus Singapore for some Qwen models, with zero data retention and no prompt logging. It positions open-model serving explicitly against the metered-subscription model the frontier labs use.</p>
+            <div class="sources"><span class="via">via Ollama (Sep 1) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="chatgpt-ads">
+            <span class="when">2026-08-28</span>
+            <h4>OpenAI puts ads in ChatGPT</h4>
+            <p>Ads begin appearing on the Free and Go plans, with Plus, Pro, Enterprise, Business and Education remaining ad-free. Initially they are non-personalised &mdash; selected from the current conversation topic plus coarse signals like general location and device type, explicitly not past chats or memories &mdash; and OpenAI says it will ask users to opt in before personalising, at which point interaction history and chat context feed selection, managed in settings.</p>
+            <p>Advertisers receive only aggregate performance data and no access to chats, history, memories or personal details, and OpenAI states ads do not influence answers and are visually separated from responses. The structural fact underneath the safeguards is that the highest-traffic consumer AI surface now has an advertising business attached &mdash; and it scaled immediately: OpenAI says ChatGPT Ads reached a <strong>$1 billion annualized revenue run rate in under 200 days</strong> from launch. <a href="#sponsored-agents">Sponsored Agents</a> three weeks later removes the visual separation this launch relied on.</p>
+            <div class="sources"><span class="via">via OpenAI (Aug 28), TLDR AI (Sep 1) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="chatgpt-business-premium">
+            <span class="when">2026-08-27</span>
+            <h4>OpenAI&rsquo;s $100-a-month Premium seat removes the five-hour limit</h4>
+            <p>ChatGPT Business gained a Premium seat at $100 per month billed annually, covering ChatGPT, ChatGPT Work, Codex, connectors, admin controls, billing, security and analytics.</p>
+            <p>The detail that decides it for engineering teams is the removal of the five-hour usage window &mdash; for Codex-heavy work that limit, not the seat price, was the binding constraint.</p>
+            <div class="sources"><span class="via">via Unwind AI (Aug 27) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="opus-5-corporate-spend">
+            <span class="when">2026-08-24</span>
+            <h4>Opus 5 overtakes Fable 5 in corporate spending within a month, at half the price</h4>
+            <p>Opus 5 passed Fable 5 in corporate model spending within a month of launch. Low switching costs let businesses route routine work to cheaper models while reserving premium systems for tasks needing sustained autonomy &mdash; but the analysis is careful about the arithmetic: Opus 5 costs half of Fable&rsquo;s rates, and the cheaper system may need more attempts, longer prompts or more human review, so cost per <em>successful</em> task is the figure that decides it.</p>
+            <p>Ramp&rsquo;s July billing data across 70,000 companies puts Opus 4.8 at 28.0% <em>of Anthropic model spend</em>, Sonnet 4.6 at 8.3%, Fable 5 at 8.0% and Opus 5 at 3.5% &mdash; shares within one vendor&rsquo;s line, not shares of the market. Separately, open-source models went from 28% to 62% of token share at Vercel in two months.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 24), Simon Willison (Aug 23) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="google-flash-cyber">
+            <span class="when">2026-07-22</span>
+            <h4>Google&rsquo;s Flash tier reportedly gets cheaper and gains a &ldquo;Cyber&rdquo; variant</h4>
+            <p>Google&rsquo;s Flash model tier <em>reportedly</em> gets cheaper and gains a new &ldquo;Cyber&rdquo; variant, mentioned only as a headline item in a weekly roundup with no further detail available.</p>
+            <p>It is consistent with the mid-tier price pressure this page tracks through <a href="#meta-muse-spark-1-1">Meta&rsquo;s Muse Spark 1.1</a> and the Chinese open-weight releases, and if the &ldquo;Cyber&rdquo; naming mirrors the security-specific model pattern appearing elsewhere (see <a href="safety-and-policy.html">Safety &amp; policy</a>), a possible sign that task-specific variants are becoming a pricing lever in their own right. Nothing beyond the headline has been confirmed.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="opus-4-8-clouds">
+            <span class="when">2026-05-28</span>
+            <h4>Anthropic ships Claude Opus 4.8 across major clouds</h4>
+            <p>Opus 4.8 is available on the Anthropic API, AWS, Google Cloud and Microsoft Foundry from launch day, priced at $5 input / $25 output per million tokens. Fast mode runs at 2&times; standard pricing, down from prior Fast-mode pricing, and delivers roughly 2.5&times; faster token generation.</p>
+            <p>Shipping on every major cloud on day one is a distribution decision rather than a capability one, and the Fast-mode repricing is the clearest statement of the trade the tier sells: latency bought with margin, at a rate the vendor has now reduced.</p>
+            <div class="sources"><span class="via">via Anthropic email announcement &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="revenue-and-the-ipo-race">
+        <h3>Revenue and the IPO race</h3>
+        <p class="lead">Annualised run rate is not revenue, and a valuation under discussion is not a price. Every figure below is something a company told investors, reported at second hand, and this page&rsquo;s own sources disagree on at least one growth rate. Take the weaker number, and check what it measures.</p>
+
+        <article class="story unlinked" id="chatgpt-1bn-mau">
+          <span class="when">2026-09-09</span>
+          <h4>ChatGPT reaches 1.06 billion monthly active users, a fourth consecutive record</h4>
+          <p>ChatGPT hit 1.06 billion monthly active users in August, breaking its own record for the fourth month running. It is a single number with no accompanying engagement or revenue detail.</p>
+          <p>It sits awkwardly beside OpenAI&rsquo;s <a href="#openai-q2-vs-anthropic">reported 18% quarterly revenue growth</a>: user growth and revenue growth have visibly decoupled, which is the tension an IPO prospectus will have to address.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="openai-cfo-public-by-2027">
+          <span class="when">2026-08-20</span>
+          <h4>OpenAI&rsquo;s CFO tells staff the company will be public by 2027</h4>
+          <p>Sarah Friar told an all-hands that OpenAI will be a public company in 2027 or sooner. The company confidentially filed its IPO prospectus with the SEC in June without disclosing a debut date, and is under pressure to justify an $852 billion valuation. Anthropic has also filed and has been testing investor appetite.</p>
+          <p>Both filings landing in the same window, with the revenue trend running against the larger company, is the context for every capability-withholding announcement either lab has made since.</p>
+          <div class="sources"><span class="via">via TLDR (Aug 20) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="openai-q2-vs-anthropic">
+          <span class="when">2026-08-19</span>
+          <h4>OpenAI&rsquo;s Q2 grew 18% with deepening losses while Anthropic more than doubled</h4>
+          <p>OpenAI&rsquo;s revenue grew 18% from the first to the second quarter while its losses deepened; Anthropic more than doubled revenue over the same period, passed OpenAI in sales for the first time, and swung to a small operating profit. Both companies have confidentially filed IPO prospectuses.</p>
+          <p>The divergence is recent enough to be volatile, but it is the first quarter in which the enterprise-first strategy outperformed the consumer-first one on the metric each company is about to be priced on.</p>
+          <div class="sources"><span class="via">via TLDR (Aug 19) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story unlinked" id="anthropic-65b-run-rate">
+            <span class="when">2026-08-18</span>
+            <h4>Anthropic&rsquo;s annualized revenue reaches $65 billion, more than seven times its year-end pace</h4>
+            <p>Anthropic told investors its annualized run rate hit $65 billion at the end of July &mdash; up from $47 billion in May and more than seven times its pace at the end of the previous year &mdash; with 6,000 customers spending $100,000 or more annually, and an expectation that Q3 will be profitable on the same model used to declare Q2 profitable. A run rate is an annualized projection from a recent period, not a year of booked revenue.</p>
+            <p>OpenAI&rsquo;s annualized revenue was reported at over $40 billion in the same coverage. This page&rsquo;s two sources disagree on the growth attached to it &mdash; 35% quarter to date here against <a href="#openai-q2-vs-anthropic">18% quarter over quarter</a> reported the following day &mdash; and the weaker figure is the one to carry. The reversal is the story either way: Anthropic passed its older rival for the first time this quarter.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 18), TLDR (Aug 18), Simon Willison (Aug 23) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="anthropic-ipo-2-trillion">
+            <span class="when">2026-08-14</span>
+            <h4>Anthropic&rsquo;s IPO is being discussed at $2 trillion, and financing looks unlikely to be the compute bottleneck</h4>
+            <p>Investors expect Anthropic&rsquo;s IPO <em>could exceed</em> a $2 trillion valuation on the back of projected annualized revenue of $100&ndash;120 billion by the end of 2026, which would make it the largest listing on record. Both the valuation and the revenue are expectations rather than figures anyone has reported.</p>
+            <p>The more load-bearing analysis ran alongside it: Epoch&rsquo;s case study finds that most of the financing for Anthropic&rsquo;s infrastructure buildout was assembled <em>before</em> its revenue spiked, which suggests capital is not the near-term limit on frontier compute growth. Institutional lenders appear willing to lend against long-term payment commitments, particularly where an established counterparty absorbs part of the risk &mdash; so the binding constraint stays power, silicon and siting, as the <a href="#anthropic-517b-compute">compute commitments</a> below show.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 14) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="funding-rounds">
+        <h3>Funding rounds</h3>
+        <p class="lead">A round prices a company; it does not settle the thesis being funded. Each of these raised against a claim &mdash; that AI coding is not winner-take-all, that Europe can simply buy the compute, that a specialised inference chip survives its first customer &mdash; and none of the three has been tested yet.</p>
+
+        <article class="story unlinked" id="cognition-2b">
+          <span class="when">2026-09-09</span>
+          <h4>Cognition raises $2B at $48B, on cash burn approaching $800M this year</h4>
+          <p>Cognition raised $2 billion at a $48 billion valuation, led by Andreessen Horowitz with Accel, Founders Fund, General Catalyst and Avenir. It leases an Nvidia server cluster that <em>could</em> push total cash burn to $800 million this year, and is expected to reach $4&ndash;5 billion in annualized revenue by the end of 2026 &mdash; a projection, not a reported figure.</p>
+          <p>The read offered by investors is that AI coding is not a winner-take-all market: a valuation of this size only makes sense if several major players can hold meaningful share simultaneously, which is a bet against the consolidation the past year has otherwise shown.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="mistral-3b-euro">
+          <span class="when">2026-09-09</span>
+          <h4>Mistral raises &euro;3B at over &euro;21B in Europe&rsquo;s largest technology equity round</h4>
+          <p>Samsung led a &euro;3 billion round valuing Mistral above &euro;21 billion, joined by EQT&rsquo;s Scaleup Europe Fund and PSG Equity &mdash; what <em>Mistral calls</em> the largest technology equity round in European history.</p>
+          <p>&ldquo;Sovereign AI&rdquo; remains a marketing position until the models compete on merit, but the capital question is now settled: Europe&rsquo;s strongest open-weight lab can buy the compute needed to make the argument. Whether it converts is the thing to watch, not the valuation.</p>
+          <div class="sources"><span class="via">via Unwind AI (Sep 9) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="etched-700m">
+          <span class="when">2026-08-19</span>
+          <h4>Etched ships its first rack to Jane Street and raises $700M at $21B</h4>
+          <p>Etched delivered its first hardware rack to Jane Street and raised $700 million at a $21 billion valuation.</p>
+          <p>A first customer shipment moves the company from architecture claims to a deployed product, and the customer choice is informative: a trading firm buys latency it can measure, on workloads it understands precisely, which is the least forgiving first market a specialized inference chip could pick.</p>
+          <div class="sources"><span class="via">via TLDR AI (Aug 19) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="compute-economics">
+        <h3>Compute economics</h3>
+        <p class="lead">Money stopped being the scarce input before capacity did. Read the commitments here against gigawatts and delivery dates rather than dollars: a lease signed now for a 2027 site is a bet on power, transformers and permitting, and the demand it assumes is years ahead of the substation that would serve it.</p>
+
+        <article class="story" id="openai-pro-signups-paused">
+          <span class="when">2026-09-10</span>
+          <h4><a href="https://techcrunch.com/2026/09/10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand/">OpenAI pauses $200-a-month Pro sign-ups as Astra rolls out</a></h4>
+          <p>OpenAI stopped taking new subscriptions for its $200-per-month Pro plan while GPT-6 Astra rolls out to Pro, Plus, Enterprise and Business accounts. Pausing sales of the highest-margin tier is a capacity statement rather than a pricing one.</p>
+          <p>The timing sharpens it: Astra is the model that spends markedly fewer tokens per task than its predecessor, and it still ran the subscription list out of headroom &mdash; cheaper per task and cheaper in aggregate are different claims when demand responds to price. That is the same dynamic the <a href="infrastructure.html">spot market for inference</a> is priced around.</p>
+          <div class="sources"><a href="https://techcrunch.com/2026/09/10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Sep 11)</span></div>
+        </article>
+
+        <article class="story unlinked" id="anthropic-517b-compute">
+          <span class="when">2026-09-08</span>
+          <h4>Anthropic has signed $517B of compute in eleven months &mdash; 14.8GW</h4>
+          <p>Anthropic&rsquo;s compute leases over the past eleven months total $517 billion and 14.8GW, primarily with Google and AWS, including large agreements with Akamai and Fluidstack, a $45bn deal with <a href="#anthropic-nscale-45b">Nscale</a>, and a $35 billion cloud agreement with Nvidia-backed Lambda in which Nvidia itself holds the data-centre lease. The company filed confidentially for an IPO with the SEC in June.</p>
+          <p>That last structure puts the chip vendor on both sides of the transaction, and is one reason credit-default swaps on Nvidia debt have been repricing. Set the gigawatt figure against the <a href="infrastructure.html">15GW of 2027 capacity that may not be energizable</a>: the contracts are signed against supply that does not exist yet.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 8), TLDR (Sep 1) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="anthropic-nscale-45b">
+          <span class="when">2026-08-26</span>
+          <h4>Anthropic commits ~$45B to Nscale for 460MW &mdash; and re-enters the defense market</h4>
+          <p>A roughly $45 billion cloud deal with UK-based Nscale for around 460 megawatts at a West Virginia development due online at the end of 2027, running NVIDIA Vera Rubin chips. The scale is the point: a single model developer contracting for nearly half a gigawatt places it among the largest industrial power consumers in its region, and the 2027 delivery date means the capacity is being bought years ahead of the demand it assumes.</p>
+          <p>In the same week Anthropic advertised for a Head of National Security Sales to revive defense contracts, after previously being blacklisted by the Department of Defense over technology-use concerns.</p>
+          <div class="sources"><span class="via">via TLDR AI (Aug 27), TLDR AI (Aug 28) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story" id="ramp-ai-index">
+            <span class="when">2026-08-13</span>
+            <h4><a href="https://ramp.com/data/ai-index-august-2026">Ramp&rsquo;s index shows AI spend rotating toward model-serving platforms and open source</a></h4>
+            <p>The share of AI-using businesses paying for model-serving platforms rose again, to 6.1%, while adoption growth at OpenAI and, to a lesser degree, Anthropic slowed.</p>
+            <p>The mechanism matters more than the level: with most businesses that will try AI having already tried it, growth has to come from existing customers spending more &mdash; and that incremental spend is increasingly going to open-weight models on serving infrastructure rather than to frontier APIs. It is the demand-side counterpart to the <a href="#open-weights-and-model-sourcing">open-weight releases</a> on the supply side.</p>
+            <div class="sources"><a href="https://ramp.com/data/ai-index-august-2026">Ramp AI Index</a> &middot; <span class="via">via TLDR (Aug 13)</span></div>
+          </article>
+
+          <article class="story unlinked" id="nvidia-gtc-taipei">
+            <span class="when">2026-06-03</span>
+            <h4>NVIDIA bets the business on &ldquo;AI factories&rdquo; at GTC Taipei</h4>
+            <p>Jensen Huang&rsquo;s keynote framed compute as revenue &mdash; &ldquo;tokens are profitable, compute is revenue&rdquo; &mdash; and unveiled Vera, a CPU for agents, Vera Rubin in full production, and desk-side AI supercomputers (RTX Spark with Microsoft, DGX Station for Windows).</p>
+            <p>It positions NVIDIA&rsquo;s growth around agentic and RL compute demand rather than the model-capability race: the toll-collector of the agent era rather than a participant in it.</p>
+            <div class="sources"><span class="via">via NVIDIA GTC email &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="open-weights-and-model-sourcing">
+        <h3>Open weights and model sourcing</h3>
+        <p class="lead">The argument has moved from licensing cost to who holds the alternative when a closed vendor changes access or price. None of these entries reports adoption numbers of its own, so treat them as positions taken and money committed rather than as evidence that enterprise sourcing has already shifted.</p>
+
+        <article class="story unlinked" id="river-ai">
+          <span class="when">2026-08-13</span>
+          <h4>River AI bets a personal, open-source stack on weights that update per user</h4>
+          <p>Igor Babuschkin &mdash; DeepMind, OpenAI, then xAI co-founder &mdash; left a year ago and now runs River AI, a two-month-old startup building an open-source stack for personal AI, with General Catalyst leading the seed/Series A.</p>
+          <p>The technical claim that distinguishes it from a positioning statement is continual learning exposed as an API that updates the weights, together with a stated 20-minute training run, aimed at a machine the user owns outright: the hardware, the data and the model. The pitch runs against the corporate-chatbot default and against the assumption that personalisation belongs in a context window rather than in the parameters &mdash; and it is the opposite end of the strategic spectrum from the <a href="#anthropic-ipo-2-trillion">$2 trillion centralised-frontier bet</a>.</p>
+          <div class="sources"><span class="via">via AI Supremacy (Aug 13), TLDR (Aug 12) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="raschka-open-weight-leadership">
+          <span class="when">2026-08-04</span>
+          <h4>&ldquo;If developers build on Chinese open-weight models, who leads AI?&rdquo; &mdash; Raschka on the open-weight sourcing shift</h4>
+          <p>Sebastian Raschka joined Hugo Bowne-Anderson&rsquo;s Vanishing Gradients podcast (78 min) to work through Kimi K3, DeepSeek V4 and local coding agents, arguing that open weights preserve an alternative when a closed vendor&rsquo;s access or pricing changes &mdash; and posing directly the question of who leads AI if the developer ecosystem standardizes on Chinese open-weight models as its build-on layer.</p>
+          <p>If the ecosystem does standardize there, leadership accrues to whoever owns the weights developers depend on. It is the practitioner-level echo of the export-control withdrawals and of <a href="#thinking-machines-ownable-weights">Thinking Machines Lab&rsquo;s</a> weight-ownership thesis, and a sign the question has moved from newsletter speculation into mainstream practitioner discourse.</p>
+          <div class="sources"><span class="via">via Vanishing Gradients (Aug 3) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="thinking-machines-ownable-weights">
+          <span class="when">2026-07-14</span>
+          <h4>Thinking Machines Lab makes the technical case for ownable, customizable model weights</h4>
+          <p>Mira Murati&rsquo;s ~$50B Thinking Machines Lab published a technical-and-philosophical argument that frontier AI should be distributed and customizable &mdash; human values and domain knowledge encoded into fine-tuned weights users own and continue to train &mdash; rather than a locked API rented from a lab.</p>
+          <p>Coming from OpenAI&rsquo;s former CTO, it reframes open-vs-closed from a licensing preference into a control-and-sovereignty argument, landing as US export controls repeatedly pull closed models offline and Chinese open weights surge. It is an argument, not a release: no weights, benchmark or product accompanied it. (Sovereignty/policy angle on the <a href="safety-and-policy.html">Safety &amp; policy</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 13) &mdash; no public URL given</span></div>
+        </article>
+
+        <details>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story unlinked" id="meta-muse-spark-1-1">
+            <span class="when">2026-07-11</span>
+            <h4>Meta Muse Spark 1.1 &mdash; the open-weights incumbent launches a paid model under OpenAI and Anthropic</h4>
+            <p>Meta released Muse Spark 1.1, its first <em>paid</em> model rather than an open Llama drop, priced to undercut both OpenAI and Anthropic while rivaling their models on some benchmarks &mdash; explicitly not their strongest tiers.</p>
+            <p>The move is strategically notable rather than technically so: a company that used open weights to commoditize competitors is now selling API access itself, adding price pressure at the mid-tier. (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 10) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="tencent-hy3-open-weights">
+            <span class="when">2026-07-09</span>
+            <h4>China&rsquo;s open-weight labs keep pulling at enterprise token spend (Tencent Hy3)</h4>
+            <p>Tencent&rsquo;s Apache-2.0 Hy3 (295B MoE, 21B active per token, 256K context) joins Z.ai&rsquo;s MIT-licensed GLM-5.2 in a run of frontier-class open releases from Chinese labs.</p>
+            <p>A 295B-class model that costs 21B active parameters to run &mdash; self-hostable, or served from a US-hosted cloud &mdash; gives cost-sensitive enterprises a credible alternative to premium closed APIs, continuing to reshape where token spend is routed. (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 8) &mdash; no public URL given</span></div>
+          </article>
+        </details>
+      </section>
+
+      <section class="topic-section" id="regulatory-and-legal-risk">
+        <h3>Regulatory &amp; legal risk</h3>
+        <p class="lead">One entry, and the exposure it names is procedural rather than product-level: how a company handled its own internal safety warnings becomes something a court can be asked about. The detail lives on the safety page; what belongs here is that the risk now has a plaintiff.</p>
+
+        <article class="story unlinked" id="florida-sues-openai">
+          <span class="when">2026-06-04</span>
+          <h4>Florida becomes first US state to sue an AI company</h4>
+          <p>Florida AG James Uthmeier filed suit against OpenAI, alleging it ignored safety warnings. It is the first state-level AI lawsuit in the US, and it signals hardening legal and regulatory risk for frontier labs.</p>
+          <p>The allegation is untested and the reporting is second hand, from a bi-weekly brief rather than a filing. See <a href="safety-and-policy.html">Safety, alignment &amp; policy</a> for detail; the signal for the industry is that internal safety-warning handling now carries litigation exposure.</p>
+          <div class="sources"><span class="via">via AI Loves Data: The Bi-Weekly Brief &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="conferences-and-ecosystem">
+        <h3>Conferences &amp; ecosystem</h3>
+        <p class="lead">Conference programming is a lagging indicator of what practitioners are being sold, which is the only reason to record it. Read the session list rather than the pitch: what a summit schedules is what its audience is already being asked to buy.</p>
+
+        <article class="story unlinked" id="applied-ai-summit-2026">
+          <span class="when">2026-05-28</span>
+          <h4>Applied AI Summit 2026 announced</h4>
+          <p>John Snow Labs is running a virtual technical summit, its seventh year, with 50+ sessions on GenAI, LLMs, agentic systems, AI governance and evaluation.</p>
+          <p>The programme positions around real-world deployment, governance and evaluation &mdash; the practitioner side of the field rather than the research one.</p>
+          <div class="sources"><span class="via">via John Snow Labs email &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="model-labs-and-coding-tools-converge">
+        <h3>Model labs and coding tools converge</h3>
+        <p class="lead">Three stages of one axis: a frontier model co-trained on a coding tool&rsquo;s data, the tool bought outright, then a first-party agent shipped into the tool&rsquo;s paid plans. The cost shows up here too &mdash; a supplier withdrew model access over an acquirer&rsquo;s corporate actions, not over anything the product itself did.</p>
+
+        <article class="story unlinked" id="grok-bot-in-cursor">
+          <span class="when">2026-09-16</span>
+          <h4>Grok Bot ships inside paid Cursor plans, making the SpaceX&ndash;Cursor deal a distribution channel</h4>
+          <p><strong>Grok Bot</strong>, SpaceX AI&rsquo;s autonomous agent platform developed in collaboration with Cursor, is included directly in paid Cursor subscriptions including Pro and Teams. It was introduced on August 11, three days before SpaceX completed its $60 billion <a href="#spacex-cursor-close">acquisition of Cursor</a>, and is positioned as an AI teammate given real work rather than as a chat product &mdash; the same category Meta&rsquo;s Muse entered on September 8.</p>
+          <p>The bundling is the entry rather than the agent. This page recorded the acquisition as consolidation of a coding tool; shipping a first-party agent into the acquired product&rsquo;s paid tiers is what converts an owned tool into an owned distribution channel, reaching developers who chose Cursor for the IDE rather than for anyone&rsquo;s agent. That is the advantage Microsoft holds with Copilot by incumbency, arriving here by purchase. Nothing independent has been published on adoption or capability, and the source is competitive analysis rather than technical evaluation, so the strategic reading is firmer than the product one.</p>
+          <div class="sources"><span class="via">via AI Supremacy (Sep 16) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="openai-cuts-off-cursor">
+          <span class="when">2026-08-31</span>
+          <h4>OpenAI cuts off Cursor&rsquo;s access to its models after the SpaceX acquisition</h4>
+          <p>OpenAI is ending Cursor&rsquo;s access to its models following the <a href="#spacex-cursor-close">SpaceX acquisition</a>, saying it cannot be confident SpaceX will honour its contract terms. The specifics firmed up on Aug 31: OpenAI set the wind-down for <strong>November 12, 2026</strong>, citing a change-of-control clause, and confirmed future models including Astra will not be provided.</p>
+          <p>Cursor CEO Michael Truell replied that OpenAI models serve roughly <em>5% of Cursor user traffic</em> and that talks continue &mdash; which, if accurate, makes the move more consequential as precedent than as damage. Cursor&rsquo;s coding-agent data trained a rival frontier model and the response was to revoke supply: for anyone building on a rented frontier model, that is the concrete form of platform risk, with access withdrawn over an acquirer&rsquo;s corporate actions rather than over anything the product did.</p>
+          <div class="sources"><span class="via">via TLDR AI (Sep 3) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story unlinked" id="grok-4-5-cursor-cotrained">
+          <span class="when">2026-07-09</span>
+          <h4>SpaceXAI + Cursor ship Grok 4.5 &mdash; a model lab co-trained with a coding tool</h4>
+          <p>Grok 4.5, a 1.5T coding model, was trained by SpaceXAI with Cursor&rsquo;s proprietary coding data folded into the mix, and ships inside Cursor, in Grok Build, and via API at $2 input. It is the first frontier model co-developed with a coding-tool company rather than integrated after training.</p>
+          <p>If the data advantage holds, leverage in the coding-agent stack shifts toward the tools that own distribution and telemetry, not only the labs that train weights &mdash; and the $2 input price applies direct pressure to the premium coding tier. The conditional is doing real work here: no independent evaluation of the data advantage has been published. (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 9) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="physical-ai-market-structure">
+        <h3>Physical-AI market structure</h3>
+        <p class="lead">One landscape survey, kept separate because it reads robotics through the same platform, open-source and deployment split this page tracks in language models. It is a market map rather than a measurement: no revenue, share or shipment figures accompany the tiering.</p>
+
+        <article class="story unlinked" id="physical-ai-market-tiers">
+          <span class="when">2026-07-11</span>
+          <h4>Physical-AI market sorts into platform, open-source, and deployment tiers</h4>
+          <p>A July 11 landscape mapped the embodied-AI market: NVIDIA as the platform layer (Cosmos world models, Isaac Lab, GB300) monetizing every robot trained or deployed; Ant Group&rsquo;s Robbyant as the open-source surge, with four open models in five days; Google DeepMind, Physical Intelligence and Unitree ranked by open impact; and Figure AI plus Tesla Optimus winning on real deployment and proprietary fleet data with closed stacks.</p>
+          <p>The structure echoes the LLM market &mdash; an open Chinese push against closed, vertically-integrated US players, with a compute toll-collector underneath. (Full detail on the <a href="embodied-and-robotics.html">Embodied AI &amp; robotics</a> page.)</p>
+          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 11) &mdash; no public URL given</span></div>
+        </article>
+      </section>
 
       <h2>Timeline</h2>
-      <ul class="timeline">
-        <li>
-          <span class="date">2026-09-17</span>
-          <span class="label">OpenAI turns the ChatGPT ad into an agent the advertiser controls</span> &mdash; OpenAI announced <strong>Sponsored Agents</strong>: clicking an ad in ChatGPT starts a conversation with an agent the sponsoring business supplies, rather than opening a link. Alongside it came AI-assisted ad creation inside ChatGPT Work, new creative tools in Ads Manager, and integrations with HubSpot and Shopify. The change worth recording is structural rather than commercial &mdash; an advertiser is no longer buying placement next to an answer but a conversational surface inside the assistant, which makes the boundary between the assistant&rsquo;s reasoning and a paid party&rsquo;s reasoning a thing users have to detect for themselves. No disclosure design, spend model or targeting detail was published.
-          <div class="sources">Sources: TLDR AI (Sep 17) <a href="https://openai.com/">OpenAI</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">OpenRouter users spent more on OpenAI than Anthropic for the first time in two and a half years</span> &mdash; OpenRouter reported that in the past week its users spent more money on OpenAI models than on Anthropic models &mdash; the first time that has been true in more than two and a half years &mdash; driven by GPT-5.6 and GPT-6 Astra usage. The measure is narrow and that is what makes it useful: it is realised developer spend through one aggregator rather than survey preference, enterprise commitments or benchmark position, so it tracks what people actually routed traffic to, weighted by price. The obvious confound is that weighting by dollars conflates volume with cost per token, so a shift toward more expensive models registers identically to a shift in how many requests go where, and OpenRouter&rsquo;s population skews toward developers experimenting across models rather than toward committed production deployments. Anthropic&rsquo;s coding-agent lead has been the durable fact underneath this page&rsquo;s competitive thread for two years; one week does not overturn it, but this is the first quantified sign of the position being contested where the routing decisions are made.
-          <div class="sources">Sources: TLDR (Sep 16) The Code (Sep 16) <a href="https://threadreaderapp.com/thread/2099898254905549220.html">OpenRouter</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">GPT-5.5 is retired from ChatGPT, ChatGPT Work and Codex on October 14</span> &mdash; OpenAI will remove GPT-5.5 from ChatGPT, ChatGPT Work and Codex on October 14, steering developers toward GPT-5.6 Sol or GPT-6 Astra. It is a routine deprecation with a date, which is precisely why it is worth recording: a model ID disappearing from an API is a breaking change for anything that pinned it, and the systems most likely to have done so are the ones nobody is currently looking at &mdash; scripts, CI jobs, evaluation harnesses whose baselines were fixed months ago. The advice that follows is the same each time and is rarely taken until a retirement forces it: move the model choice into configuration rather than leaving it inline, and re-test defaults rather than assuming a newer model behaves like the one it replaces. Read with the OpenRouter spend figure the same day, the two are the same commercial motion from opposite ends &mdash; usage moving toward the new lineup, and the old lineup being withdrawn so the rest follows. Comparative benchmarks anchored on GPT-5.5 also stop being reproducible on that date, which quietly affects more published numbers than the migration does.
-          <div class="sources">Sources: Unwind AI (Sep 16) The Code (Sep 16) <a href="https://threadreaderapp.com/thread/2099954190600876533.html">OpenAI</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">OpenAI doubles Codex for OSS to 10,000 maintainers after $760K in first-round funding</span> &mdash; OpenAI is expanding Codex for OSS from 5,000 to 10,000 maintainers, with selected applicants receiving six months of ChatGPT Pro plus potential API credits for review, triage, releases and maintenance automation. The first six months also included $160,000 distributed through GitHub Sponsors and $600,000 for the Rust Foundation. The numbers are modest against frontier compute budgets and that is rather the point &mdash; this is distribution spending, not philanthropy at scale. Open-source maintainers are the population whose tooling choices propagate furthest per person, since the harness a widely depended-upon project adopts becomes the harness its contributors learn, and six months of Pro is priced as customer acquisition in a market where switching costs accumulate through habit. The named work is also the part of maintenance that burns maintainers out rather than the part they enjoy, which makes the offer unusually well targeted. What nobody has published is whether the first cohort&rsquo;s projects saw measurable change in triage latency or release cadence, which is the thing that would distinguish an effective programme from a well-aimed marketing spend.
-          <div class="sources">Sources: Unwind AI (Sep 16) <a href="https://openai.com/form/codex-for-oss/">OpenAI</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-16</span>
-          <span class="label">Grok Bot ships inside paid Cursor plans, making the SpaceX&ndash;Cursor deal a distribution channel</span> &mdash; <strong>Grok Bot</strong>, SpaceX AI&rsquo;s autonomous agent platform developed in collaboration with Cursor, is included directly in paid Cursor subscriptions including Pro and Teams. It was introduced on August 11, three days before SpaceX completed its $60 billion acquisition of Cursor, and is positioned as an AI teammate given real work rather than as a chat product &mdash; the same category Meta&rsquo;s Muse entered on September 8. The bundling is the entry rather than the agent. This page recorded the acquisition as consolidation of a coding tool; shipping a first-party agent into the acquired product&rsquo;s paid tiers is what converts an owned tool into an owned distribution channel, and it reaches an installed base of developers who chose Cursor for the IDE rather than for the agent. That is the same mechanism Microsoft has used with Copilot, arriving by purchase instead of by incumbency. Nothing independent has been published on adoption or capability, and the analysis this comes from treats the competitive framing rather than the product, so the technical claims remain untested.
-          <div class="sources">Sources: AI Supremacy (Sep 16)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-15</span>
-          <span class="label">The labs proposing a slowdown are also the parties it pays &mdash; and cannot slow alone</span> &mdash; An analysis of the pacing debate makes the economic argument its participants have left implicit. The rules the frontier labs have proposed would protect capital already committed, preserve the price premium on frontier access, and defer billions in competitive spending &mdash; so a safety argument and a commercial interest point the same way, and the arguments should not be taken at face value on that account alone. The piece&rsquo;s second half is the more useful one and cuts against the cynical reading: no lab can economically slow down unilaterally, because unilateral restraint transfers the frontier to whoever does not. That is the structural reason a voluntary pact cannot hold and the reason the proposals all route through government enforcement &mdash; which is also, as the <a href="safety-and-policy.html">safety page</a> notes, the only way a coordinated slowdown avoids being an antitrust conspiracy.
-          <div class="sources">Sources: TLDR AI (Sep 15) <a href="https://cogito-ergo-sum.dev/frontier-economics">Frontier economics</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-15</span>
-          <span class="label">OpenAI buys Glass Imaging, a computational-camera startup, at above $300 million</span> &mdash; OpenAI has quietly acquired Glass Imaging, which develops AI-based smartphone camera processing that it claims reaches DSLR-grade image quality from phone optics, in a deal valuing the company above $300 million. Glass Imaging was founded in 2019 by two former Apple employees who had worked on camera technology there. OpenAI has not said what it intends to do with the company, but the acquisition lands while it is building an unannounced device with Jony Ive. Read against the rest of this section, it is a different instrument from the Ona or Poolside transactions: not a capability that makes the model better or an enterprise runtime to sell, but component expertise for hardware &mdash; the first time a frontier lab has bought into the physical supply chain of a product it has not yet announced.
-          <div class="sources">Sources: TLDR AI (Sep 15)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-15</span>
-          <span class="label">Anthropic is preparing Claude Money, which would link bank accounts directly to the model</span> &mdash; Code found ahead of any announcement indicates Anthropic is building Claude Money, letting users connect bank accounts and ask Claude about spending, plans and other financial questions. The design intent visible in it is persistent access to a user&rsquo;s financial context rather than the current pattern of uploading statements or transaction exports per conversation. Account types, the data provider and the supported actions are all unknown, as is the launch timing, so this is a direction rather than a product. What makes it worth recording is where it sits: Anthropic already ships third-party personal-finance connectors and finance-specific agents for professional users, so the consumer version would be the first case of the enterprise-first lab on this page building a mass-market product on standing access to personal financial data.
-          <div class="sources">Sources: TLDR AI (Sep 15) <a href="https://www.testingcatalog.com/anthropic-prepares-claude-money-for-personal-finance/">TestingCatalog</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-14</span>
-          <span class="label">Every frontier lab now ships its best model twice, and the second copy is not for sale</span> &mdash; Anthropic, Google and OpenAI each released their strongest model in two forms this month: a public paid tier, and a vetted, identity-gated tier carrying the sharper capabilities. Public list prices barely moved. What the second tier asks for instead of money is an organisation ID, a government ID, or trusted-defender status &mdash; Mythos, Flash Cyber and Astra&rsquo;s advanced path all sit behind one of those. That is a structural change in how frontier capability is distributed and it is easy to miss from a pricing page, because nothing on the pricing page changed. Price stopped being the allocation mechanism at the top of the market; identity replaced it, which means the competitive question for a buyer is no longer what they can afford but whether they qualify. (Governance angle on the <a href="safety-and-policy.html">Safety &amp; policy</a> page, where the same pattern is tracked as tiered access.)
-          <div class="sources">Sources: TLDR AI (Sep 14) <a href="https://okaneland.com/signal/the-frontier-twice">Okaneland</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-14</span>
-          <span class="label">Anthropic calls for a slowdown seven weeks before an IPO, while contracting 14.8GW</span> &mdash; The commercial context around Amodei&rsquo;s pacing essay is worth recording as its own datapoint, because the numbers are checkable even where the motives are not. Anthropic is telling investors it expects a second consecutive profitable quarter with gross margins above 80% before revenue shared with distribution partners and before training cost, with an IPO roughly seven weeks out; it has simultaneously committed to expanding to more than 14.8GW of compute. Texas, the largest US data-centre state, paused new approvals in August. And the US Census Bureau&rsquo;s adoption survey, updated Aug 23, still finds only 22% of businesses reporting AI use. A slowdown proposal is also what a compute-constrained leader would want, and none of those facts settles whether the safety argument is sincere &mdash; but a company arguing for restraint while contracting gigawatts is holding two positions that need reconciling in public.
-          <div class="sources">Sources: AI Supremacy (Sep 14)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-10</span>
-          <span class="label">OpenAI pauses $200-a-month Pro sign-ups as Astra rolls out</span> &mdash; OpenAI stopped taking new subscriptions for its $200-per-month Pro plan while GPT-6 Astra rolls out to Pro, Plus, Enterprise and Business accounts. Pausing sales of the highest-margin tier is a capacity statement rather than a pricing one, and it lands alongside the same company&rsquo;s <a href="infrastructure.html">inference economics</a> story: the model that costs less per task than its predecessor is still the one that ran the subscription list out of headroom.
-          <div class="sources">Sources: TLDR AI (Sep 11) <a href="https://techcrunch.com/2026/09/10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand/">TechCrunch</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">Siri AI ships in beta on September 14 with daily usage caps and a paid tier promised</span> &mdash; Apple&rsquo;s long-delayed assistant arrives with the OS 27 releases on September 14 and stays labelled beta, carrying daily usage caps, language and regional restrictions, and a stated intention to sell expanded access later. Apple is explicit about why: limits vary by feature, request complexity, system demand and system policy, and access is being rolled out to match available server capacity. Coverage of the same launch reports the new Siri is backed by Google&rsquo;s Gemini models rather than Apple&rsquo;s own. Capacity-metered rollout and a future paywall on an assistant previously bundled with the hardware is the clearest consumer-side statement yet that inference cost sets the product, not the other way round. <strong>It shipped on Sep 15 with a second form of rationing attached:</strong> only Apple Intelligence-capable devices get Siri AI at all, so iOS 27 splits the installed base into phones that receive the assistant and phones that do not. Apple states that it does not store user data and that neither Apple nor Google can access what Siri reads from a user&rsquo;s private information &mdash; a claim about a Gemini-backed assistant with access to personal data that rests on architecture nobody outside Apple can inspect.
-          <div class="sources">Sources: TLDR AI (Sep 10) TLDR (Sep 10) The Code (Sep 10) TLDR (Sep 15)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">Listen Labs let a $1.5B Series C lapse while Salesforce talks a ~$2B acquisition</span> &mdash; Listen Labs, which runs customer research interviews with voice AI, signed a term sheet for a $125 million Series C at a $1.5 billion valuation and then never closed it &mdash; reportedly because Salesforce has been in talks to buy the company outright at around $2 billion. The company is described as roughly $30 million in annualized revenue, so the acquisition price is about 65&times; revenue. The pattern is the one this page has been tracking through the Stripe/OpenRouter and Nvidia/Hugging Face deals: an application-layer AI company with real revenue is now worth more inside a platform than independently funded, and the round that would have kept it independent is the thing that gets abandoned.
-          <div class="sources">Sources: TLDR AI (Sep 10)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-13</span>
-          <span class="label">River AI bets a personal, open-source stack on weights that update per user</span> &mdash; Igor Babuschkin &mdash; DeepMind, OpenAI, then xAI co-founder &mdash; left a year ago and now runs River AI, a two-month-old startup building an open-source stack for personal AI, with General Catalyst leading the seed/Series A. The technical claim that distinguishes it from a positioning statement is continual learning exposed as an API that updates the weights, together with a stated 20-minute training run, aimed at a machine the user owns outright: the hardware, the data and the model. The pitch runs directly against the corporate-chatbot default, and against the assumption that personalisation belongs in a context window rather than in the parameters.
-          <div class="sources">Sources: AI Supremacy (Aug 13) TLDR (Aug 12)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-14</span>
-          <span class="label">Anthropic&rsquo;s IPO is being discussed at $2 trillion, and financing looks unlikely to be the compute bottleneck</span> &mdash; Investors expect Anthropic&rsquo;s IPO could exceed a $2 trillion valuation on the back of projected annualized revenue of $100&ndash;120 billion by the end of 2026, which would make it the largest listing on record. The more load-bearing analysis ran alongside it: Epoch&rsquo;s case study finds that most of the financing for Anthropic&rsquo;s infrastructure buildout was assembled <em>before</em> its revenue spiked, which suggests capital is not the near-term limit on frontier compute growth. Institutional lenders appear willing to lend against long-term payment commitments, particularly where an established counterparty absorbs part of the risk &mdash; so the binding constraint stays power, silicon and siting rather than money.
-          <div class="sources">Sources: TLDR AI (Aug 14)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-13</span>
-          <span class="label">Ramp&rsquo;s index shows AI spend rotating toward model-serving platforms and open source</span> &mdash; The share of AI-using businesses paying for model-serving platforms rose again, to 6.1%, while adoption growth at OpenAI and, to a lesser degree, Anthropic slowed. The mechanism matters more than the level: with most businesses that will try AI having already tried it, growth has to come from existing customers spending more &mdash; and that incremental spend is increasingly going to open-weight models on serving infrastructure rather than to frontier APIs. It is a demand-side datapoint for the same shift the open-weights releases keep making on the supply side.
-          <div class="sources">Sources: TLDR (Aug 13) <a href="https://ramp.com/data/ai-index-august-2026">Ramp AI Index</a></div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">Cognition raises $2B at $48B, on cash burn approaching $800M this year</span> &mdash; Cognition raised $2 billion at a $48 billion valuation, led by Andreessen Horowitz with Accel, Founders Fund, General Catalyst and Avenir. It leases an Nvidia server cluster that could push total cash burn to $800 million this year, and is expected to reach $4&ndash;5 billion in annualized revenue by the end of 2026. The read offered by investors is that AI coding is not a winner-take-all market &mdash; a valuation of this size only makes sense if several major players can hold meaningful share simultaneously, which is a bet against the consolidation the past year has otherwise shown.
-          <div class="sources">Sources: TLDR AI (Sep 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">Mistral raises &euro;3B at over &euro;21B in Europe's largest technology equity round</span> &mdash; Samsung led a &euro;3 billion round valuing Mistral above &euro;21 billion, joined by EQT's Scaleup Europe Fund and PSG Equity &mdash; what Mistral calls the largest technology equity round in European history. &ldquo;Sovereign AI&rdquo; remains a marketing position until the models compete on merit, but the capital question is now settled: Europe's strongest open-weight lab can buy the compute needed to make the argument. Whether it converts is the thing to watch, not the valuation.
-          <div class="sources">Sources: Unwind AI (Sep 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-09</span>
-          <span class="label">ChatGPT reaches 1.06 billion monthly active users, a fourth consecutive record</span> &mdash; ChatGPT hit 1.06 billion monthly active users in August, breaking its own record for the fourth month running. It is a single number with no accompanying engagement or revenue detail, and it sits awkwardly beside OpenAI's reported 18% quarterly revenue growth &mdash; user growth and revenue growth have visibly decoupled, which is the tension an IPO prospectus will have to address.
-          <div class="sources">Sources: TLDR AI (Sep 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-08</span>
-          <span class="label">Anthropic has signed $517B of compute in eleven months &mdash; 14.8GW</span> &mdash; Anthropic's compute leases over the past eleven months total $517 billion and 14.8GW, primarily with Google and AWS, including large agreements with Akamai and Fluidstack, a $45bn deal with Nscale, and a $35 billion cloud agreement with Nvidia-backed Lambda in which Nvidia itself holds the data-centre lease. The company filed confidentially for an IPO with the SEC in June. Set that gigawatt figure against the <a href="infrastructure.html">15GW of 2027 capacity that may not be energizable</a>: the contracts are signed against supply that does not exist yet.
-          <div class="sources">Sources: TLDR AI (Sep 8) TLDR (Sep 1)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-01</span>
-          <span class="label">OpenAI starts billing some accounts only when the work completes</span> &mdash; OpenAI is testing outcome-based pricing with a small number of major accounts: they pay when the model actually finishes the job. Terms, customers and prices are unannounced. The motivation is the one every finance team has hit &mdash; token billing makes an agent's cost unforecastable and its value unattributable &mdash; and it is the same pressure that produced <a href="industry-and-business.html">Ollama's move to transparent per-token pricing</a> from the opposite direction.
-          <div class="sources">Sources: TLDR AI (Sep 1)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-27</span>
-          <span class="label">OpenAI's $100-a-month Premium seat removes the five-hour limit</span> &mdash; ChatGPT Business gained a Premium seat at $100 per month billed annually, covering ChatGPT, ChatGPT Work, Codex, connectors, admin controls, billing, security and analytics. The detail that decides it for engineering teams is the removal of the five-hour usage window &mdash; for Codex-heavy work that limit, not the seat price, was the binding constraint.
-          <div class="sources">Sources: Unwind AI (Aug 27)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-26</span>
-          <span class="label">Anthropic commits ~$45B to Nscale for 460MW &mdash; and re-enters the defense market</span> &mdash; A roughly $45 billion cloud deal with UK-based Nscale for around 460 megawatts at a West Virginia development due online at the end of 2027, running NVIDIA Vera Rubin chips. The scale is the point: a single model developer contracting for nearly half a gigawatt places it among the largest industrial power consumers in its region, and the 2027 delivery date means the capacity is being bought years ahead of the demand it assumes. In the same week Anthropic advertised for a Head of National Security Sales to revive defense contracts after previously being blacklisted by the Department of Defense over technology-use concerns.
-          <div class="sources">Sources: TLDR AI (Aug 27) TLDR AI (Aug 28)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-26</span>
-          <span class="label">Salesforce and Anthropic ship &ldquo;Claudeforce&rdquo; &mdash; 37 pre-built sales skills inside Claude</span> &mdash; A Claude plugin with 37 pre-built skills for reading Salesforce data and updating records, with Slack integration planned. Benioff framed it as an answer to &ldquo;SaaSpocalypse&rdquo; concerns &mdash; the thesis that capable agents dissolve the value of seat-priced application software. The counter-move is instructive: rather than resisting the agent, the system of record ships the skills that let the agent operate it, betting that owning the data and the workflow outlasts owning the interface. Compare the &ldquo;incumbents are coming&rdquo; argument recorded elsewhere on this page.
-          <div class="sources">Sources: TLDR AI (Aug 27)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-04</span>
-          <span class="label">NVIDIA acquires Hugging Face for $12.93 billion</span> &mdash; NVIDIA confirmed the acquisition of the platform hosting three million models and serving over 18 million developers. Jensen Huang said Hugging Face will stay open and that NVIDIA compute will not be required to build or deploy on it &mdash; the commitment that the entire open-weights distribution layer now rests on, since a single vendor of accelerators owns the default place open models are published and fetched from. Whatever the operating reality, the structural fact is that the neutral commons of open-model distribution is no longer neutrally owned.
-          <div class="sources">Sources: TLDR AI (Sep 4)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-31</span>
-          <span class="label">OpenAI cuts off Cursor&rsquo;s access to its models after the SpaceX acquisition</span> &mdash; OpenAI is ending Cursor&rsquo;s access to its models following the SpaceX acquisition, saying it cannot be confident SpaceX will honour its contract terms. Read against the acquisition itself (Aug 14, below), the sequence shows how quickly model access became a lever of competitive strategy: Cursor&rsquo;s coding-agent data trained a rival frontier model, and the response was to revoke the supply. For anyone building on a rented frontier model, this is the concrete form of platform risk &mdash; access can be withdrawn over the corporate actions of an acquirer, not over anything the product did. The specifics firmed up on Aug 31: OpenAI set the wind-down for <strong>November 12, 2026</strong>, citing a change-of-control clause, and confirmed future models including Astra will not be provided. Cursor CEO Michael Truell replied that OpenAI models serve roughly <em>5% of Cursor user traffic</em> and that talks continue &mdash; which, if accurate, makes the move more consequential as precedent than as damage.
-          <div class="sources">Sources: TLDR AI (Sep 3)</div>
-        </li>
-        <li>
-          <span class="date">2026-09-01</span>
-          <span class="label">Ollama moves to transparent per-token pricing with no rate windows</span> &mdash; Ollama restructured Pro, Max and Team onto published per-token rates with a monthly credit pool rather than opaque quotas: Pro at $20/month including $60 of usage, Max at $100 including $300, and a new Team plan at $500 including $1,000 of shared usage across unlimited seats with no per-seat limits. The pointed detail is the removal of 5-hour and weekly limits &mdash; the throttling pattern subscription coding-agent plans have converged on &mdash; with overflow continuing at the same per-token rate. Every request runs on dedicated compute in the US and Europe (plus Singapore for some Qwen models) with zero data retention and no prompt logging. Positioning open-model serving explicitly against the metered-subscription model the frontier labs use.
-          <div class="sources">Sources: Ollama (Sep 1)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-28</span>
-          <span class="label">OpenAI puts ads in ChatGPT</span> &mdash; Ads begin appearing on the Free and Go plans, with Plus, Pro, Enterprise, Business and Education remaining ad-free. Initially they are non-personalised &mdash; selected from the current conversation topic plus coarse signals like general location and device type, explicitly not past chats or memories &mdash; and OpenAI says it will ask users to opt in before personalising, at which point interaction history and chat context feed selection, managed in settings. Advertisers receive only aggregate performance data and no access to chats, history, memories or personal details, and OpenAI states ads do not influence answers and are visually separated from responses. The structural fact underneath the safeguards: the highest-traffic consumer AI surface now has an advertising business model attached to it &mdash; and it scaled immediately. OpenAI says ChatGPT Ads reached a <strong>$1 billion annualized revenue run rate in under 200 days</strong> from launch.
-          <div class="sources">Sources: OpenAI (Aug 28) TLDR AI (Sep 1)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-24</span>
-          <span class="label">Opus 5 overtakes Fable 5 in corporate spending within a month, at half the price</span> &mdash; Opus 5 passed Fable 5 in corporate model spending within a month of launch. Low switching costs let businesses route routine work to cheaper models while reserving premium systems for tasks needing sustained autonomy &mdash; but the analysis is careful about the arithmetic: Opus 5 costs half of Fable's rates, and the cheaper system may need more attempts, longer prompts or more human review, so cost per <em>successful</em> task is the figure that decides it. Ramp's July billing data across 70,000 companies puts Opus 4.8 at 28.0% of Anthropic model spend, Sonnet 4.6 at 8.3%, Fable 5 at 8.0% and Opus 5 at 3.5%. Separately, open-source models went from 28% to 62% of token share at Vercel in two months.
-          <div class="sources">Sources: TLDR AI (Aug 24) Simon Willison (Aug 23)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-21</span>
-          <span class="label">Nvidia pays $6B to license Poolside's technology and hire most of its engineers</span> &mdash; Nvidia will invest $1 billion in Poolside at a $12 billion pre-money valuation and pay $6 billion to license its technology and hire the bulk of its engineering team, with 109 employees receiving offers. The structure &mdash; non-exclusive licence plus mass hiring rather than acquisition &mdash; is the same one Nvidia used with Groq weeks earlier, and it buys the capability without the merger review. Nvidia frames the investment as building a US alternative to Chinese AI; the mechanism it is actually establishing is a way to absorb a lab without buying one.
-          <div class="sources">Sources: TLDR AI (Aug 21) TLDR (Aug 24)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-20</span>
-          <span class="label">OpenAI's CFO tells staff the company will be public by 2027</span> &mdash; Sarah Friar told an all-hands that OpenAI will be a public company in 2027 or sooner. The startup confidentially filed its IPO prospectus with the SEC in June without disclosing a debut date, and is under pressure to justify an $852 billion valuation. Anthropic has also filed and has been testing investor appetite. Both filings landing in the same window, with the revenue trend running against the larger company, is the context for every capability-withholding announcement either lab has made since.
-          <div class="sources">Sources: TLDR (Aug 20)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-19</span>
-          <span class="label">OpenAI's Q2 grew 18% with deepening losses while Anthropic more than doubled</span> &mdash; OpenAI's revenue grew 18% from the first to the second quarter while its losses deepened; Anthropic more than doubled revenue over the same period, passed OpenAI in sales for the first time, and swung to a small operating profit. Both companies have confidentially filed IPO prospectuses. The divergence is recent enough to be volatile, but it is the first quarter in which the enterprise-first strategy outperformed the consumer-first one on the metric each company is about to be priced on.
-          <div class="sources">Sources: TLDR (Aug 19)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-19</span>
-          <span class="label">Etched ships its first rack to Jane Street and raises $700M at $21B</span> &mdash; Etched delivered its first hardware rack to Jane Street and raised $700 million at a $21 billion valuation. A first customer shipment moves the company from architecture claims to a deployed product, and the customer choice is informative: a trading firm buys latency it can measure, on workloads it understands precisely, which is the least forgiving first market a specialized inference chip could pick.
-          <div class="sources">Sources: TLDR AI (Aug 19)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-18</span>
-          <span class="label">Anthropic's annualized revenue reaches $65 billion, more than seven times its year-end pace</span> &mdash; Anthropic told investors its annualized run rate hit $65 billion at the end of July &mdash; up from $47 billion in May and more than seven times its pace at the end of the previous year &mdash; with 6,000 customers spending $100,000 or more annually, and an expectation that Q3 will be profitable on the same model used to declare Q2 profitable. OpenAI's annualized revenue was reported at over $40 billion, up 35% quarter to date. The reversal is the story: Anthropic passed its older rival for the first time this quarter.
-          <div class="sources">Sources: TLDR AI (Aug 18) TLDR (Aug 18) Simon Willison (Aug 23)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-18</span>
-          <span class="label">Groq raises $350M at $3.5B after Nvidia licensed its technology and took its senior staff</span> &mdash; Groq raised $350 million at a $3.5 billion valuation following Nvidia's licensing deal and hiring of senior team members. What remains is rebuilding around an inference cloud that combines Groq LPUs with Nvidia systems &mdash; the company that positioned itself as the alternative to Nvidia now selling a product that includes Nvidia. Read with the Poolside deal three days later, it is the clearest picture yet of what Nvidia's capital position lets it do to competitors without acquiring them.
-          <div class="sources">Sources: TLDR AI (Aug 18)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-17</span>
-          <span class="label">Stripe buys OpenRouter for over $7 billion, five times its May valuation</span> &mdash; Stripe agreed to acquire OpenRouter for more than $7 billion; the model-routing startup had been valued at $1.3 billion after a May funding round. OpenRouter handles over 10 trillion tokens a day, and the strategic case made for the deal is that this cross-network traffic is behavioural data on model use that no individual provider or lab can match &mdash; positioning Stripe as a neutral party in the routing layer the same way it is in payments. The acquisition also explains why routing has become the contested layer: whoever runs it sees everyone's traffic.
-          <div class="sources">Sources: TLDR AI (Aug 17) TLDR (Aug 17) TLDR AI (Aug 20)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-14</span>
-          <span class="label">SpaceX closes its ~$60B all-stock acquisition of Cursor &mdash; then Cursor ships Origin</span> &mdash; The acquisition that began as a compute deal completed on August 14, days after Grok 4.6 launched. The sequence is the story: in April Cursor agreed to train on SpaceX&rsquo;s Colossus supercomputer, a deal that carried an option to buy; Cursor&rsquo;s coding-agent data plus SpaceXAI&rsquo;s compute produced Grok 4.5 in July, which lifted Grok from 38 to 56 on Artificial Analysis&rsquo; Intelligence Index; SpaceX exercised the option in June. Three days after closing, Cursor introduced <strong>Origin</strong>, a code-hosting service comparable to GitHub but designed for the volume of code agents generate &mdash; the acquirer moving straight from the model layer into the substrate agents write into.
-          <div class="sources">Sources: The Batch (Aug 21)</div>
-        </li>
-        <li>
-          <span class="date">2026-08-04</span>
-          <span class="label">"If developers build on Chinese open-weight models, who leads AI?" — Raschka on the open-weight sourcing shift</span> &mdash; Sebastian Raschka joined Hugo Bowne-Anderson's Vanishing Gradients podcast (78 min) to work through Kimi K3, DeepSeek V4, and local coding agents, arguing that open weights preserve an alternative when a closed vendor's access or pricing changes — and posing directly the question of who leads AI if the developer ecosystem standardizes on Chinese open-weight models as its build-on layer.
-          <div class="sources">Sources: Vanishing Gradients (Aug 3)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-31</span>
-          <span class="label">Midjourney acquires astrology app Co-Star</span> &mdash; Midjourney, one of the first online image-generation platforms, acquired Co-Star, the astrology app that uses AI and human input to generate horoscopes and birth charts. Deal details were not disclosed &mdash; a consumer-audience acquisition rather than an agent-stack one.
-          <div class="sources">Sources: AI Loves Data (Jul 31)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-22</span>
-          <span class="label">Google's Flash tier reportedly gets cheaper and gains a "Cyber" variant</span> &mdash; Google's Flash model tier reportedly gets cheaper and gains a new "Cyber" variant, mentioned only as a headline item in a MarkTechPost weekly roundup with no further detail available.
-          <div class="sources">Sources: MarkTechPost AI</div>
-        </li>
-        <li>
-          <span class="date">2026-07-14</span>
-          <span class="label">Thinking Machines Lab makes the technical case for ownable, customizable model weights</span> &mdash; Mira Murati's ~$50B Thinking Machines Lab published a technical-and-philosophical argument that frontier AI should be distributed and customizable — human values encoded into fine-tuned weights users own and train — rather than a locked API rented from a lab. From OpenAI's former CTO, it reframes open-vs-closed from a licensing preference into a control-and-sovereignty argument, landing as US export controls repeatedly pull closed models offline and Chinese open weights surge. (Sovereignty/policy angle on the <a href="safety-and-policy.html">Safety &amp; policy</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 13)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-11</span>
-          <span class="label">Meta Muse Spark 1.1 — the open-weights incumbent launches a paid model under OpenAI and Anthropic</span> &mdash; Reported in MarkTechPost's July 10 brief: Meta released Muse Spark 1.1, its first <em>paid</em> model rather than an open Llama drop, priced to undercut both OpenAI and Anthropic while rivaling their models on some benchmarks (not their strongest tiers). The move is strategically notable — a company that used open weights to commoditize competitors is now selling API access itself, adding price pressure at the mid-tier. (Model detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 10)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-11</span>
-          <span class="label">Physical-AI market sorts into platform, open-source, and deployment tiers</span> &mdash; A July 11 landscape mapped the embodied-AI market: NVIDIA as the platform layer (Cosmos world models, Isaac Lab, GB300) monetizing every robot trained or deployed; Ant Group's Robbyant as the open-source surge (four open models in five days); Google DeepMind, Physical Intelligence and Unitree by open impact; and Figure AI + Tesla Optimus winning on real deployment and proprietary fleet data with closed stacks. The structure echoes the LLM market — an open Chinese push against closed, vertically-integrated US players, with a compute toll-collector underneath. (Full detail on the <a href="embodied-and-robotics.html">Embodied AI &amp; robotics</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 11)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-09</span>
-          <span class="label">SpaceXAI + Cursor ship Grok 4.5 — a model lab co-trained with a coding tool</span> &mdash; Grok 4.5, a 1.5T coding model, was trained by SpaceXAI with Cursor's proprietary coding data folded into the mix and ships inside Cursor, in Grok Build, and via API at $2 input. It is the first frontier model co-developed with a coding-tool company rather than integrated after training — a signal that the data and distribution owned by the tools may become as strategic as the weights, and that leverage in the coding-agent stack could shift toward tool companies. The $2 price also undercuts the premium coding tier. (Model detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 9)</div>
-        </li>
-        <li>
-          <span class="date">2026-07-09</span>
-          <span class="label">China's open-weight labs keep pulling at enterprise token spend (Tencent Hy3)</span> &mdash; Tencent's Apache-2.0 Hy3 (295B MoE, 21B active per token, 256K context), reported in MarkTechPost's July 8 brief, joins Z.ai's MIT-licensed GLM-5.2 in a run of frontier-class open releases from Chinese labs. A 295B-class model that costs 21B-active params to run — self-hostable or served from a US-hosted cloud — gives cost-sensitive enterprises a credible alternative to premium closed APIs, continuing to reshape where token spend is routed. (Model detail on the <a href="model-releases.html">Model releases</a> page.)
-          <div class="sources">Sources: MarkTechPost AI (weekly, Jul 8)</div>
-        </li>
-        <li>
-          <span class="date">2026-06-12</span>
-          <span class="label">OpenAI to acquire Ona, folding it into the Codex team</span> — Ona, an enterprise agentic-coding platform (weekly agent sessions up 13× in production this year), announced an agreement to join OpenAI as part of the Codex team. Ona contributes trusted, customer-controlled cloud environments for long-running enterprise agent work; OpenAI contributes frontier models and distribution. The deal is subject to customary closing conditions including regulatory approval; the companies remain independent until close.
-          <div class="sources">Sources: <a href="https://ona.com/stories/ona-joins-openai">Ona announcement</a> Ona newsletter (email)</div>
-        </li>
-        <li>
-          <span class="date">2026-06-04</span>
-          <span class="label">Florida becomes first US state to sue an AI company</span> — Florida AG James Uthmeier filed suit against OpenAI, alleging it ignored safety warnings (reported in the AI Loves Data brief). First state-level AI lawsuit in the US; signals hardening legal/regulatory risk for frontier labs.
-          <div class="sources">Sources: AI Loves Data: The Bi-Weekly Brief</div>
-        </li>
-        <li>
-          <span class="date">2026-06-03</span>
-          <span class="label">NVIDIA bets the business on "AI factories" at GTC Taipei</span> — Jensen Huang's keynote framed compute as revenue and unveiled Vera (a CPU for agents), Vera Rubin in full production, and desk-side AI supercomputers (RTX Spark with Microsoft, DGX Station for Windows). Positions NVIDIA's growth around agentic/RL compute demand rather than the model-capability race.
-          <div class="sources">Sources: NVIDIA GTC email</div>
-        </li>
-        <li>
-          <span class="date">2026-05-28</span>
-          <span class="label">Anthropic ships Claude Opus 4.8 across major clouds</span> — Opus 4.8 is available on Anthropic API, AWS, Google Cloud, and Microsoft Foundry from launch day. Pricing: $5 input / $25 output per million tokens. Fast mode at 2× standard pricing (down from prior Fast-mode pricing) delivers ~2.5× faster token generation.
-          <div class="sources">Anthropic email announcement</div>
-        </li>
-        <li>
-          <span class="date">2026-05-28</span>
-          <span class="label">Applied AI Summit 2026 announced</span> — John Snow Labs is running a virtual technical summit (7th year) with 50+ sessions on GenAI, LLMs, agentic systems, AI governance, and evaluation.
-          <div class="sources">John Snow Labs email</div>
-        </li>
+      <ul class="timeline index">
+        <li><span class="date">2026-09-17</span><span class="label"><a href="#sponsored-agents">OpenAI turns the ChatGPT ad into an agent the advertiser controls</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#openrouter-spend-crossover">OpenRouter users spent more on OpenAI than Anthropic for the first time in two and a half years</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#gpt-5-5-retirement">GPT-5.5 is retired from ChatGPT, ChatGPT Work and Codex on October 14</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#codex-for-oss">OpenAI doubles Codex for OSS to 10,000 maintainers after $760K in first-round funding</a></span></li>
+        <li><span class="date">2026-09-16</span><span class="label"><a href="#grok-bot-in-cursor">Grok Bot ships inside paid Cursor plans, making the SpaceX&ndash;Cursor deal a distribution channel</a></span></li>
+        <li><span class="date">2026-09-15</span><span class="label"><a href="#frontier-slowdown-economics">The labs proposing a slowdown are also the parties it pays &mdash; and cannot slow alone</a></span></li>
+        <li><span class="date">2026-09-15</span><span class="label"><a href="#glass-imaging">OpenAI buys Glass Imaging, a computational-camera startup, at above $300 million</a></span></li>
+        <li><span class="date">2026-09-15</span><span class="label"><a href="#claude-money">Anthropic is preparing Claude Money, which would link bank accounts directly to the model</a></span></li>
+        <li><span class="date">2026-09-14</span><span class="label"><a href="#frontier-shipped-twice">Every frontier lab now ships its best model twice, and the second copy is not for sale</a></span></li>
+        <li><span class="date">2026-09-14</span><span class="label"><a href="#anthropic-slowdown-vs-ipo">Anthropic calls for a slowdown seven weeks before an IPO, while contracting 14.8GW</a></span></li>
+        <li><span class="date">2026-09-10</span><span class="label"><a href="#openai-pro-signups-paused">OpenAI pauses $200-a-month Pro sign-ups as Astra rolls out</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#siri-ai-beta">Siri AI ships in beta on September 14 with daily usage caps and a paid tier promised</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#listen-labs">Listen Labs let a $1.5B Series C lapse while Salesforce talks a ~$2B acquisition</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#cognition-2b">Cognition raises $2B at $48B, on cash burn approaching $800M this year</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#mistral-3b-euro">Mistral raises &euro;3B at over &euro;21B in Europe&rsquo;s largest technology equity round</a></span></li>
+        <li><span class="date">2026-09-09</span><span class="label"><a href="#chatgpt-1bn-mau">ChatGPT reaches 1.06 billion monthly active users, a fourth consecutive record</a></span></li>
+        <li><span class="date">2026-09-08</span><span class="label"><a href="#anthropic-517b-compute">Anthropic has signed $517B of compute in eleven months &mdash; 14.8GW</a></span></li>
+        <li><span class="date">2026-09-04</span><span class="label"><a href="#nvidia-hugging-face">NVIDIA acquires Hugging Face for $12.93 billion</a></span></li>
+        <li><span class="date">2026-09-01</span><span class="label"><a href="#outcome-based-billing">OpenAI starts billing some accounts only when the work completes</a></span></li>
+        <li><span class="date">2026-09-01</span><span class="label"><a href="#ollama-per-token-pricing">Ollama moves to transparent per-token pricing with no rate windows</a></span></li>
+        <li><span class="date">2026-08-31</span><span class="label"><a href="#openai-cuts-off-cursor">OpenAI cuts off Cursor&rsquo;s access to its models after the SpaceX acquisition</a></span></li>
+        <li><span class="date">2026-08-28</span><span class="label"><a href="#chatgpt-ads">OpenAI puts ads in ChatGPT</a></span></li>
+        <li><span class="date">2026-08-27</span><span class="label"><a href="#chatgpt-business-premium">OpenAI&rsquo;s $100-a-month Premium seat removes the five-hour limit</a></span></li>
+        <li><span class="date">2026-08-26</span><span class="label"><a href="#anthropic-nscale-45b">Anthropic commits ~$45B to Nscale for 460MW &mdash; and re-enters the defense market</a></span></li>
+        <li><span class="date">2026-08-26</span><span class="label"><a href="#claudeforce">Salesforce and Anthropic ship &ldquo;Claudeforce&rdquo; &mdash; 37 pre-built sales skills inside Claude</a></span></li>
+        <li><span class="date">2026-08-24</span><span class="label"><a href="#opus-5-corporate-spend">Opus 5 overtakes Fable 5 in corporate spending within a month, at half the price</a></span></li>
+        <li><span class="date">2026-08-21</span><span class="label"><a href="#nvidia-poolside">Nvidia pays $6B to license Poolside&rsquo;s technology and hire most of its engineers</a></span></li>
+        <li><span class="date">2026-08-20</span><span class="label"><a href="#openai-cfo-public-by-2027">OpenAI&rsquo;s CFO tells staff the company will be public by 2027</a></span></li>
+        <li><span class="date">2026-08-19</span><span class="label"><a href="#openai-q2-vs-anthropic">OpenAI&rsquo;s Q2 grew 18% with deepening losses while Anthropic more than doubled</a></span></li>
+        <li><span class="date">2026-08-19</span><span class="label"><a href="#etched-700m">Etched ships its first rack to Jane Street and raises $700M at $21B</a></span></li>
+        <li><span class="date">2026-08-18</span><span class="label"><a href="#anthropic-65b-run-rate">Anthropic&rsquo;s annualized revenue reaches $65 billion, more than seven times its year-end pace</a></span></li>
+        <li><span class="date">2026-08-18</span><span class="label"><a href="#groq-350m">Groq raises $350M at $3.5B after Nvidia licensed its technology and took its senior staff</a></span></li>
+        <li><span class="date">2026-08-17</span><span class="label"><a href="#stripe-openrouter">Stripe buys OpenRouter for over $7 billion, five times its May valuation</a></span></li>
+        <li><span class="date">2026-08-14</span><span class="label"><a href="#spacex-cursor-close">SpaceX closes its ~$60B all-stock acquisition of Cursor &mdash; then Cursor ships Origin</a></span></li>
+        <li><span class="date">2026-08-14</span><span class="label"><a href="#anthropic-ipo-2-trillion">Anthropic&rsquo;s IPO is being discussed at $2 trillion, and financing looks unlikely to be the compute bottleneck</a></span></li>
+        <li><span class="date">2026-08-13</span><span class="label"><a href="#river-ai">River AI bets a personal, open-source stack on weights that update per user</a></span></li>
+        <li><span class="date">2026-08-13</span><span class="label"><a href="#ramp-ai-index">Ramp&rsquo;s index shows AI spend rotating toward model-serving platforms and open source</a></span></li>
+        <li><span class="date">2026-08-04</span><span class="label"><a href="#raschka-open-weight-leadership">&ldquo;If developers build on Chinese open-weight models, who leads AI?&rdquo; &mdash; Raschka on the open-weight sourcing shift</a></span></li>
+        <li><span class="date">2026-07-31</span><span class="label"><a href="#midjourney-costar">Midjourney acquires astrology app Co-Star</a></span></li>
+        <li><span class="date">2026-07-22</span><span class="label"><a href="#google-flash-cyber">Google&rsquo;s Flash tier reportedly gets cheaper and gains a &ldquo;Cyber&rdquo; variant</a></span></li>
+        <li><span class="date">2026-07-14</span><span class="label"><a href="#thinking-machines-ownable-weights">Thinking Machines Lab makes the technical case for ownable, customizable model weights</a></span></li>
+        <li><span class="date">2026-07-11</span><span class="label"><a href="#meta-muse-spark-1-1">Meta Muse Spark 1.1 &mdash; the open-weights incumbent launches a paid model under OpenAI and Anthropic</a></span></li>
+        <li><span class="date">2026-07-11</span><span class="label"><a href="#physical-ai-market-tiers">Physical-AI market sorts into platform, open-source, and deployment tiers</a></span></li>
+        <li><span class="date">2026-07-09</span><span class="label"><a href="#grok-4-5-cursor-cotrained">SpaceXAI + Cursor ship Grok 4.5 &mdash; a model lab co-trained with a coding tool</a></span></li>
+        <li><span class="date">2026-07-09</span><span class="label"><a href="#tencent-hy3-open-weights">China&rsquo;s open-weight labs keep pulling at enterprise token spend (Tencent Hy3)</a></span></li>
+        <li><span class="date">2026-06-12</span><span class="label"><a href="#openai-ona">OpenAI to acquire Ona, folding it into the Codex team</a></span></li>
+        <li><span class="date">2026-06-04</span><span class="label"><a href="#florida-sues-openai">Florida becomes first US state to sue an AI company</a></span></li>
+        <li><span class="date">2026-06-03</span><span class="label"><a href="#nvidia-gtc-taipei">NVIDIA bets the business on &ldquo;AI factories&rdquo; at GTC Taipei</a></span></li>
+        <li><span class="date">2026-05-28</span><span class="label"><a href="#opus-4-8-clouds">Anthropic ships Claude Opus 4.8 across major clouds</a></span></li>
+        <li><span class="date">2026-05-28</span><span class="label"><a href="#applied-ai-summit-2026">Applied AI Summit 2026 announced</a></span></li>
       </ul>
 
       <footer>Generated automatically by the AI digest task.</footer>
