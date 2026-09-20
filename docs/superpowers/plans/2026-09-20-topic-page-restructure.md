@@ -786,6 +786,94 @@ Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>"
 
 ---
 
+### Task 5b: Make the routine transition-safe BEFORE converting the rest
+
+**Why this exists.** The user chose to let the scheduled digest keep running during the
+conversion (decision, 2026-09-20). It fires weekdays 06:00Z and pushes to `main`. While some
+pages are converted and others are not, a run following today's STEP 3 would write old-style
+prose sections onto already-converted pages, undoing them and breaking the checker. This task
+makes a run correct in either state, so a mid-conversion run is survivable rather than
+destructive. It is deliberately ordered before Tasks 6–15 rather than after.
+
+**Files:**
+- Modify: `digest-routine/STEP3-route.md` (§3.2)
+- Modify: `digest-routine/STEP5-index.md` (§5.3)
+
+**Interfaces:**
+- Consumes: the converted page shape from Task 5.
+- Produces: routine instructions that branch per page; Task 16 later removes the branch.
+
+- [ ] **Step 1: Add the branch at the top of §3.2 in `digest-routine/STEP3-route.md`**
+
+Insert immediately under the `## 3.2 Per touched page, in order` heading:
+
+```markdown
+**FIRST, detect which format the page is in.** The site is mid-conversion (started
+2026-09-20). Check the page for `<section class="topic-section"`:
+
+- **Present — the page is converted.** Use the story-item instructions in §3.2-new below.
+  Do **not** write `<h3>` prose sections onto it; that would undo the conversion and fail
+  `digest-routine/check-structure.py`.
+- **Absent — the page is not converted yet.** Use the legacy instructions in §3.2-legacy
+  below, unchanged from before, and leave the page's structure as you found it.
+
+Never convert a page as a side effect of a daily run. Conversion is its own task.
+Run `python3 digest-routine/check-structure.py` before finishing either way; a converted
+page must come back clean.
+```
+
+- [ ] **Step 2: Label the existing instructions as the legacy branch**
+
+Rename the existing sub-steps **a**–**d** under §3.2 to sit under a `### §3.2-legacy
+(unconverted pages)` heading, with their text otherwise untouched.
+
+- [ ] **Step 3: Add the converted branch**
+
+Add a `### §3.2-new (converted pages)` heading carrying the story-item instructions: prepend
+an `<article class="story" id="…">` to the matching section, push anything past the newest
+three into `<details>` and update its count, update `.lead` only if the through-line changed
+(60 words max), rebuild `<nav class="section-index">` counts, and add one line to
+`<ul class="timeline index">` pointing at the new story's id. Use the exact markup from Task
+16 Step 2 and Step 3 — write it out in full here rather than cross-referencing, because a run
+reads this file alone.
+
+- [ ] **Step 4: Make the checker a hard gate in §5.3 now, not at Task 16**
+
+Add to `digest-routine/STEP5-index.md` §5.3:
+
+```markdown
+- **the structural gate passes.** Run `python3 digest-routine/check-structure.py` and paste
+  the result. Exit 0 required. During the conversion the unconverted pages report
+  "not converted yet" from `check_anchors_resolve` — that is expected and is not a failure
+  of the run. Any other failure is a blocker.
+```
+
+- [ ] **Step 5: Verify both branches are actually findable**
+
+```bash
+/usr/bin/grep -c '3.2-legacy\|3.2-new\|topic-section' digest-routine/STEP3-route.md
+python3 digest-routine/check-structure.py; echo "exit=$?"
+```
+
+Expected: the grep returns a non-zero count, and the checker still reports only the
+unconverted-page failures.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add digest-routine/STEP3-route.md digest-routine/STEP5-index.md
+git commit -m "Make the digest routine safe to run mid-conversion
+
+The site is being converted page by page while the scheduled run stays live by
+user decision. STEP 3.2 now branches on whether a page already has
+topic-sections, so a run extends a converted page correctly instead of writing
+prose sections back onto it. STEP 5.3 gates on check-structure.py.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>"
+```
+
+---
+
 ### Tasks 6–15: Convert the remaining ten pages (one page per task)
 
 Each page is its own task, its own checker run, and its own commit, in ascending size so the shape is well-practised before the hardest pages. **Follow Task 5's Steps 1–6 exactly**, substituting the page and its known merge cases. Do not batch pages into one commit: a reviewer must be able to reject one page while approving its neighbour.
