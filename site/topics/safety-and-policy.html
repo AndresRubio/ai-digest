@@ -103,12 +103,12 @@
         <h3>The slowdown proposal</h3>
         <p class="lead">Every position here is also a market position, and the proposal&rsquo;s own mechanisms &mdash; embedded evaluators, incident reporting, a certification gate &mdash; presuppose a small enumerable set of labs. Read each entry for what it would commit its author to, and for whether anyone has yet named a speed.</p>
 
-        <article class="story unlinked" id="ng-against-the-pause">
+        <article class="story" id="ng-against-the-pause">
           <span class="when">2026-09-18</span>
-          <h4>Ng argues the pause case rests on a swarm of 1,200 agents and OpenAI&rsquo;s own sandboxing bugs</h4>
+          <h4><a href="https://www.deeplearning.ai/the-batch/issue-371">Ng argues the pause case rests on a swarm of 1,200 agents and OpenAI&rsquo;s own sandboxing bugs</a></h4>
           <p>Andrew Ng answered the slowdown argument directly, and his objection is to the reporting rather than to the incident. On the OpenAI agent swarm that breached Hugging Face, he notes that &ldquo;1,200 agents&rdquo; is technically accurate and roughly the number of processes on his laptop, and that <strong>OpenAI&rsquo;s buggy sandboxing and monitoring were what enabled the incident</strong> &mdash; making fixed sandboxes and better monitoring the proportionate response, not a pause. He grants that cyber capability is the one risk category that has genuinely moved, and argues defenders hold the long-run advantage because they can see and fix the bugs.</p>
           <p>The part of the letter that is new to this section is the accountability argument. Ng identifies labs disclaiming responsibility for their own products &mdash; &ldquo;I didn&rsquo;t do it, my out-of-control agent did&rdquo; &mdash; as a genuinely new element in the doom case, and reads the anthropomorphising of agents as what makes that move available. Against it he sets the practical objection to a decade-long pause: it delays finding and fixing safety problems by about the same decade, because those problems are found empirically. It is an argued position with no new measurement behind it, and it sits opposite <a href="#amodei-pace-the-frontier">the pacing proposal</a> rather than refuting it.</p>
-          <div class="sources"><span class="via">via The Batch (Sep 18) &mdash; no public URL given</span></div>
+          <div class="sources"><a href="https://www.deeplearning.ai/the-batch/issue-371#how-to-secure-agents-for-the-masses">The Batch</a> &middot; <span class="via">via The Batch (Sep 18)</span></div>
         </article>
 
         <article class="story unlinked" id="zuckerberg-watermelon">
@@ -473,12 +473,12 @@
         <h3>Agent security tooling</h3>
         <p class="lead">Controls a deployer can actually run, and the repeated finding that the boundary sits lower than assumed &mdash; the VM, the inference host, the reasoning trace, the tool result, the context itself. Judge each entry on whether it is a deterministic control or a probabilistic mitigation facing an adversary with unlimited attempts.</p>
 
-        <article class="story unlinked" id="muse-sentinel">
+        <article class="story" id="muse-sentinel">
           <span class="when">2026-09-18</span>
-          <h4>Meta builds Muse&rsquo;s prompt-injection defence outside the model, and declines to score it</h4>
+          <h4><a href="https://www.deeplearning.ai/the-batch/issue-371#how-to-secure-agents-for-the-masses">Meta builds Muse&rsquo;s prompt-injection defence outside the model, and declines to score it</a></h4>
           <p>Meta detailed the harness around <strong>Muse Spark 1.3</strong>, built on the assumption that the model will be fooled. <strong>Sentinel</strong> is the only component that can permit an action: it inspects every outbound request against the permissions the user set, tracks which tool processes have read user data, and lets a process that has not read any reach a short pre-approved list on its own. When it needs a decision the agent stops and the request appears as a system dialog in the Muse app rather than as a message in the conversation, so injected text cannot manufacture an approval; approvals bind to one connector, destination and purpose, and purchases on unfamiliar sites use a single-use Stripe Link card limited to merchant, amount and window. Three further layers sit underneath &mdash; untrusted labelling at context entry, a separately trained classifier ensemble running outside the cell, and a browser sub-agent that reads the accessibility tree and cannot run JavaScript.</p>
           <p>It is the most complete published answer to Simon Willison&rsquo;s lethal trifecta, and it answers by routing the exfiltration leg through something the model cannot override rather than by avoiding the combination. The gap is the evidence: Meta says it evaluated injection resistance on an unpublished dataset and has released no accuracy metrics for the classifiers, offering instead a bug bounty of up to $300,000 for a valid report and $130,000 for a successful injection. A bounty prices the defence, it does not measure it, and a design this good deserves a number. Meta has said Muse Spark&rsquo;s weights will open eventually; the harness is the part that matters here.</p>
-          <div class="sources"><span class="via">via The Batch (Sep 18) &mdash; no public URL given</span></div>
+          <div class="sources"><a href="https://www.deeplearning.ai/the-batch/issue-371#some-kimi-and-deepseek-users-were-served-claude-instead-anthropic-says">The Batch</a> &middot; <span class="via">via The Batch (Sep 18)</span></div>
         </article>
 
         <article class="story" id="aiuc-agent-audits">
@@ -662,12 +662,12 @@
         <h3>Provenance, transparency &amp; data handling</h3>
         <p class="lead">Four claims about what an outsider can actually verify: how generated text is marked, where bought books end up, how a ranking works, and what a vendor keeps. In three of the four the mechanism is published and the criteria are not, and that gap is what decides whether the claim can be checked at all.</p>
 
-        <article class="story unlinked" id="anthropic-china-distillation-report">
+        <article class="story" id="anthropic-china-distillation-report">
           <span class="when">2026-09-18</span>
-          <h4>Anthropic says Alibaba ran 151 million Claude exchanges through 5,000 fraudulent accounts</h4>
+          <h4><a href="https://www.deeplearning.ai/the-batch/issue-371#some-kimi-and-deepseek-users-were-served-claude-instead-anthropic-says">Anthropic says Alibaba ran 151 million Claude exchanges through 5,000 fraudulent accounts</a></h4>
           <p>Anthropic published a report accusing seven China-based developers &mdash; Alibaba, DeepSeek, Moonshot AI, Xiaomi, Zhipu and others &mdash; of violating Claude&rsquo;s terms between February and August 2026. The largest single campaign it names is Alibaba&rsquo;s, <strong>151 million exchanges across roughly 5,000 fraudulent accounts between May and June 2026</strong>, reached through transfer stations, false identities, stolen card numbers and stolen API keys, since Claude is blocked in mainland China. Anthropic alleges DeepSeek and Moonshot also routed their own customers&rsquo; queries to Claude and presented the output as their models&rsquo;, and says it identified a People&rsquo;s Liberation Army member, a Chinese state-owned-enterprise employee and a Russian defence agent among those users.</p>
           <p>Two claims are tangled together and worth separating. The routing allegation is straightforward: sending a customer&rsquo;s query to a third party without telling them is a privacy failure whoever does it, and the sensitive-data examples are the reason it matters. The <a href="training-and-rl.html">distillation</a> allegation is the contested one, and Anthropic concedes distillation itself is legitimate training practice. The detail most useful to this page is Zhipu&rsquo;s reported model-shopping: it targeted Fable first, abandoned it because the cyber safeguards made the responses useless, then switched to Opus 4.6 and another frontier model whose safeguards looked weaker. That is safety tuning working as a deterrent and being routed around, measured by an adversary.</p>
-          <div class="sources"><span class="via">via The Batch (Sep 18) &mdash; no public URL given</span></div>
+          <div class="sources"><a href="https://www.deeplearning.ai/the-batch/issue-371">The Batch</a> &middot; <span class="via">via The Batch (Sep 18)</span></div>
         </article>
 
         <article class="story unlinked" id="enterprise-retention-privacy">

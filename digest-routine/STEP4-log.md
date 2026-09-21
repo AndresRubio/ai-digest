@@ -18,21 +18,49 @@ Write `site/daily/YYYY-MM-DD.html` using the existing template: the standard
 `<!doctype html>` head with `<link rel="stylesheet" href="../styles.css">`, the shared
 sidebar with `../` prefixes, and `<h1>AI Digest Log — YYYY-MM-DD</h1>`.
 
-The body is a `<ul>` of four items, then a themes paragraph:
+The body is a short summary `<ul>`, then the scan notes under their own headings, then
+the themes:
 
 ```html
       <ul>
-        <li>Newsletters scanned: N — <em>Name (Mon D), Name (Mon D)</em>. Notes on what
-            was de-duplicated against earlier runs and what was dropped, and why.</li>
-        <li>Distinct stories captured: N</li>
-        <li>Topics updated: <a href="../topics/slug.html">Topic name</a>, …</li>
-        <li>New topic pages created: none (or: new "Section name" sub-section on Page)</li>
+        <li><strong>Newsletters scanned: N</strong> — what window this covers.
+          <ul><li>Name (Mon D)</li>…</ul></li>
+        <li><strong>Distinct stories captured: N, plus M updates.</strong> Per-topic
+            counts, then one nested <li> per update saying what it gained.</li>
+        <li><strong>Topics updated: N of eleven.</strong> Linked, and a sentence on any
+            topic deliberately left untouched.</li>
+        <li><strong>New topic pages created: none</strong> (or: the new sub-section and
+            why it was opened).</li>
+        <li><strong>Backlog:</strong> messages matched, fetched, capped, carried.</li>
       </ul>
+      <h2>Scan notes</h2>
+      <h3>Sources</h3>              <!-- editions, new senders, sources.json decisions -->
+      <h3>Handled without fetching</h3>
+      <h3>Dropped</h3>              <!-- a <ul>, grouped by reason -->
+      <h3>De-duplication</h3>
+      <h3>Link discipline</h3>
+      <h3>Out of scope</h3>
       <h2>Notable themes today</h2>
-      <p>One paragraph naming the through-line across the day's stories.</p>
+      <p>One or two paragraphs naming the through-line across the day's stories.</p>
 ```
 
 Then the standard `<footer>Generated automatically by the AI digest task.</footer>`.
+
+**Readability is a hard requirement here, not a preference** (user instruction
+2026-09-21: *"when I click on the log entry the block of text is terrible"*). The log is
+read, not just archived, and the failure mode is a single `<li>` that absorbs every note
+into one unbroken block.
+
+- **No `<p>` or `<li>` over ~150 words.** Anything longer is two items or two paragraphs.
+- **Reasons get headings, not run-in bold.** A dense `<li>` with six bolded phrases
+  buried inside it is the thing this rule exists to prevent; give each its own `<h3>` or
+  its own bullet.
+- **Drops are a grouped list** — one bullet per reason (sponsors, outside remit, no
+  checkable claim, tutorials), not a paragraph naming thirty items in sequence.
+- **No filler.** Every clause states a fact about this run. Cut anything that reads as
+  throat-clearing, and do not restate the routine's own rules back at the reader.
+- Sub-`<ul>`s inside a summary `<li>` need no CSS — `styles.css` has no rule for plain
+  lists and is never edited.
 
 ## 4.3 What belongs in the notes
 

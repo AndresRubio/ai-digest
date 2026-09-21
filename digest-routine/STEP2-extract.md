@@ -95,6 +95,8 @@ For each surviving story, produce:
   mailbox link exposes both the account address and a private message. Where the
   newsletter names a canonical public URL for the artifact, link that: it is the only
   linked source an entry should carry, and the only one a reader can actually open.
+  Where every link in the issue is a tracking redirect, see STEP 1.6a — resolve the
+  publisher's own archive if it has one, and otherwise cite by name alone.
 - `topic` — the target topic page slug, decided in STEP 3.
 
 Escape `&` as `&amp;` and use `&mdash;` / `&rarr;` entities to match the existing markup.

@@ -183,8 +183,11 @@ Rules the checker enforces on this markup, all of them hard:
   of the story, the same date the timeline line carries — not the run date.
 - **The headline link must be a real absolute URL**, lowercase `https://` or `http://`
   followed by a host. A relative link does not count as linked. **Never fabricate a URL
-  and never research the open web for one.** No URL in the source material → use the
-  unlinked form: `class="story unlinked"`, a plain-text `<h4>` with no `<a>`, and the
+  and never research the open web for one** — with the single named exception in
+  STEP 1.6a, which lets you resolve an ingested issue's own canonical address from the
+  publisher's public archive when the newsletter emitted only a tracking redirect, and
+  requires you to verify the page before linking it. No URL in the source material and
+  no archive to resolve to → use the unlinked form: `class="story unlinked"`, a plain-text `<h4>` with no `<a>`, and the
   words `no public URL given` inside `.sources`. Those three go together; a story that is
   linked *and* marked `unlinked`, or unlinked with no stated reason, fails the checker.
   A commentary or analysis page is an acceptable headline link when it is the only real
