@@ -29,15 +29,19 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-09-18</div>
+      <div class="meta">Last updated: 2026-09-21</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today's cycle is Kubernetes quietly winning the layer under agents. Google put <strong>Agent Substrate</strong> on GKE &mdash; an open-source, secure-by-default agent execution runtime holding millions of sandboxes at roughly ten times standard container density, with sub-500ms resume, over 500 suspend/resume activations per second and zero-trust kernel and network isolation as a native property. Microsoft open-sourced <strong>TauGrid</strong> the same week, an MIT-licensed Helm install bundling the <code>tau</code> CLI, Kueue, KubeRay, GPU health monitoring and observability, with telemetry off by default. Neither claims novelty in the components; both put the agent sandbox and the GPU queue inside the cluster manager the rest of the estate already runs. Density and resume latency are the numbers to hold onto, because they decide whether an idle agent session can be parked rather than kept warm &mdash; the difference between paying for concurrency and paying for occupancy, and the cheapest available answer to a <a href="agents.html">$19,000 swarm refactor</a>.</p>
-        <p>Two measurements land beside them, both notable for publishing the unflattering half. Meta's <strong>ZGateway</strong> fronts ZippyDB with a stateless proxy tier at over a billion operations per second, carrying about 40% of traffic at roughly 6% overhead &mdash; not deployable outside Meta, so the artifact is the 6% rather than the code, and it is the figure this pattern usually leaves unstated. Nunchux AI's <strong>VC-Attention</strong> is a training-free low-bit attention kernel for video diffusion transformers: Wan2.2 attention runs 1.59&times; faster on a B200 at 8-bit and 3.58&times; on an RTX 5090 at 4-bit, but end to end those become 1.19&times; and 1.70&times;. Quoting both numbers is the honest move and a rare one; a kernel speedup reported alone routinely implies several times the gain a user would actually see. No kernel has been released publicly yet, so the figures remain the authors' own.</p>
-        <p>Today the retrieval layer gets its cost model rewritten twice, once by a vendor and once by a customer who stopped being one. Pinecone now meters reads on <strong>egress</strong> as well as on queries, with monthly allowances of 1&nbsp;GB on Starter, 10&nbsp;GB on Builder and 100&nbsp;GB on Standard and Enterprise; past the allowance the upper tiers keep serving and bill at the published rate, while Starter and Builder block reads that return record data until the next period &mdash; an overage that becomes an outage. What it prices is not how many queries you run but how much record data each one hands back, which makes the ordinary fetch-then-rerank pipeline expensive by design and turns returning identifiers and hydrating from cheaper storage into a cost decision. Perplexity answered the same arithmetic by building: <strong>CobbleDB</strong>, its own key-value store for serving prepared web content, took median batch reads from 31.4ms to 5.60ms and p99 from 123ms to 24.2ms against DynamoDB at an estimated 20%+ lower cost, with open-sourcing planned. Batch reads decide search latency because a query fans out and the p99 sets the answer, so the five-fold tail cut is the bigger result. Both are the same judgement from opposite sides of the invoice &mdash; a managed service is right until the access pattern is narrow and enormous, at which point its generality is the thing being paid for.</p>
+        <p>Today&rsquo;s cycle points the agents at the serving stack itself. Z.ai says a <strong>GLM-5.3-powered Infra Agent</strong> built the production serving infrastructure for GLM-5.3-Flash across <strong>more than 100,000 Chinese accelerators in under two weeks</strong>, working from dense feedback on kernel fixes and system-level optimisation, and <strong>tripled throughput</strong> in the process. Z.ai frames it as a step toward recursive self-improvement; the sober reading is that serving is the part of the stack with the tightest feedback loop and the most mechanical search space, which is what makes it the first place an agent could plausibly do this. The baseline it tripled is unpublished and every figure is the vendor&rsquo;s, so what is solid here is the shape of the workload, not the multiple.</p>
+        <p>At the other end of the scale, local inference crossed a usability line rather than a capability one. Inco AI and LM Studio&rsquo;s <strong>Splash Engine</strong> decodes <strong>Qwen3.8-27B at 74 tokens per second on a 48GB M5 Pro</strong>, with a stated floor of an M3, macOS 26.4+ and 36GB of unified memory &mdash; which is really a statement about which laptops are inference hardware now. Set beside <a href="model-releases.html">PrismML&rsquo;s Bonsai 2 27B</a>, arriving the same week at 5.93GB against 53.80GB in FP16, the two answers to the same machine separate cleanly: compress the weights and pay for it in long-horizon agent work, or rewrite the runtime and keep full precision but need the memory. Both now exist for the same model family, which is the first time this section can put the choice that plainly.</p>
+        <p>The siting question moved too. Crusoe, which built OpenAI&rsquo;s Abilene supercomputer, is now factory-manufacturing small data centres, loading them onto flatbed trucks and dropping them wherever power is available, on the reasoning that <strong>inference runs on far fewer chips than training</strong> and that construction schedules are the slower constraint. That is the training/inference split turning into a real-estate decision, and it points the same way as the latency work this section tracks: serving capacity wants to sit near the power and the users, not near the training cluster. No unit economics have been published for the small builds, so the comparison to Abilene remains the company&rsquo;s own.</p>
+        
         <details>
           <summary>Earlier cycles</summary>
+          <p>Today's cycle is Kubernetes quietly winning the layer under agents. Google put <strong>Agent Substrate</strong> on GKE &mdash; an open-source, secure-by-default agent execution runtime holding millions of sandboxes at roughly ten times standard container density, with sub-500ms resume, over 500 suspend/resume activations per second and zero-trust kernel and network isolation as a native property. Microsoft open-sourced <strong>TauGrid</strong> the same week, an MIT-licensed Helm install bundling the <code>tau</code> CLI, Kueue, KubeRay, GPU health monitoring and observability, with telemetry off by default. Neither claims novelty in the components; both put the agent sandbox and the GPU queue inside the cluster manager the rest of the estate already runs. Density and resume latency are the numbers to hold onto, because they decide whether an idle agent session can be parked rather than kept warm &mdash; the difference between paying for concurrency and paying for occupancy, and the cheapest available answer to a <a href="agents.html">$19,000 swarm refactor</a>.</p>
+          <p>Two measurements land beside them, both notable for publishing the unflattering half. Meta's <strong>ZGateway</strong> fronts ZippyDB with a stateless proxy tier at over a billion operations per second, carrying about 40% of traffic at roughly 6% overhead &mdash; not deployable outside Meta, so the artifact is the 6% rather than the code, and it is the figure this pattern usually leaves unstated. Nunchux AI's <strong>VC-Attention</strong> is a training-free low-bit attention kernel for video diffusion transformers: Wan2.2 attention runs 1.59&times; faster on a B200 at 8-bit and 3.58&times; on an RTX 5090 at 4-bit, but end to end those become 1.19&times; and 1.70&times;. Quoting both numbers is the honest move and a rare one; a kernel speedup reported alone routinely implies several times the gain a user would actually see. No kernel has been released publicly yet, so the figures remain the authors' own.</p>
+          <p>Today the retrieval layer gets its cost model rewritten twice, once by a vendor and once by a customer who stopped being one. Pinecone now meters reads on <strong>egress</strong> as well as on queries, with monthly allowances of 1&nbsp;GB on Starter, 10&nbsp;GB on Builder and 100&nbsp;GB on Standard and Enterprise; past the allowance the upper tiers keep serving and bill at the published rate, while Starter and Builder block reads that return record data until the next period &mdash; an overage that becomes an outage. What it prices is not how many queries you run but how much record data each one hands back, which makes the ordinary fetch-then-rerank pipeline expensive by design and turns returning identifiers and hydrating from cheaper storage into a cost decision. Perplexity answered the same arithmetic by building: <strong>CobbleDB</strong>, its own key-value store for serving prepared web content, took median batch reads from 31.4ms to 5.60ms and p99 from 123ms to 24.2ms against DynamoDB at an estimated 20%+ lower cost, with open-sourcing planned. Batch reads decide search latency because a query fans out and the p99 sets the answer, so the five-fold tail cut is the bigger result. Both are the same judgement from opposite sides of the invoice &mdash; a managed service is right until the access pattern is narrow and enormous, at which point its generality is the thing being paid for.</p>
           <p>Pinecone also documented the schema change under the full-text search it shipped last week: a <strong>Documents API</strong> on a schema-based index where text fields, dense vectors and sparse vectors are declared on one document rather than flattened into a single field or parked in unrankable metadata. Hybrid retrieval was always assembled rather than built, and the missing piece was never BM25 or cosine similarity but a record shape holding both as first-class. PlanetScale reached the same conclusion from the opposite side the same day with <strong>TIN</strong>, a GA Postgres full-text extension reporting 25&times; ParadeDB&rsquo;s QPS on mixed ranked queries and 541&times; GIN on conjunction and phrase queries by using <code>ctid</code> values as document identifiers so postings operations vectorize &mdash; for anyone on <code>pgvector</code> that removes the managed service rather than improving it, at 50.7&nbsp;GB of index and on PlanetScale&rsquo;s own benchmarks. Back at Pinecone, three ceilings moved alongside it (1,000,000 namespaces per serverless index on Enterprise, pod-to-serverless migration doubled to 50 million records, Marketplace retired), each removing a workaround rather than adding a capability. The crawler bill this page quantified at git.kernel.org got its first two answers the same day, and they are a price and a permission. A developer charged agents a penny a page over the <strong>x402</strong> protocol and watched an agent pay it &mdash; no real revenue yet, but the flow works, and charging is the only response available to publishers with no licensing leverage. <strong>Cloudflare</strong> shipped the other half, a setting that keeps a site indexed for search while refusing training use, splitting a permission that had been one lever even though the two uses have opposite value to a publisher. Both are voluntary against a cost that is not, which is robots.txt&rsquo;s unresolved problem restated. And the hardware assumption under every local-inference result here weakened: <strong>RTX 5090</strong> supply has emptied from US online retail, with third-party listings at $6,400 to $9,500 against roughly $4,299 in store, because its 32&nbsp;GB of GDDR7 made it local AI infrastructure and the market is pricing the memory.</p>
           <p>The prior cycle produced the first published routing result to put a number on the alternative to compression. Spotify's <strong>Portal</strong> (Sep 14) cut routine Claude Code token spend by roughly 90% after finding the agent was burning most of its tokens reading files rather than reasoning: a cheap-model reader ingests large files and returns a summary so raw files never reach the frontier model's context, a writer generates tests and config from a spec plus an example straight to disk, and a plugin intercepts large reads and routes them automatically. What makes it usable is that the failures are stated. In one benchmark the cheaper model missed a subtle thread-safety bug the frontier model caught instantly, so debugging and safety-critical logic stay on the flagship; summaries lose exact line numbers, so direct edits do too; and routing small files costs more overhead than it saves. Gartner's projection that per-developer token spend passes the average developer salary by 2028 is the pressure behind it. Routing and compression fail differently &mdash; compression rewrites the prefix and breaks the cache, routing leaves the prefix alone but introduces a judgement boundary, and the benchmark miss is what being wrong about that boundary looks like.</p>
           <p>An objection landed the same week that applies to every cache figure on this page. <strong>&ldquo;A cache hit is not proof that you skipped the work&rdquo;</strong> (Sep 12) points out that the hit is asserted by the system whose bill it reduces, and lists what would make it evidence: an independent oracle expecting the prefix, an engine attesting to it, a prompt path demonstrably skipping it, byte-identical output, a passing evaluator, and a verifier binding all of it to a specific public bundle. Nothing meets that bar today, so the residue is a caution rather than a method &mdash; cache-hit rate is vendor-reported, unaudited, and the metric with the most definitional latitude. The same problem reappears one layer out: Mohamed Moustafa's catalogue of <strong>OpenRouter</strong> routing (Sep 11) finds one model ID served by providers running different inference software and settings, some providers of a vision model lacking vision entirely, and reasoning-effort read inconsistently between them. <code>provider.only</code> pins the deployment and <code>/endpoints</code> lists the choices. A model ID names a family of deployments, and any reproducible measurement has to say which one.</p>
@@ -67,11 +71,11 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">7</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">6</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">7</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">1</span></a></li>
-          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">4</span></a></li>
+          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">5</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">2</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">16</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">17</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">8</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">6</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">2</span></a></li>
@@ -148,6 +152,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story" id="splash-engine">
+          <span class="when">2026-09-20</span>
+          <h4><a href="https://lmstudio.ai/blog/splash-engine">Splash Engine runs Qwen3.8-27B at 74 tokens/second on a 48GB M5 Pro</a></h4>
+          <p>Inco AI and LM Studio shipped <strong>Splash Engine</strong>, an Apple Silicon runtime that decodes <strong>Qwen3.8-27B at 74 tokens per second on a 48GB M5 Pro</strong>. It ships as an experimental runtime inside LM Studio Bionic and needs an M3 or newer Mac, macOS 26.4+, and at least 36GB of unified memory.</p>
+          <p>Seventy-four tokens per second is past the reading-speed threshold at which a 27B local model stops being a demonstration, and the floor it sets is the more useful number: 36GB of unified memory and an M3 is a description of which laptops are now inference hardware and which are not. Read with <a href="model-releases.html">PrismML&rsquo;s Bonsai 2</a>, the two approaches to the same machine diverge cleanly &mdash; one compresses the weights, the other rewrites the runtime, and only the second keeps full precision.</p>
+          <div class="sources"><a href="https://lmstudio.ai/blog/splash-engine">LM Studio</a> &middot; <span class="via">via Unwind AI (Sep 20)</span></div>
+        </article>
+
         <article class="story" id="vc-attention">
           <span class="when">2026-09-16</span>
           <h4><a href="https://arxiv.org/abs/2609.15810">VC-Attention speeds video-diffusion attention 3.58&times; at 4-bit on an RTX 5090, with no retraining</a></h4>
@@ -164,16 +176,16 @@
           <div class="sources"><a href="https://github.com/Edge0-AI/edge0/">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 11)</span></div>
         </article>
 
-        <article class="story unlinked" id="local-hardware-ladder">
-          <span class="when">2026-09-02</span>
-          <h4>One model across the consumer-to-workstation ladder: 8.34 to 109 tokens per second</h4>
-          <p>A community benchmark ran Qwen3.8-Flash-Next across the full consumer-to-workstation range in llama.cpp, from 8.34 tokens per second CPU-only to 109.07 on a 96&nbsp;GB VRAM configuration &mdash; a thirteen-fold spread on one checkpoint, with the ceiling requiring an RTX 6000 PRO-class card. It is a map rather than a headline: it prices the gap between a model running locally and running locally at a usable speed, which open-weights releases on <a href="model-releases.html">Model releases</a> consistently leave unstated.</p>
-          <p>Alongside it, Together AI cut dedicated H100 inference from $5.49 to $3.99 per hour for September, applied automatically to existing deployments.</p>
-          <div class="sources"><span class="via">via Unwind AI (Sep 2) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story unlinked" id="local-hardware-ladder">
+            <span class="when">2026-09-02</span>
+            <h4>One model across the consumer-to-workstation ladder: 8.34 to 109 tokens per second</h4>
+            <p>A community benchmark ran Qwen3.8-Flash-Next across the full consumer-to-workstation range in llama.cpp, from 8.34 tokens per second CPU-only to 109.07 on a 96&nbsp;GB VRAM configuration &mdash; a thirteen-fold spread on one checkpoint, with the ceiling requiring an RTX 6000 PRO-class card. It is a map rather than a headline: it prices the gap between a model running locally and running locally at a usable speed, which open-weights releases on <a href="model-releases.html">Model releases</a> consistently leave unstated.</p>
+            <p>Alongside it, Together AI cut dedicated H100 inference from $5.49 to $3.99 per hour for September, applied automatically to existing deployments.</p>
+            <div class="sources"><span class="via">via Unwind AI (Sep 2) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="kimi-k3-in-c">
             <span class="when">2026-08-31</span>
@@ -217,6 +229,14 @@
         <h3>High-throughput serving of large MoEs</h3>
         <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format. None of these makes a model smaller. Every rate here is only as meaningful as the GPU and batch size beside it.</p>
 
+        <article class="story" id="glm-infra-agent">
+          <span class="when">2026-09-18</span>
+          <h4><a href="https://z.ai/blog/glm-built-its-inference-infrastructure">Z.ai had GLM-5.3 build GLM-5.3-Flash&rsquo;s serving stack on 100,000+ domestic accelerators</a></h4>
+          <p>Z.ai used a <strong>GLM-5.3-powered Infra Agent</strong> to build the production serving stack for GLM-5.3-Flash across <strong>more than 100,000 Chinese accelerators in under two weeks</strong>. The agent worked from dense feedback on kernel fixes and system-level optimisation, and Z.ai reports the result <strong>tripled throughput</strong>; humans kept ownership of objectives and risk.</p>
+          <p>The interesting claim is not the speedup but where the agent was pointed. Serving infrastructure is the part of the stack with the tightest feedback loop and the most mechanical search space &mdash; kernel variants, batching, placement &mdash; which is exactly what makes it tractable to an agent and exactly what makes &ldquo;recursive self-improvement&rdquo; an overstatement for what happened. Every figure is Z.ai&rsquo;s, and the throughput baseline it tripled is not published, so this reads as a credible account of an internal programme rather than a measured result.</p>
+          <div class="sources"><a href="https://z.ai/blog/glm-built-its-inference-infrastructure">Z.ai</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
+        </article>
+
         <article class="story unlinked" id="cohere-megakernel">
           <span class="when">2026-09-09</span>
           <h4>Cohere&rsquo;s decode megakernel reaches 292 tokens per second at batch 1, 1.58&times; vLLM</h4>
@@ -233,16 +253,16 @@
           <div class="sources"><span class="via">via TLDR AI (Aug 19), Unwind AI (Aug 24) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="mimo-tilert">
-          <span class="when">2026-06-09</span>
-          <h4>Xiaomi&rsquo;s MiMo on the TileRT runtime clears 1,000 tokens per second on a 1.02T-parameter MoE</h4>
-          <p>MiMo-V2.5-Pro-UltraSpeed, paired with the TileRT runtime, serves a 1.02-trillion-parameter MoE with 42B active at FP8 at over 1,000 tokens per second on commodity GPU hardware. Neither the GPU model nor the batch size behind that rate is given, which is what would make it comparable to anything else on this page.</p>
-          <p>It is a runtime and kernel-engineering result more than a model one, and it reframes trillion-parameter inference as a serving target rather than a research demonstration.</p>
-          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story unlinked" id="mimo-tilert">
+            <span class="when">2026-06-09</span>
+            <h4>Xiaomi&rsquo;s MiMo on the TileRT runtime clears 1,000 tokens per second on a 1.02T-parameter MoE</h4>
+            <p>MiMo-V2.5-Pro-UltraSpeed, paired with the TileRT runtime, serves a 1.02-trillion-parameter MoE with 42B active at FP8 at over 1,000 tokens per second on commodity GPU hardware. Neither the GPU model nor the batch size behind that rate is given, which is what would make it comparable to anything else on this page.</p>
+            <p>It is a runtime and kernel-engineering result more than a model one, and it reframes trillion-parameter inference as a serving target rather than a research demonstration.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="nemotron-3-ultra">
             <span class="when">2026-06-09</span>
@@ -279,6 +299,14 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story unlinked" id="crusoe-micro-datacentres">
+          <span class="when">2026-09-18</span>
+          <h4>Crusoe turns from the Abilene supercomputer to truck-delivered data centres</h4>
+          <p>Crusoe, which built OpenAI&rsquo;s largest data centre in Abilene, Texas, is now investing heavily in small ones: manufactured in factories, loaded onto flatbed trucks, and dropped wherever power is available. The company&rsquo;s stated reasoning is that this is faster and cheaper than relying only on large construction projects, and that while giant clusters of hundreds of thousands of chips are needed for training, <strong>inference runs on considerably fewer</strong>.</p>
+          <p>This is the training/inference split turning into a siting decision. A training cluster is one problem &mdash; find a gigawatt &mdash; and an inference fleet is a different one, closer to where the power and the users already are, which is the argument this section has been tracking from the latency side. If it holds, the constraint on serving capacity stops being construction schedules and becomes power interconnects, which move on their own timetable. Crusoe has published no unit economics for the small builds, so the comparison to Abilene is the company&rsquo;s own.</p>
+          <div class="sources"><span class="via">via TLDR (Sep 18) &mdash; no public URL given</span></div>
+        </article>
+
         <article class="story" id="x402-pay-per-crawl">
           <span class="when">2026-09-16</span>
           <h4><a href="https://suganthan.com/blog/x402-pay-per-crawl/">A developer charged AI agents a penny a page over x402, and an agent paid it</a></h4>
@@ -295,16 +323,16 @@
           <div class="sources"><a href="https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/">Cloudflare</a> &middot; <span class="via">via TLDR (Sep 16)</span></div>
         </article>
 
-        <article class="story" id="rtx-5090-supply">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://www.tomshardware.com/pc-components/gpus/nvidias-rtx-5090-vanishes-from-online-retail-in-the-us-third-party-sellers-now-demand-as-much-as-usd9-500-for-nvidias-fastest-gpu">RTX 5090s vanish from US retail, with third-party listings reaching $9,500</a></h4>
-          <p>First-party RTX 5090 inventory has effectively disappeared from US online retail, leaving third-party listings running roughly $6,400 to $9,500 against a Micro Center in-store price of about $4,299. A consumer flagship is priced beside professional GPUs because its 32&nbsp;GB of GDDR7 made it local AI infrastructure rather than a gaming part, and the market is pricing the memory.</p>
-          <p>That lands on the local-inference thread running through this page. <a href="#edge0">Edge0</a> streaming a 35B MoE in roughly 2.9&nbsp;GB of live memory, Rapid-MLX recommending the largest model a machine can hold, the sub-2-bit quantization work: each is an argument about what consumer hardware can do, and each quietly assumes the hardware can be bought at list. At two to three times list, running locally to avoid API charges is a different calculation, and the memory-capacity-first server designs in this section &mdash; <a href="#positron-asimov">Positron&rsquo;s commodity LPDDR5X</a> among them &mdash; become more interesting rather than less.</p>
-          <div class="sources"><a href="https://www.tomshardware.com/pc-components/gpus/nvidias-rtx-5090-vanishes-from-online-retail-in-the-us-third-party-sellers-now-demand-as-much-as-usd9-500-for-nvidias-fastest-gpu">Tom&rsquo;s Hardware</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (13)</summary>
+          <summary>Earlier in this section (14)</summary>
+
+          <article class="story" id="rtx-5090-supply">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://www.tomshardware.com/pc-components/gpus/nvidias-rtx-5090-vanishes-from-online-retail-in-the-us-third-party-sellers-now-demand-as-much-as-usd9-500-for-nvidias-fastest-gpu">RTX 5090s vanish from US retail, with third-party listings reaching $9,500</a></h4>
+            <p>First-party RTX 5090 inventory has effectively disappeared from US online retail, leaving third-party listings running roughly $6,400 to $9,500 against a Micro Center in-store price of about $4,299. A consumer flagship is priced beside professional GPUs because its 32&nbsp;GB of GDDR7 made it local AI infrastructure rather than a gaming part, and the market is pricing the memory.</p>
+            <p>That lands on the local-inference thread running through this page. <a href="#edge0">Edge0</a> streaming a 35B MoE in roughly 2.9&nbsp;GB of live memory, Rapid-MLX recommending the largest model a machine can hold, the sub-2-bit quantization work: each is an argument about what consumer hardware can do, and each quietly assumes the hardware can be bought at list. At two to three times list, running locally to avoid API charges is a different calculation, and the memory-capacity-first server designs in this section &mdash; <a href="#positron-asimov">Positron&rsquo;s commodity LPDDR5X</a> among them &mdash; become more interesting rather than less.</p>
+            <div class="sources"><a href="https://www.tomshardware.com/pc-components/gpus/nvidias-rtx-5090-vanishes-from-online-retail-in-the-us-third-party-sellers-now-demand-as-much-as-usd9-500-for-nvidias-fastest-gpu">Tom&rsquo;s Hardware</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
+          </article>
 
           <article class="story unlinked" id="positron-asimov">
             <span class="when">2026-09-14</span>
@@ -682,6 +710,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-20</span><span class="label"><a href="#splash-engine">Splash Engine runs Qwen3.8-27B at 74 tokens/second on a 48GB M5 Pro</a></span></li>
+        <li><span class="date">2026-09-18</span><span class="label"><a href="#crusoe-micro-datacentres">Crusoe turns from the Abilene supercomputer to truck-delivered data centres</a></span></li>
+        <li><span class="date">2026-09-18</span><span class="label"><a href="#glm-infra-agent">Z.ai had GLM-5.3 build GLM-5.3-Flash&rsquo;s serving stack on 100,000+ domestic accelerators</a></span></li>
         <li><span class="date">2026-09-17</span><span class="label"><a href="#agent-substrate-gke">Agent Substrate lands on GKE: roughly ten times sandbox density and sub-500ms resume</a></span></li>
         <li><span class="date">2026-09-17</span><span class="label"><a href="#taugrid">Microsoft open-sources TauGrid, a one-Helm-install Kubernetes stack for GPU AI workloads</a></span></li>
         <li><span class="date">2026-09-16</span><span class="label"><a href="#planetscale-tin">PlanetScale&rsquo;s TIN puts BM25 full-text search inside Postgres at 25&times; ParadeDB&rsquo;s QPS on mixed ranked queries</a></span></li>
