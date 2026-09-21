@@ -62,6 +62,21 @@ into one unbroken block.
 - Sub-`<ul>`s inside a summary `<li>` need no CSS — `styles.css` has no rule for plain
   lists and is never edited.
 
+**The log links out** (user instruction 2026-09-21: *"I miss the link for the original
+source close to the entry"*). A log that names things the reader cannot reach is a
+dead end, so:
+
+- **Each newsletter in the scanned list links to that issue's public archive** — see the
+  table in STEP 1.6a. Say so where one genuinely has no public page, rather than leaving
+  a bare name that looks like an oversight.
+- **Each update bullet links to the entry it updated**, using the story's `#id` on a
+  converted page and the page itself on an unconverted one.
+- **The first mention of a named artifact links to its entry**, in the scan notes and in
+  the themes paragraphs. First mention only — a paragraph where every noun is blue is
+  the failure this is trying to avoid.
+- Check the links before finishing: every `../topics/…#fragment` must resolve to an `id`
+  that exists, which is worth a one-line script rather than an eyeball.
+
 ## 4.3 What belongs in the notes
 
 The first `<li>` is where the run is honest about itself. Record:

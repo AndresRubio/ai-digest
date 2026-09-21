@@ -132,12 +132,27 @@ the "do not research the open web for a URL" rule in STEP 3 N2, and it stays nar
 - **Verify before linking.** Open the archive, find the issue, and take the URL and any
   heading anchor from the page itself. Never assemble one from a slug pattern. If the
   archive has no page for that issue, use the unlinked form.
-- Known archive: **The Batch** publishes at `https://www.deeplearning.ai/the-batch/` with
-  one page per issue (`/the-batch/issue-NNN`) and an `id` on each news item's heading, so
-  an item is cited as `…/issue-371#how-to-secure-agents-for-the-masses`. The opening
-  letter has no anchor; cite the issue page bare.
-- TLDR and The Code have **no public archive** of the issues they redirect to, so entries
-  sourced only from those redirects still use the unlinked form.
+Known archives, all confirmed 2026-09-21 — still open the page and check before citing,
+since a pattern that held once is not a guarantee:
+
+| Newsletter | Archive | Shape |
+|---|---|---|
+| The Batch | `deeplearning.ai/the-batch/` | one page per issue, `/the-batch/issue-NNN`, with an `id` on each news item's heading — cite `…/issue-371#how-to-secure-agents-for-the-masses`. The opening letter has no anchor; cite the issue page bare. |
+| TLDR AI | `tldr.tech/ai/YYYY-MM-DD` | one page per dated issue |
+| TLDR general | `tldr.tech/tech/YYYY-MM-DD` | one page per dated issue |
+| The Code | `codenewsletter.ai/p/<slug>` | slug is in the email footer — "copy and paste this link to view the post online" |
+| MarkTechPost | `aidevsignals.com/p/<slug>` | same footer line |
+| Unwind AI | `theunwindai.com/p/<slug>` | same footer line |
+| AI in Healthcare | `talby.com/p/<slug>` | the Substack post URL, given at the top of the mail |
+
+Two practical notes. Where the body names the canonical URL itself — the beehiiv and
+Substack senders all print a "view this post online" line in the footer — that is not
+research at all, just reading the message you already have; prefer it. And `curl` gets a
+403 from beehiiv and Substack, which is bot-blocking rather than a missing page, so
+confirm those in the browser rather than concluding the URL is dead.
+
+**Substack notes digests have no public page**, so an item lifted from one is cited by
+name alone. Where a newsletter has no archive, the unlinked form still applies.
 
 If a query fails, continue with the others and note the gap — STEP 4 reports it in the
 daily log rather than failing the run silently.
