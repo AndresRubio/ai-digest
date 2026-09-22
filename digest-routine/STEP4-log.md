@@ -18,6 +18,18 @@ Write `site/daily/YYYY-MM-DD.html` using the existing template: the standard
 `<!doctype html>` head with `<link rel="stylesheet" href="../styles.css">`, the shared
 sidebar with `../` prefixes, and `<h1>AI Digest Log — YYYY-MM-DD</h1>`.
 
+**The head carries two meta tags and needs both:**
+
+```html
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+```
+
+Copy them from the previous day's page rather than typing them. Without the second one a
+phone lays the page out at 980px and scales the whole thing down to fit, so `styles.css`'s
+`@media (max-width: 720px)` rule never fires and every page renders at roughly 40% size.
+It was missing from all 92 pages until 2026-09-22.
+
 The body is a short summary `<ul>`, then the scan notes under their own headings, then
 the themes:
 

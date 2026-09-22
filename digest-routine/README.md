@@ -124,6 +124,9 @@ context.
 ## Conventions the site depends on
 
 - `site/styles.css` is never edited. Every class needed already exists.
+- **Every page's `<head>` carries `<meta name="viewport" content="width=device-width,
+  initial-scale=1">`.** The stylesheet has a `max-width: 720px` breakpoint that collapses
+  the sidebar; without the meta tag a phone never reaches it. Added site-wide 2026-09-22.
 - All eleven topic pages carry one shape, the story-item structure (converted
   2026-09-21 to 2026-09-22; STEP3 §3.2). A page is **not** append-only: `Current state` is
   rewritten every run, story items are prepended and then left as written, and only
