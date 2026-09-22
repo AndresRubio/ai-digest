@@ -29,10 +29,11 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-09-18</div>
+      <div class="meta">Last updated: 2026-09-22</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The one arrival this cycle is a release of the missing half. ByteDance Seed and Tsinghua SIA published <strong>DAPO</strong> (Sep 21) as a complete open RL system &mdash; algorithm, dataset and training infrastructure &mdash; reporting <strong>50 points on AIME 2024 from the Qwen2.5-32B base model</strong>. DAPO has appeared on this page for months as a name inside the policy-gradient lineage, one of several refinements to loss aggregation and clipping over GRPO. Shipping the data and the plumbing alongside it is the difference between a citation and a reproduction, and it lands in the same section as Miles, Verifiers v1 and AgentENV, each of which closed a different part of the same gap. The pattern across all four is that the published result is no longer the contribution; the machinery that produced it is.</p>
         <p>Today's single entry is a reframing rather than a result about training quality. Google Research's <strong>Retrieve-for-Train</strong> takes reinforcement learning out of the serving path: the RL runs once, offline, and is compiled into a 53.9M-parameter diffusion model that generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 that is 0.07 seconds against roughly 1.46, reported as a 12&times; to 20&times; speedup. Most of this page treats RL as something a model carries into production &mdash; a policy learned in post-training and executed at inference. R4T points out that where RL learns a <em>search</em> policy, it need not run as a policy at all: it can be amortised into a generator, turning an inference-time cost into a training-time one. The limit is built into the trade, since it only works where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns. For any fan-out settled before the results arrive it is the right shape, and it is the first item on this page to treat RL as a compilation step.</p>
         <p>Today's result is about where the training budget goes rather than what it buys. A write-up on RL for LLMs starts from a failure averages conceal: standard RL performs disproportionately badly on a training set's hardest problems, and one scalar value per problem is too thin a signal to judge a large model's progress on it. The fix proposed is budgetary rather than algorithmic &mdash; spend less compute on problems the model already solves and redirect it to the hard ones &mdash; with substantial reported improvement on difficult tasks. The reasoning is that easy problems stop producing gradient signal long before their allocated rollouts are exhausted, so uniform sampling keeps paying for steps that teach nothing while the informative problems stay undersampled. That arrives at the same place as this page's failure-driven environment work by a cheaper route: TRACE builds an environment around a repeated failure, this one just resamples toward the failures already present. The post reports direction rather than a benchmark table, so neither the size of the gain nor its cost on the easy half can be checked from here.</p>
         <p>The prior cycle's single result reinforced the page's running argument that data construction, not compute, is where post-training gains now come from. Google Research's <strong>ToolGrad</strong> (Sep 14) inverts how tool-use training data is made. The usual pipeline invents a plausible user request and then hopes an agent can find a working call sequence for it &mdash; which fails whenever none exists, and quietly trains the model to attempt impossible compositions. ToolGrad constructs a verified API chain first and writes the user question that chain answers afterwards, making validity structural rather than something filtered in afterwards: a 99.8% success rate across 16,000 real APIs. The downstream figure is the one worth carrying &mdash; a Gemma 3 12B fine-tuned on 500 of these examples matched Gemini 2.5 Pro on a tool-use test with APIs neither model had seen. That is the same shape as the environment-quality results below, reached from the supervised side: where a task has checkable structure, generating from the structure toward the prompt beats sampling prompts and throwing away the failures, and it makes 500 well-formed examples worth more than a much larger filtered corpus.</p>
@@ -63,7 +64,7 @@
           <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">2</span></a></li>
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
-          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">4</span></a></li>
+          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">5</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">3</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
           <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">4</span></a></li>
@@ -236,6 +237,15 @@
         <h3>RL environment infrastructure</h3>
         <p class="lead">Four open implementations of the same layer &mdash; define the task, run the agent, score the attempt, update the weights &mdash; and no shared standard between them, which is roughly where the serving layer stood two years ago. Judge each on what it makes reusable, not on the algorithm it happens to ship with.</p>
 
+        <article class="story" id="dapo-rl-system">
+          <span class="when">2026-09-21</span>
+          <h4><a href="https://github.com/BytedTsinghua-SIA/DAPO">DAPO ships as a whole open RL system, not just the algorithm the papers cite</a></h4>
+          <p>ByteDance Seed and Tsinghua&rsquo;s SIA released <strong>DAPO</strong> as a full system for large-scale LLM reinforcement learning, reporting <strong>50 points on AIME 2024 from the Qwen2.5-32B base model</strong>. Everything is open: the algorithm details, the dataset and the training infrastructure.</p>
+          <p>DAPO has been a name in this page&rsquo;s <a href="#policy-gradient-reference">policy-gradient lineage</a> for months as one of the refinements to loss aggregation and clipping on top of GRPO. What ships here is the rest of it &mdash; the data and the plumbing that produced the number &mdash; which is the part every reproduction attempt has been missing, and the same gap Miles, Verifiers and AgentENV in this section each closed from a different side.</p>
+          <div class="sources"><a href="https://github.com/BytedTsinghua-SIA/DAPO">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 21)</span></div>
+        </article>
+
+
         <article class="story unlinked" id="agent-lightning-v1">
           <span class="when">2026-08-20</span>
           <h4>Agent Lightning v1.0 lifts Qwen3.5-9B by 14.6 points on SWE-bench Verified with 6K examples</h4>
@@ -252,16 +262,17 @@
           <div class="sources"><span class="via">via TLDR AI (Aug 19) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="agentenv">
-          <span class="when">2026-07-29</span>
-          <h4>Moonshot open-sources AgentENV &mdash; the RL sandbox behind Kimi K3&rsquo;s agentic training</h4>
-          <p>Moonshot AI open-sourced AgentENV, the RL environment and sandbox infrastructure that powered the agentic RL training behind Kimi K3, framed by Moonshot as addressing the overlooked half of agentic RL &mdash; environment throughput &mdash; rather than the policy model itself.</p>
-          <p>It is a second concrete instance at production scale, after Prime Intellect&rsquo;s Verifiers v1, of treating environment throughput as core agentic-RL infrastructure worth open-sourcing on its own.</p>
-          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 28) &mdash; no public URL given</span></div>
-        </article>
 
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story unlinked" id="agentenv">
+            <span class="when">2026-07-29</span>
+            <h4>Moonshot open-sources AgentENV &mdash; the RL sandbox behind Kimi K3&rsquo;s agentic training</h4>
+            <p>Moonshot AI open-sourced AgentENV, the RL environment and sandbox infrastructure that powered the agentic RL training behind Kimi K3, framed by Moonshot as addressing the overlooked half of agentic RL &mdash; environment throughput &mdash; rather than the policy model itself.</p>
+            <p>It is a second concrete instance at production scale, after Prime Intellect&rsquo;s Verifiers v1, of treating environment throughput as core agentic-RL infrastructure worth open-sourcing on its own.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 28) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="verifiers-v1">
             <span class="when">2026-07-15</span>
@@ -367,6 +378,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-21</span><span class="label"><a href="#dapo-rl-system">DAPO ships as a whole open RL system, not just the algorithm the papers cite</a></span></li>
         <li><span class="date">2026-09-16</span><span class="label"><a href="#never-giving-up">&ldquo;Never Giving Up&rdquo; reallocates RL compute from easy problems to the ones standard RL abandons</a></span></li>
         <li><span class="date">2026-09-16</span><span class="label"><a href="#retrieve-for-train">Retrieve-for-Train compiles an RL policy into a 53.9M diffusion retriever</a></span></li>
         <li><span class="date">2026-09-14</span><span class="label"><a href="#toolgrad">ToolGrad builds the API chain first and writes the question afterwards</a></span></li>
