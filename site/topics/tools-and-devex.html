@@ -133,7 +133,7 @@
             <span class="when">2026-05-28</span>
             <h4>Eugene Yan: &ldquo;How to Work and Compound with AI&rdquo;</h4>
             <p>A long-form essay laying out five principles for working with AI agents: context as infrastructure, taste as configuration, verification for autonomy, scaling via delegation, and closing the loop. The practical patterns it recommends are lazy-loaded guides, skills bootstrapped from a single example, and mining session transcripts for the rules that are missing.</p>
-            <div class="sources"><span class="via">via eugeneyan.com newsletter (May 28) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via eugeneyan.com email &mdash; no public URL given</span></div>
           </article>
         </details>
       </section>
@@ -180,7 +180,7 @@
 
       <section class="topic-section" id="token-economics-and-prompt-caching">
         <h3>Token economics &amp; prompt caching</h3>
-        <p class="lead">Standard prompt caching alone yields modest savings; the structural techniques are what separate teams reporting ~90% reductions from those seeing 20&ndash;30%. Write prompts as if they will be cached, not patched &mdash; and check that nothing in the harness is quietly invalidating the cache on a timer.</p>
+        <p class="lead">Standard prompt caching alone yields only modest savings. Structural techniques &mdash; keeping cacheable prefixes stable across turns, ordering context from least- to most-volatile, and avoiding mid-prompt edits that invalidate the cache &mdash; are what separate the teams seeing ~90% token reductions from those seeing 20&ndash;30%. Write prompts as if they will be cached, not patched.</p>
 
         <article class="story" id="fast-jev-compaction">
           <span class="when">2026-09-20</span>
@@ -228,15 +228,15 @@
           <article class="story unlinked" id="boringbot-token-optimisation">
             <span class="when">2026-05-30</span>
             <h4>boringbot: Claude Code token optimisation &mdash; best practices</h4>
-            <p>A survey of roughly 20 viral GitHub repositories asking what separates teams hitting ~90% token reduction from those seeing 20&ndash;30% on standard prompt caching alone. The finding is that the high-reduction techniques are structural rather than configurational &mdash; keeping cacheable prefixes stable across turns, ordering context from least- to most-volatile, and avoiding mid-prompt edits that invalidate the cache &mdash; and that almost nobody talks about them.</p>
-            <div class="sources"><span class="via">via boringbot Substack (May 30) &mdash; no public URL given</span></div>
+            <p>A survey of roughly 20 viral GitHub repositories asking what separates teams hitting ~90% token reduction from those seeing modest savings with standard prompt caching. The finding is that the high-reduction techniques are structural &mdash; how the prompt is composed and ordered &mdash; rather than configurational, and that almost nobody talks about them.</p>
+            <div class="sources"><span class="via">via boringbot Substack &mdash; no public URL given</span></div>
           </article>
 
           <article class="story unlinked" id="mid-conversation-system-messages">
             <span class="when">2026-05-28</span>
             <h4>Claude API: mid-conversation system messages</h4>
             <p>The Messages API now accepts system entries inside the messages array, so agents can update Claude&rsquo;s instructions mid-task without breaking the prompt cache.</p>
-            <div class="sources"><span class="via">via Anthropic announcement (May 28) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via Anthropic email announcement &mdash; no public URL given</span></div>
           </article>
         </details>
       </section>
@@ -266,7 +266,7 @@
           <h4>Perplexity Brain &mdash; managed agent-work memory as a DevEx feature</h4>
           <p>Brain (June 18) productizes the agent-memory substrate practitioners have been hand-building with GraphRAG: a context graph of the agent&rsquo;s <em>work</em> that self-synthesizes overnight into an LLM wiki future runs consume, sold inside the $200/mo Computer plan.</p>
           <p>It reframes memory hygiene from an engineering task into a managed feature you buy, while inheriting the identity and corruption risk any self-maintained graph carries, so the build-vs-buy choice now extends to the memory layer rather than stopping at the harness. Agent-side detail is on the <a href="agents.html">Agents</a> page.</p>
-          <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief (Jun 20) &mdash; no public URL given</span></div>
+          <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
         </article>
 
         <details>
@@ -277,7 +277,7 @@
             <h4>Decoding AI: &ldquo;Agents That Code. Memory That Compounds.&rdquo;</h4>
             <p>Decoding AI Magazine walked through a six-agent Claude Code team and open-sourced the result, paired with Neo4j&rsquo;s agent-memory library patterns to ship a knowledge-graph ontology &ldquo;in 5 minutes instead of 5 weeks&rdquo;.</p>
             <p>It continues the publication&rsquo;s GraphRAG series and reinforces that typed graph memory, rather than a flat vector store, is becoming the recommended substrate for multi-agent systems. The multi-agent orchestration angle is on the <a href="agents.html">Agents</a> page.</p>
-            <div class="sources"><span class="via">via Decoding AI Magazine (Jun 4) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via Decoding AI Magazine (Substack) &mdash; no public URL given</span></div>
           </article>
 
           <article class="story unlinked" id="stop-merging-entities-by-name">
@@ -285,7 +285,7 @@
             <h4>Decoding AI: &ldquo;Stop Merging Entities by Name&rdquo;</h4>
             <p>A tactical guide to entity resolution for knowledge-graph memory layers, arguing that naming similarity is not identity and that merging on string match is the most common silent corruption mode in agentic GraphRAG systems. &ldquo;Apple&rdquo; the company and &ldquo;apple&rdquo; the fruit break a graph trivially; the harder cases are the same name for different people and different aliases for one person.</p>
             <p>Its recommendations are to merge on multi-signal evidence &mdash; type, neighbouring edges, provenance &mdash; to grow the ontology from the data rather than designing it upfront, and to keep an unresolved-mentions queue rather than forcing premature merges.</p>
-            <div class="sources"><span class="via">via Decoding AI Magazine (Jun 2) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via Decoding AI Magazine (Substack) &mdash; no public URL given</span></div>
           </article>
         </details>
       </section>
@@ -476,7 +476,7 @@
             <h4>Google Colab CLI &mdash; remote GPUs/TPUs from the terminal, with an agent skill file</h4>
             <p>The Colab CLI bridges local terminals and remote Colab runtimes: it provisions GPUs and TPUs instantly, runs scripts remotely, and recovers artifacts. It ships with a prepackaged Colab skill file so AI agents have built-in context on how to use it &mdash; Antigravity can QLoRA-fine-tune Gemma 3-1B on a Colab GPU in a single terminal command.</p>
             <p>The skill-file-as-tool-documentation convention turns &ldquo;can a human read the README&rdquo; into &ldquo;does the agent ship with the tool&rsquo;s usage baked in&rdquo;.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief (Jun 9) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
           </article>
 
           <article class="story unlinked" id="autokernel">
@@ -484,7 +484,7 @@
             <h4>RightNow AI Autokernel &mdash; an agent that writes &amp; self-tunes CUDA kernels</h4>
             <p>RightNow AI built Autokernel, an agent that writes a single CUDA kernel and self-tunes it past NVIDIA&rsquo;s own libraries, reportedly reaching up to 14&times; on some internal kernels and ending up inside big-tech stacks.</p>
             <p>It is a concrete case of agent-authored performance-critical systems code moving from demo toward production.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief (Jun 9) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
           </article>
         </details>
       </section>
@@ -565,7 +565,7 @@
             <h4>xAI Grok Build ships a plugin package manager for coding agents</h4>
             <p>xAI introduced a plugin system for Grok Build where one plugin bundles skills, slash commands, agents, hooks, MCP servers and LSPs into a single installable unit, browsed and updated from the Grok Build CLI. Launch-partner plugins include MongoDB, Vercel, Sentry, Cloudflare, Chrome DevTools and custom-workflow bundles.</p>
             <p>It is framed as the first coding agent to make extensibility a true package-managed infrastructure layer, against the integrations Claude Code, Cursor and Copilot already have.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief (Jun 13) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
           </article>
         </details>
       </section>
@@ -763,7 +763,7 @@
             <h4>Apple open-sources Container &mdash; Swift-native Linux containers on Apple Silicon</h4>
             <p>Apple released Container (Apache 2.0), an open-source tool that creates and runs Linux containers as lightweight virtual machines on macOS, written entirely in Swift and optimized for Apple Silicon. Each container boots its own Linux kernel in a lightweight VM, giving full isolation without a traditional hypervisor; it ships a Containerization Swift package for embedding in Mac apps, and exposes a Docker-compatible CLI so existing workflows carry over.</p>
             <p>It is a first-party alternative to Docker Desktop, Lima or Colima on ARM Macs for anyone running Linux workloads, CI or containerized services locally, and it is on GitHub now.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief (Jun 26) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
           </article>
 
           <article class="story unlinked" id="open-source-agent-infra-wave">
@@ -771,7 +771,7 @@
             <h4>Open-source agent-infra wave: Gitdot, HelixDB, Extend UI, Hermes Profile Builder</h4>
             <p>A signal-shorts roundup flagged several open-source releases filling in the agent stack: Gitdot (Rust, self-hostable open-source GitHub alternative; 328 HN points in 3 days), HelixDB (Rust, YC-backed single-engine OLTP graph + vector + full-text database on object storage; 149 HN points), Extend AI&rsquo;s Extend UI (open-source React components for document-native AI apps &mdash; PDF/DOCX/XLSX viewers, bounding-box citations, e-signing; 244 HN points), and Nous Research&rsquo;s Hermes Profile Builder (a GUI to configure identity, model, skills and MCP servers without the CLI).</p>
             <p>Deno&rsquo;s Claw Patrol agent firewall &mdash; MIT, a firewall between agents and production that parses wire traffic and gates actions &mdash; trended #4 on HN the same week; see <a href="safety-and-policy.html">Safety &amp; policy</a>.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief (Jun 13) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
           </article>
         </details>
       </section>
@@ -886,7 +886,7 @@
             <h4>Vercel Eve &mdash; agent-as-a-directory framework, deployable in one command</h4>
             <p>Vercel open-sourced Eve (June 17), a framework that defines an agent as a directory of files rather than a class, graph or config: Eve compiles the directory, provides durable execution out of the box, and auto-wires channels, with Slack going through Vercel Connect.</p>
             <p>The pitch is minimum cognitive overhead &mdash; agents become versionable, diffable filesystem artifacts deployable in one command, available as the npm package <code>eve</code> &mdash; so build-vs-buy at the single-agent layer is no longer graphs and chains against a managed service but a few files in a repo against one. Agent-side framing is on the <a href="agents.html">Agents</a> page.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief (Jun 20) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
           </article>
 
           <article class="story unlinked" id="omnigent">
@@ -894,7 +894,7 @@
             <h4>Databricks Omnigent &mdash; open-source meta-harness to manage multiple coding agents</h4>
             <p>Databricks open-sourced Omnigent (June 13, Apache 2.0), a meta-harness that sits above Claude Code, Codex, Pi and custom agents and lets teams compose them into workflows, govern them centrally with unified access control, audit logs and cost caps, and share agent configs across teams.</p>
             <p>It targets the config drift, duplicate permissions and lack of cross-agent visibility that emerge once a team runs several coding agents, making multi-agent management a build-vs-buy decision at the orchestration tier. Agent-side framing is on the <a href="agents.html">Agents</a> page.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief (Jun 16) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
           </article>
 
           <article class="story unlinked" id="harness-deconstructed">
@@ -902,7 +902,7 @@
             <h4>The agentic harness, deconstructed &mdash; and commoditizing</h4>
             <p>Decoding AI Magazine published a component-by-component teardown of an agentic harness &mdash; tools, skills, memory, sandbox, permissions &mdash; arguing that just as base LLMs commoditized, the harness around them is hardening into a handful of standardized, batteries-included frameworks.</p>
             <p>It landed the same week Anthropic shipped Claude Managed Agents in public beta with Fable 5, which is the managed-harness &ldquo;buy&rdquo; option with built-in fallback. The implication for DevEx is that differentiation moves to model choice, context engineering and memory rather than the loop.</p>
-            <div class="sources"><span class="via">via Decoding AI Magazine, Anthropic announcement (Jun 10) &mdash; no public URL given</span></div>
+            <div class="sources"><span class="via">via Decoding AI Magazine (Substack), Anthropic email announcement &mdash; no public URL given</span></div>
           </article>
         </details>
       </section>
