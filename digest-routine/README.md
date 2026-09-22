@@ -142,6 +142,17 @@ context.
   artifact's canonical URL, captured in STEP2 §2.4; where there is none, the story is
   `class="story unlinked"` and says `no public URL given`. There is no silent third state,
   and the newsletter is never the link.
+- **`no public URL given` is permanent for pre-September 2026 stories** (user ruling,
+  2026-09-22). 331 of the 383 stories dated before 2026-09-01 carry no public URL, because
+  the routine was not capturing them then — May was 0% linked, August 21%. Those URLs were
+  never recorded and recovering them would mean researching the open web for artifacts up
+  to four months old, which is the one thing this routine will not do: a guessed URL is
+  worse than a stated gap. **Do not open a backfill pass, and do not treat these as a
+  defect list.** The single exception is free: if another story already on the site cites
+  the same artifact, copy that URL across — that is internal consistency, not research.
+  This ruling is about history only. Forward-going capture is required (STEP2 §2.4), and
+  it is working: September stories are 70% linked, and a September story with no URL is a
+  miss worth chasing within the issue that carried it.
 - Historical entry text is never touched.
 - **No `mail.google.com` URL and no Gmail address appears anywhere in `site/`.**
 - A day with no qualifying stories gets a `run-log.md` line and no page.

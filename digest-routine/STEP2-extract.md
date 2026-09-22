@@ -107,6 +107,11 @@ For each surviving story, produce:
   `outlook.office365.com` links reached the public site that way before 2026-09-20 — dead
   for every reader, and a mailbox identifier published on the open web. An honestly
   unlinked story beats a link only the owner can open.
+
+  The 423 stories already on the site carrying `no public URL given` are **not a backlog**.
+  331 of them predate 2026-09-01, and the user ruled on 2026-09-22 that those stay as they
+  are permanently — see `README.md`. This requirement is about the story you are writing
+  now, from an issue you have open in front of you, where the URL is there to be read.
 - `sources` — one entry per contributing message, as a **display name only**: the
   newsletter name plus a short date, e.g. `Ollama (Aug 29)`, rendered as plain text.
   **Never emit a `mail.google.com` link** — see STEP 1.6; the site is public and a
