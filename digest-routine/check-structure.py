@@ -155,6 +155,53 @@ def check_lead_length(paths):
     return out
 
 
+NUMBER_WORDS = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+    "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12,
+}
+# "Two of the nine are contested attributions" -- a lead that says "N of the M"
+# is asserting M is the section's story count. Deliberately narrow: it does NOT
+# match a lead that opens with a bare count ("Two families", "Three
+# instruments"), because those count kinds rather than stories and are a
+# legitimate way to frame a section.
+LEAD_COUNT_RE = re.compile(
+    r"\b(%s)\s+of\s+the\s+(%s)\b" % ("|".join(NUMBER_WORDS), "|".join(NUMBER_WORDS)),
+    re.I,
+)
+
+
+def check_lead_counts(paths):
+    """A lead saying "N of the M" must have M equal to the section's story count.
+
+    Added 2026-09-22 after a digest run grew a section from 9 to 11 stories:
+    STEP 3.2e rebuilt the section-index chip to 11, but the lead kept reading
+    "Two of the nine", so the page asserted a number its own index contradicted
+    in the same viewport. The routine treats a lead as prose to leave alone
+    unless the through-line changed -- but a number inside a lead is a claim
+    about the section, and the story count can change without the through-line
+    changing at all.
+    """
+    out = []
+    for p in paths:
+        text = open(p, encoding="utf-8").read()
+        if not _converted(text):
+            continue
+        for sid, body in SECTION_RE.findall(text):
+            n = len(STORY_RE.findall(body))
+            leads = LEAD_RE.findall(body)
+            if len(leads) != 1:
+                continue  # check_lead_length reports this
+            lead = _text(leads[0])
+            for num, den in LEAD_COUNT_RE.findall(lead):
+                claimed = NUMBER_WORDS[den.lower()]
+                if claimed != n:
+                    out.append(
+                        "%s #%s lead says %r of the %r, section has %d stories"
+                        % (p, sid, num.lower(), den.lower(), n)
+                    )
+    return out
+
+
 def check_story_link_state(paths):
     """A story is either linked or explicitly marked unlinked. No silent third state."""
     out = []
@@ -242,6 +289,7 @@ CHECKS = [
     check_flat_structure,
     check_index_counts,
     check_lead_length,
+    check_lead_counts,
     check_story_link_state,
     check_timeline_order,
     check_no_wall_of_text,

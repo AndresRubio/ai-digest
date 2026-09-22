@@ -204,6 +204,18 @@ Rules the checker enforces on this markup, all of them hard:
   `<span class="via">`, never links. The only `<a>` elements in a `.sources` div are
   canonical public URLs. This is the project's second unbendable rule and `.sources` is
   exactly where it gets broken.
+- **Pair every `.sources` anchor to its story by name, never by position.** When one
+  newsletter issue yields several stories in a single run — the STEP 1.6a case, where you
+  resolve the issue's per-item heading anchors from the publisher's archive — you end up
+  holding a list of anchors and a list of stories. Match each anchor to its story by
+  reading the anchor's own text and confirming it names that story's artifact. Do **not**
+  walk the two lists in parallel and pair them off in order: the orders are not the same,
+  and on 2026-09-21 three stories from one issue came out rotated by one, each carrying
+  the next story's anchor. **If a story has no anchor of its own, use the bare issue URL.
+  Never hand it a leftover anchor that belongs to a different story.**
+  This failure is invisible to `check-structure.py` and to every other automated check:
+  a misassigned anchor is still a real, well-formed, resolving URL. Reading each anchor
+  against its story before you write it is the only thing that catches it.
 - Cross-links to another topic page stay relative (`<a href="agents.html">`). A cross-link
   to another story *on this page* uses that story's `#id` and the id must exist — every
   `#fragment` anywhere on the page is checked, including ones inside story prose.
@@ -247,6 +259,31 @@ every lead alone. Rewrite one only when the new story genuinely changes what the
 is about; then keep it under 60 words. A section with zero leads, two leads, or a lead
 over 60 words fails the checker.
 
+**But a number inside a lead is a claim about the section, and it is not covered by "the
+through-line did not change."** Adding a story can leave the through-line exactly as it
+was and still make the lead false. If the lead you are about to leave alone counts the
+section's stories — "Two of the nine are contested attributions", "Four claims about what
+an outsider can verify" — **recount it against the section's new total** and fix it, even
+though you are not rewriting the lead. On 2026-09-21 a section grew from nine stories to
+eleven; N6 correctly rebuilt its chip to `11` while the lead went on saying "Two of the
+nine", so the page contradicted its own index inside one viewport.
+
+Two things follow:
+
+- **Recheck the numerator too, not just the denominator.** "Two of the nine" → "Two of the
+  eleven" is only right if the two new stories are not themselves contested attributions.
+  Read them before you pick the number.
+- **A lead that enumerates gets extended, not renumbered.** "Four claims … how text is
+  marked, where books end up, how a ranking works, what a vendor keeps" must gain a clause
+  for the new story, not merely become "Five claims". And check the rest of the lead for a
+  second number that depends on the same total — a following sentence reading "in three of
+  the four" goes stale from the very same edit.
+
+`check_lead_counts` catches the "N of the M" form automatically. It deliberately does
+**not** flag a lead that opens with a bare count — "Two families", "Three instruments",
+"Two constraints" — because those count kinds rather than stories and are a legitimate way
+to frame a section. Nothing checks the enumerating form; that one is yours to get right.
+
 **N6. Rebuild the `<nav class="section-index">` chips.** One `<li>` per section, in the
 same order the sections appear on the page, ten spaces of indentation:
 
@@ -277,7 +314,7 @@ above any line with an older date. Never rewrite an existing line's wording or d
 the `Current state` div and update the meta line. A converted page has both and is not
 finished without them.
 
-**N9. Run the checker.** `python3 digest-routine/check-structure.py`. Any failure naming a
+**N9. Run the checker.** `python3 digest-routine/check-structure.py` — ten checks, including `check_lead_counts` from N5 and `check_index_counts` from N6. Any failure naming a
 page you touched is yours to fix before finishing. Lines reading
 `… not converted yet (no topic-section)` for pages you did not touch are the expected
 mid-conversion state and are not your run's failure.
