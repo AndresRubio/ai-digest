@@ -72,16 +72,21 @@ Check and report, rather than assuming:
 
 - every file touched still parses as HTML, and its sidebar matches other pages at the
   same depth once each page's own `class="active"` marker is normalized away
-- every timeline entry *added this run* has a date, a label, a summary, and at least one
-  source (older entries may legitimately carry a plain-text source with no link — do not
-  flag those). **On a converted page this applies to the story, not to the timeline
-  line.** A converted page's `<ul class="timeline index">` line carries only a date and a
-  linked label by design — no summary and no sources, because both live in the
-  `<article class="story">` it points at. Check the story for them there.
-- **no `mail.google.com` URL appears anywhere in `site/`**, and no Gmail address
-  appears in any tracked file:
-  `/usr/bin/grep -rInE 'mail\.google\.com|@gmail\.com' site/` must come back empty —
-  the site is published publicly, so this is a hard gate, not a style note.
+- every story *added this run* has a date, a headline, a summary, and either a real
+  headline link or an explicit `no public URL given` (older stories may legitimately carry
+  a plain-text source with no link — do not flag those). **Check the
+  `<article class="story">`, never the timeline line.** A `<ul class="timeline index">`
+  line carries only a date and a linked label by design — no summary and no sources,
+  because both live in the story it points at. Writing a summary or a `.sources` div into
+  a timeline line recreates the deleted flat-timeline shape; nothing in the checker will
+  catch it, so this is the check.
+- **no mailbox URL or Gmail address appears anywhere in `site/`**, using the same pattern
+  CI uses, not a narrower one:
+  `/usr/bin/grep -rInE 'mail\.google\.com|outlook\.office365\.com|outlook\.live\.com|/owa/\?ItemID|[A-Za-z0-9._%+-]+@gmail\.com' site/`
+  must come back empty — the site is published publicly, so this is a hard gate, not a
+  style note. (Widened 2026-09-22: this check previously screened only the two Gmail
+  patterns, so the 192 Outlook permalinks that reached production were invisible to it.
+  `check_no_mailbox_links` now scans all of `site/` too, daily pages included.)
   **Call `grep` by its absolute path here.** Claude Code's shell shadows `grep` with
   ugrep run as `--ignore-files`, which honours `.gitignore` and so skips paths a plain
   `grep -r` would scan. That makes a bare `grep` report clean for the wrong reason.
@@ -111,16 +116,16 @@ Check and report, rather than assuming:
   `Last updated` all agree with the run date — untouched topic pages must keep their
   previous date, so a stale-looking meta on a page no story routed to is correct
 - **the structural gate passes.** Run `python3 digest-routine/check-structure.py` and paste
-  the result. Every check other than `check_anchors_resolve` must report `PASS`, and the
-  only `check_anchors_resolve` lines allowed are ones reading
-  `… not converted yet (no topic-section)` for pages that have not been converted yet —
-  that is the expected mid-conversion state and is not a failure of the run. While any
-  such page remains the script exits 1; once every page is converted the required exit
-  code is 0. **Any other line, on any check, is a blocker** — in particular a duplicate
-  id, a dangling `#fragment`, a nested `<section>`/`<article>`, a wrong section-index
-  count, an over-long or missing `.lead`, a story that is neither linked nor marked
-  `unlinked`, or an out-of-order timeline. Fix it before reporting the run complete;
-  never resolve a `not converted yet` line by converting the page, which is its own task.
+  the result. **All eleven checks must report `PASS` and the script must exit 0.** All eleven
+  pages were converted by 2026-09-22, so the mid-conversion allowance that used to live
+  here is gone: there is no tolerated failure line left. **Any line, on any check, is a
+  blocker** — a duplicate id, a dangling `#fragment`, a nested `<section>`/`<article>`, a
+  wrong section-index count, an over-long or missing `.lead`, a lead whose "N of the M"
+  count contradicts its section, a story that is neither linked nor marked `unlinked`, or
+  an out-of-order timeline. Fix it before reporting the run complete. A
+  `… not converted yet (no topic-section)` line now means a page has *lost* its structure
+  rather than never having had it: report it as the regression it is, restore the page from
+  git, and never resolve it by rewriting the page from scratch inside a daily run.
 - `processed.json` grew by exactly the number of messages STEP 1 retained
 
 If any check fails, fix it before reporting the run complete. State plainly what ran and

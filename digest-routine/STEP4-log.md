@@ -69,8 +69,8 @@ dead end, so:
 - **Each newsletter in the scanned list links to that issue's public archive** — see the
   table in STEP 1.6a. Say so where one genuinely has no public page, rather than leaving
   a bare name that looks like an oversight.
-- **Each update bullet links to the entry it updated**, using the story's `#id` on a
-  converted page and the page itself on an unconverted one.
+- **Each update bullet links to the entry it updated**, using that story's own `#id` —
+  every topic page carries per-story ids, so linking the bare page is never good enough.
 - **The first mention of a named artifact links to its entry**, in the scan notes and in
   the themes paragraphs. First mention only — a paragraph where every noun is blue is
   the failure this is trying to avoid.

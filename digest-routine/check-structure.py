@@ -9,6 +9,13 @@ import re
 import sys
 
 TOPICS = "site/topics/*.html"
+# Every check but one is about the story-item structure, which only topic pages have.
+# check_no_mailbox_links is different: it protects the project's second unbendable rule,
+# and that rule is about the published site, so it scans everything deployed -- daily
+# pages and index.html included. Added 2026-09-22: the local STEP 5.3 grep covered all of
+# site/ but only for the Gmail patterns, and this script covered all patterns but only
+# topic pages, so an Outlook permalink on a daily page was caught by nothing until CI.
+SITE = "site/**/*.html"
 
 MAILBOX = re.compile(
     r"mail\.google\.com|outlook\.office365\.com|outlook\.live\.com|/owa/\?ItemID"
@@ -17,9 +24,13 @@ MAILBOX = re.compile(
 
 
 def check_no_mailbox_links(paths):
-    """No mailbox URL or address may appear in a published page."""
+    """No mailbox URL or address may appear in any published page.
+
+    Ignores the topic-page `paths` it is handed and scans the whole published tree
+    instead -- see the SITE comment above.
+    """
     out = []
-    for p in paths:
+    for p in sorted(glob.glob(SITE, recursive=True)):
         text = open(p, encoding="utf-8").read()
         for i, line in enumerate(text.splitlines(), 1):
             if MAILBOX.search(line):
@@ -164,17 +175,22 @@ NUMBER_WORDS = {
 # match a lead that opens with a bare count ("Two families", "Three
 # instruments"), because those count kinds rather than stories and are a
 # legitimate way to frame a section.
+_NUM = "|".join(list(NUMBER_WORDS) + [r"\d{1,2}"])
 LEAD_COUNT_RE = re.compile(
-    r"\b(%s)\s+of\s+the\s+(%s)\b" % ("|".join(NUMBER_WORDS), "|".join(NUMBER_WORDS)),
+    r"\b(%s)\s+of\s+(?:the|these|those|its)\s+(%s)\b" % (_NUM, _NUM),
     re.I,
 )
+
+
+def _num(word):
+    return int(word) if word.isdigit() else NUMBER_WORDS[word.lower()]
 
 
 def check_lead_counts(paths):
     """A lead saying "N of the M" must have M equal to the section's story count.
 
     Added 2026-09-22 after a digest run grew a section from 9 to 11 stories:
-    STEP 3.2e rebuilt the section-index chip to 11, but the lead kept reading
+    STEP 3.2 N6 rebuilt the section-index chip to 11, but the lead kept reading
     "Two of the nine", so the page asserted a number its own index contradicted
     in the same viewport. The routine treats a lead as prose to leave alone
     unless the through-line changed -- but a number inside a lead is a claim
@@ -193,7 +209,7 @@ def check_lead_counts(paths):
                 continue  # check_lead_length reports this
             lead = _text(leads[0])
             for num, den in LEAD_COUNT_RE.findall(lead):
-                claimed = NUMBER_WORDS[den.lower()]
+                claimed = _num(den)
                 if claimed != n:
                     out.append(
                         "%s #%s lead says %r of the %r, section has %d stories"
@@ -264,6 +280,40 @@ def check_no_wall_of_text(paths):
     return out
 
 
+SECTION_SPAN_RE = re.compile(
+    r'<section class="topic-section" id="[^"]+">.*?</section>', re.S
+)
+H3_RE = re.compile(r"<h3[ >]")
+
+
+def check_no_legacy_prose(paths):
+    """Every <h3> on a topic page sits inside a topic-section.
+
+    The legacy page shape was a run of bare <h3> headings each followed by paragraphs of
+    living prose. Nothing else on the page uses <h3>, so an <h3> outside every
+    topic-section span means either that shape has been written back onto a converted
+    page or that a section's markup is broken. Before this check, injecting a complete
+    legacy prose section into a converted page passed all ten other checks with exit 0:
+    no check looks at content outside a topic-section except check_no_wall_of_text, and
+    that one only fires past 350 words. Added 2026-09-22 with the deletion of the
+    per-page format detection in STEP 3.2, which is what used to stand here.
+    """
+    out = []
+    for p in paths:
+        text = open(p, encoding="utf-8").read()
+        if not _converted(text):
+            continue
+        spans = [m.span() for m in SECTION_SPAN_RE.finditer(text)]
+        for m in H3_RE.finditer(text):
+            if not any(a <= m.start() < b for a, b in spans):
+                line = text.count("\n", 0, m.start()) + 1
+                out.append(
+                    "%s:%d <h3> outside any topic-section; legacy prose sections do not "
+                    "belong on a converted page" % (p, line)
+                )
+    return out
+
+
 def check_sidebar_consistency(paths):
     """Topic pages link siblings bare and mark exactly their own entry active."""
     out = []
@@ -293,6 +343,7 @@ CHECKS = [
     check_story_link_state,
     check_timeline_order,
     check_no_wall_of_text,
+    check_no_legacy_prose,
     check_sidebar_consistency,
 ]
 
@@ -311,7 +362,10 @@ def main():
         print("  " + f)
     if len(failures) > 40:
         print("  ... and %d more" % (len(failures) - 40))
-    print("\n%d page(s) checked, %d failure(s)" % (len(paths), len(failures)))
+    published = len(glob.glob(SITE, recursive=True))
+    print("\n%d topic page(s) checked structurally, %d published page(s) screened "
+          "for mailbox identifiers, %d failure(s)"
+          % (len(paths), published, len(failures)))
     return 1 if failures else 0
 
 

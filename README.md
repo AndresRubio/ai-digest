@@ -19,7 +19,12 @@ A scheduled task reads `digest-routine/STEP1-ingest.md` through `STEP5-index.md`
 follows them exactly. All the logic lives in those five files, so changing what the routine
 does never means changing the task. Briefly: scan the connected Gmail account, split
 newsletters into discrete stories, apply a quality bar, route each story to one of eleven
-topic pages and rewrite that page's prose, then write a daily log and update the index.
+topic pages and add it there as a linked story item under the right heading, then write a
+daily log and update the index. A structural gate (`digest-routine/check-structure.py`) runs
+before every push and fails the run on a broken anchor, a duplicate id, a miscounted section
+index, an over-long or self-contradicting lead, a story with neither a link nor an explicit
+missing-source marker, or any mailbox identifier anywhere under `site/`, daily pages included. Its structural
+checks cover the eleven topic pages; its mailbox check covers everything published.
 
 ## Two rules the project does not bend
 

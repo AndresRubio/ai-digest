@@ -71,11 +71,14 @@ not two. STEP 1 should have collapsed these already; if a pair reaches you here,
 single citation (prefer the account the user reads first, listed first under `accounts`
 in `sources.json`) and do not cite the same issue twice.
 
-Also check against what is already published: read the `ul.timeline` entries from the
-last 14 days on the candidate topic pages. If the artifact is already there, do not
-create a second entry. If the new message adds a material fact (a benchmark that was
-missing, weights that have now shipped), **update the existing entry's summary** rather
-than adding a duplicate, and say so in the daily log.
+Also check against what is already published: read the `<ul class="timeline index">`
+lines from the last 14 days on the candidate topic pages. Those lines carry only a date
+and a linked label — the summary lives in the `<article class="story">` the label points
+at, so match on the label and follow the `#id` to read the story itself. If the artifact
+is already there, do not create a second story. If the new message adds a material fact (a
+benchmark that was missing, weights that have now shipped), **update that story's prose
+and add your source to its `.sources`** rather than adding a duplicate, and say so in the
+daily log. STEP 3 §3.2-story has a step for this, immediately before N1.
 
 ## 2.4 Write each story
 
@@ -89,14 +92,39 @@ For each surviving story, produce:
 - `summary` — two to four sentences. Lead with what shipped and the hard numbers. Name
   the honest trade-off where the source states one. Match the register of the existing
   pages: technical, specific, no hype adjectives.
+- `url` — the canonical public URL of the artifact itself: the vendor post, the paper,
+  the repository, the release notes. **Capturing it is required, not best-effort.** When
+  the issue names one, this field gets it; STEP 3 renders it as the story's headline link,
+  and a story whose headline is a dead end is the single failure this whole structure
+  exists to prevent. Where every link in the issue is a tracking redirect, see STEP 1.6a —
+  resolve the publisher's own archive if it has one. **Never invent a URL and never
+  research the open web for one.** When the issue genuinely names none and none can be
+  resolved, write the field as the explicit string `no public URL given` rather than
+  leaving it empty or absent: an empty field reads as an oversight, and STEP 3 needs to
+  tell "we looked and there is none" apart from "nobody looked". That string is what
+  reaches the page, inside `.sources`, beside a story marked `class="story unlinked"`.
+  **Never substitute a mailbox permalink for a missing source.** 192
+  `outlook.office365.com` links reached the public site that way before 2026-09-20 — dead
+  for every reader, and a mailbox identifier published on the open web. An honestly
+  unlinked story beats a link only the owner can open.
 - `sources` — one entry per contributing message, as a **display name only**: the
   newsletter name plus a short date, e.g. `Ollama (Aug 29)`, rendered as plain text.
   **Never emit a `mail.google.com` link** — see STEP 1.6; the site is public and a
-  mailbox link exposes both the account address and a private message. Where the
-  newsletter names a canonical public URL for the artifact, link that: it is the only
-  linked source an entry should carry, and the only one a reader can actually open.
-  Where every link in the issue is a tracking redirect, see STEP 1.6a — resolve the
-  publisher's own archive if it has one, and otherwise cite by name alone.
+  mailbox link exposes both the account address and a private message. The newsletter is
+  never the link; `url` is.
 - `topic` — the target topic page slug, decided in STEP 3.
+
+**When one issue yields several stories, bind each URL to its story as you write it.**
+A single newsletter commonly produces three or four stories, and the per-item anchors you
+resolve under STEP 1.6a come back as a *list*. Match each one to its story by reading the
+anchor's own text and confirming it names that story's artifact — never by walking the two
+lists in parallel and pairing them off in order. The orders are not the same. On 2026-09-21
+three stories from one issue were written out rotated by one, each carrying the next
+story's anchor, and every one of those URLs was real, well-formed and resolving: no
+downstream check caught it, and none can. If a story has no anchor of its own, give it the
+bare issue URL **as its `.sources` citation**, never a leftover anchor belonging to a
+different story. That fallback does not make it a headline link: STEP 1.6a allows the bare
+issue page as a headline only where the issue page is itself the artifact, and otherwise
+says to use the unlinked form. `url` stays `no public URL given`.
 
 Escape `&` as `&amp;` and use `&mdash;` / `&rarr;` entities to match the existing markup.

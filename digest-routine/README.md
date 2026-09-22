@@ -65,7 +65,7 @@ A previous account (`<retired-inbox>`) was retired on 2026-09-08 and removed fro
 Stories already ingested from it stay in the wiki, cited by newsletter name. (They
 originally carried Gmail permalinks into that mailbox; those were removed site-wide on
 2026-09-14 along with every other one — see *Sources are never links into a mailbox*
-below.)
+above.)
 
 ## Adding an inbox
 
@@ -124,18 +124,21 @@ context.
 ## Conventions the site depends on
 
 - `site/styles.css` is never edited. Every class needed already exists.
-- Topic pages come in two shapes while the site is mid-conversion (started 2026-09-20),
-  and STEP3 §3.2 branches on which. They are **not** append-only either way:
-  `Current state` is rewritten every run, on every page. On an unconverted page the
-  `<h3>` sections are rewritten with it; on a converted page story items are prepended
-  and then left as written. Only the timeline list is prepend — `ul.timeline` before
-  conversion, `ul.timeline index` after.
-- Prose is **paragraphed**, never a single block. On an unconverted page the `<h3>`
-  sections run 120–250 words per `<p>` (STEP3 §3.2-legacy **L2**); a converted page has
-  no such sections — each `<section class="topic-section">` opens with a
-  `<p class="lead">` capped at 60 words, then story items (§3.2-new **N1**–**N7**).
-  `Current state` is the same either way: three to five paragraphs with everything older
-  folded into `<details><summary>Earlier cycles</summary>` (§3.2-shared **S1**).
+- All eleven topic pages carry one shape, the story-item structure (converted
+  2026-09-21 to 2026-09-22; STEP3 §3.2). A page is **not** append-only: `Current state` is
+  rewritten every run, story items are prepended and then left as written, and only
+  `ul.timeline index` is pure prepend. A topic page with no
+  `<section class="topic-section">` is a page that lost its structure, not one awaiting
+  conversion — STEP3 §3.2 says to stop and restore it.
+- Prose is **paragraphed**, never a single block. Each `<section class="topic-section">`
+  opens with a `<p class="lead">` capped at 60 words, then story items of 2–4 sentences
+  (§3.2-story **N1**–**N7**); no `<p>` anywhere runs past 350 words. `Current state` is
+  three to five paragraphs with everything older folded into
+  `<details><summary>Earlier cycles</summary>` (§3.2-page **S1**).
+- **Every story is either linked or explicitly marked unlinked.** The headline carries the
+  artifact's canonical URL, captured in STEP2 §2.4; where there is none, the story is
+  `class="story unlinked"` and says `no public URL given`. There is no silent third state,
+  and the newsletter is never the link.
 - Historical entry text is never touched.
 - **No `mail.google.com` URL and no Gmail address appears anywhere in `site/`.**
 - A day with no qualifying stories gets a `run-log.md` line and no page.

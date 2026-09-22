@@ -23,92 +23,59 @@ cross-link from the other with a relative `<a href="other-topic.html">` inside t
 as the existing pages already do.
 
 **Create a new topic page only** when three or more stories share a theme that fits none
-of the eleven. Prefer a new `<h3>` sub-section on an existing page — that is how
-"Security benchmarks" and "Product search & e-commerce" were added. On a **converted**
-page a sub-section is not a bare `<h3>` — it is a whole
-`<section class="topic-section" id="…">`, built as §3.2-new N1 describes. A new page also
-needs adding to the sidebar `<ul>` of **every** page in the site and to the index topic
-list.
+of the eleven. Prefer a new sub-section on an existing page — that is how
+"Security benchmarks" and "Product search & e-commerce" were added. A sub-section is not a
+bare `<h3>`: it is a whole `<section class="topic-section" id="…">`, built as §3.2-story
+**N1** describes. A new page also needs adding to the sidebar `<ul>` of **every** page in
+the site and to the index topic list, and it is born in the story-item shape — there is no
+other shape on this site.
 
 ## 3.2 Per touched page, in order
 
-**FIRST, detect which format the page is in.** The site is mid-conversion (started
-2026-09-20). Check the page for `<section class="topic-section"`:
+**Every topic page carries the story-item structure.** The conversion ran 2026-09-21 to
+2026-09-22 (planned, and the 192 mailbox permalinks stripped, on 2026-09-20): all eleven
+pages are built from
+`<section class="topic-section">` and `<article class="story">`. The legacy `<h3>`
+living-prose branch that ran beside it for those three days is gone from this document.
+Never write an `<h3>` prose section onto a topic page. `check_no_legacy_prose` fails the
+run on any `<h3>` that is not inside a `<section class="topic-section">` — added
+2026-09-22 for exactly this, because until then an injected legacy section passed every
+other check with exit 0.
 
-- **Present — the page is converted.** Use the story-item instructions in §3.2-new below.
-  Do **not** write `<h3>` prose sections onto it; that would undo the conversion and fail
-  `digest-routine/check-structure.py`.
-- **Absent — the page is not converted yet.** Use the legacy instructions in §3.2-legacy
-  below, unchanged from before, and leave the page's structure as you found it.
+**If a page you are about to touch has no `<section class="topic-section"`, stop.** That is
+not a page awaiting conversion; every page was converted. It is a page that has *lost* its
+structure, through a bad edit or a bad merge. Say so plainly and restore the structure
+before routing any story into it. Do not fall back to prose sections, and do not convert a
+page as a side effect of a daily run — recovering a page is its own task, exactly as
+conversion was.
 
-Never convert a page as a side effect of a daily run. Conversion is its own task.
-Run `python3 digest-routine/check-structure.py` before finishing either way; a converted
-page must come back clean.
+**§3.2 is two blocks, and every touched page runs both, in order:**
 
-Detect **per page**, not once per run. A single run routinely touches one converted page
-and one unconverted page in the same sitting; take the branch that matches the file open
-in front of you each time.
-
-**§3.2 is three blocks, and every touched page passes through exactly two of them:**
-
-| Block | Steps | When |
+| Block | Steps | Covers |
 |---|---|---|
-| `§3.2-legacy (unconverted pages only)` | **L1**, **L2** | page has **no** `<section class="topic-section"` |
-| `§3.2-new (converted pages only)` | **N1**–**N9** | page **has** `<section class="topic-section"` |
-| `§3.2-shared (BOTH branches, always)` | **S1**, **S2** | **every** touched page, whichever branch ran |
+| `§3.2-story` | **N1**–**N9** | placing, writing and indexing the story itself |
+| `§3.2-page` | **S1**, **S2** | the page tail: `Current state`, `Last updated` |
 
-Pick **one** of the first two blocks by the detection test above, run it end to end, then
-run **§3.2-shared** — it is the common tail and it is never optional. A page is not
-finished until S1 and S2 have run on it. Skipping them on a converted page leaves its
-`Current state` stale and its `Last updated` date wrong, which reads as though the
-conversion broke the daily update.
+Run §3.2-story end to end, then run §3.2-page. The tail is never optional: a page is not
+finished until S1 and S2 have run on it, and skipping them leaves the `Current state` stale
+and the `Last updated` date wrong — which reads to a visitor as though the daily update
+stopped working.
 
-*(Renumbered 2026-09-21 from the old single a–d sequence, which is now split across three
-blocks. The old labels map: **a → L1**, **b → L2**, **c → S1**, **d → S2**. Anything
-still citing the old letters means these steps.)*
+*(Label history, for anything citing older names. The original a–d sequence was split on
+2026-09-21 into three blocks: **a → L1**, **b → L2**, **c → S1**, **d → S2**. On 2026-09-22
+the legacy branch was deleted once the last page was converted, taking **L1** and **L2** with
+it, and `§3.2-new` / `§3.2-shared` became `§3.2-story` / `§3.2-page` — there is no longer an
+old form to contrast them with. Text elsewhere citing **a**–**d**, **L1**, **L2**,
+`§3.2-new` or `§3.2-shared` predates this and means the steps above.)*
 
-### §3.2-legacy (unconverted pages only)
+### §3.2-story (N1–N9)
 
-Run **L1** and **L2** only when the page has **no** `<section class="topic-section"`. On a
-converted page skip this whole block and use §3.2-new instead. Either way, continue into
-§3.2-shared afterwards.
+Run **N1**–**N9** on every touched page, then continue into §3.2-page — these steps do not
+replace S1 and S2. `site/topics/research-papers.html` is a worked example of the finished
+shape, but everything you need is written out here — do not go looking in another task file
+or another document for markup.
 
-**L1. Prepend the timeline entry.** Insert at the top of `<ul class="timeline">`:
-
-```html
-        <li>
-          <span class="date">YYYY-MM-DD</span>
-          <span class="label">Label text</span> &mdash; Summary sentences.
-          <div class="sources">Sources: Newsletter (Mon D) <a href="PUBLIC_URL">Vendor blog</a></div>
-        </li>
-```
-
-Newsletter names are **plain text, never links** — no `mail.google.com` URLs anywhere on
-the site (STEP 1.6). Multiple sources go space-separated inside the one `.sources` div,
-with any canonical public URLs as the only `<a>` elements.
-Keep the list strictly newest-first. Match the existing indentation (8 spaces for `<li>`).
-
-**L2. Rewrite the relevant `<h3>` section.** These are living prose, not logs. Work the
-new story into the existing argument — extend the thread, note where it confirms or
-contradicts what the section already claims, and keep the section readable end to end.
-Do not append a stranded sentence at the end.
-
-Sections are **multiple `<p>` paragraphs**, one per item or argument, each roughly
-120–250 words and none over ~350. A section that has grown into a single long paragraph
-is a defect: break it at the sentence that starts the next item. (Fixed site-wide on
-2026-09-14 — the pages had accreted paragraphs of up to 1,065 words.)
-
-**End of §3.2-legacy. Now go to §3.2-shared** and run S1 and S2 on this page.
-
-### §3.2-new (converted pages only)
-
-Run **N1**–**N9** when the page **does** contain `<section class="topic-section"`. This
-block replaces L1 and L2; it does **not** replace S1 and S2, which run afterwards.
-`site/topics/research-papers.html` is a worked example of the finished shape, but
-everything you need is written out here — do not go looking in another task file or
-another document for markup.
-
-A converted page is built from four moving parts, and this branch touches all four:
+A topic page is built from four moving parts, and these steps touch all four:
 
 1. `<nav class="section-index">` — one chip per section, each carrying a story count.
 2. `<section class="topic-section" id="…">` — a heading, one `<p class="lead">`, its
@@ -117,12 +84,25 @@ A converted page is built from four moving parts, and this branch touches all fo
 4. `<ul class="timeline index">` at the foot of the page — one line per story on the
    page, newest first, each linking that story's own `#id`.
 
-The old flat `<ul class="timeline">` with `.sources` inside each `<li>` **does not exist
-on a converted page** and must not be recreated. Its history now lives in the stories, and
-the list at the foot of the page is `<ul class="timeline index">`, which is a different
-thing: a bare index of links, no summaries, no sources. Do not be fooled by the substring
-match — `<ul class="timeline index">` is not the legacy `<ul class="timeline">`, and
-**L1 does not apply to it.**
+The flat `<ul class="timeline">` with `.sources` inside each `<li>` **does not exist on a
+topic page** and must not be recreated. Its history now lives in the stories, and the list
+at the foot of the page is `<ul class="timeline index">`: a bare index of links, no
+summaries, no sources. The flat form now exists **nowhere in `site/`** — not on the daily
+pages, not on `index.html`, neither of which carries a timeline list at all. `ul.timeline`
+survives in `styles.css` only as the base rule that `ul.timeline.index` inherits from, which
+is why the class name is still there to be confused with. Do not be fooled by the substring
+match: `<ul class="timeline index">` is not `<ul class="timeline">`, and the per-entry
+summary-and-sources markup belongs to neither.
+
+**Before N1 — is this an update rather than a new story?** STEP 2.3 says that when a later
+message adds a material fact to an artifact already published, you update the existing
+entry instead of creating a second one. On a topic page that entry is its
+`<article class="story">`. Find it by artifact `id`, edit that story's `<p>` in place, and
+add the new source to its `.sources`. Do not add a second story for the same artifact, do
+not add a second `ul.timeline index` line, and do not change the story's `id`, its
+`<span class="when">` or its position — the date is when the artifact landed, not when you
+learned more about it, and `#id` is what the daily log links to. This is the one case where
+a run edits existing story prose; everything below is about adding a new one.
 
 **N1. Pick the section the story belongs in.** Read the existing `<h3>` headings and place
 the story under the one that honestly describes it. Keep every existing heading, its
@@ -211,8 +191,14 @@ Rules the checker enforces on this markup, all of them hard:
   reading the anchor's own text and confirming it names that story's artifact. Do **not**
   walk the two lists in parallel and pair them off in order: the orders are not the same,
   and on 2026-09-21 three stories from one issue came out rotated by one, each carrying
-  the next story's anchor. **If a story has no anchor of its own, use the bare issue URL.
-  Never hand it a leftover anchor that belongs to a different story.**
+  the next story's anchor. **If a story has no anchor of its own, cite the bare issue URL
+  in `.sources` and never hand it a leftover anchor that belongs to a different story.**
+  Note the scope: that fallback is about the `.sources` citation, not the headline. The
+  headline follows STEP 1.6a, which permits the bare issue page as a *headline* link only
+  where the issue page is itself the artifact — The Batch's opening letter — and otherwise
+  says to use the unlinked form. A story headline-linked to a newsletter archive that is
+  not about it is the "never link the newsletter" rule broken, and
+  `check_story_link_state` cannot see it: any absolute URL counts as linked.
   This failure is invisible to `check-structure.py` and to every other automated check:
   a misassigned anchor is still a real, well-formed, resolving URL. Reading each anchor
   against its story before you write it is the only thing that catches it.
@@ -310,26 +296,31 @@ text (it may be trimmed if the headline is long); there is **no** `.sources` div
 summary on these lines — the sources live in the story. Insert the new line in date order,
 above any line with an older date. Never rewrite an existing line's wording or date.
 
-**N8. End of §3.2-new. Now go to §3.2-shared** and run S1 and S2 on this page — rewrite
-the `Current state` div and update the meta line. A converted page has both and is not
+**N8. Run the checker.** `python3 digest-routine/check-structure.py` — eleven checks,
+including `check_lead_counts` from N5, `check_index_counts` from N6 and
+`check_no_legacy_prose` from the rule at the top of §3.2. **The required result is every
+check `PASS` and exit code 0.** There is no expected-failure state any more: the
+`… not converted yet (no topic-section)` line existed for pages awaiting conversion, and
+none remain. Seeing one now means a page has lost its structure — the stop rule at the top
+of §3.2 applies. A failure naming a page you touched is yours to fix before finishing; a
+failure on a page you did not touch is still a blocker, and still gets said out loud rather
+than left for whoever caused it.
+
+**N9. End of §3.2-story. Now go to §3.2-page** and run S1 and S2 on this page — rewrite
+the `Current state` div and update the meta line. Every topic page has both and is not
 finished without them.
 
-**N9. Run the checker.** `python3 digest-routine/check-structure.py` — ten checks, including `check_lead_counts` from N5 and `check_index_counts` from N6. Any failure naming a
-page you touched is yours to fix before finishing. Lines reading
-`… not converted yet (no topic-section)` for pages you did not touch are the expected
-mid-conversion state and are not your run's failure.
+### §3.2-page (S1, S2)
 
-### §3.2-shared (BOTH branches, always)
+**These two steps run on every touched page, always.** The conversion did not change them:
+`<div class="current-state">` and `<div class="meta">` sit where they always sat, with the
+rules they always had. They are why a page is not finished when its last story is written.
 
-**These two steps run on every touched page, whichever branch above applied.** A
-converted page and an unconverted page both carry a `<div class="current-state">` block
-and a `<div class="meta">` line, in the same place, with the same rules. Do not skip this
-block because you came out of §3.2-new; nothing here is legacy.
-
-**S1. Rewrite the `Current state` div.** Same discipline, one level up: it opens with the
-most recent cycle and narrates backwards. Lead it with today's stories and their
-through-line, then compress what was previously leading. Every run should leave it
-coherent rather than accreted.
+**S1. Rewrite the `Current state` div.** This is the page's one piece of standing prose —
+the only place a reader gets the argument rather than the items — and it is rewritten in
+full every run, not appended to. It opens with the most recent cycle and narrates
+backwards: lead with today's stories and their through-line, then compress what was
+previously leading. Every run should leave it coherent rather than accreted.
 
 Its structure is fixed, and a run must preserve it:
 
@@ -349,26 +340,28 @@ budget that matters: three to five paragraphs, roughly 500–900 words. When tod
 material pushes an older paragraph out of that budget, move it inside `<details>` —
 do not let the visible part grow. Never emit the div as one unbroken run of text.
 
-On a converted page this `<details>` is the one inside `<div class="current-state">`, and
-it is a different thing from the per-section `Earlier in this section (N)` fold in N4.
+This `<details>` is the one inside `<div class="current-state">`, and it is a different
+thing from the per-section `Earlier in this section (N)` fold in N4.
 Do not merge them and do not move stories into this one.
 
 **S2. Update the meta line** to `<div class="meta">Last updated: YYYY-MM-DD</div>`.
 
-That date is the **run date**, on every page this run touched — converted or not. Pages
-no story routed to keep their previous date.
+That date is the **run date**, on every page this run touched. Pages no story routed to
+keep their previous date.
 
-**The page is now finished.** Move to the next touched page and start again at the
-detection test at the top of §3.2.
+**The page is now finished.** Move to the next touched page and start again at N1.
 
 ## 3.3 Constraints
 
-- Never edit `styles.css`. Every class you need already exists: `timeline`, `date`,
-  `label`, `sources`, `current-state`, `changed-today`, `meta` — and, on a converted page,
-  `topic-section`, `story`, `unlinked`, `lead`, `when`, `via`, `section-index`, `n` and
-  `timeline index`. (It was last changed on
-  2026-09-14, on user instruction, to add paragraph and `<details>` rules inside
-  `.current-state`. Use those elements; do not add more.)
+- Never edit `styles.css`. Every class a topic page needs already exists: `topic-section`,
+  `story`, `lead`, `when`, `via`, `sources`, `section-index`, `n`, `timeline index` with
+  `date` and `label` inside it, `current-state` and `meta`. (`changed-today` is
+  `index.html`'s, written by STEP 5, and `unlinked` has no rule of its own at all — it is a
+  semantic marker `check_story_link_state` reads, not a style.) The stylesheet was last
+  changed 2026-09-14, on user instruction, to add paragraph and `<details>` rules inside
+  `.current-state`, and again 2026-09-20 for the story-item structure. Use what is there;
+  do not add more, and never modify an existing rule — the daily pages and `index.html`
+  depend on them.
 - Never rewrite historical timeline entries. Their wording and dates stay. (The one
   sanctioned exception was 2026-09-14, when every Gmail link site-wide was stripped to
   plain-text source names on user instruction; entry text was untouched.)
