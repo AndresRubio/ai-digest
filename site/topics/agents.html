@@ -30,18 +30,19 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-09-22</div>
+      <div class="meta">Last updated: 2026-09-23</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today the harness argument got the number it has been missing. AWS&rsquo;s <strong>Strands Harness</strong> (Sep 21) runs Claude Fable 5 on Terminal-Bench 2.1 for <strong>$56.29 against Claude Code&rsquo;s $248.05</strong> while scoring <strong>69.7 against 61.8</strong> &mdash; better and roughly four times cheaper &mdash; with DeepSeek Harness at <strong>$40.30 and 59.5</strong> marking where the saving stops being free. The attributed cause is deliberately unglamorous: tool output truncated at <strong>1,500 tokens</strong>, compaction at <strong>85%</strong> of the window. Put beside the <a href="evals-and-benchmarks.html">harness-tax study</a>, which found Claude Code opening a session with more than 27,000 tokens of context against Pi&rsquo;s 2,000, the two agree on a conclusion this page resisted for months: the harness is mostly a context-management policy, and that policy is priced.</p>
+        <p>Today&rsquo;s cycle put a price on both ends of the multi-agent bet. Toby Ord&rsquo;s <a href="#swarm-scaling">swarm-scaling analysis</a> finds that ten times the agents buys less than ten times the tokens spent in one agent, with the shortfall compounding as the swarm grows &mdash; what a swarm buys is wall-clock time, so orchestration is a latency purchase rather than a capability one. Meta&rsquo;s Muse showed what reach costs a consumer agent: <a href="#muse-downloads">1.8M US and Canada downloads in its first 12 days</a> against ChatGPT&rsquo;s 1.3M, and Amazon blocking it from Amazon.com under terms that bar unauthorised agents. A retailer&rsquo;s conditions of use, not the agent&rsquo;s ability to drive a page, now decide where it may act.</p>
+        <p>On Sep 21 the harness argument got the number it has been missing. AWS&rsquo;s <strong>Strands Harness</strong> (Sep 21) runs Claude Fable 5 on Terminal-Bench 2.1 for <strong>$56.29 against Claude Code&rsquo;s $248.05</strong> while scoring <strong>69.7 against 61.8</strong> &mdash; better and roughly four times cheaper &mdash; with DeepSeek Harness at <strong>$40.30 and 59.5</strong> marking where the saving stops being free. The attributed cause is deliberately unglamorous: tool output truncated at <strong>1,500 tokens</strong>, compaction at <strong>85%</strong> of the window. Put beside the <a href="evals-and-benchmarks.html">harness-tax study</a>, which found Claude Code opening a session with more than 27,000 tokens of context against Pi&rsquo;s 2,000, the two agree on a conclusion this page resisted for months: the harness is mostly a context-management policy, and that policy is priced.</p>
         <p>The other two arrivals are both about who owns the surface rather than what runs on it. Meta opened <strong>Muse connectors</strong> to outside developers &mdash; you bring an API and a description, Meta brings the agent, the browser and the user context, plus a functional, security and legal review before a connector is findable and an editorial decision about which get featured. Google open-sourced <strong>AX</strong>, a declarative orchestrator that sandboxes, wires and fences agent workloads on a cluster on top of Agent Substrate, and describes the experience as close to Kubernetes. One is an app store, the other a scheduler; both assume agent runs are now numerous and uniform enough to need infrastructure built for their shape rather than per-application glue.</p>
-        <p>Today&rsquo;s cycle&rsquo;s clearest result is also its smallest intervention. Meta AI&rsquo;s <strong>Proactive Memory Agent</strong> runs a second model beside the action agent, keeps notes from its eight most recent outputs &mdash; facts, environment details, fixes that worked, commands that failed &mdash; and at each step injects either nothing or one short reminder. On <strong>Terminal-Bench 2.0</strong> that moved Claude Sonnet 4.5 from <strong>37.6% to 45.9%</strong> and Opus 4.6 from 43.5% to 45.9%; on <strong>&tau;2-Bench</strong>, Sonnet from <strong>55.0% to 61.8%</strong>. The control is what makes it a finding rather than a prompting trick: reminding at <em>every</em> step did worse than letting the memory agent pick the moment, which says the deficit being repaired is attention allocation, not lost context. It needs no retraining, so it bolts onto an existing agent &mdash; and the gains shrink on the stronger action model, which is the number to watch if the effect is partly covering for weaker instruction-following.</p>
+        <p>An earlier cycle&rsquo;s clearest result is also its smallest intervention. Meta AI&rsquo;s <strong>Proactive Memory Agent</strong> runs a second model beside the action agent, keeps notes from its eight most recent outputs &mdash; facts, environment details, fixes that worked, commands that failed &mdash; and at each step injects either nothing or one short reminder. On <strong>Terminal-Bench 2.0</strong> that moved Claude Sonnet 4.5 from <strong>37.6% to 45.9%</strong> and Opus 4.6 from 43.5% to 45.9%; on <strong>&tau;2-Bench</strong>, Sonnet from <strong>55.0% to 61.8%</strong>. The control is what makes it a finding rather than a prompting trick: reminding at <em>every</em> step did worse than letting the memory agent pick the moment, which says the deficit being repaired is attention allocation, not lost context. It needs no retraining, so it bolts onto an existing agent &mdash; and the gains shrink on the stronger action model, which is the number to watch if the effect is partly covering for weaker instruction-following.</p>
         <p>Two agents shipped this week with opposite answers to the question of whose authority an agent acts under. Google&rsquo;s <strong>family agent</strong> gets <strong>its own cloud computer and its own Google account</strong>, serving up to six people from a household&rsquo;s shared mail, files and calendars and asking permission before acting outside the group &mdash; the permission boundary becomes a property of the account. Meta&rsquo;s <strong>Muse for Mac</strong> takes the other route, borrowing the user&rsquo;s own access to files, mail, messages, calendar and notes, with opt-in scopes, approval gates on deletes and sends, and a secure VM &mdash; qualified by the clause that Meta can still reach the data when needed to operate the service. The pairing matters because <a href="safety-and-policy.html">this week&rsquo;s OpenAI breach</a> showed exactly what a borrowed identity costs: one hijacked employee session reached the internal monorepo because the agent carried the connectors.</p>
-        <p>The browser loop got faster and got its boundary in the same week. Browser Use&rsquo;s <strong>jev-ultrafast</strong> hands the choice of operation and target to <a href="model-releases.html">Jev</a> and calls a text model only when something must be typed, finding a Google Flights itinerary in <strong>7.073 seconds across 17 requests at a median 178ms</strong>. The premise is that most steps in a browser trajectory are selections among visible options, not judgements about the page &mdash; and <a href="evals-and-benchmarks.html">Context7 measured where that stops holding</a>, with the same model at 27% against 93% on crawl-root selection while running 10&ndash;170&times; faster. Alongside, <strong>Agora</strong> proposes an append-only Git DAG as the exchange format for research agents, making every hypothesis, result and verification a commit with a parent and a hash. It ships with no throughput or quality numbers, so it offers a provenance argument rather than evidence that agents coordinate better through it.</p>
         
         <details>
           <summary>Earlier cycles</summary>
+          <p>The browser loop got faster and got its boundary in the same week. Browser Use&rsquo;s <strong>jev-ultrafast</strong> hands the choice of operation and target to <a href="model-releases.html">Jev</a> and calls a text model only when something must be typed, finding a Google Flights itinerary in <strong>7.073 seconds across 17 requests at a median 178ms</strong>. The premise is that most steps in a browser trajectory are selections among visible options, not judgements about the page &mdash; and <a href="evals-and-benchmarks.html">Context7 measured where that stops holding</a>, with the same model at 27% against 93% on crawl-root selection while running 10&ndash;170&times; faster. Alongside, <strong>Agora</strong> proposes an append-only Git DAG as the exchange format for research agents, making every hypothesis, result and verification a commit with a parent and a hash. It ships with no throughput or quality numbers, so it offers a provenance argument rather than evidence that agents coordinate better through it.</p>
           <p>Today's cycle is about the protocol becoming the thing platforms publish rather than the thing agents load. Google opened early access to an <strong>MCP server for Google Home</strong>, letting an outside agent such as ChatGPT control the whole device ecosystem &mdash; gated behind a Google Cloud project and a US Premium Advanced subscription, but a consumer platform exposing its control surface as MCP rather than as a partner integration all the same. Stanford's <strong>Paper2Agent</strong> does it to the literature, reading a paper with its repository and emitting a tested MCP server: 22 tools for the AlphaGenome agent in about 45 minutes for US $14, and 74 of 100 bioRxiv papers converted. The auditing question changes shape with them. It is no longer which servers an agent has loaded, but what a platform lets any connected agent do &mdash; and Google Home answers that with a house.</p>
           <p>The counterweight arrives at the tool-call boundary. Agent-net's <strong>Webagent</strong> (Sep 14, Apache 2.0, v0) turns a website into an agent from one JSON spec with nine pluggable slots, and routes every call through <code>action.Guard</code> before it runs &mdash; the permission check as a structural property of the harness rather than a sentence in a prompt. Google's <strong>Agent Anomaly Detection</strong> (private preview) takes the after-the-fact position instead, watching deployed agents for anomalies in the logs and traces the platform already collects; free at runtime, and blind to whatever the harness did not record. Tencent's <strong>BrowserSkill</strong> (3.5k stars) shows what gets traded when neither is available: it drives a separate window against the user's already-logged-in browser profile, handing back control for CAPTCHAs, which solves the authentication problem that defeats computer-use agents on real sites by borrowing the user's whole identity for the duration.</p>
           <p>The prior cycle was about supervision, and it arrived with the first honest price tag on running agents in bulk. Nous Research refactored Hermes with <strong>1,393 agents</strong> for roughly $19,000 in tokens and published the procedure rather than the headline: plan, shard carefully, review every shard, reconcile conflicts, and expect strange breakage when hundreds of workers touch one repository. That last clause names a failure this page has not previously had a case study for &mdash; not an agent going wrong, but many agents each being correct about overlapping parts of the same codebase, which neither the channel designs nor the fixed-pipeline designs below reconcile. A circulated Codex pattern supplies the cheap counterpart: Astra orchestrates, Sol and Luna execute, and a <strong>15-minute heartbeat</strong> inspects progress mid-run and corrects drift before the workers finish, which is supervision in flight against Foreman's inspection at the end. Cognition's <strong>Devin Fusion</strong> takes the same instinct into model choice, keeping a frontier model as lead that plans, reviews and can reclaim control, while a cheaper model executes &mdash; explicitly not a one-shot router, because a routing decision made before the work starts has no recovery path when it is wrong. None of the three has published the parameter that decides whether it pays: no measured heartbeat interval, no comparative figures for Fusion, and $19K as a floor for swarm work rather than a result.</p>
@@ -80,11 +81,11 @@
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">8</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">10</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">1</span></a></li>
-          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">4</span></a></li>
+          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">5</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">4</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">5</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">2</span></a></li>
-          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">9</span></a></li>
+          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">10</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">5</span></a></li>
         </ul>
       </nav>
@@ -613,6 +614,14 @@
         <h3>Browser &amp; computer-use agents</h3>
         <p class="lead">Three ways an agent drives a browser: infer the page from pixels, call actions a cooperating site publishes, or borrow a profile that is already logged in. Open-weights families such as Microsoft Fara1.5 (4B/9B/27B, reported to beat OpenAI Operator and Gemini 2.5 on certain tasks) make the proprietary browsing agents substitutable.</p>
 
+        <article class="story" id="muse-downloads">
+          <span class="when">2026-09-21</span>
+          <h4><a href="https://www.cnbc.com/2026/09/21/meta-muse-personal-ai-agent-downloads.html">Muse out-downloads ChatGPT&rsquo;s launch fortnight, and Amazon blocks its agent from shopping</a></h4>
+          <p>Meta&rsquo;s <strong>Muse</strong> app reached the top of the US App Store with <strong>730,000 downloads</strong> shortly after release; Apptopia counts <strong>1.8M US and Canada downloads in its first 12 days against ChatGPT&rsquo;s 1.3M</strong> over the same span, and 2.8M globally &mdash; though Muse launched on iOS and Android at once and ChatGPT on iOS alone. Amazon has blocked the Muse agent from Amazon.com under Conditions of Use that bar unauthorised AI agents, while Shopify integrated agentic checkout with Meta.</p>
+          <p>The block is the part a builder feels: a consumer agent&rsquo;s reach is now set site by site by each retailer&rsquo;s terms, not by what the agent can technically drive.</p>
+          <div class="sources"><a href="https://www.cnbc.com/2026/09/21/meta-muse-personal-ai-agent-downloads.html">CNBC</a> &middot; <a href="https://techcrunch.com/2026/09/21/metas-muse-is-outpacing-chatgpts-early-mobile-launch/">TechCrunch (downloads)</a> &middot; <a href="https://techcrunch.com/2026/09/21/metas-ai-agent-has-been-blocked-from-using-amazon-com/">TechCrunch (Amazon)</a> &middot; <span class="via">via TLDR AI (Sep 22), TLDR (Sep 22), AI Supremacy (Sep 22), The Code (Sep 22)</span></div>
+        </article>
+
         <article class="story" id="jev-ultrafast">
           <span class="when">2026-09-20</span>
           <h4><a href="https://github.com/browser-use/jev-ultrafast">Browser Use finds a flight in 7.073 seconds by letting Jev pick every browser action</a></h4>
@@ -629,15 +638,15 @@
           <div class="sources"><a href="https://github.com/Tencent/BrowserSkill">GitHub</a> &middot; <span class="via">via The Code (Sep 17)</span></div>
         </article>
 
-        <article class="story" id="browser-use-webmcp">
-          <span class="when">2026-09-08</span>
-          <h4><a href="https://developer.chrome.com/docs/ai/webmcp">Browser Use adds WebMCP &mdash; sites hand agents tools instead of buttons to hunt for</a></h4>
-          <p>Browser Use now supports WebMCP, so a website can expose its actions directly to an agent rather than forcing it through screenshot-and-click loops. Where a site publishes clean actions, the agent calls the intended interface instead of inferring one from pixels. It only helps where sites cooperate, so pixel-level computer use remains the fallback for everything else; what it removes is the class of failure where the agent is defeated by a redesign rather than by the task. This is the same bet <a href="tools-and-devex.html">ChatGPT made on WebMCP in late August</a>, now arriving in an open browser-automation stack.</p>
-          <div class="sources"><a href="https://developer.chrome.com/docs/ai/webmcp">Chrome WebMCP docs</a> &middot; <span class="via">via Unwind AI (Sep 8)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story" id="browser-use-webmcp">
+            <span class="when">2026-09-08</span>
+            <h4><a href="https://developer.chrome.com/docs/ai/webmcp">Browser Use adds WebMCP &mdash; sites hand agents tools instead of buttons to hunt for</a></h4>
+            <p>Browser Use now supports WebMCP, so a website can expose its actions directly to an agent rather than forcing it through screenshot-and-click loops. Where a site publishes clean actions, the agent calls the intended interface instead of inferring one from pixels. It only helps where sites cooperate, so pixel-level computer use remains the fallback for everything else; what it removes is the class of failure where the agent is defeated by a redesign rather than by the task. This is the same bet <a href="tools-and-devex.html">ChatGPT made on WebMCP in late August</a>, now arriving in an open browser-automation stack.</p>
+            <div class="sources"><a href="https://developer.chrome.com/docs/ai/webmcp">Chrome WebMCP docs</a> &middot; <span class="via">via Unwind AI (Sep 8)</span></div>
+          </article>
 
           <article class="story unlinked" id="perplexity-personal-computer">
             <span class="when">2026-07-31</span>
@@ -760,6 +769,13 @@
         <h3>Multi-agent orchestration</h3>
         <p class="lead">Small teams of agents specialised by role &mdash; product, research, dev, eval &mdash; or by station, and the two venues they coordinate in: the team&rsquo;s own chat channel, or a fixed pipeline. The unsolved part is not dispatch but reconciliation &mdash; many agents each correct about overlapping regions of one codebase. Judge entries on where verification sits.</p>
 
+        <article class="story" id="swarm-scaling">
+          <span class="when">2026-09-22</span>
+          <h4><a href="https://www.tobyord.com/writing/swarm-scaling">Toby Ord: ten times the agents buys less than ten times the tokens in one agent, but finishes sooner</a></h4>
+          <p>Toby Ord&rsquo;s analysis finds that scaling a swarm to <strong>10&times; the agents</strong> yields less performance than giving one agent <strong>10&times; the tokens</strong>, and that the shortfall compounds at larger scale-ups. What the swarm buys is wall-clock time: agents running in parallel finish far sooner, so swarms pay where speed carries a large premium. On this account multi-agent orchestration is a latency purchase, not a capability one.</p>
+          <div class="sources"><a href="https://www.tobyord.com/writing/swarm-scaling">tobyord.com</a> (analysis) &middot; <span class="via">via TLDR AI (Sep 22)</span></div>
+        </article>
+
         <article class="story" id="agora">
           <span class="when">2026-09-18</span>
           <h4><a href="https://github.com/yifanzhang-pro/Agora">Agora gives research agents an append-only Git DAG instead of a shared scratchpad</a></h4>
@@ -775,16 +791,16 @@
           <div class="sources"><a href="https://nousresearch.com/refactoring-hermes-with-1393-agents">Nous Research</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
         </article>
 
-        <article class="story unlinked" id="codex-heartbeat-orchestration">
-          <span class="when">2026-09-16</span>
-          <h4>A Codex orchestration pattern checks its own workers on a 15-minute heartbeat</h4>
-          <p>A circulated Codex setup has GPT-6 Astra orchestrating threads and dispatching tasks to Sol and Luna, then running a <strong>15-minute heartbeat</strong> that inspects progress and course-corrects <em>before</em> the workers finish rather than judging their output afterwards. The cases named for it are refactors, video edits and 3D generation &mdash; long tasks where discovering that a worker drifted an hour ago means an hour of work is wasted.</p>
-          <p>Against the review-station designs on this page, where a separate reviewer grades a finished diff from fresh context, this is the complementary control: periodic supervision of work in flight instead of inspection at the end. The interval is the parameter nobody has justified with a measurement, and it is the one that decides whether the pattern costs less than the drift it prevents.</p>
-          <div class="sources"><span class="via">via Unwind AI (Sep 16) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story unlinked" id="codex-heartbeat-orchestration">
+            <span class="when">2026-09-16</span>
+            <h4>A Codex orchestration pattern checks its own workers on a 15-minute heartbeat</h4>
+            <p>A circulated Codex setup has GPT-6 Astra orchestrating threads and dispatching tasks to Sol and Luna, then running a <strong>15-minute heartbeat</strong> that inspects progress and course-corrects <em>before</em> the workers finish rather than judging their output afterwards. The cases named for it are refactors, video edits and 3D generation &mdash; long tasks where discovering that a worker drifted an hour ago means an hour of work is wasted.</p>
+            <p>Against the review-station designs on this page, where a separate reviewer grades a finished diff from fresh context, this is the complementary control: periodic supervision of work in flight instead of inspection at the end. The interval is the parameter nobody has justified with a measurement, and it is the one that decides whether the pattern costs less than the drift it prevents.</p>
+            <div class="sources"><span class="via">via Unwind AI (Sep 16) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="gemini-claude-reversibility-routing">
             <span class="when">2026-09-15</span>
@@ -883,6 +899,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-22</span><span class="label"><a href="#swarm-scaling">Toby Ord: ten times the agents buys less than ten times the tokens in one agent, but finishes sooner</a></span></li>
+        <li><span class="date">2026-09-21</span><span class="label"><a href="#muse-downloads">Muse out-downloads ChatGPT&rsquo;s launch fortnight, and Amazon blocks its agent from shopping</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#google-ax">Google&rsquo;s AX declares agent workloads the way Kubernetes declares pods</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#strands-harness">Strands Harness runs Fable 5 on Terminal-Bench 2.1 at $56.29 against Claude Code&rsquo;s $248.05</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#muse-connectors">Meta opens Muse to third-party connectors, reviewed by Meta and ranked by Meta&rsquo;s editors</a></span></li>
