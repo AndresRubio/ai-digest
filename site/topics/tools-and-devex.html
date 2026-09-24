@@ -30,18 +30,19 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-09-23</div>
+      <div class="meta">Last updated: 2026-09-24</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is the tooling growing the instruments it was missing. <a href="#claude-plugin-eval"><code>claude plugin eval</code></a> (Claude Code 2.1.269 and later) writes cases and graders for a plugin and reports each case with and without it, plus the delta and the cost &mdash; the first thing in the plugin layer that answers whether an addition helps rather than whether it installs, with the caveat that the graders come from the author&rsquo;s own description of success. Linear supplied the organisational version: a <a href="#linear-ci-bottleneck">test suite that nearly quadrupled</a> under agent-written code while PR wait fell from over six minutes to just over five, with tsgo taking 73% off type-checking. Verification, not generation, is where the fast path&rsquo;s cost lands.</p>
+        <p>Today&rsquo;s cycle is the documentation catching up with a model launch, and the migration claims arriving with their fine print. Anthropic&rsquo;s <a href="#opus-5-5-playbook">Opus 5.5 playbook</a> says to state the whole task, define done and delete &ldquo;think carefully&rdquo;, and from Claude Code 2.1.280 a mid-session effort change no longer invalidates the prompt cache &mdash; which makes effort a per-turn routing parameter rather than a session setting. The <a href="#claude-code-migration-kit">Claude Code Migration Kit</a> publishes the rulebooks and parity checks behind Anthropic&rsquo;s 680,000-line migration claim, labelled unmaintained and reconstructed.</p>
+        <p>The two productivity claims of the day came out differently under inspection. GitHub&rsquo;s <a href="#github-copilot-rust-port">Copilot Rust port</a> &mdash; more than 800,000 lines in under four months for about $120,000 in tokens &mdash; lost its &ldquo;one engineer&rdquo; framing within a day, once the engineer&rsquo;s own write-up credited teammates for bindings, packaging and review. Boris Cherny&rsquo;s <a href="#claude-agent-sdk-lean-verification">Lean verification of the Agent SDK</a> produced 16 bug-fix PRs, the rare productivity claim that arrives with evidence a reviewer can check. Smaller pieces filled in the stack: StepFun&rsquo;s open terminal agent <a href="#step-code">Step Code</a>, LlamaIndex&rsquo;s local parser <a href="#liteparse">LiteParse</a>, and <a href="#ossrules">ossrules.md</a>, which collects 100 projects&rsquo; instruction files and 1,200 skills with no measure of which conventions work.</p>
+        <p>The Sep 22 cycle was the tooling growing the instruments it was missing. <a href="#claude-plugin-eval"><code>claude plugin eval</code></a> (Claude Code 2.1.269 and later) writes cases and graders for a plugin and reports each case with and without it, plus the delta and the cost &mdash; the first thing in the plugin layer that answers whether an addition helps rather than whether it installs, with the caveat that the graders come from the author&rsquo;s own description of success. Linear supplied the organisational version: a <a href="#linear-ci-bottleneck">test suite that nearly quadrupled</a> under agent-written code while PR wait fell from over six minutes to just over five, with tsgo taking 73% off type-checking. Verification, not generation, is where the fast path&rsquo;s cost lands.</p>
         <p>The rest moved work between machines and between bills. Devin CLI&rsquo;s <a href="#devin-cloud-terminal"><code>/handoff</code></a> carries local context, branch and uncommitted changes into a cloud VM that keeps running after the laptop closes, and SWE-2 is free until October 8. Nous&rsquo;s <a href="#hermes-claude-subscription">DirectSDK plugin</a> runs Hermes on a Claude Pro or Max plan through the Claude Code CLI at roughly 1.7&times; the allowance burn, making the subscription rather than the key the integration surface. <a href="#laya-coreml">Laya-CoreML</a> puts typed decisions on Apple&rsquo;s Neural Engine in about 5ms inside a 96-token input cap, and the <a href="#agents-md-fallback">AGENTS.md fallback</a> gained its public source: fallback, not merge, toggleable in <code>/config</code>.</p>
         <p>The Sep 21 item was small and structurally interesting. Claude Code <strong>2.1.277</strong> falls back to <code>AGENTS.md</code> when a folder has no <code>CLAUDE.md</code>, which quietly ends the config-file split a repository has had to pick a side in. Anthropic shipped it as a built-in <strong>mod</strong> rather than a feature &mdash; the first public look at a coming mechanism for customising the Claude Code harness, with the mod&rsquo;s source published and user-written project-instruction handling named as a supported case. The fallback is the announcement; the mod is the change. The component that decides which instructions reach the model becomes replaceable by the team using it, which is exactly the layer this page&rsquo;s memory and configuration patterns have been assembling by hand in Markdown.</p>
-        <p>The cycle before had one description of the destination and several of the road. Gergely Orosz&rsquo;s account of OpenAI&rsquo;s internal &ldquo;software factory&rdquo; is the destination: Codex reads the codebase, Slack and internal data, writes the change, runs tests, fixes failures and opens a PR until CI is green; <strong>review agents inspect it by domain</strong> &mdash; cloud, infrastructure, security &mdash; low-risk changes can be auto-approved, and after human sign-off a deploy agent ships, builds dashboards and can roll back. <strong>Perf Factory</strong> deduplicates production alerts and traces slowdowns to cause; <strong>Sevbot</strong> gathers incident context and proposes fixes without applying them. The structure to notice is that every autonomous step is paired with a narrower agent whose job is to catch it, and the only obligatory human is the one signing the merge. Orosz names the constraint plainly, and it is this page&rsquo;s recurring one: the pipeline burns compute OpenAI absorbs more easily than anyone else, so the open question is the token price at which it leaves the frontier labs.</p>
-        <p>Underneath it, the week&rsquo;s tooling put the model inside software that predates it. Apple shipped <strong>Safari MCP</strong> in Safari 27.0, handing a chosen agent the DOM, network requests, screenshots and console of a real browser window &mdash; the see-what-you-rendered loop arriving as a default-browser capability rather than a driver someone installs. <strong>pg-jev</strong> does the same to Postgres, allowing <code>WHERE jev(people, 'the name is European')</code>, and earns its place by publishing the ceiling: <strong>20 seconds and 2,500 model-judged rows</strong> per read-only query, with the author saying outright it is not a route through a million-row table. <strong>fast-jev-compaction</strong> inverts what compaction assumes &mdash; keep the conversation verbatim, ask <a href="model-releases.html">Jev</a> per old tool call whether it still matters &mdash; and reports <strong>up to 90%</strong>, one Claude Code session going from <strong>1M tokens to 86K in about a second</strong>, falling back to the built-in summary when it cannot. That changes the failure mode as much as the cost: a summariser degrades everything slightly, a judge occasionally discards the one result the next step needed.</p>
-        
         <details>
           <summary>Earlier cycles</summary>
+          <p>The cycle before had one description of the destination and several of the road. Gergely Orosz&rsquo;s account of OpenAI&rsquo;s internal &ldquo;software factory&rdquo; is the destination: Codex reads the codebase, Slack and internal data, writes the change, runs tests, fixes failures and opens a PR until CI is green; <strong>review agents inspect it by domain</strong> &mdash; cloud, infrastructure, security &mdash; low-risk changes can be auto-approved, and after human sign-off a deploy agent ships, builds dashboards and can roll back. <strong>Perf Factory</strong> deduplicates production alerts and traces slowdowns to cause; <strong>Sevbot</strong> gathers incident context and proposes fixes without applying them. The structure to notice is that every autonomous step is paired with a narrower agent whose job is to catch it, and the only obligatory human is the one signing the merge. Orosz names the constraint plainly, and it is this page&rsquo;s recurring one: the pipeline burns compute OpenAI absorbs more easily than anyone else, so the open question is the token price at which it leaves the frontier labs.</p>
+          <p>Underneath it, the week&rsquo;s tooling put the model inside software that predates it. Apple shipped <strong>Safari MCP</strong> in Safari 27.0, handing a chosen agent the DOM, network requests, screenshots and console of a real browser window &mdash; the see-what-you-rendered loop arriving as a default-browser capability rather than a driver someone installs. <strong>pg-jev</strong> does the same to Postgres, allowing <code>WHERE jev(people, 'the name is European')</code>, and earns its place by publishing the ceiling: <strong>20 seconds and 2,500 model-judged rows</strong> per read-only query, with the author saying outright it is not a route through a million-row table. <strong>fast-jev-compaction</strong> inverts what compaction assumes &mdash; keep the conversation verbatim, ask <a href="model-releases.html">Jev</a> per old tool call whether it still matters &mdash; and reports <strong>up to 90%</strong>, one Claude Code session going from <strong>1M tokens to 86K in about a second</strong>, falling back to the built-in summary when it cannot. That changes the failure mode as much as the cost: a summariser degrades everything slightly, a judge occasionally discards the one result the next step needed.</p>
           <p>Two releases were notable for stating their own limits. <strong>OpenClaw 2026.9.5</strong> verifies each update against a private copy of the running setup while the current Gateway serves, rolls back on failure, and says plainly that <strong>rollback cannot undo database migrations</strong> &mdash; in a release bundling <strong>4,179 pull requests from 502 accounts</strong> under MIT. GitHub Next&rsquo;s <strong>LocalJev</strong> serves a Jev-compatible API from local models over oMLX, tested across <strong>1,200 requests and five 4-bit models on an M5 Max</strong>, and warns that it emits prompted JSON probabilities rather than direct logits, so calibration must be checked before code branches on the confidences. Meanwhile the coordinator pattern completed its set: Codex threads can now reference, message and monitor each other, with one thread schedulable as a coordinator that reviews the others&rsquo; diffs &mdash; and Notion&rsquo;s <strong>Skills API</strong> made instruction sets a team artifact distributed by GitHub sync, which fixes drift and introduces the matching hazard of a skill that changes underneath you.</p>
           <p>Today's cycle is about the coding-agent vendors shipping the coordinator and the practitioners shipping the discipline. Anthropic merged <strong>Cowork into Claude</strong>, so one interface decides per task which connectors and skills a request needs, and Claude Docs and Slides now emit documents and decks the user can edit in place or download as PowerPoint or PDF &mdash; Pro and Max first, Team and Free after, enterprise admins given 30 days' notice. Alongside it, <strong>Claude Code Projects</strong> opened in beta: one coordinating conversation, each thread a full cloud session on its own branch, capped at 200 new threads a day, for selected Pro and Max users on web and desktop and pointedly <em>not</em> the CLI. It answers <a href="agents.html">Cursor Projects</a> almost move for move. The parallel-session practice this page has tracked since worktrees and tmux panes is now something both vendors run on machines the developer does not own, and what gets traded is not only privacy but the ability to inspect a run without the vendor's console in the way.</p>
           <p>The two smaller items are the ones worth copying. Fatih Arslan's fleet system (Sep 11) reduces agent management to four commands over Markdown files &mdash; capture with no decisions, plan with a stronger reasoning model that also defines the verification, dispatch to a cheaper executor, then sync the merged PR back against the original plan &mdash; with a coordinator agent that never writes code chasing CI and reviews. The closing check against <em>intent</em> rather than against the diff is the step most fleets skip, and the reason nobody can say afterwards what shipped. Matt Pocock's <code>/retro</code> update draws the same line one level down: mechanical findings become lint rules, hooks or CI jobs, judgement calls stay in <code>CODING_STANDARDS.md</code>, and a repo with no linting at all is itself a finding. A standards file asks the model to remember; a lint rule removes the possibility. <strong>Grok Build</strong>'s new cross-session memory is the same convergence arriving from a third direction, still without an answer to how a stored decision gets corrected once the team reverses it.</p>
@@ -78,17 +79,17 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">5</span></a></li>
+          <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">6</span></a></li>
           <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">4</span></a></li>
           <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">7</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">5</span></a></li>
-          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">24</span></a></li>
+          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">25</span></a></li>
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">10</span></a></li>
-          <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">14</span></a></li>
+          <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">15</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">3</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">8</span></a></li>
-          <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">15</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">11</span></a></li>
+          <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">16</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">14</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">5</span></a></li>
         </ul>
       </nav>
@@ -96,6 +97,13 @@
       <section class="topic-section" id="memory-and-configuration-patterns">
         <h3>Memory &amp; configuration patterns</h3>
         <p class="lead">Per-project <code>CLAUDE.md</code>, per-repo conventions and a global <code>~/.claude/CLAUDE.md</code> for personal preferences are the documented pattern, with guides lazy-loaded rather than imported so the always-on context stays small. Judge entries on whether a stored instruction can be scoped, expired and corrected, not on whether it can be written.</p>
+
+        <article class="story" id="ossrules">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://ossrules.md/">ossrules.md collects the AGENTS.md, CLAUDE.md and skill files of 100 open-source projects</a></h4>
+          <p>The site gathers the real instruction files from <strong>100 open-source projects</strong>, covering more than <strong>1,200 skills</strong>, including Hermes, Codex, PyTorch, Playwright and Next.js. It is the first corpus here of how maintainers actually write these files rather than how guides say to &mdash; readable, but with no measure of which conventions work.</p>
+          <div class="sources"><a href="https://ossrules.md/">ossrules.md</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
+        </article>
 
         <article class="story" id="agents-md-fallback">
           <span class="when">2026-09-21</span>
@@ -113,16 +121,16 @@
           <div class="sources"><span class="via">via TLDR AI (Sep 17) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story" id="manager-markdown-setup">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://softwareleads.substack.com/p/maintaining-context-as-a-manager">A Reddit engineering manager runs his day on three Markdown files and one 8am Codex task</a></h4>
-          <p>James Samuel, an engineering manager at Reddit, published the setup he uses to stop an agent dumping every PR and diff on him: <code>projects.md</code> lists his projects and what matters about each, <code>people.md</code> holds context and open action items for the people he works with and supports, and <code>daily.md</code> combines them into a morning briefing that a scheduled Codex task runs every workday &mdash; ranking items, linking every claim back to a source, removing duplicates across Slack, Drive, GitHub and email, and writing a summary.</p>
-          <p>The rule underneath predates the agent: keep something only if it drives a future action, spots a trend, or helps a teammate. That is a relevance filter written down once and applied by machine, which constrains retrieval before the search rather than asking the model to summarise afterwards, and citation-per-claim plus cross-tool de-duplication are the two properties that make the output checkable rather than merely shorter.</p>
-          <div class="sources"><a href="https://softwareleads.substack.com/p/maintaining-context-as-a-manager">Software Leads</a> &middot; <span class="via">via The Code (Sep 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="manager-markdown-setup">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://softwareleads.substack.com/p/maintaining-context-as-a-manager">A Reddit engineering manager runs his day on three Markdown files and one 8am Codex task</a></h4>
+            <p>James Samuel, an engineering manager at Reddit, published the setup he uses to stop an agent dumping every PR and diff on him: <code>projects.md</code> lists his projects and what matters about each, <code>people.md</code> holds context and open action items for the people he works with and supports, and <code>daily.md</code> combines them into a morning briefing that a scheduled Codex task runs every workday &mdash; ranking items, linking every claim back to a source, removing duplicates across Slack, Drive, GitHub and email, and writing a summary.</p>
+            <p>The rule underneath predates the agent: keep something only if it drives a future action, spots a trend, or helps a teammate. That is a relevance filter written down once and applied by machine, which constrains retrieval before the search rather than asking the model to summarise afterwards, and citation-per-claim plus cross-tool de-duplication are the two properties that make the output checkable rather than merely shorter.</p>
+            <div class="sources"><a href="https://softwareleads.substack.com/p/maintaining-context-as-a-manager">Software Leads</a> &middot; <span class="via">via The Code (Sep 16)</span></div>
+          </article>
 
           <article class="story unlinked" id="eight-ambiguity-patterns">
             <span class="when">2026-08-03</span>
@@ -297,6 +305,13 @@
         <h3>Agent-native tooling</h3>
         <p class="lead">Developer tools shipped with agents as the primary reader, not only humans: a skill file instead of a README, a structured handle instead of a screenshot, a deterministic artifact instead of a reconstruction. Judge entries on whether the agent operates the real target, and on what limit the author publishes alongside the demo.</p>
 
+        <article class="story" id="liteparse">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://github.com/run-llama/liteparse">LlamaIndex LiteParse parses PDFs and Office files locally with bounding boxes and no LLM</a></h4>
+          <p><strong>LiteParse</strong> is an open-source local parser with Rust, Python, Node and WASM packages that extracts spatial text with bounding boxes from PDFs, converts Office files through LibreOffice, supports OCR, and flags pages that need a heavier parser. Its authors name what it does not handle &mdash; complex tables, handwriting and difficult scans &mdash; and a hosted version exists alongside the local one.</p>
+          <div class="sources"><a href="https://github.com/run-llama/liteparse">GitHub</a> &middot; <span class="via">via TLDR (Sep 23), Unwind AI (Sep 23)</span></div>
+        </article>
+
         <article class="story" id="pg-jev">
           <span class="when">2026-09-20</span>
           <h4><a href="https://pgjev.zachi.dev/">pg-jev puts a model judgement in a Postgres WHERE clause, with the caps published</a></h4>
@@ -313,16 +328,16 @@
           <div class="sources"><a href="https://webkit.org/blog/18325/webkit-features-for-safari-27-0/">WebKit</a> &middot; <span class="via">via TLDR (Sep 18)</span></div>
         </article>
 
-        <article class="story" id="devin-cloud-macos">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://devin.ai/blog/devin-gets-a-mac">Devin Cloud gets macOS workspaces, so the agent can build a native app and then look at it</a></h4>
-          <p>Cognition put Devin Cloud on macOS workspaces running on AWS EC2 Mac hosts, which lets the agent compile native applications, launch them, inspect them, drive the iOS Simulator and read accessibility trees to verify what actually appeared on screen. Writing Swift was never the constraint; what no agent could do on Linux infrastructure was run the result and check it, so work on native mobile stopped at &ldquo;the code compiles&rdquo; and left verification to a human with a Mac.</p>
-          <p>Reading the accessibility tree rather than a screenshot is also the right primitive, being structured and addressable so nothing has to be inferred from pixels, which is the argument WebMCP makes for the browser. The constraint is now commercial rather than technical: EC2 Mac hosts are billed by dedicated instance, so this is a more expensive class of worker than the agent runners beside it.</p>
-          <div class="sources"><a href="https://devin.ai/blog/devin-gets-a-mac">Cognition</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (21)</summary>
+          <summary>Earlier in this section (22)</summary>
+
+          <article class="story" id="devin-cloud-macos">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://devin.ai/blog/devin-gets-a-mac">Devin Cloud gets macOS workspaces, so the agent can build a native app and then look at it</a></h4>
+            <p>Cognition put Devin Cloud on macOS workspaces running on AWS EC2 Mac hosts, which lets the agent compile native applications, launch them, inspect them, drive the iOS Simulator and read accessibility trees to verify what actually appeared on screen. Writing Swift was never the constraint; what no agent could do on Linux infrastructure was run the result and check it, so work on native mobile stopped at &ldquo;the code compiles&rdquo; and left verification to a human with a Mac.</p>
+            <p>Reading the accessibility tree rather than a screenshot is also the right primitive, being structured and addressable so nothing has to be inferred from pixels, which is the argument WebMCP makes for the browser. The constraint is now commercial rather than technical: EC2 Mac hosts are billed by dedicated instance, so this is a more expensive class of worker than the agent runners beside it.</p>
+            <div class="sources"><a href="https://devin.ai/blog/devin-gets-a-mac">Cognition</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
+          </article>
 
           <article class="story unlinked" id="lm-studio-voice-transcription">
             <span class="when">2026-09-16</span>
@@ -585,6 +600,13 @@
         <h3>Model selection inside coding agents</h3>
         <p class="lead">The harness is model-agnostic: swapping the underlying coding model is a one-line config change, and effort level is becoming a routing parameter too. What a tool sells is no longer the model it bundles but the integration surface &mdash; live documentation, reachable devices, enforced permissions, review put in front of you.</p>
 
+        <article class="story" id="opus-5-5-playbook">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://claude.dev/blog/getting-the-most-out-of-opus-5-5/">Anthropic&rsquo;s Opus 5.5 playbook drops &ldquo;think carefully&rdquo;; effort changes keep the cache from Claude Code 2.1.280</a></h4>
+          <p>Anthropic&rsquo;s playbook for Opus 5.5 in Claude and Claude Code says to give the complete task, define what &ldquo;done&rdquo; means and say when to stop and ask, and to delete &ldquo;think carefully&rdquo; instructions because the model now sets its own thinking per reply. Separately, Anthropic&rsquo;s Lydia Hallie says changing effort mid-session no longer invalidates the prompt cache on <strong>Claude Code v2.1.280 or newer</strong>, so a long session can move between light and heavy reasoning without re-paying for the cached context.</p>
+          <div class="sources"><a href="https://claude.dev/blog/getting-the-most-out-of-opus-5-5/">Claude</a> &middot; <a href="https://x.com/lydiahallie/status/2102513987699212344">Lydia Hallie on X</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Sep 23)</span></div>
+        </article>
+
         <article class="story" id="hermes-claude-subscription">
           <span class="when">2026-09-22</span>
           <h4><a href="https://hermes-agent.nousresearch.com/docs/plugins/claude-subscription-directsdk">Hermes runs on a Claude Pro or Max plan through the Claude Code CLI, at 1.7&times; the allowance burn</a></h4>
@@ -600,16 +622,16 @@
           <div class="sources"><span class="via">via The Code (Sep 16) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story" id="foundation-models-framework">
-          <span class="when">2026-09-15</span>
-          <h4><a href="https://developer.apple.com/ios/whats-new/">iOS 27&rsquo;s Foundation Models framework makes the model a one-line Swift parameter</a></h4>
-          <p>Apple shipped iOS 27 with an upgraded Foundation Models framework that exposes any language model through a single Swift API &mdash; Apple&rsquo;s own third-generation on-device models, or cloud models including Claude and Gemini, selected at the call site. Siri gains App Intents, letting it reach into applications and take actions on the user&rsquo;s behalf, and ships as its own app for the first time.</p>
-          <p>For developers this is the piece the <a href="agents.html">Model Delegation</a> finding implied but did not establish: model-swapping on Apple&rsquo;s platform is not a private arrangement between Apple and two labs, it is the documented interface third-party applications are expected to build against. The entire platform now treats the model as configuration, from the IDE through the assistant to the app API, while what Apple keeps is the integration surface &mdash; on-device capabilities, the permission model and the intent system.</p>
-          <div class="sources"><a href="https://developer.apple.com/ios/whats-new/">Apple</a> &middot; <a href="https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models">Apple ML research</a> &middot; <span class="via">via The Code (Sep 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (11)</summary>
+          <summary>Earlier in this section (12)</summary>
+
+          <article class="story" id="foundation-models-framework">
+            <span class="when">2026-09-15</span>
+            <h4><a href="https://developer.apple.com/ios/whats-new/">iOS 27&rsquo;s Foundation Models framework makes the model a one-line Swift parameter</a></h4>
+            <p>Apple shipped iOS 27 with an upgraded Foundation Models framework that exposes any language model through a single Swift API &mdash; Apple&rsquo;s own third-generation on-device models, or cloud models including Claude and Gemini, selected at the call site. Siri gains App Intents, letting it reach into applications and take actions on the user&rsquo;s behalf, and ships as its own app for the first time.</p>
+            <p>For developers this is the piece the <a href="agents.html">Model Delegation</a> finding implied but did not establish: model-swapping on Apple&rsquo;s platform is not a private arrangement between Apple and two labs, it is the documented interface third-party applications are expected to build against. The entire platform now treats the model as configuration, from the IDE through the assistant to the app API, while what Apple keeps is the integration surface &mdash; on-device capabilities, the permission model and the intent system.</p>
+            <div class="sources"><a href="https://developer.apple.com/ios/whats-new/">Apple</a> &middot; <a href="https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models">Apple ML research</a> &middot; <span class="via">via The Code (Sep 15)</span></div>
+          </article>
 
           <article class="story" id="subagent-model-env-var">
             <span class="when">2026-09-15</span>
@@ -805,6 +827,13 @@
         <h3>The agentic harness: build vs buy</h3>
         <p class="lead">The harness is a discrete, standardizable component, commoditizing into a few batteries-included frameworks. The durable test for harness code is whether it helps inspect, verify, recover or merge the model&rsquo;s work. Buying one increasingly means buying the surrounding development platform; the <a href="agents.html">Agents</a> page carries this argument from the framework side.</p>
 
+        <article class="story" id="step-code">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://github.com/stepfun-ai/Step-Code">StepFun open-sources Step Code, a terminal coding agent with subagents, MCP and a /goal mode</a></h4>
+          <p>StepFun&rsquo;s <strong>Step Code</strong> reads code, edits files, runs tests, coordinates subagents, loads MCP servers and Agent Skills, and publishes static sites through StepPage, with a <code>/goal</code> mode for longer autonomous tasks. A model lab shipping its own open harness a day after its <a href="model-releases.html">Step 5 Preview</a> is the batteries-included pattern again; no benchmark accompanies it.</p>
+          <div class="sources"><a href="https://github.com/stepfun-ai/Step-Code">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
+        </article>
+
         <article class="story" id="openai-software-factory">
           <span class="when">2026-09-18</span>
           <h4><a href="https://newsletter.pragmaticengineer.com/p/openai-software-factory">Orosz on OpenAI&rsquo;s &ldquo;software factory&rdquo;: Codex opens the PR, agents review it, a deploy agent ships it</a></h4>
@@ -822,16 +851,16 @@
           <div class="sources"><a href="https://claude.com/blog/cowork-is-now-claude">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 17), The Code (Sep 17)</span></div>
         </article>
 
-        <article class="story unlinked" id="cursor-self-hosted-agents">
-          <span class="when">2026-09-04</span>
-          <h4>Cursor cloud agents now run on machines you manage, inside your own network</h4>
-          <p>Cursor&rsquo;s cloud agents can execute on dynamically scheduled pools of machines inside private networks. Agents are still started and managed from Cursor, but execution moves to infrastructure the team controls &mdash; letting agents work next to internal services and source control, run on custom hardware, or use operating systems and build pipelines that are impractical to package as a hosted build.</p>
-          <p>This is the persistent-remote-execution thread bending back toward the customer&rsquo;s own hardware: the harness stays hosted, the runtime comes home.</p>
-          <div class="sources"><span class="via">via TLDR AI (Sep 3) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story unlinked" id="cursor-self-hosted-agents">
+            <span class="when">2026-09-04</span>
+            <h4>Cursor cloud agents now run on machines you manage, inside your own network</h4>
+            <p>Cursor&rsquo;s cloud agents can execute on dynamically scheduled pools of machines inside private networks. Agents are still started and managed from Cursor, but execution moves to infrastructure the team controls &mdash; letting agents work next to internal services and source control, run on custom hardware, or use operating systems and build pipelines that are impractical to package as a hosted build.</p>
+            <p>This is the persistent-remote-execution thread bending back toward the customer&rsquo;s own hardware: the harness stays hosted, the runtime comes home.</p>
+            <div class="sources"><span class="via">via TLDR AI (Sep 3) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story" id="muse-code">
             <span class="when">2026-09-01</span>
@@ -936,31 +965,52 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and no defect rate for the fast path is recorded here.</p>
 
-        <article class="story" id="linear-ci-bottleneck">
-          <span class="when">2026-09-22</span>
-          <h4><a href="https://linear.app/now/ci-bottleneck-reworked">Linear&rsquo;s test suite nearly quadrupled under agent-written code, and PR wait still fell to just over five minutes</a></h4>
-          <p>Linear says AI coding made code arrive faster than CI could validate it. While its test suite <strong>nearly quadrupled</strong>, it cut PR wait from <strong>more than 6 minutes to just over 5</strong> and roughly halved runner time per test; the two largest moves were <strong>tsgo cutting type-check time by 73%</strong> and stripping repeated setup out of the hot path. The figures are Linear&rsquo;s own, and they locate the fast path&rsquo;s cost where this section expects it &mdash; in verification, not generation.</p>
-          <div class="sources"><a href="https://linear.app/now/ci-bottleneck-reworked">Linear</a> &middot; <span class="via">via Unwind AI (Sep 22)</span></div>
+        <article class="story unlinked" id="github-copilot-rust-port">
+          <span class="when">2026-09-23</span>
+          <h4>GitHub ports its Copilot runtime to 800,000+ lines of Rust with agents for about $120,000</h4>
+          <p>GitHub says one engineer steering agents ported its Copilot runtime to <strong>more than 800,000 lines of Rust in under four months</strong>, with agents writing most of the code for about <strong>$120,000 in tokens</strong>. The &ldquo;one engineer&rdquo; framing did not survive scrutiny: Stephen Toub brings 25 years at Microsoft, and his own write-up credits teammates for bindings, packaging and code review.</p>
+          <div class="sources"><a href="https://codenewsletter.ai/p/anthropic-launches-faster-cheaper-opus-5-5">The Code</a> (issue) &middot; <span class="via">via The Code (Sep 23) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story" id="px0">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://px0.ai/">px0 is a 16MB read-only IDE built on the assumption the agent writes and the human verifies</a></h4>
-          <p>px0 ships as a single static Go binary of about 16MB that serves browser-based symbol navigation, LSP intelligence and deep code search, and is deliberately read-only. The premise is the design: if the agent writes the code and the human&rsquo;s job is to check it, an editor is the wrong shape for the reviewing half, and everything an editor carries to support writing is weight the reviewer does not need.</p>
-          <p>It is the tooling counterpart to the blast-radius argument below &mdash; once review is the scarce human step, it earns purpose-built tools instead of borrowing the authoring ones. Read alongside Claude Code&rsquo;s <a href="#claude-code-diff-panel"><code>/diff</code> panel</a>, the two answer the same need at different scales: the panel keeps small changes beside the conversation, px0 is for when the change is large enough that you have to navigate the codebase around it.</p>
-          <div class="sources"><a href="https://px0.ai/">px0</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
+        <article class="story" id="claude-code-migration-kit">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://github.com/anthropics/code-migration-kit-with-claude-code">Anthropic publishes an unmaintained Claude Code Migration Kit with behavioural-parity checks</a></h4>
+          <p>The kit bundles prompts, templates, dependency-map scripts, rulebooks, agent boundaries and behavioural-parity checks for large language migrations &mdash; the job behind the Opus 5.5 launch claim of a <strong>680,000-line migration in under a day</strong>. Anthropic states the limits itself: it is reference code, not actively maintained, and the prompts are reviewed reconstructions rather than transcripts of its production migrations.</p>
+          <div class="sources"><a href="https://github.com/anthropics/code-migration-kit-with-claude-code">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="codex-remote-cookbook">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://developers.openai.com/blog/mastering-codex-remote-for-engineering">OpenAI documents driving Codex from a phone: queue prompts, manage worktrees, decide only when asked</a></h4>
-          <p>OpenAI published a cookbook for Codex Remote in the ChatGPT mobile app, covering how to start tasks, steer a running agent, review code, queue prompts, manage worktrees and step in only when a decision is needed. The interesting part is the shape it assumes rather than the mobile surface: queued prompts and managed worktrees describe an agent expected to be working while nobody is watching it, with the human arriving to arbitrate rather than to drive.</p>
-          <p>That matches where the parallel-session practice has been heading and removes its remaining tether, since the argument for tmux and worktrees was never about the terminal but about keeping several independent workstreams legible. What a phone cannot do is the review half &mdash; reading a large diff on a handset is the step this makes no easier, which is why it is documented as steering and triage rather than as a replacement for the desk.</p>
-          <div class="sources"><a href="https://developers.openai.com/blog/mastering-codex-remote-for-engineering">OpenAI</a> &middot; <span class="via">via The Code (Sep 16)</span></div>
+        <article class="story" id="claude-agent-sdk-lean-verification">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://x.com/bcherny/status/2102543349102338309">Opus 5.5 and Lean formally verify the Claude Agent SDK into 16 bug-fix PRs</a></h4>
+          <p>Boris Cherny used Opus 5.5 with Lean to formally verify the Claude Agent SDK, producing <strong>16 PRs</strong> that fixed bugs and race conditions, and pairs Lean with TLA+ to check data flow, concurrency and state &mdash; without knowing either language well. It is evidence constructed rather than a diff skimmed, from the person who leads the product, reported in a post rather than a write-up.</p>
+          <div class="sources"><a href="https://x.com/bcherny/status/2102543349102338309">Boris Cherny on X</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Sep 23)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (11)</summary>
+
+          <article class="story" id="linear-ci-bottleneck">
+            <span class="when">2026-09-22</span>
+            <h4><a href="https://linear.app/now/ci-bottleneck-reworked">Linear&rsquo;s test suite nearly quadrupled under agent-written code, and PR wait still fell to just over five minutes</a></h4>
+            <p>Linear says AI coding made code arrive faster than CI could validate it. While its test suite <strong>nearly quadrupled</strong>, it cut PR wait from <strong>more than 6 minutes to just over 5</strong> and roughly halved runner time per test; the two largest moves were <strong>tsgo cutting type-check time by 73%</strong> and stripping repeated setup out of the hot path. The figures are Linear&rsquo;s own, and they locate the fast path&rsquo;s cost where this section expects it &mdash; in verification, not generation.</p>
+            <div class="sources"><a href="https://linear.app/now/ci-bottleneck-reworked">Linear</a> &middot; <span class="via">via Unwind AI (Sep 22)</span></div>
+          </article>
+
+          <article class="story" id="px0">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://px0.ai/">px0 is a 16MB read-only IDE built on the assumption the agent writes and the human verifies</a></h4>
+            <p>px0 ships as a single static Go binary of about 16MB that serves browser-based symbol navigation, LSP intelligence and deep code search, and is deliberately read-only. The premise is the design: if the agent writes the code and the human&rsquo;s job is to check it, an editor is the wrong shape for the reviewing half, and everything an editor carries to support writing is weight the reviewer does not need.</p>
+            <p>It is the tooling counterpart to the blast-radius argument below &mdash; once review is the scarce human step, it earns purpose-built tools instead of borrowing the authoring ones. Read alongside Claude Code&rsquo;s <a href="#claude-code-diff-panel"><code>/diff</code> panel</a>, the two answer the same need at different scales: the panel keeps small changes beside the conversation, px0 is for when the change is large enough that you have to navigate the codebase around it.</p>
+            <div class="sources"><a href="https://px0.ai/">px0</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
+          </article>
+
+          <article class="story" id="codex-remote-cookbook">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://developers.openai.com/blog/mastering-codex-remote-for-engineering">OpenAI documents driving Codex from a phone: queue prompts, manage worktrees, decide only when asked</a></h4>
+            <p>OpenAI published a cookbook for Codex Remote in the ChatGPT mobile app, covering how to start tasks, steer a running agent, review code, queue prompts, manage worktrees and step in only when a decision is needed. The interesting part is the shape it assumes rather than the mobile surface: queued prompts and managed worktrees describe an agent expected to be working while nobody is watching it, with the human arriving to arbitrate rather than to drive.</p>
+            <p>That matches where the parallel-session practice has been heading and removes its remaining tether, since the argument for tmux and worktrees was never about the terminal but about keeping several independent workstreams legible. What a phone cannot do is the review half &mdash; reading a large diff on a handset is the step this makes no easier, which is why it is documented as steering and triage rather than as a replacement for the desk.</p>
+            <div class="sources"><a href="https://developers.openai.com/blog/mastering-codex-remote-for-engineering">OpenAI</a> &middot; <span class="via">via The Code (Sep 16)</span></div>
+          </article>
 
           <article class="story unlinked" id="anthropic-80-percent">
             <span class="when">2026-09-15</span>
@@ -1079,6 +1129,13 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#ossrules">ossrules.md collects the AGENTS.md, CLAUDE.md and skill files of 100 open-source projects</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#liteparse">LlamaIndex LiteParse parses PDFs and Office files locally with bounding boxes and no LLM</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#step-code">StepFun open-sources Step Code, a terminal coding agent with subagents, MCP and a /goal mode</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#github-copilot-rust-port">GitHub ports its Copilot runtime to 800,000+ lines of Rust with agents for about $120,000</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#claude-code-migration-kit">Anthropic publishes an unmaintained Claude Code Migration Kit with behavioural-parity checks</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#claude-agent-sdk-lean-verification">Opus 5.5 and Lean formally verify the Claude Agent SDK into 16 bug-fix PRs</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#opus-5-5-playbook">Anthropic&rsquo;s Opus 5.5 playbook drops &ldquo;think carefully&rdquo;; effort changes keep the cache from Claude Code 2.1.280</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#laya-coreml">Laya-CoreML runs typed decisions on Apple&rsquo;s Neural Engine in about 5ms, inside a 96-token limit</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#linear-ci-bottleneck">Linear&rsquo;s test suite nearly quadrupled under agent-written code, and PR wait still fell to just over five minutes</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#claude-plugin-eval">claude plugin eval scores a plugin with and without itself, and reports the delta and the cost</a></span></li>

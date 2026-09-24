@@ -30,11 +30,12 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-09-23</div>
+      <div class="meta">Last updated: 2026-09-24</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is two releases that treat the environment as the thing worth publishing. Xiaomi&rsquo;s <a href="#mimo-v2-6-rl">MiMo-V2.6 report</a> (Sep 22) scales RL compute, environment diversity and grader compute together and names what kept training stable &mdash; a frozen MoE router and a layered defence against reward hacking &mdash; with the environments and framework open-sourced; the resulting models are on <a href="model-releases.html">Model releases</a>. Qwen&rsquo;s <a href="#recreationworld">RecreationWorld</a> (Sep 22) builds environments out of existing software: explore an application&rsquo;s GUI, rebuild it with coding tools, verify the result visually, so the reference application doubles as its own grader. Neither publishes a training result of its own here; both are bets that the reusable asset is the environment, not the algorithm.</p>
+        <p>Today&rsquo;s single entry takes the train-in-the-harness argument to its limit. Perplexity trains its <a href="#perplexity-computer-real-world-training">Computer agent</a> on its own production traffic: rejection-sampling fine-tuning on sessions that succeeded, and hint-guided self-distillation on failures a user corrected. That makes the product the training environment, so nothing the deployed agent meets is missing from it &mdash; and it depends on users correcting failures, a supply only a product with traffic has. The write-up reports the method, not the gain.</p>
+        <p>The Sep 22 cycle was two releases that treat the environment as the thing worth publishing. Xiaomi&rsquo;s <a href="#mimo-v2-6-rl">MiMo-V2.6 report</a> (Sep 22) scales RL compute, environment diversity and grader compute together and names what kept training stable &mdash; a frozen MoE router and a layered defence against reward hacking &mdash; with the environments and framework open-sourced; the resulting models are on <a href="model-releases.html">Model releases</a>. Qwen&rsquo;s <a href="#recreationworld">RecreationWorld</a> (Sep 22) builds environments out of existing software: explore an application&rsquo;s GUI, rebuild it with coding tools, verify the result visually, so the reference application doubles as its own grader. Neither publishes a training result of its own here; both are bets that the reusable asset is the environment, not the algorithm.</p>
         <p>The Sep 21 arrival was a release of the missing half. ByteDance Seed and Tsinghua SIA published <strong>DAPO</strong> (Sep 21) as a complete open RL system &mdash; algorithm, dataset and training infrastructure &mdash; reporting <strong>50 points on AIME 2024 from the Qwen2.5-32B base model</strong>. DAPO has appeared on this page for months as a name inside the policy-gradient lineage, one of several refinements to loss aggregation and clipping over GRPO. Shipping the data and the plumbing alongside it is the difference between a citation and a reproduction, and it lands in the same section as Miles, Verifiers v1 and AgentENV, each of which closed a different part of the same gap. The pattern across all four is that the published result is no longer the contribution; the machinery that produced it is.</p>
         <p>An earlier single entry was a reframing rather than a result about training quality. Google Research's <strong>Retrieve-for-Train</strong> takes reinforcement learning out of the serving path: the RL runs once, offline, and is compiled into a 53.9M-parameter diffusion model that generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 that is 0.07 seconds against roughly 1.46, reported as a 12&times; to 20&times; speedup. Most of this page treats RL as something a model carries into production &mdash; a policy learned in post-training and executed at inference. R4T points out that where RL learns a <em>search</em> policy, it need not run as a policy at all: it can be amortised into a generator, turning an inference-time cost into a training-time one. The limit is built into the trade, since it only works where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns. For any fan-out settled before the results arrive it is the right shape, and it is the first item on this page to treat RL as a compilation step.</p>
         <p>An earlier result was about where the training budget goes rather than what it buys. A write-up on RL for LLMs starts from a failure averages conceal: standard RL performs disproportionately badly on a training set's hardest problems, and one scalar value per problem is too thin a signal to judge a large model's progress on it. The fix proposed is budgetary rather than algorithmic &mdash; spend less compute on problems the model already solves and redirect it to the hard ones &mdash; with substantial reported improvement on difficult tasks. The reasoning is that easy problems stop producing gradient signal long before their allocated rollouts are exhausted, so uniform sampling keeps paying for steps that teach nothing while the informative problems stay undersampled. That arrives at the same place as this page's failure-driven environment work by a cheaper route: TRACE builds an environment around a repeated failure, this one just resamples toward the failures already present. The post reports direction rather than a benchmark table, so neither the size of the gain nor its cost on the easy half can be checked from here.</p>
@@ -60,7 +61,7 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#rl-on-black-box-models">RL on black-box models <span class="n">2</span></a></li>
-          <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">3</span></a></li>
+          <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">4</span></a></li>
           <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">3</span></a></li>
           <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">3</span></a></li>
           <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">3</span></a></li>
@@ -98,6 +99,13 @@
         <h3>RL inside the agent harness</h3>
         <p class="lead">Train in the harness the agent will actually run in, and the policy learns the loop rather than an approximation of it. The catch surfaces here too: model and scaffold optimise the same behaviour, so the order you tune them in changes the result. Ask what each training environment leaves out.</p>
 
+        <article class="story" id="perplexity-computer-real-world-training">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://www.perplexity.ai/hub/blog/learning-from-real-world-experience">Perplexity trains Computer on real sessions, user-corrected failures included</a></h4>
+          <p>Perplexity combined <strong>rejection-sampling fine-tuning</strong> on successful sessions with <strong>hint-guided self-distillation</strong> on failures a user corrected, so its Computer agent learns from both halves of production traffic rather than from a synthetic environment. It is the limit case of training in the harness the agent runs in &mdash; the harness is the product &mdash; and the summary reports the method, not a benchmark gain.</p>
+          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/learning-from-real-world-experience">Perplexity</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
+        </article>
+
         <article class="story" id="salesforce-distillation-harness">
           <span class="when">2026-09-11</span>
           <h4><a href="https://arxiv.org/abs/2609.09134">Training a small model on expert trajectories can hurt once its harness is already tuned</a></h4>
@@ -114,13 +122,17 @@
           <div class="sources"><span class="via">via MLOps Community (Aug 13) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="harness-1">
-          <span class="when">2026-06-09</span>
-          <h4>Harness-1 &mdash; RL-trained 20B retrieval agent inside a stateful search harness</h4>
-          <p>Harness-1 trains a 20B search agent with reinforcement learning inside a stateful search harness on GPT-OSS-20B, reaching 0.730 average curated recall. Because the harness is part of training, the agent learns how and when to search rather than just what to retrieve; weights and harness code are fully open.</p>
-          <p>It is the environment-native counterpart to proxy-based RL like <a href="#nvidia-polar">Polar</a>: instead of instrumenting a closed harness, build an open one and train inside it. (Deployment angle at <a href="agents.html">Agents &rarr; agentic retrieval</a>.)</p>
-          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="harness-1">
+            <span class="when">2026-06-09</span>
+            <h4>Harness-1 &mdash; RL-trained 20B retrieval agent inside a stateful search harness</h4>
+            <p>Harness-1 trains a 20B search agent with reinforcement learning inside a stateful search harness on GPT-OSS-20B, reaching 0.730 average curated recall. Because the harness is part of training, the agent learns how and when to search rather than just what to retrieve; weights and harness code are fully open.</p>
+            <p>It is the environment-native counterpart to proxy-based RL like <a href="#nvidia-polar">Polar</a>: instead of instrumenting a closed harness, build an open one and train inside it. (Deployment angle at <a href="agents.html">Agents &rarr; agentic retrieval</a>.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="expertise-in-the-training-signal">
@@ -395,6 +407,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#perplexity-computer-real-world-training">Perplexity trains Computer on real sessions, user-corrected failures included</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#recreationworld">Qwen&rsquo;s RecreationWorld trains computer-use agents to rebuild apps across five platforms</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#mimo-v2-6-rl">MiMo-V2.6 keeps scaled RL stable by freezing the MoE router and layering reward-hacking defences</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#dapo-rl-system">DAPO ships as a whole open RL system, not just the algorithm the papers cite</a></span></li>

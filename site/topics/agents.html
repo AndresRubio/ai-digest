@@ -30,18 +30,19 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-09-23</div>
+      <div class="meta">Last updated: 2026-09-24</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle put a price on both ends of the multi-agent bet. Toby Ord&rsquo;s <a href="#swarm-scaling">swarm-scaling analysis</a> finds that ten times the agents buys less than ten times the tokens spent in one agent, with the shortfall compounding as the swarm grows &mdash; what a swarm buys is wall-clock time, so orchestration is a latency purchase rather than a capability one. Meta&rsquo;s Muse showed what reach costs a consumer agent: <a href="#muse-downloads">1.8M US and Canada downloads in its first 12 days</a> against ChatGPT&rsquo;s 1.3M, and Amazon blocking it from Amazon.com under terms that bar unauthorised agents. A retailer&rsquo;s conditions of use, not the agent&rsquo;s ability to drive a page, now decide where it may act.</p>
+        <p>Today&rsquo;s cycle measured harnesses against each other and got numbers pointing both ways. NVIDIA&rsquo;s <a href="#sol-pi">SoL-Pi</a> (Sep 21) let a research agent try 152 changes to the Pi harness and kept four, cutting token traffic <strong>44.7&ndash;49%</strong> and API cost about a third on EdgeBench &mdash; while solving 15 Terminal-Bench 4 tasks to Pi&rsquo;s 18, so the saving has a measured price. <a href="#unreal-agent">Unreal Agent</a> reports 62 on Terminal-Bench 4.0 at <strong>$3.60 a task</strong>, 39% under Codex plus Astra, on its own comparison. Google&rsquo;s <a href="#rrsi">RRSI</a> addresses what both are exposed to: a harness that improves itself tends to improve against the benchmark it is scored on, and regularizing toward changes that transfer lifted out-of-distribution results across eight benchmarks.</p>
+        <p>The rest were layers around the agent. CopilotKit&rsquo;s <a href="#openmuse">OpenMuse</a> is a self-hostable Muse-style agent on any harness, arriving the week Meta conceded Muse borrows from OpenClaw; Firecrawl raised $75M for <a href="#firecrawl-alexandria">Alexandria</a>, one search layer over 100+ data providers; and <a href="#treg">treg</a> puts 3,000+ tools behind one endpoint with credentials held server-side.</p>
+        <p>The Sep 22 cycle put a price on both ends of the multi-agent bet. Toby Ord&rsquo;s <a href="#swarm-scaling">swarm-scaling analysis</a> finds that ten times the agents buys less than ten times the tokens spent in one agent, with the shortfall compounding as the swarm grows &mdash; what a swarm buys is wall-clock time, so orchestration is a latency purchase rather than a capability one. Meta&rsquo;s Muse showed what reach costs a consumer agent: <a href="#muse-downloads">1.8M US and Canada downloads in its first 12 days</a> against ChatGPT&rsquo;s 1.3M, and Amazon blocking it from Amazon.com under terms that bar unauthorised agents. A retailer&rsquo;s conditions of use, not the agent&rsquo;s ability to drive a page, now decide where it may act.</p>
         <p>On Sep 21 the harness argument got the number it has been missing. AWS&rsquo;s <strong>Strands Harness</strong> (Sep 21) runs Claude Fable 5 on Terminal-Bench 2.1 for <strong>$56.29 against Claude Code&rsquo;s $248.05</strong> while scoring <strong>69.7 against 61.8</strong> &mdash; better and roughly four times cheaper &mdash; with DeepSeek Harness at <strong>$40.30 and 59.5</strong> marking where the saving stops being free. The attributed cause is deliberately unglamorous: tool output truncated at <strong>1,500 tokens</strong>, compaction at <strong>85%</strong> of the window. Put beside the <a href="evals-and-benchmarks.html">harness-tax study</a>, which found Claude Code opening a session with more than 27,000 tokens of context against Pi&rsquo;s 2,000, the two agree on a conclusion this page resisted for months: the harness is mostly a context-management policy, and that policy is priced.</p>
         <p>The other two arrivals are both about who owns the surface rather than what runs on it. Meta opened <strong>Muse connectors</strong> to outside developers &mdash; you bring an API and a description, Meta brings the agent, the browser and the user context, plus a functional, security and legal review before a connector is findable and an editorial decision about which get featured. Google open-sourced <strong>AX</strong>, a declarative orchestrator that sandboxes, wires and fences agent workloads on a cluster on top of Agent Substrate, and describes the experience as close to Kubernetes. One is an app store, the other a scheduler; both assume agent runs are now numerous and uniform enough to need infrastructure built for their shape rather than per-application glue.</p>
-        <p>An earlier cycle&rsquo;s clearest result is also its smallest intervention. Meta AI&rsquo;s <strong>Proactive Memory Agent</strong> runs a second model beside the action agent, keeps notes from its eight most recent outputs &mdash; facts, environment details, fixes that worked, commands that failed &mdash; and at each step injects either nothing or one short reminder. On <strong>Terminal-Bench 2.0</strong> that moved Claude Sonnet 4.5 from <strong>37.6% to 45.9%</strong> and Opus 4.6 from 43.5% to 45.9%; on <strong>&tau;2-Bench</strong>, Sonnet from <strong>55.0% to 61.8%</strong>. The control is what makes it a finding rather than a prompting trick: reminding at <em>every</em> step did worse than letting the memory agent pick the moment, which says the deficit being repaired is attention allocation, not lost context. It needs no retraining, so it bolts onto an existing agent &mdash; and the gains shrink on the stronger action model, which is the number to watch if the effect is partly covering for weaker instruction-following.</p>
-        <p>Two agents shipped this week with opposite answers to the question of whose authority an agent acts under. Google&rsquo;s <strong>family agent</strong> gets <strong>its own cloud computer and its own Google account</strong>, serving up to six people from a household&rsquo;s shared mail, files and calendars and asking permission before acting outside the group &mdash; the permission boundary becomes a property of the account. Meta&rsquo;s <strong>Muse for Mac</strong> takes the other route, borrowing the user&rsquo;s own access to files, mail, messages, calendar and notes, with opt-in scopes, approval gates on deletes and sends, and a secure VM &mdash; qualified by the clause that Meta can still reach the data when needed to operate the service. The pairing matters because <a href="safety-and-policy.html">this week&rsquo;s OpenAI breach</a> showed exactly what a borrowed identity costs: one hijacked employee session reached the internal monorepo because the agent carried the connectors.</p>
-        
         <details>
           <summary>Earlier cycles</summary>
+          <p>An earlier cycle&rsquo;s clearest result is also its smallest intervention. Meta AI&rsquo;s <strong>Proactive Memory Agent</strong> runs a second model beside the action agent, keeps notes from its eight most recent outputs &mdash; facts, environment details, fixes that worked, commands that failed &mdash; and at each step injects either nothing or one short reminder. On <strong>Terminal-Bench 2.0</strong> that moved Claude Sonnet 4.5 from <strong>37.6% to 45.9%</strong> and Opus 4.6 from 43.5% to 45.9%; on <strong>&tau;2-Bench</strong>, Sonnet from <strong>55.0% to 61.8%</strong>. The control is what makes it a finding rather than a prompting trick: reminding at <em>every</em> step did worse than letting the memory agent pick the moment, which says the deficit being repaired is attention allocation, not lost context. It needs no retraining, so it bolts onto an existing agent &mdash; and the gains shrink on the stronger action model, which is the number to watch if the effect is partly covering for weaker instruction-following.</p>
+          <p>Two agents shipped this week with opposite answers to the question of whose authority an agent acts under. Google&rsquo;s <strong>family agent</strong> gets <strong>its own cloud computer and its own Google account</strong>, serving up to six people from a household&rsquo;s shared mail, files and calendars and asking permission before acting outside the group &mdash; the permission boundary becomes a property of the account. Meta&rsquo;s <strong>Muse for Mac</strong> takes the other route, borrowing the user&rsquo;s own access to files, mail, messages, calendar and notes, with opt-in scopes, approval gates on deletes and sends, and a secure VM &mdash; qualified by the clause that Meta can still reach the data when needed to operate the service. The pairing matters because <a href="safety-and-policy.html">this week&rsquo;s OpenAI breach</a> showed exactly what a borrowed identity costs: one hijacked employee session reached the internal monorepo because the agent carried the connectors.</p>
           <p>The browser loop got faster and got its boundary in the same week. Browser Use&rsquo;s <strong>jev-ultrafast</strong> hands the choice of operation and target to <a href="model-releases.html">Jev</a> and calls a text model only when something must be typed, finding a Google Flights itinerary in <strong>7.073 seconds across 17 requests at a median 178ms</strong>. The premise is that most steps in a browser trajectory are selections among visible options, not judgements about the page &mdash; and <a href="evals-and-benchmarks.html">Context7 measured where that stops holding</a>, with the same model at 27% against 93% on crawl-root selection while running 10&ndash;170&times; faster. Alongside, <strong>Agora</strong> proposes an append-only Git DAG as the exchange format for research agents, making every hypothesis, result and verification a commit with a parent and a hash. It ships with no throughput or quality numbers, so it offers a provenance argument rather than evidence that agents coordinate better through it.</p>
           <p>Today's cycle is about the protocol becoming the thing platforms publish rather than the thing agents load. Google opened early access to an <strong>MCP server for Google Home</strong>, letting an outside agent such as ChatGPT control the whole device ecosystem &mdash; gated behind a Google Cloud project and a US Premium Advanced subscription, but a consumer platform exposing its control surface as MCP rather than as a partner integration all the same. Stanford's <strong>Paper2Agent</strong> does it to the literature, reading a paper with its repository and emitting a tested MCP server: 22 tools for the AlphaGenome agent in about 45 minutes for US $14, and 74 of 100 bioRxiv papers converted. The auditing question changes shape with them. It is no longer which servers an agent has loaded, but what a platform lets any connected agent do &mdash; and Google Home answers that with a house.</p>
           <p>The counterweight arrives at the tool-call boundary. Agent-net's <strong>Webagent</strong> (Sep 14, Apache 2.0, v0) turns a website into an agent from one JSON spec with nine pluggable slots, and routes every call through <code>action.Guard</code> before it runs &mdash; the permission check as a structural property of the harness rather than a sentence in a prompt. Google's <strong>Agent Anomaly Detection</strong> (private preview) takes the after-the-fact position instead, watching deployed agents for anomalies in the logs and traces the platform already collects; free at runtime, and blind to whatever the harness did not record. Tencent's <strong>BrowserSkill</strong> (3.5k stars) shows what gets traded when neither is available: it drives a separate window against the user's already-logged-in browser profile, handing back control for CAPTCHAs, which solves the authentication problem that defeats computer-use agents on real sites by borrowing the user's whole identity for the duration.</p>
@@ -76,14 +77,14 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">8</span></a></li>
-          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">17</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">19</span></a></li>
-          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">8</span></a></li>
+          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">18</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">21</span></a></li>
+          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">9</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">10</span></a></li>
-          <li><a href="#agentic-search">Agentic search <span class="n">1</span></a></li>
+          <li><a href="#agentic-search">Agentic search <span class="n">2</span></a></li>
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">5</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">4</span></a></li>
-          <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">5</span></a></li>
+          <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">6</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">2</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">10</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">5</span></a></li>
@@ -162,6 +163,13 @@
         <h3>Frameworks &amp; infrastructure</h3>
         <p class="lead">MCP is the connective tissue, and the interesting servers are no longer wrappers somebody wrote but the canonical interface a platform or an artifact ships. Judge entries on where the dependency lands: aggregating across vendors is substitutable, a vendor aggregating its own catalogue makes the protocol the integration point and itself the only thing behind it.</p>
 
+        <article class="story" id="treg">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://github.com/superdesigndev/treg">treg gives agents one endpoint for 3,000+ tools with credentials held server-side</a></h4>
+          <p><strong>treg</strong> is a self-hostable registry that lets agents call more than <strong>3,000 catalogued endpoints</strong> and team-owned tools through one base URL and token, with credentials kept on the server rather than in the agent&rsquo;s context. It aggregates across vendors, so the dependency it creates is substitutable &mdash; the cheap side of this section&rsquo;s distinction.</p>
+          <div class="sources"><a href="https://github.com/superdesigndev/treg">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
+        </article>
+
         <article class="story" id="google-ax">
           <span class="when">2026-09-21</span>
           <h4><a href="https://github.com/google/ax">Google&rsquo;s AX declares agent workloads the way Kubernetes declares pods</a></h4>
@@ -178,16 +186,16 @@
           <div class="sources"><a href="https://elevenlabs.io/mcp">ElevenLabs</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
         </article>
 
-        <article class="story" id="google-home-mcp">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://techcrunch.com/2026/09/16/your-ai-agents-can-now-control-your-google-home-devices/">Google Home exposes an MCP server, so a third-party agent can drive the house</a></h4>
-          <p>Google opened early access to a Model Context Protocol server for Google Home, letting an external agent such as ChatGPT control every device in the Home ecosystem. Setup is deliberately not consumer-grade: the user stands up a Google Cloud project and hands the MCP connection details to their chosen agent. Availability is limited at launch to US subscribers of Google Home Premium Advanced.</p>
-          <p>It is the first time a major consumer device platform has published its control surface as MCP rather than as a partner integration, which makes the protocol &mdash; not the assistant &mdash; the thing the platform competes on. It also changes the auditing question from which servers an agent has loaded to what a platform lets any connected agent do, and Google Home answers that with a device ecosystem.</p>
-          <div class="sources"><a href="https://techcrunch.com/2026/09/16/your-ai-agents-can-now-control-your-google-home-devices/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Sep 17)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="google-home-mcp">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://techcrunch.com/2026/09/16/your-ai-agents-can-now-control-your-google-home-devices/">Google Home exposes an MCP server, so a third-party agent can drive the house</a></h4>
+            <p>Google opened early access to a Model Context Protocol server for Google Home, letting an external agent such as ChatGPT control every device in the Home ecosystem. Setup is deliberately not consumer-grade: the user stands up a Google Cloud project and hands the MCP connection details to their chosen agent. Availability is limited at launch to US subscribers of Google Home Premium Advanced.</p>
+            <p>It is the first time a major consumer device platform has published its control surface as MCP rather than as a partner integration, which makes the protocol &mdash; not the assistant &mdash; the thing the platform competes on. It also changes the auditing question from which servers an agent has loaded to what a platform lets any connected agent do, and Google Home answers that with a device ecosystem.</p>
+            <div class="sources"><a href="https://techcrunch.com/2026/09/16/your-ai-agents-can-now-control-your-google-home-devices/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Sep 17)</span></div>
+          </article>
 
           <article class="story" id="paper2agent">
             <span class="when">2026-09-16</span>
@@ -290,13 +298,26 @@
             <p>Anthropic&rsquo;s Opus 4.8 release explicitly highlights improvements for &ldquo;long-running autonomous agents,&rdquo; ships MCP tunnels as a research preview so agents can reach servers inside private networks without exposing them, and puts self-hosted sandboxes for Claude Managed Agents into public beta.</p>
             <div class="sources"><span class="via">via Anthropic email announcement &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
       <section class="topic-section" id="the-agentic-harness">
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
+
+        <article class="story" id="unreal-agent">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://github.com/unreallabsai/unreal-agent">Unreal Agent reports 62 on Terminal-Bench 4.0 at $3.60 a task, 39% under Codex plus Astra</a></h4>
+          <p>Unreal Labs open-sourced a coding-agent harness that keeps sessions, tool operations and state alive independently of model turns, and reports <strong>62 on Terminal-Bench 4.0 at $3.60 per task</strong> &mdash; 39% cheaper than its own Codex-plus-GPT-6 Astra comparison at matched performance. Both numbers are the team&rsquo;s, on a comparison it chose.</p>
+          <div class="sources"><a href="https://github.com/unreallabsai/unreal-agent">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
+        </article>
+
+        <article class="story" id="sol-pi">
+          <span class="when">2026-09-21</span>
+          <h4><a href="https://github.com/NVlabs/SoL-Pi">NVIDIA SoL-Pi: an auto-research loop keeps 4 of 152 harness changes and cuts token traffic up to 49%</a></h4>
+          <p>NVIDIA researchers had a research agent search <strong>152 harness changes across 535 environments</strong>; four survived &mdash; Action Fusion, Online Context Compact, ObservationPack and an Evidence-Preserving Reducer. On EdgeBench they cut token traffic <strong>44.7&ndash;49.0%</strong> against Pi and API cost about 33% while holding roughly 94% of Pi&rsquo;s score, but on Terminal-Bench 4 it solves <strong>15 tasks against Pi&rsquo;s 18</strong>. MIT licensed, running on unmodified Pi 0.85.1.</p>
+          <div class="sources"><a href="https://github.com/NVlabs/SoL-Pi">GitHub</a> &middot; <a href="https://arxiv.org/abs/2609.20519">arXiv</a> &middot; <span class="via">via MarkTechPost (Sep 23)</span></div>
+        </article>
 
         <article class="story" id="strands-harness">
           <span class="when">2026-09-21</span>
@@ -306,24 +327,24 @@
           <div class="sources"><a href="https://strandsagents.com/blog/introducing-strands-harness/">AWS</a> &middot; <a href="https://github.com/strands-agents/harness-sdk">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 21)</span></div>
         </article>
 
-        <article class="story" id="devin-fusion">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://cognition.com/blog/local-fusion">Devin Fusion keeps a frontier model as lead and hands execution to a cheaper one, with takeback</a></h4>
-          <p>Cognition shipped <strong>Devin Fusion</strong>, an agentic harness in which a frontier model acts as lead &mdash; planning, reviewing, and reclaiming control when needed &mdash; while cheaper execution work is delegated to a smaller model. Cognition is explicit that this is not a one-shot router choosing a model at the start and living with the choice; the lead stays in the loop and can take the work back mid-run.</p>
-          <p>Cost-tiered routing as practised elsewhere on this page commits to a difficulty guess before the work begins and has no recovery path when the guess is wrong, which is exactly the failure Spotify&rsquo;s Portal documented when a cheaper model missed a thread-safety bug the frontier model caught at once. Fusion makes escalation continuous rather than a single decision, at the cost of keeping the expensive model resident for the whole run. No comparative cost or quality figures were published with it, so what exists is a design argument rather than a result.</p>
-          <div class="sources"><a href="https://cognition.com/blog/local-fusion">Cognition</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
-        </article>
-
-        <article class="story" id="langchain-harness-build-guide">
-          <span class="when">2026-09-15</span>
-          <h4><a href="https://www.langchain.com/blog/how-to-build-a-custom-agent-harness">LangChain names the three moves that turn a model into a harness &mdash; and middleware is the one that matters</a></h4>
-          <p>LangChain&rsquo;s Sydney Runkle published a build guide for custom agent harnesses that reduces the job to three steps. Start bare: <code>create_agent</code> wires a model to a few tools and a prompt, and runs the loop &mdash; pick a tool, check the output, decide the next step, repeat. Then add middleware, framed explicitly as everything a prompt cannot do: trimming context before it overruns, retrying failed tools, redacting sensitive data, pausing for human review, capping spend. Then fit the harness to the task rather than building one generic wrapper, since a support agent and a coding agent need different scaffolding.</p>
-          <p>The middle move is where the section&rsquo;s thesis lives. Every item in that middleware list is a failure mode this page has documented separately &mdash; context exhaustion, unhandled tool errors, data leaving through a trace, unattended destructive actions, unbounded cost &mdash; and naming them as a standard layer rather than per-project glue is what turns &ldquo;the harness is the product&rdquo; from an observation into something with an interface. Runkle&rsquo;s stated conclusion is that a capable model is a starting line rather than an advantage, and the leverage lives in the tools, context, guardrails and workflow around it.</p>
-          <div class="sources"><a href="https://www.langchain.com/blog/how-to-build-a-custom-agent-harness">LangChain</a> &middot; <a href="https://docs.langchain.com/oss/python/langchain/quickstart">Quickstart</a> &middot; <span class="via">via The Code (Sep 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (16)</summary>
+          <summary>Earlier in this section (18)</summary>
+
+          <article class="story" id="devin-fusion">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://cognition.com/blog/local-fusion">Devin Fusion keeps a frontier model as lead and hands execution to a cheaper one, with takeback</a></h4>
+            <p>Cognition shipped <strong>Devin Fusion</strong>, an agentic harness in which a frontier model acts as lead &mdash; planning, reviewing, and reclaiming control when needed &mdash; while cheaper execution work is delegated to a smaller model. Cognition is explicit that this is not a one-shot router choosing a model at the start and living with the choice; the lead stays in the loop and can take the work back mid-run.</p>
+            <p>Cost-tiered routing as practised elsewhere on this page commits to a difficulty guess before the work begins and has no recovery path when the guess is wrong, which is exactly the failure Spotify&rsquo;s Portal documented when a cheaper model missed a thread-safety bug the frontier model caught at once. Fusion makes escalation continuous rather than a single decision, at the cost of keeping the expensive model resident for the whole run. No comparative cost or quality figures were published with it, so what exists is a design argument rather than a result.</p>
+            <div class="sources"><a href="https://cognition.com/blog/local-fusion">Cognition</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
+          </article>
+
+          <article class="story" id="langchain-harness-build-guide">
+            <span class="when">2026-09-15</span>
+            <h4><a href="https://www.langchain.com/blog/how-to-build-a-custom-agent-harness">LangChain names the three moves that turn a model into a harness &mdash; and middleware is the one that matters</a></h4>
+            <p>LangChain&rsquo;s Sydney Runkle published a build guide for custom agent harnesses that reduces the job to three steps. Start bare: <code>create_agent</code> wires a model to a few tools and a prompt, and runs the loop &mdash; pick a tool, check the output, decide the next step, repeat. Then add middleware, framed explicitly as everything a prompt cannot do: trimming context before it overruns, retrying failed tools, redacting sensitive data, pausing for human review, capping spend. Then fit the harness to the task rather than building one generic wrapper, since a support agent and a coding agent need different scaffolding.</p>
+            <p>The middle move is where the section&rsquo;s thesis lives. Every item in that middleware list is a failure mode this page has documented separately &mdash; context exhaustion, unhandled tool errors, data leaving through a trace, unattended destructive actions, unbounded cost &mdash; and naming them as a standard layer rather than per-project glue is what turns &ldquo;the harness is the product&rdquo; from an observation into something with an interface. Runkle&rsquo;s stated conclusion is that a capable model is a starting line rather than an advantage, and the leverage lives in the tools, context, guardrails and workflow around it.</p>
+            <div class="sources"><a href="https://www.langchain.com/blog/how-to-build-a-custom-agent-harness">LangChain</a> &middot; <a href="https://docs.langchain.com/oss/python/langchain/quickstart">Quickstart</a> &middot; <span class="via">via The Code (Sep 15)</span></div>
+          </article>
 
           <article class="story" id="apple-model-delegation">
             <span class="when">2026-09-14</span>
@@ -441,13 +462,19 @@
             <p>Decoding AI Magazine published a component-by-component teardown of an agentic harness (tools, skills, memory, sandbox, permissions), arguing that &mdash; just as base LLMs commoditized &mdash; the harness around them is hardening into a handful of standardized, batteries-included frameworks. The implication is that differentiation shifts to model choice, context engineering and memory rather than the loop itself. (Build-vs-buy framing on the <a href="tools-and-devex.html">Tools &amp; DevEx</a> page.)</p>
             <div class="sources"><span class="via">via Decoding AI Magazine (Substack) &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
       <section class="topic-section" id="agent-loop-design-and-reliability">
         <h3>Agent loop design &amp; reliability</h3>
         <p class="lead">Plan, act, verify, repeat &mdash; and the primitives that decide whether a loop finishes or just burns budget: verifiers, persistent state, stop conditions, and a compaction policy. Judge entries on whether the measurement was fixed before the results appeared, because that is exactly how far agent self-improvement claims have held up.</p>
+
+        <article class="story" id="rrsi">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://regularized-rsi.com/">Google&rsquo;s RRSI regularizes harness self-improvement so gains transfer beyond the benchmark</a></h4>
+          <p>Google published <strong>RRSI</strong>, a method that regularizes how an agent harness recursively improves itself, penalizing changes that overfit the benchmark it is tuned on and favouring ones that transfer. Across <strong>eight benchmarks</strong> it improved out-of-distribution performance while using fewer policy tokens &mdash; a direct answer to this section&rsquo;s standing complaint that self-improvement claims hold only where the measurement was fixed in advance.</p>
+          <div class="sources"><a href="https://regularized-rsi.com/">Project page</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
+        </article>
 
         <article class="story" id="compaction-loses-the-code">
           <span class="when">2026-09-12</span>
@@ -465,16 +492,16 @@
           <div class="sources"><a href="https://arxiv.org/abs/2609.05011">SelfCompact paper</a> &middot; <span class="via">via The Batch (Sep 11)</span></div>
         </article>
 
-        <article class="story unlinked" id="self-gc">
-          <span class="when">2026-08-26</span>
-          <h4>Self-GC &mdash; letting an LLM decide what to throw out of an agent&rsquo;s context</h4>
-          <p>Xubin Hao and colleagues at Xiaohongshu replace fixed compaction rules with a planner model that reads the accrued context and chooses one of four verdicts per item: keep, <em>fold</em> (move to storage with a note so it can be restored verbatim), <em>mask</em> (keep the head and tail, cut the repetitive middle), or <em>prune</em> (delete outright, for example failed-command logs). It triggers at 30% context fill and applies a plan only if it saves at least 30% of tokens.</p>
-          <p>The trade it buys is the point: on 33 demanding conversations Self-GC removed <strong>43.95%</strong> of input tokens while preserving later-needed detail <strong>84.85%</strong> of the time, where rule-based methods removed more (61.90&ndash;69.87%) but preserved detail only 54.55&ndash;69.70% of the time. The stated limitation is honest &mdash; the authors measured detail retention, not whether the shortened context produced equally good output.</p>
-          <div class="sources"><span class="via">via The Batch (Aug 27) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story unlinked" id="self-gc">
+            <span class="when">2026-08-26</span>
+            <h4>Self-GC &mdash; letting an LLM decide what to throw out of an agent&rsquo;s context</h4>
+            <p>Xubin Hao and colleagues at Xiaohongshu replace fixed compaction rules with a planner model that reads the accrued context and chooses one of four verdicts per item: keep, <em>fold</em> (move to storage with a note so it can be restored verbatim), <em>mask</em> (keep the head and tail, cut the repetitive middle), or <em>prune</em> (delete outright, for example failed-command logs). It triggers at 30% context fill and applies a plan only if it saves at least 30% of tokens.</p>
+            <p>The trade it buys is the point: on 33 demanding conversations Self-GC removed <strong>43.95%</strong> of input tokens while preserving later-needed detail <strong>84.85%</strong> of the time, where rule-based methods removed more (61.90&ndash;69.87%) but preserved detail only 54.55&ndash;69.70% of the time. The stated limitation is honest &mdash; the authors measured detail retention, not whether the shortened context produced equally good output.</p>
+            <div class="sources"><span class="via">via The Batch (Aug 27) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="long-horizon-agent-bugs">
             <span class="when">2026-08-24</span>
@@ -511,7 +538,6 @@
             <p>NVIDIA released Polar, a framework that proxies LLM API calls to reconstruct token-faithful RL trajectories for training agents on unmodified coding harnesses. It removes the white-box-model-access constraint typical of RL systems and uses simple GRPO across Codex, Claude Code and Qwen Code.</p>
             <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -600,7 +626,14 @@
 
       <section class="topic-section" id="agentic-search">
         <h3>Agentic search</h3>
-        <p class="lead">Agentic search names three different implementations &mdash; build good retrieval, steer the agent toward context despite weak retrieval, or fine-tune a model to search one corpus &mdash; and conflating them causes most of the confusion. The agentic-retrieval work below is largely the middle case. Judge entries on which pattern is actually being described.</p>
+        <p class="lead">Agentic search names three different implementations &mdash; build good retrieval, steer the agent toward context despite weak retrieval, or fine-tune a model to search one corpus &mdash; and conflating them causes most of the confusion. The entries below cover the first two. Judge entries on which pattern is actually being described.</p>
+
+        <article class="story" id="firecrawl-alexandria">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://www.firecrawl.dev/blog/introducing-alexandria-series-b">Firecrawl raises $75M and launches Alexandria, one search layer over 100+ data providers</a></h4>
+          <p>With a <strong>$75M</strong> round, Firecrawl launched <strong>Alexandria</strong>: one place for agents to query the live web, official data providers, custom connectors and Firecrawl&rsquo;s own indexes, spanning <strong>100+ providers</strong> at launch. The pitch is whole datasets rather than the first few scraped links &mdash; the &ldquo;build good retrieval&rdquo; branch of agentic search, bought as a service.</p>
+          <div class="sources"><a href="https://www.firecrawl.dev/blog/introducing-alexandria-series-b">Firecrawl</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
+        </article>
 
         <article class="story" id="three-kinds-of-agentic-search">
           <span class="when">2026-06-10</span>
@@ -702,6 +735,13 @@
         <h3>On-device &amp; local agents</h3>
         <p class="lead">A local-first stack is now a credible alternative to cloud agent loops, helped by laptop-class multimodal models such as Gemma 4 12B. Judge entries on where the data actually sits: an agent running on your machine and an agent reaching your machine are different claims, and the operator carve-out is where the difference shows.</p>
 
+        <article class="story" id="openmuse">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://github.com/CopilotKit/OpenMuse">CopilotKit&rsquo;s OpenMuse is a self-hostable Muse-style agent that runs on any harness</a></h4>
+          <p><strong>OpenMuse</strong> is an open-source personal agent modelled on <a href="#meta-muse">Meta Muse</a>, with computer use across browser, terminal and files, connectors for personal apps, goal and progress tracking, and mobile and web clients. Self-hosting is the point: the data sits wherever the deployer runs it, which is exactly what Muse cannot offer &mdash; and the same week Meta admitted Muse itself draws heavily on the open-source OpenClaw.</p>
+          <div class="sources"><a href="https://github.com/CopilotKit/OpenMuse">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23), TLDR AI (Sep 23)</span></div>
+        </article>
+
         <article class="story" id="muse-for-mac">
           <span class="when">2026-09-19</span>
           <h4><a href="https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/">Meta ships Muse for Mac with a secure VM, opt-in disk access and an operator carve-out</a></h4>
@@ -717,15 +757,15 @@
           <div class="sources"><span class="via">via TLDR AI (Aug 26) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="openworker">
-          <span class="when">2026-07-25</span>
-          <h4>Andrew Ng releases OpenWorker &mdash; a local-first desktop agent that returns finished deliverables</h4>
-          <p>Andrew Ng released <strong>OpenWorker</strong>, an MIT-licensed, local-first desktop AI agent that returns finished deliverables &mdash; a polished doc, a filled spreadsheet &mdash; instead of chat replies, working across 35 app connectors while keeping data on-device. It is the harness question in product form: what a harness owes the user beyond a chat transcript.</p>
-          <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story unlinked" id="openworker">
+            <span class="when">2026-07-25</span>
+            <h4>Andrew Ng releases OpenWorker &mdash; a local-first desktop agent that returns finished deliverables</h4>
+            <p>Andrew Ng released <strong>OpenWorker</strong>, an MIT-licensed, local-first desktop AI agent that returns finished deliverables &mdash; a polished doc, a filled spreadsheet &mdash; instead of chat replies, working across 35 app connectors while keeping data on-device. It is the harness question in product form: what a harness owes the user beyond a chat transcript.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="kimi-work">
             <span class="when">2026-06-09</span>
@@ -741,7 +781,6 @@
             <p>Separately, Alibaba&rsquo;s <strong>Qwen3.7-Plus</strong> went live on Bailian with deep reasoning, self-programming, tool invocation, verification and testing, and autonomous iteration, plus a platform Agentic-RL loop and safety guardrails.</p>
             <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -899,7 +938,13 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#treg">treg gives agents one endpoint for 3,000+ tools with credentials held server-side</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#firecrawl-alexandria">Firecrawl raises $75M and launches Alexandria, one search layer over 100+ data providers</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#openmuse">CopilotKit&rsquo;s OpenMuse is a self-hostable Muse-style agent that runs on any harness</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#rrsi">Google&rsquo;s RRSI regularizes harness self-improvement so gains transfer beyond the benchmark</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#unreal-agent">Unreal Agent reports 62 on Terminal-Bench 4.0 at $3.60 a task, 39% under Codex plus Astra</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#swarm-scaling">Toby Ord: ten times the agents buys less than ten times the tokens in one agent, but finishes sooner</a></span></li>
+        <li><span class="date">2026-09-21</span><span class="label"><a href="#sol-pi">NVIDIA SoL-Pi: an auto-research loop keeps 4 of 152 harness changes and cuts token traffic up to 49%</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#muse-downloads">Muse out-downloads ChatGPT&rsquo;s launch fortnight, and Amazon blocks its agent from shopping</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#google-ax">Google&rsquo;s AX declares agent workloads the way Kubernetes declares pods</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#strands-harness">Strands Harness runs Fable 5 on Terminal-Bench 2.1 at $56.29 against Claude Code&rsquo;s $248.05</a></span></li>

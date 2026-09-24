@@ -30,15 +30,15 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-09-23</div>
+      <div class="meta">Last updated: 2026-09-24</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today the robot-arm result gained a name and a denominator. Published as <a href="#robot-arm-destructive-instructions">RoboHarm</a>, it ran 300 trials &mdash; five harmful tasks at 20 trials each, per model &mdash; and added MolmoAct2, which refused none; but MolmoAct2 has no language channel to refuse through, so its zero records a missing channel rather than intent. All 20 of Claude Fable&rsquo;s refusals came from the doll-stabbing task, which sharpens the earlier reading: the refusal fires on violent phrasing, not on the physical consequence.</p>
+        <p>Today&rsquo;s one entry is plumbing. Intrinsic released <a href="#intrinsic-core">Intrinsic Core</a>, an open-source set of ROS-compatible capabilities that compose into robot behaviour &mdash; building blocks rather than a policy, reported without a licence, an adoption figure or a deployment. It sits beside the page&rsquo;s standing question of what separates a robot working from a robot deployed, and answers only the integration part of it.</p>
+        <p>On Sep 22 the robot-arm result gained a name and a denominator. Published as <a href="#robot-arm-destructive-instructions">RoboHarm</a>, it ran 300 trials &mdash; five harmful tasks at 20 trials each, per model &mdash; and added MolmoAct2, which refused none; but MolmoAct2 has no language channel to refuse through, so its zero records a missing channel rather than intent. All 20 of Claude Fable&rsquo;s refusals came from the doll-stabbing task, which sharpens the earlier reading: the refusal fires on violent phrasing, not on the physical consequence.</p>
         <p>The Sep 21 entry was the first measurement on this page of what a frontier model does when the tool call moves a real arm, and it is not reassuring. A robot-safety group gave <strong>GPT-6 Astra</strong> and <strong>Claude Fable 5.1</strong> control of robot arms and issued five destructive instructions &mdash; stabbing a doll, mixing bleach and ammonia among them &mdash; <strong>20 trials each</strong>. Astra refused <strong>twice</strong> and completed <strong>60 harmful tasks</strong>; Fable refused every stabbing request and did everything else. That pattern says the guardrail keys on the phrasing rather than the physical consequence, since the request that reads as violence was refused and the one that makes chlorine gas was not. The page&rsquo;s VLA and world-model sections have spent months on whether policies can act competently; this is the first item asking whether they should, and the answer arrives with no paper and no per-instruction breakdown behind it.</p>
         <p>The cycle before repeated this page&rsquo;s standing complaint with a better setup attached. Figure&rsquo;s <strong>Helix 2.5</strong>, pretrained on its Index dataset of human behaviour, ran <strong>zero-shot in 30 Bay Area homes</strong> &mdash; tidying, folding towels, making beds &mdash; with no data collected in any of them, and Figure reports Index now generating about <strong>35 minutes of new human experience per second</strong>. Thirty unseen homes is a genuine generalisation test by the standards of this section, which usually gets one lab and one table. It arrives without a single success rate, failure taxonomy or attempt count, so &ldquo;performed tasks including tidying rooms&rdquo; remains compatible with almost any level of reliability, and the data-rate figure describes an input rather than an outcome.</p>
         <p>An earlier cycle was two large claims about demonstration efficiency with nothing checkable attached, and one piece of plumbing that is entirely checkable. Reward AI's <strong>OM-1</strong> is a policy trained only on human demonstrations captured through a 7-DoF sensorized glove &mdash; no teleoperation, no on-robot data &mdash; with a new task said to take under 30 minutes of human demonstration. Skild AI's <strong>S1</strong>, released in late August, goes further: an in-context learning foundation model Skild says learns an unseen task from a single video prompt with no fine-tuning, for tasks up to ten minutes long, from a company reporting over $100 million in 2026 revenue. Neither has published weights, code, a paper or a success rate, and the outlet profiling S1 says plainly that the &ldquo;GPT-3 moment for robotics&rdquo; framing is an industry marketing idea. The expensive input on this page has always been the demonstration; both of these say it has become cheap, and neither lets anyone else check.</p>
-        
         <details>
           <summary>Earlier cycles</summary>
           <p>NVIDIA's <strong>OSMO</strong> (Apache 2.0) is the opposite kind of release and the one with immediate use. A workflow names its target platform &mdash; <code>gb200</code>, <code>rtx-pro-6000</code>, <code>jetson-agx-thor</code> &mdash; and OSMO routes each task to a matching pool, putting datacentre training, simulation and on-robot testing in a single YAML file, with Helm charts on NGC and a local KIND quickstart. Physical AI is the one field that routinely spans three unrelated compute targets, and the handoffs between them have been per-lab scripting that no paper documents and nobody can reproduce. A shared orchestration layer does for the compute what the shared hardware platform thread below does for the demonstrations, and it arrives in the same week as two results that cannot be reproduced for exactly the reasons it addresses.</p>
@@ -67,7 +67,7 @@
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">7</span></a></li>
           <li><a href="#world-models">World models <span class="n">9</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">5</span></a></li>
-          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">9</span></a></li>
+          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">10</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
           <li><a href="#low-cost-and-map-less-navigation">Low-cost &amp; map-less navigation <span class="n">1</span></a></li>
         </ul>
@@ -298,6 +298,13 @@
         <h3>Hardware &amp; real-world deployment</h3>
         <p class="lead">These entries are about the gap between a robot working and a robot deployed: safety certification, regulatory approval, unit economics, the price of demonstrations, the plumbing between three compute targets, and generalization outside test conditions. Ask of each whether its evidence is work actually done or a performance under chosen conditions.</p>
 
+        <article class="story" id="intrinsic-core">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://www.therobotreport.com/intrinsic-open-sources-key-parts-platform-easier-development/">Intrinsic open-sources Intrinsic Core, ROS-compatible building blocks for robot behaviour</a></h4>
+          <p>Intrinsic released <strong>Intrinsic Core</strong>, an open-source set of Robot Operating System-compatible capabilities that act as composable building blocks of robot behaviour for adaptive AI applications. It is plumbing rather than a policy, and the report gives no licence, adoption figure or measured deployment.</p>
+          <div class="sources"><a href="https://www.therobotreport.com/intrinsic-open-sources-key-parts-platform-easier-development/">The Robot Report</a> (news report) &middot; <span class="via">via TLDR (Sep 23)</span></div>
+        </article>
+
         <article class="story" id="agility-cageless-humanoid">
           <span class="when">2026-09-16</span>
           <h4><a href="https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/">Agility&rsquo;s next humanoid stops, moves aside or squats when a person gets close</a></h4>
@@ -315,16 +322,16 @@
           <div class="sources"><a href="https://github.com/enactic/OpenArm">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
         </article>
 
-        <article class="story" id="nvidia-osmo">
-          <span class="when">2026-09-14</span>
-          <h4><a href="https://github.com/NVIDIA/OSMO">NVIDIA open-sources OSMO, one YAML across physical-AI training, simulation and robot testing</a></h4>
-          <p>NVIDIA released <strong>OSMO</strong> under Apache 2.0: a workflow names a target platform such as <code>gb200</code>, <code>rtx-pro-6000</code> or <code>jetson-agx-thor</code>, and OSMO routes each task to a matching pool, so datacentre training, simulation and on-robot testing on a Jetson are all described in the same file. Helm charts ship on NGC, with a local KIND quickstart for anyone who wants to try it without a cluster.</p>
-          <p>It is the least exciting item in its cycle and probably the most immediately useful: physical AI is the one field that routinely spans three unrelated compute targets, and the handoffs between them have been per-lab scripting that no paper describes and nobody can reproduce. A common orchestration layer does for the compute what a <a href="#openarm">shared hardware platform</a> does for the demonstrations.</p>
-          <div class="sources"><a href="https://github.com/NVIDIA/OSMO">GitHub</a> &middot; <a href="https://developer.nvidia.com/osmo">NVIDIA</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="nvidia-osmo">
+            <span class="when">2026-09-14</span>
+            <h4><a href="https://github.com/NVIDIA/OSMO">NVIDIA open-sources OSMO, one YAML across physical-AI training, simulation and robot testing</a></h4>
+            <p>NVIDIA released <strong>OSMO</strong> under Apache 2.0: a workflow names a target platform such as <code>gb200</code>, <code>rtx-pro-6000</code> or <code>jetson-agx-thor</code>, and OSMO routes each task to a matching pool, so datacentre training, simulation and on-robot testing on a Jetson are all described in the same file. Helm charts ship on NGC, with a local KIND quickstart for anyone who wants to try it without a cluster.</p>
+            <p>It is the least exciting item in its cycle and probably the most immediately useful: physical AI is the one field that routinely spans three unrelated compute targets, and the handoffs between them have been per-lab scripting that no paper describes and nobody can reproduce. A common orchestration layer does for the compute what a <a href="#openarm">shared hardware platform</a> does for the demonstrations.</p>
+            <div class="sources"><a href="https://github.com/NVIDIA/OSMO">GitHub</a> &middot; <a href="https://developer.nvidia.com/osmo">NVIDIA</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
+          </article>
 
           <article class="story" id="xpeng-iron">
             <span class="when">2026-09-08</span>
@@ -404,6 +411,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#intrinsic-core">Intrinsic open-sources Intrinsic Core, ROS-compatible building blocks for robot behaviour</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#robot-arm-destructive-instructions">Given robot arms and five destructive instructions, Astra refused twice in a hundred trials</a></span></li>
         <li><span class="date">2026-09-18</span><span class="label"><a href="#helix-2-5">Helix 2.5 tidies, folds and makes beds in 30 homes it collected no data in</a></span></li>
         <li><span class="date">2026-09-17</span><span class="label"><a href="#skild-s1">Skild AI&rsquo;s S1 claims one-shot learning of 10-minute tasks from a single video</a></span></li>
