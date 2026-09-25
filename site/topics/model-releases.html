@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-09-24</div>
+      <div class="meta">Last updated: 2026-09-25</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is two frontier labs repricing within an hour of each other. Anthropic&rsquo;s <a href="#claude-opus-5-5">Claude Opus 5.5</a> (Sep 22) claims Fable 5.1-level work at <strong>$4/$20 per million tokens</strong>, 40% below Opus 5, with cache reads cut to $0.20 and <strong>66.4% on Terminal-Bench 4.0</strong> against Fable 5.1&rsquo;s 55.8% &mdash; while Anthropic concedes the real-use gap is narrower than that and GPT-6 Astra keeps two benchmarks. OpenAI&rsquo;s <a href="#gpt-6-sol-luna">GPT-6 Sol and Luna</a> (Sep 22) answered at <strong>$2/$10 and $0.10/$0.50</strong>, half GPT-5.6&rsquo;s promotional pricing, with Sol 1.1 points behind Fable 5 on DeepSWE. The through-line is that the frontier tier now competes on what a task costs at a fixed capability rather than on the capability itself. Artificial Analysis&rsquo;s 48 for Sol is the only outside number in either launch, and the longer price curve is on <a href="industry-and-business.html">Industry &amp; business</a>.</p>
+        <p>Today&rsquo;s cycle is speech and cheaper decisions. Google&rsquo;s <a href="#gemini-3-8-flash-tts">Gemini 3.8 Flash TTS and Flash-Lite TTS</a> (Sep 24) design a voice from a text description, take line-by-line direction across 100-plus languages, and clone an authorised voice from a <strong>30-second sample</strong>. The rankings cited are Hume AI&rsquo;s leaderboards as Google reports them, and no price per audio hour came with the launch &mdash; the number this page judges speech on. The System One line gained its cheapest entry: Together AI&rsquo;s <a href="#tev1-4b-experimental">tev1-4B-experimental</a> is a Jev-style classifier on Qwen3.5 4B that cost <strong>$17</strong> to train and charges $0.042 per million input tokens and nothing for output, with no accuracy figure. Fireworks&rsquo; <a href="#ember-1">Ember-1</a> is the post-training route taken by an inference provider rather than a lab: Kimi K3 quality on <strong>40% fewer tokens</strong> by its own measure, served for a two-week research window. The through-line is the one the Opus 5.5 and GPT-6 Sol repricing set two days earlier: releases are argued in cost per task, and in all three the cost is the checkable half.</p>
+        <p>The Sep 22 cycle was two frontier labs repricing within an hour of each other. Anthropic&rsquo;s <a href="#claude-opus-5-5">Claude Opus 5.5</a> (Sep 22) claims Fable 5.1-level work at <strong>$4/$20 per million tokens</strong>, 40% below Opus 5, with cache reads cut to $0.20 and <strong>66.4% on Terminal-Bench 4.0</strong> against Fable 5.1&rsquo;s 55.8% &mdash; while Anthropic concedes the real-use gap is narrower than that and GPT-6 Astra keeps two benchmarks. OpenAI&rsquo;s <a href="#gpt-6-sol-luna">GPT-6 Sol and Luna</a> (Sep 22) answered at <strong>$2/$10 and $0.10/$0.50</strong>, half GPT-5.6&rsquo;s promotional pricing, with Sol 1.1 points behind Fable 5 on DeepSWE. The through-line is that the frontier tier now competes on what a task costs at a fixed capability rather than on the capability itself. Artificial Analysis&rsquo;s 48 for Sol is the only outside number in either launch, and the longer price curve is on <a href="industry-and-business.html">Industry &amp; business</a>.</p>
         <p>The System One line kept widening underneath. Nokia&rsquo;s <a href="#anyjev">AnyJev</a> makes any open LLM answer in Jev&rsquo;s typed form without training, cutting BANKING77 order-flips from 0.230 to 0.073 on Qwen3-8B; <a href="#jev-omni">Jev-Omni</a> carries the decision format to images, audio and video on Gemma 4 12B, with no accuracy figure; and an outside JevBench now ranks the class (see <a href="evals-and-benchmarks.html">Evals</a>). On speech, Kyutai&rsquo;s <a href="#kyutai-voice-of-reason">Voice of Reason</a> lifts spoken GSM8K from 27.3% to 77.1% with no transcript &mdash; and publishes that a cascaded pipeline still scores 95.7%, which is the honest measure of how far speech-native reasoning has to go.</p>
         <p>The Sep 22 cycle was a lab publishing the recipe along with the weights. Xiaomi&rsquo;s <a href="#mimo-v2-6">MiMo-V2.6-Pro and Flash</a> (Sep 22) are MIT-licensed omni-modal models with a 1M-token context, and Pro&rsquo;s self-reported 53.1 on AutomationBench sits ahead of the Claude Opus 5 score Xiaomi lists beside it; the technical report, RL environments and RL code shipped too, so the result is reproducible in principle rather than merely downloadable &mdash; the method is on <a href="training-and-rl.html">Training &amp; RL</a>. StepFun&rsquo;s <a href="#step-5-preview">Step 5 Preview</a> (600B total, 27B active) claims parity with Kimi K3 at about 2.8&times; lower cost per task, with nothing behind it but a thread.</p>
         <p>The rest of the cycle filled in stories already here. <a href="#grok-4-7">Grok 4.7</a> gained a CursorBench 4.0 figure &mdash; 46.3% against Grok 4.6&rsquo;s 40.4% &mdash; and a fast variant at double the speed and double the price. <a href="#kev">kev</a> grew from one small checkpoint to 0.6B, 4B and 8B on Qwen 3.5, none yet with an out-of-domain number. And <a href="#jev">Jev</a> acquired its first accuracy figure, about 68% on TypeSafe&rsquo;s own workflow evaluation, along with $5 of starter credit and a signup pause under demand.</p>
-        <p>The Sep 21 cycle was the vendor comparison table doing the work the vendor did not intend. SpaceXAI&rsquo;s <strong>Grok 4.7</strong> (Sep 21) is a larger base model shipped at Grok 4.6&rsquo;s exact price &mdash; <strong>$2 in, $6 out per million tokens</strong>, 500K context, four reasoning levels to <code>xhigh</code> &mdash; and it leads on <strong>EEBench at 64.0%</strong> and Harvey&rsquo;s legal benchmark at <strong>19.6%</strong>. The interesting number is the one it concedes: on the same table Claude Fable 5.1 Max wins four of seven, and <strong>Terminal-Bench 4.0 reads 57.9% against 38.0%</strong>. A launch post publishing a nineteen-point agentic-coding deficit tells you what the model is for, which is bulk reasoning at a fixed price rather than long-horizon tool use. Every figure is self-reported, as is now standard across this page.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 21 cycle was the vendor comparison table doing the work the vendor did not intend. SpaceXAI&rsquo;s <strong>Grok 4.7</strong> (Sep 21) is a larger base model shipped at Grok 4.6&rsquo;s exact price &mdash; <strong>$2 in, $6 out per million tokens</strong>, 500K context, four reasoning levels to <code>xhigh</code> &mdash; and it leads on <strong>EEBench at 64.0%</strong> and Harvey&rsquo;s legal benchmark at <strong>19.6%</strong>. The interesting number is the one it concedes: on the same table Claude Fable 5.1 Max wins four of seven, and <strong>Terminal-Bench 4.0 reads 57.9% against 38.0%</strong>. A launch post publishing a nineteen-point agentic-coding deficit tells you what the model is for, which is bulk reasoning at a fixed price rather than long-horizon tool use. Every figure is self-reported, as is now standard across this page.</p>
           <p>The cycle before that was unusually honest about what compression and speed actually cost. PrismML&rsquo;s <strong>Ternary Bonsai 2 27B</strong> (Sep 18) is the headline: Qwen3.8-27B at <strong>1.76 effective bits per weight, 5.93GB against 53.80GB in FP16</strong>, Apache 2.0, 262K context, image input, <strong>142.5 tokens/second on an RTX 5090</strong>, and an average of <strong>83.9 across 20 benchmarks against the parent&rsquo;s 85.4</strong>. PrismML leads with that 98.2% and then publishes the two figures that contradict it: long-horizon agent work keeps about <strong>75%</strong>, and <strong>SWE-bench Verified falls to 60.8 from 80.6</strong>. That is the finding this thread has needed since the first Bonsai &mdash; sub-2-bit quantization is nearly free on single-turn knowledge questions and expensive on anything that must stay coherent across steps &mdash; which makes the headline average the wrong number to buy on. Stock <code>llama.cpp</code> cannot load it, and all results are the vendor&rsquo;s.</p>
           <p>The System One category stopped being one company&rsquo;s claim. Jared Palmer&rsquo;s <strong>kev</strong> (Sep 20) is an Apache-2.0 decision model on Qwen2.5-0.5B answering <strong>six questions in about 160ms</strong> on Apple Silicon behind a TypeSafe-compatible API &mdash; and its README states that <strong>Jev leads it by roughly 19 points out of domain</strong>, which is the first outside sizing of what the closed model buys. Underneath both sits a cheaper baseline: Goedecke&rsquo;s point that <a href="research-papers.html">batching single-token prompts with structured output</a> turns any LLM into a System One model, leaving the architecture&rsquo;s real advantage as latency and price rather than capability. <strong>Jev</strong>&rsquo;s own numbers sharpened in the same window &mdash; <strong>0.114s and $0.000081 against GPT-5.6 Terra&rsquo;s 8.566s and $0.013880</strong>, on workflows TypeSafe wrote &mdash; and drew their first contrary datapoint, with Bryo AI&rsquo;s CTO finding Gemini slightly more accurate on email triage at 10&ndash;20&times; the cost. On Sep 21 the waitlist came off and the API opened to everyone, which is what turned the category from a demo into something people are measuring: the question surface is three types (a Bernoulli-derived yes/no, a choice with a distribution, a score along described levels), input undercuts <strong>GPT-5 Nano at $0.042 against $0.05 per 1M</strong> with output unbilled, and a <strong>JevBench</strong> has already appeared to compare Jev-class models. The counterweight arrived with it: a float is the entire output, so a wrong decision leaves nothing to inspect &mdash; which makes evals mandatory rather than advisable &mdash; and the author of <strong>Laya</strong> claims the same on-device approach 50&times; faster and published back in March 2025.</p>
           <p>Alibaba shipped both ends of the multimodal tier in two days. <strong>Qwen3.8-Omni-Flash</strong> (Sep 18) is natively omnimodal across text, image, audio and video at a <strong>1M-token context window</strong>, claimed close to Gemini 3.8 Flash on audio-visual and above it on audio; <strong>Qwen3.8-LiveTranslate</strong> (Sep 19) cuts interpretation lag from <strong>2.8s to 2.3s</strong> across <strong>60 languages understood and 29 spoken</strong>, with diarization and bilingual display at about $1.54 per hour of speech. SpaceXAI&rsquo;s <strong>Grok Voice Transcribe 2.0</strong> (Sep 18) competed on the same axis from the accuracy side, reporting <strong>19-language short-phrase WER falling from 20.6% to 6.8%</strong> at <strong>$0.10 per audio hour</strong>. None of the three ships weights and every ranking is self-reported, so what is genuinely checkable this cycle is the pricing, which all three published &mdash; a change worth noting on its own. Two Sep 21 releases carry that pricing habit into vision. <strong>Qwen-Image-2.1</strong> folds text-to-image, editing against up to ten references and native RGBA into one open-weight checkpoint, scoring <strong>60.28 on Qwen&rsquo;s own benchmark against Nano Banana 2.0&rsquo;s 59.82</strong> &mdash; with the caveat that the advertised 7B is the DiT alone and an 8B Qwen3-VL encoder loads beside it, and that the licence is research-only. Meta&rsquo;s <strong>SAM 3.1</strong> goes the other way entirely: a segmentation family that used to arrive as weights now arrives as a metered endpoint at <strong>$2.50 per 1,000 images and $0.20 per 1,000 video frames</strong>. Read together, the open release hides its true size in a second checkpoint and the closed one publishes an honest per-frame cost.</p>
@@ -78,14 +79,14 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">19</span></a></li>
-          <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">16</span></a></li>
+          <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">17</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">12</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">5</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">11</span></a></li>
-          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">6</span></a></li>
+          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">7</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">3</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">2</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">17</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">18</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">2</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">3</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">1</span></a></li>
@@ -256,6 +257,14 @@
         <h3>Open / efficient frontier challengers</h3>
         <p class="lead">Chinese and open-leaning labs matching frontier context and integration while differentiating on positioning. Three routes recur here: post-training alone, distillation into a smaller sibling, and composition &mdash; routing work across a pool rather than sending everything to the largest model. Judge entries on active parameters, licence terms, and whether the harness behind a score was published.</p>
 
+        <article class="story" id="ember-1">
+          <span class="when">2026-09-24</span>
+          <h4><a href="https://fireworks.ai/blog/ember-1">Fireworks&rsquo; Ember-1 matches Kimi K3 quality on 40% fewer tokens, as a two-week research preview</a></h4>
+          <p>Fireworks Research released <strong>Ember-1</strong>, a specialised model built on <a href="#kimi-k3">Kimi K3</a> that it says delivers the base model&rsquo;s quality with <strong>40% fewer tokens</strong>. It is rolling out beside Kimi K3 on Fireworks Serverless as a Research Preview, part of a new research-release programme that gives developers <strong>two weeks</strong> of serverless access to a research model and keeps only the ones with the most demand.</p>
+          <p>It is the post-training route this section names, applied by an inference provider rather than a lab, and it is sold on tokens rather than a score. The quality-parity claim is Fireworks&rsquo; own, and the two-week window means nothing built on it should assume it will still be served in October.</p>
+          <div class="sources"><a href="https://fireworks.ai/blog/ember-1">Fireworks</a> &middot; <span class="via">via TLDR AI (Sep 24)</span></div>
+        </article>
+
         <article class="story" id="swe-2">
           <span class="when">2026-09-11</span>
           <h4><a href="https://cognition.com/blog/swe-2">Cognition&rsquo;s SWE-2 scores 50.0% on FrontierCode 1.1 at 64% less cost</a></h4>
@@ -272,16 +281,16 @@
           <div class="sources"><a href="https://sakana.ai/fugu-max-release/">Sakana AI</a> &middot; <a href="https://openrouter.ai/sakana/fugu-ultra-v2">Fugu Ultra v2 on OpenRouter</a> &middot; <span class="via">via Unwind AI (Sep 11), TLDR AI (Sep 14)</span></div>
         </article>
 
-        <article class="story" id="deepseek-v4-1-flash">
-          <span class="when">2026-09-10</span>
-          <h4><a href="https://api-docs.deepseek.com/news/news20260910">DeepSeek-V4.1-Flash retires two predecessors and sells an asymmetric architecture on KV-cache size</a></h4>
-          <p>DeepSeek shipped V4.1-Flash on its API with native multimodal support and retired both V4-Flash and the experimental <a href="#deepseek-v4-flash-vision-exp">V4-Flash-Vision-Exp</a> the same day. The pitch is an asymmetric architecture DeepSeek says buys more capability per unit of cost, with the concrete mechanism named as a smaller KV cache &mdash; so the saving lands on long contexts and long-running agent sessions. No benchmark numbers accompanied the release, which makes the cache footprint the checkable claim and the capability ordering the unsupported one.</p>
-          <p>The shape became public on Sep 11: a <strong>552B-parameter MoE</strong> with native visual understanding, whose cache uses <strong>a quarter of the HBM and an eighth of the SSD storage</strong> of the previous generation. It serves as <code>deepseek-flash</code> at <strong>$0.30 per million input tokens</strong>, with a further 50% discount off-peak &mdash; see <a href="evals-and-benchmarks.html">Evals</a> for what it costs to get 89% of a frontier model&rsquo;s bug-fix score.</p>
-          <div class="sources"><a href="https://api-docs.deepseek.com/news/news20260910">DeepSeek API docs</a> &middot; <span class="via">via Unwind AI (Sep 11), TLDR AI (Sep 10)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (13)</summary>
+          <summary>Earlier in this section (14)</summary>
+
+          <article class="story" id="deepseek-v4-1-flash">
+            <span class="when">2026-09-10</span>
+            <h4><a href="https://api-docs.deepseek.com/news/news20260910">DeepSeek-V4.1-Flash retires two predecessors and sells an asymmetric architecture on KV-cache size</a></h4>
+            <p>DeepSeek shipped V4.1-Flash on its API with native multimodal support and retired both V4-Flash and the experimental <a href="#deepseek-v4-flash-vision-exp">V4-Flash-Vision-Exp</a> the same day. The pitch is an asymmetric architecture DeepSeek says buys more capability per unit of cost, with the concrete mechanism named as a smaller KV cache &mdash; so the saving lands on long contexts and long-running agent sessions. No benchmark numbers accompanied the release, which makes the cache footprint the checkable claim and the capability ordering the unsupported one.</p>
+            <p>The shape became public on Sep 11: a <strong>552B-parameter MoE</strong> with native visual understanding, whose cache uses <strong>a quarter of the HBM and an eighth of the SSD storage</strong> of the previous generation. It serves as <code>deepseek-flash</code> at <strong>$0.30 per million input tokens</strong>, with a further 50% discount off-peak &mdash; see <a href="evals-and-benchmarks.html">Evals</a> for what it costs to get 89% of a frontier model&rsquo;s bug-fix score.</p>
+            <div class="sources"><a href="https://api-docs.deepseek.com/news/news20260910">DeepSeek API docs</a> &middot; <span class="via">via Unwind AI (Sep 11), TLDR AI (Sep 10)</span></div>
+          </article>
 
           <article class="story unlinked" id="qwen3-8-max-0902">
             <span class="when">2026-09-02</span>
@@ -629,6 +638,14 @@
         <h3>Alternative decoding architectures</h3>
         <p class="lead">A research line attacking the autoregressive decode bottleneck from two directions: parallelising within one token stream, and removing the stream entirely. Both buy latency and price rather than capability, so the question for every entry here is what the speed costs in quality, and whether anyone outside the vendor has measured it.</p>
 
+        <article class="story" id="tev1-4b-experimental">
+          <span class="when">2026-09-24</span>
+          <h4><a href="https://threadreaderapp.com/thread/2102882216950763814.html">Together AI&rsquo;s tev1-4B-experimental is a Jev-like classifier that cost $17 to train</a></h4>
+          <p>Together AI released <strong>tev1-4B-experimental</strong>, a <a href="#jev">Jev</a>-style decision classifier fine-tuned on <strong>Qwen3.5 4B</strong>, served on Together serverless at <strong>$0.042 per million input tokens and $0 per million output tokens</strong>. Training cost <strong>$17</strong>, and Together published the data recipe and a fine-tuning tutorial alongside it.</p>
+          <p>Zero-priced output is the System One pitch taken literally &mdash; the bill is the prompt &mdash; but no accuracy or calibration figure was given, so what the speed costs in quality is unanswered here too.</p>
+          <div class="sources"><a href="https://threadreaderapp.com/thread/2102882216950763814.html">Together AI announcement thread (reader copy)</a> &middot; <span class="via">via TLDR AI (Sep 24)</span></div>
+        </article>
+
         <article class="story" id="jev-omni">
           <span class="when">2026-09-23</span>
           <h4><a href="https://huggingface.co/akhilaaa3/Jev-Omni">Jev-Omni extends bounded decisions to images, audio and video on Gemma 4 12B</a></h4>
@@ -643,17 +660,17 @@
           <div class="sources"><a href="https://github.com/nokia-applied-research/AnyJev">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="kev">
-          <span class="when">2026-09-20</span>
-          <h4><a href="https://github.com/jaredpalmer/kev">kev is an Apache-2.0 Jev clone on Qwen2.5-0.5B that gives up 19 points out of domain</a></h4>
-          <p>Jared Palmer released <strong>kev</strong>, an Apache-2.0 decision model built on Qwen2.5-0.5B that runs on Apple Silicon behind a TypeSafe-compatible API and, per its README, <strong>answers six questions in about 160ms</strong>. The honest line is in the same README: <strong>Jev leads kev by roughly 19 points once the test moves out of domain</strong>. It is the first open-weights answer to the System One category, and the gap it publishes is the first outside measure of what the closed model is buying.</p>
-          <p>Sean Goedecke supplied the cheaper baseline underneath both: <a href="research-papers.html">batch prompts that each generate one token, constrain them with structured output</a>, and an ordinary LLM returns the same typed decisions in parallel &mdash; which leaves the architecture&rsquo;s advantage as latency and price rather than capability, since the batched version still pays full prefill per prompt and the direct-logit design does not.</p>
-          <p>By Sep 22 the repository listed <strong>0.6B, 4B and 8B checkpoints built on Qwen 3.5</strong>, with a local server, returning calibrated probabilities for yes/no, multiple-choice and rating questions; the out-of-domain gap above was published for the original small model, and the larger checkpoints carry no figure yet.</p>
-          <div class="sources"><a href="https://github.com/jaredpalmer/kev">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 20), TLDR AI (Sep 22), Unwind AI (Sep 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="kev">
+            <span class="when">2026-09-20</span>
+            <h4><a href="https://github.com/jaredpalmer/kev">kev is an Apache-2.0 Jev clone on Qwen2.5-0.5B that gives up 19 points out of domain</a></h4>
+            <p>Jared Palmer released <strong>kev</strong>, an Apache-2.0 decision model built on Qwen2.5-0.5B that runs on Apple Silicon behind a TypeSafe-compatible API and, per its README, <strong>answers six questions in about 160ms</strong>. The honest line is in the same README: <strong>Jev leads kev by roughly 19 points once the test moves out of domain</strong>. It is the first open-weights answer to the System One category, and the gap it publishes is the first outside measure of what the closed model is buying.</p>
+            <p>Sean Goedecke supplied the cheaper baseline underneath both: <a href="research-papers.html">batch prompts that each generate one token, constrain them with structured output</a>, and an ordinary LLM returns the same typed decisions in parallel &mdash; which leaves the architecture&rsquo;s advantage as latency and price rather than capability, since the batched version still pays full prefill per prompt and the direct-logit design does not.</p>
+            <p>By Sep 22 the repository listed <strong>0.6B, 4B and 8B checkpoints built on Qwen 3.5</strong>, with a local server, returning calibrated probabilities for yes/no, multiple-choice and rating questions; the out-of-domain gap above was published for the original small model, and the larger checkpoints carry no figure yet.</p>
+            <div class="sources"><a href="https://github.com/jaredpalmer/kev">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 20), TLDR AI (Sep 22), Unwind AI (Sep 22)</span></div>
+          </article>
 
           <article class="story" id="jev">
             <span class="when">2026-09-16</span>
@@ -733,6 +750,14 @@
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
 
+        <article class="story" id="gemini-3-8-flash-tts">
+          <span class="when">2026-09-24</span>
+          <h4><a href="https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech">Gemini 3.8 Flash TTS designs a voice from a description and clones one from a 30-second sample</a></h4>
+          <p>Google released <strong>Gemini 3.8 Flash TTS</strong> and <strong>Flash-Lite TTS</strong>, which create a voice from a text description and take line-by-line direction on pacing, dialect and delivery, across <strong>100-plus languages</strong> or <strong>2,000-plus</strong> stock voices. Flash can also replicate an authorised voice from a <strong>30-second sample</strong>, while Flash-Lite targets high-volume work such as dubbing and real-time voice agents.</p>
+          <p>Google says Flash tops Hume AI&rsquo;s Voice Design Benchmark and that the pair rank first and second on Hume&rsquo;s Overall Quality Index &mdash; Google&rsquo;s report of a third party&rsquo;s leaderboard, published without a price per audio hour, which is the axis this section judges on.</p>
+          <div class="sources"><a href="https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech">Google DeepMind</a> &middot; <a href="https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-tts">AI Studio</a> &middot; <span class="via">via TLDR AI (Sep 24), The Code (Sep 24)</span></div>
+        </article>
+
         <article class="story" id="kyutai-voice-of-reason">
           <span class="when">2026-09-22</span>
           <h4><a href="https://hf.co/kyutai/glm-4-voice-of-reason-9b">Kyutai Voice of Reason lifts spoken GSM8K from 27.3% to 77.1% without a transcript</a></h4>
@@ -748,16 +773,16 @@
           <div class="sources"><a href="https://qwen.ai/blog?id=qwen3.8-livetranslate">Qwen</a> &middot; <span class="via">via MarkTechPost (Sep 20), TLDR AI (Sep 21)</span></div>
         </article>
 
-        <article class="story" id="grok-voice-transcribe-2">
-          <span class="when">2026-09-18</span>
-          <h4><a href="https://x.ai/news/grok-voice-transcribe-2">Grok Voice Transcribe 2.0 cuts short-phrase WER from 20.6% to 6.8% at $0.10 an audio hour</a></h4>
-          <p>SpaceXAI released <strong>Grok Voice Transcribe 2.0</strong>, a speech-to-text API it says roughly triples short-phrase accuracy over 1.0: <strong>word error rate across 19 languages falls from 20.6% to 6.8%</strong>. SpaceXAI reports rank 1 of 32 streaming models on Artificial Analysis. Pricing is <strong>$0.10 per audio hour batch and $0.20 streaming</strong>.</p>
-          <p>The four internal test sets behind the WER figure are vendor-reported and the model is API-only, so the price is the checkable part and the accuracy is not &mdash; but it is the first time this section can put a transcription claim and its price in one sentence from the vendor itself.</p>
-          <div class="sources"><a href="https://x.ai/news/grok-voice-transcribe-2">SpaceXAI</a> &middot; <a href="https://artificialanalysis.ai/speech-to-text/streaming">Artificial Analysis</a> &middot; <span class="via">via MarkTechPost (Sep 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="grok-voice-transcribe-2">
+            <span class="when">2026-09-18</span>
+            <h4><a href="https://x.ai/news/grok-voice-transcribe-2">Grok Voice Transcribe 2.0 cuts short-phrase WER from 20.6% to 6.8% at $0.10 an audio hour</a></h4>
+            <p>SpaceXAI released <strong>Grok Voice Transcribe 2.0</strong>, a speech-to-text API it says roughly triples short-phrase accuracy over 1.0: <strong>word error rate across 19 languages falls from 20.6% to 6.8%</strong>. SpaceXAI reports rank 1 of 32 streaming models on Artificial Analysis. Pricing is <strong>$0.10 per audio hour batch and $0.20 streaming</strong>.</p>
+            <p>The four internal test sets behind the WER figure are vendor-reported and the model is API-only, so the price is the checkable part and the accuracy is not &mdash; but it is the first time this section can put a transcription claim and its price in one sentence from the vendor itself.</p>
+            <div class="sources"><a href="https://x.ai/news/grok-voice-transcribe-2">SpaceXAI</a> &middot; <a href="https://artificialanalysis.ai/speech-to-text/streaming">Artificial Analysis</a> &middot; <span class="via">via MarkTechPost (Sep 20)</span></div>
+          </article>
 
           <article class="story" id="gemini-3-8-live">
             <span class="when">2026-09-16</span>
@@ -988,6 +1013,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#gemini-3-8-flash-tts">Gemini 3.8 Flash TTS designs a voice from a description and clones one from a 30-second sample</a></span></li>
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#tev1-4b-experimental">Together AI&rsquo;s tev1-4B-experimental is a Jev-like classifier that cost $17 to train</a></span></li>
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#ember-1">Fireworks&rsquo; Ember-1 matches Kimi K3 quality on 40% fewer tokens, as a two-week research preview</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#jev-omni">Jev-Omni extends bounded decisions to images, audio and video on Gemma 4 12B</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#anyjev">Nokia AnyJev turns any open LLM into a calibrated decision model without training</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#kyutai-voice-of-reason">Kyutai Voice of Reason lifts spoken GSM8K from 27.3% to 77.1% without a transcript</a></span></li>

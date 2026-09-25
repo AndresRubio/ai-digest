@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-09-24</div>
+      <div class="meta">Last updated: 2026-09-25</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is the documentation catching up with a model launch, and the migration claims arriving with their fine print. Anthropic&rsquo;s <a href="#opus-5-5-playbook">Opus 5.5 playbook</a> says to state the whole task, define done and delete &ldquo;think carefully&rdquo;, and from Claude Code 2.1.280 a mid-session effort change no longer invalidates the prompt cache &mdash; which makes effort a per-turn routing parameter rather than a session setting. The <a href="#claude-code-migration-kit">Claude Code Migration Kit</a> publishes the rulebooks and parity checks behind Anthropic&rsquo;s 680,000-line migration claim, labelled unmaintained and reconstructed.</p>
-        <p>The two productivity claims of the day came out differently under inspection. GitHub&rsquo;s <a href="#github-copilot-rust-port">Copilot Rust port</a> &mdash; more than 800,000 lines in under four months for about $120,000 in tokens &mdash; lost its &ldquo;one engineer&rdquo; framing within a day, once the engineer&rsquo;s own write-up credited teammates for bindings, packaging and review. Boris Cherny&rsquo;s <a href="#claude-agent-sdk-lean-verification">Lean verification of the Agent SDK</a> produced 16 bug-fix PRs, the rare productivity claim that arrives with evidence a reviewer can check. Smaller pieces filled in the stack: StepFun&rsquo;s open terminal agent <a href="#step-code">Step Code</a>, LlamaIndex&rsquo;s local parser <a href="#liteparse">LiteParse</a>, and <a href="#ossrules">ossrules.md</a>, which collects 100 projects&rsquo; instruction files and 1,200 skills with no measure of which conventions work.</p>
+        <p>Today&rsquo;s cycle is Anthropic describing what agent-written code does to the rest of its engineering. Claude now writes about 80% of Anthropic&rsquo;s code, and its <a href="#anthropic-ci-test-impact-analysis">test suite grew 10x in six months</a> while test selection took <strong>25x</strong> more CI jobs; one engineer rebuilt that service stateless in three weeks, and the planning rule offered is to assume 25x within two quarters. That makes Anthropic the second company after Linear to locate the fast path&rsquo;s cost in verification. The same measure-benchmark-ratchet loop made <a href="#claude-ai-3x-faster">claude.ai about 3x faster</a> in two weeks, 3.1s to 0.55s to a typeable page, across 3,000-plus Claude-landed changes with no customer-facing rollback.</p>
+        <p>Around it, <a href="#claude-code-cloud-sessions-ga">cloud sessions</a> reached general availability with the CLI entry point the Projects beta left out, and the claude-api skill&rsquo;s <a href="#claude-api-prompt-audit">prompt-audit</a> turns a model switch into a reviewable diff of CLAUDE.md, skill and agent files. All of it is Anthropic reporting on itself, and no defect rate for the fast path is published.</p>
+        <p>The Sep 23 cycle was the documentation catching up with a model launch, and the migration claims arriving with their fine print. Anthropic&rsquo;s <a href="#opus-5-5-playbook">Opus 5.5 playbook</a> says to state the whole task, define done and delete &ldquo;think carefully&rdquo;, and from Claude Code 2.1.280 a mid-session effort change no longer invalidates the prompt cache &mdash; which makes effort a per-turn routing parameter rather than a session setting. The <a href="#claude-code-migration-kit">Claude Code Migration Kit</a> publishes the rulebooks and parity checks behind Anthropic&rsquo;s 680,000-line migration claim, labelled unmaintained and reconstructed.</p>
+        <p>The two Sep 23 productivity claims came out differently under inspection. GitHub&rsquo;s <a href="#github-copilot-rust-port">Copilot Rust port</a> &mdash; more than 800,000 lines in under four months for about $120,000 in tokens &mdash; lost its &ldquo;one engineer&rdquo; framing within a day, once the engineer&rsquo;s own write-up credited teammates for bindings, packaging and review. Boris Cherny&rsquo;s <a href="#claude-agent-sdk-lean-verification">Lean verification of the Agent SDK</a> produced 16 bug-fix PRs, the rare productivity claim that arrives with evidence a reviewer can check. Smaller pieces filled in the stack: StepFun&rsquo;s open terminal agent <a href="#step-code">Step Code</a>, LlamaIndex&rsquo;s local parser <a href="#liteparse">LiteParse</a>, and <a href="#ossrules">ossrules.md</a>, which collects 100 projects&rsquo; instruction files and 1,200 skills with no measure of which conventions work.</p>
         <p>The Sep 22 cycle was the tooling growing the instruments it was missing. <a href="#claude-plugin-eval"><code>claude plugin eval</code></a> (Claude Code 2.1.269 and later) writes cases and graders for a plugin and reports each case with and without it, plus the delta and the cost &mdash; the first thing in the plugin layer that answers whether an addition helps rather than whether it installs, with the caveat that the graders come from the author&rsquo;s own description of success. Linear supplied the organisational version: a <a href="#linear-ci-bottleneck">test suite that nearly quadrupled</a> under agent-written code while PR wait fell from over six minutes to just over five, with tsgo taking 73% off type-checking. Verification, not generation, is where the fast path&rsquo;s cost lands.</p>
-        <p>The rest moved work between machines and between bills. Devin CLI&rsquo;s <a href="#devin-cloud-terminal"><code>/handoff</code></a> carries local context, branch and uncommitted changes into a cloud VM that keeps running after the laptop closes, and SWE-2 is free until October 8. Nous&rsquo;s <a href="#hermes-claude-subscription">DirectSDK plugin</a> runs Hermes on a Claude Pro or Max plan through the Claude Code CLI at roughly 1.7&times; the allowance burn, making the subscription rather than the key the integration surface. <a href="#laya-coreml">Laya-CoreML</a> puts typed decisions on Apple&rsquo;s Neural Engine in about 5ms inside a 96-token input cap, and the <a href="#agents-md-fallback">AGENTS.md fallback</a> gained its public source: fallback, not merge, toggleable in <code>/config</code>.</p>
-        <p>The Sep 21 item was small and structurally interesting. Claude Code <strong>2.1.277</strong> falls back to <code>AGENTS.md</code> when a folder has no <code>CLAUDE.md</code>, which quietly ends the config-file split a repository has had to pick a side in. Anthropic shipped it as a built-in <strong>mod</strong> rather than a feature &mdash; the first public look at a coming mechanism for customising the Claude Code harness, with the mod&rsquo;s source published and user-written project-instruction handling named as a supported case. The fallback is the announcement; the mod is the change. The component that decides which instructions reach the model becomes replaceable by the team using it, which is exactly the layer this page&rsquo;s memory and configuration patterns have been assembling by hand in Markdown.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The rest moved work between machines and between bills. Devin CLI&rsquo;s <a href="#devin-cloud-terminal"><code>/handoff</code></a> carries local context, branch and uncommitted changes into a cloud VM that keeps running after the laptop closes, and SWE-2 is free until October 8. Nous&rsquo;s <a href="#hermes-claude-subscription">DirectSDK plugin</a> runs Hermes on a Claude Pro or Max plan through the Claude Code CLI at roughly 1.7&times; the allowance burn, making the subscription rather than the key the integration surface. <a href="#laya-coreml">Laya-CoreML</a> puts typed decisions on Apple&rsquo;s Neural Engine in about 5ms inside a 96-token input cap, and the <a href="#agents-md-fallback">AGENTS.md fallback</a> gained its public source: fallback, not merge, toggleable in <code>/config</code>.</p>
+          <p>The Sep 21 item was small and structurally interesting. Claude Code <strong>2.1.277</strong> falls back to <code>AGENTS.md</code> when a folder has no <code>CLAUDE.md</code>, which quietly ends the config-file split a repository has had to pick a side in. Anthropic shipped it as a built-in <strong>mod</strong> rather than a feature &mdash; the first public look at a coming mechanism for customising the Claude Code harness, with the mod&rsquo;s source published and user-written project-instruction handling named as a supported case. The fallback is the announcement; the mod is the change. The component that decides which instructions reach the model becomes replaceable by the team using it, which is exactly the layer this page&rsquo;s memory and configuration patterns have been assembling by hand in Markdown.</p>
           <p>The cycle before had one description of the destination and several of the road. Gergely Orosz&rsquo;s account of OpenAI&rsquo;s internal &ldquo;software factory&rdquo; is the destination: Codex reads the codebase, Slack and internal data, writes the change, runs tests, fixes failures and opens a PR until CI is green; <strong>review agents inspect it by domain</strong> &mdash; cloud, infrastructure, security &mdash; low-risk changes can be auto-approved, and after human sign-off a deploy agent ships, builds dashboards and can roll back. <strong>Perf Factory</strong> deduplicates production alerts and traces slowdowns to cause; <strong>Sevbot</strong> gathers incident context and proposes fixes without applying them. The structure to notice is that every autonomous step is paired with a narrower agent whose job is to catch it, and the only obligatory human is the one signing the merge. Orosz names the constraint plainly, and it is this page&rsquo;s recurring one: the pipeline burns compute OpenAI absorbs more easily than anyone else, so the open question is the token price at which it leaves the frontier labs.</p>
           <p>Underneath it, the week&rsquo;s tooling put the model inside software that predates it. Apple shipped <strong>Safari MCP</strong> in Safari 27.0, handing a chosen agent the DOM, network requests, screenshots and console of a real browser window &mdash; the see-what-you-rendered loop arriving as a default-browser capability rather than a driver someone installs. <strong>pg-jev</strong> does the same to Postgres, allowing <code>WHERE jev(people, 'the name is European')</code>, and earns its place by publishing the ceiling: <strong>20 seconds and 2,500 model-judged rows</strong> per read-only query, with the author saying outright it is not a route through a million-row table. <strong>fast-jev-compaction</strong> inverts what compaction assumes &mdash; keep the conversation verbatim, ask <a href="model-releases.html">Jev</a> per old tool call whether it still matters &mdash; and reports <strong>up to 90%</strong>, one Claude Code session going from <strong>1M tokens to 86K in about a second</strong>, falling back to the built-in summary when it cannot. That changes the failure mode as much as the cost: a summariser degrades everything slightly, a judge occasionally discards the one result the next step needed.</p>
           <p>Two releases were notable for stating their own limits. <strong>OpenClaw 2026.9.5</strong> verifies each update against a private copy of the running setup while the current Gateway serves, rolls back on failure, and says plainly that <strong>rollback cannot undo database migrations</strong> &mdash; in a release bundling <strong>4,179 pull requests from 502 accounts</strong> under MIT. GitHub Next&rsquo;s <strong>LocalJev</strong> serves a Jev-compatible API from local models over oMLX, tested across <strong>1,200 requests and five 4-bit models on an M5 Max</strong>, and warns that it emits prompted JSON probabilities rather than direct logits, so calibration must be checked before code branches on the confidences. Meanwhile the coordinator pattern completed its set: Codex threads can now reference, message and monitor each other, with one thread schedulable as a coordinator that reviews the others&rsquo; diffs &mdash; and Notion&rsquo;s <strong>Skills API</strong> made instruction sets a team artifact distributed by GitHub sync, which fixes drift and introduces the matching hazard of a skill that changes underneath you.</p>
@@ -85,12 +87,12 @@
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">5</span></a></li>
           <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">25</span></a></li>
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">10</span></a></li>
-          <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">15</span></a></li>
+          <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">16</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">3</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">8</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">16</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">14</span></a></li>
-          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">5</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">16</span></a></li>
+          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">6</span></a></li>
         </ul>
       </nav>
 
@@ -600,6 +602,13 @@
         <h3>Model selection inside coding agents</h3>
         <p class="lead">The harness is model-agnostic: swapping the underlying coding model is a one-line config change, and effort level is becoming a routing parameter too. What a tool sells is no longer the model it bundles but the integration surface &mdash; live documentation, reachable devices, enforced permissions, review put in front of you.</p>
 
+        <article class="story" id="claude-api-prompt-audit">
+          <span class="when">2026-09-24</span>
+          <h4><a href="https://github.com/anthropics/skills">The claude-api skill&rsquo;s prompt-audit rewrites CLAUDE.md and skill files for a new model</a></h4>
+          <p>An Anthropic engineer shared <code>/claude-api prompt-audit</code>, run from a project root after <code>claude update</code>: it scans <code>CLAUDE.md</code>, skills, agent files and code calling the Claude API, flags anti-patterns for the current model and proposes a diff to review. The skill is open source, and the advice is to rerun it on every model switch &mdash; a model change now carries a context-file migration, the concrete form of the <a href="#opus-5-5-playbook">Opus 5.5 playbook</a>.</p>
+          <div class="sources"><a href="https://github.com/anthropics/skills">anthropics/skills</a> &middot; <a href="https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform">Claude blog (migration benchmark)</a> &middot; <span class="via">via The Code (Sep 24)</span></div>
+        </article>
+
         <article class="story" id="opus-5-5-playbook">
           <span class="when">2026-09-23</span>
           <h4><a href="https://claude.dev/blog/getting-the-most-out-of-opus-5-5/">Anthropic&rsquo;s Opus 5.5 playbook drops &ldquo;think carefully&rdquo;; effort changes keep the cache from Claude Code 2.1.280</a></h4>
@@ -614,16 +623,16 @@
           <div class="sources"><a href="https://hermes-agent.nousresearch.com/docs/plugins/claude-subscription-directsdk">Hermes docs</a> &middot; <span class="via">via Unwind AI (Sep 22), The Code (Sep 22)</span></div>
         </article>
 
-        <article class="story unlinked" id="codex-agent-tree">
-          <span class="when">2026-09-16</span>
-          <h4>An agent tree assigns reasoning effort per role from DeepSWE pass rates and cost per task</h4>
-          <p>A circulated Codex configuration replaces &ldquo;run every subagent at maximum effort&rdquo; with effort levels chosen per role by weighing DeepSWE pass rates, average cost per task and agent steps against each other: GPT-6 Astra at medium acts as root orchestrator and later integrates and verifies, Luna at max handles bounded investigation, Sol at high implements and writes tests, and an Astra run at xhigh performs independent review, spawned only when needed.</p>
-          <p>The effort dial is treated as a routing parameter in its own right rather than a global setting, so the same model appears at three costs depending on the job &mdash; which matters more than it sounds given the finding on the <a href="model-releases.html">Model releases</a> page that Fable 5.1&rsquo;s xhigh costs eighteen times its baseline &mdash; and the most expensive configuration is reserved for review by an instance that did not do the work. No end-to-end saving is published, so the structure is the claim, and Cognition&rsquo;s <a href="agents.html">Devin Fusion</a> the same day argues the opposite arrangement is better, keeping a frontier model as lead that can reclaim control mid-run; neither has been measured against the other.</p>
-          <div class="sources"><span class="via">via The Code (Sep 16) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story unlinked" id="codex-agent-tree">
+            <span class="when">2026-09-16</span>
+            <h4>An agent tree assigns reasoning effort per role from DeepSWE pass rates and cost per task</h4>
+            <p>A circulated Codex configuration replaces &ldquo;run every subagent at maximum effort&rdquo; with effort levels chosen per role by weighing DeepSWE pass rates, average cost per task and agent steps against each other: GPT-6 Astra at medium acts as root orchestrator and later integrates and verifies, Luna at max handles bounded investigation, Sol at high implements and writes tests, and an Astra run at xhigh performs independent review, spawned only when needed.</p>
+            <p>The effort dial is treated as a routing parameter in its own right rather than a global setting, so the same model appears at three costs depending on the job &mdash; which matters more than it sounds given the finding on the <a href="model-releases.html">Model releases</a> page that Fable 5.1&rsquo;s xhigh costs eighteen times its baseline &mdash; and the most expensive configuration is reserved for review by an instance that did not do the work. No end-to-end saving is published, so the structure is the claim, and Cognition&rsquo;s <a href="agents.html">Devin Fusion</a> the same day argues the opposite arrangement is better, keeping a frontier model as lead that can reclaim control mid-run; neither has been measured against the other.</p>
+            <div class="sources"><span class="via">via The Code (Sep 16) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story" id="foundation-models-framework">
             <span class="when">2026-09-15</span>
@@ -965,6 +974,21 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and no defect rate for the fast path is recorded here.</p>
 
+        <article class="story" id="anthropic-ci-test-impact-analysis">
+          <span class="when">2026-09-24</span>
+          <h4><a href="https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic">Anthropic&rsquo;s test suite grew 10x in six months as Claude wrote 80% of its code</a></h4>
+          <p>Anthropic engineer Sachin Malhotra says Claude now writes about <strong>80%</strong> of Anthropic&rsquo;s code and reviews most of it, and that in six months the test suite grew <strong>10x</strong> while the service choosing which tests to run took <strong>25x</strong> more CI jobs. The fix was a stateless rebuild &mdash; test history in a shared in-memory database, identical workers in parallel, a helper re-sorting results by test every few seconds &mdash; shipped by one engineer in three weeks.</p>
+          <p>His planning rule is the transferable part: assume 25x within two quarters, because each earlier patch expired as CI jobs kept doubling. Beside <a href="#linear-ci-bottleneck">Linear&rsquo;s</a> numbers, it is a second company locating the cost of agent-written code in verification.</p>
+          <div class="sources"><a href="https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic">Claude blog</a> &middot; <a href="https://claude.com/blog/ai-ci-cd-on-call">follow-up</a> &middot; <span class="via">via The Code (Sep 24)</span></div>
+        </article>
+
+        <article class="story" id="claude-ai-3x-faster">
+          <span class="when">2026-09-24</span>
+          <h4><a href="https://claude.dev/blog/how-we-made-claude-ai-faster/">Anthropic made claude.ai about 3x faster in two weeks with 3,000+ Claude-landed changes</a></h4>
+          <p>In an August sprint, time to a typeable page on a fresh claude.ai load fell from <strong>3.1s to 0.55s</strong>, starting a Claude Code session from <strong>0.8s to 0.3s</strong>, and loading a Cowork cloud session from <strong>2.6s to 0.73s</strong>. The loop was: measure a slow path, have Claude build a benchmark, ship the fix behind a flag, watch production data, then ratchet the benchmark down &mdash; <strong>3,000-plus changes</strong> with no customer-facing rollback.</p>
+          <div class="sources"><a href="https://claude.dev/blog/how-we-made-claude-ai-faster/">Claude</a> &middot; <span class="via">via TLDR (Sep 24), The Code (Sep 24)</span></div>
+        </article>
+
         <article class="story unlinked" id="github-copilot-rust-port">
           <span class="when">2026-09-23</span>
           <h4>GitHub ports its Copilot runtime to 800,000+ lines of Rust with agents for about $120,000</h4>
@@ -972,22 +996,22 @@
           <div class="sources"><a href="https://codenewsletter.ai/p/anthropic-launches-faster-cheaper-opus-5-5">The Code</a> (issue) &middot; <span class="via">via The Code (Sep 23) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story" id="claude-code-migration-kit">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://github.com/anthropics/code-migration-kit-with-claude-code">Anthropic publishes an unmaintained Claude Code Migration Kit with behavioural-parity checks</a></h4>
-          <p>The kit bundles prompts, templates, dependency-map scripts, rulebooks, agent boundaries and behavioural-parity checks for large language migrations &mdash; the job behind the Opus 5.5 launch claim of a <strong>680,000-line migration in under a day</strong>. Anthropic states the limits itself: it is reference code, not actively maintained, and the prompts are reviewed reconstructions rather than transcripts of its production migrations.</p>
-          <div class="sources"><a href="https://github.com/anthropics/code-migration-kit-with-claude-code">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Sep 23)</span></div>
-        </article>
-
-        <article class="story" id="claude-agent-sdk-lean-verification">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://x.com/bcherny/status/2102543349102338309">Opus 5.5 and Lean formally verify the Claude Agent SDK into 16 bug-fix PRs</a></h4>
-          <p>Boris Cherny used Opus 5.5 with Lean to formally verify the Claude Agent SDK, producing <strong>16 PRs</strong> that fixed bugs and race conditions, and pairs Lean with TLA+ to check data flow, concurrency and state &mdash; without knowing either language well. It is evidence constructed rather than a diff skimmed, from the person who leads the product, reported in a post rather than a write-up.</p>
-          <div class="sources"><a href="https://x.com/bcherny/status/2102543349102338309">Boris Cherny on X</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Sep 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (11)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="claude-code-migration-kit">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://github.com/anthropics/code-migration-kit-with-claude-code">Anthropic publishes an unmaintained Claude Code Migration Kit with behavioural-parity checks</a></h4>
+            <p>The kit bundles prompts, templates, dependency-map scripts, rulebooks, agent boundaries and behavioural-parity checks for large language migrations &mdash; the job behind the Opus 5.5 launch claim of a <strong>680,000-line migration in under a day</strong>. Anthropic states the limits itself: it is reference code, not actively maintained, and the prompts are reviewed reconstructions rather than transcripts of its production migrations.</p>
+            <div class="sources"><a href="https://github.com/anthropics/code-migration-kit-with-claude-code">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Sep 23)</span></div>
+          </article>
+
+          <article class="story" id="claude-agent-sdk-lean-verification">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://x.com/bcherny/status/2102543349102338309">Opus 5.5 and Lean formally verify the Claude Agent SDK into 16 bug-fix PRs</a></h4>
+            <p>Boris Cherny used Opus 5.5 with Lean to formally verify the Claude Agent SDK, producing <strong>16 PRs</strong> that fixed bugs and race conditions, and pairs Lean with TLA+ to check data flow, concurrency and state &mdash; without knowing either language well. It is evidence constructed rather than a diff skimmed, from the person who leads the product, reported in a post rather than a write-up.</p>
+            <div class="sources"><a href="https://x.com/bcherny/status/2102543349102338309">Boris Cherny on X</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Sep 23)</span></div>
+          </article>
 
           <article class="story" id="linear-ci-bottleneck">
             <span class="when">2026-09-22</span>
@@ -1082,6 +1106,14 @@
         <h3>Multi-session and parallel work</h3>
         <p class="lead">Running 3&ndash;6 sessions in parallel via tmux and git worktrees is the practitioner default, and the bottleneck moved from execution to writing clear specs and reviewing output. Every coordinator here is itself an agent whose output someone still has to check.</p>
 
+        <article class="story unlinked" id="claude-code-cloud-sessions-ga">
+          <span class="when">2026-09-24</span>
+          <h4>Claude Code cloud sessions reach general availability, each on its own branch</h4>
+          <p>Anthropic moved Claude Code cloud sessions to general availability: long-running tasks run on remote servers and keep going after the laptop closes, each session on its own branch through a linked GitHub account, startable from web, mobile, desktop or the CLI. Pro and Max subscribers get a one-time credit through <strong>October 7</strong>.</p>
+          <p>The CLI entry point is the change from <a href="#claude-code-projects">Claude Code Projects</a>, whose beta pointedly left it out.</p>
+          <div class="sources"><span class="via">via The Code (Sep 24) &mdash; no public URL given</span></div>
+        </article>
+
         <article class="story" id="devin-cloud-terminal">
           <span class="when">2026-09-22</span>
           <h4><a href="https://devin.ai/blog/devin-cloud-in-your-terminal">Devin CLI hands a local session to a cloud VM with /handoff, and SWE-2 is free until October 8</a></h4>
@@ -1098,16 +1130,16 @@
           <div class="sources"><a href="https://codenewsletter.ai/p/no-more-juggling-sessions-on-claude-code">The Code</a> &middot; <span class="via">via The Code (Sep 18)</span></div>
         </article>
 
-        <article class="story" id="claude-code-projects">
-          <span class="when">2026-09-17</span>
-          <h4><a href="https://claude.com/blog/projects-redesigned">Claude Code Projects runs parallel cloud sessions that survive a closed laptop, capped at 200 threads a day</a></h4>
-          <p>Anthropic opened <strong>Claude Code Projects</strong> in beta: one conversation acts as the coordinator, every thread underneath it is a full cloud session running on its own branch so work continues after the machine is shut, and the cap is 200 new threads per day. The beta is limited to selected Pro and Max users on web and desktop and explicitly does not include the CLI, which is the notable part since the CLI is where most of this audience already works.</p>
-          <p>It is the same coordinator shape as <a href="agents.html">Cursor Projects</a> arriving from the other vendor, with the daily thread cap standing in for Cursor&rsquo;s stated ceiling of about 100 PRs a day. <em>Updated Sep 18:</em> the documentation adds that each thread can decompose its own work using subagents, loops and workflows, and that threads draw on shared memory rather than independent context &mdash; so the coordinator delegates, and the delegates delegate again.</p>
-          <div class="sources"><a href="https://claude.com/blog/projects-redesigned">Anthropic</a> &middot; <a href="https://code.claude.com/docs/en/claude-projects">Docs</a> &middot; <span class="via">via MarkTechPost (Sep 17), TLDR AI (Sep 18), The Code (Sep 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="claude-code-projects">
+            <span class="when">2026-09-17</span>
+            <h4><a href="https://claude.com/blog/projects-redesigned">Claude Code Projects runs parallel cloud sessions that survive a closed laptop, capped at 200 threads a day</a></h4>
+            <p>Anthropic opened <strong>Claude Code Projects</strong> in beta: one conversation acts as the coordinator, every thread underneath it is a full cloud session running on its own branch so work continues after the machine is shut, and the cap is 200 new threads per day. The beta is limited to selected Pro and Max users on web and desktop and explicitly does not include the CLI, which is the notable part since the CLI is where most of this audience already works.</p>
+            <p>It is the same coordinator shape as <a href="agents.html">Cursor Projects</a> arriving from the other vendor, with the daily thread cap standing in for Cursor&rsquo;s stated ceiling of about 100 PRs a day. <em>Updated Sep 18:</em> the documentation adds that each thread can decompose its own work using subagents, loops and workflows, and that threads draw on shared memory rather than independent context &mdash; so the coordinator delegates, and the delegates delegate again.</p>
+            <div class="sources"><a href="https://claude.com/blog/projects-redesigned">Anthropic</a> &middot; <a href="https://code.claude.com/docs/en/claude-projects">Docs</a> &middot; <span class="via">via MarkTechPost (Sep 17), TLDR AI (Sep 18), The Code (Sep 18)</span></div>
+          </article>
 
           <article class="story" id="arslan-fleet-commands">
             <span class="when">2026-09-11</span>
@@ -1129,6 +1161,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#claude-ai-3x-faster">Anthropic made claude.ai about 3x faster in two weeks with 3,000+ Claude-landed changes</a></span></li>
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#anthropic-ci-test-impact-analysis">Anthropic&rsquo;s test suite grew 10x in six months as Claude wrote 80% of its code</a></span></li>
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#claude-code-cloud-sessions-ga">Claude Code cloud sessions reach general availability, each on its own branch</a></span></li>
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#claude-api-prompt-audit">The claude-api skill&rsquo;s prompt-audit rewrites CLAUDE.md and skill files for a new model</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#ossrules">ossrules.md collects the AGENTS.md, CLAUDE.md and skill files of 100 open-source projects</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#liteparse">LlamaIndex LiteParse parses PDFs and Office files locally with bounding boxes and no LLM</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#step-code">StepFun open-sources Step Code, a terminal coding agent with subagents, MCP and a /goal mode</a></span></li>

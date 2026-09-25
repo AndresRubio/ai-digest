@@ -30,12 +30,13 @@
     </aside>
     <main>
       <h1>Applications &amp; case studies</h1>
-      <div class="meta">Last updated: 2026-09-22</div>
+      <div class="meta">Last updated: 2026-09-25</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s single item changes what &ldquo;applying a model&rdquo; means on this page. Anthropic confirmed it runs a <strong>wet biology lab in the Bay Area</strong> where its models drive physical experiments, focused on fundamental biology rather than drug discovery, with some work done with external partners &mdash; and opened a <strong>Life Sciences Verification</strong> programme giving vetted biology researchers access to its most capable models. Every other entry here is a model reading data someone else produced; this puts the instrument, the experimental design and the training loop inside one company. The verification programme is the same movement seen from the outside: capability on biological work is now rationed by who the lab agrees to vet. Nothing has been published about experiments, results or throughput, so the confirmed facts are the lab&rsquo;s existence and its stated scope.</p>
-        <p>Today&rsquo;s cycle puts a number on the thing every clinical deployment on this page has quietly assumed away. A London teaching hospital reviewed the notes of <strong>516 patients</strong> a year after going live on Epic: the problem lists carried <strong>2,841 diagnoses</strong>, chart review of the free text found <strong>1,722 more</strong>, and only <strong>62% of what clinicians documented ever reached a structured field</strong>. The missing 38% is not a random sample &mdash; it is what a clinician wrote out instead of coding. Any model trained or evaluated on the structured record is therefore working from three-fifths of the clinical picture, which reframes document understanding in this setting from a convenience to the difference between reading the record and reading a summary of it. One hospital and one EHR, so treat the ratio as an example rather than a rate.</p>
+        <p>Today&rsquo;s entry is the first on this page where the model&rsquo;s contribution is a finding rather than throughput or access. Anthropic says Claude autonomously identified an <a href="#claude-novel-enzyme-system">enzyme system</a> (Sep 24) built on a known reverse transcriptase, whose defining features &mdash; an array of non-coding DNA repeats and an accessory protein of unknown function &mdash; nobody had noticed; Anthropic calls it programmable, able to cut, copy and paste DNA, with its biological role still unknown. It lands three days after the same company confirmed the wet lab where its models run experiments, and the pairing is the point: a pattern found in sequence data is what that lab exists to test, and no such test is reported yet.</p>
+        <p>The Sep 21 item changed what &ldquo;applying a model&rdquo; means on this page. Anthropic confirmed it runs a <strong>wet biology lab in the Bay Area</strong> where its models drive physical experiments, focused on fundamental biology rather than drug discovery, with some work done with external partners &mdash; and opened a <strong>Life Sciences Verification</strong> programme giving vetted biology researchers access to its most capable models. Every other entry here is a model reading data someone else produced; this puts the instrument, the experimental design and the training loop inside one company. The verification programme is the same movement seen from the outside: capability on biological work is now rationed by who the lab agrees to vet. Nothing has been published about experiments, results or throughput, so the confirmed facts are the lab&rsquo;s existence and its stated scope.</p>
+        <p>The Sep 19 cycle put a number on the thing every clinical deployment on this page has quietly assumed away. A London teaching hospital reviewed the notes of <strong>516 patients</strong> a year after going live on Epic: the problem lists carried <strong>2,841 diagnoses</strong>, chart review of the free text found <strong>1,722 more</strong>, and only <strong>62% of what clinicians documented ever reached a structured field</strong>. The missing 38% is not a random sample &mdash; it is what a clinician wrote out instead of coding. Any model trained or evaluated on the structured record is therefore working from three-fifths of the clinical picture, which reframes document understanding in this setting from a convenience to the difference between reading the record and reading a summary of it. One hospital and one EHR, so treat the ratio as an example rather than a rate.</p>
         <p>The day&rsquo;s other deployment is engineering throughput rather than method. Anthropic says Claude worked over <strong>more than 30 biomolecular models</strong> for a <strong>4&times; speed increase</strong> and a low-memory mode that predicts larger systems on <strong>a single NVIDIA GPU</strong>, with the optimisations open-sourced and a protein-design competition co-sponsored with Adaptyv Bio carrying up to $1 million in Claude credits. Collapsing a multi-GPU requirement to one card changes who can run structure prediction more than the wall-clock multiple does, which is the same pattern as the free-text finding above: the constraint that actually bound was infrastructural, not intellectual. No per-model breakdown is published, so the 4&times; is an aggregate over a set Anthropic picked, and a prize denominated in its own credits is partly a distribution move.</p>
         <p>Today's deployments all answer the same question in the same way: the model was never the missing piece, the encoded knowledge was. Pinecone published the sharpest numbers on this page for a support agent after adding <strong>Nexus</strong>, a curated artifact the agent queries on every ticket &mdash; eligible tickets reaching the agent up from 76.5% to 94.2%, tickets it meaningfully assists on from 60.5% to 87.8%, and tickets closed with no person involved from 24.6% to 55.1%. Nexus holds the join keys, the freshness caveats and the queries that turn a vague report into an answerable one: what a support engineer knows and what was written down nowhere. That is why the assist rate and the unassisted-closure rate rose together rather than trading off, and why the finding generalises &mdash; retrieval over the documentation was never the blocker, because the documentation never held the operational knowledge. Anthropic's <strong>Salesforce in Claude</strong> beta is the packaged form of the same bet, putting CRM records, pipeline actions, Slack deal context and 37 named sales skills inside the assistant, where the skill count is a claim about decomposing a job rather than about the model. Its unexamined half is the write path, since an assistant that updates pipeline records is altering what other processes read as ground truth. And <strong>Taste Labs</strong>' Brand API adds the check that design agents have lacked: extract brand context, search a curated index, and verify output against the brand before it ships &mdash; making conformance a result rather than a hope, though nothing published says what conformance is measured against.</p>
         
@@ -71,7 +72,7 @@
           <li><a href="#healthcare-ai-and-deployment-economics">Healthcare AI &amp; deployment economics <span class="n">10</span></a></li>
           <li><a href="#knowledge-work-productivity">Knowledge-work productivity <span class="n">7</span></a></li>
           <li><a href="#agentic-data-science">Agentic data science <span class="n">1</span></a></li>
-          <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">9</span></a></li>
+          <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">10</span></a></li>
           <li><a href="#product-search-and-e-commerce">Product search &amp; e-commerce <span class="n">1</span></a></li>
           <li><a href="#access-to-frontier-models-in-research">Access to frontier models in research <span class="n">1</span></a></li>
         </ul>
@@ -399,6 +400,14 @@
         <h3>Drug discovery &amp; biomedicine</h3>
         <p class="lead">Discovery runs on a different clock from a deployed agent: wet-lab validation, trials, and one result amortised across a whole drug programme. Most entries here announce a capability rather than report a validated outcome, so the question each one has to answer is what has been tested outside the model.</p>
 
+        <article class="story" id="claude-novel-enzyme-system">
+          <span class="when">2026-09-24</span>
+          <h4><a href="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system">Claude flags a previously unnoticed enzyme system with CRISPR-like DNA repeats</a></h4>
+          <p>Anthropic says Claude autonomously identified an enzyme system built around a <strong>reverse transcriptase already known to science</strong>, whose defining features nobody had noticed: an associated <strong>array of non-coding DNA repeats</strong> and an <strong>accessory protein of unknown function</strong>. Anthropic describes the system as programmable, able to cut, copy and paste DNA, and says its biological function is still unknown.</p>
+          <p>It is the first entry here where the model&rsquo;s contribution is a finding rather than throughput or access, and it is also the section&rsquo;s standing caveat in its sharpest form: the discovery is a pattern noticed in sequence data, and what has been tested outside the model is what the announcement is thinnest on.</p>
+          <div class="sources"><a href="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 24), TLDR (Sep 24)</span></div>
+        </article>
+
         <article class="story" id="anthropic-wet-lab">
           <span class="when">2026-09-21</span>
           <h4><a href="https://techcrunch.com/2026/09/18/anthropic-is-operating-a-lab-that-conducts-biology-experiments/">Anthropic confirms a Bay Area wet lab where its models run physical biology experiments</a></h4>
@@ -416,17 +425,17 @@
           <div class="sources"><a href="https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
         </article>
 
-        <article class="story" id="genome-lm-cancer-vaccine">
-          <span class="when">2026-09-10</span>
-          <h4><a href="https://www.radicalnumerics.ai/blog/omnii-cancer-vaccines">Genome language models as a direct test: designing a cancer vaccine for one specific patient</a></h4>
-          <p>A long analysis frames personalised cancer-vaccine design as an unusually clean test of whether genome language models have learned transferable biology rather than pattern-matched their corpus. The pipeline has five steps that each demand different knowledge &mdash; identify the patient&rsquo;s mutations, predict which resulting peptides are presented on the cell surface, predict which of those provoke an immune response, rank the targets, and design the RNA that encodes them &mdash; and a model has to be right at every stage for the output to be a candidate medicine rather than a plausible-looking sequence.</p>
-          <p>That is the property that makes it a test: the target is a single person, so there is no population-level average to hide a wrong answer in &mdash; which is exactly what the benchmark-shaped results in this field usually lack.</p>
-          <div class="sources"><a href="https://www.radicalnumerics.ai/blog/omnii-cancer-vaccines">Radical Numerics</a> (analysis post) &middot; <span class="via">via TLDR (Sep 10)</span></div>
-        </article>
-
 
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="genome-lm-cancer-vaccine">
+            <span class="when">2026-09-10</span>
+            <h4><a href="https://www.radicalnumerics.ai/blog/omnii-cancer-vaccines">Genome language models as a direct test: designing a cancer vaccine for one specific patient</a></h4>
+            <p>A long analysis frames personalised cancer-vaccine design as an unusually clean test of whether genome language models have learned transferable biology rather than pattern-matched their corpus. The pipeline has five steps that each demand different knowledge &mdash; identify the patient&rsquo;s mutations, predict which resulting peptides are presented on the cell surface, predict which of those provoke an immune response, rank the targets, and design the RNA that encodes them &mdash; and a model has to be right at every stage for the output to be a candidate medicine rather than a plausible-looking sequence.</p>
+            <p>That is the property that makes it a test: the target is a single person, so there is no population-level average to hide a wrong answer in &mdash; which is exactly what the benchmark-shaped results in this field usually lack.</p>
+            <div class="sources"><a href="https://www.radicalnumerics.ai/blog/omnii-cancer-vaccines">Radical Numerics</a> (analysis post) &middot; <span class="via">via TLDR (Sep 10)</span></div>
+          </article>
 
           <article class="story unlinked" id="alphagenome-atlas">
             <span class="when">2026-09-09</span>
@@ -506,6 +515,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#claude-novel-enzyme-system">Claude flags a previously unnoticed enzyme system with CRISPR-like DNA repeats</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#anthropic-wet-lab">Anthropic confirms a Bay Area wet lab where its models run physical biology experiments</a></span></li>
         <li><span class="date">2026-09-19</span><span class="label"><a href="#epic-problem-list-gap">A year after go-live, 38% of documented diagnoses existed only in free text</a></span></li>
         <li><span class="date">2026-09-18</span><span class="label"><a href="#claude-biomolecular-modelling">Claude optimised 30+ biomolecular models for a 4&times; speedup and a single-GPU low-memory mode</a></span></li>
