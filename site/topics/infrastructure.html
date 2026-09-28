@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-09-24</div>
+      <div class="meta">Last updated: 2026-09-28</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is three changes below the model. vLLM&rsquo;s <a href="#vllm-hardware-agnostic">hardware-agnostic layers</a> reach 96.6% of native efficiency on H100 while staying torch-compilable, and open a new <a href="#serving-across-accelerators">Serving across accelerators</a> section: portability is now priced at a few percent on the hardware the native kernels were written for. A new paper <a href="#moe-fixed-memory-training">bounds MoE training memory</a> &mdash; expert dispatch, vocabulary projection, checkpointing and optimizer state &mdash; by scheduling alone, without approximating the computation. And <a href="#djev-cloud-run">djev on Cloud Run</a> serves a Jev-compatible decision model for about $3 an hour at 35&ndash;60ms per decision, the self-host alternative to calling the closed API.</p>
+        <p>Today&rsquo;s cycle is kernels and orbits. Inferact&rsquo;s <a href="#tpu-megakernels">TPU v7 megakernels</a> push Kimi K3 past 700 tokens per second with speculative decoding and claim 1.4&ndash;2&times; a GB200 at batch sizes 1 to 8, carrying the megakernel argument Cohere made on GPUs to a second accelerator, on the vendor&rsquo;s own comparison. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> launches four TPUs on a kilowatt of solar on October 1 &mdash; the far end of this page&rsquo;s claim that the binding constraint keeps moving off the die, now to power and heat in orbit. And <a href="#jev-router">jev-router</a> on OpenRouter lets a decision model choose the model and effort before generation, a routing layer that acts on the cache economics below without yet publishing what it saves.</p>
+        <p>The Sep 23 cycle was three changes below the model. vLLM&rsquo;s <a href="#vllm-hardware-agnostic">hardware-agnostic layers</a> reach 96.6% of native efficiency on H100 while staying torch-compilable, and open a new <a href="#serving-across-accelerators">Serving across accelerators</a> section: portability is now priced at a few percent on the hardware the native kernels were written for. A new paper <a href="#moe-fixed-memory-training">bounds MoE training memory</a> &mdash; expert dispatch, vocabulary projection, checkpointing and optimizer state &mdash; by scheduling alone, without approximating the computation. And <a href="#djev-cloud-run">djev on Cloud Run</a> serves a Jev-compatible decision model for about $3 an hour at 35&ndash;60ms per decision, the self-host alternative to calling the closed API.</p>
         <p>The Sep 22 arrival was silicon, reported in exactly the way this page keeps warning about. Alibaba&rsquo;s <a href="#zhenwu-v900">Zhenwu V900</a> accelerator is said to triple its predecessor&rsquo;s performance and to drive 20GW of Alibaba data centres by 2032 &mdash; a comparison against its own last chip, with no memory or interconnect figure attached, which on this page&rsquo;s running argument are the numbers that actually bind.</p>
         <p>The Sep 21 cycle pointed the agents at the serving stack itself. Z.ai says a <strong>GLM-5.3-powered Infra Agent</strong> built the production serving infrastructure for GLM-5.3-Flash across <strong>more than 100,000 Chinese accelerators in under two weeks</strong>, working from dense feedback on kernel fixes and system-level optimisation, and <strong>tripled throughput</strong> in the process. Z.ai frames it as a step toward recursive self-improvement; the sober reading is that serving is the part of the stack with the tightest feedback loop and the most mechanical search space, which is what makes it the first place an agent could plausibly do this. The baseline it tripled is unpublished and every figure is the vendor&rsquo;s, so what is solid here is the shape of the workload, not the multiple.</p>
         <p>At the other end of the scale, local inference crossed a usability line rather than a capability one. Inco AI and LM Studio&rsquo;s <strong>Splash Engine</strong> decodes <strong>Qwen3.8-27B at 74 tokens per second on a 48GB M5 Pro</strong>, with a stated floor of an M3, macOS 26.4+ and 36GB of unified memory &mdash; which is really a statement about which laptops are inference hardware now. Set beside <a href="model-releases.html">PrismML&rsquo;s Bonsai 2 27B</a>, arriving the same week at 5.93GB against 53.80GB in FP16, the two answers to the same machine separate cleanly: compress the weights and pay for it in long-horizon agent work, or rewrite the runtime and keep full precision but need the memory. Both now exist for the same model family, which is the first time this section can put the choice that plainly.</p>
-        <p>The siting question moved too. Crusoe, which built OpenAI&rsquo;s Abilene supercomputer, is now factory-manufacturing small data centres, loading them onto flatbed trucks and dropping them wherever power is available, on the reasoning that <strong>inference runs on far fewer chips than training</strong> and that construction schedules are the slower constraint. That is the training/inference split turning into a real-estate decision, and it points the same way as the latency work this section tracks: serving capacity wants to sit near the power and the users, not near the training cluster. No unit economics have been published for the small builds, so the comparison to Abilene remains the company&rsquo;s own.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The siting question moved too. Crusoe, which built OpenAI&rsquo;s Abilene supercomputer, is now factory-manufacturing small data centres, loading them onto flatbed trucks and dropping them wherever power is available, on the reasoning that <strong>inference runs on far fewer chips than training</strong> and that construction schedules are the slower constraint. That is the training/inference split turning into a real-estate decision, and it points the same way as the latency work this section tracks: serving capacity wants to sit near the power and the users, not near the training cluster. No unit economics have been published for the small builds, so the comparison to Abilene remains the company&rsquo;s own.</p>
           <p>An earlier cycle was Kubernetes quietly winning the layer under agents. Google put <strong>Agent Substrate</strong> on GKE &mdash; an open-source, secure-by-default agent execution runtime holding millions of sandboxes at roughly ten times standard container density, with sub-500ms resume, over 500 suspend/resume activations per second and zero-trust kernel and network isolation as a native property. Microsoft open-sourced <strong>TauGrid</strong> the same week, an MIT-licensed Helm install bundling the <code>tau</code> CLI, Kueue, KubeRay, GPU health monitoring and observability, with telemetry off by default. Neither claims novelty in the components; both put the agent sandbox and the GPU queue inside the cluster manager the rest of the estate already runs. Density and resume latency are the numbers to hold onto, because they decide whether an idle agent session can be parked rather than kept warm &mdash; the difference between paying for concurrency and paying for occupancy, and the cheapest available answer to a <a href="agents.html">$19,000 swarm refactor</a>.</p>
           <p>Two measurements land beside them, both notable for publishing the unflattering half. Meta's <strong>ZGateway</strong> fronts ZippyDB with a stateless proxy tier at over a billion operations per second, carrying about 40% of traffic at roughly 6% overhead &mdash; not deployable outside Meta, so the artifact is the 6% rather than the code, and it is the figure this pattern usually leaves unstated. Nunchux AI's <strong>VC-Attention</strong> is a training-free low-bit attention kernel for video diffusion transformers: Wan2.2 attention runs 1.59&times; faster on a B200 at 8-bit and 3.58&times; on an RTX 5090 at 4-bit, but end to end those become 1.19&times; and 1.70&times;. Quoting both numbers is the honest move and a rare one; a kernel speedup reported alone routinely implies several times the gain a user would actually see. No kernel has been released publicly yet, so the figures remain the authors' own.</p>
           <p>Today the retrieval layer gets its cost model rewritten twice, once by a vendor and once by a customer who stopped being one. Pinecone now meters reads on <strong>egress</strong> as well as on queries, with monthly allowances of 1&nbsp;GB on Starter, 10&nbsp;GB on Builder and 100&nbsp;GB on Standard and Enterprise; past the allowance the upper tiers keep serving and bill at the published rate, while Starter and Builder block reads that return record data until the next period &mdash; an overage that becomes an outage. What it prices is not how many queries you run but how much record data each one hands back, which makes the ordinary fetch-then-rerank pipeline expensive by design and turns returning identifiers and hydrating from cheaper storage into a cost decision. Perplexity answered the same arithmetic by building: <strong>CobbleDB</strong>, its own key-value store for serving prepared web content, took median batch reads from 31.4ms to 5.60ms and p99 from 123ms to 24.2ms against DynamoDB at an estimated 20%+ lower cost, with open-sourcing planned. Batch reads decide search latency because a query fans out and the p99 sets the answer, so the five-fold tail cut is the bigger result. Both are the same judgement from opposite sides of the invoice &mdash; a managed service is right until the access pattern is narrow and enormous, at which point its generality is the thing being paid for.</p>
@@ -76,11 +77,11 @@
           <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">7</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">1</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">5</span></a></li>
-          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">1</span></a></li>
+          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">2</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">2</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">18</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">19</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">8</span></a></li>
-          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">6</span></a></li>
+          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">7</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">2</span></a></li>
           <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">10</span></a></li>
           <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">3</span></a></li>
@@ -281,6 +282,13 @@
         <h3>Serving across accelerators</h3>
         <p class="lead">Portability as its own serving problem: write a model once and run it on whatever accelerator is in the rack, not only the GPU its kernels were tuned for. Judge entries on the efficiency given up against the native path, and on which hardware that figure was measured.</p>
 
+        <article class="story" id="tpu-megakernels">
+          <span class="when">2026-09-25</span>
+          <h4><a href="https://inferact.ai/blog/tpu-megakernels">Inferact&rsquo;s TPU v7 megakernels run Kimi K3 above 700 tokens per second with speculative decoding</a></h4>
+          <p><strong>inferact/tpu-megakernels</strong> is a set of megakernels for TPU v7; its Kimi K3 implementation exceeds 700 tokens per second with speculative decoding, and without it the K3 and Qwen 3.8 27B kernels deliver roughly 1.4&ndash;2&times; the decode throughput of a GB200 baseline at batch sizes 1 to 8. It carries the approach <a href="#cohere-megakernel">Cohere took on GPUs</a> to a different accelerator, and the comparison is Inferact&rsquo;s own and stops at batch size 8.</p>
+          <div class="sources"><a href="https://inferact.ai/blog/tpu-megakernels">Inferact</a> &middot; <span class="via">via TLDR AI (Sep 25)</span></div>
+        </article>
+
         <article class="story" id="vllm-hardware-agnostic">
           <span class="when">2026-09-23</span>
           <h4><a href="https://pytorch.org/blog/hardware-agnostic-models-in-vllm/">vLLM&rsquo;s hardware-agnostic layers reach 96.6% of native efficiency on H100</a></h4>
@@ -314,6 +322,13 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story" id="suncatcher">
+          <span class="when">2026-09-25</span>
+          <h4><a href="https://arstechnica.com/google/2026/09/googles-first-suncatcher-orbital-data-center-test-launches-october-1/">Google&rsquo;s first Suncatcher satellite launches October 1 with four TPUs on a kilowatt of solar</a></h4>
+          <p>Project Suncatcher, Google&rsquo;s effort to design orbital AI data centres, launches its first experimental satellite on October 1: a refrigerator-sized craft carrying four custom TPU accelerators powered by about one kilowatt of solar panels. It will test several technologies over a few months of operation, toward a constellation of AI satellites.</p>
+          <div class="sources"><a href="https://arstechnica.com/google/2026/09/googles-first-suncatcher-orbital-data-center-test-launches-october-1/">Ars Technica</a> &middot; <span class="via">via TLDR (Sep 25)</span></div>
+        </article>
+
         <article class="story" id="zhenwu-v900">
           <span class="when">2026-09-22</span>
           <h4><a href="https://finance.yahoo.com/technology/ai/articles/alibaba-unveils-ai-chip-drive-022139864.html">Alibaba&rsquo;s Zhenwu V900 triples its predecessor, aimed at 20GW of data centres by 2032</a></h4>
@@ -329,16 +344,16 @@
           <div class="sources"><a href="https://tldr.tech/tech/2026-09-18">TLDR (Sep 18)</a> &middot; <span class="via">via TLDR (Sep 18)</span></div>
         </article>
 
-        <article class="story" id="x402-pay-per-crawl">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://suganthan.com/blog/x402-pay-per-crawl/">A developer charged AI agents a penny a page over x402, and an agent paid it</a></h4>
-          <p>A developer put a price on their own pages using the <strong>x402</strong> protocol, which states a charge before an agent reads the content: if the agent wants access, it pays. No real payments have arrived yet, but the mechanism works end to end in testing, including an agent completing the payment and proceeding.</p>
-          <p>Charging is the third option beside blocking and absorbing the <a href="#git-kernel-org-crawlers">crawler bill</a>, and it is the only one available to publishers with no leverage: a large publisher negotiates a licence, and everyone else has had nothing between an open door and a robots.txt nobody honours. What has not been demonstrated is the part that decides whether it matters &mdash; whether a commercial crawler pays when the same facts sit unpriced somewhere else.</p>
-          <div class="sources"><a href="https://suganthan.com/blog/x402-pay-per-crawl/">Suganthan</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="x402-pay-per-crawl">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://suganthan.com/blog/x402-pay-per-crawl/">A developer charged AI agents a penny a page over x402, and an agent paid it</a></h4>
+            <p>A developer put a price on their own pages using the <strong>x402</strong> protocol, which states a charge before an agent reads the content: if the agent wants access, it pays. No real payments have arrived yet, but the mechanism works end to end in testing, including an agent completing the payment and proceeding.</p>
+            <p>Charging is the third option beside blocking and absorbing the <a href="#git-kernel-org-crawlers">crawler bill</a>, and it is the only one available to publishers with no leverage: a large publisher negotiates a licence, and everyone else has had nothing between an open door and a robots.txt nobody honours. What has not been demonstrated is the part that decides whether it matters &mdash; whether a commercial crawler pays when the same facts sit unpriced somewhere else.</p>
+            <div class="sources"><a href="https://suganthan.com/blog/x402-pay-per-crawl/">Suganthan</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
+          </article>
 
           <article class="story" id="cloudflare-training-consent">
             <span class="when">2026-09-16</span>
@@ -540,6 +555,13 @@
         <h3>Cache &amp; context economics</h3>
         <p class="lead">For a long agent run the rate on the model card is nearly irrelevant: the bill is set by what gets re-read, at the cached rate or the fresh one. These entries make that visible, shrink it, route around it &mdash; and then point out that the hit is asserted by the party billing you.</p>
 
+        <article class="story" id="jev-router">
+          <span class="when">2026-09-27</span>
+          <h4><a href="https://openrouter.ai/typesafe/jev-router">OpenRouter&rsquo;s typesafe/jev-router has Jev pick the model and reasoning effort before any generation</a></h4>
+          <p>TypeSafe AI and OpenRouter shipped <strong>typesafe/jev-router</strong>, a cache-aware router in which Jev scores a request and picks the model and reasoning effort before the LLM call, balancing quality, speed and cost. Deciding first avoids spending generation tokens to discover which model should have been called, though no savings figure accompanies the launch.</p>
+          <div class="sources"><a href="https://openrouter.ai/typesafe/jev-router">OpenRouter</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
+        </article>
+
         <article class="story" id="spotify-portal">
           <span class="when">2026-09-14</span>
           <h4><a href="https://engineering.atspotify.com/2026/9/portal-by-spotify-cut-my-claude-code-token-usage-by-90">Spotify cut routine Claude Code token spend by roughly 90% by routing file reads to a cheaper model</a></h4>
@@ -557,16 +579,16 @@
           <div class="sources"><a href="https://siddhantkhare.com/writing/kv-cache-truth-auditor">Siddhant Khare</a> &middot; <span class="via">via TLDR AI (Sep 14)</span></div>
         </article>
 
-        <article class="story" id="openrouter-deployment-variance">
-          <span class="when">2026-09-11</span>
-          <h4><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">One OpenRouter model ID is several different deployments, and the differences are load-bearing</a></h4>
-          <p>Mohamed Moustafa catalogues what OpenRouter&rsquo;s automatic fallback and cost-based routing costs in determinism. The same model ID can be served by providers running different inference software with different optimisations and settings, so identical requests behave differently depending on where they land; some providers of a vision model lack vision capability altogether; and the reasoning-effort parameter is interpreted inconsistently between them.</p>
-          <p>The mitigations sit in the API rather than in the abstraction: <code>provider.only</code> pins a request to chosen providers, and the <code>/endpoints</code> method lists which are available for a model ID. A model ID names a family of deployments, not one, so anything meant to be reproducible &mdash; <a href="#cache-hit-not-evidence">a cache measurement</a> above all &mdash; has to pin which.</p>
-          <div class="sources"><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">Simon Willison (Sep 14)</a></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="openrouter-deployment-variance">
+            <span class="when">2026-09-11</span>
+            <h4><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">One OpenRouter model ID is several different deployments, and the differences are load-bearing</a></h4>
+            <p>Mohamed Moustafa catalogues what OpenRouter&rsquo;s automatic fallback and cost-based routing costs in determinism. The same model ID can be served by providers running different inference software with different optimisations and settings, so identical requests behave differently depending on where they land; some providers of a vision model lack vision capability altogether; and the reasoning-effort parameter is interpreted inconsistently between them.</p>
+            <p>The mitigations sit in the API rather than in the abstraction: <code>provider.only</code> pins a request to chosen providers, and the <code>/endpoints</code> method lists which are available for a model ID. A model ID names a family of deployments, not one, so anything meant to be reproducible &mdash; <a href="#cache-hit-not-evidence">a cache measurement</a> above all &mdash; has to pin which.</p>
+            <div class="sources"><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">Simon Willison (Sep 14)</a></div>
+          </article>
 
           <article class="story" id="pi-cache-miss-detection">
             <span class="when">2026-09-11</span>
@@ -746,6 +768,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-27</span><span class="label"><a href="#jev-router">OpenRouter&rsquo;s typesafe/jev-router has Jev pick the model and reasoning effort before any generation</a></span></li>
+        <li><span class="date">2026-09-25</span><span class="label"><a href="#suncatcher">Google&rsquo;s first Suncatcher satellite launches October 1 with four TPUs on a kilowatt of solar</a></span></li>
+        <li><span class="date">2026-09-25</span><span class="label"><a href="#tpu-megakernels">Inferact&rsquo;s TPU v7 megakernels run Kimi K3 above 700 tokens per second with speculative decoding</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#vllm-hardware-agnostic">vLLM&rsquo;s hardware-agnostic layers reach 96.6% of native efficiency on H100</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#djev-cloud-run">Google puts a Jev-compatible djev on Cloud Run for about $3 an hour</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#moe-fixed-memory-training">Scheduling bounds four MoE-training memory bottlenecks without approximating the computation</a></span></li>

@@ -30,11 +30,11 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-09-24</div>
+      <div class="meta">Last updated: 2026-09-28</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s single entry takes the train-in-the-harness argument to its limit. Perplexity trains its <a href="#perplexity-computer-real-world-training">Computer agent</a> on its own production traffic: rejection-sampling fine-tuning on sessions that succeeded, and hint-guided self-distillation on failures a user corrected. That makes the product the training environment, so nothing the deployed agent meets is missing from it &mdash; and it depends on users correcting failures, a supply only a product with traffic has. The write-up reports the method, not the gain.</p>
+        <p>Today&rsquo;s cycle gives the train-in-the-harness argument its first number and publishes the layer beneath it. Perplexity trains its <a href="#perplexity-computer-real-world-training">Computer agent</a> on its own production traffic &mdash; rejection-sampling fine-tuning on sessions that succeeded, hint-guided self-distillation on failures a user corrected &mdash; and the result is now reported: live tool-call failures fell from 2.24% to 1.77% between two checkpoints of one GLM 5.2 base, while user dissatisfaction did not move. That is a modest operational gain from the most faithful environment possible, and one only a product with traffic can buy. DeepSeek&rsquo;s <a href="#dsec">DSec</a> publishes the sandbox under its agentic RL: one SDK across function-calling, container, microVM and full-VM backends, with reward-hacking mitigation built into the environment rather than left to the grader &mdash; the fullest account yet of the layer this page&rsquo;s RL-environment section says nobody has standardised.</p>
         <p>The Sep 22 cycle was two releases that treat the environment as the thing worth publishing. Xiaomi&rsquo;s <a href="#mimo-v2-6-rl">MiMo-V2.6 report</a> (Sep 22) scales RL compute, environment diversity and grader compute together and names what kept training stable &mdash; a frozen MoE router and a layered defence against reward hacking &mdash; with the environments and framework open-sourced; the resulting models are on <a href="model-releases.html">Model releases</a>. Qwen&rsquo;s <a href="#recreationworld">RecreationWorld</a> (Sep 22) builds environments out of existing software: explore an application&rsquo;s GUI, rebuild it with coding tools, verify the result visually, so the reference application doubles as its own grader. Neither publishes a training result of its own here; both are bets that the reusable asset is the environment, not the algorithm.</p>
         <p>The Sep 21 arrival was a release of the missing half. ByteDance Seed and Tsinghua SIA published <strong>DAPO</strong> (Sep 21) as a complete open RL system &mdash; algorithm, dataset and training infrastructure &mdash; reporting <strong>50 points on AIME 2024 from the Qwen2.5-32B base model</strong>. DAPO has appeared on this page for months as a name inside the policy-gradient lineage, one of several refinements to loss aggregation and clipping over GRPO. Shipping the data and the plumbing alongside it is the difference between a citation and a reproduction, and it lands in the same section as Miles, Verifiers v1 and AgentENV, each of which closed a different part of the same gap. The pattern across all four is that the published result is no longer the contribution; the machinery that produced it is.</p>
         <p>An earlier single entry was a reframing rather than a result about training quality. Google Research's <strong>Retrieve-for-Train</strong> takes reinforcement learning out of the serving path: the RL runs once, offline, and is compiled into a 53.9M-parameter diffusion model that generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 that is 0.07 seconds against roughly 1.46, reported as a 12&times; to 20&times; speedup. Most of this page treats RL as something a model carries into production &mdash; a policy learned in post-training and executed at inference. R4T points out that where RL learns a <em>search</em> policy, it need not run as a policy at all: it can be amortised into a generator, turning an inference-time cost into a training-time one. The limit is built into the trade, since it only works where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns. For any fan-out settled before the results arrive it is the right shape, and it is the first item on this page to treat RL as a compilation step.</p>
@@ -67,7 +67,7 @@
           <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">3</span></a></li>
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
-          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">6</span></a></li>
+          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">7</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">3</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
           <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">4</span></a></li>
@@ -102,8 +102,8 @@
         <article class="story" id="perplexity-computer-real-world-training">
           <span class="when">2026-09-23</span>
           <h4><a href="https://www.perplexity.ai/hub/blog/learning-from-real-world-experience">Perplexity trains Computer on real sessions, user-corrected failures included</a></h4>
-          <p>Perplexity combined <strong>rejection-sampling fine-tuning</strong> on successful sessions with <strong>hint-guided self-distillation</strong> on failures a user corrected, so its Computer agent learns from both halves of production traffic rather than from a synthetic environment. It is the limit case of training in the harness the agent runs in &mdash; the harness is the product &mdash; and the summary reports the method, not a benchmark gain.</p>
-          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/learning-from-real-world-experience">Perplexity</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
+          <p>Perplexity combined <strong>rejection-sampling fine-tuning</strong> on successful sessions with <strong>hint-guided self-distillation</strong> on failures a user corrected, so its Computer agent learns from both halves of production traffic rather than from a synthetic environment. It is the limit case of training in the harness the agent runs in &mdash; the harness is the product. The reported gain is modest and operational: live tool-call failures fell from 2.24% to 1.77% between two trained checkpoints of the same GLM 5.2 base, user dissatisfaction did not move significantly, and the weights are not released.</p>
+          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/learning-from-real-world-experience">Perplexity</a> &middot; <a href="https://arxiv.org/abs/2601.18734">OPSD paper</a> &middot; <span class="via">via TLDR AI (Sep 23), MarkTechPost (Sep 25)</span></div>
         </article>
 
         <article class="story" id="salesforce-distillation-harness">
@@ -259,6 +259,13 @@
         <h3>RL environment infrastructure</h3>
         <p class="lead">Open implementations of the same layer &mdash; define the task, run the agent, score the attempt, update the weights &mdash; and no shared standard between them, which is roughly where the serving layer stood two years ago. Judge each on what it makes reusable, not on the algorithm it happens to ship with.</p>
 
+        <article class="story" id="dsec">
+          <span class="when">2026-09-27</span>
+          <h4><a href="https://arxiv.org/abs/2609.22978">DeepSeek&rsquo;s DSec paper describes the sandbox layer behind its large-scale agentic RL</a></h4>
+          <p>DeepSeek published <strong>DSec</strong>, the sandbox infrastructure it uses for large-scale agentic training: one SDK over function-calling, container, microVM and full-VM backends that handles placement, lifecycle, memory sharing and image loading. It also treats reward-hacking mitigation as a sandbox responsibility, which makes the environment layer part of the defence rather than only the grader.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2609.22978">arXiv</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
+        </article>
+
         <article class="story" id="recreationworld">
           <span class="when">2026-09-22</span>
           <h4><a href="https://github.com/QwenLM/RecreationWorld">Qwen&rsquo;s RecreationWorld trains computer-use agents to rebuild apps across five platforms</a></h4>
@@ -274,18 +281,16 @@
           <div class="sources"><a href="https://github.com/BytedTsinghua-SIA/DAPO">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 21)</span></div>
         </article>
 
-
-        <article class="story unlinked" id="agent-lightning-v1">
-          <span class="when">2026-08-20</span>
-          <h4>Agent Lightning v1.0 lifts Qwen3.5-9B by 14.6 points on SWE-bench Verified with 6K examples</h4>
-          <p>Agent Lightning v1.0 is a 3,500-line framework for harnessed agentic RL, explicitly designed to accept an arbitrary agent harness so that problems like retokenization and training stability can be studied directly rather than hidden. Evaluated across several agent tasks, it improves Qwen3.5-9B on SWE-bench Verified by 14.6 points using just 6,000 training examples.</p>
-          <p>The sample efficiency is the notable figure. This is the framework release behind the <a href="tools-and-devex.html">v1.0.1 skill</a> that later installed into Claude Code, Codex and Cursor.</p>
-          <div class="sources"><span class="via">via TLDR AI (Aug 20) &mdash; no public URL given</span></div>
-        </article>
-
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story unlinked" id="agent-lightning-v1">
+            <span class="when">2026-08-20</span>
+            <h4>Agent Lightning v1.0 lifts Qwen3.5-9B by 14.6 points on SWE-bench Verified with 6K examples</h4>
+            <p>Agent Lightning v1.0 is a 3,500-line framework for harnessed agentic RL, explicitly designed to accept an arbitrary agent harness so that problems like retokenization and training stability can be studied directly rather than hidden. Evaluated across several agent tasks, it improves Qwen3.5-9B on SWE-bench Verified by 14.6 points using just 6,000 training examples.</p>
+            <p>The sample efficiency is the notable figure. This is the framework release behind the <a href="tools-and-devex.html">v1.0.1 skill</a> that later installed into Claude Code, Codex and Cursor.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 20) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="miles-v0-1">
             <span class="when">2026-08-19</span>
@@ -407,6 +412,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-27</span><span class="label"><a href="#dsec">DeepSeek&rsquo;s DSec paper describes the sandbox layer behind its large-scale agentic RL</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#perplexity-computer-real-world-training">Perplexity trains Computer on real sessions, user-corrected failures included</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#recreationworld">Qwen&rsquo;s RecreationWorld trains computer-use agents to rebuild apps across five platforms</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#mimo-v2-6-rl">MiMo-V2.6 keeps scaled RL stable by freezing the MoE router and layering reward-hacking defences</a></span></li>

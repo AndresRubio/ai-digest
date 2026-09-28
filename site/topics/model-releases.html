@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-09-25</div>
+      <div class="meta">Last updated: 2026-09-28</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is speech and cheaper decisions. Google&rsquo;s <a href="#gemini-3-8-flash-tts">Gemini 3.8 Flash TTS and Flash-Lite TTS</a> (Sep 24) design a voice from a text description, take line-by-line direction across 100-plus languages, and clone an authorised voice from a <strong>30-second sample</strong>. The rankings cited are Hume AI&rsquo;s leaderboards as Google reports them, and no price per audio hour came with the launch &mdash; the number this page judges speech on. The System One line gained its cheapest entry: Together AI&rsquo;s <a href="#tev1-4b-experimental">tev1-4B-experimental</a> is a Jev-style classifier on Qwen3.5 4B that cost <strong>$17</strong> to train and charges $0.042 per million input tokens and nothing for output, with no accuracy figure. Fireworks&rsquo; <a href="#ember-1">Ember-1</a> is the post-training route taken by an inference provider rather than a lab: Kimi K3 quality on <strong>40% fewer tokens</strong> by its own measure, served for a two-week research window. The through-line is the one the Opus 5.5 and GPT-6 Sol repricing set two days earlier: releases are argued in cost per task, and in all three the cost is the checkable half.</p>
+        <p>Today&rsquo;s cycle widens the System One line from one vendor&rsquo;s API into a field of small, open decision models. <a href="#clm-8b">CLM-8B</a> puts a 75&nbsp;MB Apache-2.0 head on a frozen Qwen3-8B encoder and matches Jev on two games at up to 9&times; lower latency while trailing on BFCL v4 tool calling; Fastino&rsquo;s <a href="#gliner2-5-decide">GLiNER2.5-Decide</a> answers typed questions in 167&nbsp;ms on a CPU at 340M parameters; and <a href="#julia-1">Julia 1</a> runs at 144.3M on a tablet. Every accuracy number in the cluster still comes from the vendor&rsquo;s own suite, which is the gap the section lead names. Speech gained <a href="#nemotron-3-diarization">Nemotron 3 Diarization</a>, first of 12 systems on Diarization-Bench at 14.72% DER with its one regression disclosed, and <a href="#gemini-3-8-live-avatar">Live Avatar</a> for Gemini 3.8 Live; <a href="#thinkingcap-qwen3-8-27b">ThinkingCap</a> trades 0.86 points of accuracy for 37.2% fewer thinking tokens. <a href="#claude-opus-5-5">Opus 5.5</a> now leads both Artificial Analysis and Vals AI, at a higher cost per task than its token price suggests.</p>
+        <p>The Sep 24 cycle was speech and cheaper decisions. Google&rsquo;s <a href="#gemini-3-8-flash-tts">Gemini 3.8 Flash TTS and Flash-Lite TTS</a> (Sep 24) design a voice from a text description, take line-by-line direction across 100-plus languages, and clone an authorised voice from a <strong>30-second sample</strong>. The rankings cited are Hume AI&rsquo;s leaderboards as Google reports them, and no price per audio hour came with the launch &mdash; the number this page judges speech on. The System One line gained its cheapest entry: Together AI&rsquo;s <a href="#tev1-4b-experimental">tev1-4B-experimental</a> is a Jev-style classifier on Qwen3.5 4B that cost <strong>$17</strong> to train and charges $0.042 per million input tokens and nothing for output, with no accuracy figure. Fireworks&rsquo; <a href="#ember-1">Ember-1</a> is the post-training route taken by an inference provider rather than a lab: Kimi K3 quality on <strong>40% fewer tokens</strong> by its own measure, served for a two-week research window. The through-line is the one the Opus 5.5 and GPT-6 Sol repricing set two days earlier: releases are argued in cost per task, and in all three the cost is the checkable half.</p>
         <p>The Sep 22 cycle was two frontier labs repricing within an hour of each other. Anthropic&rsquo;s <a href="#claude-opus-5-5">Claude Opus 5.5</a> (Sep 22) claims Fable 5.1-level work at <strong>$4/$20 per million tokens</strong>, 40% below Opus 5, with cache reads cut to $0.20 and <strong>66.4% on Terminal-Bench 4.0</strong> against Fable 5.1&rsquo;s 55.8% &mdash; while Anthropic concedes the real-use gap is narrower than that and GPT-6 Astra keeps two benchmarks. OpenAI&rsquo;s <a href="#gpt-6-sol-luna">GPT-6 Sol and Luna</a> (Sep 22) answered at <strong>$2/$10 and $0.10/$0.50</strong>, half GPT-5.6&rsquo;s promotional pricing, with Sol 1.1 points behind Fable 5 on DeepSWE. The through-line is that the frontier tier now competes on what a task costs at a fixed capability rather than on the capability itself. Artificial Analysis&rsquo;s 48 for Sol is the only outside number in either launch, and the longer price curve is on <a href="industry-and-business.html">Industry &amp; business</a>.</p>
         <p>The System One line kept widening underneath. Nokia&rsquo;s <a href="#anyjev">AnyJev</a> makes any open LLM answer in Jev&rsquo;s typed form without training, cutting BANKING77 order-flips from 0.230 to 0.073 on Qwen3-8B; <a href="#jev-omni">Jev-Omni</a> carries the decision format to images, audio and video on Gemma 4 12B, with no accuracy figure; and an outside JevBench now ranks the class (see <a href="evals-and-benchmarks.html">Evals</a>). On speech, Kyutai&rsquo;s <a href="#kyutai-voice-of-reason">Voice of Reason</a> lifts spoken GSM8K from 27.3% to 77.1% with no transcript &mdash; and publishes that a cascaded pipeline still scores 95.7%, which is the honest measure of how far speech-native reasoning has to go.</p>
         <p>The Sep 22 cycle was a lab publishing the recipe along with the weights. Xiaomi&rsquo;s <a href="#mimo-v2-6">MiMo-V2.6-Pro and Flash</a> (Sep 22) are MIT-licensed omni-modal models with a 1M-token context, and Pro&rsquo;s self-reported 53.1 on AutomationBench sits ahead of the Claude Opus 5 score Xiaomi lists beside it; the technical report, RL environments and RL code shipped too, so the result is reproducible in principle rather than merely downloadable &mdash; the method is on <a href="training-and-rl.html">Training &amp; RL</a>. StepFun&rsquo;s <a href="#step-5-preview">Step 5 Preview</a> (600B total, 27B active) claims parity with Kimi K3 at about 2.8&times; lower cost per task, with nothing behind it but a thread.</p>
-        <p>The rest of the cycle filled in stories already here. <a href="#grok-4-7">Grok 4.7</a> gained a CursorBench 4.0 figure &mdash; 46.3% against Grok 4.6&rsquo;s 40.4% &mdash; and a fast variant at double the speed and double the price. <a href="#kev">kev</a> grew from one small checkpoint to 0.6B, 4B and 8B on Qwen 3.5, none yet with an out-of-domain number. And <a href="#jev">Jev</a> acquired its first accuracy figure, about 68% on TypeSafe&rsquo;s own workflow evaluation, along with $5 of starter credit and a signup pause under demand.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The rest of the cycle filled in stories already here. <a href="#grok-4-7">Grok 4.7</a> gained a CursorBench 4.0 figure &mdash; 46.3% against Grok 4.6&rsquo;s 40.4% &mdash; and a fast variant at double the speed and double the price. <a href="#kev">kev</a> grew from one small checkpoint to 0.6B, 4B and 8B on Qwen 3.5, none yet with an out-of-domain number. And <a href="#jev">Jev</a> acquired its first accuracy figure, about 68% on TypeSafe&rsquo;s own workflow evaluation, along with $5 of starter credit and a signup pause under demand.</p>
           <p>The Sep 21 cycle was the vendor comparison table doing the work the vendor did not intend. SpaceXAI&rsquo;s <strong>Grok 4.7</strong> (Sep 21) is a larger base model shipped at Grok 4.6&rsquo;s exact price &mdash; <strong>$2 in, $6 out per million tokens</strong>, 500K context, four reasoning levels to <code>xhigh</code> &mdash; and it leads on <strong>EEBench at 64.0%</strong> and Harvey&rsquo;s legal benchmark at <strong>19.6%</strong>. The interesting number is the one it concedes: on the same table Claude Fable 5.1 Max wins four of seven, and <strong>Terminal-Bench 4.0 reads 57.9% against 38.0%</strong>. A launch post publishing a nineteen-point agentic-coding deficit tells you what the model is for, which is bulk reasoning at a fixed price rather than long-horizon tool use. Every figure is self-reported, as is now standard across this page.</p>
           <p>The cycle before that was unusually honest about what compression and speed actually cost. PrismML&rsquo;s <strong>Ternary Bonsai 2 27B</strong> (Sep 18) is the headline: Qwen3.8-27B at <strong>1.76 effective bits per weight, 5.93GB against 53.80GB in FP16</strong>, Apache 2.0, 262K context, image input, <strong>142.5 tokens/second on an RTX 5090</strong>, and an average of <strong>83.9 across 20 benchmarks against the parent&rsquo;s 85.4</strong>. PrismML leads with that 98.2% and then publishes the two figures that contradict it: long-horizon agent work keeps about <strong>75%</strong>, and <strong>SWE-bench Verified falls to 60.8 from 80.6</strong>. That is the finding this thread has needed since the first Bonsai &mdash; sub-2-bit quantization is nearly free on single-turn knowledge questions and expensive on anything that must stay coherent across steps &mdash; which makes the headline average the wrong number to buy on. Stock <code>llama.cpp</code> cannot load it, and all results are the vendor&rsquo;s.</p>
           <p>The System One category stopped being one company&rsquo;s claim. Jared Palmer&rsquo;s <strong>kev</strong> (Sep 20) is an Apache-2.0 decision model on Qwen2.5-0.5B answering <strong>six questions in about 160ms</strong> on Apple Silicon behind a TypeSafe-compatible API &mdash; and its README states that <strong>Jev leads it by roughly 19 points out of domain</strong>, which is the first outside sizing of what the closed model buys. Underneath both sits a cheaper baseline: Goedecke&rsquo;s point that <a href="research-papers.html">batching single-token prompts with structured output</a> turns any LLM into a System One model, leaving the architecture&rsquo;s real advantage as latency and price rather than capability. <strong>Jev</strong>&rsquo;s own numbers sharpened in the same window &mdash; <strong>0.114s and $0.000081 against GPT-5.6 Terra&rsquo;s 8.566s and $0.013880</strong>, on workflows TypeSafe wrote &mdash; and drew their first contrary datapoint, with Bryo AI&rsquo;s CTO finding Gemini slightly more accurate on email triage at 10&ndash;20&times; the cost. On Sep 21 the waitlist came off and the API opened to everyone, which is what turned the category from a demo into something people are measuring: the question surface is three types (a Bernoulli-derived yes/no, a choice with a distribution, a score along described levels), input undercuts <strong>GPT-5 Nano at $0.042 against $0.05 per 1M</strong> with output unbilled, and a <strong>JevBench</strong> has already appeared to compare Jev-class models. The counterweight arrived with it: a float is the entire output, so a wrong decision leaves nothing to inspect &mdash; which makes evals mandatory rather than advisable &mdash; and the author of <strong>Laya</strong> claims the same on-device approach 50&times; faster and published back in March 2025.</p>
@@ -80,13 +81,13 @@
         <ul>
           <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">19</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">17</span></a></li>
-          <li><a href="#open-weights-releases">Open-weights releases <span class="n">12</span></a></li>
+          <li><a href="#open-weights-releases">Open-weights releases <span class="n">13</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">5</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">11</span></a></li>
-          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">7</span></a></li>
+          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">10</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">3</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">2</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">18</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">20</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">2</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">3</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">1</span></a></li>
@@ -111,8 +112,8 @@
           <span class="when">2026-09-22</span>
           <h4><a href="https://www.anthropic.com/claude-opus-5-5">Claude Opus 5.5 claims Fable 5.1-level work at $4/$20, 40% below Opus 5</a></h4>
           <p>Anthropic released <strong>Claude Opus 5.5</strong>, the first model in its Claude 5.5 family, and says it performs at Claude Fable 5.1&rsquo;s level on most work. It lists at <strong>$4 input / $20 output per 1M tokens</strong> against Opus 5&rsquo;s $5/$25, cuts cache reads 60% to <strong>$0.20</strong>, generates more than 30% faster, and scores <strong>66.4% on Terminal-Bench 4.0</strong> against 55.8% for Fable 5.1 and 57.9% for GPT-6 Astra &mdash; while Astra keeps the lead on Terminal-Bench-Science and AutomationBench.</p>
-          <p>Anthropic itself says the gap to Fable 5.1 is narrower in real use than those scores suggest, thinking can no longer be disabled, and every figure is the vendor&rsquo;s; the safeguard and containment results are on <a href="safety-and-policy.html">Safety &amp; policy</a>.</p>
-          <div class="sources"><a href="https://www.anthropic.com/claude-opus-5-5">Anthropic</a> &middot; <a href="https://platform.claude.com/docs/en/models/opus-5-5/overview">Docs</a> &middot; <a href="https://claude.com/blog/what-a-task-costs-on-opus-5-5">What a task costs</a> &middot; <a href="https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/">Simon Willison</a> (commentary) &middot; <span class="via">via MarkTechPost (Sep 23), TLDR AI (Sep 23), TLDR (Sep 23), Unwind AI (Sep 23), The Code (Sep 23)</span></div>
+          <p>Independent rankings followed within days: Artificial Analysis puts it first on its Intelligence Index v4.3 at 58 and Vals AI first at 69.69%, though it still costs $5.98 per Artificial Analysis task because it spends more tokens than earlier Opus models, and Anthropic says Sonnet 5.5 and Haiku 5.5 follow within weeks. Anthropic itself says the gap to Fable 5.1 is narrower in real use than those scores suggest, thinking can no longer be disabled, and every figure is the vendor&rsquo;s; the safeguard and containment results are on <a href="safety-and-policy.html">Safety &amp; policy</a>.</p>
+          <div class="sources"><a href="https://www.anthropic.com/claude-opus-5-5">Anthropic</a> &middot; <a href="https://platform.claude.com/docs/en/models/opus-5-5/overview">Docs</a> &middot; <a href="https://claude.com/blog/what-a-task-costs-on-opus-5-5">What a task costs</a> &middot; <a href="https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/">Simon Willison</a> (commentary) &middot; <a href="https://www.deeplearning.ai/the-batch/issue-372/#claude-opus-55-leaps-forward">The Batch</a> &middot; <span class="via">via MarkTechPost (Sep 23), TLDR AI (Sep 23), TLDR (Sep 23), Unwind AI (Sep 23), The Code (Sep 23), The Batch (Sep 25)</span></div>
         </article>
 
         <article class="story" id="grok-4-7">
@@ -399,6 +400,14 @@
         <h3>Open-weights releases</h3>
         <p class="lead">Open releases now split three ways: general-purpose bases, narrow models built for one job, and fully open recipes that publish data mixtures and training code as well as a checkpoint. The licence is the part that decides what you can actually do with them, and it is often narrower than the announcement.</p>
 
+        <article class="story" id="thinkingcap-qwen3-8-27b">
+          <span class="when">2026-09-24</span>
+          <h4><a href="https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.8-27B">ThinkingCap-Qwen3.8-27B cuts thinking tokens 37.2% for 0.86 points of accuracy</a></h4>
+          <p>BottleCap AI released <strong>ThinkingCap-Qwen3.8-27B</strong>, a drop-in replacement for Qwen3.8-27B on vLLM or SGLang with FP8, NVFP4, GGUF and MLX builds. Across 12 benchmarks at xhigh effort, macro accuracy moves from 86.65% to 85.79% while the thinking-token cut ranges from 10.7% to 65.5%; long-context AA-LCR rises 2.25 points and AIME 2026 falls 3.85.</p>
+          <p>The weights are gated and ship under the PolyForm Small Business licence.</p>
+          <div class="sources"><a href="https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.8-27B">Hugging Face</a> &middot; <a href="https://bottlecapai.com/post/thinkingcap-qwen3-8-27b/">BottleCap AI</a> &middot; <span class="via">via MarkTechPost (Sep 25)</span></div>
+        </article>
+
         <article class="story" id="mimo-v2-6">
           <span class="when">2026-09-22</span>
           <h4><a href="https://mimo.xiaomi.com/mimo-v2-6">MiMo-V2.6-Pro and Flash ship MIT-licensed with 1M context, plus the RL code that trained them</a></h4>
@@ -415,16 +424,16 @@
           <div class="sources"><a href="https://artificialanalysis.ai/articles/ant-group-releases-finance-focused-ling-3-0-flash-fin">Artificial Analysis</a> (analysis) &middot; <span class="via">via TLDR AI (Sep 17)</span></div>
         </article>
 
-        <article class="story" id="gliformer">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://huggingface.co/knowledgator/gliformer-large-v1">GLiFormer extracts nested JSON at 91.10 F1 with a 575M encoder and no token generation</a></h4>
-          <p>Knowledgator released <strong>GLiFormer</strong>, a 575M-parameter encoder that produces nested JSON extractions without generating tokens, scoring <strong>91.10 F1 where GPT-5.6-luna scores 91.96</strong> on the same 500 examples. Apache 2.0, with weights on Hugging Face.</p>
-          <p>Two caveats travel with it and both come from the authors: every score is Knowledgator-reported, and the headline &ldquo;up to 95.8&times; faster&rdquo; is an analytical estimate rather than a measured comparison against a running LLM. Taken at face value it is the strongest recent case that structured extraction does not need a generative model at all, and the cost difference between a 575M encoder and a frontier API for that job is not marginal.</p>
-          <div class="sources"><a href="https://huggingface.co/knowledgator/gliformer-large-v1">Weights</a> &middot; <a href="https://github.com/Knowledgator/GLiFormer">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="gliformer">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://huggingface.co/knowledgator/gliformer-large-v1">GLiFormer extracts nested JSON at 91.10 F1 with a 575M encoder and no token generation</a></h4>
+            <p>Knowledgator released <strong>GLiFormer</strong>, a 575M-parameter encoder that produces nested JSON extractions without generating tokens, scoring <strong>91.10 F1 where GPT-5.6-luna scores 91.96</strong> on the same 500 examples. Apache 2.0, with weights on Hugging Face.</p>
+            <p>Two caveats travel with it and both come from the authors: every score is Knowledgator-reported, and the headline &ldquo;up to 95.8&times; faster&rdquo; is an analytical estimate rather than a measured comparison against a running LLM. Taken at face value it is the strongest recent case that structured extraction does not need a generative model at all, and the cost difference between a 575M encoder and a frontier API for that job is not marginal.</p>
+            <div class="sources"><a href="https://huggingface.co/knowledgator/gliformer-large-v1">Weights</a> &middot; <a href="https://github.com/Knowledgator/GLiFormer">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
+          </article>
 
           <article class="story" id="north-small-translate">
             <span class="when">2026-09-11</span>
@@ -638,6 +647,21 @@
         <h3>Alternative decoding architectures</h3>
         <p class="lead">A research line attacking the autoregressive decode bottleneck from two directions: parallelising within one token stream, and removing the stream entirely. Both buy latency and price rather than capability, so the question for every entry here is what the speed costs in quality, and whether anyone outside the vendor has measured it.</p>
 
+        <article class="story" id="julia-1">
+          <span class="when">2026-09-27</span>
+          <h4><a href="https://supersoniclabs.ia.br/julia-1/">Supersonic Labs&rsquo; Julia 1 is a 144.3M Jev-style decision model that runs on a tablet CPU</a></h4>
+          <p><strong>Julia 1</strong> takes context, a question and a changing set of candidate answers and returns scores rather than prose, like Jev, but it is an independent model built on multilingual mmBERT-small rather than on Jev weights or a Qwen fine-tune. It runs entirely on CPU, including about five decisions per second on a Samsung tablet, and the release as reported carries no accuracy comparison against Jev.</p>
+          <div class="sources"><a href="https://supersoniclabs.ia.br/julia-1/">Supersonic Labs</a> &middot; <a href="https://huggingface.co/SupersonicLabs/Julia-1">Hugging Face</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
+        </article>
+
+        <article class="story" id="gliner2-5-decide">
+          <span class="when">2026-09-24</span>
+          <h4><a href="https://fastino.ai/blog/gliner-2-5-decide-open-weight-decision-model">GLiNER2.5-Decide is a 340M open-weight decision model that answers in 167&nbsp;ms on a CPU</a></h4>
+          <p>Fastino released <strong>GLiNER2.5-Decide</strong>, which takes text and a schema of typed questions and returns answers with probabilities, a confidence score and feasibility metadata without generating tokens; a constrained decoder enforces rules across answers, so a detected harm forces an unsafe verdict. On Fastino&rsquo;s own 17-dataset Fast Decisions suite it averages 60.1% against 57.5% for the 4B-class JevK5 and 49.0% for <a href="#gliformer">GLiFormer</a> large-v1, with p50 latency of 167.3&nbsp;ms on a 48-vCPU Xeon and 38.3&nbsp;ms on a V100.</p>
+          <p>The suite is internally generated, so every comparison is the vendor&rsquo;s; the weights ship under Apache 2.0.</p>
+          <div class="sources"><a href="https://fastino.ai/blog/gliner-2-5-decide-open-weight-decision-model">Fastino</a> &middot; <a href="https://huggingface.co/fastino/GLiNER2.5-Decide">Hugging Face</a> &middot; <a href="https://github.com/fastino-ai/GLiNER2">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 25)</span></div>
+        </article>
+
         <article class="story" id="tev1-4b-experimental">
           <span class="when">2026-09-24</span>
           <h4><a href="https://threadreaderapp.com/thread/2102882216950763814.html">Together AI&rsquo;s tev1-4B-experimental is a Jev-like classifier that cost $17 to train</a></h4>
@@ -646,22 +670,30 @@
           <div class="sources"><a href="https://threadreaderapp.com/thread/2102882216950763814.html">Together AI announcement thread (reader copy)</a> &middot; <span class="via">via TLDR AI (Sep 24)</span></div>
         </article>
 
-        <article class="story" id="jev-omni">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://huggingface.co/akhilaaa3/Jev-Omni">Jev-Omni extends bounded decisions to images, audio and video on Gemma 4 12B</a></h4>
-          <p>A developer released <strong>Jev-Omni</strong>, an open-weight model built on <strong>Gemma 4 12B</strong> that takes a question and a fixed set of options over text, images, audio or video and returns a probability per option instead of an explanation. It is the first multimodal entry in the Jev-class line here, and it ships without a calibration or accuracy figure.</p>
-          <div class="sources"><a href="https://huggingface.co/akhilaaa3/Jev-Omni">Hugging Face</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
-        </article>
-
-        <article class="story" id="anyjev">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://github.com/nokia-applied-research/AnyJev">Nokia AnyJev turns any open LLM into a calibrated decision model without training</a></h4>
-          <p>Nokia open-sourced <strong>AnyJev</strong> (Apache 2.0, on PyPI), which borrows <a href="#jev">Jev</a>&rsquo;s typed interface but reads answers from an open model&rsquo;s next-token distribution, using cyclic shifts to remove position bias and a running batch prior to remove label bias. On Qwen3-8B BANKING77 the order-flip rate falls from <strong>0.230 to 0.073</strong>, and traffic decidable automatically at 5% error rises from <strong>7.7% to 52.0%</strong> with 100&ndash;500 labels; the cost is K prefills per decision.</p>
-          <div class="sources"><a href="https://github.com/nokia-applied-research/AnyJev">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="clm-8b">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://huggingface.co/Contrastive-LM/CLM-v0.1-8B">CLM-8B scores agent actions by dot product and matches Jev on games at up to 9&times; lower latency</a></h4>
+            <p>Contrastive-LM released <strong>CLM-8B</strong>, a System One model built from a frozen Qwen3-8B encoder plus a 75&nbsp;MB Apache-2.0 head that scores candidate actions against a state and serves a TypeSafe-compatible API. It was pre-trained on 60M Nemotron Q&amp;A pairs, mid-trained on 30M synthetic hard negatives and post-trained on 1M agentic trajectories; zero-shot it matches <a href="#jev">Jev</a> on T-Rex and Super Mario but trails on BFCL v4 tool calling (95.2% against 99.2%) and WikiRacing (26/30 against 30/30).</p>
+            <p>The 9&times; figure comes from T-Rex, where actions repeat across states, so it is the best case rather than the typical one; fine-tuned heads reach 81.6% on a 38-task DeepSWE subset.</p>
+            <div class="sources"><a href="https://huggingface.co/Contrastive-LM/CLM-v0.1-8B">Hugging Face</a> &middot; <a href="https://github.com/Contrastive-LM/CLM">GitHub</a> &middot; <a href="https://contrastive-lm.notion.site/">Contrastive-LM</a> &middot; <span class="via">via TLDR AI (Sep 25), MarkTechPost (Sep 25)</span></div>
+          </article>
+
+          <article class="story" id="jev-omni">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://huggingface.co/akhilaaa3/Jev-Omni">Jev-Omni extends bounded decisions to images, audio and video on Gemma 4 12B</a></h4>
+            <p>A developer released <strong>Jev-Omni</strong>, an open-weight model built on <strong>Gemma 4 12B</strong> that takes a question and a fixed set of options over text, images, audio or video and returns a probability per option instead of an explanation. It is the first multimodal entry in the Jev-class line here, and it ships without a calibration or accuracy figure.</p>
+            <div class="sources"><a href="https://huggingface.co/akhilaaa3/Jev-Omni">Hugging Face</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
+          </article>
+
+          <article class="story" id="anyjev">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://github.com/nokia-applied-research/AnyJev">Nokia AnyJev turns any open LLM into a calibrated decision model without training</a></h4>
+            <p>Nokia open-sourced <strong>AnyJev</strong> (Apache 2.0, on PyPI), which borrows <a href="#jev">Jev</a>&rsquo;s typed interface but reads answers from an open model&rsquo;s next-token distribution, using cyclic shifts to remove position bias and a running batch prior to remove label bias. On Qwen3-8B BANKING77 the order-flip rate falls from <strong>0.230 to 0.073</strong>, and traffic decidable automatically at 5% error rises from <strong>7.7% to 52.0%</strong> with 100&ndash;500 labels; the cost is K prefills per decision.</p>
+            <div class="sources"><a href="https://github.com/nokia-applied-research/AnyJev">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 23)</span></div>
+          </article>
 
           <article class="story" id="kev">
             <span class="when">2026-09-20</span>
@@ -750,6 +782,13 @@
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
 
+        <article class="story" id="gemini-3-8-live-avatar">
+          <span class="when">2026-09-25</span>
+          <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar/">Gemini 3.8 Live gains Live Avatar: one reference image becomes a talking, tool-calling face</a></h4>
+          <p>Google added <strong>Live Avatar</strong> to <a href="#gemini-3-8-live">Gemini 3.8 Live</a>, animating a single reference image into a real-time avatar that speaks in 97 languages while reasoning and tool calls run asynchronously, so an agent can fetch data mid-conversation without breaking the exchange. Custom avatars require enterprise allowlisting.</p>
+          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar/">Google</a> &middot; <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/live-api">Live API docs</a> &middot; <span class="via">via TLDR AI (Sep 25), The Code (Sep 25)</span></div>
+        </article>
+
         <article class="story" id="gemini-3-8-flash-tts">
           <span class="when">2026-09-24</span>
           <h4><a href="https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech">Gemini 3.8 Flash TTS designs a voice from a description and clones one from a 30-second sample</a></h4>
@@ -758,23 +797,31 @@
           <div class="sources"><a href="https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech">Google DeepMind</a> &middot; <a href="https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-tts">AI Studio</a> &middot; <span class="via">via TLDR AI (Sep 24), The Code (Sep 24)</span></div>
         </article>
 
-        <article class="story" id="kyutai-voice-of-reason">
-          <span class="when">2026-09-22</span>
-          <h4><a href="https://hf.co/kyutai/glm-4-voice-of-reason-9b">Kyutai Voice of Reason lifts spoken GSM8K from 27.3% to 77.1% without a transcript</a></h4>
-          <p>Kyutai released two open-weight <strong>9B</strong> checkpoints built on GLM-4-Voice that reason over speech with no transcription step; SFT plus RL lifts spoken GSM8K from <strong>27.3% to 77.1%</strong>, and the model runs on one H100. The paper states the costs: removing temperature correction crashes accuracy to 12.3%, spoken TriviaQA falls from 40.6% to 34.0%, and a cascaded ASR&ndash;LLM&ndash;TTS pipeline still scores <strong>95.7%</strong>.</p>
-          <div class="sources"><a href="https://hf.co/kyutai/glm-4-voice-of-reason-9b">Hugging Face</a> &middot; <a href="https://arxiv.org/abs/2609.18677">arXiv</a> &middot; <span class="via">via MarkTechPost (Sep 23)</span></div>
-        </article>
-
-        <article class="story" id="qwen3-8-livetranslate">
-          <span class="when">2026-09-19</span>
-          <h4><a href="https://qwen.ai/blog?id=qwen3.8-livetranslate">Qwen3.8-LiveTranslate drops interpretation lag to 2.3 seconds across 60 languages</a></h4>
-          <p>Alibaba&rsquo;s Qwen team released <strong>Qwen3.8-LiveTranslate</strong>, a real-time interpretation model cutting average lag (LAAL) from <strong>2.8s to 2.3s</strong>. It understands <strong>60 languages and speaks 29</strong>, and adds real-time speaker diarization and synchronized bilingual display. An hour of speech in and out costs about <strong>$1.54</strong> at Singapore pricing. API only, no open weights.</p>
-          <p>Half a second off interpretation lag is the difference between a translation you wait for and one you talk over, which is the same conversational-latency argument <a href="#gemini-3-8-live">Gemini 3.8 Live</a> made on the generation side.</p>
-          <div class="sources"><a href="https://qwen.ai/blog?id=qwen3.8-livetranslate">Qwen</a> &middot; <span class="via">via MarkTechPost (Sep 20), TLDR AI (Sep 21)</span></div>
+        <article class="story" id="nemotron-3-diarization">
+          <span class="when">2026-09-23</span>
+          <h4><a href="https://huggingface.co/nvidia/Nemotron-3-Diarization">Nemotron 3 Diarization tracks eight speakers with one 100M checkpoint and tops Diarization-Bench at 14.72% DER</a></h4>
+          <p>NVIDIA released <strong>Nemotron 3 Diarization</strong>, a 100M-parameter open-weight model whose single checkpoint covers everything from offline use with a 30.4-second buffer to 0.32-second streaming. It ranked first of 12 systems on Voice Arena&rsquo;s initial Diarization-Bench at 14.72% diarization error rate, and cut DER by a mean 41.0% across eight conditions against the four-speaker Streaming Sortformer.</p>
+          <p>The one regression NVIDIA reports is two-speaker CALLHOME at 30.4 seconds, up from 5.68% to 5.98%; the licence is OpenMDW 1.1 with commercial use allowed, on NVIDIA GPUs via NeMo.</p>
+          <div class="sources"><a href="https://huggingface.co/nvidia/Nemotron-3-Diarization">Hugging Face</a> &middot; <a href="https://huggingface.co/blog/nvidia/nemotron-diarization">NVIDIA blog</a> &middot; <span class="via">via MarkTechPost (Sep 25)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (17)</summary>
+
+          <article class="story" id="kyutai-voice-of-reason">
+            <span class="when">2026-09-22</span>
+            <h4><a href="https://hf.co/kyutai/glm-4-voice-of-reason-9b">Kyutai Voice of Reason lifts spoken GSM8K from 27.3% to 77.1% without a transcript</a></h4>
+            <p>Kyutai released two open-weight <strong>9B</strong> checkpoints built on GLM-4-Voice that reason over speech with no transcription step; SFT plus RL lifts spoken GSM8K from <strong>27.3% to 77.1%</strong>, and the model runs on one H100. The paper states the costs: removing temperature correction crashes accuracy to 12.3%, spoken TriviaQA falls from 40.6% to 34.0%, and a cascaded ASR&ndash;LLM&ndash;TTS pipeline still scores <strong>95.7%</strong>.</p>
+            <div class="sources"><a href="https://hf.co/kyutai/glm-4-voice-of-reason-9b">Hugging Face</a> &middot; <a href="https://arxiv.org/abs/2609.18677">arXiv</a> &middot; <span class="via">via MarkTechPost (Sep 23)</span></div>
+          </article>
+
+          <article class="story" id="qwen3-8-livetranslate">
+            <span class="when">2026-09-19</span>
+            <h4><a href="https://qwen.ai/blog?id=qwen3.8-livetranslate">Qwen3.8-LiveTranslate drops interpretation lag to 2.3 seconds across 60 languages</a></h4>
+            <p>Alibaba&rsquo;s Qwen team released <strong>Qwen3.8-LiveTranslate</strong>, a real-time interpretation model cutting average lag (LAAL) from <strong>2.8s to 2.3s</strong>. It understands <strong>60 languages and speaks 29</strong>, and adds real-time speaker diarization and synchronized bilingual display. An hour of speech in and out costs about <strong>$1.54</strong> at Singapore pricing. API only, no open weights.</p>
+            <p>Half a second off interpretation lag is the difference between a translation you wait for and one you talk over, which is the same conversational-latency argument <a href="#gemini-3-8-live">Gemini 3.8 Live</a> made on the generation side.</p>
+            <div class="sources"><a href="https://qwen.ai/blog?id=qwen3.8-livetranslate">Qwen</a> &middot; <span class="via">via MarkTechPost (Sep 20), TLDR AI (Sep 21)</span></div>
+          </article>
 
           <article class="story" id="grok-voice-transcribe-2">
             <span class="when">2026-09-18</span>
@@ -1013,9 +1060,15 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-27</span><span class="label"><a href="#julia-1">Supersonic Labs&rsquo; Julia 1 is a 144.3M Jev-style decision model that runs on a tablet CPU</a></span></li>
+        <li><span class="date">2026-09-25</span><span class="label"><a href="#gemini-3-8-live-avatar">Gemini 3.8 Live gains Live Avatar: one reference image becomes a talking, tool-calling face</a></span></li>
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#thinkingcap-qwen3-8-27b">ThinkingCap-Qwen3.8-27B cuts thinking tokens 37.2% for 0.86 points of accuracy</a></span></li>
+        <li><span class="date">2026-09-24</span><span class="label"><a href="#gliner2-5-decide">GLiNER2.5-Decide is a 340M open-weight decision model that answers in 167&nbsp;ms on a CPU</a></span></li>
         <li><span class="date">2026-09-24</span><span class="label"><a href="#gemini-3-8-flash-tts">Gemini 3.8 Flash TTS designs a voice from a description and clones one from a 30-second sample</a></span></li>
         <li><span class="date">2026-09-24</span><span class="label"><a href="#tev1-4b-experimental">Together AI&rsquo;s tev1-4B-experimental is a Jev-like classifier that cost $17 to train</a></span></li>
         <li><span class="date">2026-09-24</span><span class="label"><a href="#ember-1">Fireworks&rsquo; Ember-1 matches Kimi K3 quality on 40% fewer tokens, as a two-week research preview</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#nemotron-3-diarization">Nemotron 3 Diarization tracks eight speakers with one 100M checkpoint and tops Diarization-Bench at 14.72% DER</a></span></li>
+        <li><span class="date">2026-09-23</span><span class="label"><a href="#clm-8b">CLM-8B scores agent actions by dot product and matches Jev on games at up to 9&times; lower latency</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#jev-omni">Jev-Omni extends bounded decisions to images, audio and video on Gemma 4 12B</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#anyjev">Nokia AnyJev turns any open LLM into a calibrated decision model without training</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#kyutai-voice-of-reason">Kyutai Voice of Reason lifts spoken GSM8K from 27.3% to 77.1% without a transcript</a></span></li>

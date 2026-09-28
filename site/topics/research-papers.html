@@ -30,15 +30,15 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-09-23</div>
+      <div class="meta">Last updated: 2026-09-28</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s one addition extends the provenance thread rather than resolving it. OpenAI now says the model behind the <a href="#navier-stokes-proof">Navier&ndash;Stokes claim</a> also solved more than 100 open mathematical problems, and it has convened an independent advisory group of mathematicians to assess and communicate such results &mdash; review in form, but by a body OpenAI appointed, beside a Clay process that still requires publication, a two-year wait and expert acceptance.</p>
+        <p>Today&rsquo;s addition widens the provenance section beyond Lean. Anthropic reports that <a href="#claude-nine-loops">Claude Fable 5.1 completed a nine-loop physics calculation</a> by two methods a month after a physicist challenged the labs, and Lance Dixon validated it independently. An outside expert&rsquo;s check confirms the number but, like a proof assistant, says nothing about how much of the method was the model&rsquo;s; the section now holds three results and two kinds of checker.</p>
+        <p>The Sep 23 addition extended the provenance thread rather than resolving it. OpenAI now says the model behind the <a href="#navier-stokes-proof">Navier&ndash;Stokes claim</a> also solved more than 100 open mathematical problems, and it has convened an independent advisory group of mathematicians to assess and communicate such results &mdash; review in form, but by a body OpenAI appointed, beside a Clay process that still requires publication, a two-year wait and expert acceptance.</p>
         <p>The previous cycle kept three architectures honest by holding something constant. Linkup trained a dense, a late-interaction and a sparse encoder on identical data and published the gaps: <strong>SPARSEUP</strong> at 149M parameters scores <strong>56.4 nDCG@10 on BEIR-13</strong>, trailing its own dense model by 1.52 points and the late-interaction one by 2.5, and reaches <strong>over 97% recall in about 380 microseconds per query</strong> on a Seismic index. Fixing the data is what turns those into architecture costs instead of leaderboard noise, and 1.52 points is small enough that an inverted index usually wins the argument. The figures are Linkup&rsquo;s own and BEIR-13 is a subset, so the &ldquo;best public sparse encoder under 150M&rdquo; claim describes a narrow bracket.</p>
         <p>Sean Goedecke did the same thing to <a href="model-releases.html">Jev</a> without running an experiment. Batch prompts that each generate one token, constrain them with structured output, and any LLM returns typed decisions in parallel &mdash; which makes the System One advantage quantitative rather than categorical, and hands this page the baseline every typed-decision claim should now be measured against. The residual difference is real and worth naming: the batched version still pays full prefill per prompt, and removing that is precisely what a direct-logit design buys. Goodfire took the opposite tack on a harder target, reporting <strong>a clear activation signal accompanying reward hacking</strong> that could support monitors at scale. Output-level checking is structurally blind to a reward hack, since a reward hack is output that passes the check, so watching the activations is the right place to look; whether the signal survives a model optimised against the probe is the unanswered question.</p>
         <p>The provenance thread moved rather than closed. <a href="#navier-stokes-proof">OpenAI&rsquo;s Navier&ndash;Stokes claim</a> now rests on a <strong>166-page paper</strong> plus agent-written Lean code from an undisclosed model, and on Sep 10 OpenAI narrowed its own statement: Buckmaster&rsquo;s Codex prompts <em>over the two months before the announcement</em> could not have influenced the system, including through training &mdash; which leaves the prior year of prompts unaddressed. Clay requires publication, a two-year wait and expert acceptance, and OpenAI says it is not seeking the prize. Beside it, Anthropic put a number on its own side of the same question, saying <strong>Claude leads 26% of its R&amp;D with over 30,000 agents active at once</strong>; the denominator is undefined, but publishing an oversight metric next to a productivity metric is the concession that makes the pair worth recording.</p>
-        
         <details>
           <summary>Earlier cycles</summary>
           <p>Today's two papers both remove a structural assumption rather than tune one. Sakana AI's <strong>PC-ALM</strong> is a layer-local learning rule with no global backward pass that trains networks a thousand layers deep, reaching 77.75% on the repository's reference cell against 78.66% for backpropagation and 68.13% for standard predictive coding. Closing nine tenths of the gap to backprop while discarding the backward pass is the result; backprop still winning, on small image benchmarks that are the only place either was tested, is the qualification. The MIT-licensed JAX code running on CPU is substantive rather than incidental, because the case for local rules has always been a hardware case &mdash; a rule that never needs the whole graph resident has a different memory and parallelism story, and depth is where that is supposed to pay. Nobody has yet shown it holding at a scale where the saving would be worth collecting.</p>
@@ -75,7 +75,7 @@
           <li><a href="#world-models-and-embodied-policy-methods">World models &amp; embodied-policy methods <span class="n">1</span></a></li>
           <li><a href="#rl-on-agents">RL on agents <span class="n">3</span></a></li>
           <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">4</span></a></li>
-          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">2</span></a></li>
+          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">3</span></a></li>
           <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">3</span></a></li>
           <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
           <li><a href="#evaluate-then-act-decompositions">Evaluate-then-act decompositions <span class="n">3</span></a></li>
@@ -333,7 +333,14 @@
 
       <section class="topic-section" id="machine-produced-proof-and-its-provenance">
         <h3>Machine-produced proof and its provenance</h3>
-        <p class="lead">Two results a machine produced and a proof assistant checked. Verification and attribution come apart here: Lean can confirm an argument is valid and say nothing about whose argument it was. Judge these on publication order and on what the lab discloses about training data, not on the theorem.</p>
+        <p class="lead">Three results a machine produced and someone other than the model checked &mdash; Lean for two proofs, a physicist for a nine-loop calculation. Verification and attribution come apart here: a checker can confirm a result is valid and say nothing about whose method it was. Judge these on publication order and on what the lab discloses about training data.</p>
+
+        <article class="story" id="claude-nine-loops">
+          <span class="when">2026-09-27</span>
+          <h4><a href="https://www.anthropic.com/research/yes-claude-can-do-nine-loops">Claude Fable 5.1 completes a nine-loop physics calculation two ways, validated by Lance Dixon</a></h4>
+          <p>A physicist challenged AI labs to finish a calculation from his former field that nobody had completed because it looked too computationally expensive; a month later <strong>Claude Fable 5.1</strong> produced the nine-loop result by two different methods, and physicist Lance Dixon validated it independently. Unlike the Lean-checked entries here, the check is a human expert&rsquo;s, which confirms the result without settling how much of the method was the model&rsquo;s own.</p>
+          <div class="sources"><a href="https://www.anthropic.com/research/yes-claude-can-do-nine-loops">Anthropic</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
+        </article>
 
         <article class="story" id="navier-stokes-proof">
           <span class="when">2026-09-09</span>
@@ -426,6 +433,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-27</span><span class="label"><a href="#claude-nine-loops">Claude Fable 5.1 completes a nine-loop physics calculation two ways, validated by Lance Dixon</a></span></li>
         <li><span class="date">2026-09-19</span><span class="label"><a href="#sparseup">SPARSEUP scores 56.4 nDCG@10 on BEIR-13 at 149M parameters</a></span></li>
         <li><span class="date">2026-09-18</span><span class="label"><a href="#system-one-from-any-llm">Goedecke: batch single-token prompts with structured output and any LLM becomes a System One model</a></span></li>
         <li><span class="date">2026-09-18</span><span class="label"><a href="#goodfire-reward-hacking-monitors">Goodfire finds an internal activation signal that accompanies reward hacking</a></span></li>
