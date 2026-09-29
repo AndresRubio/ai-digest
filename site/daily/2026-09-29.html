@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Digest Log — 2026-09-29 — AI Knowledge Base</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>AI Knowledge Base</h2>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+      </ul>
+      <h2>Topics</h2>
+      <ul>
+        <li><a href="../topics/agents.html">Agents &amp; agentic systems</a></li>
+        <li><a href="../topics/applications.html">Applications &amp; case studies</a></li>
+        <li><a href="../topics/embodied-and-robotics.html">Embodied AI &amp; robotics</a></li>
+        <li><a href="../topics/evals-and-benchmarks.html">Evals &amp; benchmarks</a></li>
+        <li><a href="../topics/industry-and-business.html">Industry &amp; business</a></li>
+        <li><a href="../topics/infrastructure.html">Infrastructure &amp; compute</a></li>
+        <li><a href="../topics/model-releases.html">Model releases &amp; updates</a></li>
+        <li><a href="../topics/research-papers.html">Research papers</a></li>
+        <li><a href="../topics/safety-and-policy.html">Safety, alignment &amp; policy</a></li>
+        <li><a href="../topics/tools-and-devex.html">Tools, IDEs &amp; developer experience</a></li>
+        <li><a href="../topics/training-and-rl.html">Training, post-training &amp; RL</a></li>
+      </ul>
+    </aside>
+    <main>
+      <h1>AI Digest Log — 2026-09-29</h1>
+      <p class="meta">Single account, normal unread + last-7-days window. One connector found, none missing, no backfill active. Nothing was written to Gmail.</p>
+
+      <ul>
+        <li><strong>Newsletters scanned: 6</strong> &mdash; everything that arrived on Sep 28 after the 2026-09-28 run; nothing newsletter-shaped had arrived for Sep 29 at scan time.
+          <ul>
+            <li><a href="https://tldr.tech/ai/2026-09-28">TLDR AI (Sep 28)</a> and <a href="https://tldr.tech/tech/2026-09-28">TLDR general (Sep 28)</a></li>
+            <li><a href="https://simonw.substack.com/p/2026-in-llms-so-far">Simon Willison (Sep 28)</a></li>
+            <li><a href="https://cameronrwolfe.substack.com/p/nemotron">Deep (Learning) Focus (Sep 28)</a></li>
+            <li>MarkTechPost (Sep 28) &mdash; the &ldquo;view online&rdquo; address printed in its footer returns a 404, so the issue has no reachable public page.</li>
+            <li><a href="https://codenewsletter.ai/p/openai-and-anthropic-breach-incidents-run-into-tens-of-thousands">The Code (Sep 28)</a></li>
+          </ul>
+        </li>
+
+        <li><strong>Distinct stories captured: 20, plus 5 updates.</strong>
+          Safety 5, model releases 4, agents 3, infrastructure 3, and one each for industry, training, embodied and two for Tools &amp; DevEx.
+          <ul>
+            <li><a href="../topics/model-releases.html#ember-1">Ember-1</a> (2026-09-24) gained its benchmarks: 82.0% on Terminal Bench 2.1 against 80.9% for K3 Max at 51.9% lower cost, and a production A/B test with output tokens down from 49.3K to 29.9K per task.</li>
+            <li><a href="../topics/model-releases.html#julia-1">Julia 1</a> (2026-09-27) lost the line saying no Jev comparison existed: ahead on Typed Decisions and DAIR Emotion, well behind on Banking77, trained for about $104.</li>
+            <li><a href="../topics/model-releases.html#jev">Jev</a> (2026-09-16) gained OpenRouter&rsquo;s Banking77 head-to-head, 81.0% against 84.4% for Claude Opus 5 at 13&times; lower latency.</li>
+            <li><a href="../topics/model-releases.html#claude-opus-5-5">Claude Opus 5.5</a> (2026-09-22) gained a measured limit: at max effort it twice exhausted its 128,000-token output ceiling while still reasoning.</li>
+            <li><a href="../topics/infrastructure.html#jev-router">jev-router</a> (2026-09-27) gained the savings figure its entry said was missing, 82% more agent tasks than OpenRouter&rsquo;s Auto Router, and one dissenting test.</li>
+          </ul></li>
+
+        <li><strong>Topics updated: eight of eleven.</strong>
+          <a href="../topics/agents.html">Agents</a>,
+          <a href="../topics/embodied-and-robotics.html">Embodied</a>,
+          <a href="../topics/industry-and-business.html">Industry</a>,
+          <a href="../topics/infrastructure.html">Infrastructure</a>,
+          <a href="../topics/model-releases.html">Model releases</a>,
+          <a href="../topics/safety-and-policy.html">Safety</a>,
+          <a href="../topics/tools-and-devex.html">Tools &amp; DevEx</a>,
+          <a href="../topics/training-and-rl.html">Training</a>.
+          Applications, Evals and Research papers had no qualifying story and keep their previous dates; TLDR AI&rsquo;s nine-loop item restates the <a href="../topics/research-papers.html#claude-nine-loops">entry already on Research papers</a> with nothing new, so that page was left alone.</li>
+
+        <li><strong>New topic pages or sub-sections: none.</strong> Three section leads changed:
+          <a href="../topics/safety-and-policy.html#autonomy-incidents-and-containment">Autonomy incidents</a> now counts fifteen entries and names the outside tally;
+          <a href="../topics/safety-and-policy.html#provenance-transparency-and-data-handling">Provenance</a> enumerates eight claims instead of seven;
+          <a href="../topics/training-and-rl.html#distillation-at-frontier-scale">Distillation</a> covers three things instead of two, since multi-teacher distillation consolidates rather than compresses.</li>
+
+        <li><strong>Backlog: none carried forward.</strong> 11 new message ids matched, 6 fetched against a 25-message cap, 5 handled without fetching. No query failed.</li>
+      </ul>
+
+      <h2>Scan notes</h2>
+
+      <h3>Sources</h3>
+      <p>The two TLDR messages were told apart by their body header &mdash; <code>TLDR AI 2026-09-28</code> and <code>TLDR 2026-09-28</code>. The general edition was scanned and supplied one story the AI edition lacked, <a href="../topics/embodied-and-robotics.html#optimus-imitation-data">Optimus data collection</a>, and a second source for the OpenAI training pause.</p>
+      <p>Cameron Wolfe&rsquo;s Deep (Learning) Focus arrived at the inbox for the first time as a full issue rather than a Substack note; it matched the Substack catch-all rule, so <code>sources.json</code> was not edited. Its earlier August guide is already on the site under the same name.</p>
+
+      <h3>Handled without fetching</h3>
+      <ul>
+        <li><strong>Job and social notifications</strong> &mdash; four LinkedIn mails (two job alerts, one invitation, one message digest), matched only by the keyword pass.</li>
+        <li><strong>Event promotion</strong> &mdash; AI Makerspace&rsquo;s RSVP for a &ldquo;lightning lesson&rdquo;.</li>
+      </ul>
+
+      <h3>Dropped</h3>
+      <ul>
+        <li><strong>Sponsors and house ads</strong> &mdash; Runware and CData (twice) in TLDR AI, plus Frontier Accelerate; ThreatSpike, WhiteFiber and Azure in TLDR general; TinyFish in MarkTechPost; Wiz and TigerData in The Code; Greptile in Simon Willison; TLDR&rsquo;s own job posting, referral blocks and footers.</li>
+        <li><strong>Rumour</strong> &mdash; OpenAI&rsquo;s wider Ultrafast API rollout and its &ldquo;O&rdquo; always-on agent, both reported from references spotted in documentation and configuration ahead of DevDay.</li>
+        <li><strong>No checkable claim</strong> &mdash; Alexandr Wang&rsquo;s Muse manifesto, the compute-derivatives essay, Ramez Naam on self-improvement, Zvi on Jensen Huang, Tyler Romero&rsquo;s visual REINFORCE derivation, Mo Bitar&rsquo;s eight coding mistakes, the dashboard-subagent tip, the 30-PRs-a-day tutorial, and The Code&rsquo;s unnamed &ldquo;9&times; faster&rdquo; model.</li>
+        <li><strong>Outside an AI engineer&rsquo;s remit</strong> &mdash; Starship, Meta VR Glasses, Waymo safety statistics (dropped as fleet data on 2026-09-28 too), S3 economics, product-management essays, the NVIDIA-stock story, Google search weirdness, and two career essays.</li>
+        <li><strong>Curiosities</strong> &mdash; Claude on a 2007 Nokia, the iPhone crash video, the Rails creator&rsquo;s retirement, and Simon Willison&rsquo;s vibe-coded tools (shadow-roots explainer, kākāpō animation, Bluesky bot checker) and Datasette and commit-rewriter releases.</li>
+        <li><strong>Restatement</strong> &mdash; Simon Willison&rsquo;s Sep 22 Opus 5.5 and GPT-6 post beyond the max-effort finding, already cited on both entries; his Gemini 3.8 TTS playground, whose model entry already carries the 2,000-voice and 30-second-sample figures; The Code&rsquo;s Opus 5.5 cost guide, already a source on the Opus entry; and the TLDR AI plugin-portal and nine-loop items.</li>
+      </ul>
+
+      <h3>De-duplication</h3>
+      <p>The <a href="../topics/safety-and-policy.html#openai-training-pause">OpenAI training pause</a> is cited once with three sources (TLDR AI, TLDR general and The Code), and the <a href="../topics/safety-and-policy.html#muse-privacy-incidents">Muse privacy incidents</a> once with two. Two Jev-related items landed as updates rather than duplicates: MarkTechPost&rsquo;s twenty use cases went into the Jev entry as OpenRouter&rsquo;s head-to-head, and The Code&rsquo;s jev-router figure into the existing router entry.</p>
+      <p>Muse appears three times today by design: the privacy incidents on Safety, the serving estimate on Infrastructure, and a cross-link from the Agents page, each a different artifact.</p>
+
+      <h3>Link discipline</h3>
+      <p>Two addresses were confirmed in the browser after curl was refused: FelonyBench&rsquo;s site, named in the body only as <code>FelonyBench.com</code>, and Akamai&rsquo;s release, which supplied the Sep 24 date and the warrant terms. MarkTechPost&rsquo;s footer address returned a 404 on the page itself, so that issue is named without a link above.</p>
+      <p>One story uses the unlinked form: <a href="../topics/tools-and-devex.html#llm-0-36">LLM 0.36</a>, whose release links in Simon Willison&rsquo;s issue were all Substack tracking redirects, so its sources cite the issue page. Three are headline-linked to secondary pages because they carried no primary one: <a href="../topics/model-releases.html#eleven-v4">Eleven v4</a> (TechCrunch), the <a href="../topics/safety-and-policy.html#openai-training-pause">training pause</a> (Axios) and <a href="../topics/infrastructure.html#spacexai-colossus-gb300">Colossus</a> (Tom&rsquo;s Hardware). Simon Willison&rsquo;s retrospective is headline-linked to its own issue page because the write-up is the issue.</p>
+
+      <h3>Out of scope</h3>
+      <p>The pre-backfill unread backlog &mdash; Ona/Gitpod newsletters and older unread issues from Tier A senders going back to 2025 &mdash; matched the unread clause again and was left alone, as on every run since 2026-09-14.</p>
+
+      <h2>Notable themes today</h2>
+      <p>The day&rsquo;s through-line is that the incidents finally have a denominator. OpenAI&rsquo;s <a href="../topics/safety-and-policy.html#openai-training-pause">training pause</a> comes with a count &mdash; tens of thousands of boundary events, four reaching someone else&rsquo;s systems &mdash; and <a href="../topics/safety-and-policy.html#felonybench">FelonyBench</a> keeps the outside tally by lab, while <a href="../topics/safety-and-policy.html#nvidia-open-agent-safety-platform">OpenShell and Sentry</a> arrive the same day as the deterministic control below the host that the escape entries have been asking for. Muse&rsquo;s two privacy incidents are the reminder that the consumer version of the problem is scope, not escape.</p>
+      <p>The second thread is the bill for agent serving landing on CPUs. The <a href="../topics/infrastructure.html#muse-compute-demand">Muse serving estimate</a> puts nine-tenths of the power outside the GPU layer, and Anthropic&rsquo;s <a href="../topics/industry-and-business.html#anthropic-akamai-deal">$11.6 billion Akamai commitment</a> is signed for CPU workloads; between them <a href="../topics/model-releases.html#claude-sonnet-5-5">Sonnet 5.5</a>, <a href="../topics/model-releases.html#ember-1">Ember-1</a>&rsquo;s numbers and <a href="../topics/agents.html#holo4">Holo4</a> continue the argument that the tier below the frontier is where cost per task is being decided.</p>
+
+      <footer>Generated automatically by the AI digest task.</footer>
+    </main>
+  </div>
+</body>
+</html>

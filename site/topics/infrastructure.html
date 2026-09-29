@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-09-28</div>
+      <div class="meta">Last updated: 2026-09-29</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is kernels and orbits. Inferact&rsquo;s <a href="#tpu-megakernels">TPU v7 megakernels</a> push Kimi K3 past 700 tokens per second with speculative decoding and claim 1.4&ndash;2&times; a GB200 at batch sizes 1 to 8, carrying the megakernel argument Cohere made on GPUs to a second accelerator, on the vendor&rsquo;s own comparison. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> launches four TPUs on a kilowatt of solar on October 1 &mdash; the far end of this page&rsquo;s claim that the binding constraint keeps moving off the die, now to power and heat in orbit. And <a href="#jev-router">jev-router</a> on OpenRouter lets a decision model choose the model and effort before generation, a routing layer that acts on the cache economics below without yet publishing what it saves.</p>
+        <p>Today&rsquo;s cycle is where the agent-serving bill actually lands. Modal&rsquo;s <a href="#quail">Quail</a> passes <strong>a billion tokens a minute on one H100</strong>, more than 10&times; its vLLM baseline at under $0.06 per billion tokens, a throughput figure that still needs its model and batch size beside it. An estimate of <a href="#muse-compute-demand">what serving Muse costs</a> puts 100 million daily users at 1&ndash;2 gigawatts with only about 0.1 GW of it on GPUs and the rest in per-user sandboxes &mdash; and Anthropic&rsquo;s $11.6 billion Akamai commitment, on <a href="industry-and-business.html">Industry &amp; business</a>, buys CPU capacity for exactly that layer. <a href="#spacexai-colossus-gb300">SpaceXAI</a> reaches 1.44 million GPUs at Colossus and is building a 1.2 GW plant to switch them on, the grid binding before the silicon. <a href="#jev-router">jev-router</a> got its number, 82% more agent tasks solved than OpenRouter&rsquo;s Auto Router, and one dissenting test.</p>
+        <p>The Sep 28 cycle is kernels and orbits. Inferact&rsquo;s <a href="#tpu-megakernels">TPU v7 megakernels</a> push Kimi K3 past 700 tokens per second with speculative decoding and claim 1.4&ndash;2&times; a GB200 at batch sizes 1 to 8, carrying the megakernel argument Cohere made on GPUs to a second accelerator, on the vendor&rsquo;s own comparison. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> launches four TPUs on a kilowatt of solar on October 1 &mdash; the far end of this page&rsquo;s claim that the binding constraint keeps moving off the die, now to power and heat in orbit. And <a href="#jev-router">jev-router</a> on OpenRouter lets a decision model choose the model and effort before generation, a routing layer that acts on the cache economics below without yet publishing what it saves.</p>
         <p>The Sep 23 cycle was three changes below the model. vLLM&rsquo;s <a href="#vllm-hardware-agnostic">hardware-agnostic layers</a> reach 96.6% of native efficiency on H100 while staying torch-compilable, and open a new <a href="#serving-across-accelerators">Serving across accelerators</a> section: portability is now priced at a few percent on the hardware the native kernels were written for. A new paper <a href="#moe-fixed-memory-training">bounds MoE training memory</a> &mdash; expert dispatch, vocabulary projection, checkpointing and optimizer state &mdash; by scheduling alone, without approximating the computation. And <a href="#djev-cloud-run">djev on Cloud Run</a> serves a Jev-compatible decision model for about $3 an hour at 35&ndash;60ms per decision, the self-host alternative to calling the closed API.</p>
         <p>The Sep 22 arrival was silicon, reported in exactly the way this page keeps warning about. Alibaba&rsquo;s <a href="#zhenwu-v900">Zhenwu V900</a> accelerator is said to triple its predecessor&rsquo;s performance and to drive 20GW of Alibaba data centres by 2032 &mdash; a comparison against its own last chip, with no memory or interconnect figure attached, which on this page&rsquo;s running argument are the numbers that actually bind.</p>
         <p>The Sep 21 cycle pointed the agents at the serving stack itself. Z.ai says a <strong>GLM-5.3-powered Infra Agent</strong> built the production serving infrastructure for GLM-5.3-Flash across <strong>more than 100,000 Chinese accelerators in under two weeks</strong>, working from dense feedback on kernel fixes and system-level optimisation, and <strong>tripled throughput</strong> in the process. Z.ai frames it as a step toward recursive self-improvement; the sober reading is that serving is the part of the stack with the tightest feedback loop and the most mechanical search space, which is what makes it the first place an agent could plausibly do this. The baseline it tripled is unpublished and every figure is the vendor&rsquo;s, so what is solid here is the shape of the workload, not the multiple.</p>
-        <p>At the other end of the scale, local inference crossed a usability line rather than a capability one. Inco AI and LM Studio&rsquo;s <strong>Splash Engine</strong> decodes <strong>Qwen3.8-27B at 74 tokens per second on a 48GB M5 Pro</strong>, with a stated floor of an M3, macOS 26.4+ and 36GB of unified memory &mdash; which is really a statement about which laptops are inference hardware now. Set beside <a href="model-releases.html">PrismML&rsquo;s Bonsai 2 27B</a>, arriving the same week at 5.93GB against 53.80GB in FP16, the two answers to the same machine separate cleanly: compress the weights and pay for it in long-horizon agent work, or rewrite the runtime and keep full precision but need the memory. Both now exist for the same model family, which is the first time this section can put the choice that plainly.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>At the other end of the scale, local inference crossed a usability line rather than a capability one. Inco AI and LM Studio&rsquo;s <strong>Splash Engine</strong> decodes <strong>Qwen3.8-27B at 74 tokens per second on a 48GB M5 Pro</strong>, with a stated floor of an M3, macOS 26.4+ and 36GB of unified memory &mdash; which is really a statement about which laptops are inference hardware now. Set beside <a href="model-releases.html">PrismML&rsquo;s Bonsai 2 27B</a>, arriving the same week at 5.93GB against 53.80GB in FP16, the two answers to the same machine separate cleanly: compress the weights and pay for it in long-horizon agent work, or rewrite the runtime and keep full precision but need the memory. Both now exist for the same model family, which is the first time this section can put the choice that plainly.</p>
           <p>The siting question moved too. Crusoe, which built OpenAI&rsquo;s Abilene supercomputer, is now factory-manufacturing small data centres, loading them onto flatbed trucks and dropping them wherever power is available, on the reasoning that <strong>inference runs on far fewer chips than training</strong> and that construction schedules are the slower constraint. That is the training/inference split turning into a real-estate decision, and it points the same way as the latency work this section tracks: serving capacity wants to sit near the power and the users, not near the training cluster. No unit economics have been published for the small builds, so the comparison to Abilene remains the company&rsquo;s own.</p>
           <p>An earlier cycle was Kubernetes quietly winning the layer under agents. Google put <strong>Agent Substrate</strong> on GKE &mdash; an open-source, secure-by-default agent execution runtime holding millions of sandboxes at roughly ten times standard container density, with sub-500ms resume, over 500 suspend/resume activations per second and zero-trust kernel and network isolation as a native property. Microsoft open-sourced <strong>TauGrid</strong> the same week, an MIT-licensed Helm install bundling the <code>tau</code> CLI, Kueue, KubeRay, GPU health monitoring and observability, with telemetry off by default. Neither claims novelty in the components; both put the agent sandbox and the GPU queue inside the cluster manager the rest of the estate already runs. Density and resume latency are the numbers to hold onto, because they decide whether an idle agent session can be parked rather than kept warm &mdash; the difference between paying for concurrency and paying for occupancy, and the cheapest available answer to a <a href="agents.html">$19,000 swarm refactor</a>.</p>
           <p>Two measurements land beside them, both notable for publishing the unflattering half. Meta's <strong>ZGateway</strong> fronts ZippyDB with a stateless proxy tier at over a billion operations per second, carrying about 40% of traffic at roughly 6% overhead &mdash; not deployable outside Meta, so the artifact is the 6% rather than the code, and it is the figure this pattern usually leaves unstated. Nunchux AI's <strong>VC-Attention</strong> is a training-free low-bit attention kernel for video diffusion transformers: Wan2.2 attention runs 1.59&times; faster on a B200 at 8-bit and 3.58&times; on an RTX 5090 at 4-bit, but end to end those become 1.19&times; and 1.70&times;. Quoting both numbers is the honest move and a rare one; a kernel speedup reported alone routinely implies several times the gain a user would actually see. No kernel has been released publicly yet, so the figures remain the authors' own.</p>
@@ -76,10 +77,10 @@
           <li><a href="#long-context-serving">Long-context serving <span class="n">7</span></a></li>
           <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">7</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">1</span></a></li>
-          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">5</span></a></li>
+          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">6</span></a></li>
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">2</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">2</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">19</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">21</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">8</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">7</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">2</span></a></li>
@@ -233,6 +234,14 @@
         <h3>High-throughput serving of large MoEs</h3>
         <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format. None of these makes a model smaller. Every rate here is only as meaningful as the GPU and batch size beside it.</p>
 
+        <article class="story" id="quail">
+          <span class="when">2026-09-28</span>
+          <h4><a href="https://modal.com/blog/quail-billion-tpm">Modal&rsquo;s Quail pairs a query planner with an inference engine to pass a billion tokens a minute on one H100</a></h4>
+          <p><strong>Quail</strong> (Query-Aware Inference Layer) is an inference engine from Modal that processes <strong>over a billion tokens per minute per H100</strong>, more than 10&times; a vLLM baseline on the same hardware, at under $0.06 per billion tokens on Modal. The design combines a query planner with the inference engine, and the write-up is aimed at inference engineers rather than at a benchmark table.</p>
+          <p>A billion tokens a minute is a rate for bulk, planner-friendly work, not a latency figure, and it says little without the model and batch size beside it, which the summary does not give; the 10&times; is against a vLLM baseline Modal configured itself.</p>
+          <div class="sources"><a href="https://modal.com/blog/quail-billion-tpm">Modal</a> &middot; <span class="via">via TLDR AI (Sep 28)</span></div>
+        </article>
+
         <article class="story" id="glm-infra-agent">
           <span class="when">2026-09-18</span>
           <h4><a href="https://z.ai/blog/glm-built-its-inference-infrastructure">Z.ai had GLM-5.3 build GLM-5.3-Flash&rsquo;s serving stack on 100,000+ domestic accelerators</a></h4>
@@ -249,16 +258,16 @@
           <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="freetoken">
-          <span class="when">2026-08-19</span>
-          <h4>FreeToken serves a 753B MoE on one workstation GPU by remapping experts to available bandwidth</h4>
-          <p>Rather than assuming a fixed topology, FreeToken continuously remaps experts, model state, CPU/GPU work and agent state reuse onto whatever bandwidth and memory a personal machine actually has. The authors report support for more than 20 MoE models, spanning a 35B on an 8&nbsp;GB laptop GPU up to a 753B GLM on a single workstation GPU.</p>
-          <p>Independent figures circulated the same week put GLM-5.2 753B at 14.9 tok/s on a 96&nbsp;GB GPU, DeepSeek-V4-Flash 284B at 22 tok/s on 32&nbsp;GB, and Qwen3.6-35B at 39.3 tok/s on an 8&nbsp;GB card &mdash; slow but not unusable, and the 8&nbsp;GB number is the one most readers can reproduce themselves. If they hold, &ldquo;too big to serve locally&rdquo; moves down a tier.</p>
-          <div class="sources"><span class="via">via TLDR AI (Aug 19), Unwind AI (Aug 24) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story unlinked" id="freetoken">
+            <span class="when">2026-08-19</span>
+            <h4>FreeToken serves a 753B MoE on one workstation GPU by remapping experts to available bandwidth</h4>
+            <p>Rather than assuming a fixed topology, FreeToken continuously remaps experts, model state, CPU/GPU work and agent state reuse onto whatever bandwidth and memory a personal machine actually has. The authors report support for more than 20 MoE models, spanning a 35B on an 8&nbsp;GB laptop GPU up to a 753B GLM on a single workstation GPU.</p>
+            <p>Independent figures circulated the same week put GLM-5.2 753B at 14.9 tok/s on a 96&nbsp;GB GPU, DeepSeek-V4-Flash 284B at 22 tok/s on 32&nbsp;GB, and Qwen3.6-35B at 39.3 tok/s on an 8&nbsp;GB card &mdash; slow but not unusable, and the 8&nbsp;GB number is the one most readers can reproduce themselves. If they hold, &ldquo;too big to serve locally&rdquo; moves down a tier.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 19), Unwind AI (Aug 24) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="mimo-tilert">
             <span class="when">2026-06-09</span>
@@ -322,6 +331,22 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story" id="muse-compute-demand">
+          <span class="when">2026-09-28</span>
+          <h4><a href="https://robonomics.substack.com/p/agent-muse-compute-demand">Serving Muse to 100M daily users is estimated at 1&ndash;2 gigawatts, with only about 0.1 GW of it on GPUs</a></h4>
+          <p>An analysis of what Meta&rsquo;s <a href="agents.html">Muse</a> costs to run estimates <strong>1 to 2 gigawatts of average power to serve 100 million daily active users</strong>, of which only around 0.1 GW is the GPU and VM layer; 3 to 4 GW is called plausible depending on how many reasoning-equivalent model calls users generate. The per-user sandbox layer is put at under $1 billion of CPU and around $2 billion of DRAM.</p>
+          <p>If the estimate holds, a persistent-VM agent is bound by CPU, memory and power for the sandboxes rather than by accelerators, which is the direction this section&rsquo;s lead already points. The figures are one analyst&rsquo;s model, not Meta&rsquo;s disclosure.</p>
+          <div class="sources"><a href="https://robonomics.substack.com/p/agent-muse-compute-demand">Robonomics</a> (analysis) &middot; <span class="via">via TLDR AI (Sep 28)</span></div>
+        </article>
+
+        <article class="story" id="spacexai-colossus-gb300">
+          <span class="when">2026-09-28</span>
+          <h4><a href="https://www.tomshardware.com/tech-industry/data-centers/elon-musks-spacexai-to-add-another-660-000-ai-gpus-this-year-nearing-a-total-of-1-44-million-in-operation-firm-is-building-1-2-gigawatt-power-plant-to-bring-systems-fully-online">SpaceXAI adds 660,000 GPUs this year, taking Colossus to 1.44 million in operation and building a 1.2 GW plant to power them</a></h4>
+          <p>SpaceXAI will have 220,000 Nvidia GB300s operating at Colossus in November and aims to bring another 220,000 online by late December. Colossus 2 currently runs 110,000 GB200 and 440,000 GB300 GPUs, and Colossus 1 runs 150,000 H100, 50,000 H200 and 30,000 GB200 &mdash; <strong>1.1 million GB300s and 1.44 million GPUs in total</strong> &mdash; with a 1.2-gigawatt power plant being built to bring the systems fully online.</p>
+          <p>The power plant is the tell: the GPU count outran the grid connection, which is the constraint this section keeps naming. The counts are as reported by Tom&rsquo;s Hardware from the company&rsquo;s statements.</p>
+          <div class="sources"><a href="https://www.tomshardware.com/tech-industry/data-centers/elon-musks-spacexai-to-add-another-660-000-ai-gpus-this-year-nearing-a-total-of-1-44-million-in-operation-firm-is-building-1-2-gigawatt-power-plant-to-bring-systems-fully-online">Tom&rsquo;s Hardware</a> &middot; <span class="via">via TLDR AI (Sep 28)</span></div>
+        </article>
+
         <article class="story" id="suncatcher">
           <span class="when">2026-09-25</span>
           <h4><a href="https://arstechnica.com/google/2026/09/googles-first-suncatcher-orbital-data-center-test-launches-october-1/">Google&rsquo;s first Suncatcher satellite launches October 1 with four TPUs on a kilowatt of solar</a></h4>
@@ -329,23 +354,23 @@
           <div class="sources"><a href="https://arstechnica.com/google/2026/09/googles-first-suncatcher-orbital-data-center-test-launches-october-1/">Ars Technica</a> &middot; <span class="via">via TLDR (Sep 25)</span></div>
         </article>
 
-        <article class="story" id="zhenwu-v900">
-          <span class="when">2026-09-22</span>
-          <h4><a href="https://finance.yahoo.com/technology/ai/articles/alibaba-unveils-ai-chip-drive-022139864.html">Alibaba&rsquo;s Zhenwu V900 triples its predecessor, aimed at 20GW of data centres by 2032</a></h4>
-          <p>Alibaba unveiled the <strong>Zhenwu V900</strong>, an in-house AI accelerator it says <strong>triples the performance</strong> of its predecessor, to drive <strong>20GW</strong> of its data-centre build-out by 2032. The comparison is against Alibaba&rsquo;s own previous chip rather than Nvidia&rsquo;s, and no memory or interconnect figures appear in the coverage &mdash; which, on this section&rsquo;s own argument, are the numbers that bind.</p>
-          <div class="sources"><a href="https://finance.yahoo.com/technology/ai/articles/alibaba-unveils-ai-chip-drive-022139864.html">Yahoo Finance</a> &middot; <span class="via">via TLDR AI (Sep 22)</span></div>
-        </article>
-
-        <article class="story" id="crusoe-micro-datacentres">
-          <span class="when">2026-09-18</span>
-          <h4><a href="https://tldr.tech/tech/2026-09-18">Crusoe turns from the Abilene supercomputer to truck-delivered data centres</a></h4>
-          <p>Crusoe, which built OpenAI&rsquo;s largest data centre in Abilene, Texas, is now investing heavily in small ones: manufactured in factories, loaded onto flatbed trucks, and dropped wherever power is available. The company&rsquo;s stated reasoning is that this is faster and cheaper than relying only on large construction projects, and that while giant clusters of hundreds of thousands of chips are needed for training, <strong>inference runs on considerably fewer</strong>.</p>
-          <p>This is the training/inference split turning into a siting decision. A training cluster is one problem &mdash; find a gigawatt &mdash; and an inference fleet is a different one, closer to where the power and the users already are, which is the argument this section has been tracking from the latency side. If it holds, the constraint on serving capacity stops being construction schedules and becomes power interconnects, which move on their own timetable. Crusoe has published no unit economics for the small builds, so the comparison to Abilene is the company&rsquo;s own.</p>
-          <div class="sources"><a href="https://tldr.tech/tech/2026-09-18">TLDR (Sep 18)</a> &middot; <span class="via">via TLDR (Sep 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (16)</summary>
+          <summary>Earlier in this section (18)</summary>
+
+          <article class="story" id="zhenwu-v900">
+            <span class="when">2026-09-22</span>
+            <h4><a href="https://finance.yahoo.com/technology/ai/articles/alibaba-unveils-ai-chip-drive-022139864.html">Alibaba&rsquo;s Zhenwu V900 triples its predecessor, aimed at 20GW of data centres by 2032</a></h4>
+            <p>Alibaba unveiled the <strong>Zhenwu V900</strong>, an in-house AI accelerator it says <strong>triples the performance</strong> of its predecessor, to drive <strong>20GW</strong> of its data-centre build-out by 2032. The comparison is against Alibaba&rsquo;s own previous chip rather than Nvidia&rsquo;s, and no memory or interconnect figures appear in the coverage &mdash; which, on this section&rsquo;s own argument, are the numbers that bind.</p>
+            <div class="sources"><a href="https://finance.yahoo.com/technology/ai/articles/alibaba-unveils-ai-chip-drive-022139864.html">Yahoo Finance</a> &middot; <span class="via">via TLDR AI (Sep 22)</span></div>
+          </article>
+
+          <article class="story" id="crusoe-micro-datacentres">
+            <span class="when">2026-09-18</span>
+            <h4><a href="https://tldr.tech/tech/2026-09-18">Crusoe turns from the Abilene supercomputer to truck-delivered data centres</a></h4>
+            <p>Crusoe, which built OpenAI&rsquo;s largest data centre in Abilene, Texas, is now investing heavily in small ones: manufactured in factories, loaded onto flatbed trucks, and dropped wherever power is available. The company&rsquo;s stated reasoning is that this is faster and cheaper than relying only on large construction projects, and that while giant clusters of hundreds of thousands of chips are needed for training, <strong>inference runs on considerably fewer</strong>.</p>
+            <p>This is the training/inference split turning into a siting decision. A training cluster is one problem &mdash; find a gigawatt &mdash; and an inference fleet is a different one, closer to where the power and the users already are, which is the argument this section has been tracking from the latency side. If it holds, the constraint on serving capacity stops being construction schedules and becomes power interconnects, which move on their own timetable. Crusoe has published no unit economics for the small builds, so the comparison to Abilene is the company&rsquo;s own.</p>
+            <div class="sources"><a href="https://tldr.tech/tech/2026-09-18">TLDR (Sep 18)</a> &middot; <span class="via">via TLDR (Sep 18)</span></div>
+          </article>
 
           <article class="story" id="x402-pay-per-crawl">
             <span class="when">2026-09-16</span>
@@ -558,8 +583,9 @@
         <article class="story" id="jev-router">
           <span class="when">2026-09-27</span>
           <h4><a href="https://openrouter.ai/typesafe/jev-router">OpenRouter&rsquo;s typesafe/jev-router has Jev pick the model and reasoning effort before any generation</a></h4>
-          <p>TypeSafe AI and OpenRouter shipped <strong>typesafe/jev-router</strong>, a cache-aware router in which Jev scores a request and picks the model and reasoning effort before the LLM call, balancing quality, speed and cost. Deciding first avoids spending generation tokens to discover which model should have been called, though no savings figure accompanies the launch.</p>
-          <div class="sources"><a href="https://openrouter.ai/typesafe/jev-router">OpenRouter</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
+          <p>TypeSafe AI and OpenRouter shipped <strong>typesafe/jev-router</strong>, a cache-aware router in which Jev scores a request and picks the model and reasoning effort before the LLM call, balancing quality, speed and cost. Deciding first avoids spending generation tokens to discover which model should have been called, though no savings figure accompanied the launch.</p>
+          <p>A figure arrived on Sep 28: OpenRouter says the router solved <strong>82% more agent tasks than its Auto Router</strong>, and adapts as the conversation evolves rather than swapping models mid-chat and forcing the new one to re-read the context. One CTO&rsquo;s own test disagreed, reporting that it matched GPT-6 Astra on low effort while running about five times longer, so the two claims are unreconciled.</p>
+          <div class="sources"><a href="https://openrouter.ai/typesafe/jev-router">OpenRouter</a> &middot; <span class="via">via Unwind AI (Sep 27), The Code (Sep 28)</span></div>
         </article>
 
         <article class="story" id="spotify-portal">
@@ -768,6 +794,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-28</span><span class="label"><a href="#quail">Modal&rsquo;s Quail pairs a query planner with an inference engine to pass a billion tokens a minute on one H100</a></span></li>
+        <li><span class="date">2026-09-28</span><span class="label"><a href="#muse-compute-demand">Serving Muse to 100M daily users is estimated at 1&ndash;2 gigawatts, with only about 0.1 GW of it on GPUs</a></span></li>
+        <li><span class="date">2026-09-28</span><span class="label"><a href="#spacexai-colossus-gb300">SpaceXAI adds 660,000 GPUs this year, taking Colossus to 1.44 million in operation</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#jev-router">OpenRouter&rsquo;s typesafe/jev-router has Jev pick the model and reasoning effort before any generation</a></span></li>
         <li><span class="date">2026-09-25</span><span class="label"><a href="#suncatcher">Google&rsquo;s first Suncatcher satellite launches October 1 with four TPUs on a kilowatt of solar</a></span></li>
         <li><span class="date">2026-09-25</span><span class="label"><a href="#tpu-megakernels">Inferact&rsquo;s TPU v7 megakernels run Kimi K3 above 700 tokens per second with speculative decoding</a></span></li>

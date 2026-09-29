@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-09-28</div>
+      <div class="meta">Last updated: 2026-09-29</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is the pipeline after the agent writes the code. Cursor&rsquo;s <a href="#cursor-rollouts-security-reviewer">Rollouts bot</a> follows a change into production and can pause the deploy or open a revert PR itself, while Security Reviewer runs 21% faster &mdash; verification moving past review and into release. Anthropic opened a <a href="#claude-plugin-portal">plugin submission portal</a> with validation, safety scans and usage analytics, and Claude Code now spends a small weekly allowance to <a href="#claude-code-limit-wrap-up">wrap up</a> when the five-hour limit lands mid-edit. The Jev cluster reached the developer&rsquo;s own machine: <a href="#ollaya">Ollaya</a> serves open decision models behind a TypeSafe-compatible endpoint, and <a href="#jevgrep">jevgrep</a> uses Jev to find the files before the coding agent starts reading.</p>
+        <p>Today&rsquo;s cycle is a year&rsquo;s worth of the question this section asks. Simon Willison&rsquo;s <a href="#2026-in-llms-so-far">2026 retrospective</a> dates the crossing to November 2025, when Opus 4.5 and GPT-5.1 made coding agents daily-usable, follows tokenmaxxing up and back down once a day of agent work could cost $1,000, and lands on the claim that agents make the job harder because only the difficult work is left &mdash; with StrongDM&rsquo;s no-human-code, no-human-review rules as the far end and a felony tally, on <a href="safety-and-policy.html">Safety &amp; policy</a>, as the year&rsquo;s better benchmark. Underneath it, <a href="#llm-0-36">LLM 0.36</a> gives single-turn decision models a way to refuse a transcript, first used by a Jev plugin.</p>
+        <p>The Sep 28 cycle is the pipeline after the agent writes the code. Cursor&rsquo;s <a href="#cursor-rollouts-security-reviewer">Rollouts bot</a> follows a change into production and can pause the deploy or open a revert PR itself, while Security Reviewer runs 21% faster &mdash; verification moving past review and into release. Anthropic opened a <a href="#claude-plugin-portal">plugin submission portal</a> with validation, safety scans and usage analytics, and Claude Code now spends a small weekly allowance to <a href="#claude-code-limit-wrap-up">wrap up</a> when the five-hour limit lands mid-edit. The Jev cluster reached the developer&rsquo;s own machine: <a href="#ollaya">Ollaya</a> serves open decision models behind a TypeSafe-compatible endpoint, and <a href="#jevgrep">jevgrep</a> uses Jev to find the files before the coding agent starts reading.</p>
         <p>The Sep 24 cycle was Anthropic describing what agent-written code does to the rest of its engineering. Claude now writes about 80% of Anthropic&rsquo;s code, and its <a href="#anthropic-ci-test-impact-analysis">test suite grew 10x in six months</a> while test selection took <strong>25x</strong> more CI jobs; one engineer rebuilt that service stateless in three weeks, and the planning rule offered is to assume 25x within two quarters. That makes Anthropic the second company after Linear to locate the fast path&rsquo;s cost in verification. The same measure-benchmark-ratchet loop made <a href="#claude-ai-3x-faster">claude.ai about 3x faster</a> in two weeks, 3.1s to 0.55s to a typeable page, across 3,000-plus Claude-landed changes with no customer-facing rollback.</p>
         <p>Around it, <a href="#claude-code-cloud-sessions-ga">cloud sessions</a> reached general availability with the CLI entry point the Projects beta left out, and the claude-api skill&rsquo;s <a href="#claude-api-prompt-audit">prompt-audit</a> turns a model switch into a reviewable diff of CLAUDE.md, skill and agent files. All of it is Anthropic reporting on itself, and no defect rate for the fast path is published.</p>
         <p>The Sep 23 cycle was the documentation catching up with a model launch, and the migration claims arriving with their fine print. Anthropic&rsquo;s <a href="#opus-5-5-playbook">Opus 5.5 playbook</a> says to state the whole task, define done and delete &ldquo;think carefully&rdquo;, and from Claude Code 2.1.280 a mid-session effort change no longer invalidates the prompt cache &mdash; which makes effort a per-turn routing parameter rather than a session setting. The <a href="#claude-code-migration-kit">Claude Code Migration Kit</a> publishes the rulebooks and parity checks behind Anthropic&rsquo;s 680,000-line migration claim, labelled unmaintained and reconstructed.</p>
-        <p>The two Sep 23 productivity claims came out differently under inspection. GitHub&rsquo;s <a href="#github-copilot-rust-port">Copilot Rust port</a> &mdash; more than 800,000 lines in under four months for about $120,000 in tokens &mdash; lost its &ldquo;one engineer&rdquo; framing within a day, once the engineer&rsquo;s own write-up credited teammates for bindings, packaging and review. Boris Cherny&rsquo;s <a href="#claude-agent-sdk-lean-verification">Lean verification of the Agent SDK</a> produced 16 bug-fix PRs, the rare productivity claim that arrives with evidence a reviewer can check. Smaller pieces filled in the stack: StepFun&rsquo;s open terminal agent <a href="#step-code">Step Code</a>, LlamaIndex&rsquo;s local parser <a href="#liteparse">LiteParse</a>, and <a href="#ossrules">ossrules.md</a>, which collects 100 projects&rsquo; instruction files and 1,200 skills with no measure of which conventions work.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The two Sep 23 productivity claims came out differently under inspection. GitHub&rsquo;s <a href="#github-copilot-rust-port">Copilot Rust port</a> &mdash; more than 800,000 lines in under four months for about $120,000 in tokens &mdash; lost its &ldquo;one engineer&rdquo; framing within a day, once the engineer&rsquo;s own write-up credited teammates for bindings, packaging and review. Boris Cherny&rsquo;s <a href="#claude-agent-sdk-lean-verification">Lean verification of the Agent SDK</a> produced 16 bug-fix PRs, the rare productivity claim that arrives with evidence a reviewer can check. Smaller pieces filled in the stack: StepFun&rsquo;s open terminal agent <a href="#step-code">Step Code</a>, LlamaIndex&rsquo;s local parser <a href="#liteparse">LiteParse</a>, and <a href="#ossrules">ossrules.md</a>, which collects 100 projects&rsquo; instruction files and 1,200 skills with no measure of which conventions work.</p>
           <p>The Sep 22 cycle was the tooling growing the instruments it was missing. <a href="#claude-plugin-eval"><code>claude plugin eval</code></a> (Claude Code 2.1.269 and later) writes cases and graders for a plugin and reports each case with and without it, plus the delta and the cost &mdash; the first thing in the plugin layer that answers whether an addition helps rather than whether it installs, with the caveat that the graders come from the author&rsquo;s own description of success. Linear supplied the organisational version: a <a href="#linear-ci-bottleneck">test suite that nearly quadrupled</a> under agent-written code while PR wait fell from over six minutes to just over five, with tsgo taking 73% off type-checking. Verification, not generation, is where the fast path&rsquo;s cost lands.</p>
           <p>The rest moved work between machines and between bills. Devin CLI&rsquo;s <a href="#devin-cloud-terminal"><code>/handoff</code></a> carries local context, branch and uncommitted changes into a cloud VM that keeps running after the laptop closes, and SWE-2 is free until October 8. Nous&rsquo;s <a href="#hermes-claude-subscription">DirectSDK plugin</a> runs Hermes on a Claude Pro or Max plan through the Claude Code CLI at roughly 1.7&times; the allowance burn, making the subscription rather than the key the integration surface. <a href="#laya-coreml">Laya-CoreML</a> puts typed decisions on Apple&rsquo;s Neural Engine in about 5ms inside a 96-token input cap, and the <a href="#agents-md-fallback">AGENTS.md fallback</a> gained its public source: fallback, not merge, toggleable in <code>/config</code>.</p>
           <p>The Sep 21 item was small and structurally interesting. Claude Code <strong>2.1.277</strong> falls back to <code>AGENTS.md</code> when a folder has no <code>CLAUDE.md</code>, which quietly ends the config-file split a repository has had to pick a side in. Anthropic shipped it as a built-in <strong>mod</strong> rather than a feature &mdash; the first public look at a coming mechanism for customising the Claude Code harness, with the mod&rsquo;s source published and user-written project-instruction handling named as a supported case. The fallback is the announcement; the mod is the change. The component that decides which instructions reach the model becomes replaceable by the team using it, which is exactly the layer this page&rsquo;s memory and configuration patterns have been assembling by hand in Markdown.</p>
@@ -90,9 +91,9 @@
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">11</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">16</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
-          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">8</span></a></li>
+          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">9</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">16</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">16</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">17</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">6</span></a></li>
         </ul>
       </nav>
@@ -803,6 +804,14 @@
         <h3>Open-source agent infrastructure</h3>
         <p class="lead">Open-source projects filling in the stack around agents rather than the agents themselves &mdash; security, source hosting, data, UI, onboarding, release engineering. Judge entries on what limit the project states about itself; the ones worth recording here publish the case their own design does not cover.</p>
 
+        <article class="story unlinked" id="llm-0-36">
+          <span class="when">2026-09-22</span>
+          <h4>LLM 0.36 adds GPT-6 Sol and Luna, and a flag for models that cannot hold a conversation, first used by a Jev plugin</h4>
+          <p>Simon Willison&rsquo;s <strong>LLM</strong> command-line tool reached 0.36 with <code>gpt-6-sol</code> and <code>gpt-6-luna</code>, reasoning traces folded into <code>&lt;details&gt;</code> in its Markdown logs, and a new <code>supports_conversation = False</code> declaration for single-turn models, which makes the tool refuse assistant or tool history rather than send it. The first plugin to use it is <strong>llm-typesafe 0.1a0</strong>, which exposes <a href="model-releases.html">Jev</a>&rsquo;s yes/no, choice and score questions from the shell; llm-anthropic 0.29 added Claude Opus 5.5.</p>
+          <p>A decision model that cannot take a transcript needed a place in the tooling to say so, and this is the first one to add it. The releases are described in the newsletter, which linked no release page.</p>
+          <div class="sources"><a href="https://simonw.substack.com/p/2026-in-llms-so-far">Simon Willison&rsquo;s newsletter</a> (issue) &middot; <span class="via">via Simon Willison (Sep 28) &mdash; no public URL given</span></div>
+        </article>
+
         <article class="story" id="localjev">
           <span class="when">2026-09-20</span>
           <h4><a href="https://github.com/githubnext/localjev">LocalJev runs a Jev-compatible API on local models, and says where the approximation breaks</a></h4>
@@ -819,16 +828,16 @@
           <div class="sources"><a href="https://docs.openclaw.ai/releases/2026.9.5">Release notes</a> &middot; <a href="https://github.com/openclaw/openclaw">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 20)</span></div>
         </article>
 
-        <article class="story" id="tau">
-          <span class="when">2026-09-15</span>
-          <h4><a href="https://github.com/huggingface/tau">Tau: a terminal coding agent written to be read rather than deployed</a></h4>
-          <p>Hugging Face released Tau, a coding agent that runs in the terminal, reads files, edits code, executes commands and keeps a durable session history while streaming its actions. Its stated purpose is what distinguishes it: it is a teaching project, built so the shape of a coding-agent system can be understood without starting from a production codebase, and it supports OpenAI-compatible endpoints so it can be pointed at whatever model the reader has.</p>
-          <p>This page has tracked minimal harnesses &mdash; hip-agent at roughly 200 lines, Headlong in Bash &mdash; as existence proofs that the scaffolding can be small. Tau is the first released with legibility rather than minimalism as the design goal, which is a different and arguably more useful artifact for anyone who has to maintain a harness rather than admire one.</p>
-          <div class="sources"><a href="https://github.com/huggingface/tau">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="tau">
+            <span class="when">2026-09-15</span>
+            <h4><a href="https://github.com/huggingface/tau">Tau: a terminal coding agent written to be read rather than deployed</a></h4>
+            <p>Hugging Face released Tau, a coding agent that runs in the terminal, reads files, edits code, executes commands and keeps a durable session history while streaming its actions. Its stated purpose is what distinguishes it: it is a teaching project, built so the shape of a coding-agent system can be understood without starting from a production codebase, and it supports OpenAI-compatible endpoints so it can be pointed at whatever model the reader has.</p>
+            <p>This page has tracked minimal harnesses &mdash; hip-agent at roughly 200 lines, Headlong in Bash &mdash; as existence proofs that the scaffolding can be small. Tau is the first released with legibility rather than minimalism as the design goal, which is a different and arguably more useful artifact for anyone who has to maintain a harness rather than admire one.</p>
+            <div class="sources"><a href="https://github.com/huggingface/tau">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 15)</span></div>
+          </article>
 
           <article class="story" id="cline-desktop">
             <span class="when">2026-09-15</span>
@@ -1014,6 +1023,14 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and no defect rate for the fast path is recorded here.</p>
 
+        <article class="story" id="2026-in-llms-so-far">
+          <span class="when">2026-09-27</span>
+          <h4><a href="https://simonw.substack.com/p/2026-in-llms-so-far">Simon Willison&rsquo;s &ldquo;2026 in LLMs (so far)&rdquo;: coding agents became reliable, then expensive, then a liability</a></h4>
+          <p>Simon Willison&rsquo;s WeAreDevelopers keynote write-up runs the year in order: Opus 4.5 and GPT-5.1 in November 2025 pushed coding agents from &ldquo;often make mistakes&rdquo; to daily-usable; OpenClaw went from first commit to over 100,000 commits and defined the &ldquo;Claw&rdquo; category; tokenmaxxing rose and collapsed once a day of agent work could cost $1,000; a 17&nbsp;GB Qwen 3.8 27B on a laptop drew a better pelican than Opus 4.7; and from July the labs&rsquo; own training agents became the year&rsquo;s security story, with Australia raising OpenAI&rsquo;s Medicare breach at the UN.</p>
+          <p>The practitioner claim underneath is that agents make the job harder, not easier: everything easy is handled, so what remains is difficult, and the year&rsquo;s skill is defining goals, constraints and tools well enough for a &ldquo;Fable-class&rdquo; model to brute-force the rest. StrongDM&rsquo;s two rules &mdash; no code written by humans, none reviewed by humans &mdash; are the far end of that, and Willison notes the conference sessions were mostly about how to get away with the second.</p>
+          <div class="sources"><a href="https://simonw.substack.com/p/2026-in-llms-so-far">Simon Willison</a> (write-up) &middot; <span class="via">via Simon Willison (Sep 28)</span></div>
+        </article>
+
         <article class="story" id="anthropic-ci-test-impact-analysis">
           <span class="when">2026-09-24</span>
           <h4><a href="https://claude.com/blog/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic">Anthropic&rsquo;s test suite grew 10x in six months as Claude wrote 80% of its code</a></h4>
@@ -1029,15 +1046,15 @@
           <div class="sources"><a href="https://claude.dev/blog/how-we-made-claude-ai-faster/">Claude</a> &middot; <span class="via">via TLDR (Sep 24), The Code (Sep 24)</span></div>
         </article>
 
-        <article class="story unlinked" id="github-copilot-rust-port">
-          <span class="when">2026-09-23</span>
-          <h4>GitHub ports its Copilot runtime to 800,000+ lines of Rust with agents for about $120,000</h4>
-          <p>GitHub says one engineer steering agents ported its Copilot runtime to <strong>more than 800,000 lines of Rust in under four months</strong>, with agents writing most of the code for about <strong>$120,000 in tokens</strong>. The &ldquo;one engineer&rdquo; framing did not survive scrutiny: Stephen Toub brings 25 years at Microsoft, and his own write-up credits teammates for bindings, packaging and code review.</p>
-          <div class="sources"><a href="https://codenewsletter.ai/p/anthropic-launches-faster-cheaper-opus-5-5">The Code</a> (issue) &middot; <span class="via">via The Code (Sep 23) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (13)</summary>
+          <summary>Earlier in this section (14)</summary>
+
+          <article class="story unlinked" id="github-copilot-rust-port">
+            <span class="when">2026-09-23</span>
+            <h4>GitHub ports its Copilot runtime to 800,000+ lines of Rust with agents for about $120,000</h4>
+            <p>GitHub says one engineer steering agents ported its Copilot runtime to <strong>more than 800,000 lines of Rust in under four months</strong>, with agents writing most of the code for about <strong>$120,000 in tokens</strong>. The &ldquo;one engineer&rdquo; framing did not survive scrutiny: Stephen Toub brings 25 years at Microsoft, and his own write-up credits teammates for bindings, packaging and code review.</p>
+            <div class="sources"><a href="https://codenewsletter.ai/p/anthropic-launches-faster-cheaper-opus-5-5">The Code</a> (issue) &middot; <span class="via">via The Code (Sep 23) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story" id="claude-code-migration-kit">
             <span class="when">2026-09-23</span>
@@ -1205,6 +1222,7 @@
         <li><span class="date">2026-09-27</span><span class="label"><a href="#claude-plugin-portal">Anthropic opens a submission portal for Claude plugins, with safety scans and usage analytics</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#claude-code-limit-wrap-up">Claude Code now looks for a graceful stopping point when the five-hour limit lands mid-task</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#jevgrep">jevgrep uses Jev to find the relevant files before a coding agent spends tokens searching</a></span></li>
+        <li><span class="date">2026-09-27</span><span class="label"><a href="#2026-in-llms-so-far">Simon Willison&rsquo;s &ldquo;2026 in LLMs (so far)&rdquo;: coding agents became reliable, then expensive, then a liability</a></span></li>
         <li><span class="date">2026-09-25</span><span class="label"><a href="#cursor-rollouts-security-reviewer">Cursor&rsquo;s Rollouts bot can pause a deploy or open a revert PR; Security Reviewer runs 21% faster</a></span></li>
         <li><span class="date">2026-09-24</span><span class="label"><a href="#claude-ai-3x-faster">Anthropic made claude.ai about 3x faster in two weeks with 3,000+ Claude-landed changes</a></span></li>
         <li><span class="date">2026-09-24</span><span class="label"><a href="#anthropic-ci-test-impact-analysis">Anthropic&rsquo;s test suite grew 10x in six months as Claude wrote 80% of its code</a></span></li>
@@ -1222,6 +1240,7 @@
         <li><span class="date">2026-09-22</span><span class="label"><a href="#claude-plugin-eval">claude plugin eval scores a plugin with and without itself, and reports the delta and the cost</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#hermes-claude-subscription">Hermes runs on a Claude Pro or Max plan through the Claude Code CLI, at 1.7&times; the allowance burn</a></span></li>
         <li><span class="date">2026-09-22</span><span class="label"><a href="#devin-cloud-terminal">Devin CLI hands a local session to a cloud VM with /handoff, and SWE-2 is free until October 8</a></span></li>
+        <li><span class="date">2026-09-22</span><span class="label"><a href="#llm-0-36">LLM 0.36 adds GPT-6 Sol and Luna, and a flag for models that cannot hold a conversation</a></span></li>
         <li><span class="date">2026-09-21</span><span class="label"><a href="#agents-md-fallback">Claude Code reads AGENTS.md when CLAUDE.md is absent, and ships the fallback as a mod</a></span></li>
         <li><span class="date">2026-09-20</span><span class="label"><a href="#fast-jev-compaction">fast-jev-compaction cuts a Claude Code session from 1M tokens to 86K by asking which tool calls still matter</a></span></li>
         <li><span class="date">2026-09-20</span><span class="label"><a href="#pg-jev">pg-jev puts a model judgement in a Postgres WHERE clause, with the caps published</a></span></li>

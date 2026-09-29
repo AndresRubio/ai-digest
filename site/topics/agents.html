@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-09-28</div>
+      <div class="meta">Last updated: 2026-09-29</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is agents talking to agents, and what the wiring leaves open. CMU&rsquo;s <a href="#mplm">MPLM</a> removes the coordinator entirely, letting threads message each other and solving 100% of 9&times;9 Sudoku in about 15 seconds against 93% in 60 &mdash; but only because the communication pattern is known in advance. <a href="#agent-tincan">Agent Tincan</a> does the same across products, relaying requests between Grok Bot, Muse and coding agents over Tailscale, and Anthropic&rsquo;s <a href="#project-swap">Project Swap</a> measures the delegate itself: agents briefed in five minutes matched their employees&rsquo; preferences on 61% of pairs. Google shipped both sides of this page&rsquo;s trust question in one week &mdash; <a href="#api-gateway-mcp">API Gateway</a> turns REST into MCP with discovery unauthenticated by default, and the <a href="#antigravity-local-models">Antigravity SDK</a> now runs on local Gemma 4. <a href="#managed-deep-agents-0-8">Managed Deep Agents 0.8</a> adds user-owned credentials, and <a href="#devin-fusion">Devin Fusion</a> finally has independent numbers: a tie with Claude Code on Fable 5.1 at 36% lower cost per task.</p>
+        <p>Today&rsquo;s cycle is the open computer-use model and the org chart above the agents. H Company&rsquo;s <a href="#holo4">Holo4</a> puts open weights at <strong>85.2% on OSWorld for about $0.08 a task</strong>, one point above its Qwen3.8-27B base and twenty points behind Opus 5.5 on OSWorld 2.0&rsquo;s long workflows &mdash; near parity on short tasks, still losing on the horizon. <a href="#manus-2-0">Manus 2.0</a> reports 23% fewer tokens and 32% lower cost from its Cascade architecture in one configuration, and moves automations from schedules to events. <a href="#paperclip">Paperclip</a> runs Claude Code, Codex, Cursor and OpenClaw agents as a company, with roles, budgets and approvals, and publishes no figure for what the approvals cost. The other side of Muse&rsquo;s reach is on <a href="safety-and-policy.html">Safety &amp; policy</a>: two privacy incidents in which the agent stayed inside its permissions and still gave out a home address.</p>
+        <p>The Sep 28 cycle is agents talking to agents, and what the wiring leaves open. CMU&rsquo;s <a href="#mplm">MPLM</a> removes the coordinator entirely, letting threads message each other and solving 100% of 9&times;9 Sudoku in about 15 seconds against 93% in 60 &mdash; but only because the communication pattern is known in advance. <a href="#agent-tincan">Agent Tincan</a> does the same across products, relaying requests between Grok Bot, Muse and coding agents over Tailscale, and Anthropic&rsquo;s <a href="#project-swap">Project Swap</a> measures the delegate itself: agents briefed in five minutes matched their employees&rsquo; preferences on 61% of pairs. Google shipped both sides of this page&rsquo;s trust question in one week &mdash; <a href="#api-gateway-mcp">API Gateway</a> turns REST into MCP with discovery unauthenticated by default, and the <a href="#antigravity-local-models">Antigravity SDK</a> now runs on local Gemma 4. <a href="#managed-deep-agents-0-8">Managed Deep Agents 0.8</a> adds user-owned credentials, and <a href="#devin-fusion">Devin Fusion</a> finally has independent numbers: a tie with Claude Code on Fable 5.1 at 36% lower cost per task.</p>
         <p>The Sep 24 additions tested what an agent claims to drive. Qwen Intelligence&rsquo;s <a href="#qwen-mobile-agents">three mobile agents</a> report <strong>90% end-to-end success</strong> for Mobile-Use on benchmarks Qwen published the same day, so the benchmarks are the checkable release and the score is not yet. <a href="#rrsi">RRSI</a> gained the detail that its harness edit space stays open &mdash; prompts, control flow, tools, skills, memory, sub-agents &mdash; with the regularizer acting on how the search moves. The sharpest counterpoint landed on another page: Meta&rsquo;s Muse, whose connectors and downloads fill sections here, has had <a href="safety-and-policy.html">human contractors</a> placing some of its phone calls.</p>
         <p>The Sep 23 cycle measured harnesses against each other and got numbers pointing both ways. NVIDIA&rsquo;s <a href="#sol-pi">SoL-Pi</a> (Sep 21) let a research agent try 152 changes to the Pi harness and kept four, cutting token traffic <strong>44.7&ndash;49%</strong> and API cost about a third on EdgeBench &mdash; while solving 15 Terminal-Bench 4 tasks to Pi&rsquo;s 18, so the saving has a measured price. <a href="#unreal-agent">Unreal Agent</a> reports 62 on Terminal-Bench 4.0 at <strong>$3.60 a task</strong>, 39% under Codex plus Astra, on its own comparison. Google&rsquo;s <a href="#rrsi">RRSI</a> addresses what both are exposed to: a harness that improves itself tends to improve against the benchmark it is scored on, and regularizing toward changes that transfer lifted out-of-distribution results across eight benchmarks.</p>
-        <p>The rest were layers around the agent. CopilotKit&rsquo;s <a href="#openmuse">OpenMuse</a> is a self-hostable Muse-style agent on any harness, arriving the week Meta conceded Muse borrows from OpenClaw; Firecrawl raised $75M for <a href="#firecrawl-alexandria">Alexandria</a>, one search layer over 100+ data providers; and <a href="#treg">treg</a> puts 3,000+ tools behind one endpoint with credentials held server-side.</p>
-        <p>The Sep 22 cycle put a price on both ends of the multi-agent bet. Toby Ord&rsquo;s <a href="#swarm-scaling">swarm-scaling analysis</a> finds that ten times the agents buys less than ten times the tokens spent in one agent, with the shortfall compounding as the swarm grows &mdash; what a swarm buys is wall-clock time, so orchestration is a latency purchase rather than a capability one. Meta&rsquo;s Muse showed what reach costs a consumer agent: <a href="#muse-downloads">1.8M US and Canada downloads in its first 12 days</a> against ChatGPT&rsquo;s 1.3M, and Amazon blocking it from Amazon.com under terms that bar unauthorised agents. A retailer&rsquo;s conditions of use, not the agent&rsquo;s ability to drive a page, now decide where it may act.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The rest were layers around the agent. CopilotKit&rsquo;s <a href="#openmuse">OpenMuse</a> is a self-hostable Muse-style agent on any harness, arriving the week Meta conceded Muse borrows from OpenClaw; Firecrawl raised $75M for <a href="#firecrawl-alexandria">Alexandria</a>, one search layer over 100+ data providers; and <a href="#treg">treg</a> puts 3,000+ tools behind one endpoint with credentials held server-side.</p>
+          <p>The Sep 22 cycle put a price on both ends of the multi-agent bet. Toby Ord&rsquo;s <a href="#swarm-scaling">swarm-scaling analysis</a> finds that ten times the agents buys less than ten times the tokens spent in one agent, with the shortfall compounding as the swarm grows &mdash; what a swarm buys is wall-clock time, so orchestration is a latency purchase rather than a capability one. Meta&rsquo;s Muse showed what reach costs a consumer agent: <a href="#muse-downloads">1.8M US and Canada downloads in its first 12 days</a> against ChatGPT&rsquo;s 1.3M, and Amazon blocking it from Amazon.com under terms that bar unauthorised agents. A retailer&rsquo;s conditions of use, not the agent&rsquo;s ability to drive a page, now decide where it may act.</p>
           <p>On Sep 21 the harness argument got the number it has been missing. AWS&rsquo;s <strong>Strands Harness</strong> (Sep 21) runs Claude Fable 5 on Terminal-Bench 2.1 for <strong>$56.29 against Claude Code&rsquo;s $248.05</strong> while scoring <strong>69.7 against 61.8</strong> &mdash; better and roughly four times cheaper &mdash; with DeepSeek Harness at <strong>$40.30 and 59.5</strong> marking where the saving stops being free. The attributed cause is deliberately unglamorous: tool output truncated at <strong>1,500 tokens</strong>, compaction at <strong>85%</strong> of the window. Put beside the <a href="evals-and-benchmarks.html">harness-tax study</a>, which found Claude Code opening a session with more than 27,000 tokens of context against Pi&rsquo;s 2,000, the two agree on a conclusion this page resisted for months: the harness is mostly a context-management policy, and that policy is priced.</p>
           <p>The other two arrivals are both about who owns the surface rather than what runs on it. Meta opened <strong>Muse connectors</strong> to outside developers &mdash; you bring an API and a description, Meta brings the agent, the browser and the user context, plus a functional, security and legal review before a connector is findable and an editorial decision about which get featured. Google open-sourced <strong>AX</strong>, a declarative orchestrator that sandboxes, wires and fences agent workloads on a cluster on top of Agent Substrate, and describes the experience as close to Kubernetes. One is an app store, the other a scheduler; both assume agent runs are now numerous and uniform enough to need infrastructure built for their shape rather than per-application glue.</p>
           <p>An earlier cycle&rsquo;s clearest result is also its smallest intervention. Meta AI&rsquo;s <strong>Proactive Memory Agent</strong> runs a second model beside the action agent, keeps notes from its eight most recent outputs &mdash; facts, environment details, fixes that worked, commands that failed &mdash; and at each step injects either nothing or one short reminder. On <strong>Terminal-Bench 2.0</strong> that moved Claude Sonnet 4.5 from <strong>37.6% to 45.9%</strong> and Opus 4.6 from 43.5% to 45.9%; on <strong>&tau;2-Bench</strong>, Sonnet from <strong>55.0% to 61.8%</strong>. The control is what makes it a finding rather than a prompting trick: reminding at <em>every</em> step did worse than letting the memory agent pick the moment, which says the deficit being repaired is attention allocation, not lost context. It needs no retraining, so it bolts onto an existing agent &mdash; and the gains shrink on the stronger action model, which is the number to watch if the effect is partly covering for weaker instruction-following.</p>
@@ -81,10 +82,10 @@
           <li><a href="#agent-memory">Agent memory <span class="n">8</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">19</span></a></li>
           <li><a href="#the-agentic-harness">The agentic harness <span class="n">21</span></a></li>
-          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">9</span></a></li>
-          <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">10</span></a></li>
+          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">10</span></a></li>
+          <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">11</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">2</span></a></li>
-          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">6</span></a></li>
+          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">7</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">5</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">7</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">2</span></a></li>
@@ -478,6 +479,14 @@
         <h3>Agent loop design &amp; reliability</h3>
         <p class="lead">Plan, act, verify, repeat &mdash; and the primitives that decide whether a loop finishes or just burns budget: verifiers, persistent state, stop conditions, and a compaction policy. Judge entries on whether the measurement was fixed before the results appeared, because that is exactly how far agent self-improvement claims have held up.</p>
 
+        <article class="story" id="manus-2-0">
+          <span class="when">2026-09-28</span>
+          <h4><a href="https://manus.im/blog/introducing-manus-2-0">Manus 2.0&rsquo;s Cascade architecture reports 23% fewer tokens and 32% lower cost per task, and fires automations on events instead of schedules</a></h4>
+          <p>Manus released <strong>Manus 2.0</strong> around a new Cascade architecture that it says used <strong>23.2% fewer tokens, finished 28.2% faster and cost 32% less</strong> than its previous system, measured in one configuration. Agents now run on cloud computers, automations fire on external events such as an email or a Slack message rather than on a schedule, and a personal-agent app called Cue is invite-only, capped at 1,000 users on the first code. No pricing was published.</p>
+          <p>A loop that wakes on events rather than polling is the design change; the three percentages are against Manus&rsquo;s own last version in a single tested setup, which is exactly the measurement this section says to read for.</p>
+          <div class="sources"><a href="https://manus.im/blog/introducing-manus-2-0">Manus</a> &middot; <a href="https://x.com/ManusAI/status/2104592659142869352">Announcement on X</a> &middot; <span class="via">via MarkTechPost (Sep 28)</span></div>
+        </article>
+
         <article class="story" id="rrsi">
           <span class="when">2026-09-23</span>
           <h4><a href="https://regularized-rsi.com/">Google&rsquo;s RRSI regularizes harness self-improvement so gains transfer beyond the benchmark</a></h4>
@@ -494,16 +503,16 @@
           <div class="sources"><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">Simon Willison (Sep 14)</a></div>
         </article>
 
-        <article class="story" id="selfcompact">
-          <span class="when">2026-09-11</span>
-          <h4><a href="https://arxiv.org/abs/2609.05011">SelfCompact lets the agent decide when to compact, with a rubric and no fine-tuning</a></h4>
-          <p>Tianjian Li and colleagues at Johns Hopkins and Apple added two things to an agent&rsquo;s toolkit: a probe that fires every 16,000 tokens and asks the model to judge its own state against an explicit rubric, and a summarisation tool it may then invoke. Compaction is allowed when a sub-task has finished or progress is clearly directed, and blocked mid-step or when stuck; summaries compress 50,000&ndash;100,000 tokens of trace to 1,000&ndash;3,000.</p>
-          <p>On IMO-Answerbench, Qwen3-30B-A3B reached <strong>52.1%</strong> against 48.7% for fixed-interval summarisation and 45.2% for no compaction; on BrowseComp-Plus, GLM-4.7-Flash reached 54.1% against 50.0% and 45.6%. Replacing the rubric with a bare &ldquo;do you want to compact?&rdquo; prompt collapsed the gain back to fixed-interval levels, which is the actual finding &mdash; the criteria carry the result, not the self-assessment.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2609.05011">SelfCompact paper</a> &middot; <span class="via">via The Batch (Sep 11)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="selfcompact">
+            <span class="when">2026-09-11</span>
+            <h4><a href="https://arxiv.org/abs/2609.05011">SelfCompact lets the agent decide when to compact, with a rubric and no fine-tuning</a></h4>
+            <p>Tianjian Li and colleagues at Johns Hopkins and Apple added two things to an agent&rsquo;s toolkit: a probe that fires every 16,000 tokens and asks the model to judge its own state against an explicit rubric, and a summarisation tool it may then invoke. Compaction is allowed when a sub-task has finished or progress is clearly directed, and blocked mid-step or when stuck; summaries compress 50,000&ndash;100,000 tokens of trace to 1,000&ndash;3,000.</p>
+            <p>On IMO-Answerbench, Qwen3-30B-A3B reached <strong>52.1%</strong> against 48.7% for fixed-interval summarisation and 45.2% for no compaction; on BrowseComp-Plus, GLM-4.7-Flash reached 54.1% against 50.0% and 45.6%. Replacing the rubric with a bare &ldquo;do you want to compact?&rdquo; prompt collapsed the gain back to fixed-interval levels, which is the actual finding &mdash; the criteria carry the result, not the self-assessment.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2609.05011">SelfCompact paper</a> &middot; <span class="via">via The Batch (Sep 11)</span></div>
+          </article>
 
           <article class="story unlinked" id="self-gc">
             <span class="when">2026-08-26</span>
@@ -555,6 +564,14 @@
         <h3>Meta-orchestration &amp; governance</h3>
         <p class="lead">A layer above individual agents: composing them, governing them, and knowing what came back. Two instruments compete &mdash; enforcement in flight, which costs roughly one legitimate task in eight, and anomaly detection afterwards, which costs nothing at runtime and sees only what the harness logged. Judge entries on which of the two they buy.</p>
 
+        <article class="story" id="paperclip">
+          <span class="when">2026-09-28</span>
+          <h4><a href="https://github.com/paperclipai/paperclip">Paperclip runs a team of coding agents as an org chart, with roles, budgets and approvals in one dashboard</a></h4>
+          <p><strong>Paperclip</strong>, an open-source project at about 91,000 GitHub stars, manages a team of AI agents from one place: bring Claude Code, Codex, Cursor, OpenClaw or a custom agent, give each a role and goals, and track tasks, budgets, approvals and costs from a single dashboard.</p>
+          <p>It is governance bought as enforcement in flight &mdash; budgets and approvals gate what an agent does next &mdash; which the section lead prices at roughly one legitimate task in eight; the project publishes no figure for what its approvals cost or catch, so the star count is the only number here.</p>
+          <div class="sources"><a href="https://github.com/paperclipai/paperclip">GitHub</a> &middot; <span class="via">via The Code (Sep 28)</span></div>
+        </article>
+
         <article class="story" id="agent-anomaly-detection">
           <span class="when">2026-09-17</span>
           <h4><a href="https://developers.googleblog.com/agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform/">Gemini Enterprise adds anomaly detection over agent logs and traces, in private preview</a></h4>
@@ -571,15 +588,15 @@
           <div class="sources"><a href="https://cursor.com/blog/projects">Cursor blog</a> &middot; <span class="via">via Unwind AI (Sep 11), The Code (Sep 14)</span></div>
         </article>
 
-        <article class="story" id="pizza-bot">
-          <span class="when">2026-09-11</span>
-          <h4><a href="https://aws.amazon.com/blogs/opensource/introducing-pizza-bot-an-open-source-inbox-for-ai-agents-that-work-in-the-background/">AWS open-sources Pizza Bot &mdash; an inbox for background agents, with on-disk checkpoints</a></h4>
-          <p>Pizza Bot is a self-hosted agent inbox where finished work lands in Unread and runs waiting on approval move to Action. Tasks start from a prompt, a schedule or a webhook, survive closed tabs and interrupted sessions through on-disk checkpoints, and delegate to specialists built with MCP and Agent Skills. It ships as a desktop app for macOS, Windows and Linux. The interface claim is the interesting one &mdash; that the unit of interaction with a background agent is a message queue, not a chat window.</p>
-          <div class="sources"><a href="https://aws.amazon.com/blogs/opensource/introducing-pizza-bot-an-open-source-inbox-for-ai-agents-that-work-in-the-background/">AWS blog</a> &middot; <span class="via">via Unwind AI (Sep 11)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="pizza-bot">
+            <span class="when">2026-09-11</span>
+            <h4><a href="https://aws.amazon.com/blogs/opensource/introducing-pizza-bot-an-open-source-inbox-for-ai-agents-that-work-in-the-background/">AWS open-sources Pizza Bot &mdash; an inbox for background agents, with on-disk checkpoints</a></h4>
+            <p>Pizza Bot is a self-hosted agent inbox where finished work lands in Unread and runs waiting on approval move to Action. Tasks start from a prompt, a schedule or a webhook, survive closed tabs and interrupted sessions through on-disk checkpoints, and delegate to specialists built with MCP and Agent Skills. It ships as a desktop app for macOS, Windows and Linux. The interface claim is the interesting one &mdash; that the unit of interaction with a background agent is a message queue, not a chat window.</p>
+            <div class="sources"><a href="https://aws.amazon.com/blogs/opensource/introducing-pizza-bot-an-open-source-inbox-for-ai-agents-that-work-in-the-background/">AWS blog</a> &middot; <span class="via">via Unwind AI (Sep 11)</span></div>
+          </article>
 
           <article class="story" id="google-agents-challenge-patterns">
             <span class="when">2026-09-11</span>
@@ -657,6 +674,14 @@
         <h3>Browser &amp; computer-use agents</h3>
         <p class="lead">Three ways an agent drives a browser: infer the page from pixels, call actions a cooperating site publishes, or borrow a profile that is already logged in. Open-weights families such as Microsoft Fara1.5 (4B/9B/27B, reported to beat OpenAI Operator and Gemini 2.5 on certain tasks) make the proprietary browsing agents substitutable.</p>
 
+        <article class="story" id="holo4">
+          <span class="when">2026-09-28</span>
+          <h4><a href="https://hcompany.ai/newsroom/holo4">H Company&rsquo;s Holo4 open-weight computer-use agents score 85.2% on OSWorld at about $0.08 a task, and 61.7% on long workflows against 81.8% for Opus 5.5</a></h4>
+          <p>H Company released two <strong>Holo4</strong> computer-use models: a dense 27B and a 35B-A3B MoE. The 27B scores <strong>85.2% on OSWorld</strong> against 84.3% for its Qwen3.8-27B base, at about $0.08 per task; the MoE is Apache 2.0 at $0.05 per task, while the 27B is CC BY-NC 4.0, non-commercial. On OSWorld 2.0&rsquo;s long workflows the 27B scores <strong>61.7% against 81.8% for Claude Opus 5.5</strong>.</p>
+          <p>The one-point gain over the base on the standard benchmark and the twenty-point gap to the frontier on long workflows are the two numbers to hold together: the open-weight route is cheap and near parity on short tasks, and the horizon is still where it loses. All figures are H Company&rsquo;s own.</p>
+          <div class="sources"><a href="https://hcompany.ai/newsroom/holo4">H Company</a> &middot; <a href="https://huggingface.co/Hcompany/Holo4-27B">Holo4-27B</a> &middot; <a href="https://huggingface.co/Hcompany/Holo4-35B-A3B">Holo4-35B-A3B</a> &middot; <span class="via">via MarkTechPost (Sep 28)</span></div>
+        </article>
+
         <article class="story" id="qwen-mobile-agents">
           <span class="when">2026-09-24</span>
           <h4><a href="https://x.com/Alibaba_Qwen/status/2102727405198876753">Qwen launches three mobile agents and reports 90% end-to-end success for Mobile-Use</a></h4>
@@ -672,16 +697,16 @@
           <div class="sources"><a href="https://www.cnbc.com/2026/09/21/meta-muse-personal-ai-agent-downloads.html">CNBC</a> &middot; <a href="https://techcrunch.com/2026/09/21/metas-muse-is-outpacing-chatgpts-early-mobile-launch/">TechCrunch (downloads)</a> &middot; <a href="https://techcrunch.com/2026/09/21/metas-ai-agent-has-been-blocked-from-using-amazon-com/">TechCrunch (Amazon)</a> &middot; <span class="via">via TLDR AI (Sep 22), TLDR (Sep 22), AI Supremacy (Sep 22), The Code (Sep 22)</span></div>
         </article>
 
-        <article class="story" id="jev-ultrafast">
-          <span class="when">2026-09-20</span>
-          <h4><a href="https://github.com/browser-use/jev-ultrafast">Browser Use finds a flight in 7.073 seconds by letting Jev pick every browser action</a></h4>
-          <p>Browser Use shipped <strong>jev-ultrafast</strong>, an open-source agent where <a href="model-releases.html">Jev</a> chooses the browser operation and target and a text model is called only when something has to be typed. It found a Google Flights itinerary in <strong>7.073 seconds using 17 Jev requests, at a median Jev latency of 178ms</strong>.</p>
-          <p>That is the computer-use loop with the per-step reasoning call removed &mdash; the cost this section has repeatedly identified as what makes browser agents slow &mdash; and it holds only where the next action is a choice among visible options rather than a judgement about the page. Where that stops being true is measured elsewhere: <a href="evals-and-benchmarks.html">Context7 found the same model at 27% against 93% on crawl-root selection</a> while running 10&ndash;170&times; faster.</p>
-          <div class="sources"><a href="https://github.com/browser-use/jev-ultrafast">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="jev-ultrafast">
+            <span class="when">2026-09-20</span>
+            <h4><a href="https://github.com/browser-use/jev-ultrafast">Browser Use finds a flight in 7.073 seconds by letting Jev pick every browser action</a></h4>
+            <p>Browser Use shipped <strong>jev-ultrafast</strong>, an open-source agent where <a href="model-releases.html">Jev</a> chooses the browser operation and target and a text model is called only when something has to be typed. It found a Google Flights itinerary in <strong>7.073 seconds using 17 Jev requests, at a median Jev latency of 178ms</strong>.</p>
+            <p>That is the computer-use loop with the per-step reasoning call removed &mdash; the cost this section has repeatedly identified as what makes browser agents slow &mdash; and it holds only where the next action is a choice among visible options rather than a judgement about the page. Where that stops being true is measured elsewhere: <a href="evals-and-benchmarks.html">Context7 found the same model at 27% against 93% on crawl-root selection</a> while running 10&ndash;170&times; faster.</p>
+            <div class="sources"><a href="https://github.com/browser-use/jev-ultrafast">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 20)</span></div>
+          </article>
 
           <article class="story" id="browserskill">
             <span class="when">2026-09-17</span>
@@ -988,6 +1013,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-28</span><span class="label"><a href="#holo4">H Company&rsquo;s Holo4 open-weight computer-use agents score 85.2% on OSWorld at about $0.08 a task</a></span></li>
+        <li><span class="date">2026-09-28</span><span class="label"><a href="#manus-2-0">Manus 2.0&rsquo;s Cascade architecture reports 23% fewer tokens and 32% lower cost per task</a></span></li>
+        <li><span class="date">2026-09-28</span><span class="label"><a href="#paperclip">Paperclip runs a team of coding agents as an org chart, with roles, budgets and approvals</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#antigravity-local-models">The Antigravity SDK runs agents on local models, starting with Gemma 4 26B A4B through LiteRT</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#api-gateway-mcp">Google Cloud API Gateway serves existing REST operations as MCP tools, with discovery open by default</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#agent-tincan">Agent Tincan lets Grok Bot, Muse, Codex and Claude agents ask each other for help across products</a></span></li>
