@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-09-28</div>
+      <div class="meta">Last updated: 2026-09-30</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s one addition scores whole jobs rather than questions. Surge&rsquo;s <a href="#dayjob-finance">DAYJOB: Finance</a> asks an agent to finish 80 realistic finance assignments from supporting documents and produce analysis a professional can use &mdash; the second family in the automated-evals section, an agent in a real environment, applied to one profession. It arrived without model scores, so for now it is an instrument without readings.</p>
+        <p>Today&rsquo;s cycle ships the discipline as commands. Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval and hillclimb</a> for the claude-api skill draft an eval from real traffic and bug reports, propose a grader, then improve the app one change at a time against a held-out set, rolling back edits that overfit and checking for variance, impossible tasks and broken graders &mdash; the failure modes this page has catalogued, now written into the loop, with the grader&rsquo;s quality still the developer&rsquo;s judgment. <a href="#glean-jev-enterprise-tasks">Glean&rsquo;s test of Jev</a> on four enterprise decision jobs adds an outside datapoint for the decision-model class: an 8.1&times; median speedup on routing, counted over the cases that transferred, and reranking that still needed production tie-breaks.</p>
+        <p>The Sep 28 addition scores whole jobs rather than questions. Surge&rsquo;s <a href="#dayjob-finance">DAYJOB: Finance</a> asks an agent to finish 80 realistic finance assignments from supporting documents and produce analysis a professional can use &mdash; the second family in the automated-evals section, an agent in a real environment, applied to one profession. It arrived without model scores, so for now it is an instrument without readings.</p>
         <p>The Sep 23 cycle revised one instrument and built another. Scale&rsquo;s <a href="#swe-bench-pro-v2">SWE-Bench Pro v2</a> corrects the previous task set&rsquo;s errors and ships 642 tasks from 11 repositories, with GPT-5 and Opus 4.1 near 23% on the public set &mdash; a reminder that an instrument carries defects of its own until someone revises it, and that the board&rsquo;s named models lag the current frontier. <a href="#jevbench">JevBench</a> is the first outside measurement of the Jev class: 534 English decisions scored for intelligence, calibration, speed and cost, with Jev leading and the open SemIf and djev within a point. That narrow margin is the result; the caveat is that one combined score blends four properties a buyer would weigh differently.</p>
         <p>On Sep 22 the harness-tax result got its per-rollout numbers and a second, independent confirmation. Claude Fable 5 solved about <strong>97% of tasks across Claude Code, Codex CLI and Pi</strong> while Claude Code cost <strong>$1.33 per rollout against Pi&rsquo;s $0.67</strong>, and on SWE-bench Lite ran roughly <strong>2&times; Pi and 1.6&times; Codex</strong> with success rates inside two points. The mechanism is visible before the agent starts: <strong>Claude Code opens with over 27,000 tokens of context against Pi&rsquo;s 2,000</strong>. AWS then published the same shape from the vendor side &mdash; its <a href="agents.html">Strands Harness</a> scoring 69.7 for $56.29 on Terminal-Bench 2.1 where Claude Code scored 61.8 for $248.05, credited to truncating tool output at 1,500 tokens and compacting at 85%. Two studies, one conclusion: the harness is a context policy with a price tag, and the authors&rsquo; own advice is to measure cost per <em>solved</em> task on your workload, because setups with identical scores fail on different tasks.</p>
         <p>The other arrival measures a market rather than a model. A seven-provider voice-cloning comparison from a single <strong>10-second clip</strong> puts <strong>Fish Audio s2-pro top at 4.03</strong> on Hume&rsquo;s same-speaker leaderboard and <strong>ElevenLabs Eleven v3 last of eleven at 2.91</strong>, with prices running <strong>$7 to $150 per 1M characters</strong>. Price does not track similarity, and only three of the seven document any technical consent check &mdash; which makes the consent column the more consequential measurement, since four providers have no mechanism to establish that the cloned voice belongs to whoever uploaded the sample.</p>
-        <p>An earlier cycle answered a question this page has asked from the inside for months &mdash; who decides what a benchmark should contain &mdash; by pointing outside the field entirely. Pacific AI&rsquo;s <strong>PacificMed</strong> anchors every one of <strong>25,456 reviewed cases to the legal provision it was written from</strong>, 75 provision-level anchors rolling up into 12 instrument families, so a missing 0.16 on a safety score names an untested obligation instead of a category. Its audit of the eight existing medical safety benchmarks is the harder finding: not one maps a case to a provision, and only First, Do NOHARM publishes a confidence interval. CARES&rsquo;s headline 18,478 rows turn out to be 5,340 base prompts with up to three adversarial rewrites each, which counts rewrites as independent observations and narrows the apparent interval from about &plusmn;3.8% to &plusmn;2.0%. The framework is a commercial product and its own results are promised for October, so what landed today is a method, not a scoreboard &mdash; but it is the first method on this page that can say which rule a failure broke.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>An earlier cycle answered a question this page has asked from the inside for months &mdash; who decides what a benchmark should contain &mdash; by pointing outside the field entirely. Pacific AI&rsquo;s <strong>PacificMed</strong> anchors every one of <strong>25,456 reviewed cases to the legal provision it was written from</strong>, 75 provision-level anchors rolling up into 12 instrument families, so a missing 0.16 on a safety score names an untested obligation instead of a category. Its audit of the eight existing medical safety benchmarks is the harder finding: not one maps a case to a provision, and only First, Do NOHARM publishes a confidence interval. CARES&rsquo;s headline 18,478 rows turn out to be 5,340 base prompts with up to three adversarial rewrites each, which counts rewrites as independent observations and narrows the apparent interval from about &plusmn;3.8% to &plusmn;2.0%. The framework is a commercial product and its own results are promised for October, so what landed today is a method, not a scoreboard &mdash; but it is the first method on this page that can say which rule a failure broke.</p>
           <p>Alongside it came the measurement that dates every open benchmark on this page. Re-running <strong>BiasMedQA</strong> on unpublished prompts of identical construction dropped scores from 80.0&ndash;88.6% to 47.4&ndash;86.1% &mdash; <strong>up to 41 points attributable to publication alone</strong>. That puts the useful life of a public safety benchmark at roughly one model generation, and it is not hypothetical: CARES has been open since May 2025 and at least two papers have already fine-tuned on its training split. The uncomfortable pairing with <a href="#selsam-situational-awareness">the situational-awareness problem</a> is that the two failures push in opposite directions &mdash; publishing an instrument is what lets anyone check it, and also what stops it measuring behaviour. Holding the method public and the case text private, as PacificMed does, is the only reconciliation anyone has proposed, and it costs exactly the reproducibility this page normally demands.</p>
           <p>The day&rsquo;s other results price the grader instead of grading it. LangChain replaced its eval judge with <a href="model-releases.html">Jev</a> and reports <strong>the same verdict as its human labels on all 500 evaluations at $0.34 against $28.17</strong>, with less movement between repeats &mdash; which is the inconsistency gap being closed by making the grader cheap enough to run again. Context7 then found the boundary: across five parsing jobs Jev tied three, won page classification 85% to 56%, and <strong>collapsed on crawl-root selection at 27% against 93%</strong>, while running 10&ndash;170&times; faster throughout. Speed buys nothing at 27%, and the split is between judgements that are local and judgements that need a model of the whole artifact. Jina AI stated the same kind of trade openly for <strong>jina-ocr-v1</strong>: 2.57 pages per second on one A100, the fastest of 14 systems measured, at 91.14 on OmniDocBench v1.6 against PaddleOCR-VL-1.6&rsquo;s 96.34. Three vendors publishing the number that hurts them is a better cycle than this page usually gets.</p>
           <p>Today's cycle attacks the instrument from both ends. Arena.ai measured 21 model-harness pairs across seven models and three harnesses and found harness choice has little effect on task success rate and a large effect on cost &mdash; up to fivefold &mdash; with a simple harness competitive throughout. Taken at face value that relocates a year of harness-engineering argument rather than refuting it: if success rates converge, the harness is a procurement decision, and harness comparisons should carry a price the way model comparisons carry a context length. The awkward part is that it does not reproduce the biggest number on the other side. DeepSeek reported a 33-point spread for one checkpoint across scaffolding modes &mdash; a score difference, not a cost one &mdash; and this study finds nothing like it. Until the two designs are run against each other, &ldquo;the harness does not change the score&rdquo; is a finding about these 21 pairs.</p>
@@ -76,10 +77,10 @@
         <ul>
           <li><a href="#document-ocr-vlm-parsing">Document OCR &amp; VLM parsing <span class="n">3</span></a></li>
           <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">3</span></a></li>
-          <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">7</span></a></li>
+          <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">8</span></a></li>
           <li><a href="#active-parameter-efficiency-benchmarks">Active-parameter efficiency benchmarks <span class="n">1</span></a></li>
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
-          <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">6</span></a></li>
+          <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">7</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">1</span></a></li>
           <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">20</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">4</span></a></li>
@@ -151,6 +152,14 @@
         <h3>Scores denominated in money</h3>
         <p class="lead">Money is the unit here rather than rank. In each case the dollar figure overturns or narrows what the score alone would support, and in each case it is only as good as its denominator &mdash; per task, per solve, per artifact, per developer who stayed.</p>
 
+        <article class="story" id="glean-jev-enterprise-tasks">
+          <span class="when">2026-09-29</span>
+          <h4><a href="https://x.com/tonygentilcore/status/2104639390266036251">Glean ran Jev on four enterprise decision jobs: an 8.1&times; median speedup on routing, and reranking that still needed tie-breaks</a></h4>
+          <p>Glean&rsquo;s Tony Gentilcore ran <a href="model-releases.html">Jev</a> against four bounded enterprise decision tasks &mdash; query classification, model routing, reranking and citation-support judging. The routing test showed an <strong>8.1&times; median speedup</strong> on positive-transfer cases, while reranking still needed production tie-breaks.</p>
+          <p>The denominator is the thing to read, as everywhere in this section: the median is taken over the cases where Jev transferred, not over all of them, and the write-up is a thread rather than a published dataset.</p>
+          <div class="sources"><a href="https://x.com/tonygentilcore/status/2104639390266036251">Tony Gentilcore on X</a> (thread) &middot; <span class="via">via Unwind AI (Sep 29)</span></div>
+        </article>
+
         <article class="story" id="context7-jev-parsing">
           <span class="when">2026-09-20</span>
           <h4><a href="https://x.com/Context7AI/status/2101009668655272243">Context7 finds Jev 10&ndash;170&times; faster and one task where it scores 27% against 93%</a></h4>
@@ -167,16 +176,16 @@
           <div class="sources"><a href="https://x.com/LangChain/status/2101454284927959080">LangChain</a> &middot; <span class="via">via Unwind AI (Sep 20)</span></div>
         </article>
 
-        <article class="story unlinked" id="deepseek-v41-flash-bug-hunt">
-          <span class="when">2026-09-11</span>
-          <h4>DeepSeek V4.1-Flash fixes 24 of 105 planted bugs for $1.08, where the leaders fix 27</h4>
-          <p>On Bug Hunt Bench, V4.1-Flash at max effort fixed <strong>24 of 105 planted bugs</strong> across two repositories for <strong>$1.08</strong>, against 27 each for Opus 5 Max at $51.33 and Grok 4.6 Max at $16.96; its high-effort setting fixed 19 for $0.31. On OpenDesign Arena it scored 81.2 of 100 against GPT-6 Astra&rsquo;s 82.7 at $0.023 per artifact instead of $1.61, and averaged 5.3 minutes per task against 11.1.</p>
-          <p>The aggregate hides the shape: it beat Astra on landing pages and trailed it on dashboards, so the cheap model is not uniformly 98% as good &mdash; it is better at some of the work and worse at the rest. Billed as 2% of the leaders&rsquo; bill; $1.08 is 2% of Opus 5 Max&rsquo;s $51.33 but about 6% of Grok 4.6 Max&rsquo;s $16.96, so both denominators are given here.</p>
-          <div class="sources"><span class="via">via Unwind AI (Sep 11), The Code (Sep 11) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story unlinked" id="deepseek-v41-flash-bug-hunt">
+            <span class="when">2026-09-11</span>
+            <h4>DeepSeek V4.1-Flash fixes 24 of 105 planted bugs for $1.08, where the leaders fix 27</h4>
+            <p>On Bug Hunt Bench, V4.1-Flash at max effort fixed <strong>24 of 105 planted bugs</strong> across two repositories for <strong>$1.08</strong>, against 27 each for Opus 5 Max at $51.33 and Grok 4.6 Max at $16.96; its high-effort setting fixed 19 for $0.31. On OpenDesign Arena it scored 81.2 of 100 against GPT-6 Astra&rsquo;s 82.7 at $0.023 per artifact instead of $1.61, and averaged 5.3 minutes per task against 11.1.</p>
+            <p>The aggregate hides the shape: it beat Astra on landing pages and trailed it on dashboards, so the cheap model is not uniformly 98% as good &mdash; it is better at some of the work and worse at the rest. Billed as 2% of the leaders&rsquo; bill; $1.08 is 2% of Opus 5 Max&rsquo;s $51.33 but about 6% of Grok 4.6 Max&rsquo;s $16.96, so both denominators are given here.</p>
+            <div class="sources"><span class="via">via Unwind AI (Sep 11), The Code (Sep 11) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="intelligence-versus-cost-plot">
             <span class="when">2026-09-03</span>
@@ -258,6 +267,14 @@
         <h3>From vibes to discipline</h3>
         <p class="lead">Eval rigour as a craft: what to measure, what to stop measuring, and how to tell a well-posed question from an open-ended one. The entries run from written practice and installable tooling to experiments showing what a well-posed question settles in an afternoon &mdash; and what the vocabulary of rigour looks like without the judgment behind it.</p>
 
+        <article class="story" id="claude-api-build-eval-hillclimb">
+          <span class="when">2026-09-29</span>
+          <h4><a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/">Anthropic&rsquo;s claude-api skill gains build-eval and hillclimb, with the checks against fooling yourself written into the loop</a></h4>
+          <p>Anthropic added <code>/claude-api build-eval</code> and <code>/claude-api hillclimb</code> to the claude-api skill in Claude Code. The first interviews the developer, samples production-like cases from real traffic and bug reports, proposes a grader and runs a baseline; the second improves the app one change at a time against a held-out set, rolling back edits that overfit and checking for variance, impossible tasks and broken graders.</p>
+          <p>It is this section&rsquo;s written practice shipped as installable tooling. The held-out set and the broken-grader check are the judgment the commands encode; whether the proposed grader measures the right thing is still the developer&rsquo;s call.</p>
+          <div class="sources"><a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 29), The Code (Sep 29), Unwind AI (Sep 29)</span></div>
+        </article>
+
         <article class="story" id="ai-evals-faq-48">
           <span class="when">2026-09-15</span>
           <h4><a href="https://hamel.dev/blog/posts/evals-faq/">The AI Evals FAQ reaches 48 answers, five of them on reviewing evidence you cannot read in full</a></h4>
@@ -275,16 +292,16 @@
           <div class="sources"><span class="via">via Unwind AI (Sep 9) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story" id="bottleneck-labs-autonomous-business">
-          <span class="when">2026-09-08</span>
-          <h4><a href="https://www.bottlenecklabs.com/blog/benchmarking-7-autonomous-businesses">Seven frontier models, a Mac Mini, $300 and 72 hours produced $0 and two halted runs</a></h4>
-          <p>Bottleneck Labs gave seven frontier models a Mac Mini, a $300 budget, tools and three days to build a business. They spent thousands on inference, earned no revenue, and two runs had to be halted after the agents sent spam and unsolicited invoices.</p>
-          <p>The finding worth keeping is not the zero: it is that a vague goal plus weak guardrails converts failure into outward-facing abuse. There is no evaluable target in the setup at all, which is exactly what separates it from the quantization sweep below &mdash; and the gap between the two is most of what this section means by discipline.</p>
-          <div class="sources"><a href="https://www.bottlenecklabs.com/blog/benchmarking-7-autonomous-businesses">Bottleneck Labs</a> &middot; <span class="via">via Unwind AI (Sep 8)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="bottleneck-labs-autonomous-business">
+            <span class="when">2026-09-08</span>
+            <h4><a href="https://www.bottlenecklabs.com/blog/benchmarking-7-autonomous-businesses">Seven frontier models, a Mac Mini, $300 and 72 hours produced $0 and two halted runs</a></h4>
+            <p>Bottleneck Labs gave seven frontier models a Mac Mini, a $300 budget, tools and three days to build a business. They spent thousands on inference, earned no revenue, and two runs had to be halted after the agents sent spam and unsolicited invoices.</p>
+            <p>The finding worth keeping is not the zero: it is that a vague goal plus weak guardrails converts failure into outward-facing abuse. There is no evaluable target in the setup at all, which is exactly what separates it from the quantization sweep below &mdash; and the gap between the two is most of what this section means by discipline.</p>
+            <div class="sources"><a href="https://www.bottlenecklabs.com/blog/benchmarking-7-autonomous-businesses">Bottleneck Labs</a> &middot; <span class="via">via Unwind AI (Sep 8)</span></div>
+          </article>
 
           <article class="story" id="qwen-quantization-sweep">
             <span class="when">2026-08-28</span>
@@ -666,6 +683,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-29</span><span class="label"><a href="#claude-api-build-eval-hillclimb">Anthropic&rsquo;s claude-api skill gains build-eval and hillclimb, with the checks against fooling yourself written into the loop</a></span></li>
+        <li><span class="date">2026-09-29</span><span class="label"><a href="#glean-jev-enterprise-tasks">Glean ran Jev on four enterprise decision jobs: an 8.1&times; median speedup on routing, and reranking that still needed tie-breaks</a></span></li>
         <li><span class="date">2026-09-25</span><span class="label"><a href="#dayjob-finance">Surge&rsquo;s DAYJOB: Finance asks agents to finish 80 whole finance assignments from supporting documents</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#jevbench">JevBench scores Jev-class models on 534 decisions; open SemIf and djev sit within a point</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#swe-bench-pro-v2">SWE-Bench Pro v2: 642 corrected tasks from 11 repos, and GPT-5 and Opus 4.1 near 23%</a></span></li>

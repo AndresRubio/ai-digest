@@ -30,16 +30,17 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-09-29</div>
+      <div class="meta">Last updated: 2026-09-30</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is the open computer-use model and the org chart above the agents. H Company&rsquo;s <a href="#holo4">Holo4</a> puts open weights at <strong>85.2% on OSWorld for about $0.08 a task</strong>, one point above its Qwen3.8-27B base and twenty points behind Opus 5.5 on OSWorld 2.0&rsquo;s long workflows &mdash; near parity on short tasks, still losing on the horizon. <a href="#manus-2-0">Manus 2.0</a> reports 23% fewer tokens and 32% lower cost from its Cascade architecture in one configuration, and moves automations from schedules to events. <a href="#paperclip">Paperclip</a> runs Claude Code, Codex, Cursor and OpenClaw agents as a company, with roles, budgets and approvals, and publishes no figure for what the approvals cost. The other side of Muse&rsquo;s reach is on <a href="safety-and-policy.html">Safety &amp; policy</a>: two privacy incidents in which the agent stayed inside its permissions and still gave out a home address.</p>
+        <p>Today&rsquo;s cycle gives the agent an identity of its own. Manus&rsquo;s <a href="#manus-2-0">Cue</a> assigns each agent an email address, a phone number, a wallet and a computer, and <a href="#fo-personal-agent">Fo</a> adds a voice and a credit card, routing to human experts when software gets stuck and reporting 71% task completion on evals nobody else has seen. Neither states a spending boundary, which is the governor this page judges such agents on. In retrieval, <a href="#gpt-researcher-jev-context-filter">GPT Researcher</a> swapped embedding similarity for Jev as its default context filter and keeps 73% of relevant passages against 46% at the same cost, on its own benchmark. The phone an agent can now drive, Tapkit, is on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
+        <p>The Sep 29 cycle was the open computer-use model and the org chart above the agents. H Company&rsquo;s <a href="#holo4">Holo4</a> puts open weights at <strong>85.2% on OSWorld for about $0.08 a task</strong>, one point above its Qwen3.8-27B base and twenty points behind Opus 5.5 on OSWorld 2.0&rsquo;s long workflows &mdash; near parity on short tasks, still losing on the horizon. <a href="#manus-2-0">Manus 2.0</a> reports 23% fewer tokens and 32% lower cost from its Cascade architecture in one configuration, and moves automations from schedules to events. <a href="#paperclip">Paperclip</a> runs Claude Code, Codex, Cursor and OpenClaw agents as a company, with roles, budgets and approvals, and publishes no figure for what the approvals cost. The other side of Muse&rsquo;s reach is on <a href="safety-and-policy.html">Safety &amp; policy</a>: two privacy incidents in which the agent stayed inside its permissions and still gave out a home address.</p>
         <p>The Sep 28 cycle is agents talking to agents, and what the wiring leaves open. CMU&rsquo;s <a href="#mplm">MPLM</a> removes the coordinator entirely, letting threads message each other and solving 100% of 9&times;9 Sudoku in about 15 seconds against 93% in 60 &mdash; but only because the communication pattern is known in advance. <a href="#agent-tincan">Agent Tincan</a> does the same across products, relaying requests between Grok Bot, Muse and coding agents over Tailscale, and Anthropic&rsquo;s <a href="#project-swap">Project Swap</a> measures the delegate itself: agents briefed in five minutes matched their employees&rsquo; preferences on 61% of pairs. Google shipped both sides of this page&rsquo;s trust question in one week &mdash; <a href="#api-gateway-mcp">API Gateway</a> turns REST into MCP with discovery unauthenticated by default, and the <a href="#antigravity-local-models">Antigravity SDK</a> now runs on local Gemma 4. <a href="#managed-deep-agents-0-8">Managed Deep Agents 0.8</a> adds user-owned credentials, and <a href="#devin-fusion">Devin Fusion</a> finally has independent numbers: a tie with Claude Code on Fable 5.1 at 36% lower cost per task.</p>
         <p>The Sep 24 additions tested what an agent claims to drive. Qwen Intelligence&rsquo;s <a href="#qwen-mobile-agents">three mobile agents</a> report <strong>90% end-to-end success</strong> for Mobile-Use on benchmarks Qwen published the same day, so the benchmarks are the checkable release and the score is not yet. <a href="#rrsi">RRSI</a> gained the detail that its harness edit space stays open &mdash; prompts, control flow, tools, skills, memory, sub-agents &mdash; with the regularizer acting on how the search moves. The sharpest counterpoint landed on another page: Meta&rsquo;s Muse, whose connectors and downloads fill sections here, has had <a href="safety-and-policy.html">human contractors</a> placing some of its phone calls.</p>
-        <p>The Sep 23 cycle measured harnesses against each other and got numbers pointing both ways. NVIDIA&rsquo;s <a href="#sol-pi">SoL-Pi</a> (Sep 21) let a research agent try 152 changes to the Pi harness and kept four, cutting token traffic <strong>44.7&ndash;49%</strong> and API cost about a third on EdgeBench &mdash; while solving 15 Terminal-Bench 4 tasks to Pi&rsquo;s 18, so the saving has a measured price. <a href="#unreal-agent">Unreal Agent</a> reports 62 on Terminal-Bench 4.0 at <strong>$3.60 a task</strong>, 39% under Codex plus Astra, on its own comparison. Google&rsquo;s <a href="#rrsi">RRSI</a> addresses what both are exposed to: a harness that improves itself tends to improve against the benchmark it is scored on, and regularizing toward changes that transfer lifted out-of-distribution results across eight benchmarks.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 23 cycle measured harnesses against each other and got numbers pointing both ways. NVIDIA&rsquo;s <a href="#sol-pi">SoL-Pi</a> (Sep 21) let a research agent try 152 changes to the Pi harness and kept four, cutting token traffic <strong>44.7&ndash;49%</strong> and API cost about a third on EdgeBench &mdash; while solving 15 Terminal-Bench 4 tasks to Pi&rsquo;s 18, so the saving has a measured price. <a href="#unreal-agent">Unreal Agent</a> reports 62 on Terminal-Bench 4.0 at <strong>$3.60 a task</strong>, 39% under Codex plus Astra, on its own comparison. Google&rsquo;s <a href="#rrsi">RRSI</a> addresses what both are exposed to: a harness that improves itself tends to improve against the benchmark it is scored on, and regularizing toward changes that transfer lifted out-of-distribution results across eight benchmarks.</p>
           <p>The rest were layers around the agent. CopilotKit&rsquo;s <a href="#openmuse">OpenMuse</a> is a self-hostable Muse-style agent on any harness, arriving the week Meta conceded Muse borrows from OpenClaw; Firecrawl raised $75M for <a href="#firecrawl-alexandria">Alexandria</a>, one search layer over 100+ data providers; and <a href="#treg">treg</a> puts 3,000+ tools behind one endpoint with credentials held server-side.</p>
           <p>The Sep 22 cycle put a price on both ends of the multi-agent bet. Toby Ord&rsquo;s <a href="#swarm-scaling">swarm-scaling analysis</a> finds that ten times the agents buys less than ten times the tokens spent in one agent, with the shortfall compounding as the swarm grows &mdash; what a swarm buys is wall-clock time, so orchestration is a latency purchase rather than a capability one. Meta&rsquo;s Muse showed what reach costs a consumer agent: <a href="#muse-downloads">1.8M US and Canada downloads in its first 12 days</a> against ChatGPT&rsquo;s 1.3M, and Amazon blocking it from Amazon.com under terms that bar unauthorised agents. A retailer&rsquo;s conditions of use, not the agent&rsquo;s ability to drive a page, now decide where it may act.</p>
           <p>On Sep 21 the harness argument got the number it has been missing. AWS&rsquo;s <strong>Strands Harness</strong> (Sep 21) runs Claude Fable 5 on Terminal-Bench 2.1 for <strong>$56.29 against Claude Code&rsquo;s $248.05</strong> while scoring <strong>69.7 against 61.8</strong> &mdash; better and roughly four times cheaper &mdash; with DeepSeek Harness at <strong>$40.30 and 59.5</strong> marking where the saving stops being free. The attributed cause is deliberately unglamorous: tool output truncated at <strong>1,500 tokens</strong>, compaction at <strong>85%</strong> of the window. Put beside the <a href="evals-and-benchmarks.html">harness-tax study</a>, which found Claude Code opening a session with more than 27,000 tokens of context against Pi&rsquo;s 2,000, the two agree on a conclusion this page resisted for months: the harness is mostly a context-management policy, and that policy is priced.</p>
@@ -88,9 +89,9 @@
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">7</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">5</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">7</span></a></li>
-          <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">2</span></a></li>
+          <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">12</span></a></li>
-          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">6</span></a></li>
+          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">7</span></a></li>
         </ul>
       </nav>
 
@@ -482,9 +483,9 @@
         <article class="story" id="manus-2-0">
           <span class="when">2026-09-28</span>
           <h4><a href="https://manus.im/blog/introducing-manus-2-0">Manus 2.0&rsquo;s Cascade architecture reports 23% fewer tokens and 32% lower cost per task, and fires automations on events instead of schedules</a></h4>
-          <p>Manus released <strong>Manus 2.0</strong> around a new Cascade architecture that it says used <strong>23.2% fewer tokens, finished 28.2% faster and cost 32% less</strong> than its previous system, measured in one configuration. Agents now run on cloud computers, automations fire on external events such as an email or a Slack message rather than on a schedule, and a personal-agent app called Cue is invite-only, capped at 1,000 users on the first code. No pricing was published.</p>
+          <p>Manus released <strong>Manus 2.0</strong> around a new Cascade architecture that it says used <strong>23.2% fewer tokens, finished 28.2% faster and cost 32% less</strong> than its previous system, measured in one configuration. Agents now run on cloud computers, automations fire on external events such as an email or a Slack message rather than on a schedule, and a personal-agent app, <strong>Cue</strong>, gives each agent its own email address, phone number, wallet and computer, so it can take calls, send messages and make approved payments after the user logs off, with several agents sharing a group chat and splitting one goal. Cue is free in early access on an invite code capped at 1,000 users, with the iOS app awaiting App Store approval; no pricing was published.</p>
           <p>A loop that wakes on events rather than polling is the design change; the three percentages are against Manus&rsquo;s own last version in a single tested setup, which is exactly the measurement this section says to read for.</p>
-          <div class="sources"><a href="https://manus.im/blog/introducing-manus-2-0">Manus</a> &middot; <a href="https://x.com/ManusAI/status/2104592659142869352">Announcement on X</a> &middot; <span class="via">via MarkTechPost (Sep 28)</span></div>
+          <div class="sources"><a href="https://manus.im/blog/introducing-manus-2-0">Manus</a> &middot; <a href="https://x.com/ManusAI/status/2104592659142869352">Announcement on X</a> &middot; <a href="https://cue.im/">Cue</a> &middot; <span class="via">via MarkTechPost (Sep 28), Unwind AI (Sep 29)</span></div>
         </article>
 
         <article class="story" id="rrsi">
@@ -843,6 +844,14 @@
         <h3>Agentic retrieval</h3>
         <p class="lead">Retrieval as an agent that plans and iterates rather than a single embedding lookup &mdash; rewrite the query, re-search, and refuse to answer until the context is sufficient. Judge entries on the baseline the gain is measured against, and on whether the figure quoted is a ceiling or an average.</p>
 
+        <article class="story" id="gpt-researcher-jev-context-filter">
+          <span class="when">2026-09-29</span>
+          <h4><a href="https://docs.gptr.dev/docs/gpt-researcher/gptr/context-filter">GPT Researcher swaps embedding similarity for Jev as its context filter, keeping 73% of relevant passages against 46%</a></h4>
+          <p>GPT Researcher now uses Jev as its default context filter when a TypeSafe key is present: instead of embedding similarity it scores whether each chunk is useful for the research question, falling back to keywords when Jev is unavailable. Its own benchmark has Jev keeping <strong>73% of relevant passages against 46% for embeddings</strong> at the same cost.</p>
+          <p>The baseline is the project&rsquo;s previous embedding filter on its own benchmark, which is the measurement this section says to check. The default path now runs through a closed API.</p>
+          <div class="sources"><a href="https://docs.gptr.dev/docs/gpt-researcher/gptr/context-filter">GPT Researcher docs</a> &middot; <span class="via">via Unwind AI (Sep 29)</span></div>
+        </article>
+
         <article class="story unlinked" id="gemini-agentic-rag">
           <span class="when">2026-06-09</span>
           <h4>Google ships Agentic RAG into Gemini Enterprise &mdash; up to +34% factuality</h4>
@@ -962,6 +971,14 @@
         <h3>Agentic domain applications</h3>
         <p class="lead">Agentic X as a domain reframing rather than a tooling story: a loop with its own verification and observability, built for one field, instead of a generic coding agent pointed at it. Judge entries on the governor &mdash; a compute budget the agent is held to, or a permission boundary the account enforces.</p>
 
+        <article class="story" id="fo-personal-agent">
+          <span class="when">2026-09-29</span>
+          <h4><a href="https://x.com/shivanipod/status/2104624129626309024">Fo gives each agent its own inbox, phone number, voice and credit card, and routes to human experts when software gets stuck</a></h4>
+          <p>A former Google DeepMind researcher launched <strong>Fo</strong>: personal agents that each get an inbox, a phone number, a voice and a credit card, a builder for creating one, and routing to human experts when a task needs real-world judgement or a phone call. On the company&rsquo;s internal evals Fo completed <strong>71% of tasks with a 94% trust rate</strong>, ahead of Muse, Instinct, OpenClaw and Hermes; it is an invite-only alpha, free and unlimited for the first 1,000 users.</p>
+          <p>The human fallback is disclosed up front, which Meta&rsquo;s Muse did <a href="safety-and-policy.html">quietly</a>. The comparison is unpublished, and an agent holding a credit card comes with no stated spending boundary, the governor this section judges on.</p>
+          <div class="sources"><a href="https://x.com/shivanipod/status/2104624129626309024">Announcement on X</a> &middot; <span class="via">via Unwind AI (Sep 29)</span></div>
+        </article>
+
         <article class="story" id="project-swap">
           <span class="when">2026-09-25</span>
           <h4><a href="https://www.anthropic.com/research/project-swap">Anthropic&rsquo;s Project Swap: Claude agents trading for employees matched their preferences on 61% of pairs</a></h4>
@@ -977,16 +994,16 @@
           <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/cc-expanding-to-groups">Google</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
         </article>
 
-        <article class="story" id="hugging-face-ml-engineer">
-          <span class="when">2026-09-10</span>
-          <h4><a href="https://hf.co/chat">Hugging Face puts an autonomous ML engineer in its chat window, with a compute budget it has to respect</a></h4>
-          <p>Hugging Face shipped an agent inside its chat interface that takes a plain-English brief and runs the machine-learning job end to end: literature research, dataset construction, model training, and uploading a working demo to the Hub.</p>
-          <p>Two design decisions distinguish it from the general-purpose research agents. Every run gets its own dashboard, so the work is inspectable while it happens rather than reconstructable from a transcript afterwards; and the user sets a compute budget that the agent is held to, which is the constraint missing from nearly every long-running agent that trains something. Cost is what makes an autonomous training loop unshippable, and this is the first mainstream version to treat the budget as part of the task specification.</p>
-          <div class="sources"><a href="https://hf.co/chat">Hugging Face Chat</a> &middot; <span class="via">via The Code (Sep 10)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="hugging-face-ml-engineer">
+            <span class="when">2026-09-10</span>
+            <h4><a href="https://hf.co/chat">Hugging Face puts an autonomous ML engineer in its chat window, with a compute budget it has to respect</a></h4>
+            <p>Hugging Face shipped an agent inside its chat interface that takes a plain-English brief and runs the machine-learning job end to end: literature research, dataset construction, model training, and uploading a working demo to the Hub.</p>
+            <p>Two design decisions distinguish it from the general-purpose research agents. Every run gets its own dashboard, so the work is inspectable while it happens rather than reconstructable from a transcript afterwards; and the user sets a compute budget that the agent is held to, which is the constraint missing from nearly every long-running agent that trains something. Cost is what makes an autonomous training loop unshippable, and this is the first mainstream version to treat the budget as part of the task specification.</p>
+            <div class="sources"><a href="https://hf.co/chat">Hugging Face Chat</a> &middot; <span class="via">via The Code (Sep 10)</span></div>
+          </article>
 
           <article class="story unlinked" id="nvidia-vision-agents">
             <span class="when">2026-07-19</span>
@@ -1013,6 +1030,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-29</span><span class="label"><a href="#gpt-researcher-jev-context-filter">GPT Researcher swaps embedding similarity for Jev as its context filter, keeping 73% of relevant passages against 46%</a></span></li>
+        <li><span class="date">2026-09-29</span><span class="label"><a href="#fo-personal-agent">Fo gives each agent its own inbox, phone number, voice and credit card, and routes to human experts when software gets stuck</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#holo4">H Company&rsquo;s Holo4 open-weight computer-use agents score 85.2% on OSWorld at about $0.08 a task</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#manus-2-0">Manus 2.0&rsquo;s Cascade architecture reports 23% fewer tokens and 32% lower cost per task</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#paperclip">Paperclip runs a team of coding agents as an org chart, with roles, budgets and approvals</a></span></li>
