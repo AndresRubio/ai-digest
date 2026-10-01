@@ -30,16 +30,17 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-09-30</div>
+      <div class="meta">Last updated: 2026-10-01</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle adds no release, only outside numbers for yesterday&rsquo;s. Artificial Analysis puts <a href="#claude-sonnet-5-5">Claude Sonnet 5.5</a> two points behind Opus 5.5 at max effort on its Intelligence Index while using about 60% more tokens to get there, with a lower hallucination rate and weaker factual knowledge &mdash; which sits beside, not against, Anthropic&rsquo;s claim of up to 30% lower cost per task, since that comparison is with Sonnet 5 rather than with Opus. <a href="#eleven-v4">Eleven v4</a> is now linked to ElevenLabs&rsquo; own post, and <a href="#ember-1">Ember-1</a> is reachable through the Cline desktop beta as well as Fireworks.</p>
+        <p>Today&rsquo;s cycle is OpenAI&rsquo;s DevDay and a gated answer from Google. <a href="#gpt-6-1-sol">GPT-6.1 Sol</a> claims Astra-level DeepSWE v1.1 at <strong>$2/$10 per million tokens</strong>, the same list price as Sonnet 5.5, with a 1.05M-token context and a 2&times; input surcharge past 272K; <a href="#gemini-4-argon">Gemini 4 Argon</a> leads Opus 5.5 on DeepSWE at 77.9% and writes up to 1M output tokens, but only vetted cyber defenders can call it, which makes its numbers the least checkable on the page. Underneath, the System One line gained two more vendors in two days: Liquid&rsquo;s <a href="#liquid-d1">d1</a> returns probabilities with zero output tokens and claims to beat Jev on Hugging Face&rsquo;s Decision Index, and OpenAI&rsquo;s <a href="#openai-decisions-api">Decisions API</a> puts GPT-6 Luna behind the same typed interface in limited preview, with no figures yet. Alibaba&rsquo;s <a href="#qwen-audio-3-1-realtime">Qwen-Audio-3.1-Realtime</a> adds a turn-taking decision layer at 85% below its previous price while conceding a stop latency three times GPT-Realtime-2&rsquo;s.</p>
+        <p>The Sep 30 cycle added no release, only outside numbers for Sonnet 5.5. Artificial Analysis puts <a href="#claude-sonnet-5-5">Claude Sonnet 5.5</a> two points behind Opus 5.5 at max effort on its Intelligence Index while using about 60% more tokens to get there, with a lower hallucination rate and weaker factual knowledge &mdash; which sits beside, not against, Anthropic&rsquo;s claim of up to 30% lower cost per task, since that comparison is with Sonnet 5 rather than with Opus. <a href="#eleven-v4">Eleven v4</a> is now linked to ElevenLabs&rsquo; own post, and <a href="#ember-1">Ember-1</a> is reachable through the Cline desktop beta as well as Fireworks.</p>
         <p>The Sep 29 cycle filled in the tier below the frontier. Anthropic&rsquo;s <a href="#claude-sonnet-5-5">Claude Sonnet 5.5</a> lands at <strong>$2/$10</strong> with 70.6% on Terminal-Bench 4.0, above Opus 5.5&rsquo;s 66.4% and eight points behind it on FrontierCode, and is the first Sonnet to route high-risk cyber requests to an older model. Fireworks&rsquo; <a href="#ember-1">Ember-1</a> got its numbers &mdash; Terminal Bench 2.1 at 82.0% against K3 Max&rsquo;s 80.9% for 51.9% less, output tokens down from 49.3K to 29.9K per task in production &mdash; and <a href="#julia-1">Julia 1</a> got the Jev comparison it lacked, ahead on two pilots and well behind on Banking77. Speech gained two priced releases: ElevenLabs&rsquo; <a href="#eleven-v4">Eleven v4</a> at 90 languages and about 100 ms, and Sarvam&rsquo;s <a href="#saaras-v4">Saaras V4</a> for 22 Indian languages at &#8377;30 an hour, the per-hour figure this page keeps asking for. Liquid&rsquo;s <a href="#lfm2-5-vl-3b-dspark">DSpark</a> drafter gives a 3B vision model 2.3&ndash;3.1&times; faster decoding with identical greedy output. And <a href="#claude-opus-5-5">Opus 5.5</a> at max effort can exhaust its 128,000-token output ceiling while still thinking, the first measured cost of a setting the launch did not price.</p>
         <p>The Sep 28 cycle widens the System One line from one vendor&rsquo;s API into a field of small, open decision models. <a href="#clm-8b">CLM-8B</a> puts a 75&nbsp;MB Apache-2.0 head on a frozen Qwen3-8B encoder and matches Jev on two games at up to 9&times; lower latency while trailing on BFCL v4 tool calling; Fastino&rsquo;s <a href="#gliner2-5-decide">GLiNER2.5-Decide</a> answers typed questions in 167&nbsp;ms on a CPU at 340M parameters; and <a href="#julia-1">Julia 1</a> runs at 144.3M on a tablet. Every accuracy number in the cluster still comes from the vendor&rsquo;s own suite, which is the gap the section lead names. Speech gained <a href="#nemotron-3-diarization">Nemotron 3 Diarization</a>, first of 12 systems on Diarization-Bench at 14.72% DER with its one regression disclosed, and <a href="#gemini-3-8-live-avatar">Live Avatar</a> for Gemini 3.8 Live; <a href="#thinkingcap-qwen3-8-27b">ThinkingCap</a> trades 0.86 points of accuracy for 37.2% fewer thinking tokens. <a href="#claude-opus-5-5">Opus 5.5</a> now leads both Artificial Analysis and Vals AI, at a higher cost per task than its token price suggests.</p>
-        <p>The Sep 24 cycle was speech and cheaper decisions. Google&rsquo;s <a href="#gemini-3-8-flash-tts">Gemini 3.8 Flash TTS and Flash-Lite TTS</a> (Sep 24) design a voice from a text description, take line-by-line direction across 100-plus languages, and clone an authorised voice from a <strong>30-second sample</strong>. The rankings cited are Hume AI&rsquo;s leaderboards as Google reports them, and no price per audio hour came with the launch &mdash; the number this page judges speech on. The System One line gained its cheapest entry: Together AI&rsquo;s <a href="#tev1-4b-experimental">tev1-4B-experimental</a> is a Jev-style classifier on Qwen3.5 4B that cost <strong>$17</strong> to train and charges $0.042 per million input tokens and nothing for output, with no accuracy figure. Fireworks&rsquo; <a href="#ember-1">Ember-1</a> is the post-training route taken by an inference provider rather than a lab: Kimi K3 quality on <strong>40% fewer tokens</strong> by its own measure, served for a two-week research window. The through-line is the one the Opus 5.5 and GPT-6 Sol repricing set two days earlier: releases are argued in cost per task, and in all three the cost is the checkable half.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 24 cycle was speech and cheaper decisions. Google&rsquo;s <a href="#gemini-3-8-flash-tts">Gemini 3.8 Flash TTS and Flash-Lite TTS</a> (Sep 24) design a voice from a text description, take line-by-line direction across 100-plus languages, and clone an authorised voice from a <strong>30-second sample</strong>. The rankings cited are Hume AI&rsquo;s leaderboards as Google reports them, and no price per audio hour came with the launch &mdash; the number this page judges speech on. The System One line gained its cheapest entry: Together AI&rsquo;s <a href="#tev1-4b-experimental">tev1-4B-experimental</a> is a Jev-style classifier on Qwen3.5 4B that cost <strong>$17</strong> to train and charges $0.042 per million input tokens and nothing for output, with no accuracy figure. Fireworks&rsquo; <a href="#ember-1">Ember-1</a> is the post-training route taken by an inference provider rather than a lab: Kimi K3 quality on <strong>40% fewer tokens</strong> by its own measure, served for a two-week research window. The through-line is the one the Opus 5.5 and GPT-6 Sol repricing set two days earlier: releases are argued in cost per task, and in all three the cost is the checkable half.</p>
           <p>The Sep 22 cycle was two frontier labs repricing within an hour of each other. Anthropic&rsquo;s <a href="#claude-opus-5-5">Claude Opus 5.5</a> (Sep 22) claims Fable 5.1-level work at <strong>$4/$20 per million tokens</strong>, 40% below Opus 5, with cache reads cut to $0.20 and <strong>66.4% on Terminal-Bench 4.0</strong> against Fable 5.1&rsquo;s 55.8% &mdash; while Anthropic concedes the real-use gap is narrower than that and GPT-6 Astra keeps two benchmarks. OpenAI&rsquo;s <a href="#gpt-6-sol-luna">GPT-6 Sol and Luna</a> (Sep 22) answered at <strong>$2/$10 and $0.10/$0.50</strong>, half GPT-5.6&rsquo;s promotional pricing, with Sol 1.1 points behind Fable 5 on DeepSWE. The through-line is that the frontier tier now competes on what a task costs at a fixed capability rather than on the capability itself. Artificial Analysis&rsquo;s 48 for Sol is the only outside number in either launch, and the longer price curve is on <a href="industry-and-business.html">Industry &amp; business</a>.</p>
           <p>The System One line kept widening underneath. Nokia&rsquo;s <a href="#anyjev">AnyJev</a> makes any open LLM answer in Jev&rsquo;s typed form without training, cutting BANKING77 order-flips from 0.230 to 0.073 on Qwen3-8B; <a href="#jev-omni">Jev-Omni</a> carries the decision format to images, audio and video on Gemma 4 12B, with no accuracy figure; and an outside JevBench now ranks the class (see <a href="evals-and-benchmarks.html">Evals</a>). On speech, Kyutai&rsquo;s <a href="#kyutai-voice-of-reason">Voice of Reason</a> lifts spoken GSM8K from 27.3% to 77.1% with no transcript &mdash; and publishes that a cascaded pipeline still scores 95.7%, which is the honest measure of how far speech-native reasoning has to go.</p>
           <p>The Sep 22 cycle was a lab publishing the recipe along with the weights. Xiaomi&rsquo;s <a href="#mimo-v2-6">MiMo-V2.6-Pro and Flash</a> (Sep 22) are MIT-licensed omni-modal models with a 1M-token context, and Pro&rsquo;s self-reported 53.1 on AutomationBench sits ahead of the Claude Opus 5 score Xiaomi lists beside it; the technical report, RL environments and RL code shipped too, so the result is reproducible in principle rather than merely downloadable &mdash; the method is on <a href="training-and-rl.html">Training &amp; RL</a>. StepFun&rsquo;s <a href="#step-5-preview">Step 5 Preview</a> (600B total, 27B active) claims parity with Kimi K3 at about 2.8&times; lower cost per task, with nothing behind it but a thread.</p>
@@ -81,15 +82,15 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">20</span></a></li>
+          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">22</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">17</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">13</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">5</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">11</span></a></li>
-          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">11</span></a></li>
+          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">13</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">3</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">2</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">22</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">23</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">2</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">3</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">1</span></a></li>
@@ -102,6 +103,22 @@
         <h3>Frontier proprietary models</h3>
         <p class="lead">Anthropic&rsquo;s Claude line and OpenAI&rsquo;s GPT line set the pace, with SpaceXAI, Google, Meta and Microsoft pricing against them. A 1M-token context is table stakes here. Almost every figure below is vendor-reported on a harness nobody outside the lab can run, so judge entries on what an outsider could check.</p>
 
+        <article class="story" id="gpt-6-1-sol">
+          <span class="when">2026-09-30</span>
+          <h4><a href="https://openai.com/index/introducing-gpt-6-1-sol/">GPT-6.1 Sol matches Astra on DeepSWE v1.1 at $2/$10, about a fifth of Astra&rsquo;s price</a></h4>
+          <p>OpenAI released <strong>GPT-6.1 Sol</strong> at DevDay at <strong>$2 input / $10 output per 1M tokens</strong> with cached input at $0.10, a <strong>1,050,000-token context</strong>, 128K output and five reasoning levels; prompts over 272K tokens pay 2&times; on input and 1.5&times; on output. OpenAI says it matches <a href="#gpt-6-astra">GPT-6 Astra</a> on DeepSWE v1.1, beats <a href="#claude-opus-5-5">Opus 5.5</a> by 2.2 points on AutomationBench at about a third of the cost, and cuts the factuality error rate from 11.4% to 7.7%.</p>
+          <p>Every score is OpenAI&rsquo;s own, Astra still leads on the hardest science tasks, and there is no fine-tuning. It is live as <code>gpt-6.1-sol</code> in the API, ChatGPT Work and Codex.</p>
+          <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-1-sol/">OpenAI</a> &middot; <span class="via">via MarkTechPost (Sep 30), TLDR AI (Sep 30), The Code (Sep 30)</span></div>
+        </article>
+
+        <article class="story" id="gemini-4-argon">
+          <span class="when">2026-09-30</span>
+          <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Gemini 4 Argon writes up to 1M output tokens and leads Opus 5.5 on DeepSWE, but ships only to vetted cyber defenders</a></h4>
+          <p>Google DeepMind&rsquo;s <strong>Gemini 4 Argon</strong> can emit a single response of up to <strong>1M tokens</strong>, up from 64K, and scores <strong>77.9% on DeepSWE v1.1</strong> against 74.2% for Claude Opus 5.5, tying for first on CWE-bench v1 at 68%. It trails GPT-6 Astra on FrontierSWE v2 (55.0% against 65.5%), Terminal-Bench 4.0 and OSWorld-2.0.</p>
+          <p>Introductory pricing is $2/$10 per 1M tokens, rising to $4/$20; input context is undisclosed, and access is limited to cyber defenders vetted through Google&rsquo;s <a href="https://deepmind.google/fairwind-program/">Fairwind Program</a>, so for now none of these numbers can be checked from outside it.</p>
+          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Google</a> &middot; <span class="via">via MarkTechPost (Sep 30)</span></div>
+        </article>
+
         <article class="story" id="claude-sonnet-5-5">
           <span class="when">2026-09-28</span>
           <h4><a href="https://www.anthropic.com/claude-sonnet-5-5">Claude Sonnet 5.5 beats Opus 5.5 on Terminal-Bench 4.0 at $2/$10, and is the first Sonnet with cyber safeguards</a></h4>
@@ -110,24 +127,24 @@
           <div class="sources"><a href="https://www.anthropic.com/claude-sonnet-5-5">Anthropic</a> &middot; <a href="https://x.com/claudeai/status/2104633115620823187">Announcement on X</a> &middot; <a href="https://artificialanalysis.ai/articles/claude-sonnet-5-5">Artificial Analysis</a> &middot; <a href="https://claude.dev/blog/building-with-claude-sonnet-5-5/">Anthropic build guide</a> &middot; <span class="via">via MarkTechPost (Sep 28), TLDR AI (Sep 29), TLDR (Sep 29), The Code (Sep 29), Unwind AI (Sep 29)</span></div>
         </article>
 
-        <article class="story" id="gpt-6-sol-luna">
-          <span class="when">2026-09-22</span>
-          <h4><a href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">GPT-6 Sol and Luna halve GPT-5.6 prices; Sol lands 1.1 points behind Fable 5 on DeepSWE</a></h4>
-          <p>OpenAI shipped <strong>GPT-6 Sol</strong> at <strong>$2/$10</strong> and <strong>GPT-6 Luna</strong> at <strong>$0.10/$0.50</strong> per 1M tokens, API-only, as cheaper counterparts to GPT-6 Astra &mdash; half of GPT-5.6&rsquo;s promotional pricing, with Luna&rsquo;s output cut closer to 58%. Sol at max effort scores <strong>68.8% on DeepSWE v1.1</strong>, 1.1 points behind Fable 5, and Artificial Analysis independently puts it at <strong>48 on its Intelligence Index</strong>; cached input gets up to 90% off, shared prefixes reused within 30 minutes are discounted, and a new diagnostics tool explains cache misses.</p>
-          <p>The roughly 80% lower cost per task is OpenAI&rsquo;s own comparison; the Artificial Analysis score is the one outside number.</p>
-          <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">OpenAI</a> &middot; <a href="https://developers.openai.com/api/docs/guides/prompt-caching">Prompt caching guide</a> &middot; <a href="https://artificialanalysis.ai/models/gpt-6-sol">Artificial Analysis</a> &middot; <span class="via">via MarkTechPost (Sep 23), TLDR AI (Sep 23), TLDR (Sep 23), Unwind AI (Sep 23), The Code (Sep 23)</span></div>
-        </article>
-
-        <article class="story" id="claude-opus-5-5">
-          <span class="when">2026-09-22</span>
-          <h4><a href="https://www.anthropic.com/claude-opus-5-5">Claude Opus 5.5 claims Fable 5.1-level work at $4/$20, 40% below Opus 5</a></h4>
-          <p>Anthropic released <strong>Claude Opus 5.5</strong>, the first model in its Claude 5.5 family, and says it performs at Claude Fable 5.1&rsquo;s level on most work. It lists at <strong>$4 input / $20 output per 1M tokens</strong> against Opus 5&rsquo;s $5/$25, cuts cache reads 60% to <strong>$0.20</strong>, generates more than 30% faster, and scores <strong>66.4% on Terminal-Bench 4.0</strong> against 55.8% for Fable 5.1 and 57.9% for GPT-6 Astra &mdash; while Astra keeps the lead on Terminal-Bench-Science and AutomationBench.</p>
-          <p>Independent rankings followed within days: Artificial Analysis puts it first on its Intelligence Index v4.3 at 58 and Vals AI first at 69.69%, though it still costs $5.98 per Artificial Analysis task because it spends more tokens than earlier Opus models, and Anthropic says Sonnet 5.5 and Haiku 5.5 follow within weeks. Anthropic itself says the gap to Fable 5.1 is narrower in real use than those scores suggest, thinking can no longer be disabled, and every figure is the vendor&rsquo;s; the safeguard and containment results are on <a href="safety-and-policy.html">Safety &amp; policy</a>. One measured limit: at &ldquo;max&rdquo; effort Simon Willison twice saw it hit the <strong>128,000-token output ceiling while still reasoning</strong> about a simple SVG prompt and return nothing, at $2.56 and nearly 20 minutes a run, where Fable 5.1 on max answered.</p>
-          <div class="sources"><a href="https://www.anthropic.com/claude-opus-5-5">Anthropic</a> &middot; <a href="https://platform.claude.com/docs/en/models/opus-5-5/overview">Docs</a> &middot; <a href="https://claude.com/blog/what-a-task-costs-on-opus-5-5">What a task costs</a> &middot; <a href="https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/">Simon Willison</a> (commentary) &middot; <a href="https://www.deeplearning.ai/the-batch/issue-372/#claude-opus-55-leaps-forward">The Batch</a> &middot; <span class="via">via MarkTechPost (Sep 23), TLDR AI (Sep 23), TLDR (Sep 23), Unwind AI (Sep 23), The Code (Sep 23), The Batch (Sep 25), Simon Willison (Sep 28)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (17)</summary>
+          <summary>Earlier in this section (19)</summary>
+
+          <article class="story" id="gpt-6-sol-luna">
+            <span class="when">2026-09-22</span>
+            <h4><a href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">GPT-6 Sol and Luna halve GPT-5.6 prices; Sol lands 1.1 points behind Fable 5 on DeepSWE</a></h4>
+            <p>OpenAI shipped <strong>GPT-6 Sol</strong> at <strong>$2/$10</strong> and <strong>GPT-6 Luna</strong> at <strong>$0.10/$0.50</strong> per 1M tokens, API-only, as cheaper counterparts to GPT-6 Astra &mdash; half of GPT-5.6&rsquo;s promotional pricing, with Luna&rsquo;s output cut closer to 58%. Sol at max effort scores <strong>68.8% on DeepSWE v1.1</strong>, 1.1 points behind Fable 5, and Artificial Analysis independently puts it at <strong>48 on its Intelligence Index</strong>; cached input gets up to 90% off, shared prefixes reused within 30 minutes are discounted, and a new diagnostics tool explains cache misses.</p>
+            <p>The roughly 80% lower cost per task is OpenAI&rsquo;s own comparison; the Artificial Analysis score is the one outside number.</p>
+            <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">OpenAI</a> &middot; <a href="https://developers.openai.com/api/docs/guides/prompt-caching">Prompt caching guide</a> &middot; <a href="https://artificialanalysis.ai/models/gpt-6-sol">Artificial Analysis</a> &middot; <span class="via">via MarkTechPost (Sep 23), TLDR AI (Sep 23), TLDR (Sep 23), Unwind AI (Sep 23), The Code (Sep 23)</span></div>
+          </article>
+
+          <article class="story" id="claude-opus-5-5">
+            <span class="when">2026-09-22</span>
+            <h4><a href="https://www.anthropic.com/claude-opus-5-5">Claude Opus 5.5 claims Fable 5.1-level work at $4/$20, 40% below Opus 5</a></h4>
+            <p>Anthropic released <strong>Claude Opus 5.5</strong>, the first model in its Claude 5.5 family, and says it performs at Claude Fable 5.1&rsquo;s level on most work. It lists at <strong>$4 input / $20 output per 1M tokens</strong> against Opus 5&rsquo;s $5/$25, cuts cache reads 60% to <strong>$0.20</strong>, generates more than 30% faster, and scores <strong>66.4% on Terminal-Bench 4.0</strong> against 55.8% for Fable 5.1 and 57.9% for GPT-6 Astra &mdash; while Astra keeps the lead on Terminal-Bench-Science and AutomationBench.</p>
+            <p>Independent rankings followed within days: Artificial Analysis puts it first on its Intelligence Index v4.3 at 58 and Vals AI first at 69.69%, though it still costs $5.98 per Artificial Analysis task because it spends more tokens than earlier Opus models, and Anthropic says Sonnet 5.5 and Haiku 5.5 follow within weeks. Anthropic itself says the gap to Fable 5.1 is narrower in real use than those scores suggest, thinking can no longer be disabled, and every figure is the vendor&rsquo;s; the safeguard and containment results are on <a href="safety-and-policy.html">Safety &amp; policy</a>. One measured limit: at &ldquo;max&rdquo; effort Simon Willison twice saw it hit the <strong>128,000-token output ceiling while still reasoning</strong> about a simple SVG prompt and return nothing, at $2.56 and nearly 20 minutes a run, where Fable 5.1 on max answered.</p>
+            <div class="sources"><a href="https://www.anthropic.com/claude-opus-5-5">Anthropic</a> &middot; <a href="https://platform.claude.com/docs/en/models/opus-5-5/overview">Docs</a> &middot; <a href="https://claude.com/blog/what-a-task-costs-on-opus-5-5">What a task costs</a> &middot; <a href="https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/">Simon Willison</a> (commentary) &middot; <a href="https://www.deeplearning.ai/the-batch/issue-372/#claude-opus-55-leaps-forward">The Batch</a> &middot; <span class="via">via MarkTechPost (Sep 23), TLDR AI (Sep 23), TLDR (Sep 23), Unwind AI (Sep 23), The Code (Sep 23), The Batch (Sep 25), Simon Willison (Sep 28)</span></div>
+          </article>
 
           <article class="story" id="grok-4-7">
             <span class="when">2026-09-21</span>
@@ -658,6 +675,21 @@
         <h3>Alternative decoding architectures</h3>
         <p class="lead">A research line attacking the autoregressive decode bottleneck from two directions: parallelising within one token stream, and removing the stream entirely. Both buy latency and price rather than capability, so the question for every entry here is what the speed costs in quality, and whether anyone outside the vendor has measured it.</p>
 
+        <article class="story" id="openai-decisions-api">
+          <span class="when">2026-09-30</span>
+          <h4><a href="https://threadreaderapp.com/thread/2105003318917697873.html">OpenAI&rsquo;s Decisions API puts GPT-6 Luna behind a pick-from-your-options interface, in limited preview</a></h4>
+          <p>OpenAI announced a <strong>Decisions API</strong> powered by GPT-6 Luna: the developer defines questions and possible answers, and the model classifies content, routes requests or chooses an agent&rsquo;s next action from text and image context. Preview access is limited to selected API customers, with a broad release promised within days &mdash; the first frontier lab to ship the System One shape <a href="#jev">Jev</a> introduced, though with no accuracy, latency or price figure yet. The headline links the announcement thread, the only public page the issue carried.</p>
+          <div class="sources"><a href="https://threadreaderapp.com/thread/2105003318917697873.html">Announcement thread (reader view)</a> &middot; <span class="via">via TLDR AI (Sep 30), The Code (Sep 30)</span></div>
+        </article>
+
+        <article class="story" id="liquid-d1">
+          <span class="when">2026-09-29</span>
+          <h4><a href="https://docs.liquid.ai/lfm/models/decision-models">Liquid AI&rsquo;s d1 returns calibrated probabilities over fixed outcomes with zero output tokens</a></h4>
+          <p>Liquid AI released <strong>d1</strong>, the third typed-decision model in three weeks after <a href="#jev">Jev</a> and <a href="#gliner2-5-decide">GLiNER2.5-Decide</a>: send context and typed questions, get probabilities over fixed outcomes in one call, with <code>usage.output_tokens</code> always 0. It has three primitives &mdash; yes/no, a named choice set and an ordered score &mdash; aimed at routing, moderation, reranking and LLM-as-judge, and Liquid says it outperforms Jev on Hugging Face&rsquo;s Decision Index.</p>
+          <p>Model size and context window are undisclosed, there are no weights and no fine-tuning, and paid pricing is unpublished; a free tier is live as <code>d1:free</code>.</p>
+          <div class="sources"><a href="https://docs.liquid.ai/lfm/models/decision-models">Liquid AI docs</a> &middot; <a href="https://threadreaderapp.com/thread/2105003472332693869.html">Announcement thread</a> &middot; <span class="via">via MarkTechPost (Sep 30), TLDR AI (Sep 30)</span></div>
+        </article>
+
         <article class="story" id="julia-1">
           <span class="when">2026-09-27</span>
           <h4><a href="https://supersoniclabs.ia.br/julia-1/">Supersonic Labs&rsquo; Julia 1 is a 144.3M Jev-style decision model that runs on a tablet CPU</a></h4>
@@ -666,24 +698,24 @@
           <div class="sources"><a href="https://supersoniclabs.ia.br/julia-1/">Supersonic Labs</a> &middot; <a href="https://huggingface.co/SupersonicLabs/Julia-1">Hugging Face</a> &middot; <a href="https://huggingface.co/SupersonicLabs/Julia-1-ONNX">ONNX build</a> &middot; <span class="via">via Unwind AI (Sep 27), MarkTechPost (Sep 28)</span></div>
         </article>
 
-        <article class="story" id="lfm2-5-vl-3b-dspark">
-          <span class="when">2026-09-25</span>
-          <h4><a href="https://www.liquid.ai/blog/lfm2-5-vl-dspark">Liquid AI&rsquo;s LFM2.5-VL-3B-DSpark adds a 279.5M drafter to a vision-language model for 2.3&ndash;3.1&times; faster decoding</a></h4>
-          <p>Liquid AI released <strong>LFM2.5-VL-3B-DSpark</strong>, a speculative-decoding variant of its 3B vision-language model with a <strong>279.5M-parameter drafter</strong> that adds 8.9% to the parameter count. Decode runs <strong>2.30&ndash;3.13&times; faster on an M5 Max</strong> and 2.04&ndash;2.66&times; on an H100; end to end the Mac figure is 1.56&ndash;2.62&times;, because prefill and image encoding are untouched. Output is identical under greedy decoding, the release is 16-bit only, and the licence is Liquid&rsquo;s LFM Open License with free commercial use under $10M revenue.</p>
-          <p>It answers this section&rsquo;s standing question directly: under greedy decoding the speed costs nothing in quality by construction rather than by measurement, and the multiples are Liquid&rsquo;s own on two machines.</p>
-          <div class="sources"><a href="https://www.liquid.ai/blog/lfm2-5-vl-dspark">Liquid AI</a> &middot; <a href="https://huggingface.co/LiquidAI/LFM2.5-VL-3B-DSpark">Hugging Face</a> &middot; <a href="https://arxiv.org/abs/2607.05147">arXiv</a> &middot; <span class="via">via MarkTechPost (Sep 28)</span></div>
-        </article>
-
-        <article class="story" id="gliner2-5-decide">
-          <span class="when">2026-09-24</span>
-          <h4><a href="https://fastino.ai/blog/gliner-2-5-decide-open-weight-decision-model">GLiNER2.5-Decide is a 340M open-weight decision model that answers in 167&nbsp;ms on a CPU</a></h4>
-          <p>Fastino released <strong>GLiNER2.5-Decide</strong>, which takes text and a schema of typed questions and returns answers with probabilities, a confidence score and feasibility metadata without generating tokens; a constrained decoder enforces rules across answers, so a detected harm forces an unsafe verdict. On Fastino&rsquo;s own 17-dataset Fast Decisions suite it averages 60.1% against 57.5% for the 4B-class JevK5 and 49.0% for <a href="#gliformer">GLiFormer</a> large-v1, with p50 latency of 167.3&nbsp;ms on a 48-vCPU Xeon and 38.3&nbsp;ms on a V100.</p>
-          <p>The suite is internally generated, so every comparison is the vendor&rsquo;s; the weights ship under Apache 2.0.</p>
-          <div class="sources"><a href="https://fastino.ai/blog/gliner-2-5-decide-open-weight-decision-model">Fastino</a> &middot; <a href="https://huggingface.co/fastino/GLiNER2.5-Decide">Hugging Face</a> &middot; <a href="https://github.com/fastino-ai/GLiNER2">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 25)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="lfm2-5-vl-3b-dspark">
+            <span class="when">2026-09-25</span>
+            <h4><a href="https://www.liquid.ai/blog/lfm2-5-vl-dspark">Liquid AI&rsquo;s LFM2.5-VL-3B-DSpark adds a 279.5M drafter to a vision-language model for 2.3&ndash;3.1&times; faster decoding</a></h4>
+            <p>Liquid AI released <strong>LFM2.5-VL-3B-DSpark</strong>, a speculative-decoding variant of its 3B vision-language model with a <strong>279.5M-parameter drafter</strong> that adds 8.9% to the parameter count. Decode runs <strong>2.30&ndash;3.13&times; faster on an M5 Max</strong> and 2.04&ndash;2.66&times; on an H100; end to end the Mac figure is 1.56&ndash;2.62&times;, because prefill and image encoding are untouched. Output is identical under greedy decoding, the release is 16-bit only, and the licence is Liquid&rsquo;s LFM Open License with free commercial use under $10M revenue.</p>
+            <p>It answers this section&rsquo;s standing question directly: under greedy decoding the speed costs nothing in quality by construction rather than by measurement, and the multiples are Liquid&rsquo;s own on two machines.</p>
+            <div class="sources"><a href="https://www.liquid.ai/blog/lfm2-5-vl-dspark">Liquid AI</a> &middot; <a href="https://huggingface.co/LiquidAI/LFM2.5-VL-3B-DSpark">Hugging Face</a> &middot; <a href="https://arxiv.org/abs/2607.05147">arXiv</a> &middot; <span class="via">via MarkTechPost (Sep 28)</span></div>
+          </article>
+
+          <article class="story" id="gliner2-5-decide">
+            <span class="when">2026-09-24</span>
+            <h4><a href="https://fastino.ai/blog/gliner-2-5-decide-open-weight-decision-model">GLiNER2.5-Decide is a 340M open-weight decision model that answers in 167&nbsp;ms on a CPU</a></h4>
+            <p>Fastino released <strong>GLiNER2.5-Decide</strong>, which takes text and a schema of typed questions and returns answers with probabilities, a confidence score and feasibility metadata without generating tokens; a constrained decoder enforces rules across answers, so a detected harm forces an unsafe verdict. On Fastino&rsquo;s own 17-dataset Fast Decisions suite it averages 60.1% against 57.5% for the 4B-class JevK5 and 49.0% for <a href="#gliformer">GLiFormer</a> large-v1, with p50 latency of 167.3&nbsp;ms on a 48-vCPU Xeon and 38.3&nbsp;ms on a V100.</p>
+            <p>The suite is internally generated, so every comparison is the vendor&rsquo;s; the weights ship under Apache 2.0.</p>
+            <div class="sources"><a href="https://fastino.ai/blog/gliner-2-5-decide-open-weight-decision-model">Fastino</a> &middot; <a href="https://huggingface.co/fastino/GLiNER2.5-Decide">Hugging Face</a> &middot; <a href="https://github.com/fastino-ai/GLiNER2">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 25)</span></div>
+          </article>
 
           <article class="story" id="tev1-4b-experimental">
             <span class="when">2026-09-24</span>
@@ -810,6 +842,14 @@
           <div class="sources"><a href="https://elevenlabs.io/blog/eleven-v4">ElevenLabs</a> &middot; <a href="https://techcrunch.com/2026/09/28/elevenlabs-new-v4-speech-model-supports-more-expression-control-and-90-languages/">TechCrunch</a> (report) &middot; <a href="https://x.com/ElevenLabs/status/2104572127617994917">Announcement on X</a> &middot; <span class="via">via MarkTechPost (Sep 28), TLDR AI (Sep 29), Unwind AI (Sep 29)</span></div>
         </article>
 
+        <article class="story" id="qwen-audio-3-1-realtime">
+          <span class="when">2026-09-28</span>
+          <h4><a href="https://www.qwencloud.com/models/qwen-audio-3.1-realtime-plus">Qwen-Audio-3.1-Realtime decides when to speak, at 85% below the previous Realtime price</a></h4>
+          <p>Alibaba&rsquo;s <strong>Qwen-Audio-3.1-Realtime</strong> is a full-duplex voice model whose decision layer predicts whether to listen, speak, stop or resume. It scores <strong>52.21 on Audio MultiChallenge</strong> (47.12 for 3.0), averages 88.1% on a 14-language benchmark and lifts &tau;-Voice task success from 78.4% to 82.0%, with a 262K context, function calling and web search, at <strong>$6.4 per 1M audio input tokens and $24 per 1M output</strong>.</p>
+          <p>The concessions are in the same table: interrupt stop latency is 1.116 s against GPT-Realtime-2&rsquo;s 0.383 s, it trails GPT-Realtime-2 on a human red-team study (92% against 96%), and it is API-only with no weights.</p>
+          <div class="sources"><a href="https://www.qwencloud.com/models/qwen-audio-3.1-realtime-plus">Qwen Cloud</a> &middot; <span class="via">via MarkTechPost (Sep 30)</span></div>
+        </article>
+
         <article class="story" id="saaras-v4">
           <span class="when">2026-09-26</span>
           <h4><a href="https://www.sarvam.ai/blogs/introducing-saaras-v4">Sarvam&rsquo;s Saaras V4 transcribes all 22 scheduled Indian languages through a 3B state-space decoder at &#8377;30 an hour</a></h4>
@@ -818,15 +858,15 @@
           <div class="sources"><a href="https://www.sarvam.ai/blogs/introducing-saaras-v4">Sarvam AI</a> &middot; <a href="https://docs.sarvam.ai/api/api-guides-tutorials/speech-to-text/how-to/keyterms">Keyterms docs</a> &middot; <a href="https://www.sarvam.ai/api-pricing">Pricing</a> &middot; <span class="via">via MarkTechPost (Sep 28)</span></div>
         </article>
 
-        <article class="story" id="gemini-3-8-live-avatar">
-          <span class="when">2026-09-25</span>
-          <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar/">Gemini 3.8 Live gains Live Avatar: one reference image becomes a talking, tool-calling face</a></h4>
-          <p>Google added <strong>Live Avatar</strong> to <a href="#gemini-3-8-live">Gemini 3.8 Live</a>, animating a single reference image into a real-time avatar that speaks in 97 languages while reasoning and tool calls run asynchronously, so an agent can fetch data mid-conversation without breaking the exchange. Custom avatars require enterprise allowlisting.</p>
-          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar/">Google</a> &middot; <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/live-api">Live API docs</a> &middot; <span class="via">via TLDR AI (Sep 25), The Code (Sep 25)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (20)</summary>
+
+          <article class="story" id="gemini-3-8-live-avatar">
+            <span class="when">2026-09-25</span>
+            <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar/">Gemini 3.8 Live gains Live Avatar: one reference image becomes a talking, tool-calling face</a></h4>
+            <p>Google added <strong>Live Avatar</strong> to <a href="#gemini-3-8-live">Gemini 3.8 Live</a>, animating a single reference image into a real-time avatar that speaks in 97 languages while reasoning and tool calls run asynchronously, so an agent can fetch data mid-conversation without breaking the exchange. Custom avatars require enterprise allowlisting.</p>
+            <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar/">Google</a> &middot; <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/live-api">Live API docs</a> &middot; <span class="via">via TLDR AI (Sep 25), The Code (Sep 25)</span></div>
+          </article>
 
           <article class="story" id="gemini-3-8-flash-tts">
             <span class="when">2026-09-24</span>
@@ -1096,8 +1136,13 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-30</span><span class="label"><a href="#gpt-6-1-sol">GPT-6.1 Sol matches Astra on DeepSWE v1.1 at $2/$10, about a fifth of Astra&rsquo;s price</a></span></li>
+        <li><span class="date">2026-09-30</span><span class="label"><a href="#gemini-4-argon">Gemini 4 Argon writes up to 1M output tokens and leads Opus 5.5 on DeepSWE, gated to cyber defenders</a></span></li>
+        <li><span class="date">2026-09-30</span><span class="label"><a href="#openai-decisions-api">OpenAI&rsquo;s Decisions API puts GPT-6 Luna behind a pick-from-your-options interface</a></span></li>
+        <li><span class="date">2026-09-29</span><span class="label"><a href="#liquid-d1">Liquid AI&rsquo;s d1 returns calibrated probabilities over fixed outcomes with zero output tokens</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#claude-sonnet-5-5">Claude Sonnet 5.5 beats Opus 5.5 on Terminal-Bench 4.0 at $2/$10, and is the first Sonnet with cyber safeguards</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#eleven-v4">ElevenLabs&rsquo; Eleven v4 covers 90 languages at about 100 ms median latency</a></span></li>
+        <li><span class="date">2026-09-28</span><span class="label"><a href="#qwen-audio-3-1-realtime">Qwen-Audio-3.1-Realtime decides when to speak, at 85% below the previous Realtime price</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#julia-1">Supersonic Labs&rsquo; Julia 1 is a 144.3M Jev-style decision model that runs on a tablet CPU</a></span></li>
         <li><span class="date">2026-09-26</span><span class="label"><a href="#saaras-v4">Sarvam&rsquo;s Saaras V4 transcribes all 22 scheduled Indian languages at &#8377;30 an hour</a></span></li>
         <li><span class="date">2026-09-25</span><span class="label"><a href="#gemini-3-8-live-avatar">Gemini 3.8 Live gains Live Avatar: one reference image becomes a talking, tool-calling face</a></span></li>

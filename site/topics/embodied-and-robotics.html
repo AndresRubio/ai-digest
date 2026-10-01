@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-09-29</div>
+      <div class="meta">Last updated: 2026-10-01</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s entry prices the demonstrations. Tesla put factory workers in motion-recording suits to feed Optimus&rsquo;s imitation-learning pipeline while they assembled the robot&rsquo;s 100-plus-part hands, some <a href="#optimus-imitation-data">balked at training their replacements</a>, and collection moved to dedicated teams &mdash; the cost of human data paid in labour relations, with no figure for hours collected or for what the policy does with them.</p>
+        <p>Today&rsquo;s entry measures physics rather than inferring it from a demo. NVIDIA&rsquo;s <a href="#physis-lang">Physis-Lang</a> has critic agents rewrite physics captions for a frozen captioner, lifting PhysCapBench F1 from 78.64 to 87.82, and the resulting Cosmos3-Super tops Physics-IQ Verified at 48.2 while Cosmos3-Nano beats Veo 3.1 on PhyGenBench and trails it on VideoPhy-2. It answers the world-models section&rsquo;s open question with a benchmark, but the judge is GPT-5.5 and nothing shipped beyond the paper.</p>
+        <p>The Sep 29 entry priced the demonstrations. Tesla put factory workers in motion-recording suits to feed Optimus&rsquo;s imitation-learning pipeline while they assembled the robot&rsquo;s 100-plus-part hands, some <a href="#optimus-imitation-data">balked at training their replacements</a>, and collection moved to dedicated teams &mdash; the cost of human data paid in labour relations, with no figure for hours collected or for what the policy does with them.</p>
         <p>The Sep 28 entry puts a number on the world-model question. Black Forest Labs&rsquo; <a href="#flux-3-action">FLUX 3 Action</a> predicts future frames and the next action chunk together, scores 42.92% on RoboLab-120 against 36.8% for the larger Cosmos 3 Nano and 28.0% for &pi;0.5, and completed 28 of 30 blind Franka attempts. It publishes weights, a leaderboard result and a physical trial &mdash; the three things this page keeps asking for &mdash; under a non-commercial licence, so the checkable model is not yet a deployable one.</p>
         <p>The Sep 23 entry was plumbing. Intrinsic released <a href="#intrinsic-core">Intrinsic Core</a>, an open-source set of ROS-compatible capabilities that compose into robot behaviour &mdash; building blocks rather than a policy, reported without a licence, an adoption figure or a deployment. It sits beside the page&rsquo;s standing question of what separates a robot working from a robot deployed, and answers only the integration part of it.</p>
         <p>On Sep 22 the robot-arm result gained a name and a denominator. Published as <a href="#robot-arm-destructive-instructions">RoboHarm</a>, it ran 300 trials &mdash; five harmful tasks at 20 trials each, per model &mdash; and added MolmoAct2, which refused none; but MolmoAct2 has no language channel to refuse through, so its zero records a missing channel rather than intent. All 20 of Claude Fable&rsquo;s refusals came from the doll-stabbing task, which sharpens the earlier reading: the refusal fires on violent phrasing, not on the physical consequence.</p>
-        <p>The Sep 21 entry was the first measurement on this page of what a frontier model does when the tool call moves a real arm, and it is not reassuring. A robot-safety group gave <strong>GPT-6 Astra</strong> and <strong>Claude Fable 5.1</strong> control of robot arms and issued five destructive instructions &mdash; stabbing a doll, mixing bleach and ammonia among them &mdash; <strong>20 trials each</strong>. Astra refused <strong>twice</strong> and completed <strong>60 harmful tasks</strong>; Fable refused every stabbing request and did everything else. That pattern says the guardrail keys on the phrasing rather than the physical consequence, since the request that reads as violence was refused and the one that makes chlorine gas was not. The page&rsquo;s VLA and world-model sections have spent months on whether policies can act competently; this is the first item asking whether they should, and the answer arrives with no paper and no per-instruction breakdown behind it.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 21 entry was the first measurement on this page of what a frontier model does when the tool call moves a real arm, and it is not reassuring. A robot-safety group gave <strong>GPT-6 Astra</strong> and <strong>Claude Fable 5.1</strong> control of robot arms and issued five destructive instructions &mdash; stabbing a doll, mixing bleach and ammonia among them &mdash; <strong>20 trials each</strong>. Astra refused <strong>twice</strong> and completed <strong>60 harmful tasks</strong>; Fable refused every stabbing request and did everything else. That pattern says the guardrail keys on the phrasing rather than the physical consequence, since the request that reads as violence was refused and the one that makes chlorine gas was not. The page&rsquo;s VLA and world-model sections have spent months on whether policies can act competently; this is the first item asking whether they should, and the answer arrives with no paper and no per-instruction breakdown behind it.</p>
           <p>The cycle before repeated this page&rsquo;s standing complaint with a better setup attached. Figure&rsquo;s <strong>Helix 2.5</strong>, pretrained on its Index dataset of human behaviour, ran <strong>zero-shot in 30 Bay Area homes</strong> &mdash; tidying, folding towels, making beds &mdash; with no data collected in any of them, and Figure reports Index now generating about <strong>35 minutes of new human experience per second</strong>. Thirty unseen homes is a genuine generalisation test by the standards of this section, which usually gets one lab and one table. It arrives without a single success rate, failure taxonomy or attempt count, so &ldquo;performed tasks including tidying rooms&rdquo; remains compatible with almost any level of reliability, and the data-rate figure describes an input rather than an outcome.</p>
           <p>An earlier cycle was two large claims about demonstration efficiency with nothing checkable attached, and one piece of plumbing that is entirely checkable. Reward AI's <strong>OM-1</strong> is a policy trained only on human demonstrations captured through a 7-DoF sensorized glove &mdash; no teleoperation, no on-robot data &mdash; with a new task said to take under 30 minutes of human demonstration. Skild AI's <strong>S1</strong>, released in late August, goes further: an in-context learning foundation model Skild says learns an unseen task from a single video prompt with no fine-tuning, for tasks up to ten minutes long, from a company reporting over $100 million in 2026 revenue. Neither has published weights, code, a paper or a success rate, and the outlet profiling S1 says plainly that the &ldquo;GPT-3 moment for robotics&rdquo; framing is an industry marketing idea. The expensive input on this page has always been the demonstration; both of these say it has become cheap, and neither lets anyone else check.</p>
           <p>NVIDIA's <strong>OSMO</strong> (Apache 2.0) is the opposite kind of release and the one with immediate use. A workflow names its target platform &mdash; <code>gb200</code>, <code>rtx-pro-6000</code>, <code>jetson-agx-thor</code> &mdash; and OSMO routes each task to a matching pool, putting datacentre training, simulation and on-robot testing in a single YAML file, with Helm charts on NGC and a local KIND quickstart. Physical AI is the one field that routinely spans three unrelated compute targets, and the handoffs between them have been per-lab scripting that no paper documents and nobody can reproduce. A shared orchestration layer does for the compute what the shared hardware platform thread below does for the demonstrations, and it arrives in the same week as two results that cannot be reproduced for exactly the reasons it addresses.</p>
@@ -67,7 +68,7 @@
           <li><a href="#robbyants-open-embodied-stack">Robbyant&rsquo;s open embodied stack <span class="n">1</span></a></li>
           <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">7</span></a></li>
-          <li><a href="#world-models">World models <span class="n">10</span></a></li>
+          <li><a href="#world-models">World models <span class="n">11</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">5</span></a></li>
           <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">11</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
@@ -168,7 +169,15 @@
 
       <section class="topic-section" id="world-models">
         <h3>World models</h3>
-        <p class="lead">Ten entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+        <p class="lead">Eleven entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+
+        <article class="story" id="physis-lang">
+          <span class="when">2026-09-30</span>
+          <h4><a href="https://physis-intelligence.github.io/physis-lang-web/">Physis-Lang rewrites physics captions with critic agents and puts Cosmos3-Super first on Physics-IQ Verified</a></h4>
+          <p>NVIDIA researchers, with MIT and Oxford, introduced <strong>Physis-Lang</strong>: critic-guided agents iteratively rewrite physics captions while the captioner stays frozen, lifting caption F1 on PhysCapBench from <strong>78.64 to 87.82 over nine iterations</strong>. Cosmos3-Super trained with it ranks first on Physics-IQ Verified at 48.2, and Cosmos3-Nano beats Veo 3.1 on PhyGenBench (71.04 against 65.63) while trailing it on VideoPhy-2 (68.02 against 68.87).</p>
+          <p>It measures physics directly, which this section rarely gets, but the scores use a GPT-5.5 judge, and it is a paper only &mdash; no code, weights or distilled models.</p>
+          <div class="sources"><a href="https://physis-intelligence.github.io/physis-lang-web/">Project page</a> &middot; <span class="via">via MarkTechPost (Sep 30)</span></div>
+        </article>
 
         <article class="story" id="flux-3-action">
           <span class="when">2026-09-24</span>
@@ -187,16 +196,16 @@
           <div class="sources"><a href="https://odyssey.systems/introducing-odyssey-3">Odyssey</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
         </article>
 
-        <article class="story unlinked" id="bytedance-spatial-video">
-          <span class="when">2026-09-08</span>
-          <h4>ByteDance readies a real-time spatial video model that responds to Pico headset users</h4>
-          <p>ByteDance plans to launch an AI model generating real-time spatial video, creating interactive virtual worlds that react to Pico VR users&rsquo; voices and movements, possibly as soon as next month. It puts a fourth serious entrant alongside Runway, World Labs and Google in the race to make world models interactive rather than merely generative &mdash; and the first with a headset of its own to ship them into.</p>
-          <p>The distinction that matters across all four is the one <a href="applications.html">Atlas and Solaris</a> already drew: generating a world is not the same as generating one that stays consistent while someone acts inside it, and only the interactive ones are useful as training environments.</p>
-          <div class="sources"><span class="via">via TLDR (Sep 8), TLDR AI (Sep 8) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story unlinked" id="bytedance-spatial-video">
+            <span class="when">2026-09-08</span>
+            <h4>ByteDance readies a real-time spatial video model that responds to Pico headset users</h4>
+            <p>ByteDance plans to launch an AI model generating real-time spatial video, creating interactive virtual worlds that react to Pico VR users&rsquo; voices and movements, possibly as soon as next month. It puts a fourth serious entrant alongside Runway, World Labs and Google in the race to make world models interactive rather than merely generative &mdash; and the first with a headset of its own to ship them into.</p>
+            <p>The distinction that matters across all four is the one <a href="applications.html">Atlas and Solaris</a> already drew: generating a world is not the same as generating one that stays consistent while someone acts inside it, and only the interactive ones are useful as training environments.</p>
+            <div class="sources"><span class="via">via TLDR (Sep 8), TLDR AI (Sep 8) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="veeda-seed">
             <span class="when">2026-08-19</span>
@@ -429,6 +438,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-30</span><span class="label"><a href="#physis-lang">Physis-Lang rewrites physics captions with critic agents and puts Cosmos3-Super first on Physics-IQ Verified</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#optimus-imitation-data">Tesla moved Optimus motion-capture data collection to dedicated teams after factory workers balked at training their replacements</a></span></li>
         <li><span class="date">2026-09-24</span><span class="label"><a href="#flux-3-action">FLUX 3 Action, a 7B open-weights world action model, tops RoboLab-120 at 42.92%</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#intrinsic-core">Intrinsic open-sources Intrinsic Core, ROS-compatible building blocks for robot behaviour</a></span></li>

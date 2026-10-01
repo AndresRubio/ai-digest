@@ -30,16 +30,17 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-09-30</div>
+      <div class="meta">Last updated: 2026-10-01</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is routing per turn, and inference with no server at all. Fireworks&rsquo; <a href="#firerouter-with-opus">FireRouter</a> chooses between Opus 5.5, GLM 5.3 and GLM 5.3 Flash on every turn and reports 98.1% of Opus-only accuracy for $6.63 a coding session against $15.36, calling itself cache-aware without saying how a mid-session switch is priced &mdash; the second per-turn router in a week after jev-router, and the first with a dollar figure for a whole session. At the other end, <a href="#microllm-lab">MicroLLM Lab</a> runs seven 4-bit models of 26M to 360M parameters in a browser tab over WebGPU, a playground by its own description. The per-agent machines that boot in under 10ms are on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
+        <p>Today&rsquo;s cycle is one retrieval engine rewritten for its tail. Perplexity&rsquo;s <a href="#perplexity-photon">Photon</a> replaces a forked open-source engine with Rust and takes p99 for retrieval and ranking from about <strong>800 ms to 65 ms on 20% fewer machines</strong> while storing 2.5&times; more per document; its Fast Search mode sells the result at $1 per 1,000 requests and matched the default mode on Perplexity&rsquo;s own agent eval at about a third of the estimated cost. The trade is stated rather than buried &mdash; long-tail DCG falls from 2.45 to 2.21 &mdash; and, like <a href="#perplexity-cobbledb">CobbleDB</a> before it, the engine is not open source, so every number is Perplexity&rsquo;s.</p>
+        <p>The Sep 30 cycle was routing per turn, and inference with no server at all. Fireworks&rsquo; <a href="#firerouter-with-opus">FireRouter</a> chooses between Opus 5.5, GLM 5.3 and GLM 5.3 Flash on every turn and reports 98.1% of Opus-only accuracy for $6.63 a coding session against $15.36, calling itself cache-aware without saying how a mid-session switch is priced &mdash; the second per-turn router in a week after jev-router, and the first with a dollar figure for a whole session. At the other end, <a href="#microllm-lab">MicroLLM Lab</a> runs seven 4-bit models of 26M to 360M parameters in a browser tab over WebGPU, a playground by its own description. The per-agent machines that boot in under 10ms are on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
         <p>The Sep 29 cycle was where the agent-serving bill actually lands. Modal&rsquo;s <a href="#quail">Quail</a> passes <strong>a billion tokens a minute on one H100</strong>, more than 10&times; its vLLM baseline at under $0.06 per billion tokens, a throughput figure that still needs its model and batch size beside it. An estimate of <a href="#muse-compute-demand">what serving Muse costs</a> puts 100 million daily users at 1&ndash;2 gigawatts with only about 0.1 GW of it on GPUs and the rest in per-user sandboxes &mdash; and Anthropic&rsquo;s $11.6 billion Akamai commitment, on <a href="industry-and-business.html">Industry &amp; business</a>, buys CPU capacity for exactly that layer. <a href="#spacexai-colossus-gb300">SpaceXAI</a> reaches 1.44 million GPUs at Colossus and is building a 1.2 GW plant to switch them on, the grid binding before the silicon. <a href="#jev-router">jev-router</a> got its number, 82% more agent tasks solved than OpenRouter&rsquo;s Auto Router, and one dissenting test.</p>
         <p>The Sep 28 cycle is kernels and orbits. Inferact&rsquo;s <a href="#tpu-megakernels">TPU v7 megakernels</a> push Kimi K3 past 700 tokens per second with speculative decoding and claim 1.4&ndash;2&times; a GB200 at batch sizes 1 to 8, carrying the megakernel argument Cohere made on GPUs to a second accelerator, on the vendor&rsquo;s own comparison. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> launches four TPUs on a kilowatt of solar on October 1 &mdash; the far end of this page&rsquo;s claim that the binding constraint keeps moving off the die, now to power and heat in orbit. And <a href="#jev-router">jev-router</a> on OpenRouter lets a decision model choose the model and effort before generation, a routing layer that acts on the cache economics below without yet publishing what it saves.</p>
-        <p>The Sep 23 cycle was three changes below the model. vLLM&rsquo;s <a href="#vllm-hardware-agnostic">hardware-agnostic layers</a> reach 96.6% of native efficiency on H100 while staying torch-compilable, and open a new <a href="#serving-across-accelerators">Serving across accelerators</a> section: portability is now priced at a few percent on the hardware the native kernels were written for. A new paper <a href="#moe-fixed-memory-training">bounds MoE training memory</a> &mdash; expert dispatch, vocabulary projection, checkpointing and optimizer state &mdash; by scheduling alone, without approximating the computation. And <a href="#djev-cloud-run">djev on Cloud Run</a> serves a Jev-compatible decision model for about $3 an hour at 35&ndash;60ms per decision, the self-host alternative to calling the closed API.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 23 cycle was three changes below the model. vLLM&rsquo;s <a href="#vllm-hardware-agnostic">hardware-agnostic layers</a> reach 96.6% of native efficiency on H100 while staying torch-compilable, and open a new <a href="#serving-across-accelerators">Serving across accelerators</a> section: portability is now priced at a few percent on the hardware the native kernels were written for. A new paper <a href="#moe-fixed-memory-training">bounds MoE training memory</a> &mdash; expert dispatch, vocabulary projection, checkpointing and optimizer state &mdash; by scheduling alone, without approximating the computation. And <a href="#djev-cloud-run">djev on Cloud Run</a> serves a Jev-compatible decision model for about $3 an hour at 35&ndash;60ms per decision, the self-host alternative to calling the closed API.</p>
           <p>The Sep 22 arrival was silicon, reported in exactly the way this page keeps warning about. Alibaba&rsquo;s <a href="#zhenwu-v900">Zhenwu V900</a> accelerator is said to triple its predecessor&rsquo;s performance and to drive 20GW of Alibaba data centres by 2032 &mdash; a comparison against its own last chip, with no memory or interconnect figure attached, which on this page&rsquo;s running argument are the numbers that actually bind.</p>
           <p>The Sep 21 cycle pointed the agents at the serving stack itself. Z.ai says a <strong>GLM-5.3-powered Infra Agent</strong> built the production serving infrastructure for GLM-5.3-Flash across <strong>more than 100,000 Chinese accelerators in under two weeks</strong>, working from dense feedback on kernel fixes and system-level optimisation, and <strong>tripled throughput</strong> in the process. Z.ai frames it as a step toward recursive self-improvement; the sober reading is that serving is the part of the stack with the tightest feedback loop and the most mechanical search space, which is what makes it the first place an agent could plausibly do this. The baseline it tripled is unpublished and every figure is the vendor&rsquo;s, so what is solid here is the shape of the workload, not the multiple.</p>
           <p>At the other end of the scale, local inference crossed a usability line rather than a capability one. Inco AI and LM Studio&rsquo;s <strong>Splash Engine</strong> decodes <strong>Qwen3.8-27B at 74 tokens per second on a 48GB M5 Pro</strong>, with a stated floor of an M3, macOS 26.4+ and 36GB of unified memory &mdash; which is really a statement about which laptops are inference hardware now. Set beside <a href="model-releases.html">PrismML&rsquo;s Bonsai 2 27B</a>, arriving the same week at 5.93GB against 53.80GB in FP16, the two answers to the same machine separate cleanly: compress the weights and pay for it in long-horizon agent work, or rewrite the runtime and keep full precision but need the memory. Both now exist for the same model family, which is the first time this section can put the choice that plainly.</p>
@@ -82,7 +83,7 @@
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">2</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">2</span></a></li>
           <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">21</span></a></li>
-          <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">8</span></a></li>
+          <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">9</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">8</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">2</span></a></li>
           <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">10</span></a></li>
@@ -513,7 +514,15 @@
 
       <section class="topic-section" id="vector-index-and-rag-pipeline-economics">
         <h3>Vector-index &amp; RAG-pipeline economics</h3>
-        <p class="lead">Each entry here removes or re-prices a piece of the retrieval stack that had been treated as fixed: the keyword engine beside the vector store, the data store under it, the clustering that builds the index, the ceiling you sharded around, and the assumption that a read costs the same whatever it returns.</p>
+        <p class="lead">Each entry here removes or re-prices a piece of the retrieval stack that had been treated as fixed: the keyword engine beside the vector store, the forked engine serving it, the data store under it, the clustering that builds the index, the ceiling you sharded around, and the assumption that a read costs the same whatever it returns.</p>
+
+        <article class="story" id="perplexity-photon">
+          <span class="when">2026-09-30</span>
+          <h4><a href="https://www.perplexity.ai/hub/blog/photon">Perplexity&rsquo;s Rust retrieval engine Photon cuts p99 from about 800 ms to 65 ms on 20% fewer machines</a></h4>
+          <p>Perplexity replaced a forked open-source engine with <strong>Photon</strong>, a Rust retrieval engine that now serves all production retrieval and ranking: p99 for those stages falls from about <strong>800 ms to about 65 ms on roughly 20% fewer machines</strong>, while storing about 2.5&times; more data per document, through adaptive posting lists, budgeted traversal and batched <code>io_uring</code> reads. It also powers a Fast Search mode in the Search API at <strong>$1 per 1,000 requests</strong> and 160 ms p50, which on Perplexity&rsquo;s own agent eval scored 64.3% at an estimated $59.73 against 64.0% at $187.60 for the default.</p>
+          <p>The trade is stated: DCG on long-tail queries drops from 2.45 to 2.21, and Photon is not open source.</p>
+          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/photon">Perplexity</a> &middot; <span class="via">via MarkTechPost (Sep 30)</span></div>
+        </article>
 
         <article class="story" id="planetscale-tin">
           <span class="when">2026-09-16</span>
@@ -532,16 +541,16 @@
           <div class="sources"><a href="https://www.perplexity.ai/hub/blog/cobbledb">Perplexity</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
         </article>
 
-        <article class="story" id="pinecone-documents-api">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://www.pinecone.io/blog/">Pinecone&rsquo;s Documents API is the schema change that made full-text search possible</a></h4>
-          <p>Pinecone documented the mechanism under the <a href="#pinecone-full-text-search-ga">full-text search it shipped to GA on Sep 10</a>. A new <strong>Documents API</strong> adds document-centric queries alongside the existing vector-centric ones, on a schema-based index where a schema declares text fields, dense vectors and sparse vectors on a single document &mdash; rather than flattening searchable text into one field or parking it in metadata that cannot be ranked.</p>
-          <p>The design point generalises past Pinecone. Hybrid retrieval has usually been assembled by running two stores and reconciling their results, and the obstacle was never the ranking functions &mdash; BM25 and cosine similarity are both decades old &mdash; but the absence of a record shape holding both kinds of field as first-class and rankable. Existing vectors-API indexes keep working, with migration documented for Python SDK 10.0.0, and the cost is the standard one for schema-based systems: the shape has to be decided before the data is loaded.</p>
-          <div class="sources"><a href="https://www.pinecone.io/blog/">Pinecone</a> &middot; <span class="via">via Pinecone (Sep 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="pinecone-documents-api">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://www.pinecone.io/blog/">Pinecone&rsquo;s Documents API is the schema change that made full-text search possible</a></h4>
+            <p>Pinecone documented the mechanism under the <a href="#pinecone-full-text-search-ga">full-text search it shipped to GA on Sep 10</a>. A new <strong>Documents API</strong> adds document-centric queries alongside the existing vector-centric ones, on a schema-based index where a schema declares text fields, dense vectors and sparse vectors on a single document &mdash; rather than flattening searchable text into one field or parking it in metadata that cannot be ranked.</p>
+            <p>The design point generalises past Pinecone. Hybrid retrieval has usually been assembled by running two stores and reconciling their results, and the obstacle was never the ranking functions &mdash; BM25 and cosine similarity are both decades old &mdash; but the absence of a record shape holding both kinds of field as first-class and rankable. Existing vectors-API indexes keep working, with migration documented for Python SDK 10.0.0, and the cost is the standard one for schema-based systems: the shape has to be decided before the data is loaded.</p>
+            <div class="sources"><a href="https://www.pinecone.io/blog/">Pinecone</a> &middot; <span class="via">via Pinecone (Sep 16)</span></div>
+          </article>
 
           <article class="story" id="pinecone-read-egress">
             <span class="when">2026-09-16</span>
@@ -811,6 +820,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-09-30</span><span class="label"><a href="#perplexity-photon">Perplexity&rsquo;s Rust retrieval engine Photon cuts p99 from about 800 ms to 65 ms</a></span></li>
         <li><span class="date">2026-09-29</span><span class="label"><a href="#microllm-lab">MicroLLM Lab runs seven 4-bit language models of 26M to 360M parameters in the browser over WebGPU</a></span></li>
         <li><span class="date">2026-09-29</span><span class="label"><a href="#firerouter-with-opus">Fireworks&rsquo; FireRouter keeps 98.1% of Opus-only accuracy at 57% lower cost by routing each turn across Opus 5.5 and GLM 5.3</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#quail">Modal&rsquo;s Quail pairs a query planner with an inference engine to pass a billion tokens a minute on one H100</a></span></li>
