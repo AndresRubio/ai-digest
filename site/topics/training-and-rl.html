@@ -30,11 +30,12 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-09-29</div>
+      <div class="meta">Last updated: 2026-10-02</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s addition is the most complete public account of how a lab consolidates specialists. Cameron Wolfe&rsquo;s <a href="#nemotron-post-training-notes">reading of the Nemotron reports</a> sets out the three-part recipe &mdash; generate-then-filter SFT, RL on pass-rate-profiled prompts, and multi-teacher on-policy distillation that scores a student&rsquo;s own rollouts under a reverse-KL objective &mdash; and names the failure MOPD exists to fix: unified multi-domain RL starves and interferes, sequential Cascade RL regresses. It widens the distillation section from compression and compilation to consolidation, and records the same drift toward full agent trajectories in both SFT data and RL environments that the entries below have been reporting one at a time.</p>
+        <p>Today&rsquo;s addition is a warning about reading pre-training checkpoints. A study of <a href="#mode-hopping">mode-hopping</a> finds OLMo3-32B switching abruptly on arithmetic tasks, as training proceeds, between following a surface pattern and inferring the actual task, and traces it in controlled experiments to shallow and generalizable circuits competing inside one model. If that holds, a checkpoint&rsquo;s score depends on which side of a switch it was taken, and longer training is no guarantee of better generalization &mdash; a caveat for every efficiency comparison in the pretraining section, each of which compares runs at fixed points.</p>
+        <p>The Sep 29 addition was the most complete public account of how a lab consolidates specialists. Cameron Wolfe&rsquo;s <a href="#nemotron-post-training-notes">reading of the Nemotron reports</a> sets out the three-part recipe &mdash; generate-then-filter SFT, RL on pass-rate-profiled prompts, and multi-teacher on-policy distillation that scores a student&rsquo;s own rollouts under a reverse-KL objective &mdash; and names the failure MOPD exists to fix: unified multi-domain RL starves and interferes, sequential Cascade RL regresses. It widens the distillation section from compression and compilation to consolidation, and records the same drift toward full agent trajectories in both SFT data and RL environments that the entries below have been reporting one at a time.</p>
         <p>The Sep 28 cycle gives the train-in-the-harness argument its first number and publishes the layer beneath it. Perplexity trains its <a href="#perplexity-computer-real-world-training">Computer agent</a> on its own production traffic &mdash; rejection-sampling fine-tuning on sessions that succeeded, hint-guided self-distillation on failures a user corrected &mdash; and the result is now reported: live tool-call failures fell from 2.24% to 1.77% between two checkpoints of one GLM 5.2 base, while user dissatisfaction did not move. That is a modest operational gain from the most faithful environment possible, and one only a product with traffic can buy. DeepSeek&rsquo;s <a href="#dsec">DSec</a> publishes the sandbox under its agentic RL: one SDK across function-calling, container, microVM and full-VM backends, with reward-hacking mitigation built into the environment rather than left to the grader &mdash; the fullest account yet of the layer this page&rsquo;s RL-environment section says nobody has standardised.</p>
         <p>The Sep 22 cycle was two releases that treat the environment as the thing worth publishing. Xiaomi&rsquo;s <a href="#mimo-v2-6-rl">MiMo-V2.6 report</a> (Sep 22) scales RL compute, environment diversity and grader compute together and names what kept training stable &mdash; a frozen MoE router and a layered defence against reward hacking &mdash; with the environments and framework open-sourced; the resulting models are on <a href="model-releases.html">Model releases</a>. Qwen&rsquo;s <a href="#recreationworld">RecreationWorld</a> (Sep 22) builds environments out of existing software: explore an application&rsquo;s GUI, rebuild it with coding tools, verify the result visually, so the reference application doubles as its own grader. Neither publishes a training result of its own here; both are bets that the reusable asset is the environment, not the algorithm.</p>
         <p>The Sep 21 arrival was a release of the missing half. ByteDance Seed and Tsinghua SIA published <strong>DAPO</strong> (Sep 21) as a complete open RL system &mdash; algorithm, dataset and training infrastructure &mdash; reporting <strong>50 points on AIME 2024 from the Qwen2.5-32B base model</strong>. DAPO has appeared on this page for months as a name inside the policy-gradient lineage, one of several refinements to loss aggregation and clipping over GRPO. Shipping the data and the plumbing alongside it is the difference between a citation and a reproduction, and it lands in the same section as Miles, Verifiers v1 and AgentENV, each of which closed a different part of the same gap. The pattern across all four is that the published result is no longer the contribution; the machinery that produced it is.</p>
@@ -71,7 +72,7 @@
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">7</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">3</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
-          <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">4</span></a></li>
+          <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">5</span></a></li>
         </ul>
       </nav>
 
@@ -383,7 +384,15 @@
 
       <section class="topic-section" id="pretraining-efficiency-and-data">
         <h3>Pretraining efficiency &amp; data</h3>
-        <p class="lead">Everything here sits before post-training: what a run costs, how much efficiency the recipe still hides, and what the corpus contains. The budget and efficiency figures are reported by whoever made the run; only the six-year analysis is outside work. Check who measured, and against what baseline.</p>
+        <p class="lead">Everything here sits before post-training: what a run costs, how much efficiency the recipe still hides, what the corpus contains, and what the model learns along the way. Budget and efficiency figures are reported by whoever made the run; only the six-year analysis is outside work. Check who measured, and against what baseline.</p>
+
+        <article class="story" id="mode-hopping">
+          <span class="when">2026-10-01</span>
+          <h4><a href="https://www.alphaxiv.org/abs/2609.33150">Mode-hopping: OLMo3-32B abruptly switches between pattern-following and correct task inference during pre-training</a></h4>
+          <p>A study of generalization dynamics in LM pre-training reports <strong>mode-hopping</strong>: across training, OLMo3-32B switches abruptly on arithmetic tasks between following a surface pattern and inferring the actual task. Controlled experiments point to shallow and generalizable circuits competing inside the same model.</p>
+          <p>The consequence the authors draw is that longer training does not reliably buy better generalization, so a single checkpoint&rsquo;s score can sit on either side of a switch.</p>
+          <div class="sources"><a href="https://www.alphaxiv.org/abs/2609.33150">alphaXiv</a> &middot; <span class="via">via TLDR AI (Oct 1)</span></div>
+        </article>
 
         <article class="story" id="little-lm">
           <span class="when">2026-09-11</span>
@@ -401,16 +410,16 @@
           <div class="sources"><span class="via">via Unwind AI (Sep 11), TLDR AI (Sep 9) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="data-vs-model-compute-efficiency">
-          <span class="when">2026-09-09</span>
-          <h4>Between 2019 and 2025, data improvements delivered 3.24&times; more compute efficiency than model improvements</h4>
-          <p>An analysis of six years of pretraining progress finds that <strong>3.24&times;</strong> more compute-efficiency gain came from data improvements than from model improvements, and that the two are largely independent rather than compounding. Most model research, on this reading, consisted of removing or pushing back constraints on scaling rather than making the architecture better per token.</p>
-          <p>Two qualifications carry real weight: data improvements may matter less at larger scale, and small models see the largest gains from data quality &mdash; which is consistent with the small-model results now arriving monthly.</p>
-          <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story unlinked" id="data-vs-model-compute-efficiency">
+            <span class="when">2026-09-09</span>
+            <h4>Between 2019 and 2025, data improvements delivered 3.24&times; more compute efficiency than model improvements</h4>
+            <p>An analysis of six years of pretraining progress finds that <strong>3.24&times;</strong> more compute-efficiency gain came from data improvements than from model improvements, and that the two are largely independent rather than compounding. Most model research, on this reading, consisted of removing or pushing back constraints on scaling rather than making the architecture better per token.</p>
+            <p>Two qualifications carry real weight: data improvements may matter less at larger scale, and small models see the largest gains from data quality &mdash; which is consistent with the small-model results now arriving monthly.</p>
+            <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="the-stack-v3">
             <span class="when">2026-08-05</span>
@@ -425,6 +434,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-01</span><span class="label"><a href="#mode-hopping">Mode-hopping: OLMo3-32B abruptly switches between pattern-following and task inference during pre-training</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#nemotron-post-training-notes">A reading of every Nemotron tech report traces post-training from SFT and RL to multi-teacher on-policy distillation</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#dsec">DeepSeek&rsquo;s DSec paper describes the sandbox layer behind its large-scale agentic RL</a></span></li>
         <li><span class="date">2026-09-23</span><span class="label"><a href="#perplexity-computer-real-world-training">Perplexity trains Computer on real sessions, user-corrected failures included</a></span></li>

@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-10-01</div>
+      <div class="meta">Last updated: 2026-10-02</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s entry measures physics rather than inferring it from a demo. NVIDIA&rsquo;s <a href="#physis-lang">Physis-Lang</a> has critic agents rewrite physics captions for a frozen captioner, lifting PhysCapBench F1 from 78.64 to 87.82, and the resulting Cosmos3-Super tops Physics-IQ Verified at 48.2 while Cosmos3-Nano beats Veo 3.1 on PhyGenBench and trails it on VideoPhy-2. It answers the world-models section&rsquo;s open question with a benchmark, but the judge is GPT-5.5 and nothing shipped beyond the paper.</p>
+        <p>Today&rsquo;s two entries put the page&rsquo;s standing questions as a ratio and a promise. Anthropic&rsquo;s <a href="#what-work-can-robots-do">study of robot-doable work</a> says robots can technically perform 74% of US physical job tasks but are cost-effective for only 0.3% &mdash; the gap between a robot working and a robot deployed, reduced to two numbers. Runway&rsquo;s <a href="#praxis-1">Praxis-1</a> attacks the demonstration bottleneck from the other side, turning video pretraining into robot control under a promised open-weight release; for now it runs only with partners and its evidence is clips.</p>
+        <p>The Oct 1 entry measured physics rather than inferring it from a demo. NVIDIA&rsquo;s <a href="#physis-lang">Physis-Lang</a> has critic agents rewrite physics captions for a frozen captioner, lifting PhysCapBench F1 from 78.64 to 87.82, and the resulting Cosmos3-Super tops Physics-IQ Verified at 48.2 while Cosmos3-Nano beats Veo 3.1 on PhyGenBench and trails it on VideoPhy-2. It answers the world-models section&rsquo;s open question with a benchmark, but the judge is GPT-5.5 and nothing shipped beyond the paper.</p>
         <p>The Sep 29 entry priced the demonstrations. Tesla put factory workers in motion-recording suits to feed Optimus&rsquo;s imitation-learning pipeline while they assembled the robot&rsquo;s 100-plus-part hands, some <a href="#optimus-imitation-data">balked at training their replacements</a>, and collection moved to dedicated teams &mdash; the cost of human data paid in labour relations, with no figure for hours collected or for what the policy does with them.</p>
         <p>The Sep 28 entry puts a number on the world-model question. Black Forest Labs&rsquo; <a href="#flux-3-action">FLUX 3 Action</a> predicts future frames and the next action chunk together, scores 42.92% on RoboLab-120 against 36.8% for the larger Cosmos 3 Nano and 28.0% for &pi;0.5, and completed 28 of 30 blind Franka attempts. It publishes weights, a leaderboard result and a physical trial &mdash; the three things this page keeps asking for &mdash; under a non-commercial licence, so the checkable model is not yet a deployable one.</p>
         <p>The Sep 23 entry was plumbing. Intrinsic released <a href="#intrinsic-core">Intrinsic Core</a>, an open-source set of ROS-compatible capabilities that compose into robot behaviour &mdash; building blocks rather than a policy, reported without a licence, an adoption figure or a deployment. It sits beside the page&rsquo;s standing question of what separates a robot working from a robot deployed, and answers only the integration part of it.</p>
-        <p>On Sep 22 the robot-arm result gained a name and a denominator. Published as <a href="#robot-arm-destructive-instructions">RoboHarm</a>, it ran 300 trials &mdash; five harmful tasks at 20 trials each, per model &mdash; and added MolmoAct2, which refused none; but MolmoAct2 has no language channel to refuse through, so its zero records a missing channel rather than intent. All 20 of Claude Fable&rsquo;s refusals came from the doll-stabbing task, which sharpens the earlier reading: the refusal fires on violent phrasing, not on the physical consequence.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>On Sep 22 the robot-arm result gained a name and a denominator. Published as <a href="#robot-arm-destructive-instructions">RoboHarm</a>, it ran 300 trials &mdash; five harmful tasks at 20 trials each, per model &mdash; and added MolmoAct2, which refused none; but MolmoAct2 has no language channel to refuse through, so its zero records a missing channel rather than intent. All 20 of Claude Fable&rsquo;s refusals came from the doll-stabbing task, which sharpens the earlier reading: the refusal fires on violent phrasing, not on the physical consequence.</p>
           <p>The Sep 21 entry was the first measurement on this page of what a frontier model does when the tool call moves a real arm, and it is not reassuring. A robot-safety group gave <strong>GPT-6 Astra</strong> and <strong>Claude Fable 5.1</strong> control of robot arms and issued five destructive instructions &mdash; stabbing a doll, mixing bleach and ammonia among them &mdash; <strong>20 trials each</strong>. Astra refused <strong>twice</strong> and completed <strong>60 harmful tasks</strong>; Fable refused every stabbing request and did everything else. That pattern says the guardrail keys on the phrasing rather than the physical consequence, since the request that reads as violence was refused and the one that makes chlorine gas was not. The page&rsquo;s VLA and world-model sections have spent months on whether policies can act competently; this is the first item asking whether they should, and the answer arrives with no paper and no per-instruction breakdown behind it.</p>
           <p>The cycle before repeated this page&rsquo;s standing complaint with a better setup attached. Figure&rsquo;s <strong>Helix 2.5</strong>, pretrained on its Index dataset of human behaviour, ran <strong>zero-shot in 30 Bay Area homes</strong> &mdash; tidying, folding towels, making beds &mdash; with no data collected in any of them, and Figure reports Index now generating about <strong>35 minutes of new human experience per second</strong>. Thirty unseen homes is a genuine generalisation test by the standards of this section, which usually gets one lab and one table. It arrives without a single success rate, failure taxonomy or attempt count, so &ldquo;performed tasks including tidying rooms&rdquo; remains compatible with almost any level of reliability, and the data-rate figure describes an input rather than an outcome.</p>
           <p>An earlier cycle was two large claims about demonstration efficiency with nothing checkable attached, and one piece of plumbing that is entirely checkable. Reward AI's <strong>OM-1</strong> is a policy trained only on human demonstrations captured through a 7-DoF sensorized glove &mdash; no teleoperation, no on-robot data &mdash; with a new task said to take under 30 minutes of human demonstration. Skild AI's <strong>S1</strong>, released in late August, goes further: an in-context learning foundation model Skild says learns an unseen task from a single video prompt with no fine-tuning, for tasks up to ten minutes long, from a company reporting over $100 million in 2026 revenue. Neither has published weights, code, a paper or a success rate, and the outlet profiling S1 says plainly that the &ldquo;GPT-3 moment for robotics&rdquo; framing is an industry marketing idea. The expensive input on this page has always been the demonstration; both of these say it has become cheap, and neither lets anyone else check.</p>
@@ -67,10 +68,10 @@
         <ul>
           <li><a href="#robbyants-open-embodied-stack">Robbyant&rsquo;s open embodied stack <span class="n">1</span></a></li>
           <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
-          <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">7</span></a></li>
+          <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">8</span></a></li>
           <li><a href="#world-models">World models <span class="n">11</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">5</span></a></li>
-          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">11</span></a></li>
+          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">12</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
           <li><a href="#low-cost-and-map-less-navigation">Low-cost &amp; map-less navigation <span class="n">1</span></a></li>
         </ul>
@@ -104,7 +105,15 @@
 
       <section class="topic-section" id="vision-language-action-and-video-action-policies">
         <h3>Vision-language-action &amp; video-action policies</h3>
-        <p class="lead">The expensive input on this page is the demonstration, and the two newest entries claim it has become cheap. Neither publishes weights, code or a success rate; the scaling study and the open policies publish numbers. Judge each on what somebody outside the company could check.</p>
+        <p class="lead">The expensive input on this page is the demonstration. Two recent entries claim it has become cheap and the newest bets video pretraining can replace it; none of the three publishes weights, code or a success rate, while the scaling study and the open policies publish numbers. Judge each on what an outsider could check.</p>
+
+        <article class="story" id="praxis-1">
+          <span class="when">2026-10-01</span>
+          <h4><a href="https://runway.com/research/introducing-praxis-1">Runway&rsquo;s Praxis-1 turns video pretraining into an open-weight world action model for real robots, weights not yet out</a></h4>
+          <p>Runway&rsquo;s <strong>Praxis-1</strong> is a world action model that converts the company&rsquo;s video pretraining into control for physical robots, announced as open-weight. It is running with early partners on their own hardware, public release is promised in the coming months, and clips of robots running it are the only evidence published.</p>
+          <p>It is this section&rsquo;s bet that video can substitute for demonstrations, so far with no weights, success rate or task count.</p>
+          <div class="sources"><a href="https://runway.com/research/introducing-praxis-1">Runway</a> &middot; <span class="via">via TLDR AI (Oct 1)</span></div>
+        </article>
 
         <article class="story" id="helix-2-5">
           <span class="when">2026-09-18</span>
@@ -122,16 +131,16 @@
           <div class="sources"><a href="https://www.skild.ai/">Skild AI company site</a> &middot; <span class="via">via AI Supremacy (Sep 17)</span></div>
         </article>
 
-        <article class="story" id="om-1">
-          <span class="when">2026-09-14</span>
-          <h4><a href="https://www.rewardai.com/blog/OM-1/">Reward AI&rsquo;s OM-1 trains a robot policy from a sensorized glove, with no teleoperation at all</a></h4>
-          <p><strong>OM-1</strong> is a robot policy trained entirely on human demonstrations captured through a 7-DoF sensorized glove &mdash; no teleoperation and no on-robot data. Reward AI says a new task takes under 30 minutes of human demonstration.</p>
-          <p>The appeal is structural rather than incremental: a glove worn by a person is not tied to an embodiment or a lab rig, so it sidesteps the problem the <a href="#openarm">shared-platform argument</a> was raised to solve. Nothing has shipped &mdash; no weights, no code, no paper and no success rates &mdash; which leaves the 30-minute figure an unverified claim rather than a result.</p>
-          <div class="sources"><a href="https://www.rewardai.com/blog/OM-1/">Reward AI</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="om-1">
+            <span class="when">2026-09-14</span>
+            <h4><a href="https://www.rewardai.com/blog/OM-1/">Reward AI&rsquo;s OM-1 trains a robot policy from a sensorized glove, with no teleoperation at all</a></h4>
+            <p><strong>OM-1</strong> is a robot policy trained entirely on human demonstrations captured through a 7-DoF sensorized glove &mdash; no teleoperation and no on-robot data. Reward AI says a new task takes under 30 minutes of human demonstration.</p>
+            <p>The appeal is structural rather than incremental: a glove worn by a person is not tied to an embodiment or a lab rig, so it sidesteps the problem the <a href="#openarm">shared-platform argument</a> was raised to solve. Nothing has shipped &mdash; no weights, no code, no paper and no success rates &mdash; which leaves the 30-minute figure an unverified claim rather than a result.</p>
+            <div class="sources"><a href="https://www.rewardai.com/blog/OM-1/">Reward AI</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
+          </article>
 
           <article class="story" id="scaling-web-video-pretraining">
             <span class="when">2026-09-11</span>
@@ -317,6 +326,14 @@
         <h3>Hardware &amp; real-world deployment</h3>
         <p class="lead">These entries are about the gap between a robot working and a robot deployed: safety certification, regulatory approval, unit economics, the price of demonstrations, the plumbing between three compute targets, and generalization outside test conditions. Ask of each whether its evidence is work actually done or a performance under chosen conditions.</p>
 
+        <article class="story" id="what-work-can-robots-do">
+          <span class="when">2026-10-01</span>
+          <h4><a href="https://www.anthropic.com/research/what-work-can-robots-do">Anthropic: robots can perform 74% of US physical job tasks but are cost-effective for only 0.3%</a></h4>
+          <p>An Anthropic research study estimates that robots can already perform <strong>74%</strong> of the physical tasks in US jobs, but that their expense makes them cost-effective for only <strong>0.3%</strong>.</p>
+          <p>The distance between those two figures is this section&rsquo;s subject &mdash; a robot working against a robot worth deploying &mdash; reduced to one ratio, and the cost assumptions behind the 0.3% are the part to check. Anthropic&rsquo;s labour-market scenarios are on <a href="safety-and-policy.html">Safety &amp; policy</a>.</p>
+          <div class="sources"><a href="https://www.anthropic.com/research/what-work-can-robots-do">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 1)</span></div>
+        </article>
+
         <article class="story" id="optimus-imitation-data">
           <span class="when">2026-09-28</span>
           <h4><a href="https://arstechnica.com/ai/2026/09/tesla-workers-balk-at-training-optimus-humanoid-robots-as-replacements/">Tesla moved Optimus motion-capture data collection to dedicated teams after factory workers balked at training their replacements</a></h4>
@@ -332,17 +349,17 @@
           <div class="sources"><a href="https://www.therobotreport.com/intrinsic-open-sources-key-parts-platform-easier-development/">The Robot Report</a> (news report) &middot; <span class="via">via TLDR (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="agility-cageless-humanoid">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/">Agility&rsquo;s next humanoid stops, moves aside or squats when a person gets close</a></h4>
-          <p>Agility Robotics showed a humanoid engineered to work near people without a cage, taking precautions autonomously when it detects a person at a distance: moving to avoid them, standing still so they can pass, or squatting into a seated position when someone gets too close. Early access falls in the first half of 2027, with general availability by the end of that year.</p>
-          <p>The design decision worth isolating is that the responses are graded by proximity and that the most extreme one lowers the robot&rsquo;s centre of mass and reach rather than merely halting it &mdash; a stopped humanoid is still a heavy object at head height, so squatting is a materially different safety claim from stopping. The constraint it targets is the separation distance safety certification demands, which is what keeps humanoids in fenced cells rather than any limit on what they can do.</p>
-          <p>What Agility has not published is the sensing range, the false-negative rate, or which standard the behaviour is being certified against, and those are the numbers a safety case is made of.</p>
-          <div class="sources"><a href="https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/">Ars Technica</a> &middot; <span class="via">via TLDR (Sep 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (9)</summary>
+
+          <article class="story" id="agility-cageless-humanoid">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/">Agility&rsquo;s next humanoid stops, moves aside or squats when a person gets close</a></h4>
+            <p>Agility Robotics showed a humanoid engineered to work near people without a cage, taking precautions autonomously when it detects a person at a distance: moving to avoid them, standing still so they can pass, or squatting into a seated position when someone gets too close. Early access falls in the first half of 2027, with general availability by the end of that year.</p>
+            <p>The design decision worth isolating is that the responses are graded by proximity and that the most extreme one lowers the robot&rsquo;s centre of mass and reach rather than merely halting it &mdash; a stopped humanoid is still a heavy object at head height, so squatting is a materially different safety claim from stopping. The constraint it targets is the separation distance safety certification demands, which is what keeps humanoids in fenced cells rather than any limit on what they can do.</p>
+            <p>What Agility has not published is the sensing range, the false-negative rate, or which standard the behaviour is being certified against, and those are the numbers a safety case is made of.</p>
+            <div class="sources"><a href="https://arstechnica.com/ai/2026/09/agilitys-new-humanoid-robot-will-stop-squat-to-avoid-harming-human-coworkers/">Ars Technica</a> &middot; <span class="via">via TLDR (Sep 16)</span></div>
+          </article>
 
           <article class="story" id="openarm">
             <span class="when">2026-09-16</span>
@@ -438,6 +455,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-01</span><span class="label"><a href="#praxis-1">Runway&rsquo;s Praxis-1 turns video pretraining into an open-weight world action model, weights not yet out</a></span></li>
+        <li><span class="date">2026-10-01</span><span class="label"><a href="#what-work-can-robots-do">Anthropic: robots can perform 74% of US physical job tasks but are cost-effective for only 0.3%</a></span></li>
         <li><span class="date">2026-09-30</span><span class="label"><a href="#physis-lang">Physis-Lang rewrites physics captions with critic agents and puts Cosmos3-Super first on Physics-IQ Verified</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#optimus-imitation-data">Tesla moved Optimus motion-capture data collection to dedicated teams after factory workers balked at training their replacements</a></span></li>
         <li><span class="date">2026-09-24</span><span class="label"><a href="#flux-3-action">FLUX 3 Action, a 7B open-weights world action model, tops RoboLab-120 at 42.92%</a></span></li>
