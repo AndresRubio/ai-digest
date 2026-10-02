@@ -34,7 +34,7 @@
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s only change is an older entry getting its specification. <a href="#openai-jalapeno">OpenAI&rsquo;s Jalape&ntilde;o</a>, first reported in August with throughput-per-kilowatt figures on a single model, now has a published configuration &mdash; <strong>216 GiB of HBM4</strong> beside a compute die and an I/O chiplet &mdash; from a More Than Moore deep-dive that is now its headline link. The memory figure is the one this page&rsquo;s cache and long-context entries can be read against; the power and benchmark detail is the analyst&rsquo;s account, not an OpenAI disclosure.</p>
+        <p>Today brought one reference and one specification. Modal&rsquo;s <a href="#modal-gpu-glossary">GPU Glossary</a> opens a new section for reference material: an interlinked, MIT-licensed guide from streaming multiprocessors and the warp scheduler up to <code>nvcc</code> flags, the vocabulary every serving and kernel entry here assumes. Separately, <a href="#openai-jalapeno">OpenAI&rsquo;s Jalape&ntilde;o</a>, an older entry first reported in August with throughput-per-kilowatt figures on a single model, now has a published configuration &mdash; <strong>216 GiB of HBM4</strong> beside a compute die and an I/O chiplet &mdash; from a More Than Moore deep-dive that is now its headline link. The memory figure is the one this page&rsquo;s cache and long-context entries can be read against; the power and benchmark detail is the analyst&rsquo;s account, not an OpenAI disclosure.</p>
         <p>The Oct 1 cycle was one retrieval engine rewritten for its tail. Perplexity&rsquo;s <a href="#perplexity-photon">Photon</a> replaces a forked open-source engine with Rust and takes p99 for retrieval and ranking from about <strong>800 ms to 65 ms on 20% fewer machines</strong> while storing 2.5&times; more per document; its Fast Search mode sells the result at $1 per 1,000 requests and matched the default mode on Perplexity&rsquo;s own agent eval at about a third of the estimated cost. The trade is stated rather than buried &mdash; long-tail DCG falls from 2.45 to 2.21 &mdash; and, like <a href="#perplexity-cobbledb">CobbleDB</a> before it, the engine is not open source, so every number is Perplexity&rsquo;s.</p>
         <p>The Sep 30 cycle was routing per turn, and inference with no server at all. Fireworks&rsquo; <a href="#firerouter-with-opus">FireRouter</a> chooses between Opus 5.5, GLM 5.3 and GLM 5.3 Flash on every turn and reports 98.1% of Opus-only accuracy for $6.63 a coding session against $15.36, calling itself cache-aware without saying how a mid-session switch is priced &mdash; the second per-turn router in a week after jev-router, and the first with a dollar figure for a whole session. At the other end, <a href="#microllm-lab">MicroLLM Lab</a> runs seven 4-bit models of 26M to 360M parameters in a browser tab over WebGPU, a playground by its own description. The per-agent machines that boot in under 10ms are on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
         <p>The Sep 29 cycle was where the agent-serving bill actually lands. Modal&rsquo;s <a href="#quail">Quail</a> passes <strong>a billion tokens a minute on one H100</strong>, more than 10&times; its vLLM baseline at under $0.06 per billion tokens, a throughput figure that still needs its model and batch size beside it. An estimate of <a href="#muse-compute-demand">what serving Muse costs</a> puts 100 million daily users at 1&ndash;2 gigawatts with only about 0.1 GW of it on GPUs and the rest in per-user sandboxes &mdash; and Anthropic&rsquo;s $11.6 billion Akamai commitment, on <a href="industry-and-business.html">Industry &amp; business</a>, buys CPU capacity for exactly that layer. <a href="#spacexai-colossus-gb300">SpaceXAI</a> reaches 1.44 million GPUs at Colossus and is building a 1.2 GW plant to switch them on, the grid binding before the silicon. <a href="#jev-router">jev-router</a> got its number, 82% more agent tasks solved than OpenRouter&rsquo;s Auto Router, and one dissenting test.</p>
@@ -90,6 +90,7 @@
           <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">10</span></a></li>
           <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">3</span></a></li>
           <li><a href="#tokenization-throughput">Tokenization throughput <span class="n">1</span></a></li>
+          <li><a href="#gpu-programming-references">GPU programming references <span class="n">1</span></a></li>
         </ul>
       </nav>
 
@@ -819,8 +820,22 @@
         </article>
       </section>
 
+      <section class="topic-section" id="gpu-programming-references">
+        <h3>GPU programming references</h3>
+        <p class="lead">Reference material rather than results: what you read to understand the hardware under every serving and training number on this page. Judge entries on how far down the stack they go, whether the claims trace back to vendor documentation, and whether the source is open to correction.</p>
+
+        <article class="story" id="modal-gpu-glossary">
+          <span class="when">2026-10-02</span>
+          <h4><a href="https://modal.com/gpu-glossary/readme">Modal&rsquo;s GPU Glossary links the whole GPU stack, from streaming multiprocessors to nvcc flags, in one hypertext reference</a></h4>
+          <p>Modal&rsquo;s <strong>GPU Glossary</strong> collects GPU concepts across the stack &mdash; streaming multiprocessor architecture, compute capability, the warp scheduler, the CUDA programming model and <code>nvcc</code> compiler flags &mdash; into interlinked pages that can be followed by reference or read linearly. Modal built it from NVIDIA&rsquo;s documentation, community Discords and textbooks because the official material is fragmented across levels of the stack.</p>
+          <p>The source is an MIT-licensed GitHub repository, created in February 2025 and last updated on 2026-09-04, with corrections taken through GitHub issues. It is written by a GPU cloud vendor, so read it for the definitions rather than for the closing pitch.</p>
+          <div class="sources"><a href="https://modal.com/gpu-glossary/readme">Modal</a> &middot; <a href="https://github.com/modal-labs/gpu-glossary">GitHub</a> &middot; <span class="via">added by hand from a user-supplied link (Oct 2)</span></div>
+        </article>
+      </section>
+
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-02</span><span class="label"><a href="#modal-gpu-glossary">Modal&rsquo;s GPU Glossary links the whole GPU stack, from streaming multiprocessors to nvcc flags</a></span></li>
         <li><span class="date">2026-09-30</span><span class="label"><a href="#perplexity-photon">Perplexity&rsquo;s Rust retrieval engine Photon cuts p99 from about 800 ms to 65 ms</a></span></li>
         <li><span class="date">2026-09-29</span><span class="label"><a href="#microllm-lab">MicroLLM Lab runs seven 4-bit language models of 26M to 360M parameters in the browser over WebGPU</a></span></li>
         <li><span class="date">2026-09-29</span><span class="label"><a href="#firerouter-with-opus">Fireworks&rsquo; FireRouter keeps 98.1% of Opus-only accuracy at 57% lower cost by routing each turn across Opus 5.5 and GLM 5.3</a></span></li>
