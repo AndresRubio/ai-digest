@@ -30,17 +30,20 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-10-02</div>
+      <div class="meta">Last updated: 2026-10-05</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s addition measures the state-carrying idea the attention section has been waiting on. <a href="#lift">LIFT</a> feeds a transformer&rsquo;s hidden state into the next generation step rather than squeezing it through the emitted token, keeps training parallel by borrowing those states from an off-the-shelf model&rsquo;s predictions, and beats token-matched transformers from 135M to 1B parameters on language modelling, reasoning and procedural tasks. Unlike the <a href="#recurrent-looped-transformer">Recurrent Looped Transformer</a> beside it, it reports a comparison; what remains open is scale, and the switch from borrowed states in training to its own at inference.</p>
+        <p>Today&rsquo;s cycle (Oct 2&ndash;5) put a human check back into three sections. BAAI&rsquo;s <a href="#arex">AREX</a> checks a provisional answer requirement by requirement and turns the gaps into its next search; fine-tuned on rule-flagged decision points, its 4B model beat an untuned 35B on five of six benchmarks and its 122B reached 82.5% on BrowseComp, three points under the same harness on Gemini Pro 3.1. Matthew Schwartz&rsquo;s <a href="#claude-shaped-science">BootLoops</a> was technically correct early and still needed domain experts to become relevant &mdash; the provenance section&rsquo;s split between a valid result and a useful one, seen from the other side. And <a href="#neuralink-50000-hours">Neuralink</a> pretrained its per-user decoders on 50,000 hours of unlabeled recordings, the archive-as-asset bet with no figure yet for what it bought.</p>
+        <p>Two technical reports behind releases filed elsewhere belong to this page&rsquo;s reading list. DeepSeek&rsquo;s V4.1-Flash paper builds on Microsoft and Tsinghua&rsquo;s 2024 YOCO design, letting 36 of 40 layers borrow another layer&rsquo;s cache and storing it at 4 bits, for 890 bytes per token; Xiaomi&rsquo;s MiMo-V2.6 report multiplies each coding attempt&rsquo;s pass/fail reward by two checklist scores, after finding a test-only reward taught the model to let errors pass silently. Both are recorded on <a href="model-releases.html">Model releases</a>, and neither has been reproduced outside its lab.</p>
+        <p>The Oct 2 addition measured the state-carrying idea the attention section has been waiting on. <a href="#lift">LIFT</a> feeds a transformer&rsquo;s hidden state into the next generation step rather than squeezing it through the emitted token, keeps training parallel by borrowing those states from an off-the-shelf model&rsquo;s predictions, and beats token-matched transformers from 135M to 1B parameters on language modelling, reasoning and procedural tasks. Unlike the <a href="#recurrent-looped-transformer">Recurrent Looped Transformer</a> beside it, it reports a comparison; what remains open is scale, and the switch from borrowed states in training to its own at inference.</p>
         <p>The Sep 28 addition widened the provenance section beyond Lean. Anthropic reports that <a href="#claude-nine-loops">Claude Fable 5.1 completed a nine-loop physics calculation</a> by two methods a month after a physicist challenged the labs, and Lance Dixon validated it independently. An outside expert&rsquo;s check confirms the number but, like a proof assistant, says nothing about how much of the method was the model&rsquo;s; the section now holds three results and two kinds of checker.</p>
         <p>The Sep 23 addition extended the provenance thread rather than resolving it. OpenAI now says the model behind the <a href="#navier-stokes-proof">Navier&ndash;Stokes claim</a> also solved more than 100 open mathematical problems, and it has convened an independent advisory group of mathematicians to assess and communicate such results &mdash; review in form, but by a body OpenAI appointed, beside a Clay process that still requires publication, a two-year wait and expert acceptance.</p>
-        <p>The previous cycle kept three architectures honest by holding something constant. Linkup trained a dense, a late-interaction and a sparse encoder on identical data and published the gaps: <strong>SPARSEUP</strong> at 149M parameters scores <strong>56.4 nDCG@10 on BEIR-13</strong>, trailing its own dense model by 1.52 points and the late-interaction one by 2.5, and reaches <strong>over 97% recall in about 380 microseconds per query</strong> on a Seismic index. Fixing the data is what turns those into architecture costs instead of leaderboard noise, and 1.52 points is small enough that an inverted index usually wins the argument. The figures are Linkup&rsquo;s own and BEIR-13 is a subset, so the &ldquo;best public sparse encoder under 150M&rdquo; claim describes a narrow bracket.</p>
-        <p>Sean Goedecke did the same thing to <a href="model-releases.html">Jev</a> without running an experiment. Batch prompts that each generate one token, constrain them with structured output, and any LLM returns typed decisions in parallel &mdash; which makes the System One advantage quantitative rather than categorical, and hands this page the baseline every typed-decision claim should now be measured against. The residual difference is real and worth naming: the batched version still pays full prefill per prompt, and removing that is precisely what a direct-logit design buys. Goodfire took the opposite tack on a harder target, reporting <strong>a clear activation signal accompanying reward hacking</strong> that could support monitors at scale. Output-level checking is structurally blind to a reward hack, since a reward hack is output that passes the check, so watching the activations is the right place to look; whether the signal survives a model optimised against the probe is the unanswered question.</p>
-        <details>
+        
+<details>
           <summary>Earlier cycles</summary>
+          <p>The previous cycle kept three architectures honest by holding something constant. Linkup trained a dense, a late-interaction and a sparse encoder on identical data and published the gaps: <strong>SPARSEUP</strong> at 149M parameters scores <strong>56.4 nDCG@10 on BEIR-13</strong>, trailing its own dense model by 1.52 points and the late-interaction one by 2.5, and reaches <strong>over 97% recall in about 380 microseconds per query</strong> on a Seismic index. Fixing the data is what turns those into architecture costs instead of leaderboard noise, and 1.52 points is small enough that an inverted index usually wins the argument. The figures are Linkup&rsquo;s own and BEIR-13 is a subset, so the &ldquo;best public sparse encoder under 150M&rdquo; claim describes a narrow bracket.</p>
+          <p>Sean Goedecke did the same thing to <a href="model-releases.html">Jev</a> without running an experiment. Batch prompts that each generate one token, constrain them with structured output, and any LLM returns typed decisions in parallel &mdash; which makes the System One advantage quantitative rather than categorical, and hands this page the baseline every typed-decision claim should now be measured against. The residual difference is real and worth naming: the batched version still pays full prefill per prompt, and removing that is precisely what a direct-logit design buys. Goodfire took the opposite tack on a harder target, reporting <strong>a clear activation signal accompanying reward hacking</strong> that could support monitors at scale. Output-level checking is structurally blind to a reward hack, since a reward hack is output that passes the check, so watching the activations is the right place to look; whether the signal survives a model optimised against the probe is the unanswered question.</p>
           <p>The provenance thread moved rather than closed. <a href="#navier-stokes-proof">OpenAI&rsquo;s Navier&ndash;Stokes claim</a> now rests on a <strong>166-page paper</strong> plus agent-written Lean code from an undisclosed model, and on Sep 10 OpenAI narrowed its own statement: Buckmaster&rsquo;s Codex prompts <em>over the two months before the announcement</em> could not have influenced the system, including through training &mdash; which leaves the prior year of prompts unaddressed. Clay requires publication, a two-year wait and expert acceptance, and OpenAI says it is not seeking the prize. Beside it, Anthropic put a number on its own side of the same question, saying <strong>Claude leads 26% of its R&amp;D with over 30,000 agents active at once</strong>; the denominator is undefined, but publishing an oversight metric next to a productivity metric is the concession that makes the pair worth recording.</p>
           <p>Today's two papers both remove a structural assumption rather than tune one. Sakana AI's <strong>PC-ALM</strong> is a layer-local learning rule with no global backward pass that trains networks a thousand layers deep, reaching 77.75% on the repository's reference cell against 78.66% for backpropagation and 68.13% for standard predictive coding. Closing nine tenths of the gap to backprop while discarding the backward pass is the result; backprop still winning, on small image benchmarks that are the only place either was tested, is the qualification. The MIT-licensed JAX code running on CPU is substantive rather than incidental, because the case for local rules has always been a hardware case &mdash; a rule that never needs the whole graph resident has a different memory and parallelism story, and depth is where that is supposed to pay. Nobody has yet shown it holding at a scale where the saving would be worth collecting.</p>
           <p>Meta's <strong>FLAT</strong> removes a different assumption: that the retrieval encoder and the generative decoder need separate representations of the same image. It maps images and text into one flexible-length sequence of continuous tokens serving both, with nested dropout ordering information coarse to fine along the sequence. The ordering is what makes variable length useful rather than merely possible &mdash; early tokens carry the coarse content, so truncating degrades detail gracefully instead of dropping an arbitrary slice, and a caller decides at inference time how much computation an image is worth. Multimodal stacks have not had that knob; the usual alternative is a model per resolution or a patch budget fixed during training. The open question is the one every shared-representation result raises: retrieval rewards discarding, generation rewards preserving, and no head-to-head against separate specialised encoders is reported.</p>
@@ -66,7 +69,7 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#self-supervised-and-domain-foundation-models">Self-supervised &amp; domain foundation models <span class="n">2</span></a></li>
+          <li><a href="#self-supervised-and-domain-foundation-models">Self-supervised &amp; domain foundation models <span class="n">3</span></a></li>
           <li><a href="#agent-productivity-studies">Agent productivity studies <span class="n">2</span></a></li>
           <li><a href="#learning-rules-beyond-backpropagation">Learning rules beyond backpropagation <span class="n">1</span></a></li>
           <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">5</span></a></li>
@@ -74,9 +77,9 @@
           <li><a href="#decoding-and-inference">Decoding &amp; inference <span class="n">2</span></a></li>
           <li><a href="#io-aware-kernels-and-data-pipeline-primitives">IO-aware kernels &amp; data-pipeline primitives <span class="n">1</span></a></li>
           <li><a href="#world-models-and-embodied-policy-methods">World models &amp; embodied-policy methods <span class="n">1</span></a></li>
-          <li><a href="#rl-on-agents">RL on agents <span class="n">3</span></a></li>
+          <li><a href="#rl-on-agents">RL on agents <span class="n">4</span></a></li>
           <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">4</span></a></li>
-          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">3</span></a></li>
+          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">4</span></a></li>
           <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">3</span></a></li>
           <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
           <li><a href="#evaluate-then-act-decompositions">Evaluate-then-act decompositions <span class="n">3</span></a></li>
@@ -85,7 +88,14 @@
 
       <section class="topic-section" id="self-supervised-and-domain-foundation-models">
         <h3>Self-supervised &amp; domain foundation models</h3>
-        <p class="lead">Both of these are bets that a domain&rsquo;s existing archive is the asset, not the architecture &mdash; uncurated hospital scans in one case, every possible human variant in the other. Judge them on what a lab without an inference budget can actually do with the release, not on the benchmark table.</p>
+        <p class="lead">All three are bets that a domain&rsquo;s existing archive is the asset, not the architecture &mdash; uncurated hospital scans, every possible human variant, 50,000 hours of unlabeled neural recordings. Judge them on what a lab without an inference budget could actually do with the result, not on the benchmark table.</p>
+
+        <article class="story" id="neuralink-50000-hours">
+          <span class="when">2026-10-05</span>
+          <h4><a href="https://neuralink.com/updates/pretraining-on-50000-hours/">Neuralink pretrains its decoders on 50,000 hours of unlabeled neural data</a></h4>
+          <p>Neuralink&rsquo;s decoders, which turn neural activity into intended action, are per-user and need calibration before each person can use the device; the company has now pretrained them on the <strong>more than 50,000 hours of unlabeled, freeform neural data</strong> collected since its clinical trials began. It reports more accurate and longer-lived decoders, without a figure in the summary for either.</p>
+          <div class="sources"><a href="https://neuralink.com/updates/pretraining-on-50000-hours/">Neuralink</a> &middot; <span class="via">via TLDR (Oct 5)</span></div>
+        </article>
 
         <article class="story unlinked" id="alphagenome-atlas">
           <span class="when">2026-09-09</span>
@@ -274,7 +284,14 @@
 
       <section class="topic-section" id="rl-on-agents">
         <h3>RL on agents</h3>
-        <p class="lead">Training an agent means training inside the harness it will run in, not against a static task. The entries differ in what they had to build to get there &mdash; a proxy, a stateful search environment, a simulator made of past trajectories. Judge each on what the training environment omits.</p>
+        <p class="lead">Training an agent means training inside the harness it will run in, not against a static task. The entries differ in what they had to build to get there &mdash; a proxy, a stateful search environment, a simulator made of past trajectories, a checker that turns unmet requirements into the next search. Judge each on what the training environment omits.</p>
+
+        <article class="story" id="arex">
+          <span class="when">2026-10-02</span>
+          <h4><a href="https://www.deeplearning.ai/the-batch/issue-373/#agents-that-can-check-their-own-work-piece-by-piece">BAAI&rsquo;s AREX checks answers requirement by requirement; a fine-tuned 4B beats an untuned 35B on five of six benchmarks</a></h4>
+          <p>Beijing Academy of AI researchers built <strong>AREX</strong>, a research agent that checks a provisional answer against each requirement, keeps the parts it has confirmed and turns unmet requirements into the next search, then fine-tuned Qwen3.5-4B and Qwen3.5-122B-A10B on its traces with the training signal concentrated on rule-flagged decision points. The 122B system reaches <strong>82.5% on BrowseComp</strong> (the same harness with Gemini Pro 3.1 gets 85.9%) and <strong>82.0 F1 on WideSearch-en</strong>, and the fine-tuned 4B beat an untuned Qwen3.5-35B on five of six benchmarks.</p>
+          <div class="sources"><a href="https://www.deeplearning.ai/the-batch/issue-373/#agents-that-can-check-their-own-work-piece-by-piece">The Batch</a> &middot; <span class="via">via The Batch (Oct 2)</span></div>
+        </article>
 
         <article class="story" id="dream-rsi">
           <span class="when">2026-09-16</span>
@@ -291,12 +308,16 @@
           <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="nvidia-polar">
-          <span class="when">2026-05-28</span>
-          <h4>NVIDIA Polar &mdash; token-faithful RL via API proxy</h4>
-          <p>A framework that proxies LLM API calls to reconstruct token-faithful RL trajectories for training agents on unmodified coding harnesses, enabling GRPO across closed harnesses. It removes the white-box-model-access constraint for RL.</p>
-          <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="nvidia-polar">
+            <span class="when">2026-05-28</span>
+            <h4>NVIDIA Polar &mdash; token-faithful RL via API proxy</h4>
+            <p>A framework that proxies LLM API calls to reconstruct token-faithful RL trajectories for training agents on unmodified coding harnesses, enabling GRPO across closed harnesses. It removes the white-box-model-access constraint for RL.</p>
+            <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="architecture-analysis-and-practitioner-synthesis">
@@ -342,7 +363,14 @@
 
       <section class="topic-section" id="machine-produced-proof-and-its-provenance">
         <h3>Machine-produced proof and its provenance</h3>
-        <p class="lead">Three results a machine produced and someone other than the model checked &mdash; Lean for two proofs, a physicist for a nine-loop calculation. Verification and attribution come apart here: a checker can confirm a result is valid and say nothing about whose method it was. Judge these on publication order and on what the lab discloses about training data.</p>
+        <p class="lead">Four results a machine produced and someone other than the model checked &mdash; Lean for two proofs, a physicist for a nine-loop calculation, domain experts for a calculation toolkit. Verification and attribution come apart here: a checker can confirm a result is valid and say nothing about whose method it was. Judge these on publication order and disclosed training data.</p>
+
+        <article class="story" id="claude-shaped-science">
+          <span class="when">2026-10-02</span>
+          <h4><a href="https://www.anthropic.com/research/claude-shaped-science">&ldquo;Claude-shaped science&rdquo;: BootLoops came out technically correct and still needed domain experts to make it relevant</a></h4>
+          <p>Physicist Matthew Schwartz describes picking scientific problems whose bottleneck is coding and data parsing, and using Claude on them to build <strong>BootLoops</strong>, a toolkit for quantitative calculations across fields from ecology to population genetics. The finding he reports is the split this section records: the output was technically correct early, and making it scientifically relevant still took domain experts.</p>
+          <div class="sources"><a href="https://www.anthropic.com/research/claude-shaped-science">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 2)</span></div>
+        </article>
 
         <article class="story" id="claude-nine-loops">
           <span class="when">2026-09-27</span>
@@ -360,13 +388,17 @@
           <div class="sources"><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">Simon Willison (Sep 14)</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-371#inside-the-dispute-over-a-landmark-agent-driven-mathematical-proof">The Batch</a> &middot; <a href="https://openai.com/index/advisory-group-on-mathematics-and-ai/">OpenAI (advisory group)</a> &middot; <span class="via">via The Batch (Sep 18), Substack notes (Sep 12), TLDR AI (Sep 9), TLDR (Sep 9), Unwind AI (Sep 9), The Code (Sep 9), TLDR AI (Sep 22)</span></div>
         </article>
 
-        <article class="story unlinked" id="fermat-lean-proof">
-          <span class="when">2026-09-07</span>
-          <h4>Claude produced the first complete computer-verified proof of Fermat&rsquo;s Last Theorem</h4>
-          <p>Anthropic reports that Claude formalized Fermat&rsquo;s Last Theorem in Lean in 11 days &mdash; 13 million lines of code, 29,500 intermediate theorems proved, verified through Prove2Me and Lean. The theorem was proved by Andrew Wiles in 1995; what was missing was a machine-checkable formalization, traditionally years of specialist labour.</p>
-          <p>The significance is not that a model did mathematics but <em>where</em> it did it: formalization is the rare domain with a total, mechanical verifier, so no claim rests on the model&rsquo;s judgment or on a benchmark harness &mdash; Lean either accepts the proof or does not. Against the harness-dependence problem running through this month&rsquo;s <a href="evals-and-benchmarks.html">evals</a>, a result that a proof assistant checks end to end is a different and much harder kind of evidence.</p>
-          <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="fermat-lean-proof">
+            <span class="when">2026-09-07</span>
+            <h4>Claude produced the first complete computer-verified proof of Fermat&rsquo;s Last Theorem</h4>
+            <p>Anthropic reports that Claude formalized Fermat&rsquo;s Last Theorem in Lean in 11 days &mdash; 13 million lines of code, 29,500 intermediate theorems proved, verified through Prove2Me and Lean. The theorem was proved by Andrew Wiles in 1995; what was missing was a machine-checkable formalization, traditionally years of specialist labour.</p>
+            <p>The significance is not that a model did mathematics but <em>where</em> it did it: formalization is the rare domain with a total, mechanical verifier, so no claim rests on the model&rsquo;s judgment or on a benchmark harness &mdash; Lean either accepts the proof or does not. Against the harness-dependence problem running through this month&rsquo;s <a href="evals-and-benchmarks.html">evals</a>, a result that a proof assistant checks end to end is a different and much harder kind of evidence.</p>
+            <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="verifiers-and-runtime-monitors">
@@ -442,6 +474,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-05</span><span class="label"><a href="#neuralink-50000-hours">Neuralink pretrains its decoders on 50,000 hours of unlabeled neural data</a></span></li>
+        <li><span class="date">2026-10-02</span><span class="label"><a href="#claude-shaped-science">&ldquo;Claude-shaped science&rdquo;: BootLoops came out technically correct and still needed domain experts</a></span></li>
+        <li><span class="date">2026-10-02</span><span class="label"><a href="#arex">BAAI&rsquo;s AREX checks answers requirement by requirement; a fine-tuned 4B beats an untuned 35B</a></span></li>
         <li><span class="date">2026-10-01</span><span class="label"><a href="#lift">LIFT passes a transformer&rsquo;s hidden state to the next token and beats token-matched baselines up to 1B</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#claude-nine-loops">Claude Fable 5.1 completes a nine-loop physics calculation two ways, validated by Lance Dixon</a></span></li>
         <li><span class="date">2026-09-19</span><span class="label"><a href="#sparseup">SPARSEUP scores 56.4 nDCG@10 on BEIR-13 at 149M parameters</a></span></li>

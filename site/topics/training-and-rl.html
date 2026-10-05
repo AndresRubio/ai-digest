@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-10-02</div>
+      <div class="meta">Last updated: 2026-10-05</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s addition is a warning about reading pre-training checkpoints. A study of <a href="#mode-hopping">mode-hopping</a> finds OLMo3-32B switching abruptly on arithmetic tasks, as training proceeds, between following a surface pattern and inferring the actual task, and traces it in controlled experiments to shallow and generalizable circuits competing inside one model. If that holds, a checkpoint&rsquo;s score depends on which side of a switch it was taken, and longer training is no guarantee of better generalization &mdash; a caveat for every efficiency comparison in the pretraining section, each of which compares runs at fixed points.</p>
+        <p>Today&rsquo;s addition moves the judge inside the model. <a href="#unievo-vl">UniEvo-VL</a> has one multimodal model act as teacher and student at test time, feeding its own critiques back as privileged information the student never sees, which places it beside the corpora, curricula and scaffolds that models already produce for themselves &mdash; and, like the rest of that section, without an outside measurement yet. The cycle&rsquo;s other training evidence sits on neighbouring pages: Xiaomi disclosed that <a href="model-releases.html">MiMo-V2.6</a>&rsquo;s RL runs cost $2.6M and $0.9M with a code-quality grader multiplying the test reward, and BAAI&rsquo;s AREX concentrates its fine-tuning signal on rule-flagged decision points, on <a href="research-papers.html">Research papers</a>.</p>
+        <p>The Oct 2 addition was a warning about reading pre-training checkpoints. A study of <a href="#mode-hopping">mode-hopping</a> finds OLMo3-32B switching abruptly on arithmetic tasks, as training proceeds, between following a surface pattern and inferring the actual task, and traces it in controlled experiments to shallow and generalizable circuits competing inside one model. If that holds, a checkpoint&rsquo;s score depends on which side of a switch it was taken, and longer training is no guarantee of better generalization &mdash; a caveat for every efficiency comparison in the pretraining section, each of which compares runs at fixed points.</p>
         <p>The Sep 29 addition was the most complete public account of how a lab consolidates specialists. Cameron Wolfe&rsquo;s <a href="#nemotron-post-training-notes">reading of the Nemotron reports</a> sets out the three-part recipe &mdash; generate-then-filter SFT, RL on pass-rate-profiled prompts, and multi-teacher on-policy distillation that scores a student&rsquo;s own rollouts under a reverse-KL objective &mdash; and names the failure MOPD exists to fix: unified multi-domain RL starves and interferes, sequential Cascade RL regresses. It widens the distillation section from compression and compilation to consolidation, and records the same drift toward full agent trajectories in both SFT data and RL environments that the entries below have been reporting one at a time.</p>
         <p>The Sep 28 cycle gives the train-in-the-harness argument its first number and publishes the layer beneath it. Perplexity trains its <a href="#perplexity-computer-real-world-training">Computer agent</a> on its own production traffic &mdash; rejection-sampling fine-tuning on sessions that succeeded, hint-guided self-distillation on failures a user corrected &mdash; and the result is now reported: live tool-call failures fell from 2.24% to 1.77% between two checkpoints of one GLM 5.2 base, while user dissatisfaction did not move. That is a modest operational gain from the most faithful environment possible, and one only a product with traffic can buy. DeepSeek&rsquo;s <a href="#dsec">DSec</a> publishes the sandbox under its agentic RL: one SDK across function-calling, container, microVM and full-VM backends, with reward-hacking mitigation built into the environment rather than left to the grader &mdash; the fullest account yet of the layer this page&rsquo;s RL-environment section says nobody has standardised.</p>
         <p>The Sep 22 cycle was two releases that treat the environment as the thing worth publishing. Xiaomi&rsquo;s <a href="#mimo-v2-6-rl">MiMo-V2.6 report</a> (Sep 22) scales RL compute, environment diversity and grader compute together and names what kept training stable &mdash; a frozen MoE router and a layered defence against reward hacking &mdash; with the environments and framework open-sourced; the resulting models are on <a href="model-releases.html">Model releases</a>. Qwen&rsquo;s <a href="#recreationworld">RecreationWorld</a> (Sep 22) builds environments out of existing software: explore an application&rsquo;s GUI, rebuild it with coding tools, verify the result visually, so the reference application doubles as its own grader. Neither publishes a training result of its own here; both are bets that the reusable asset is the environment, not the algorithm.</p>
-        <p>The Sep 21 arrival was a release of the missing half. ByteDance Seed and Tsinghua SIA published <strong>DAPO</strong> (Sep 21) as a complete open RL system &mdash; algorithm, dataset and training infrastructure &mdash; reporting <strong>50 points on AIME 2024 from the Qwen2.5-32B base model</strong>. DAPO has appeared on this page for months as a name inside the policy-gradient lineage, one of several refinements to loss aggregation and clipping over GRPO. Shipping the data and the plumbing alongside it is the difference between a citation and a reproduction, and it lands in the same section as Miles, Verifiers v1 and AgentENV, each of which closed a different part of the same gap. The pattern across all four is that the published result is no longer the contribution; the machinery that produced it is.</p>
-        <details>
+        
+<details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 21 arrival was a release of the missing half. ByteDance Seed and Tsinghua SIA published <strong>DAPO</strong> (Sep 21) as a complete open RL system &mdash; algorithm, dataset and training infrastructure &mdash; reporting <strong>50 points on AIME 2024 from the Qwen2.5-32B base model</strong>. DAPO has appeared on this page for months as a name inside the policy-gradient lineage, one of several refinements to loss aggregation and clipping over GRPO. Shipping the data and the plumbing alongside it is the difference between a citation and a reproduction, and it lands in the same section as Miles, Verifiers v1 and AgentENV, each of which closed a different part of the same gap. The pattern across all four is that the published result is no longer the contribution; the machinery that produced it is.</p>
           <p>An earlier single entry was a reframing rather than a result about training quality. Google Research's <strong>Retrieve-for-Train</strong> takes reinforcement learning out of the serving path: the RL runs once, offline, and is compiled into a 53.9M-parameter diffusion model that generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 that is 0.07 seconds against roughly 1.46, reported as a 12&times; to 20&times; speedup. Most of this page treats RL as something a model carries into production &mdash; a policy learned in post-training and executed at inference. R4T points out that where RL learns a <em>search</em> policy, it need not run as a policy at all: it can be amortised into a generator, turning an inference-time cost into a training-time one. The limit is built into the trade, since it only works where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns. For any fan-out settled before the results arrive it is the right shape, and it is the first item on this page to treat RL as a compilation step.</p>
           <p>An earlier result was about where the training budget goes rather than what it buys. A write-up on RL for LLMs starts from a failure averages conceal: standard RL performs disproportionately badly on a training set's hardest problems, and one scalar value per problem is too thin a signal to judge a large model's progress on it. The fix proposed is budgetary rather than algorithmic &mdash; spend less compute on problems the model already solves and redirect it to the hard ones &mdash; with substantial reported improvement on difficult tasks. The reasoning is that easy problems stop producing gradient signal long before their allocated rollouts are exhausted, so uniform sampling keeps paying for steps that teach nothing while the informative problems stay undersampled. That arrives at the same place as this page's failure-driven environment work by a cheaper route: TRACE builds an environment around a repeated failure, this one just resamples toward the failures already present. The post reports direction rather than a benchmark table, so neither the size of the gain nor its cost on the easy half can be checked from here.</p>
           <p>The prior cycle's single result reinforced the page's running argument that data construction, not compute, is where post-training gains now come from. Google Research's <strong>ToolGrad</strong> (Sep 14) inverts how tool-use training data is made. The usual pipeline invents a plausible user request and then hopes an agent can find a working call sequence for it &mdash; which fails whenever none exists, and quietly trains the model to attempt impossible compositions. ToolGrad constructs a verified API chain first and writes the user question that chain answers afterwards, making validity structural rather than something filtered in afterwards: a 99.8% success rate across 16,000 real APIs. The downstream figure is the one worth carrying &mdash; a Gemma 3 12B fine-tuned on 500 of these examples matched Gemini 2.5 Pro on a tool-use test with APIs neither model had seen. That is the same shape as the environment-quality results below, reached from the supervised side: where a task has checkable structure, generating from the structure toward the prompt beats sampling prompts and throwing away the failures, and it makes 500 well-formed examples worth more than a much larger filtered corpus.</p>
@@ -70,7 +72,7 @@
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">7</span></a></li>
-          <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">3</span></a></li>
+          <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">4</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
           <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">5</span></a></li>
         </ul>
@@ -334,7 +336,14 @@
 
       <section class="topic-section" id="self-generated-training-data-and-curricula">
         <h3>Self-generated training data &amp; curricula</h3>
-        <p class="lead">What used to be human-supplied &mdash; the corpus, the judge, the curriculum, the scaffold &mdash; is increasingly produced by models instead. These three show the move working in one place each, and they share one caveat: every self-improving-loop claim on this page is still vendor-reported.</p>
+        <p class="lead">What used to be human-supplied &mdash; the corpus, the judge, the curriculum, the scaffold &mdash; is increasingly produced by models instead. These four show the move working in one place each, and they share one caveat: every self-improving-loop claim on this page is still vendor-reported.</p>
+
+        <article class="story" id="unievo-vl">
+          <span class="when">2026-10-05</span>
+          <h4><a href="https://arxiv.org/abs/2609.38721">UniEvo-VL makes one multimodal model its own teacher, using its critiques as privileged information</a></h4>
+          <p><strong>UniEvo-VL</strong> has a single multimodal model act as both teacher and student during test-time self-improvement: the model critiques its own outputs and the critiques are fed back as privileged information the student does not see at inference. It moves the judge, not just the data, inside the model, which is the step this section tracks; the summary gives no benchmark figure.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2609.38721">arXiv</a> &middot; <span class="via">via TLDR AI (Oct 5)</span></div>
+        </article>
 
         <article class="story" id="toolgrad">
           <span class="when">2026-09-14</span>
@@ -352,13 +361,17 @@
           <div class="sources"><span class="via">via TLDR AI (Sep 10) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="ornith-1-0">
-          <span class="when">2026-06-26</span>
-          <h4>Ornith-1.0 learns its own RL scaffolds during training</h4>
-          <p>DeepReinforce&rsquo;s open Ornith-1.0 agentic-coding family (9B&ndash;397B, MIT) is trained so the model generates its own task-decomposition strategies and refines them with RL, rather than relying on hardcoded scaffolding supplied by the inference harness at run time. The claim is that self-scaffolded models adapt to new task types better than those bound to a fixed harness &mdash; a training-side counterpart to the harness-commoditization trend.</p>
-          <p>The 72B checkpoint reportedly matches Claude Opus 4.7 on SWE-bench. (Model-lineup angle on the <a href="model-releases.html">Model releases</a> page.)</p>
-          <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="ornith-1-0">
+            <span class="when">2026-06-26</span>
+            <h4>Ornith-1.0 learns its own RL scaffolds during training</h4>
+            <p>DeepReinforce&rsquo;s open Ornith-1.0 agentic-coding family (9B&ndash;397B, MIT) is trained so the model generates its own task-decomposition strategies and refines them with RL, rather than relying on hardcoded scaffolding supplied by the inference harness at run time. The claim is that self-scaffolded models adapt to new task types better than those bound to a fixed harness &mdash; a training-side counterpart to the harness-commoditization trend.</p>
+            <p>The 72B checkpoint reportedly matches Claude Opus 4.7 on SWE-bench. (Model-lineup angle on the <a href="model-releases.html">Model releases</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="hosted-fine-tuning">
@@ -434,6 +447,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-05</span><span class="label"><a href="#unievo-vl">UniEvo-VL makes one multimodal model its own teacher, using its critiques as privileged information</a></span></li>
         <li><span class="date">2026-10-01</span><span class="label"><a href="#mode-hopping">Mode-hopping: OLMo3-32B abruptly switches between pattern-following and task inference during pre-training</a></span></li>
         <li><span class="date">2026-09-28</span><span class="label"><a href="#nemotron-post-training-notes">A reading of every Nemotron tech report traces post-training from SFT and RL to multi-teacher on-policy distillation</a></span></li>
         <li><span class="date">2026-09-27</span><span class="label"><a href="#dsec">DeepSeek&rsquo;s DSec paper describes the sandbox layer behind its large-scale agentic RL</a></span></li>

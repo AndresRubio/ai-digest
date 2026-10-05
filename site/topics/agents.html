@@ -30,16 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-01</div>
+      <div class="meta">Last updated: 2026-10-05</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle is OpenAI taking the always-on agent slot that Muse and Grok Bot opened. <a href="#openai-dots">dots</a> give each GPT-6 Astra agent its own cloud computer and browser, reach 4,000-plus apps, and gate risky actions with Custom Rules and auto-review &mdash; and inadvertently posted images for 53 users the day before launch, this page&rsquo;s containment question arriving on schedule. <a href="#chatgpt-mcp-events">MCP Events</a> lets ChatGPT react to pushes from an MCP server, but implements only webhook delivery from the draft spec, without the <code>gap</code> notification that tells a client it missed something. And <a href="#rrsi">RRSI</a> is now open source with its split-level numbers: six points on the Terminal-Bench split it evolved on, 1.8 on held-out SWE-bench Verified &mdash; transfer, but smaller than the headline.</p>
+        <p>Today&rsquo;s cycle (Oct 2&ndash;5) was about what survives a long run and who controls it. Earendil&rsquo;s <a href="#pi-durable">Pi Durable</a> lets an agent keep an indefinitely long conversation, survive internal and external failures and take steering from several people at once, with no recovery figure attached. DeepSeek&rsquo;s <a href="#deepseek-harness-v0-2">Harness v0.2</a> goes the other way on control: desktop installers, every layer a plugin, and a Creator mode in which the agent writes and installs its own plugins, beside a self-reported 82.7 on Terminal-Bench 2.1 and an experimental layer for Claude Code mods. An agent that rewrites its own harness is exactly what this page&rsquo;s governance section has no instrument for yet.</p>
+        <p>The Oct 1 cycle was OpenAI taking the always-on agent slot that Muse and Grok Bot opened. <a href="#openai-dots">dots</a> give each GPT-6 Astra agent its own cloud computer and browser, reach 4,000-plus apps, and gate risky actions with Custom Rules and auto-review &mdash; and inadvertently posted images for 53 users the day before launch, this page&rsquo;s containment question arriving on schedule. <a href="#chatgpt-mcp-events">MCP Events</a> lets ChatGPT react to pushes from an MCP server, but implements only webhook delivery from the draft spec, without the <code>gap</code> notification that tells a client it missed something. And <a href="#rrsi">RRSI</a> is now open source with its split-level numbers: six points on the Terminal-Bench split it evolved on, 1.8 on held-out SWE-bench Verified &mdash; transfer, but smaller than the headline.</p>
         <p>The Sep 30 cycle gave the agent an identity of its own. Manus&rsquo;s <a href="#manus-2-0">Cue</a> assigns each agent an email address, a phone number, a wallet and a computer, and <a href="#fo-personal-agent">Fo</a> adds a voice and a credit card, routing to human experts when software gets stuck and reporting 71% task completion on evals nobody else has seen. Neither states a spending boundary, which is the governor this page judges such agents on. In retrieval, <a href="#gpt-researcher-jev-context-filter">GPT Researcher</a> swapped embedding similarity for Jev as its default context filter and keeps 73% of relevant passages against 46% at the same cost, on its own benchmark. The phone an agent can now drive, Tapkit, is on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
         <p>The Sep 29 cycle was the open computer-use model and the org chart above the agents. H Company&rsquo;s <a href="#holo4">Holo4</a> puts open weights at <strong>85.2% on OSWorld for about $0.08 a task</strong>, one point above its Qwen3.8-27B base and twenty points behind Opus 5.5 on OSWorld 2.0&rsquo;s long workflows &mdash; near parity on short tasks, still losing on the horizon. <a href="#manus-2-0">Manus 2.0</a> reports 23% fewer tokens and 32% lower cost from its Cascade architecture in one configuration, and moves automations from schedules to events. <a href="#paperclip">Paperclip</a> runs Claude Code, Codex, Cursor and OpenClaw agents as a company, with roles, budgets and approvals, and publishes no figure for what the approvals cost. The other side of Muse&rsquo;s reach is on <a href="safety-and-policy.html">Safety &amp; policy</a>: two privacy incidents in which the agent stayed inside its permissions and still gave out a home address.</p>
-        <p>The Sep 28 cycle is agents talking to agents, and what the wiring leaves open. CMU&rsquo;s <a href="#mplm">MPLM</a> removes the coordinator entirely, letting threads message each other and solving 100% of 9&times;9 Sudoku in about 15 seconds against 93% in 60 &mdash; but only because the communication pattern is known in advance. <a href="#agent-tincan">Agent Tincan</a> does the same across products, relaying requests between Grok Bot, Muse and coding agents over Tailscale, and Anthropic&rsquo;s <a href="#project-swap">Project Swap</a> measures the delegate itself: agents briefed in five minutes matched their employees&rsquo; preferences on 61% of pairs. Google shipped both sides of this page&rsquo;s trust question in one week &mdash; <a href="#api-gateway-mcp">API Gateway</a> turns REST into MCP with discovery unauthenticated by default, and the <a href="#antigravity-local-models">Antigravity SDK</a> now runs on local Gemma 4. <a href="#managed-deep-agents-0-8">Managed Deep Agents 0.8</a> adds user-owned credentials, and <a href="#devin-fusion">Devin Fusion</a> finally has independent numbers: a tie with Claude Code on Fable 5.1 at 36% lower cost per task.</p>
-        <details>
+        
+<details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 28 cycle is agents talking to agents, and what the wiring leaves open. CMU&rsquo;s <a href="#mplm">MPLM</a> removes the coordinator entirely, letting threads message each other and solving 100% of 9&times;9 Sudoku in about 15 seconds against 93% in 60 &mdash; but only because the communication pattern is known in advance. <a href="#agent-tincan">Agent Tincan</a> does the same across products, relaying requests between Grok Bot, Muse and coding agents over Tailscale, and Anthropic&rsquo;s <a href="#project-swap">Project Swap</a> measures the delegate itself: agents briefed in five minutes matched their employees&rsquo; preferences on 61% of pairs. Google shipped both sides of this page&rsquo;s trust question in one week &mdash; <a href="#api-gateway-mcp">API Gateway</a> turns REST into MCP with discovery unauthenticated by default, and the <a href="#antigravity-local-models">Antigravity SDK</a> now runs on local Gemma 4. <a href="#managed-deep-agents-0-8">Managed Deep Agents 0.8</a> adds user-owned credentials, and <a href="#devin-fusion">Devin Fusion</a> finally has independent numbers: a tie with Claude Code on Fable 5.1 at 36% lower cost per task.</p>
           <p>The Sep 24 additions tested what an agent claims to drive. Qwen Intelligence&rsquo;s <a href="#qwen-mobile-agents">three mobile agents</a> report <strong>90% end-to-end success</strong> for Mobile-Use on benchmarks Qwen published the same day, so the benchmarks are the checkable release and the score is not yet. <a href="#rrsi">RRSI</a> gained the detail that its harness edit space stays open &mdash; prompts, control flow, tools, skills, memory, sub-agents &mdash; with the regularizer acting on how the search moves. The sharpest counterpoint landed on another page: Meta&rsquo;s Muse, whose connectors and downloads fill sections here, has had <a href="safety-and-policy.html">human contractors</a> placing some of its phone calls.</p>
           <p>The Sep 23 cycle measured harnesses against each other and got numbers pointing both ways. NVIDIA&rsquo;s <a href="#sol-pi">SoL-Pi</a> (Sep 21) let a research agent try 152 changes to the Pi harness and kept four, cutting token traffic <strong>44.7&ndash;49%</strong> and API cost about a third on EdgeBench &mdash; while solving 15 Terminal-Bench 4 tasks to Pi&rsquo;s 18, so the saving has a measured price. <a href="#unreal-agent">Unreal Agent</a> reports 62 on Terminal-Bench 4.0 at <strong>$3.60 a task</strong>, 39% under Codex plus Astra, on its own comparison. Google&rsquo;s <a href="#rrsi">RRSI</a> addresses what both are exposed to: a harness that improves itself tends to improve against the benchmark it is scored on, and regularizing toward changes that transfer lifted out-of-distribution results across eight benchmarks.</p>
           <p>The rest were layers around the agent. CopilotKit&rsquo;s <a href="#openmuse">OpenMuse</a> is a self-hostable Muse-style agent on any harness, arriving the week Meta conceded Muse borrows from OpenClaw; Firecrawl raised $75M for <a href="#firecrawl-alexandria">Alexandria</a>, one search layer over 100+ data providers; and <a href="#treg">treg</a> puts 3,000+ tools behind one endpoint with credentials held server-side.</p>
@@ -83,8 +85,8 @@
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">8</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">19</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">21</span></a></li>
-          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">10</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">22</span></a></li>
+          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">11</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">11</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">2</span></a></li>
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">8</span></a></li>
@@ -317,6 +319,13 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="deepseek-harness-v0-2">
+          <span class="when">2026-10-03</span>
+          <h4><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness v0.2 ships desktop apps and a Creator mode in which the agent writes its own plugins</a></h4>
+          <p>DeepSeek Harness v0.2 adds installers for Apple-silicon Macs and 64-bit Windows (or <code>npx @deepseek-ai/dsh web</code>) to an MIT-licensed harness where every layer, the agent loop included, is a plugin; <strong>Creator mode</strong> lets the agent write and install its own plugins, and the repository sits at about <strong>240,000 stars</strong>. DeepSeek reports <strong>82.7 on Terminal-Bench 2.1</strong> for V4-Flash-0731 in its Minimal mode, any OpenAI-compatible endpoint works, and v0.2.1-alpha.1 adds an experimental layer for Claude Code mods with no compatibility promise.</p>
+          <div class="sources"><a href="https://github.com/deepseek-ai/deepseek-harness">GitHub</a> &middot; <a href="https://www.deepseek.com/en/harness/">DeepSeek</a> &middot; <span class="via">via MarkTechPost (Oct 5)</span></div>
+        </article>
+
         <article class="story" id="unreal-agent">
           <span class="when">2026-09-23</span>
           <h4><a href="https://github.com/unreallabsai/unreal-agent">Unreal Agent reports 62 on Terminal-Bench 4.0 at $3.60 a task, 39% under Codex plus Astra</a></h4>
@@ -331,16 +340,16 @@
           <div class="sources"><a href="https://github.com/NVlabs/SoL-Pi">GitHub</a> &middot; <a href="https://arxiv.org/abs/2609.20519">arXiv</a> &middot; <span class="via">via MarkTechPost (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="strands-harness">
-          <span class="when">2026-09-21</span>
-          <h4><a href="https://strandsagents.com/blog/introducing-strands-harness/">Strands Harness runs Fable 5 on Terminal-Bench 2.1 at $56.29 against Claude Code&rsquo;s $248.05</a></h4>
-          <p>The AWS Strands Agents team released <strong>Strands Harness</strong>, an open-source agent harness under Apache 2.0 in Python and TypeScript. Running Claude Fable 5 on Terminal-Bench 2.1 it scored <strong>69.7 against Claude Code&rsquo;s 61.8</strong> while costing <strong>$56.29 against $248.05</strong> &mdash; higher accuracy at roughly a quarter of the spend. DeepSeek Harness was cheaper still at <strong>$40.30</strong> but scored <strong>59.5</strong>, which sets the floor the saving is bought against.</p>
-          <p>AWS attributes the gap to context defaults rather than anything clever: tool output truncated at <strong>1,500 tokens</strong> and compaction triggered at <strong>85%</strong> of the window. That is the same mechanism the <a href="evals-and-benchmarks.html">harness-tax study</a> identified &mdash; what a harness puts in the context, not how it reasons, is where the money goes. It relocates the commoditization argument rather than settling it: what a builder owns turns out to be a context policy, which is cheap to copy and, on this evidence, expensive to get wrong.</p>
-          <div class="sources"><a href="https://strandsagents.com/blog/introducing-strands-harness/">AWS</a> &middot; <a href="https://github.com/strands-agents/harness-sdk">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (18)</summary>
+          <summary>Earlier in this section (19)</summary>
+
+          <article class="story" id="strands-harness">
+            <span class="when">2026-09-21</span>
+            <h4><a href="https://strandsagents.com/blog/introducing-strands-harness/">Strands Harness runs Fable 5 on Terminal-Bench 2.1 at $56.29 against Claude Code&rsquo;s $248.05</a></h4>
+            <p>The AWS Strands Agents team released <strong>Strands Harness</strong>, an open-source agent harness under Apache 2.0 in Python and TypeScript. Running Claude Fable 5 on Terminal-Bench 2.1 it scored <strong>69.7 against Claude Code&rsquo;s 61.8</strong> while costing <strong>$56.29 against $248.05</strong> &mdash; higher accuracy at roughly a quarter of the spend. DeepSeek Harness was cheaper still at <strong>$40.30</strong> but scored <strong>59.5</strong>, which sets the floor the saving is bought against.</p>
+            <p>AWS attributes the gap to context defaults rather than anything clever: tool output truncated at <strong>1,500 tokens</strong> and compaction triggered at <strong>85%</strong> of the window. That is the same mechanism the <a href="evals-and-benchmarks.html">harness-tax study</a> identified &mdash; what a harness puts in the context, not how it reasons, is where the money goes. It relocates the commoditization argument rather than settling it: what a builder owns turns out to be a context policy, which is cheap to copy and, on this evidence, expensive to get wrong.</p>
+            <div class="sources"><a href="https://strandsagents.com/blog/introducing-strands-harness/">AWS</a> &middot; <a href="https://github.com/strands-agents/harness-sdk">GitHub</a> &middot; <span class="via">via MarkTechPost (Sep 21)</span></div>
+          </article>
 
           <article class="story" id="devin-fusion">
             <span class="when">2026-09-16</span>
@@ -481,6 +490,13 @@
         <h3>Agent loop design &amp; reliability</h3>
         <p class="lead">Plan, act, verify, repeat &mdash; and the primitives that decide whether a loop finishes or just burns budget: verifiers, persistent state, stop conditions, and a compaction policy. Judge entries on whether the measurement was fixed before the results appeared, because that is exactly how far agent self-improvement claims have held up.</p>
 
+        <article class="story" id="pi-durable">
+          <span class="when">2026-10-02</span>
+          <h4><a href="https://earendil.com/posts/pi-durable/">Pi Durable makes an agent survive crashes, run indefinitely and take steering from several humans</a></h4>
+          <p>Earendil released <strong>Pi Durable</strong>, an experimental package for long-running agents that can be reached from different surfaces, keep an indefinitely long conversation, survive catastrophic internal and external failures, and let several people steer the same agent. It is framed as a framework for any agentic application, coding agents included; it is experimental and the post states no recovery or uptime figure.</p>
+          <div class="sources"><a href="https://earendil.com/posts/pi-durable/">Earendil</a> &middot; <span class="via">via TLDR (Oct 2)</span></div>
+        </article>
+
         <article class="story" id="manus-2-0">
           <span class="when">2026-09-28</span>
           <h4><a href="https://manus.im/blog/introducing-manus-2-0">Manus 2.0&rsquo;s Cascade architecture reports 23% fewer tokens and 32% lower cost per task, and fires automations on events instead of schedules</a></h4>
@@ -498,16 +514,16 @@
           <div class="sources"><a href="https://regularized-rsi.com/">Project page</a> &middot; <a href="https://github.com/google-research/rrsi">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 23), TLDR AI (Sep 24), MarkTechPost (Sep 30)</span></div>
         </article>
 
-        <article class="story" id="compaction-loses-the-code">
-          <span class="when">2026-09-12</span>
-          <h4><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">A 27-minute agent run produced the right answer and lost the code to compaction</a></h4>
-          <p>Simon Willison asked ChatGPT Work with GPT-6 Astra (Max) for 5K and 10K running routes looping from his house using OpenStreetMap data. It worked for 27 minutes, located the address through Nominatim, pulled local roads and trails through Overpass, computed the loops locally, and returned an embedded D3 visualisation plus downloadable GPX and GeoJSON &mdash; exactly what was asked for.</p>
-          <p>The failure is in the harness, not the model: the code it ran was never visible in the UI, and by the time he asked for a copy the thread had been compacted and it was gone. His conclusion is a concrete design requirement for any system that compacts &mdash; preserve the pre-compaction text and expose it through a tool call &mdash; because a long agent run whose working is unrecoverable is not a reproducible result. It sits directly against <a href="#selfcompact">SelfCompact</a>, which improved <em>when</em> to compact; nobody has yet made compaction non-destructive to the record of what the agent did.</p>
-          <div class="sources"><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">Simon Willison (Sep 14)</a></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="compaction-loses-the-code">
+            <span class="when">2026-09-12</span>
+            <h4><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">A 27-minute agent run produced the right answer and lost the code to compaction</a></h4>
+            <p>Simon Willison asked ChatGPT Work with GPT-6 Astra (Max) for 5K and 10K running routes looping from his house using OpenStreetMap data. It worked for 27 minutes, located the address through Nominatim, pulled local roads and trails through Overpass, computed the loops locally, and returned an embedded D3 visualisation plus downloadable GPX and GeoJSON &mdash; exactly what was asked for.</p>
+            <p>The failure is in the harness, not the model: the code it ran was never visible in the UI, and by the time he asked for a copy the thread had been compacted and it was gone. His conclusion is a concrete design requirement for any system that compacts &mdash; preserve the pre-compaction text and expose it through a tool call &mdash; because a long agent run whose working is unrecoverable is not a reproducible result. It sits directly against <a href="#selfcompact">SelfCompact</a>, which improved <em>when</em> to compact; nobody has yet made compaction non-destructive to the record of what the agent did.</p>
+            <div class="sources"><a href="https://simonw.substack.com/p/navierstokes-rubygems-attacked-gis">Simon Willison (Sep 14)</a></div>
+          </article>
 
           <article class="story" id="selfcompact">
             <span class="when">2026-09-11</span>
@@ -1046,6 +1062,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-03</span><span class="label"><a href="#deepseek-harness-v0-2">DeepSeek Harness v0.2 ships desktop apps and a Creator mode in which the agent writes its own plugins</a></span></li>
+        <li><span class="date">2026-10-02</span><span class="label"><a href="#pi-durable">Pi Durable makes an agent survive crashes, run indefinitely and take steering from several humans</a></span></li>
         <li><span class="date">2026-09-30</span><span class="label"><a href="#chatgpt-mcp-events">ChatGPT subscribes to MCP server updates through a subset of the draft MCP Events spec</a></span></li>
         <li><span class="date">2026-09-29</span><span class="label"><a href="#gpt-researcher-jev-context-filter">GPT Researcher swaps embedding similarity for Jev as its context filter, keeping 73% of relevant passages against 46%</a></span></li>
         <li><span class="date">2026-09-29</span><span class="label"><a href="#fo-personal-agent">Fo gives each agent its own inbox, phone number, voice and credit card, and routes to human experts when software gets stuck</a></span></li>

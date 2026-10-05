@@ -30,17 +30,20 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-10-02</div>
+      <div class="meta">Last updated: 2026-10-05</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today brought one reference and one specification. Modal&rsquo;s <a href="#modal-gpu-glossary">GPU Glossary</a> opens a new section for reference material: an interlinked, MIT-licensed guide from streaming multiprocessors and the warp scheduler up to <code>nvcc</code> flags, the vocabulary every serving and kernel entry here assumes. Separately, <a href="#openai-jalapeno">OpenAI&rsquo;s Jalape&ntilde;o</a>, an older entry first reported in August with throughput-per-kilowatt figures on a single model, now has a published configuration &mdash; <strong>216 GiB of HBM4</strong> beside a compute die and an I/O chiplet &mdash; from a More Than Moore deep-dive that is now its headline link. The memory figure is the one this page&rsquo;s cache and long-context entries can be read against; the power and benchmark detail is the analyst&rsquo;s account, not an OpenAI disclosure.</p>
+        <p>Today&rsquo;s cycle (Oct 2&ndash;5) was serving and scheduling at fleet scale, with every figure the operator&rsquo;s own. Prime Intellect opened <a href="#prime-inference">Prime Inference</a> after serving about a trillion tokens a day to itself; GLM-5.3 runs on GB200 NVL72, where splitting prefill from decode cut p90 inter-token latency 40% and NVFP4 lifted cached tokens per decoder from 1.09M to 1.63M. <a href="#ai21-kueue">AI21</a> put a 10,000-GPU fleet behind Kueue and reports high-priority jobs starting 83% sooner, on a figure from the cloud it runs on. NVIDIA&rsquo;s <a href="#dgx-spark-64gb">DGX Spark 64GB</a> halves the desk box&rsquo;s memory at 273&nbsp;GB/s, aimed at 30&ndash;35B models and long-input work rather than at serving a chat endpoint.</p>
+        <p>Two entries sit upstream of serving. Ai2&rsquo;s <a href="#olmo-core-3">OLMo-core 3</a> is an open framework for training MoEs into the trillion-parameter range, and <a href="#vx-language">Vx</a> puts topology and memory placement into a type system so placement bugs fail at compile time instead of deep into a run &mdash; neither with a throughput number yet. The cache thread gained the specification behind a claim already recorded: DeepSeek-V4.1-Flash stores <strong>890 bytes of cache per token</strong> by having 4 of its 40 layers compute it and the rest borrow it, detailed on <a href="model-releases.html">Model releases</a>.</p>
+        <p>The Oct 2 cycle brought one reference and one specification. Modal&rsquo;s <a href="#modal-gpu-glossary">GPU Glossary</a> opens a new section for reference material: an interlinked, MIT-licensed guide from streaming multiprocessors and the warp scheduler up to <code>nvcc</code> flags, the vocabulary every serving and kernel entry here assumes. Separately, <a href="#openai-jalapeno">OpenAI&rsquo;s Jalape&ntilde;o</a>, an older entry first reported in August with throughput-per-kilowatt figures on a single model, now has a published configuration &mdash; <strong>216 GiB of HBM4</strong> beside a compute die and an I/O chiplet &mdash; from a More Than Moore deep-dive that is now its headline link. The memory figure is the one this page&rsquo;s cache and long-context entries can be read against; the power and benchmark detail is the analyst&rsquo;s account, not an OpenAI disclosure.</p>
         <p>The Oct 1 cycle was one retrieval engine rewritten for its tail. Perplexity&rsquo;s <a href="#perplexity-photon">Photon</a> replaces a forked open-source engine with Rust and takes p99 for retrieval and ranking from about <strong>800 ms to 65 ms on 20% fewer machines</strong> while storing 2.5&times; more per document; its Fast Search mode sells the result at $1 per 1,000 requests and matched the default mode on Perplexity&rsquo;s own agent eval at about a third of the estimated cost. The trade is stated rather than buried &mdash; long-tail DCG falls from 2.45 to 2.21 &mdash; and, like <a href="#perplexity-cobbledb">CobbleDB</a> before it, the engine is not open source, so every number is Perplexity&rsquo;s.</p>
         <p>The Sep 30 cycle was routing per turn, and inference with no server at all. Fireworks&rsquo; <a href="#firerouter-with-opus">FireRouter</a> chooses between Opus 5.5, GLM 5.3 and GLM 5.3 Flash on every turn and reports 98.1% of Opus-only accuracy for $6.63 a coding session against $15.36, calling itself cache-aware without saying how a mid-session switch is priced &mdash; the second per-turn router in a week after jev-router, and the first with a dollar figure for a whole session. At the other end, <a href="#microllm-lab">MicroLLM Lab</a> runs seven 4-bit models of 26M to 360M parameters in a browser tab over WebGPU, a playground by its own description. The per-agent machines that boot in under 10ms are on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
-        <p>The Sep 29 cycle was where the agent-serving bill actually lands. Modal&rsquo;s <a href="#quail">Quail</a> passes <strong>a billion tokens a minute on one H100</strong>, more than 10&times; its vLLM baseline at under $0.06 per billion tokens, a throughput figure that still needs its model and batch size beside it. An estimate of <a href="#muse-compute-demand">what serving Muse costs</a> puts 100 million daily users at 1&ndash;2 gigawatts with only about 0.1 GW of it on GPUs and the rest in per-user sandboxes &mdash; and Anthropic&rsquo;s $11.6 billion Akamai commitment, on <a href="industry-and-business.html">Industry &amp; business</a>, buys CPU capacity for exactly that layer. <a href="#spacexai-colossus-gb300">SpaceXAI</a> reaches 1.44 million GPUs at Colossus and is building a 1.2 GW plant to switch them on, the grid binding before the silicon. <a href="#jev-router">jev-router</a> got its number, 82% more agent tasks solved than OpenRouter&rsquo;s Auto Router, and one dissenting test.</p>
-        <p>The Sep 28 cycle is kernels and orbits. Inferact&rsquo;s <a href="#tpu-megakernels">TPU v7 megakernels</a> push Kimi K3 past 700 tokens per second with speculative decoding and claim 1.4&ndash;2&times; a GB200 at batch sizes 1 to 8, carrying the megakernel argument Cohere made on GPUs to a second accelerator, on the vendor&rsquo;s own comparison. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> launches four TPUs on a kilowatt of solar on October 1 &mdash; the far end of this page&rsquo;s claim that the binding constraint keeps moving off the die, now to power and heat in orbit. And <a href="#jev-router">jev-router</a> on OpenRouter lets a decision model choose the model and effort before generation, a routing layer that acts on the cache economics below without yet publishing what it saves.</p>
-        <details>
+        
+<details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 29 cycle was where the agent-serving bill actually lands. Modal&rsquo;s <a href="#quail">Quail</a> passes <strong>a billion tokens a minute on one H100</strong>, more than 10&times; its vLLM baseline at under $0.06 per billion tokens, a throughput figure that still needs its model and batch size beside it. An estimate of <a href="#muse-compute-demand">what serving Muse costs</a> puts 100 million daily users at 1&ndash;2 gigawatts with only about 0.1 GW of it on GPUs and the rest in per-user sandboxes &mdash; and Anthropic&rsquo;s $11.6 billion Akamai commitment, on <a href="industry-and-business.html">Industry &amp; business</a>, buys CPU capacity for exactly that layer. <a href="#spacexai-colossus-gb300">SpaceXAI</a> reaches 1.44 million GPUs at Colossus and is building a 1.2 GW plant to switch them on, the grid binding before the silicon. <a href="#jev-router">jev-router</a> got its number, 82% more agent tasks solved than OpenRouter&rsquo;s Auto Router, and one dissenting test.</p>
+          <p>The Sep 28 cycle is kernels and orbits. Inferact&rsquo;s <a href="#tpu-megakernels">TPU v7 megakernels</a> push Kimi K3 past 700 tokens per second with speculative decoding and claim 1.4&ndash;2&times; a GB200 at batch sizes 1 to 8, carrying the megakernel argument Cohere made on GPUs to a second accelerator, on the vendor&rsquo;s own comparison. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> launches four TPUs on a kilowatt of solar on October 1 &mdash; the far end of this page&rsquo;s claim that the binding constraint keeps moving off the die, now to power and heat in orbit. And <a href="#jev-router">jev-router</a> on OpenRouter lets a decision model choose the model and effort before generation, a routing layer that acts on the cache economics below without yet publishing what it saves.</p>
           <p>The Sep 23 cycle was three changes below the model. vLLM&rsquo;s <a href="#vllm-hardware-agnostic">hardware-agnostic layers</a> reach 96.6% of native efficiency on H100 while staying torch-compilable, and open a new <a href="#serving-across-accelerators">Serving across accelerators</a> section: portability is now priced at a few percent on the hardware the native kernels were written for. A new paper <a href="#moe-fixed-memory-training">bounds MoE training memory</a> &mdash; expert dispatch, vocabulary projection, checkpointing and optimizer state &mdash; by scheduling alone, without approximating the computation. And <a href="#djev-cloud-run">djev on Cloud Run</a> serves a Jev-compatible decision model for about $3 an hour at 35&ndash;60ms per decision, the self-host alternative to calling the closed API.</p>
           <p>The Sep 22 arrival was silicon, reported in exactly the way this page keeps warning about. Alibaba&rsquo;s <a href="#zhenwu-v900">Zhenwu V900</a> accelerator is said to triple its predecessor&rsquo;s performance and to drive 20GW of Alibaba data centres by 2032 &mdash; a comparison against its own last chip, with no memory or interconnect figure attached, which on this page&rsquo;s running argument are the numbers that actually bind.</p>
           <p>The Sep 21 cycle pointed the agents at the serving stack itself. Z.ai says a <strong>GLM-5.3-powered Infra Agent</strong> built the production serving infrastructure for GLM-5.3-Flash across <strong>more than 100,000 Chinese accelerators in under two weeks</strong>, working from dense feedback on kernel fixes and system-level optimisation, and <strong>tripled throughput</strong> in the process. Z.ai frames it as a step toward recursive self-improvement; the sober reading is that serving is the part of the stack with the tightest feedback loop and the most mechanical search space, which is what makes it the first place an agent could plausibly do this. The baseline it tripled is unpublished and every figure is the vendor&rsquo;s, so what is solid here is the shape of the workload, not the multiple.</p>
@@ -78,17 +81,17 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">7</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">7</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">8</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">2</span></a></li>
-          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">6</span></a></li>
-          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">2</span></a></li>
+          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">7</span></a></li>
+          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">3</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">2</span></a></li>
           <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">21</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">9</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">8</span></a></li>
-          <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">2</span></a></li>
+          <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">3</span></a></li>
           <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">10</span></a></li>
-          <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">3</span></a></li>
+          <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">4</span></a></li>
           <li><a href="#tokenization-throughput">Tokenization throughput <span class="n">1</span></a></li>
           <li><a href="#gpu-programming-references">GPU programming references <span class="n">1</span></a></li>
         </ul>
@@ -161,6 +164,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story" id="dgx-spark-64gb">
+          <span class="when">2026-10-02</span>
+          <h4><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/">DGX Spark 64GB halves the memory on the same GB10 chip, aimed at 30&ndash;35B models</a></h4>
+          <p>NVIDIA announced <strong>DGX Spark 64GB</strong>: the same GB10 superchip as the 128GB unit with half the unified LPDDR5x, at <strong>273&nbsp;GB/s</strong> and one petaFLOP of sparse FP4, sized for 30&ndash;35B models such as Qwen 3.8 27B. Two units cluster over ConnectX-7 into 128GB of pooled memory, which NVIDIA says runs <strong>1.7&times; faster</strong> than a single 128GB Spark.</p>
+          <p>The bandwidth ceiling limits concurrent decode, so it suits long-input, short-output work &mdash; always-on agents and QLoRA fine-tuning &mdash; rather than serving a chat endpoint.</p>
+          <div class="sources"><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/">NVIDIA</a> &middot; <a href="https://www.marktechpost.com/2026/10/02/nvidia-announces-dgx-spark-64gb-a-1-petaflop-grace-blackwell-desktop-for-local-ai-agents-fine-tuning-and-inference/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 3)</span></div>
+        </article>
+
         <article class="story" id="splash-engine">
           <span class="when">2026-09-20</span>
           <h4><a href="https://lmstudio.ai/blog/splash-engine">Splash Engine runs Qwen3.8-27B at 74 tokens/second on a 48GB M5 Pro</a></h4>
@@ -177,16 +188,16 @@
           <div class="sources"><a href="https://arxiv.org/abs/2609.15810">arXiv</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
         </article>
 
-        <article class="story" id="edge0">
-          <span class="when">2026-09-11</span>
-          <h4><a href="https://github.com/Edge0-AI/edge0/">Edge0 runs a 35B MoE on Apple Silicon in roughly 2.9 GB of live memory by streaming experts from SSD</a></h4>
-          <p>Edge0 serves sparse mixture-of-experts models on Apple Silicon by treating the SSD as the weight store and streaming experts in as they are routed to, rather than loading the model into RAM. Its 35B model occupies 23 GB on disk but roughly 2.9 GB of active memory, and reaches 14.9&ndash;17.7 tokens per second on an M4 Pro Mac mini.</p>
-          <p>Sparsity is the enabling property &mdash; only a fraction of the weights are touched per token &mdash; so the technique does not carry to dense models, and SSD read bandwidth rather than compute sets the ceiling. Read against the <a href="#gemma-4-qat">quantization work below</a>, the two are complementary compressions: QAT cuts the bytes per parameter, Edge0 cuts the parameters resident at once, and nobody has published numbers for a model that is both.</p>
-          <div class="sources"><a href="https://github.com/Edge0-AI/edge0/">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 11)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="edge0">
+            <span class="when">2026-09-11</span>
+            <h4><a href="https://github.com/Edge0-AI/edge0/">Edge0 runs a 35B MoE on Apple Silicon in roughly 2.9 GB of live memory by streaming experts from SSD</a></h4>
+            <p>Edge0 serves sparse mixture-of-experts models on Apple Silicon by treating the SSD as the weight store and streaming experts in as they are routed to, rather than loading the model into RAM. Its 35B model occupies 23 GB on disk but roughly 2.9 GB of active memory, and reaches 14.9&ndash;17.7 tokens per second on an M4 Pro Mac mini.</p>
+            <p>Sparsity is the enabling property &mdash; only a fraction of the weights are touched per token &mdash; so the technique does not carry to dense models, and SSD read bandwidth rather than compute sets the ceiling. Read against the <a href="#gemma-4-qat">quantization work below</a>, the two are complementary compressions: QAT cuts the bytes per parameter, Edge0 cuts the parameters resident at once, and nobody has published numbers for a model that is both.</p>
+            <div class="sources"><a href="https://github.com/Edge0-AI/edge0/">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 11)</span></div>
+          </article>
 
           <article class="story unlinked" id="local-hardware-ladder">
             <span class="when">2026-09-02</span>
@@ -244,7 +255,15 @@
 
       <section class="topic-section" id="high-throughput-serving-of-large-moes">
         <h3>High-throughput serving of large MoEs</h3>
-        <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format. None of these makes a model smaller. Every rate here is only as meaningful as the GPU and batch size beside it.</p>
+        <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format, prefill split from decode. None of these makes a model smaller. Every rate here is only as meaningful as the GPU and batch size beside it.</p>
+
+        <article class="story" id="prime-inference">
+          <span class="when">2026-10-02</span>
+          <h4><a href="https://www.primeintellect.ai/blog/prime-inference">Prime Inference serves GLM-5.3 on GB200 NVL72; splitting prefill from decode cut p90 inter-token latency 40%</a></h4>
+          <p>Prime Intellect opened <strong>Prime Inference</strong>, an OpenAI-compatible API with serverless and reserved capacity on its own Blackwell GPUs and failover across datacenters, after serving close to <strong>a trillion tokens a day</strong> internally for its RL rollouts and coding agents. GLM-5.3 runs on GB200 NVL72 with Dynamo, vLLM, Mooncake and FlashInfer; disaggregating prefill from decode cut <strong>p90 inter-token latency by 40%</strong>, and NVFP4 KV compression lifts cached tokens per decoder from 1.09M to 1.63M.</p>
+          <p>All figures are Prime&rsquo;s own, on agentic workloads, and GLM-5.3 pricing was not yet in the docs.</p>
+          <div class="sources"><a href="https://www.primeintellect.ai/blog/prime-inference">Prime Intellect</a> &middot; <a href="https://www.marktechpost.com/2026/10/02/prime-intellect-launches-prime-inference-serverless-and-reserved-serving-for-frontier-open-models/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 3), TLDR AI (Oct 5)</span></div>
+        </article>
 
         <article class="story" id="quail">
           <span class="when">2026-09-28</span>
@@ -262,16 +281,16 @@
           <div class="sources"><a href="https://z.ai/blog/glm-built-its-inference-infrastructure">Z.ai</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
         </article>
 
-        <article class="story unlinked" id="cohere-megakernel">
-          <span class="when">2026-09-09</span>
-          <h4>Cohere&rsquo;s decode megakernel reaches 292 tokens per second at batch 1, 1.58&times; vLLM</h4>
-          <p>Cohere published a full serving system built around a decode megakernel for North Mini Code, supporting continuous batching, paged attention and ragged sequence lengths behind an OpenAI-compatible endpoint with tool calling. It reaches 292 tokens per second at batch size 1 &mdash; 62% of speed-of-light for that configuration and 1.58&times; vLLM &mdash; and the margin over vLLM holds across batch sizes and out to 256K of context with no measurable accuracy loss.</p>
-          <p>The significant claim is not the peak number but that a megakernel survives contact with the features a real server needs, which is where previous kernel-fusion results stopped. The figures are Cohere&rsquo;s own.</p>
-          <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story unlinked" id="cohere-megakernel">
+            <span class="when">2026-09-09</span>
+            <h4>Cohere&rsquo;s decode megakernel reaches 292 tokens per second at batch 1, 1.58&times; vLLM</h4>
+            <p>Cohere published a full serving system built around a decode megakernel for North Mini Code, supporting continuous batching, paged attention and ragged sequence lengths behind an OpenAI-compatible endpoint with tool calling. It reaches 292 tokens per second at batch size 1 &mdash; 62% of speed-of-light for that configuration and 1.58&times; vLLM &mdash; and the margin over vLLM holds across batch sizes and out to 256K of context with no measurable accuracy loss.</p>
+            <p>The significant claim is not the peak number but that a megakernel survives contact with the features a real server needs, which is where previous kernel-fusion results stopped. The figures are Cohere&rsquo;s own.</p>
+            <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="freetoken">
             <span class="when">2026-08-19</span>
@@ -302,6 +321,13 @@
       <section class="topic-section" id="serving-across-accelerators">
         <h3>Serving across accelerators</h3>
         <p class="lead">Portability as its own serving problem: write a model once and run it on whatever accelerator is in the rack, not only the GPU its kernels were tuned for. Judge entries on the efficiency given up against the native path, and on which hardware that figure was measured.</p>
+
+        <article class="story" id="vx-language">
+          <span class="when">2026-10-05</span>
+          <h4><a href="https://vxlang.org/">Vx puts hardware topology and memory placement into the type system</a></h4>
+          <p><strong>Vx</strong> is a systems programming language for heterogeneous computing that makes hardware topology, memory placement and reachability part of its types, so a class of bug that normally appears as a runtime crash, silent corruption or an out-of-memory error deep into a training run is caught at type-check time instead. It is a language site rather than a benchmark: there is no efficiency figure against native CUDA, which is the number this section judges entries on.</p>
+          <div class="sources"><a href="https://vxlang.org/">vxlang.org</a> &middot; <span class="via">via TLDR AI (Oct 5)</span></div>
+        </article>
 
         <article class="story" id="tpu-megakernels">
           <span class="when">2026-09-25</span>
@@ -672,7 +698,14 @@
 
       <section class="topic-section" id="kubernetes-as-the-ai-substrate">
         <h3>Kubernetes as the AI substrate</h3>
-        <p class="lead">Two hyperscalers shipped Kubernetes-native AI stacks within weeks of each other, neither claiming novel components. The contribution is that the agent sandbox and the GPU queue now sit inside the cluster manager the rest of an estate already runs, on permissive licences. Density and resume latency are the numbers that decide what a fleet costs.</p>
+        <p class="lead">Two hyperscalers shipped Kubernetes-native AI stacks within weeks of each other, neither claiming novel components, and a model lab now reports what queueing a 10,000-GPU fleet bought it. The agent sandbox and the GPU queue sit inside the cluster manager an estate already runs. Density, resume latency and queue wait decide what a fleet costs.</p>
+
+        <article class="story" id="ai21-kueue">
+          <span class="when">2026-10-05</span>
+          <h4><a href="https://www.ai21.com/blog/how-ai21-manages-its-gpu-fleet-with-kueue">AI21 queues a 10,000-GPU fleet with Kueue, and high-priority jobs start 83% sooner</a></h4>
+          <p>AI21 describes replacing ad hoc negotiation over GPU capacity with <strong>Kueue</strong> queueing and fair-share scheduling across a shared Google Cloud cluster of about <strong>10,000 GPUs</strong>. A Google Cloud case study puts the result at high-priority workloads beginning <strong>83% sooner</strong>; the figure comes from the vendor whose cluster it runs on, and no utilisation number is given.</p>
+          <div class="sources"><a href="https://www.ai21.com/blog/how-ai21-manages-its-gpu-fleet-with-kueue">AI21</a> &middot; <span class="via">via TLDR AI (Oct 5)</span></div>
+        </article>
 
         <article class="story" id="agent-substrate-gke">
           <span class="when">2026-09-17</span>
@@ -781,7 +814,14 @@
 
       <section class="topic-section" id="moe-training-infrastructure">
         <h3>MoE training infrastructure</h3>
-        <p class="lead">Training-side throughput is its own thread beside inference economics. An expert-parallel collective runs at the speed of its slowest rank, so the hottest expert prices every step; a lower-precision GEMM attacks the step itself; scheduling bounds the memory the step needs. Each gain is quoted by its authors, and none carries an independent measurement.</p>
+        <p class="lead">Training-side throughput is its own thread beside inference economics. An expert-parallel collective runs at the speed of its slowest rank; a lower-precision GEMM attacks the step itself; scheduling bounds the memory the step needs; an open framework now targets the trillion-parameter run whole. Each gain is quoted by its authors, and none carries an independent measurement.</p>
+
+        <article class="story" id="olmo-core-3">
+          <span class="when">2026-10-02</span>
+          <h4><a href="https://allenai.org/blog/olmocore3">Ai2&rsquo;s OLMo-core 3 is an open training framework built to scale MoEs into the trillion-parameter range</a></h4>
+          <p>Ai2 released <strong>OLMo-core 3</strong>, its open training framework, redesigned to scale mixture-of-experts models into the <strong>trillion-parameter range</strong>. It is the first entry in this section that is a whole training stack rather than one collective, kernel or schedule; the newsletter summary carries no throughput figure.</p>
+          <div class="sources"><a href="https://allenai.org/blog/olmocore3">Ai2</a> &middot; <span class="via">via TLDR AI (Oct 2)</span></div>
+        </article>
 
         <article class="story" id="moe-fixed-memory-training">
           <span class="when">2026-09-23</span>
@@ -798,13 +838,17 @@
           <div class="sources"><span class="via">via MarkTechPost AI (Jul 30) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="nvidia-transformer-engine-nvfp4">
-          <span class="when">2026-07-21</span>
-          <h4>NVIDIA&rsquo;s Transformer Engine reports up to 3.48&times; GEMM speedup with NVFP4 against BF16 on Blackwell</h4>
-          <p>The figure is a GEMM-level speedup, not an end-to-end training one, and it is quoted against BF16 on Blackwell specifically &mdash; both halves of that comparator matter, since the gain comes from the narrower format and the hardware that executes it natively. It is aimed at faster training of frontier-scale transformer models.</p>
-          <p>Read with <a href="#moonep">MoonEP</a>, it is evidence that the training cost curve is being attacked as systematically as the serving one, from the arithmetic end rather than the collective end.</p>
-          <div class="sources"><span class="via">via NVIDIA (July 2026 enterprise newsletter) &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="nvidia-transformer-engine-nvfp4">
+            <span class="when">2026-07-21</span>
+            <h4>NVIDIA&rsquo;s Transformer Engine reports up to 3.48&times; GEMM speedup with NVFP4 against BF16 on Blackwell</h4>
+            <p>The figure is a GEMM-level speedup, not an end-to-end training one, and it is quoted against BF16 on Blackwell specifically &mdash; both halves of that comparator matter, since the gain comes from the narrower format and the hardware that executes it natively. It is aimed at faster training of frontier-scale transformer models.</p>
+            <p>Read with <a href="#moonep">MoonEP</a>, it is evidence that the training cost curve is being attacked as systematically as the serving one, from the arithmetic end rather than the collective end.</p>
+            <div class="sources"><span class="via">via NVIDIA (July 2026 enterprise newsletter) &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="tokenization-throughput">
@@ -835,6 +879,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-05</span><span class="label"><a href="#vx-language">Vx puts hardware topology and memory placement into the type system</a></span></li>
+        <li><span class="date">2026-10-05</span><span class="label"><a href="#ai21-kueue">AI21 queues a 10,000-GPU fleet with Kueue, and high-priority jobs start 83% sooner</a></span></li>
+        <li><span class="date">2026-10-02</span><span class="label"><a href="#olmo-core-3">Ai2&rsquo;s OLMo-core 3 is an open training framework built to scale MoEs into the trillion-parameter range</a></span></li>
+        <li><span class="date">2026-10-02</span><span class="label"><a href="#dgx-spark-64gb">DGX Spark 64GB halves the memory on the same GB10 chip, aimed at 30&ndash;35B models</a></span></li>
+        <li><span class="date">2026-10-02</span><span class="label"><a href="#prime-inference">Prime Inference serves GLM-5.3 on GB200 NVL72; splitting prefill from decode cut p90 inter-token latency 40%</a></span></li>
         <li><span class="date">2026-10-02</span><span class="label"><a href="#modal-gpu-glossary">Modal&rsquo;s GPU Glossary links the whole GPU stack, from streaming multiprocessors to nvcc flags</a></span></li>
         <li><span class="date">2026-09-30</span><span class="label"><a href="#perplexity-photon">Perplexity&rsquo;s Rust retrieval engine Photon cuts p99 from about 800 ms to 65 ms</a></span></li>
         <li><span class="date">2026-09-29</span><span class="label"><a href="#microllm-lab">MicroLLM Lab runs seven 4-bit language models of 26M to 360M parameters in the browser over WebGPU</a></span></li>
