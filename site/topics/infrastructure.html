@@ -34,7 +34,7 @@
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>The Oct 6 entry is a box rather than a benchmark. Ghost&rsquo;s <a href="#ghost-core">Core</a> is a $3,499 screenless machine for running local models around the clock, with swappable Hugging Face models, harnesses such as OpenCode, and encryption the company says locks even itself out; the first batch sold out. What it does not publish is the figure this page judges local hardware on &mdash; memory size and tokens per second &mdash; so it cannot yet be placed against DGX Spark 64GB&rsquo;s 273&nbsp;GB/s or Splash Engine&rsquo;s 74 tokens per second on a 48GB M5 Pro.</p>
+        <p>The Oct 6 entry is a box rather than a benchmark. Ghost&rsquo;s <a href="#ghost-core">Core</a> is a $3,499 screenless machine for running local models around the clock, with swappable Hugging Face models, harnesses such as OpenCode, and encryption the company says locks even itself out; the first batch sold out. What it does not publish is the figure this page judges local hardware on &mdash; memory size and tokens per second &mdash; so it cannot yet be placed against DGX Spark 64GB&rsquo;s 273&nbsp;GB/s or Splash Engine&rsquo;s 74 tokens per second on a 48GB M5 Pro. Added by hand the same day, Google Research&rsquo;s March <a href="#turboquant">TurboQuant</a> attacks the same memory wall from the software side: a rotation, a polar-coordinate quantizer and one bit of residual correction take the KV cache to 3 bits with no retraining and, on Google&rsquo;s own long-context tests, no accuracy loss &mdash; up to 8&times; faster attention logits on an H100, though against a JAX baseline rather than a serving kernel.</p>
         <p>The Oct 2&ndash;5 cycle was serving and scheduling at fleet scale, with every figure the operator&rsquo;s own. Prime Intellect opened <a href="#prime-inference">Prime Inference</a> after serving about a trillion tokens a day to itself; GLM-5.3 runs on GB200 NVL72, where splitting prefill from decode cut p90 inter-token latency 40% and NVFP4 lifted cached tokens per decoder from 1.09M to 1.63M. <a href="#ai21-kueue">AI21</a> put a 10,000-GPU fleet behind Kueue and reports high-priority jobs starting 83% sooner, on a figure from the cloud it runs on. NVIDIA&rsquo;s <a href="#dgx-spark-64gb">DGX Spark 64GB</a> halves the desk box&rsquo;s memory at 273&nbsp;GB/s, aimed at 30&ndash;35B models and long-input work rather than at serving a chat endpoint.</p>
         <p>Two entries sit upstream of serving. Ai2&rsquo;s <a href="#olmo-core-3">OLMo-core 3</a> is an open framework for training MoEs into the trillion-parameter range, and <a href="#vx-language">Vx</a> puts topology and memory placement into a type system so placement bugs fail at compile time instead of deep into a run &mdash; neither with a throughput number yet. The cache thread gained the specification behind a claim already recorded: DeepSeek-V4.1-Flash stores <strong>890 bytes of cache per token</strong> by having 4 of its 40 layers compute it and the rest borrow it, detailed on <a href="model-releases.html">Model releases</a>.</p>
         <p>The Oct 2 cycle brought one reference and one specification. Modal&rsquo;s <a href="#modal-gpu-glossary">GPU Glossary</a> opens a new section for reference material: an interlinked, MIT-licensed guide from streaming multiprocessors and the warp scheduler up to <code>nvcc</code> flags, the vocabulary every serving and kernel entry here assumes. Separately, <a href="#openai-jalapeno">OpenAI&rsquo;s Jalape&ntilde;o</a>, an older entry first reported in August with throughput-per-kilowatt figures on a single model, now has a published configuration &mdash; <strong>216 GiB of HBM4</strong> beside a compute die and an I/O chiplet &mdash; from a More Than Moore deep-dive that is now its headline link. The memory figure is the one this page&rsquo;s cache and long-context entries can be read against; the power and benchmark detail is the analyst&rsquo;s account, not an OpenAI disclosure.</p>
@@ -80,7 +80,7 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#long-context-serving">Long-context serving <span class="n">7</span></a></li>
+          <li><a href="#long-context-serving">Long-context serving <span class="n">8</span></a></li>
           <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">9</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">2</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">7</span></a></li>
@@ -126,7 +126,7 @@
         </article>
 
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
 
           <article class="story unlinked" id="baidu-unlimited-ocr">
             <span class="when">2026-06-26</span>
@@ -156,6 +156,14 @@
             <h4>EAGLE 3.1 addresses the attention drift undercutting speculative-decoding acceptance rates</h4>
             <p>EAGLE 3.1 targets attention drift, which had been eroding draft-token acceptance rates on long-context decoding &mdash; the term that decides whether speculative decoding pays for itself at all. Described as addressing the drift rather than eliminating it; no acceptance-rate figures, before or after, were published with the announcement.</p>
             <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story" id="turboquant">
+            <span class="when">2026-03-24</span>
+            <h4><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">Google&rsquo;s TurboQuant compresses the KV cache to 3 bits with no training and no reported accuracy loss</a></h4>
+            <p>Google Research&rsquo;s <strong>TurboQuant</strong> (ICLR 2026) quantizes vectors in two stages: a random rotation followed by <strong>PolarQuant</strong>, which stores coordinates as a radius and angles so no per-block scaling constants are needed, then a single bit of <strong>QJL</strong> on the residual to remove the bias left in attention scores. Google reports the KV cache at <strong>3 bits with no training or fine-tuning</strong> and no accuracy loss on Gemma and Mistral across LongBench, Needle-in-a-Haystack, ZeroSCROLLS, RULER and L-Eval, at least a <strong>6&times;</strong> smaller KV footprint on the needle tests, and up to <strong>8&times;</strong> faster attention-logit computation for 4-bit keys against 32-bit on an H100.</p>
+            <p>The removed overhead is the point: conventional block quantizers spend 1&ndash;2 extra bits per number on full-precision constants, which is why the same method also beats product quantization and RabbiQ on recall in vector search (GloVe, d=200) &mdash; see <a href="#vector-index-and-rag-pipeline-economics">Vector-index economics</a>. Every figure is Google&rsquo;s own, and the 8&times; is measured against a JAX baseline rather than a production serving kernel.</p>
+            <div class="sources"><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">Google Research</a> &middot; <a href="https://arxiv.org/abs/2504.19874">TurboQuant (arXiv)</a> &middot; <a href="https://arxiv.org/abs/2502.02617">PolarQuant (arXiv)</a> &middot; <a href="https://arxiv.org/abs/2406.03482">QJL (arXiv)</a> &middot; <span class="via">added by hand from a user-supplied link (Oct 7)</span></div>
           </article>
         </details>
       </section>
@@ -973,6 +981,7 @@
         <li><span class="date">2026-05-28</span><span class="label"><a href="#together-kv-cache-8x">Together AI announces an 8&times; reduction in KV cache size for long-context serving</a></span></li>
         <li><span class="date">2026-05-28</span><span class="label"><a href="#eagle-3-1">EAGLE 3.1 addresses the attention drift undercutting speculative-decoding acceptance rates</a></span></li>
         <li><span class="date">2026-05-28</span><span class="label"><a href="#anthropic-self-hosted-sandboxes">Anthropic ships self-hosted sandboxes and MCP tunnels</a></span></li>
+        <li><span class="date">2026-03-24</span><span class="label"><a href="#turboquant">Google&rsquo;s TurboQuant compresses the KV cache to 3 bits with no training and no reported accuracy loss</a></span></li>
       </ul>
 
       <footer>Generated automatically by the AI digest task.</footer>
