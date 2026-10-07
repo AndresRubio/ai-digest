@@ -30,16 +30,16 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-05</div>
+      <div class="meta">Last updated: 2026-10-07</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle (Oct 2&ndash;5) was about what survives a long run and who controls it. Earendil&rsquo;s <a href="#pi-durable">Pi Durable</a> lets an agent keep an indefinitely long conversation, survive internal and external failures and take steering from several people at once, with no recovery figure attached. DeepSeek&rsquo;s <a href="#deepseek-harness-v0-2">Harness v0.2</a> goes the other way on control: desktop installers, every layer a plugin, and a Creator mode in which the agent writes and installs its own plugins, beside a self-reported 82.7 on Terminal-Bench 2.1 and an experimental layer for Claude Code mods. An agent that rewrites its own harness is exactly what this page&rsquo;s governance section has no instrument for yet.</p>
+        <p>The Oct 6 cycle was memory that reorganizes itself and steering exposed as an API. Cognition&rsquo;s <a href="#devin-memory-dreaming">Devin Memory</a> carries corrections and project learnings across sessions, and Dreaming periodically deduplicates them, links each to the session it came from and derives new knowledge &mdash; the provenance link answers this page&rsquo;s inspection question, and the derivation step is where a store can start holding facts nobody stated. Cursor&rsquo;s <a href="#cursor-sdk-steer">SDK update</a> puts mid-turn steering behind <code>run.steer()</code>, backgrounds busy subagents, and lets tools be tagged read-only or destructive, a declaration the model reads rather than a permission the runtime enforces.</p>
+        <p>The Oct 2&ndash;5 cycle was about what survives a long run and who controls it. Earendil&rsquo;s <a href="#pi-durable">Pi Durable</a> lets an agent keep an indefinitely long conversation, survive internal and external failures and take steering from several people at once, with no recovery figure attached. DeepSeek&rsquo;s <a href="#deepseek-harness-v0-2">Harness v0.2</a> goes the other way on control: desktop installers, every layer a plugin, and a Creator mode in which the agent writes and installs its own plugins, beside a self-reported 82.7 on Terminal-Bench 2.1 and an experimental layer for Claude Code mods. An agent that rewrites its own harness is exactly what this page&rsquo;s governance section has no instrument for yet.</p>
         <p>The Oct 1 cycle was OpenAI taking the always-on agent slot that Muse and Grok Bot opened. <a href="#openai-dots">dots</a> give each GPT-6 Astra agent its own cloud computer and browser, reach 4,000-plus apps, and gate risky actions with Custom Rules and auto-review &mdash; and inadvertently posted images for 53 users the day before launch, this page&rsquo;s containment question arriving on schedule. <a href="#chatgpt-mcp-events">MCP Events</a> lets ChatGPT react to pushes from an MCP server, but implements only webhook delivery from the draft spec, without the <code>gap</code> notification that tells a client it missed something. And <a href="#rrsi">RRSI</a> is now open source with its split-level numbers: six points on the Terminal-Bench split it evolved on, 1.8 on held-out SWE-bench Verified &mdash; transfer, but smaller than the headline.</p>
         <p>The Sep 30 cycle gave the agent an identity of its own. Manus&rsquo;s <a href="#manus-2-0">Cue</a> assigns each agent an email address, a phone number, a wallet and a computer, and <a href="#fo-personal-agent">Fo</a> adds a voice and a credit card, routing to human experts when software gets stuck and reporting 71% task completion on evals nobody else has seen. Neither states a spending boundary, which is the governor this page judges such agents on. In retrieval, <a href="#gpt-researcher-jev-context-filter">GPT Researcher</a> swapped embedding similarity for Jev as its default context filter and keeps 73% of relevant passages against 46% at the same cost, on its own benchmark. The phone an agent can now drive, Tapkit, is on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
         <p>The Sep 29 cycle was the open computer-use model and the org chart above the agents. H Company&rsquo;s <a href="#holo4">Holo4</a> puts open weights at <strong>85.2% on OSWorld for about $0.08 a task</strong>, one point above its Qwen3.8-27B base and twenty points behind Opus 5.5 on OSWorld 2.0&rsquo;s long workflows &mdash; near parity on short tasks, still losing on the horizon. <a href="#manus-2-0">Manus 2.0</a> reports 23% fewer tokens and 32% lower cost from its Cascade architecture in one configuration, and moves automations from schedules to events. <a href="#paperclip">Paperclip</a> runs Claude Code, Codex, Cursor and OpenClaw agents as a company, with roles, budgets and approvals, and publishes no figure for what the approvals cost. The other side of Muse&rsquo;s reach is on <a href="safety-and-policy.html">Safety &amp; policy</a>: two privacy incidents in which the agent stayed inside its permissions and still gave out a home address.</p>
-        
-<details>
+        <details>
           <summary>Earlier cycles</summary>
           <p>The Sep 28 cycle is agents talking to agents, and what the wiring leaves open. CMU&rsquo;s <a href="#mplm">MPLM</a> removes the coordinator entirely, letting threads message each other and solving 100% of 9&times;9 Sudoku in about 15 seconds against 93% in 60 &mdash; but only because the communication pattern is known in advance. <a href="#agent-tincan">Agent Tincan</a> does the same across products, relaying requests between Grok Bot, Muse and coding agents over Tailscale, and Anthropic&rsquo;s <a href="#project-swap">Project Swap</a> measures the delegate itself: agents briefed in five minutes matched their employees&rsquo; preferences on 61% of pairs. Google shipped both sides of this page&rsquo;s trust question in one week &mdash; <a href="#api-gateway-mcp">API Gateway</a> turns REST into MCP with discovery unauthenticated by default, and the <a href="#antigravity-local-models">Antigravity SDK</a> now runs on local Gemma 4. <a href="#managed-deep-agents-0-8">Managed Deep Agents 0.8</a> adds user-owned credentials, and <a href="#devin-fusion">Devin Fusion</a> finally has independent numbers: a tie with Claude Code on Fable 5.1 at 36% lower cost per task.</p>
           <p>The Sep 24 additions tested what an agent claims to drive. Qwen Intelligence&rsquo;s <a href="#qwen-mobile-agents">three mobile agents</a> report <strong>90% end-to-end success</strong> for Mobile-Use on benchmarks Qwen published the same day, so the benchmarks are the checkable release and the score is not yet. <a href="#rrsi">RRSI</a> gained the detail that its harness edit space stays open &mdash; prompts, control flow, tools, skills, memory, sub-agents &mdash; with the regularizer acting on how the search moves. The sharpest counterpoint landed on another page: Meta&rsquo;s Muse, whose connectors and downloads fill sections here, has had <a href="safety-and-policy.html">human contractors</a> placing some of its phone calls.</p>
@@ -83,9 +83,9 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#agent-memory">Agent memory <span class="n">8</span></a></li>
+          <li><a href="#agent-memory">Agent memory <span class="n">9</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">19</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">22</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">23</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">11</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">11</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">2</span></a></li>
@@ -102,6 +102,13 @@
         <h3>Agent memory</h3>
         <p class="lead">The axis that matters is what gets remembered &mdash; the user, or the work. Three answers to where it lives: a file you can read, a wiki the agent consolidates, or the offload decision pushed into the weights (<a href="model-releases.html">ContextPilot-14B</a>). Judge entries on whether a human can inspect and an administrator can restrict what is stored.</p>
 
+        <article class="story" id="devin-memory-dreaming">
+          <span class="when">2026-10-06</span>
+          <h4><a href="https://devin.ai/blog/memory-and-dreaming">Devin&rsquo;s Memory carries corrections across sessions, and Dreaming reorganizes it offline</a></h4>
+          <p>Cognition gave Devin a <strong>Memory</strong> system that carries preferences, corrections and project learnings from one session to the next, plus <strong>Dreaming</strong>, a periodic pass that deduplicates memories, links them to the past sessions and artifacts they came from, and derives new knowledge from accumulated work. Linking each memory to its source session is what makes the store inspectable; deriving new facts is the step that can introduce ones nobody stated, which is the corruption risk this section judges memory on.</p>
+          <div class="sources"><a href="https://devin.ai/blog/memory-and-dreaming">Cognition</a> &middot; <span class="via">via TLDR AI (Oct 6)</span></div>
+        </article>
+
         <article class="story" id="proactive-memory-agent">
           <span class="when">2026-09-18</span>
           <h4><a href="https://www.deeplearning.ai/the-batch/issue-371#even-agents-benefit-from-reminders">A second agent deciding when to remind the first lifts Terminal-Bench 2.0 by 8.3 points</a></h4>
@@ -117,15 +124,15 @@
           <div class="sources"><span class="via">via Unwind AI (Sep 9) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="funes">
-          <span class="when">2026-09-04</span>
-          <h4>funes &mdash; a memory layer for coding agents that outlives any one agent or machine</h4>
-          <p>A durable memory layer letting coding agents retain and recall session histories <em>across machines and across agents</em> &mdash; Claude Code, Codex, pi and Hermes against one store &mdash; using local indexing and embedding with no external dependencies. It attacks the ownership question from the other side: if the harness is the commoditizing layer and the model is rented, the accumulated context is the thing a developer actually keeps, and it should not be locked inside one vendor&rsquo;s session format.</p>
-          <div class="sources"><span class="via">via TLDR AI (Sep 4) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story unlinked" id="funes">
+            <span class="when">2026-09-04</span>
+            <h4>funes &mdash; a memory layer for coding agents that outlives any one agent or machine</h4>
+            <p>A durable memory layer letting coding agents retain and recall session histories <em>across machines and across agents</em> &mdash; Claude Code, Codex, pi and Hermes against one store &mdash; using local indexing and embedding with no external dependencies. It attacks the ownership question from the other side: if the harness is the commoditizing layer and the model is rented, the accumulated context is the thing a developer actually keeps, and it should not be locked inside one vendor&rsquo;s session format.</p>
+            <div class="sources"><span class="via">via TLDR AI (Sep 4) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story" id="memoryfields">
             <span class="when">2026-09-01</span>
@@ -162,7 +169,6 @@
             <p>The open question is whether self-synthesized work memory stays accurate over time or accumulates the same silent corruption that plagues hand-built knowledge graphs. (Memory-substrate angle on the <a href="tools-and-devex.html">Tools &amp; DevEx</a> page.)</p>
             <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -319,6 +325,13 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="cursor-sdk-steer">
+          <span class="when">2026-10-06</span>
+          <h4><a href="https://cursor.com/docs/sdk/changelog">Cursor&rsquo;s SDK adds run.steer(), background subagents and read-only/destructive tool tags</a></h4>
+          <p>Cursor&rsquo;s SDK update exposes <code>run.steer()</code> to insert notes into an agent mid-turn, lets busy subagents move to the background and report back to the main agent, and lets developers tag custom tools as <strong>read-only or destructive</strong> so the model can tell a lookup from a delete. It brings to the programmatic surface the mid-run steering Cursor&rsquo;s <a href="#cursor-cloud-agent-triggers">cloud agents</a> gained in August; the tool tag is a declaration the model reads, not an enforced permission.</p>
+          <div class="sources"><a href="https://cursor.com/docs/sdk/changelog">Cursor SDK changelog</a> &middot; <span class="via">via The Code (Oct 6)</span></div>
+        </article>
+
         <article class="story" id="deepseek-harness-v0-2">
           <span class="when">2026-10-03</span>
           <h4><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness v0.2 ships desktop apps and a Creator mode in which the agent writes its own plugins</a></h4>
@@ -333,15 +346,15 @@
           <div class="sources"><a href="https://github.com/unreallabsai/unreal-agent">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="sol-pi">
-          <span class="when">2026-09-21</span>
-          <h4><a href="https://github.com/NVlabs/SoL-Pi">NVIDIA SoL-Pi: an auto-research loop keeps 4 of 152 harness changes and cuts token traffic up to 49%</a></h4>
-          <p>NVIDIA researchers had a research agent search <strong>152 harness changes across 535 environments</strong>; four survived &mdash; Action Fusion, Online Context Compact, ObservationPack and an Evidence-Preserving Reducer. On EdgeBench they cut token traffic <strong>44.7&ndash;49.0%</strong> against Pi and API cost about 33% while holding roughly 94% of Pi&rsquo;s score, but on Terminal-Bench 4 it solves <strong>15 tasks against Pi&rsquo;s 18</strong>. MIT licensed, running on unmodified Pi 0.85.1.</p>
-          <div class="sources"><a href="https://github.com/NVlabs/SoL-Pi">GitHub</a> &middot; <a href="https://arxiv.org/abs/2609.20519">arXiv</a> &middot; <span class="via">via MarkTechPost (Sep 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (20)</summary>
+
+          <article class="story" id="sol-pi">
+            <span class="when">2026-09-21</span>
+            <h4><a href="https://github.com/NVlabs/SoL-Pi">NVIDIA SoL-Pi: an auto-research loop keeps 4 of 152 harness changes and cuts token traffic up to 49%</a></h4>
+            <p>NVIDIA researchers had a research agent search <strong>152 harness changes across 535 environments</strong>; four survived &mdash; Action Fusion, Online Context Compact, ObservationPack and an Evidence-Preserving Reducer. On EdgeBench they cut token traffic <strong>44.7&ndash;49.0%</strong> against Pi and API cost about 33% while holding roughly 94% of Pi&rsquo;s score, but on Terminal-Bench 4 it solves <strong>15 tasks against Pi&rsquo;s 18</strong>. MIT licensed, running on unmodified Pi 0.85.1.</p>
+            <div class="sources"><a href="https://github.com/NVlabs/SoL-Pi">GitHub</a> &middot; <a href="https://arxiv.org/abs/2609.20519">arXiv</a> &middot; <span class="via">via MarkTechPost (Sep 23)</span></div>
+          </article>
 
           <article class="story" id="strands-harness">
             <span class="when">2026-09-21</span>
@@ -1062,6 +1075,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-06</span><span class="label"><a href="#cursor-sdk-steer">Cursor&rsquo;s SDK adds run.steer(), background subagents and read-only/destructive tool tags</a></span></li>
+        <li><span class="date">2026-10-06</span><span class="label"><a href="#devin-memory-dreaming">Devin&rsquo;s Memory carries corrections across sessions, and Dreaming reorganizes it offline</a></span></li>
         <li><span class="date">2026-10-03</span><span class="label"><a href="#deepseek-harness-v0-2">DeepSeek Harness v0.2 ships desktop apps and a Creator mode in which the agent writes its own plugins</a></span></li>
         <li><span class="date">2026-10-02</span><span class="label"><a href="#pi-durable">Pi Durable makes an agent survive crashes, run indefinitely and take steering from several humans</a></span></li>
         <li><span class="date">2026-09-30</span><span class="label"><a href="#chatgpt-mcp-events">ChatGPT subscribes to MCP server updates through a subset of the draft MCP Events spec</a></span></li>
