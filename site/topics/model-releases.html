@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-10-08</div>
+      <div class="meta">Last updated: 2026-10-09</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 8 cycle filled in the cheap end of the frontier and opened two decision-model weights. Anthropic&rsquo;s <a href="#claude-haiku-5-5">Claude Haiku 5.5</a> lands at <strong>$0.10/$0.50</strong> per million tokens up to 100K with a 1M context, the same list price as GPT-6 Luna, and claims 72.4% on OSWorld 2.1 against Luna&rsquo;s 48.9% &mdash; but the price rises 5&times; past 100K and a new tokenizer counts about 30% more tokens, so the &ldquo;75% cheaper than Haiku 4.5&rdquo; figure is an average that depends on prompt length. Liquid put <a href="#liquid-d1">d1</a> on Hugging Face as d1-3B and d1-omni-600M, the first decision models from a lab whose hosted version was already ranked, at 48.57 on its own run of the Decision Index. Perplexity&rsquo;s <a href="#pplx-embed-v2-late">pplx-embed-v2-late</a> takes the opposite trade from last week&rsquo;s single-vector model, keeping a vector per token for 92.4% on MADQA at the cost of an index that grows with document length. <a href="#gpt-6-intelligent-ui">GPT-6</a> reached all 1.2 billion ChatGPT users with generated interfaces, and LlamaIndex&rsquo;s <a href="#opendocrouter">OpenDocRouter</a> put the parsing tier behind one versioned API.</p>
         <p>The Oct 7 cycle was a European trillion-parameter model and the frontier lab pricing the decision interface. Mistral&rsquo;s <a href="#mistral-large-4">Mistral Large 4</a> is a 1.05T MoE with 49B active over a 1M context, trained on 3,800 Grace Blackwell GPUs in EU datacentres, with cyber scores (93% on Cybench) that closed models often refuse to produce, API pricing of $1.36/$4.18, and weights promised by the end of October &mdash; a second large MoE in two days announced ahead of its weights, after <a href="#reflection-beam">Beam</a>. OpenAI&rsquo;s <a href="#openai-decisions-api">Decisions API</a> left limited preview for public beta at $0.10 per million input tokens with no output charge and up to 10&times; Luna&rsquo;s speed, which is now the price every open decision model below is measured against; Nace.AI&rsquo;s <a href="#drex-dlm">Drex DLM</a> adds an 8B diffusion decoder to that field at 52.31 on Decision Index 0.2, under CC BY-NC. Google&rsquo;s <a href="#embeddinggemma-2">EmbeddingGemma 2</a> puts text, code, images, audio and video into one 768-d space at 740M parameters under Apache 2.0, with MTEB Code up ten points and a stated floor at 256 dimensions, and <a href="#nano-banana-2-1">Nano Banana 2.1</a> arrives as a Gemini 3.6 Flash-based image model described rather than scored.</p>
         <p>The Oct 6 cycle added one announced release and one new capability. Reflection&rsquo;s <a href="#reflection-beam">Beam</a> is a 501B-total, 23B-active MoE trained on 23.8T tokens with more than 100M RL rollouts, in the same active-parameter band as the large MoEs already here &mdash; but its weights are promised for later in October, so for now it is a spec sheet rather than something to run. Liquid AI&rsquo;s <a href="#liquid-d1">d1</a> gained vision: a decision can now take images as well as text, and Liquid claims a 19&ndash;200&times; cost advantage over GPT-6.1 Sol and Opus 5.5 with text decisions in 200&ndash;300&nbsp;ms, while size, context window and weights all stay undisclosed.</p>
         <p>The Oct 5 cycle added no release, only where one now runs. <a href="#claude-sonnet-5-5">Claude Sonnet 5.5</a> has become the model behind claude.ai&rsquo;s free tier, against ChatGPT&rsquo;s Luna 5.6, which Simon Willison reads as the more capable free offering of the two. It also inherits Opus 5.5&rsquo;s max-effort failure: 128,000 thinking tokens and $1.28 spent on a one-line SVG prompt with no output at all, where &ldquo;xhigh&rdquo; finished in 41 seconds for under six cents &mdash; so on both models the top setting is a cost to opt into, not a default.</p>
         <p>The Oct 2&ndash;5 cycle turned the System One line into an open-weights field within two days. Cloudflare&rsquo;s <a href="#cloudflare-clef">Clef</a> and Clef-flash are Apache-2.0, Jev-API compatible and lead Jev on 7 of 10 of Cloudflare&rsquo;s own tests at 209 and 39&nbsp;ms; AWS&rsquo;s <a href="#strands-decider-2b">Strands Decider 2B</a> publishes its training recipe and a calibration error of 0.052; Perplexity&rsquo;s <a href="#pplx-decider-v1-27b">pplx-decider-v1-27b</a> is a Qwen3.8-27B fine-tune; and <a href="#kev">kev</a> grew into a family of four from 0.8B to 27B. Every comparison is still run on a suite its publisher chose, so the question the section lead asks &mdash; whether anyone outside the vendor has measured it &mdash; has multiplied rather than been answered.</p>
-        <p>The rest of the cycle was priced or sized rather than ranked. Microsoft&rsquo;s <a href="#mai-transcribe-2-streaming">MAI-Transcribe-2-Streaming</a> takes first of 38 on Artificial Analysis&rsquo; streaming WER at 2.5% but charges $0.54 an hour, above xAI and Meta, while Cactus&rsquo;s <a href="#cactus-whistle">Whistle</a> fits seven languages into 16.8&nbsp;MB with no accuracy figure at all. Aleph Alpha&rsquo;s <a href="#aleph-alpha-kolibri">Kolibri</a> runs 3.46B of 78.1B parameters per token over a 1M context and sells sovereignty rather than rank. Retrieval gained <a href="#cohere-embed-5">Embed 5</a>, a two-tier shared space scored partly on Cohere&rsquo;s own metric, and <a href="#pplx-embed-v2-context">pplx-embed-v2-context</a>, 14.4 points up on a private benchmark; NVIDIA&rsquo;s <a href="#nvidia-kumo-tabular">Kumo Tabular</a> tops TabArena on a licence its rivals lack; and Tavus is keeping <a href="#tavus-griffin">Griffin</a> off its API because 48% of testers took it for a human. Two older entries gained outside numbers: <a href="#mimo-v2-6">MiMo-V2.6-Pro</a> now leads open models on Artificial Analysis at 46 with its RL bill disclosed, and <a href="#deepseek-v4-1-flash">DeepSeek-V4.1-Flash</a> holds its cache to 890 bytes a token.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The rest of the cycle was priced or sized rather than ranked. Microsoft&rsquo;s <a href="#mai-transcribe-2-streaming">MAI-Transcribe-2-Streaming</a> takes first of 38 on Artificial Analysis&rsquo; streaming WER at 2.5% but charges $0.54 an hour, above xAI and Meta, while Cactus&rsquo;s <a href="#cactus-whistle">Whistle</a> fits seven languages into 16.8&nbsp;MB with no accuracy figure at all. Aleph Alpha&rsquo;s <a href="#aleph-alpha-kolibri">Kolibri</a> runs 3.46B of 78.1B parameters per token over a 1M context and sells sovereignty rather than rank. Retrieval gained <a href="#cohere-embed-5">Embed 5</a>, a two-tier shared space scored partly on Cohere&rsquo;s own metric, and <a href="#pplx-embed-v2-context">pplx-embed-v2-context</a>, 14.4 points up on a private benchmark; NVIDIA&rsquo;s <a href="#nvidia-kumo-tabular">Kumo Tabular</a> tops TabArena on a licence its rivals lack; and Tavus is keeping <a href="#tavus-griffin">Griffin</a> off its API because 48% of testers took it for a human. Two older entries gained outside numbers: <a href="#mimo-v2-6">MiMo-V2.6-Pro</a> now leads open models on Artificial Analysis at 46 with its RL bill disclosed, and <a href="#deepseek-v4-1-flash">DeepSeek-V4.1-Flash</a> holds its cache to 890 bytes a token.</p>
           <p>The Oct 2 cycle added no release, only the terms around one. <a href="#gemini-4-argon">Gemini 4 Argon</a> was picked up by three more newsletters, and the new fact is about use rather than score: Argon-powered agents are already migrating Google&rsquo;s own C/C++ codebases to Rust, while outside customers still have no date for enterprise or consumer access. Every use reported so far is inside Google or its vetted cyber-defender programme, so the model with the best DeepSWE number on this page remains the one fewest readers can call.</p>
           <p>The Oct 1 cycle was OpenAI&rsquo;s DevDay and a gated answer from Google. <a href="#gpt-6-1-sol">GPT-6.1 Sol</a> claims Astra-level DeepSWE v1.1 at <strong>$2/$10 per million tokens</strong>, the same list price as Sonnet 5.5, with a 1.05M-token context and a 2&times; input surcharge past 272K; <a href="#gemini-4-argon">Gemini 4 Argon</a> leads Opus 5.5 on DeepSWE at 77.9% and writes up to 1M output tokens, but only vetted cyber defenders can call it, which makes its numbers the least checkable on the page. Underneath, the System One line gained two more vendors in two days: Liquid&rsquo;s <a href="#liquid-d1">d1</a> returns probabilities with zero output tokens and claims to beat Jev on Hugging Face&rsquo;s Decision Index, and OpenAI&rsquo;s <a href="#openai-decisions-api">Decisions API</a> puts GPT-6 Luna behind the same typed interface in limited preview, with no figures yet. Alibaba&rsquo;s <a href="#qwen-audio-3-1-realtime">Qwen-Audio-3.1-Realtime</a> adds a turn-taking decision layer at 85% below its previous price while conceding a stop latency three times GPT-Realtime-2&rsquo;s.</p>
           <p>The Sep 30 cycle added no release, only outside numbers for Sonnet 5.5. Artificial Analysis puts <a href="#claude-sonnet-5-5">Claude Sonnet 5.5</a> two points behind Opus 5.5 at max effort on its Intelligence Index while using about 60% more tokens to get there, with a lower hallucination rate and weaker factual knowledge &mdash; which sits beside, not against, Anthropic&rsquo;s claim of up to 30% lower cost per task, since that comparison is with Sonnet 5 rather than with Opus. <a href="#eleven-v4">Eleven v4</a> is now linked to ElevenLabs&rsquo; own post, and <a href="#ember-1">Ember-1</a> is reachable through the Cline desktop beta as well as Fireworks.</p>
@@ -88,14 +89,14 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">22</span></a></li>
+          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">24</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">17</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">14</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">5</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">14</span></a></li>
           <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">17</span></a></li>
-          <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">6</span></a></li>
-          <li><a href="#document-parsing-models">Document parsing models <span class="n">2</span></a></li>
+          <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
+          <li><a href="#document-parsing-models">Document parsing models <span class="n">3</span></a></li>
           <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">25</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">3</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">4</span></a></li>
@@ -109,6 +110,21 @@
         <h3>Frontier proprietary models</h3>
         <p class="lead">Anthropic&rsquo;s Claude line and OpenAI&rsquo;s GPT line set the pace, with SpaceXAI, Google, Meta and Microsoft pricing against them. A 1M-token context is table stakes here. Almost every figure below is vendor-reported on a harness nobody outside the lab can run, so judge entries on what an outsider could check.</p>
 
+        <article class="story" id="gpt-6-intelligent-ui">
+          <span class="when">2026-10-08</span>
+          <h4><a href="https://openai.com/index/gpt-6-for-everyone/">GPT-6 and Intelligent UI reach ChatGPT&rsquo;s 1.2 billion users</a></h4>
+          <p>OpenAI is rolling GPT-6 out to all <strong>1.2 billion</strong> ChatGPT users together with <strong>Intelligent UI</strong>, which builds a response from text, visuals and interactive elements bound to the underlying data rather than returning prose alone. OpenAI claims better answers on complex queries and better recognition of risky requests, but the announcement as reported carries no benchmark or per-tier detail, so the checkable part is the scale of the rollout rather than the quality claim.</p>
+          <div class="sources"><a href="https://openai.com/index/gpt-6-for-everyone/">OpenAI</a> &middot; <span class="via">via TLDR AI (Oct 8)</span></div>
+        </article>
+
+        <article class="story" id="claude-haiku-5-5">
+          <span class="when">2026-10-07</span>
+          <h4><a href="https://www.anthropic.com/claude-haiku-5-5">Claude Haiku 5.5 costs $0.10/$0.50 per million tokens up to 100K, with 1M context and effort control</a></h4>
+          <p>Anthropic released <strong>Claude Haiku 5.5</strong> at <strong>$0.10 input / $0.50 output</strong> per million tokens for prompts up to 100K, rising 5&times; to $0.50 / $2.50 above that, with batch taking another 50% off. It has a <strong>1M-token context</strong>, 128K output, text and image input, and is the first Haiku with an effort setting, adaptive thinking defaulting to medium; Anthropic reports <strong>72.4%</strong> on OSWorld 2.1 offline against GPT-6 Luna&rsquo;s 48.9%, and 39.2% on Terminal-Bench 4.0 against Luna&rsquo;s 16.4%.</p>
+          <p>The price comparison depends on the tokenizer: Anthropic estimates about <strong>75% cheaper on average than Haiku 4.5</strong> after a new tokenizer that counts roughly 30% more tokens for the same text, and Simon Willison notes it matches <a href="#gpt-6-sol-luna">Luna</a>&rsquo;s price under 100K but is the worse deal above it. All scores are Anthropic&rsquo;s own, and Sonnet 5.5 leads every row.</p>
+          <div class="sources"><a href="https://www.anthropic.com/claude-haiku-5-5">Anthropic</a> &middot; <a href="https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/">Simon Willison</a> &middot; <span class="via">via TLDR AI (Oct 8), TLDR (Oct 8), MarkTechPost (Oct 8), The Code (Oct 8)</span></div>
+        </article>
+
         <article class="story" id="gpt-6-1-sol">
           <span class="when">2026-09-30</span>
           <h4><a href="https://openai.com/index/introducing-gpt-6-1-sol/">GPT-6.1 Sol matches Astra on DeepSWE v1.1 at $2/$10, about a fifth of Astra&rsquo;s price</a></h4>
@@ -117,25 +133,25 @@
           <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-1-sol/">OpenAI</a> &middot; <span class="via">via MarkTechPost (Sep 30), TLDR AI (Sep 30), The Code (Sep 30)</span></div>
         </article>
 
-        <article class="story" id="gemini-4-argon">
-          <span class="when">2026-09-30</span>
-          <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Gemini 4 Argon writes up to 1M output tokens and leads Opus 5.5 on DeepSWE, but ships only to vetted cyber defenders</a></h4>
-          <p>Google DeepMind&rsquo;s <strong>Gemini 4 Argon</strong> can emit a single response of up to <strong>1M tokens</strong>, up from 64K, and scores <strong>77.9% on DeepSWE v1.1</strong> against 74.2% for Claude Opus 5.5, tying for first on CWE-bench v1 at 68%. It trails GPT-6 Astra on FrontierSWE v2 (55.0% against 65.5%), Terminal-Bench 4.0 and OSWorld-2.0.</p>
-          <p>Inside Google, Argon-powered agents are already migrating C/C++ codebases to Rust, and there is still no timeline for enterprise or consumer access. Introductory pricing is $2/$10 per 1M tokens, rising to $4/$20; input context is undisclosed, and access is limited to cyber defenders vetted through Google&rsquo;s <a href="https://deepmind.google/fairwind-program/">Fairwind Program</a>, so for now none of these numbers can be checked from outside it.</p>
-          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Google</a> &middot; <a href="https://arstechnica.com/google/2026/09/google-announces-gemini-4-argon-ai-model-but-you-cant-use-it-yet/">Ars Technica</a> (report) &middot; <span class="via">via MarkTechPost (Sep 30), TLDR AI (Oct 1), TLDR (Oct 1), The Code (Oct 1)</span></div>
-        </article>
-
-        <article class="story" id="claude-sonnet-5-5">
-          <span class="when">2026-09-28</span>
-          <h4><a href="https://www.anthropic.com/claude-sonnet-5-5">Claude Sonnet 5.5 beats Opus 5.5 on Terminal-Bench 4.0 at $2/$10, and is the first Sonnet with cyber safeguards</a></h4>
-          <p>Anthropic released <strong>Claude Sonnet 5.5</strong> at <strong>$2 input / $10 output per 1M tokens</strong>, with cache reads at $0.20, generating about 30% faster than Sonnet 5. It scores <strong>70.6% on Terminal-Bench 4.0</strong>, above <a href="#claude-opus-5-5">Opus 5.5</a>&rsquo;s 66.4%, sits level on GDPval-AA (1844 against 1846) and trails Opus by about eight points on FrontierCode 1.1 (46.2% against 54.4%); Anthropic says it spends far fewer tokens per task at the same per-token price, up to 30% less per task than Sonnet 5, which scored 10.3% on the same Terminal-Bench. It is live on AWS, Google Cloud and Azure as <code>claude-sonnet-5-5</code>.</p>
-          <p>It is the first Sonnet to carry cyber safeguards, with high-risk requests falling back to Sonnet 5 &mdash; the routing pattern Opus 5.5 introduced, now at the mid tier. Artificial Analysis supplied the first outside number on Sep 29: two points behind Opus 5.5 at max effort on its Intelligence Index, using about <strong>60% more tokens</strong> to get there, with a lower hallucination rate and weaker factual knowledge. The launch figures are Anthropic&rsquo;s own, and a mid-tier model beating its own flagship on one agentic benchmark says as much about the benchmark as about the model.</p>
-          <p><em>Updated Oct 6:</em> Sonnet 5.5 is now the model behind claude.ai&rsquo;s free tier, where ChatGPT&rsquo;s free tier runs Luna 5.6, and Simon Willison found it shares <a href="#claude-opus-5-5">Opus 5.5</a>&rsquo;s max-effort failure: on a one-line SVG prompt it thought through 128,000 tokens ($1.28) and ran out before writing any output, where &ldquo;xhigh&rdquo; finished in 41 seconds for 5.74 cents.</p>
-          <div class="sources"><a href="https://www.anthropic.com/claude-sonnet-5-5">Anthropic</a> &middot; <a href="https://x.com/claudeai/status/2104633115620823187">Announcement on X</a> &middot; <a href="https://artificialanalysis.ai/articles/claude-sonnet-5-5">Artificial Analysis</a> &middot; <a href="https://claude.dev/blog/building-with-claude-sonnet-5-5/">Anthropic build guide</a> &middot; <span class="via">via MarkTechPost (Sep 28), TLDR AI (Sep 29), TLDR (Sep 29), The Code (Sep 29), Unwind AI (Sep 29), Simon Willison (Oct 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (21)</summary>
+
+          <article class="story" id="gemini-4-argon">
+            <span class="when">2026-09-30</span>
+            <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Gemini 4 Argon writes up to 1M output tokens and leads Opus 5.5 on DeepSWE, but ships only to vetted cyber defenders</a></h4>
+            <p>Google DeepMind&rsquo;s <strong>Gemini 4 Argon</strong> can emit a single response of up to <strong>1M tokens</strong>, up from 64K, and scores <strong>77.9% on DeepSWE v1.1</strong> against 74.2% for Claude Opus 5.5, tying for first on CWE-bench v1 at 68%. It trails GPT-6 Astra on FrontierSWE v2 (55.0% against 65.5%), Terminal-Bench 4.0 and OSWorld-2.0.</p>
+            <p>Inside Google, Argon-powered agents are already migrating C/C++ codebases to Rust, and there is still no timeline for enterprise or consumer access. Introductory pricing is $2/$10 per 1M tokens, rising to $4/$20; input context is undisclosed, and access is limited to cyber defenders vetted through Google&rsquo;s <a href="https://deepmind.google/fairwind-program/">Fairwind Program</a>, so for now none of these numbers can be checked from outside it.</p>
+            <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Google</a> &middot; <a href="https://arstechnica.com/google/2026/09/google-announces-gemini-4-argon-ai-model-but-you-cant-use-it-yet/">Ars Technica</a> (report) &middot; <span class="via">via MarkTechPost (Sep 30), TLDR AI (Oct 1), TLDR (Oct 1), The Code (Oct 1)</span></div>
+          </article>
+
+          <article class="story" id="claude-sonnet-5-5">
+            <span class="when">2026-09-28</span>
+            <h4><a href="https://www.anthropic.com/claude-sonnet-5-5">Claude Sonnet 5.5 beats Opus 5.5 on Terminal-Bench 4.0 at $2/$10, and is the first Sonnet with cyber safeguards</a></h4>
+            <p>Anthropic released <strong>Claude Sonnet 5.5</strong> at <strong>$2 input / $10 output per 1M tokens</strong>, with cache reads at $0.20, generating about 30% faster than Sonnet 5. It scores <strong>70.6% on Terminal-Bench 4.0</strong>, above <a href="#claude-opus-5-5">Opus 5.5</a>&rsquo;s 66.4%, sits level on GDPval-AA (1844 against 1846) and trails Opus by about eight points on FrontierCode 1.1 (46.2% against 54.4%); Anthropic says it spends far fewer tokens per task at the same per-token price, up to 30% less per task than Sonnet 5, which scored 10.3% on the same Terminal-Bench. It is live on AWS, Google Cloud and Azure as <code>claude-sonnet-5-5</code>.</p>
+            <p>It is the first Sonnet to carry cyber safeguards, with high-risk requests falling back to Sonnet 5 &mdash; the routing pattern Opus 5.5 introduced, now at the mid tier. Artificial Analysis supplied the first outside number on Sep 29: two points behind Opus 5.5 at max effort on its Intelligence Index, using about <strong>60% more tokens</strong> to get there, with a lower hallucination rate and weaker factual knowledge. The launch figures are Anthropic&rsquo;s own, and a mid-tier model beating its own flagship on one agentic benchmark says as much about the benchmark as about the model.</p>
+            <p><em>Updated Oct 6:</em> Sonnet 5.5 is now the model behind claude.ai&rsquo;s free tier, where ChatGPT&rsquo;s free tier runs Luna 5.6, and Simon Willison found it shares <a href="#claude-opus-5-5">Opus 5.5</a>&rsquo;s max-effort failure: on a one-line SVG prompt it thought through 128,000 tokens ($1.28) and ran out before writing any output, where &ldquo;xhigh&rdquo; finished in 41 seconds for 5.74 cents.</p>
+            <div class="sources"><a href="https://www.anthropic.com/claude-sonnet-5-5">Anthropic</a> &middot; <a href="https://x.com/claudeai/status/2104633115620823187">Announcement on X</a> &middot; <a href="https://artificialanalysis.ai/articles/claude-sonnet-5-5">Artificial Analysis</a> &middot; <a href="https://claude.dev/blog/building-with-claude-sonnet-5-5/">Anthropic build guide</a> &middot; <span class="via">via MarkTechPost (Sep 28), TLDR AI (Sep 29), TLDR (Sep 29), The Code (Sep 29), Unwind AI (Sep 29), Simon Willison (Oct 5)</span></div>
+          </article>
 
           <article class="story" id="gpt-6-sol-luna">
             <span class="when">2026-09-22</span>
@@ -759,8 +775,9 @@
             <span class="when">2026-09-29</span>
             <h4><a href="https://docs.liquid.ai/lfm/models/decision-models">Liquid AI&rsquo;s d1 returns calibrated probabilities over fixed outcomes with zero output tokens</a></h4>
             <p>Liquid AI released <strong>d1</strong>, the third typed-decision model in three weeks after <a href="#jev">Jev</a> and <a href="#gliner2-5-decide">GLiNER2.5-Decide</a>: send context and typed questions, get probabilities over fixed outcomes in one call, with <code>usage.output_tokens</code> always 0. It has three primitives &mdash; yes/no, a named choice set and an ordered score &mdash; aimed at routing, moderation, reranking and LLM-as-judge, and Liquid says it outperforms Jev on Hugging Face&rsquo;s Decision Index.</p>
-            <p>On Oct 6 Liquid added vision, so a decision can take images, text or both as input, and claimed d1 costs <strong>19&times; to 200&times; less</strong> than GPT-6.1 Sol and Claude Opus 5.5, with text decisions returned in <strong>200&ndash;300&nbsp;ms</strong>. Model size and context window are still undisclosed, there are no weights and no fine-tuning, and paid pricing was unpublished at launch; a free tier is live as <code>d1:free</code>.</p>
-            <div class="sources"><a href="https://docs.liquid.ai/lfm/models/decision-models">Liquid AI docs</a> &middot; <a href="https://threadreaderapp.com/thread/2105003472332693869.html">Announcement thread</a> &middot; <a href="https://x.com/liquidai/status/2107161990808674404">Vision announcement</a> &middot; <span class="via">via MarkTechPost (Sep 30), TLDR AI (Sep 30), TLDR AI (Oct 6)</span></div>
+            <p>On Oct 6 Liquid added vision, so a decision can take images, text or both as input, and claimed d1 costs <strong>19&times; to 200&times; less</strong> than GPT-6.1 Sol and Claude Opus 5.5, with text decisions returned in <strong>200&ndash;300&nbsp;ms</strong>. The hosted model&rsquo;s size and context window are still undisclosed and paid pricing was unpublished at launch; a free tier is live as <code>d1:free</code>.</p>
+            <p>On Oct 7 Liquid shipped open weights: <strong>d1-3B</strong> (text and images) scores <strong>48.57</strong> on Decision Index v0.2.1, top under 10B, at <strong>8&nbsp;ms</strong> per question on an RTX 4090 with <code>model.compile</code>, and <strong>d1-omni-600M</strong> adds 30 s of English audio but has no published latency. Liquid ran the scorer itself, knowledge is the weak category at 23.8, and the LFM Open License is free for commercial use only under $10M revenue; OpenRouter&rsquo;s decision rankings show d1 at 2.87M weekly requests against Jev 1.13&rsquo;s 982M.</p>
+            <div class="sources"><a href="https://docs.liquid.ai/lfm/models/decision-models">Liquid AI docs</a> &middot; <a href="https://threadreaderapp.com/thread/2105003472332693869.html">Announcement thread</a> &middot; <a href="https://x.com/liquidai/status/2107161990808674404">Vision announcement</a> &middot; <a href="https://www.liquid.ai/blog/d1-open">Open-weights release</a> &middot; <a href="https://openrouter.ai/rankings/decisions">OpenRouter decision rankings</a> &middot; <span class="via">via MarkTechPost (Sep 30), TLDR AI (Sep 30), TLDR AI (Oct 6), MarkTechPost (Oct 8), TLDR AI (Oct 8)</span></div>
           </article>
 
           <article class="story" id="julia-1">
@@ -857,6 +874,14 @@
         <h3>Retrieval &amp; embedding models</h3>
         <p class="lead">Retrieval has become a release tier of its own rather than a training exercise. The recurring move is reuse: patch a causal decoder into a bidirectional encoder instead of training one from scratch. Judge entries on the benchmark they top, the languages covered, and what they cost to run against the models they beat.</p>
 
+        <article class="story" id="pplx-embed-v2-late">
+          <span class="when">2026-10-07</span>
+          <h4><a href="https://www.perplexity.ai/hub/blog/multimodal-embeddings-beyond-a-single-vector">Perplexity&rsquo;s pplx-embed-v2-late keeps one vector per token across text, images and PDF pages, 92.4% on MADQA at 9B</a></h4>
+          <p>Perplexity released <strong>pplx-embed-v2-late</strong>, ColBERT-style late-interaction embeddings at <strong>0.6B and 9B</strong> that keep a 128-dimension vector per token and put text, images and PDF pages in one space. The 9B scores <strong>92.4%</strong> on MADQA and the 0.6B 90.1%, behind Mixedbread Agentic Search&rsquo;s 93.4%, with 64.0% on BrowseComp+ (8.7 points over the best dense model) and a weakest result of 61.2% on ViDoRe v3 Markdown; indexing with the 9B and querying with the 0.6B beats 0.6B on both sides at the same query cost.</p>
+          <p>The cost is storage: index size grows with document length, unlike the single-vector <a href="#pplx-embed-v2-context">pplx-embed-v2-context</a>. Scores are Perplexity&rsquo;s own and the technical report is not out; weights are MIT-licensed, with a hosted endpoint planned.</p>
+          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/multimodal-embeddings-beyond-a-single-vector">Perplexity</a> &middot; <a href="https://huggingface.co/collections/perplexity-ai/pplx-embed-v2">Hugging Face</a> &middot; <span class="via">via TLDR AI (Oct 8), MarkTechPost (Oct 8)</span></div>
+        </article>
+
         <article class="story" id="embeddinggemma-2">
           <span class="when">2026-10-06</span>
           <h4><a href="https://huggingface.co/google/embeddinggemma-2">EmbeddingGemma 2 embeds text, code, images, audio and video in one 768-d space at 740M parameters, Apache 2.0</a></h4>
@@ -873,16 +898,16 @@
           <div class="sources"><a href="https://cohere.com/blog/embed-5">Cohere</a> &middot; <a href="https://www.marktechpost.com/2026/10/01/cohere-releases-embed-5/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 2), MarkTechPost (Oct 3)</span></div>
         </article>
 
-        <article class="story" id="pplx-embed-v2-context">
-          <span class="when">2026-09-30</span>
-          <h4><a href="https://huggingface.co/perplexity-ai/pplx-embed-v2-context-9b-preview">Perplexity&rsquo;s pplx-embed-v2-context retrieves the answer and its evidence, 14.4 points over voyage-context-4</a></h4>
-          <p>Perplexity released <strong>pplx-embed-v2-context-9b-preview</strong>, built with turbopuffer, which embeds each chunk inside its full document and is trained on token-level teacher scores rather than single gold-passage labels, so it learns to fetch both the answer and the passage supporting it. On context-bench (2,099 queries over 38,894 documents) answer recall at 10 is <strong>45.5%, 14.4 points above voyage-context-4</strong>, with evidence recall 5.0 points ahead, and a 1024-dimension int8 vector takes 1&nbsp;KB.</p>
-          <p>The benchmark is private, the weights are MIT but a preview with no compatibility guarantee, and the model is not yet in Perplexity&rsquo;s API.</p>
-          <div class="sources"><a href="https://huggingface.co/perplexity-ai/pplx-embed-v2-context-9b-preview">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 2)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="pplx-embed-v2-context">
+            <span class="when">2026-09-30</span>
+            <h4><a href="https://huggingface.co/perplexity-ai/pplx-embed-v2-context-9b-preview">Perplexity&rsquo;s pplx-embed-v2-context retrieves the answer and its evidence, 14.4 points over voyage-context-4</a></h4>
+            <p>Perplexity released <strong>pplx-embed-v2-context-9b-preview</strong>, built with turbopuffer, which embeds each chunk inside its full document and is trained on token-level teacher scores rather than single gold-passage labels, so it learns to fetch both the answer and the passage supporting it. On context-bench (2,099 queries over 38,894 documents) answer recall at 10 is <strong>45.5%, 14.4 points above voyage-context-4</strong>, with evidence recall 5.0 points ahead, and a 1024-dimension int8 vector takes 1&nbsp;KB.</p>
+            <p>The benchmark is private, the weights are MIT but a preview with no compatibility guarantee, and the model is not yet in Perplexity&rsquo;s API.</p>
+            <div class="sources"><a href="https://huggingface.co/perplexity-ai/pplx-embed-v2-context-9b-preview">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 2)</span></div>
+          </article>
 
           <article class="story unlinked" id="lfm2-5-encoders">
             <span class="when">2026-07-31</span>
@@ -911,6 +936,13 @@
       <section class="topic-section" id="document-parsing-models">
         <h3>Document parsing models</h3>
         <p class="lead">Models that turn a document into structured data rather than a flat text dump a downstream model has to re-infer structure from. Two things decide an entry here: what document structure survives the conversion, and the price per page &mdash; this tier is competing on both at once.</p>
+
+        <article class="story" id="opendocrouter">
+          <span class="when">2026-10-08</span>
+          <h4><a href="https://www.llamaindex.ai/blog/introducing-opendocrouter">LlamaIndex&rsquo;s OpenDocRouter puts open and frontier document-parsing models behind one versioned API</a></h4>
+          <p>LlamaIndex launched <strong>OpenDocRouter</strong>, a document-to-Markdown service that runs the latest open-source and frontier parsing models, each through a <strong>versioned recipe</strong> of prompts, processing and settings, so a parse is reproducible against a named model and recipe version. It accepts PDF, PNG and JPEG files or URLs to them, and returns results synchronously or as an asynchronous job to poll; no accuracy comparison between the routed models was given.</p>
+          <div class="sources"><a href="https://www.llamaindex.ai/blog/introducing-opendocrouter">LlamaIndex</a> &middot; <span class="via">via TLDR AI (Oct 8)</span></div>
+        </article>
 
         <article class="story unlinked" id="cohere-parse">
           <span class="when">2026-08-28</span>
@@ -1268,8 +1300,12 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-08</span><span class="label"><a href="#gpt-6-intelligent-ui">GPT-6 and Intelligent UI reach ChatGPT&rsquo;s 1.2 billion users</a></span></li>
+        <li><span class="date">2026-10-08</span><span class="label"><a href="#opendocrouter">LlamaIndex&rsquo;s OpenDocRouter puts open and frontier document-parsing models behind one versioned API</a></span></li>
         <li><span class="date">2026-10-07</span><span class="label"><a href="#drex-dlm">Nace.AI&rsquo;s Drex DLM is an 8B diffusion-based decision model scoring 52.31 on Decision Index 0.2, weights CC BY-NC</a></span></li>
         <li><span class="date">2026-10-07</span><span class="label"><a href="#nano-banana-2-1">Nano Banana 2.1: a Gemini 3.6 Flash-based image model with a 1M-token context, across the Gemini API and six Google surfaces</a></span></li>
+        <li><span class="date">2026-10-07</span><span class="label"><a href="#claude-haiku-5-5">Claude Haiku 5.5 costs $0.10/$0.50 per million tokens up to 100K, with 1M context and effort control</a></span></li>
+        <li><span class="date">2026-10-07</span><span class="label"><a href="#pplx-embed-v2-late">Perplexity&rsquo;s pplx-embed-v2-late keeps one vector per token across text, images and PDF pages, 92.4% on MADQA at 9B</a></span></li>
         <li><span class="date">2026-10-06</span><span class="label"><a href="#embeddinggemma-2">EmbeddingGemma 2 embeds text, code, images, audio and video in one 768-d space at 740M parameters, Apache 2.0</a></span></li>
         <li><span class="date">2026-10-06</span><span class="label"><a href="#mistral-large-4">Mistral Large 4: a 1.05T open-weight MoE with 49B active, 93% on Cybench, weights promised by end of October</a></span></li>
         <li><span class="date">2026-10-06</span><span class="label"><a href="#reflection-beam">Reflection&rsquo;s Beam: a 501B MoE with 23B active, open weights promised for later in October</a></span></li>

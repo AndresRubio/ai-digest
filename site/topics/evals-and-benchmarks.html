@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-10-07</div>
+      <div class="meta">Last updated: 2026-10-09</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 8 cycle was the arithmetic of a small eval set. Sergii Makarevych&rsquo;s <a href="#makarevych-eval-playbook">eval playbook</a> works a 60-case support bot end to end and reports the numbers most write-ups leave out: 34 of 60 replies passed, the LLM judge agreed with human labels at a kappa of 0.15 against a 0.6 release bar, two prompts tied at 70% while one regressed on 14% of tickets, and 60 cases cannot detect a drop smaller than about 12 points. It belongs beside the FAQ entries in its section as the worked example of why a tied headline score is not a tie. Scale&rsquo;s <a href="#humanitys-sixth-sense">Humanity&rsquo;s Sixth Sense</a> added a 522-task test of intuitive visual reasoning on which the best model, GPT-6 Astra, scores 53.6% &mdash; a benchmark with headroom, whose construct is the part still to inspect.</p>
         <p>The Oct 7 addition is two installable frameworks, added by hand, that bracket the model rather than score it. Great Expectations&rsquo; <a href="#great-expectations-gx-core">GX Core</a> sits upstream: declared Expectations validate a training set, RAG corpus or feature table, and Actions can block bad data before anything is trained or evaluated on it. <a href="#evidently">Evidently</a> sits downstream, with more than 100 metrics for LLM outputs, RAG retrieval, agents and classic ML, synthetic test generation and a drift dashboard. Both are Apache-2.0 and open a new section, Open-source testing frameworks; neither decides which failures matter for a given product, which is still the error analysis this page keeps returning to.</p>
         <p>The Oct 6 cycle was a well-posed question settled on a desk. Simon Willison reran a two-year-old GPT-4o test &mdash; add two large numbers and write the answer out in words &mdash; on a local <a href="#qwen3-8-27b-addition-in-words">Qwen3.8-27B</a> on a DGX Spark, so no hidden tool could be involved, and with reasoning on it got 167 of 169 right through visible column addition. The caveat is the one this page keeps asking for: the reasoning run is a single sample per cell, and its author expects a second run to come out differently.</p>
         <p>The Oct 1 cycle was the first outside review of Anthropic&rsquo;s eval commands. Hamel Husain ran Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval</a> on an apartment-leasing assistant&rsquo;s traces and found it better at one-shot issue discovery than any auto-eval tool he had tried, and weaker at the step this page treats as the job: it asked for an eval before anyone had read the data, collected label corrections in chat instead of an annotation view, and bundled four checks into one evaluator. His verdict is to wait for the revision the author has promised.</p>
         <p>The Sep 30 cycle shipped the discipline as commands. Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval and hillclimb</a> for the claude-api skill draft an eval from real traffic and bug reports, propose a grader, then improve the app one change at a time against a held-out set, rolling back edits that overfit and checking for variance, impossible tasks and broken graders &mdash; the failure modes this page has catalogued, now written into the loop, with the grader&rsquo;s quality still the developer&rsquo;s judgment. <a href="#glean-jev-enterprise-tasks">Glean&rsquo;s test of Jev</a> on four enterprise decision jobs adds an outside datapoint for the decision-model class: an 8.1&times; median speedup on routing, counted over the cases that transferred, and reranking that still needed production tie-breaks.</p>
-        <p>The Sep 28 addition scores whole jobs rather than questions. Surge&rsquo;s <a href="#dayjob-finance">DAYJOB: Finance</a> asks an agent to finish 80 realistic finance assignments from supporting documents and produce analysis a professional can use &mdash; the second family in the automated-evals section, an agent in a real environment, applied to one profession. It arrived without model scores, so for now it is an instrument without readings.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 28 addition scores whole jobs rather than questions. Surge&rsquo;s <a href="#dayjob-finance">DAYJOB: Finance</a> asks an agent to finish 80 realistic finance assignments from supporting documents and produce analysis a professional can use &mdash; the second family in the automated-evals section, an agent in a real environment, applied to one profession. It arrived without model scores, so for now it is an instrument without readings.</p>
           <p>The Sep 23 cycle revised one instrument and built another. Scale&rsquo;s <a href="#swe-bench-pro-v2">SWE-Bench Pro v2</a> corrects the previous task set&rsquo;s errors and ships 642 tasks from 11 repositories, with GPT-5 and Opus 4.1 near 23% on the public set &mdash; a reminder that an instrument carries defects of its own until someone revises it, and that the board&rsquo;s named models lag the current frontier. <a href="#jevbench">JevBench</a> is the first outside measurement of the Jev class: 534 English decisions scored for intelligence, calibration, speed and cost, with Jev leading and the open SemIf and djev within a point. That narrow margin is the result; the caveat is that one combined score blends four properties a buyer would weigh differently.</p>
           <p>On Sep 22 the harness-tax result got its per-rollout numbers and a second, independent confirmation. Claude Fable 5 solved about <strong>97% of tasks across Claude Code, Codex CLI and Pi</strong> while Claude Code cost <strong>$1.33 per rollout against Pi&rsquo;s $0.67</strong>, and on SWE-bench Lite ran roughly <strong>2&times; Pi and 1.6&times; Codex</strong> with success rates inside two points. The mechanism is visible before the agent starts: <strong>Claude Code opens with over 27,000 tokens of context against Pi&rsquo;s 2,000</strong>. AWS then published the same shape from the vendor side &mdash; its <a href="agents.html">Strands Harness</a> scoring 69.7 for $56.29 on Terminal-Bench 2.1 where Claude Code scored 61.8 for $248.05, credited to truncating tool output at 1,500 tokens and compacting at 85%. Two studies, one conclusion: the harness is a context policy with a price tag, and the authors&rsquo; own advice is to measure cost per <em>solved</em> task on your workload, because setups with identical scores fail on different tasks.</p>
           <p>The other arrival measures a market rather than a model. A seven-provider voice-cloning comparison from a single <strong>10-second clip</strong> puts <strong>Fish Audio s2-pro top at 4.03</strong> on Hume&rsquo;s same-speaker leaderboard and <strong>ElevenLabs Eleven v3 last of eleven at 2.91</strong>, with prices running <strong>$7 to $150 per 1M characters</strong>. Price does not track similarity, and only three of the seven document any technical consent check &mdash; which makes the consent column the more consequential measurement, since four providers have no mechanism to establish that the cloned voice belongs to whoever uploaded the sample.</p>
@@ -83,10 +84,10 @@
           <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">8</span></a></li>
           <li><a href="#active-parameter-efficiency-benchmarks">Active-parameter efficiency benchmarks <span class="n">1</span></a></li>
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
-          <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">8</span></a></li>
+          <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">9</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">1</span></a></li>
-          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">20</span></a></li>
+          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">21</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">4</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">7</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">2</span></a></li>
@@ -271,6 +272,14 @@
         <h3>From vibes to discipline</h3>
         <p class="lead">Eval rigour as a craft: what to measure, what to stop measuring, and how to tell a well-posed question from an open-ended one. The entries run from written practice and installable tooling to experiments showing what a well-posed question settles in an afternoon &mdash; and what the vocabulary of rigour looks like without the judgment behind it.</p>
 
+        <article class="story unlinked" id="makarevych-eval-playbook">
+          <span class="when">2026-10-08</span>
+          <h4>Makarevych&rsquo;s eval playbook: 34 of 60 replies passed, the judge scored 0.15 kappa, and 60 cases cannot see a 12-point drop</h4>
+          <p>Senior engineer Sergii Makarevych published a guide to building evals around a runnable support bot for a fictional bike shop: collect real inputs with known-good answers, grade every reply, and report a score with an error bar against the previous version. In his run only <strong>34 of 60</strong> replies passed, cheap code checks missed an invented refund window, and the LLM judge that could catch it agreed with human labels at a kappa of <strong>0.15</strong>, far under the usual 0.6 release bar.</p>
+          <p>Two prompts both scored 70% while the new one did worse on 14% of tickets, and with <strong>60 cases</strong> no drop smaller than about <strong>12 percentage points</strong> is reliably detectable &mdash; the argument for comparing on the same cases, per pipeline stage, and letting public benchmarks shortlist models but never decide what ships.</p>
+          <div class="sources"><a href="https://codenewsletter.ai/p/spacexai-s-grok-bot-borrows-rival-models-for-tough-tasks">The Code issue (Oct 8)</a> &middot; <span class="via">via The Code (Oct 8) &mdash; no public URL given</span></div>
+        </article>
+
         <article class="story" id="qwen3-8-27b-addition-in-words">
           <span class="when">2026-10-04</span>
           <h4><a href="https://github.com/simonw/research/tree/main/qwen38-addition-in-words#readme">Qwen3.8-27B with reasoning wrote large sums out in words correctly 167 times in 169</a></h4>
@@ -288,17 +297,17 @@
           <div class="sources"><a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/">Anthropic</a> &middot; <a href="https://hamel.dev/blog/posts/claude-auto-evals/">Hamel Husain&rsquo;s review</a> &middot; <span class="via">via TLDR AI (Sep 29), The Code (Sep 29), Unwind AI (Sep 29), Parlance Labs (Oct 1)</span></div>
         </article>
 
-        <article class="story" id="ai-evals-faq-48">
-          <span class="when">2026-09-15</span>
-          <h4><a href="https://hamel.dev/blog/posts/evals-faq/">The AI Evals FAQ reaches 48 answers, five of them on reviewing evidence you cannot read in full</a></h4>
-          <p>Hamel Husain added five entries, and each answers a question practitioners hit after the first eval suite rather than before it. Do not write the rubric before annotating: reviewers who check items stop noticing problems outside the list, and criteria drift as you read real interactions, so run error analysis first and write the rubric from it. When traces hold sensitive data, prefer a negotiated subset of real traces, then redaction with the output checked, and treat synthetic data as the last resort, because it only evidences behaviour you already imagined.</p>
-          <p>For traces too large to read, anchor on the first upstream failure &mdash; errors compound, so earlier ones dominate &mdash; and use progressive disclosure rather than dumping tool output at the reviewer. Give an LLM judge only the trace segment its failure mode needs, verified by ablation against human labels, since extra context causes context rot and makes the judge worse. And retire a gold eval that always passes: a suite everything clears has stopped carrying signal and costs considerably more than a unit test to keep.</p>
-          <p>The concession underneath all five is worth keeping: scores stop being comparable when the set changes, and that is acceptable, because an eval set is a hill to climb rather than a fixed yardstick &mdash; longer-horizon tracking belongs with product metrics.</p>
-          <div class="sources"><a href="https://hamel.dev/blog/posts/evals-faq/">AI Evals FAQ</a> &middot; <span class="via">via Parlance Labs (Sep 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="ai-evals-faq-48">
+            <span class="when">2026-09-15</span>
+            <h4><a href="https://hamel.dev/blog/posts/evals-faq/">The AI Evals FAQ reaches 48 answers, five of them on reviewing evidence you cannot read in full</a></h4>
+            <p>Hamel Husain added five entries, and each answers a question practitioners hit after the first eval suite rather than before it. Do not write the rubric before annotating: reviewers who check items stop noticing problems outside the list, and criteria drift as you read real interactions, so run error analysis first and write the rubric from it. When traces hold sensitive data, prefer a negotiated subset of real traces, then redaction with the output checked, and treat synthetic data as the last resort, because it only evidences behaviour you already imagined.</p>
+            <p>For traces too large to read, anchor on the first upstream failure &mdash; errors compound, so earlier ones dominate &mdash; and use progressive disclosure rather than dumping tool output at the reviewer. Give an LLM judge only the trace segment its failure mode needs, verified by ablation against human labels, since extra context causes context rot and makes the judge worse. And retire a gold eval that always passes: a suite everything clears has stopped carrying signal and costs considerably more than a unit test to keep.</p>
+            <p>The concession underneath all five is worth keeping: scores stop being comparable when the set changes, and that is acceptable, because an eval set is a hill to climb rather than a fixed yardstick &mdash; longer-horizon tracking belongs with product metrics.</p>
+            <div class="sources"><a href="https://hamel.dev/blog/posts/evals-faq/">AI Evals FAQ</a> &middot; <span class="via">via Parlance Labs (Sep 15)</span></div>
+          </article>
 
           <article class="story unlinked" id="dan-luu-agent-testing-instructions">
             <span class="when">2026-09-09</span>
@@ -380,6 +389,13 @@
         <h3>Construct validity &amp; benchmark scope</h3>
         <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and one finds the observing condition itself disappearing.</p>
 
+        <article class="story" id="humanitys-sixth-sense">
+          <span class="when">2026-10-08</span>
+          <h4><a href="https://labs.scale.com/papers/humanitys-sixth-sense">Scale&rsquo;s Humanity&rsquo;s Sixth Sense tests intuitive visual reasoning on 522 tasks; GPT-6 Astra leads at 53.6%</a></h4>
+          <p>Scale Labs published <strong>Humanity&rsquo;s Sixth Sense (HSS)</strong>, a benchmark of <strong>522 tasks</strong> for intuitive visual reasoning in multimodal models &mdash; the judgements people make at a glance rather than by working through a problem. GPT-6 Astra leads the public leaderboard at <strong>53.6%</strong>, so the best frontier model still misses nearly half; how a human baseline scores on the same tasks is the number to look for in the paper.</p>
+          <div class="sources"><a href="https://labs.scale.com/papers/humanitys-sixth-sense">Scale Labs paper</a> &middot; <a href="https://labs.scale.com/leaderboard/hss">Leaderboard</a> &middot; <span class="via">via TLDR AI (Oct 8), MarkTechPost (Oct 8)</span></div>
+        </article>
+
         <article class="story" id="jevbench">
           <span class="when">2026-09-23</span>
           <h4><a href="https://benchmarkheaven.com/jev-models">JevBench scores Jev-class models on 534 decisions; open SemIf and djev sit within a point</a></h4>
@@ -395,16 +411,16 @@
           <div class="sources"><a href="https://www.talby.com/p/ten-regulatory-duties-for-clinical">AI in Healthcare</a> &middot; <span class="via">via AI in Healthcare (Sep 19)</span></div>
         </article>
 
-        <article class="story" id="pacificmed">
-          <span class="when">2026-09-19</span>
-          <h4><a href="https://www.talby.com/p/ten-regulatory-duties-for-clinical">PacificMed anchors 25,456 eval cases to the statute each one tests</a></h4>
-          <p>David Talby&rsquo;s team at Pacific AI published the design of <strong>PacificMed</strong>, a clinical-AI evaluation framework whose 2026 edition specifies <strong>71 benchmarks in eight suites, 51 of them built, with 25,456 reviewed cases</strong>. Every case records the legal provision it was written from &mdash; 75 provision-level anchors rolling up into 12 instrument families &mdash; so a failure reports as an untested obligation rather than a category label. Benchmarks are sized to a precision target (800 or 1,155 cases for a &plusmn;2.9&ndash;3.5% interval, 97 as the floor for a family), context and harm level are decorrelated to Cram&eacute;r&rsquo;s V &le; 0.044, near-duplicates are checked at MinHash 0.7 and 0.85, and roughly 850 hours of matched specialist review sit behind the corpus.</p>
-          <p>The claim that matters for this section is the audit of the eight existing medical safety benchmarks: none of them maps a case to the provision it came from, and only First, Do NOHARM reports a confidence interval. Talby&rsquo;s worked example is that CARES counts 18,478 rows that are 5,340 base prompts with up to three adversarial rewrites each, which narrows the apparent interval from about &plusmn;3.8% to &plusmn;2.0% by counting rewrites as independent observations. The framework is not neutral &mdash; it is a commercial product with a paid private-cloud tier &mdash; and the suites, results and papers are promised for October, so today this is a published method, not a scoreboard.</p>
-          <div class="sources"><a href="https://www.talby.com/p/ten-regulatory-duties-for-clinical">AI in Healthcare</a> &middot; <span class="via">via AI in Healthcare (Sep 19)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (17)</summary>
+          <summary>Earlier in this section (18)</summary>
+
+          <article class="story" id="pacificmed">
+            <span class="when">2026-09-19</span>
+            <h4><a href="https://www.talby.com/p/ten-regulatory-duties-for-clinical">PacificMed anchors 25,456 eval cases to the statute each one tests</a></h4>
+            <p>David Talby&rsquo;s team at Pacific AI published the design of <strong>PacificMed</strong>, a clinical-AI evaluation framework whose 2026 edition specifies <strong>71 benchmarks in eight suites, 51 of them built, with 25,456 reviewed cases</strong>. Every case records the legal provision it was written from &mdash; 75 provision-level anchors rolling up into 12 instrument families &mdash; so a failure reports as an untested obligation rather than a category label. Benchmarks are sized to a precision target (800 or 1,155 cases for a &plusmn;2.9&ndash;3.5% interval, 97 as the floor for a family), context and harm level are decorrelated to Cram&eacute;r&rsquo;s V &le; 0.044, near-duplicates are checked at MinHash 0.7 and 0.85, and roughly 850 hours of matched specialist review sit behind the corpus.</p>
+            <p>The claim that matters for this section is the audit of the eight existing medical safety benchmarks: none of them maps a case to the provision it came from, and only First, Do NOHARM reports a confidence interval. Talby&rsquo;s worked example is that CARES counts 18,478 rows that are 5,340 base prompts with up to three adversarial rewrites each, which narrows the apparent interval from about &plusmn;3.8% to &plusmn;2.0% by counting rewrites as independent observations. The framework is not neutral &mdash; it is a commercial product with a paid private-cloud tier &mdash; and the suites, results and papers are promised for October, so today this is a published method, not a scoreboard.</p>
+            <div class="sources"><a href="https://www.talby.com/p/ten-regulatory-duties-for-clinical">AI in Healthcare</a> &middot; <span class="via">via AI in Healthcare (Sep 19)</span></div>
+          </article>
 
           <article class="story" id="dan-luu-bad-benchmarks">
             <span class="when">2026-09-15</span>
@@ -717,6 +733,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-08</span><span class="label"><a href="#makarevych-eval-playbook">Makarevych&rsquo;s eval playbook: 34 of 60 replies passed, the judge scored 0.15 kappa, and 60 cases cannot see a 12-point drop</a></span></li>
+        <li><span class="date">2026-10-08</span><span class="label"><a href="#humanitys-sixth-sense">Scale&rsquo;s Humanity&rsquo;s Sixth Sense tests intuitive visual reasoning on 522 tasks; GPT-6 Astra leads at 53.6%</a></span></li>
         <li><span class="date">2026-10-07</span><span class="label"><a href="#evidently">Evidently evaluates and monitors LLM apps, agents and classic ML models in one Apache-2.0 library</a></span></li>
         <li><span class="date">2026-10-07</span><span class="label"><a href="#great-expectations-gx-core">Great Expectations&rsquo; GX Core checks data against declared Expectations before a model or a dashboard sees it</a></span></li>
         <li><span class="date">2026-10-04</span><span class="label"><a href="#qwen3-8-27b-addition-in-words">Qwen3.8-27B with reasoning wrote large sums out in words correctly 167 times in 169</a></span></li>
