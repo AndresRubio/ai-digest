@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-10-09</div>
+      <div class="meta">Last updated: 2026-10-12</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 9&ndash;12 cycle was two benchmarks built where the work happens. Epoch&rsquo;s <a href="#epoch-automation-reports">Automation Reports</a> test whether models can do Epoch&rsquo;s own research and find the split this page keeps meeting: reliable on well-defined tasks, short of the judgment the open-ended part needs, with open-weight models behind even on the defined part. Exa&rsquo;s <a href="#exa-atlas">ATLAS</a> joins the web-scale retrieval section with non-memorised, multi-domain search tasks graded on completeness, and finds high-effort agents still missing golden answers &mdash; a conclusion from a search vendor that points at search. The agent-team and peer-review evaluations from the same days are filed on <a href="agents.html">Agents</a> and <a href="research-papers.html">Research papers</a>.</p>
         <p>The Oct 8 cycle was the arithmetic of a small eval set. Sergii Makarevych&rsquo;s <a href="#makarevych-eval-playbook">eval playbook</a> works a 60-case support bot end to end and reports the numbers most write-ups leave out: 34 of 60 replies passed, the LLM judge agreed with human labels at a kappa of 0.15 against a 0.6 release bar, two prompts tied at 70% while one regressed on 14% of tickets, and 60 cases cannot detect a drop smaller than about 12 points. It belongs beside the FAQ entries in its section as the worked example of why a tied headline score is not a tie. Scale&rsquo;s <a href="#humanitys-sixth-sense">Humanity&rsquo;s Sixth Sense</a> added a 522-task test of intuitive visual reasoning on which the best model, GPT-6 Astra, scores 53.6% &mdash; a benchmark with headroom, whose construct is the part still to inspect.</p>
         <p>The Oct 7 addition is two installable frameworks, added by hand, that bracket the model rather than score it. Great Expectations&rsquo; <a href="#great-expectations-gx-core">GX Core</a> sits upstream: declared Expectations validate a training set, RAG corpus or feature table, and Actions can block bad data before anything is trained or evaluated on it. <a href="#evidently">Evidently</a> sits downstream, with more than 100 metrics for LLM outputs, RAG retrieval, agents and classic ML, synthetic test generation and a drift dashboard. Both are Apache-2.0 and open a new section, Open-source testing frameworks; neither decides which failures matter for a given product, which is still the error analysis this page keeps returning to.</p>
         <p>The Oct 6 cycle was a well-posed question settled on a desk. Simon Willison reran a two-year-old GPT-4o test &mdash; add two large numbers and write the answer out in words &mdash; on a local <a href="#qwen3-8-27b-addition-in-words">Qwen3.8-27B</a> on a DGX Spark, so no hidden tool could be involved, and with reasoning on it got 167 of 169 right through visible column addition. The caveat is the one this page keeps asking for: the reasoning run is a single sample per cell, and its author expects a second run to come out differently.</p>
         <p>The Oct 1 cycle was the first outside review of Anthropic&rsquo;s eval commands. Hamel Husain ran Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval</a> on an apartment-leasing assistant&rsquo;s traces and found it better at one-shot issue discovery than any auto-eval tool he had tried, and weaker at the step this page treats as the job: it asked for an eval before anyone had read the data, collected label corrections in chat instead of an annotation view, and bundled four checks into one evaluator. His verdict is to wait for the revision the author has promised.</p>
-        <p>The Sep 30 cycle shipped the discipline as commands. Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval and hillclimb</a> for the claude-api skill draft an eval from real traffic and bug reports, propose a grader, then improve the app one change at a time against a held-out set, rolling back edits that overfit and checking for variance, impossible tasks and broken graders &mdash; the failure modes this page has catalogued, now written into the loop, with the grader&rsquo;s quality still the developer&rsquo;s judgment. <a href="#glean-jev-enterprise-tasks">Glean&rsquo;s test of Jev</a> on four enterprise decision jobs adds an outside datapoint for the decision-model class: an 8.1&times; median speedup on routing, counted over the cases that transferred, and reranking that still needed production tie-breaks.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 30 cycle shipped the discipline as commands. Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval and hillclimb</a> for the claude-api skill draft an eval from real traffic and bug reports, propose a grader, then improve the app one change at a time against a held-out set, rolling back edits that overfit and checking for variance, impossible tasks and broken graders &mdash; the failure modes this page has catalogued, now written into the loop, with the grader&rsquo;s quality still the developer&rsquo;s judgment. <a href="#glean-jev-enterprise-tasks">Glean&rsquo;s test of Jev</a> on four enterprise decision jobs adds an outside datapoint for the decision-model class: an 8.1&times; median speedup on routing, counted over the cases that transferred, and reranking that still needed production tie-breaks.</p>
           <p>The Sep 28 addition scores whole jobs rather than questions. Surge&rsquo;s <a href="#dayjob-finance">DAYJOB: Finance</a> asks an agent to finish 80 realistic finance assignments from supporting documents and produce analysis a professional can use &mdash; the second family in the automated-evals section, an agent in a real environment, applied to one profession. It arrived without model scores, so for now it is an instrument without readings.</p>
           <p>The Sep 23 cycle revised one instrument and built another. Scale&rsquo;s <a href="#swe-bench-pro-v2">SWE-Bench Pro v2</a> corrects the previous task set&rsquo;s errors and ships 642 tasks from 11 repositories, with GPT-5 and Opus 4.1 near 23% on the public set &mdash; a reminder that an instrument carries defects of its own until someone revises it, and that the board&rsquo;s named models lag the current frontier. <a href="#jevbench">JevBench</a> is the first outside measurement of the Jev class: 534 English decisions scored for intelligence, calibration, speed and cost, with Jev leading and the open SemIf and djev within a point. That narrow margin is the result; the caveat is that one combined score blends four properties a buyer would weigh differently.</p>
           <p>On Sep 22 the harness-tax result got its per-rollout numbers and a second, independent confirmation. Claude Fable 5 solved about <strong>97% of tasks across Claude Code, Codex CLI and Pi</strong> while Claude Code cost <strong>$1.33 per rollout against Pi&rsquo;s $0.67</strong>, and on SWE-bench Lite ran roughly <strong>2&times; Pi and 1.6&times; Codex</strong> with success rates inside two points. The mechanism is visible before the agent starts: <strong>Claude Code opens with over 27,000 tokens of context against Pi&rsquo;s 2,000</strong>. AWS then published the same shape from the vendor side &mdash; its <a href="agents.html">Strands Harness</a> scoring 69.7 for $56.29 on Terminal-Bench 2.1 where Claude Code scored 61.8 for $248.05, credited to truncating tool output at 1,500 tokens and compacting at 85%. Two studies, one conclusion: the harness is a context policy with a price tag, and the authors&rsquo; own advice is to measure cost per <em>solved</em> task on your workload, because setups with identical scores fail on different tasks.</p>
@@ -86,10 +87,10 @@
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
           <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">9</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
-          <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">1</span></a></li>
+          <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">2</span></a></li>
           <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">21</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">4</span></a></li>
-          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">7</span></a></li>
+          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">8</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">2</span></a></li>
           <li><a href="#speech-and-voice-benchmarks">Speech &amp; voice benchmarks <span class="n">3</span></a></li>
           <li><a href="#infrastructure-scale-benchmarks">Infrastructure-scale benchmarks <span class="n">1</span></a></li>
@@ -374,7 +375,15 @@
 
       <section class="topic-section" id="retrieval-benchmarks-at-web-scale">
         <h3>Retrieval benchmarks at web scale</h3>
-        <p class="lead">Retrieval evaluation has mostly been run at a size that flatters it. The one benchmark here is an attempt to fix that, and its interest is in how it was built &mdash; three independent relevance judgments, an affordable scoring scheme, and the first-stage retriever isolated from the answer it eventually supports.</p>
+        <p class="lead">Retrieval evaluation has mostly been run at a size that flatters it. The two benchmarks here attack that from opposite ends: one isolates the first-stage retriever under three independent relevance judgments, the other scores whole search agents on tasks memory cannot answer. Judge both on how they were built and graded.</p>
+
+        <article class="story" id="exa-atlas">
+          <span class="when">2026-10-09</span>
+          <h4><a href="https://exa.ai/blog/atlas-benchmark">Exa&rsquo;s ATLAS scores search agents on non-memorised, multi-domain tasks and finds even high-effort agents miss golden answers</a></h4>
+          <p>Exa released <strong>ATLAS</strong>, a benchmark of real-world tasks that need extensive web search across several domains, built so the answers cannot come from a model&rsquo;s memory and graded on completeness as well as accuracy, with what Exa calls a cost-effective grading process. Even high-effort agents miss a significant share of the golden answers, which Exa reads as room for improvement in the search engines underneath.</p>
+          <p>The benchmark comes from a search-API vendor and its conclusion points at search, so the grading scheme and the agents tested are what to check; the newsletter carries no per-agent scores.</p>
+          <div class="sources"><a href="https://exa.ai/blog/atlas-benchmark">Exa</a> &middot; <span class="via">via TLDR AI (Oct 9)</span></div>
+        </article>
 
         <article class="story" id="q2d-web">
           <span class="when">2026-09-10</span>
@@ -607,6 +616,14 @@
         <h3>Automated &amp; agentic eval systems</h3>
         <p class="lead">Two families that keep converging: agents that read your traces and report what failed, and benchmarks that put an agent in a real environment and score what it does there. Both replace a curated task list with something messier, and both are still checked against human judgment rather than replacing it.</p>
 
+        <article class="story" id="epoch-automation-reports">
+          <span class="when">2026-10-09</span>
+          <h4><a href="https://epoch.ai/publications/can-ai-automate-epoch">Epoch&rsquo;s Automation Reports: frontier models handle its well-defined tasks but cannot yet produce Epoch-quality work</a></h4>
+          <p>Epoch tested whether current models can do its own research job and published <strong>Automation Reports</strong>: frontier models performed reliably on well-defined tasks but failed on the open-ended parts that stand between that and full automation, while open-weight models struggled even on the well-defined ones.</p>
+          <p>The failure is specific &mdash; models could identify promising directions but lacked the judgment to follow them through, and did not pick up Epoch&rsquo;s standards even with ample reference material. The task set is Epoch&rsquo;s own work, which makes it a real environment and one nobody else can rerun.</p>
+          <div class="sources"><a href="https://epoch.ai/publications/can-ai-automate-epoch">Epoch AI</a> &middot; <span class="via">via TLDR AI (Oct 9)</span></div>
+        </article>
+
         <article class="story" id="dayjob-finance">
           <span class="when">2026-09-25</span>
           <h4><a href="https://surgehq.ai/benchmarks/dayjob-finance">Surge&rsquo;s DAYJOB: Finance asks agents to finish 80 whole finance assignments from supporting documents</a></h4>
@@ -622,16 +639,16 @@
           <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="terminal-bench-science">
-          <span class="when">2026-08-27</span>
-          <h4>Terminal-Bench-Science 0.1 evaluates agents on researchers&rsquo; own computational workflows</h4>
-          <p>A benchmark built from the actual computational workflows of working researchers rather than synthesized tasks. It is the benchmark Anthropic led on for Fable 5.1 (<strong>52.6%</strong>, against 24.7% for Fable 5 and 29.0% for Opus 5), which makes its construction worth recording independently.</p>
-          <p>Scores on a benchmark announced days before a model launch that leads on it deserve the provenance noted &mdash; not because anything improper is implied, but because this page exists to track exactly that kind of coupling.</p>
-          <div class="sources"><span class="via">via TLDR AI (Aug 28) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story unlinked" id="terminal-bench-science">
+            <span class="when">2026-08-27</span>
+            <h4>Terminal-Bench-Science 0.1 evaluates agents on researchers&rsquo; own computational workflows</h4>
+            <p>A benchmark built from the actual computational workflows of working researchers rather than synthesized tasks. It is the benchmark Anthropic led on for Fable 5.1 (<strong>52.6%</strong>, against 24.7% for Fable 5 and 29.0% for Opus 5), which makes its construction worth recording independently.</p>
+            <p>Scores on a benchmark announced days before a model launch that leads on it deserve the provenance noted &mdash; not because anything improper is implied, but because this page exists to track exactly that kind of coupling.</p>
+            <div class="sources"><span class="via">via TLDR AI (Aug 28) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="dig-bench">
             <span class="when">2026-08-18</span>
@@ -733,6 +750,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-09</span><span class="label"><a href="#exa-atlas">Exa&rsquo;s ATLAS scores search agents on non-memorised, multi-domain tasks and finds even high-effort agents miss golden answers</a></span></li>
+        <li><span class="date">2026-10-09</span><span class="label"><a href="#epoch-automation-reports">Epoch&rsquo;s Automation Reports: frontier models handle its well-defined tasks but cannot yet produce Epoch-quality work</a></span></li>
         <li><span class="date">2026-10-08</span><span class="label"><a href="#makarevych-eval-playbook">Makarevych&rsquo;s eval playbook: 34 of 60 replies passed, the judge scored 0.15 kappa, and 60 cases cannot see a 12-point drop</a></span></li>
         <li><span class="date">2026-10-08</span><span class="label"><a href="#humanitys-sixth-sense">Scale&rsquo;s Humanity&rsquo;s Sixth Sense tests intuitive visual reasoning on 522 tasks; GPT-6 Astra leads at 53.6%</a></span></li>
         <li><span class="date">2026-10-07</span><span class="label"><a href="#evidently">Evidently evaluates and monitors LLM apps, agents and classic ML models in one Apache-2.0 library</a></span></li>

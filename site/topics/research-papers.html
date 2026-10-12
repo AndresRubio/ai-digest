@@ -30,18 +30,18 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-10-05</div>
+      <div class="meta">Last updated: 2026-10-12</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today&rsquo;s cycle (Oct 2&ndash;5) put a human check back into three sections. BAAI&rsquo;s <a href="#arex">AREX</a> checks a provisional answer requirement by requirement and turns the gaps into its next search; fine-tuned on rule-flagged decision points, its 4B model beat an untuned 35B on five of six benchmarks and its 122B reached 82.5% on BrowseComp, three points under the same harness on Gemini Pro 3.1. Matthew Schwartz&rsquo;s <a href="#claude-shaped-science">BootLoops</a> was technically correct early and still needed domain experts to become relevant &mdash; the provenance section&rsquo;s split between a valid result and a useful one, seen from the other side. And <a href="#neuralink-50000-hours">Neuralink</a> pretrained its per-user decoders on 50,000 hours of unlabeled recordings, the archive-as-asset bet with no figure yet for what it bought.</p>
+        <p>The Oct 9&ndash;12 cycle added a judge that can itself be graded and widened a toolkit already here. Sakana AI&rsquo;s <a href="#sakana-llm-peer-review">peer-review paper</a> scores AI reviewers on errors planted on purpose rather than on agreement with humans, and its system catches 73% of core-claim mistakes &mdash; a ground truth the verifier section had lacked. <a href="#claude-shaped-science">BootLoops</a>, recorded on Oct 2 as technically correct but in need of domain experts, has since produced 36 preprints across 22 fields, which is the volume that makes the expert check the bottleneck.</p>
+        <p>The Oct 2&ndash;5 cycle put a human check back into three sections. BAAI&rsquo;s <a href="#arex">AREX</a> checks a provisional answer requirement by requirement and turns the gaps into its next search; fine-tuned on rule-flagged decision points, its 4B model beat an untuned 35B on five of six benchmarks and its 122B reached 82.5% on BrowseComp, three points under the same harness on Gemini Pro 3.1. Matthew Schwartz&rsquo;s <a href="#claude-shaped-science">BootLoops</a> was technically correct early and still needed domain experts to become relevant &mdash; the provenance section&rsquo;s split between a valid result and a useful one, seen from the other side. And <a href="#neuralink-50000-hours">Neuralink</a> pretrained its per-user decoders on 50,000 hours of unlabeled recordings, the archive-as-asset bet with no figure yet for what it bought.</p>
         <p>Two technical reports behind releases filed elsewhere belong to this page&rsquo;s reading list. DeepSeek&rsquo;s V4.1-Flash paper builds on Microsoft and Tsinghua&rsquo;s 2024 YOCO design, letting 36 of 40 layers borrow another layer&rsquo;s cache and storing it at 4 bits, for 890 bytes per token; Xiaomi&rsquo;s MiMo-V2.6 report multiplies each coding attempt&rsquo;s pass/fail reward by two checklist scores, after finding a test-only reward taught the model to let errors pass silently. Both are recorded on <a href="model-releases.html">Model releases</a>, and neither has been reproduced outside its lab.</p>
         <p>The Oct 2 addition measured the state-carrying idea the attention section has been waiting on. <a href="#lift">LIFT</a> feeds a transformer&rsquo;s hidden state into the next generation step rather than squeezing it through the emitted token, keeps training parallel by borrowing those states from an off-the-shelf model&rsquo;s predictions, and beats token-matched transformers from 135M to 1B parameters on language modelling, reasoning and procedural tasks. Unlike the <a href="#recurrent-looped-transformer">Recurrent Looped Transformer</a> beside it, it reports a comparison; what remains open is scale, and the switch from borrowed states in training to its own at inference.</p>
         <p>The Sep 28 addition widened the provenance section beyond Lean. Anthropic reports that <a href="#claude-nine-loops">Claude Fable 5.1 completed a nine-loop physics calculation</a> by two methods a month after a physicist challenged the labs, and Lance Dixon validated it independently. An outside expert&rsquo;s check confirms the number but, like a proof assistant, says nothing about how much of the method was the model&rsquo;s; the section now holds three results and two kinds of checker.</p>
-        <p>The Sep 23 addition extended the provenance thread rather than resolving it. OpenAI now says the model behind the <a href="#navier-stokes-proof">Navier&ndash;Stokes claim</a> also solved more than 100 open mathematical problems, and it has convened an independent advisory group of mathematicians to assess and communicate such results &mdash; review in form, but by a body OpenAI appointed, beside a Clay process that still requires publication, a two-year wait and expert acceptance.</p>
-        
 <details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 23 addition extended the provenance thread rather than resolving it. OpenAI now says the model behind the <a href="#navier-stokes-proof">Navier&ndash;Stokes claim</a> also solved more than 100 open mathematical problems, and it has convened an independent advisory group of mathematicians to assess and communicate such results &mdash; review in form, but by a body OpenAI appointed, beside a Clay process that still requires publication, a two-year wait and expert acceptance.</p>
           <p>The previous cycle kept three architectures honest by holding something constant. Linkup trained a dense, a late-interaction and a sparse encoder on identical data and published the gaps: <strong>SPARSEUP</strong> at 149M parameters scores <strong>56.4 nDCG@10 on BEIR-13</strong>, trailing its own dense model by 1.52 points and the late-interaction one by 2.5, and reaches <strong>over 97% recall in about 380 microseconds per query</strong> on a Seismic index. Fixing the data is what turns those into architecture costs instead of leaderboard noise, and 1.52 points is small enough that an inverted index usually wins the argument. The figures are Linkup&rsquo;s own and BEIR-13 is a subset, so the &ldquo;best public sparse encoder under 150M&rdquo; claim describes a narrow bracket.</p>
           <p>Sean Goedecke did the same thing to <a href="model-releases.html">Jev</a> without running an experiment. Batch prompts that each generate one token, constrain them with structured output, and any LLM returns typed decisions in parallel &mdash; which makes the System One advantage quantitative rather than categorical, and hands this page the baseline every typed-decision claim should now be measured against. The residual difference is real and worth naming: the batched version still pays full prefill per prompt, and removing that is precisely what a direct-logit design buys. Goodfire took the opposite tack on a harder target, reporting <strong>a clear activation signal accompanying reward hacking</strong> that could support monitors at scale. Output-level checking is structurally blind to a reward hack, since a reward hack is output that passes the check, so watching the activations is the right place to look; whether the signal survives a model optimised against the probe is the unanswered question.</p>
           <p>The provenance thread moved rather than closed. <a href="#navier-stokes-proof">OpenAI&rsquo;s Navier&ndash;Stokes claim</a> now rests on a <strong>166-page paper</strong> plus agent-written Lean code from an undisclosed model, and on Sep 10 OpenAI narrowed its own statement: Buckmaster&rsquo;s Codex prompts <em>over the two months before the announcement</em> could not have influenced the system, including through training &mdash; which leaves the prior year of prompts unaddressed. Clay requires publication, a two-year wait and expert acceptance, and OpenAI says it is not seeking the prize. Beside it, Anthropic put a number on its own side of the same question, saying <strong>Claude leads 26% of its R&amp;D with over 30,000 agents active at once</strong>; the denominator is undefined, but publishing an oversight metric next to a productivity metric is the concession that makes the pair worth recording.</p>
@@ -80,7 +80,7 @@
           <li><a href="#rl-on-agents">RL on agents <span class="n">4</span></a></li>
           <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">4</span></a></li>
           <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">4</span></a></li>
-          <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">3</span></a></li>
+          <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">4</span></a></li>
           <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
           <li><a href="#evaluate-then-act-decompositions">Evaluate-then-act decompositions <span class="n">3</span></a></li>
         </ul>
@@ -369,7 +369,8 @@
           <span class="when">2026-10-02</span>
           <h4><a href="https://www.anthropic.com/research/claude-shaped-science">&ldquo;Claude-shaped science&rdquo;: BootLoops came out technically correct and still needed domain experts to make it relevant</a></h4>
           <p>Physicist Matthew Schwartz describes picking scientific problems whose bottleneck is coding and data parsing, and using Claude on them to build <strong>BootLoops</strong>, a toolkit for quantitative calculations across fields from ecology to population genetics. The finding he reports is the split this section records: the output was technically correct early, and making it scientifically relevant still took domain experts.</p>
-          <div class="sources"><a href="https://www.anthropic.com/research/claude-shaped-science">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 2)</span></div>
+          <p><em>Updated Oct 12:</em> researchers have since released <strong>36 preprints</strong> produced with BootLoops across <strong>22 scientific fields</strong> &mdash; from dating sunspots to analysing government health policy and a medieval manuscript &mdash; using it to carry a shared mathematical structure from one field to problems in another.</p>
+          <div class="sources"><a href="https://www.anthropic.com/research/claude-shaped-science">Anthropic</a> &middot; <a href="https://www.science.org/content/article/problems-22-scientific-fields-had-solutions-hiding-plain-sight-ai-has-found-them">Science</a> &middot; <span class="via">via TLDR AI (Oct 2), TLDR (Oct 12)</span></div>
         </article>
 
         <article class="story" id="claude-nine-loops">
@@ -403,7 +404,15 @@
 
       <section class="topic-section" id="verifiers-and-runtime-monitors">
         <h3>Verifiers &amp; runtime monitors</h3>
-        <p class="lead">If an agent loop needs something that can judge partial progress, the judge becomes the component worth measuring. Both entries make one cheaper &mdash; one by dropping training, one by dropping the score history. Ask what the cheaper check stops catching, and whether either paper says.</p>
+        <p class="lead">If an agent loop needs something that can judge partial progress, the judge becomes the component worth measuring. Most entries make one cheaper &mdash; by dropping training or the score history &mdash; and one makes it checkable, by grading it against errors planted on purpose. Ask what the cheaper check stops catching, and whether the paper says.</p>
+
+        <article class="story" id="sakana-llm-peer-review">
+          <span class="when">2026-10-10</span>
+          <h4><a href="https://arxiv.org/abs/2610.11087">Sakana AI grades LLM peer reviewers on errors planted on purpose, and its system catches 73% of core-claim mistakes</a></h4>
+          <p>A TMLR paper from Sakana AI evaluates AI reviewers by whether they find mistakes deliberately planted in papers, rather than by how closely they match human reviews, and reports that its system catches <strong>73% of planted core-claim errors</strong>.</p>
+          <p>Planting errors gives the judge a ground truth that agreement with human reviewers never had; what the score cannot say is how planted mistakes compare with the ones authors make by accident, and the missed 27% is the part to read.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.11087">arXiv</a> &middot; <a href="https://www.marktechpost.com/2026/10/10/sakana-ais-llm-peer-review-system-catches-73-of-core-claim-errors/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 10)</span></div>
+        </article>
 
         <article class="story" id="goodfire-reward-hacking-monitors">
           <span class="when">2026-09-18</span>
@@ -421,13 +430,17 @@
           <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="crc-monitor">
-          <span class="when">2026-09-04</span>
-          <h4>CRC Monitor &mdash; one calibrated safety score matches a whole history of them</h4>
-          <p>Mona Schirmer, Metod Jazbec and colleagues (Amsterdam, Wisconsin-Madison, Johns Hopkins) show that streaming safety monitors analysing a <em>series</em> of per-step scores can be replaced by a single check: compare the latest step&rsquo;s verifier score against a threshold calibrated by conformal risk control, padding the measured false-alarm rate so the guarantee holds on data the calibration set never saw.</p>
-          <p>On FineHarm at a 20% user-set false-alarm budget it caught 99.5% of harmful outputs, matching the multi-score baseline while flagging after 14% of the conversation. On MATH it detected ~80% of incorrect solutions, equal to the baseline, after 35% of the reasoning rather than 40%. The one clear loss is on Anthropic Red Teaming (32% detected against 54%) &mdash; but it alarms after 26% of the conversation instead of 55%, which is the trade the paper is actually proposing: catch less, catch it far earlier, and pay less inference to do it.</p>
-          <div class="sources"><span class="via">via The Batch (Sep 4) &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="crc-monitor">
+            <span class="when">2026-09-04</span>
+            <h4>CRC Monitor &mdash; one calibrated safety score matches a whole history of them</h4>
+            <p>Mona Schirmer, Metod Jazbec and colleagues (Amsterdam, Wisconsin-Madison, Johns Hopkins) show that streaming safety monitors analysing a <em>series</em> of per-step scores can be replaced by a single check: compare the latest step&rsquo;s verifier score against a threshold calibrated by conformal risk control, padding the measured false-alarm rate so the guarantee holds on data the calibration set never saw.</p>
+            <p>On FineHarm at a 20% user-set false-alarm budget it caught 99.5% of harmful outputs, matching the multi-score baseline while flagging after 14% of the conversation. On MATH it detected ~80% of incorrect solutions, equal to the baseline, after 35% of the reasoning rather than 40%. The one clear loss is on Anthropic Red Teaming (32% detected against 54%) &mdash; but it alarms after 26% of the conversation instead of 55%, which is the trade the paper is actually proposing: catch less, catch it far earlier, and pay less inference to do it.</p>
+            <div class="sources"><span class="via">via The Batch (Sep 4) &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="pretraining-on-a-consumer-budget">
@@ -474,6 +487,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-10</span><span class="label"><a href="#sakana-llm-peer-review">Sakana AI grades LLM peer reviewers on errors planted on purpose, and its system catches 73% of core-claim mistakes</a></span></li>
         <li><span class="date">2026-10-05</span><span class="label"><a href="#neuralink-50000-hours">Neuralink pretrains its decoders on 50,000 hours of unlabeled neural data</a></span></li>
         <li><span class="date">2026-10-02</span><span class="label"><a href="#claude-shaped-science">&ldquo;Claude-shaped science&rdquo;: BootLoops came out technically correct and still needed domain experts</a></span></li>
         <li><span class="date">2026-10-02</span><span class="label"><a href="#arex">BAAI&rsquo;s AREX checks answers requirement by requirement; a fine-tuned 4B beats an untuned 35B</a></span></li>

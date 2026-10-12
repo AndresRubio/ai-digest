@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-09</div>
+      <div class="meta">Last updated: 2026-10-12</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 9&ndash;12 cycle put a governed enterprise agent beside the first measurement of agent teams. Google Cloud&rsquo;s <a href="#gemini-agent">Gemini Agent</a> is one agent behind one API that routes across Gemini and Claude, keeps four kinds of memory and stops at a per-project spend cap until a human resumes it &mdash; governance described, not measured. Vals AI&rsquo;s <a href="#vals-multi-agent-vibe-code-bench">Vibe Code Bench test</a> is the number the multi-agent section lacked, and it is a null: teams cost 1.8&ndash;5.1&times; more and scored no better except in one configuration. Two harness pieces arrived, one from research and one from Microsoft: <a href="#hyset">HYSET</a> chooses tools as a compatible set and lifts ToolBench completion from 61.8% to 69.9%, and <a href="#quicksand">Quicksand</a> makes a snapshotable QEMU VM the agent sandbox without root or Docker. Harvey&rsquo;s <a href="#harvey-wake-sleep">wake-sleep</a> agent adds a memory datapoint &mdash; lessons distilled from graded trajectories raised held-out all-pass from 2.9% to 15.7% &mdash; reported in a post rather than a paper.</p>
         <p>The Oct 8 cycle moved two pieces of the harness out of application code. SpaceXAI turned <a href="#grok-bot-model-router">Grok Bot</a> into a router that keeps simple requests on its own small models and sends reasoning to Claude Opus 5.5, images to Midjourney and music to Suno &mdash; a personal agent treating rival labs&rsquo; models as interchangeable tools, which is the harness-over-model argument this page has made from the build side, now made by a product. Anthropic&rsquo;s <a href="#claude-sdk-browser-use">Python and TypeScript SDKs</a> now run the computer- and browser-use action loop against a driver such as Browserbase, in beta, so the glue a computer-use agent most often gets wrong becomes vendor code whose behaviour can change between versions.</p>
         <p>The Oct 7 cycle put authentication under the personal agent. Meta and Sierra&rsquo;s <a href="#personal-agent-protocol">Personal Agent Protocol</a> is an OAuth-based open standard for a consumer&rsquo;s agent to act on a business through its site, APIs or agents, with the consumer scoping access, the company bounding actions and seeing what was done, and Shopify, Stripe and Walmart named as backers. It is the trust decision this page&rsquo;s extension section has treated as unresolved, answered by the parties on both ends of a Muse transaction rather than by the MCP working group, and published so far as a spec and a partner list with no conformance test. The decision models that agents increasingly route through gained a frontier price &mdash; OpenAI&rsquo;s Decisions API at $0.10 per million input tokens &mdash; on <a href="model-releases.html">Model releases</a>.</p>
         <p>The Oct 6 cycle was memory that reorganizes itself and steering exposed as an API. Cognition&rsquo;s <a href="#devin-memory-dreaming">Devin Memory</a> carries corrections and project learnings across sessions, and Dreaming periodically deduplicates them, links each to the session it came from and derives new knowledge &mdash; the provenance link answers this page&rsquo;s inspection question, and the derivation step is where a store can start holding facts nobody stated. Cursor&rsquo;s <a href="#cursor-sdk-steer">SDK update</a> puts mid-turn steering behind <code>run.steer()</code>, backgrounds busy subagents, and lets tools be tagged read-only or destructive, a declaration the model reads rather than a permission the runtime enforces.</p>
         <p>The Oct 2&ndash;5 cycle was about what survives a long run and who controls it. Earendil&rsquo;s <a href="#pi-durable">Pi Durable</a> lets an agent keep an indefinitely long conversation, survive internal and external failures and take steering from several people at once, with no recovery figure attached. DeepSeek&rsquo;s <a href="#deepseek-harness-v0-2">Harness v0.2</a> goes the other way on control: desktop installers, every layer a plugin, and a Creator mode in which the agent writes and installs its own plugins, beside a self-reported 82.7 on Terminal-Bench 2.1 and an experimental layer for Claude Code mods. An agent that rewrites its own harness is exactly what this page&rsquo;s governance section has no instrument for yet.</p>
-        <p>The Oct 1 cycle was OpenAI taking the always-on agent slot that Muse and Grok Bot opened. <a href="#openai-dots">dots</a> give each GPT-6 Astra agent its own cloud computer and browser, reach 4,000-plus apps, and gate risky actions with Custom Rules and auto-review &mdash; and inadvertently posted images for 53 users the day before launch, this page&rsquo;s containment question arriving on schedule. <a href="#chatgpt-mcp-events">MCP Events</a> lets ChatGPT react to pushes from an MCP server, but implements only webhook delivery from the draft spec, without the <code>gap</code> notification that tells a client it missed something. And <a href="#rrsi">RRSI</a> is now open source with its split-level numbers: six points on the Terminal-Bench split it evolved on, 1.8 on held-out SWE-bench Verified &mdash; transfer, but smaller than the headline.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 1 cycle was OpenAI taking the always-on agent slot that Muse and Grok Bot opened. <a href="#openai-dots">dots</a> give each GPT-6 Astra agent its own cloud computer and browser, reach 4,000-plus apps, and gate risky actions with Custom Rules and auto-review &mdash; and inadvertently posted images for 53 users the day before launch, this page&rsquo;s containment question arriving on schedule. <a href="#chatgpt-mcp-events">MCP Events</a> lets ChatGPT react to pushes from an MCP server, but implements only webhook delivery from the draft spec, without the <code>gap</code> notification that tells a client it missed something. And <a href="#rrsi">RRSI</a> is now open source with its split-level numbers: six points on the Terminal-Bench split it evolved on, 1.8 on held-out SWE-bench Verified &mdash; transfer, but smaller than the headline.</p>
           <p>The Sep 30 cycle gave the agent an identity of its own. Manus&rsquo;s <a href="#manus-2-0">Cue</a> assigns each agent an email address, a phone number, a wallet and a computer, and <a href="#fo-personal-agent">Fo</a> adds a voice and a credit card, routing to human experts when software gets stuck and reporting 71% task completion on evals nobody else has seen. Neither states a spending boundary, which is the governor this page judges such agents on. In retrieval, <a href="#gpt-researcher-jev-context-filter">GPT Researcher</a> swapped embedding similarity for Jev as its default context filter and keeps 73% of relevant passages against 46% at the same cost, on its own benchmark. The phone an agent can now drive, Tapkit, is on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
           <p>The Sep 29 cycle was the open computer-use model and the org chart above the agents. H Company&rsquo;s <a href="#holo4">Holo4</a> puts open weights at <strong>85.2% on OSWorld for about $0.08 a task</strong>, one point above its Qwen3.8-27B base and twenty points behind Opus 5.5 on OSWorld 2.0&rsquo;s long workflows &mdash; near parity on short tasks, still losing on the horizon. <a href="#manus-2-0">Manus 2.0</a> reports 23% fewer tokens and 32% lower cost from its Cascade architecture in one configuration, and moves automations from schedules to events. <a href="#paperclip">Paperclip</a> runs Claude Code, Codex, Cursor and OpenClaw agents as a company, with roles, budgets and approvals, and publishes no figure for what the approvals cost. The other side of Muse&rsquo;s reach is on <a href="safety-and-policy.html">Safety &amp; policy</a>: two privacy incidents in which the agent stayed inside its permissions and still gave out a home address.</p>
           <p>The Sep 28 cycle is agents talking to agents, and what the wiring leaves open. CMU&rsquo;s <a href="#mplm">MPLM</a> removes the coordinator entirely, letting threads message each other and solving 100% of 9&times;9 Sudoku in about 15 seconds against 93% in 60 &mdash; but only because the communication pattern is known in advance. <a href="#agent-tincan">Agent Tincan</a> does the same across products, relaying requests between Grok Bot, Muse and coding agents over Tailscale, and Anthropic&rsquo;s <a href="#project-swap">Project Swap</a> measures the delegate itself: agents briefed in five minutes matched their employees&rsquo; preferences on 61% of pairs. Google shipped both sides of this page&rsquo;s trust question in one week &mdash; <a href="#api-gateway-mcp">API Gateway</a> turns REST into MCP with discovery unauthenticated by default, and the <a href="#antigravity-local-models">Antigravity SDK</a> now runs on local Gemma 4. <a href="#managed-deep-agents-0-8">Managed Deep Agents 0.8</a> adds user-owned credentials, and <a href="#devin-fusion">Devin Fusion</a> finally has independent numbers: a tie with Claude Code on Fable 5.1 at 36% lower cost per task.</p>
@@ -85,17 +86,17 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#agent-memory">Agent memory <span class="n">9</span></a></li>
+          <li><a href="#agent-memory">Agent memory <span class="n">10</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">19</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">24</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">26</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">11</span></a></li>
-          <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">11</span></a></li>
+          <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">12</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">2</span></a></li>
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">9</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">7</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">7</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
-          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">12</span></a></li>
+          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">13</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">7</span></a></li>
         </ul>
       </nav>
@@ -103,6 +104,14 @@
       <section class="topic-section" id="agent-memory">
         <h3>Agent memory</h3>
         <p class="lead">The axis that matters is what gets remembered &mdash; the user, or the work. Three answers to where it lives: a file you can read, a wiki the agent consolidates, or the offload decision pushed into the weights (<a href="model-releases.html">ContextPilot-14B</a>). Judge entries on whether a human can inspect and an administrator can restrict what is stored.</p>
+
+        <article class="story" id="harvey-wake-sleep">
+          <span class="when">2026-10-09</span>
+          <h4><a href="https://x.com/nikogrupen/status/2108226990792900876">Harvey&rsquo;s wake-sleep agent distils graded trajectories into lessons, raising held-out all-pass from 2.9% to 15.7%</a></h4>
+          <p>Harvey described a <strong>wake-sleep</strong> agent that, after working 110 legal tasks, distils its graded trajectories into reusable lessons instead of updating weights; on held-out tasks its all-pass rate rose from <strong>2.9% to 15.7%</strong>.</p>
+          <p>It is a work-memory answer, with lessons written from graded outcomes rather than from the agent&rsquo;s own sense of what went well. The figures come from a post on X, and the base model, the grader and the definition of all-pass are not given in the newsletter.</p>
+          <div class="sources"><a href="https://x.com/nikogrupen/status/2108226990792900876">Post on X</a> &middot; <span class="via">via TLDR AI (Oct 9)</span></div>
+        </article>
 
         <article class="story" id="devin-memory-dreaming">
           <span class="when">2026-10-06</span>
@@ -119,15 +128,15 @@
           <div class="sources"><a href="https://www.deeplearning.ai/the-batch/issue-371#even-agents-benefit-from-reminders">The Batch</a> &middot; <span class="via">via The Batch (Sep 18)</span></div>
         </article>
 
-        <article class="story unlinked" id="database-backed-agent-memory">
-          <span class="when">2026-09-09</span>
-          <h4>The least fashionable agent memory system is a database you already run</h4>
-          <p>Ben Dicken&rsquo;s argument against building another retrieval layer: put messages, logs and operational context in Postgres, SQLite, MySQL or DuckDB, then constrain the agent with views, scoped credentials, result caps and short timeouts. The claim is not that databases retrieve better; it is that the hard part was always governance, and a database is the one component in this stack that already has inspectable, enforceable limits, with agents already fluent in SQL. It is a design position rather than a released artifact, but it names the property that distinguishes the two approaches &mdash; and set against <a href="#memoryfields">Memoryfields</a> and <a href="#funes">funes</a> it is the same instinct arriving by a third route, toward formats a human can read and an administrator can restrict.</p>
-          <div class="sources"><span class="via">via Unwind AI (Sep 9) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story unlinked" id="database-backed-agent-memory">
+            <span class="when">2026-09-09</span>
+            <h4>The least fashionable agent memory system is a database you already run</h4>
+            <p>Ben Dicken&rsquo;s argument against building another retrieval layer: put messages, logs and operational context in Postgres, SQLite, MySQL or DuckDB, then constrain the agent with views, scoped credentials, result caps and short timeouts. The claim is not that databases retrieve better; it is that the hard part was always governance, and a database is the one component in this stack that already has inspectable, enforceable limits, with agents already fluent in SQL. It is a design position rather than a released artifact, but it names the property that distinguishes the two approaches &mdash; and set against <a href="#memoryfields">Memoryfields</a> and <a href="#funes">funes</a> it is the same instinct arriving by a third route, toward formats a human can read and an administrator can restrict.</p>
+            <div class="sources"><span class="via">via Unwind AI (Sep 9) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="funes">
             <span class="when">2026-09-04</span>
@@ -327,6 +336,22 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="hyset">
+          <span class="when">2026-10-09</span>
+          <h4><a href="https://arxiv.org/abs/2607.25718">HYSET picks an agent&rsquo;s tools as a set rather than one by one, lifting ToolBench task completion from 61.8% to 69.9%</a></h4>
+          <p>Researchers at Shanghai Jiao Tong and Hong Kong Polytechnic universities proposed <strong>HYSET</strong>, a small trained scorer over a frozen Qwen2.5-1.5B query encoder that builds candidate tool sets and ranks them by pairwise compatibility plus relevance to the query, instead of ranking each tool on its own. Over ToolBench&rsquo;s roughly 14,000 tools it reaches <strong>88.6% Recall@5</strong> against 81.4% for ToolGen, and agents given its sets resolved <strong>69.9% of tasks</strong> by human judgment against 61.8% with ToolLLaMA-Retriever.</p>
+          <p>The agent itself is untouched, and training rewarded any set that completed the task rather than only the labelled one; all of it is measured on a single benchmark.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2607.25718">arXiv</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-374#pick-the-right-tools-for-the-right-job">The Batch</a> &middot; <span class="via">via The Batch (Oct 9)</span></div>
+        </article>
+
+        <article class="story" id="quicksand">
+          <span class="when">2026-10-09</span>
+          <h4><a href="https://github.com/microsoft/quicksand">Microsoft&rsquo;s Quicksand launches and snapshots QEMU VMs from async Python to sandbox agents, with no root and no Docker</a></h4>
+          <p><strong>Quicksand</strong> is an async Python API for launching, controlling and snapshotting QEMU virtual machines, built to sandbox AI agents. It ships pre-built Ubuntu and Alpine images, runs on x86_64 and ARM64 across macOS, Linux and Windows, and needs neither root privileges nor Docker.</p>
+          <p>A full VM is a stronger boundary than a container, and snapshots make rolling back a bad agent action a primitive rather than a rebuild; the newsletter gives no boot-time or overhead figure, which is the cost a VM sandbox has to justify.</p>
+          <div class="sources"><a href="https://github.com/microsoft/quicksand">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 9)</span></div>
+        </article>
+
         <article class="story" id="grok-bot-model-router">
           <span class="when">2026-10-08</span>
           <h4><a href="https://thenextweb.com/news/grok-bot-claude-opus-midjourney-suno-musk">Grok Bot becomes a router that sends hard tasks to Claude Opus 5.5, Midjourney and Suno</a></h4>
@@ -334,22 +359,22 @@
           <div class="sources"><a href="https://thenextweb.com/news/grok-bot-claude-opus-midjourney-suno-musk">The Next Web</a> &middot; <span class="via">via TLDR AI (Oct 8), The Code (Oct 8)</span></div>
         </article>
 
-        <article class="story" id="cursor-sdk-steer">
-          <span class="when">2026-10-06</span>
-          <h4><a href="https://cursor.com/docs/sdk/changelog">Cursor&rsquo;s SDK adds run.steer(), background subagents and read-only/destructive tool tags</a></h4>
-          <p>Cursor&rsquo;s SDK update exposes <code>run.steer()</code> to insert notes into an agent mid-turn, lets busy subagents move to the background and report back to the main agent, and lets developers tag custom tools as <strong>read-only or destructive</strong> so the model can tell a lookup from a delete. It brings to the programmatic surface the mid-run steering Cursor&rsquo;s <a href="#cursor-cloud-agent-triggers">cloud agents</a> gained in August; the tool tag is a declaration the model reads, not an enforced permission.</p>
-          <div class="sources"><a href="https://cursor.com/docs/sdk/changelog">Cursor SDK changelog</a> &middot; <span class="via">via The Code (Oct 6)</span></div>
-        </article>
-
-        <article class="story" id="deepseek-harness-v0-2">
-          <span class="when">2026-10-03</span>
-          <h4><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness v0.2 ships desktop apps and a Creator mode in which the agent writes its own plugins</a></h4>
-          <p>DeepSeek Harness v0.2 adds installers for Apple-silicon Macs and 64-bit Windows (or <code>npx @deepseek-ai/dsh web</code>) to an MIT-licensed harness where every layer, the agent loop included, is a plugin; <strong>Creator mode</strong> lets the agent write and install its own plugins, and the repository sits at about <strong>240,000 stars</strong>. DeepSeek reports <strong>82.7 on Terminal-Bench 2.1</strong> for V4-Flash-0731 in its Minimal mode, any OpenAI-compatible endpoint works, and v0.2.1-alpha.1 adds an experimental layer for Claude Code mods with no compatibility promise.</p>
-          <div class="sources"><a href="https://github.com/deepseek-ai/deepseek-harness">GitHub</a> &middot; <a href="https://www.deepseek.com/en/harness/">DeepSeek</a> &middot; <span class="via">via MarkTechPost (Oct 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (21)</summary>
+          <summary>Earlier in this section (23)</summary>
+
+          <article class="story" id="cursor-sdk-steer">
+            <span class="when">2026-10-06</span>
+            <h4><a href="https://cursor.com/docs/sdk/changelog">Cursor&rsquo;s SDK adds run.steer(), background subagents and read-only/destructive tool tags</a></h4>
+            <p>Cursor&rsquo;s SDK update exposes <code>run.steer()</code> to insert notes into an agent mid-turn, lets busy subagents move to the background and report back to the main agent, and lets developers tag custom tools as <strong>read-only or destructive</strong> so the model can tell a lookup from a delete. It brings to the programmatic surface the mid-run steering Cursor&rsquo;s <a href="#cursor-cloud-agent-triggers">cloud agents</a> gained in August; the tool tag is a declaration the model reads, not an enforced permission.</p>
+            <div class="sources"><a href="https://cursor.com/docs/sdk/changelog">Cursor SDK changelog</a> &middot; <span class="via">via The Code (Oct 6)</span></div>
+          </article>
+
+          <article class="story" id="deepseek-harness-v0-2">
+            <span class="when">2026-10-03</span>
+            <h4><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness v0.2 ships desktop apps and a Creator mode in which the agent writes its own plugins</a></h4>
+            <p>DeepSeek Harness v0.2 adds installers for Apple-silicon Macs and 64-bit Windows (or <code>npx @deepseek-ai/dsh web</code>) to an MIT-licensed harness where every layer, the agent loop included, is a plugin; <strong>Creator mode</strong> lets the agent write and install its own plugins, and the repository sits at about <strong>240,000 stars</strong>. DeepSeek reports <strong>82.7 on Terminal-Bench 2.1</strong> for V4-Flash-0731 in its Minimal mode, any OpenAI-compatible endpoint works, and v0.2.1-alpha.1 adds an experimental layer for Claude Code mods with no compatibility promise.</p>
+            <div class="sources"><a href="https://github.com/deepseek-ai/deepseek-harness">GitHub</a> &middot; <a href="https://www.deepseek.com/en/harness/">DeepSeek</a> &middot; <span class="via">via MarkTechPost (Oct 5)</span></div>
+          </article>
 
           <article class="story" id="unreal-agent">
             <span class="when">2026-09-23</span>
@@ -605,6 +630,14 @@
         <h3>Meta-orchestration &amp; governance</h3>
         <p class="lead">A layer above individual agents: composing them, governing them, and knowing what came back. Two instruments compete &mdash; enforcement in flight, which costs roughly one legitimate task in eight, and anomaly detection afterwards, which costs nothing at runtime and sees only what the harness logged. Judge entries on which of the two they buy.</p>
 
+        <article class="story" id="gemini-agent">
+          <span class="when">2026-10-08</span>
+          <h4><a href="https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026">Google Cloud&rsquo;s Gemini Agent puts one agent behind one API, routing across Gemini and Claude with per-project spend caps</a></h4>
+          <p>Google Cloud launched <strong>Gemini Agent</strong>, one agent for enterprise work behind a single prompt box and API that answers questions, does knowledge work, generates media and writes and runs code, from web, CLI, Workspace, Microsoft 365 and Slack. It routes across Gemini and Claude today, with other models &ldquo;planned&rdquo;; keeps <strong>four memory types</strong> (session, semantic, procedural, episodic) across tasks; gives coworker agents their own Workspace identity with email, calendar and Drive; and pauses an agent at a <strong>per-project spend cap</strong> until a human resumes it.</p>
+          <p>The agent is the product and the model a routing decision, the position <a href="#cursor-projects">Cursor Projects</a> and OpenAI&rsquo;s <a href="#openai-dots">Dots</a> reached from other directions. The governance controls are what to judge it on, and they are described rather than measured.</p>
+          <div class="sources"><a href="https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026">Google Cloud</a> &middot; <a href="https://www.marktechpost.com/2026/10/08/google-cloud-launches-gemini-agent-one-universal-agent-for-enterprise-work/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 9), MarkTechPost (Oct 9)</span></div>
+        </article>
+
         <article class="story" id="paperclip">
           <span class="when">2026-09-28</span>
           <h4><a href="https://github.com/paperclipai/paperclip">Paperclip runs a team of coding agents as an org chart, with roles, budgets and approvals in one dashboard</a></h4>
@@ -621,16 +654,16 @@
           <div class="sources"><a href="https://developers.googleblog.com/agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform/">Google Developers Blog</a> &middot; <span class="via">via TLDR AI (Sep 17)</span></div>
         </article>
 
-        <article class="story" id="cursor-projects">
-          <span class="when">2026-09-11</span>
-          <h4><a href="https://cursor.com/blog/projects">Cursor Projects &mdash; a persistent coordinator that delegates to thousands of subagents</a></h4>
-          <p>Projects is a long-lived coordinator agent that holds months of context, delegates to large numbers of subagents, and starts work from Slack messages, schedules or pull requests rather than waiting for a prompt. Each Project runs on its own dedicated cloud machine, so work continues after the laptop is closed; a coordinator agent routes tasks to subagents on demand and they share memory, plans and artifacts, which is what makes the months-of-context claim mean more than a long transcript.</p>
-          <p>Cursor reports that new users merge <strong>30% more PRs</strong> with it and that people who work primarily through Projects merge <strong>six times as many</strong>, and puts the ceiling at close to 100 PRs a day. All of those are Cursor&rsquo;s own figures and they count merges, not correctness &mdash; the same measurement problem the <a href="tools-and-devex.html">review-throughput</a> numbers have.</p>
-          <div class="sources"><a href="https://cursor.com/blog/projects">Cursor blog</a> &middot; <span class="via">via Unwind AI (Sep 11), The Code (Sep 14)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (9)</summary>
+
+          <article class="story" id="cursor-projects">
+            <span class="when">2026-09-11</span>
+            <h4><a href="https://cursor.com/blog/projects">Cursor Projects &mdash; a persistent coordinator that delegates to thousands of subagents</a></h4>
+            <p>Projects is a long-lived coordinator agent that holds months of context, delegates to large numbers of subagents, and starts work from Slack messages, schedules or pull requests rather than waiting for a prompt. Each Project runs on its own dedicated cloud machine, so work continues after the laptop is closed; a coordinator agent routes tasks to subagents on demand and they share memory, plans and artifacts, which is what makes the months-of-context claim mean more than a long transcript.</p>
+            <p>Cursor reports that new users merge <strong>30% more PRs</strong> with it and that people who work primarily through Projects merge <strong>six times as many</strong>, and puts the ceiling at close to 100 PRs a day. All of those are Cursor&rsquo;s own figures and they count merges, not correctness &mdash; the same measurement problem the <a href="tools-and-devex.html">review-throughput</a> numbers have.</p>
+            <div class="sources"><a href="https://cursor.com/blog/projects">Cursor blog</a> &middot; <span class="via">via Unwind AI (Sep 11), The Code (Sep 14)</span></div>
+          </article>
 
           <article class="story" id="pizza-bot">
             <span class="when">2026-09-11</span>
@@ -688,7 +721,6 @@
             <p>MarkTechPost&rsquo;s June 2026 agent-stack map argues the new battleground is the layer <em>above</em> the model: harnesses, orchestrators and governance tools that compose several agents into one controllable system, with <a href="#databricks-omnigent">Omnigent</a> for meta-orchestration, OpenRouter&rsquo;s Fusion for multi-model fusion and Bastion for agent isolation all marked new atop mature coding agents and base models. The signal it reads is investment moving from the base layer to the control layer &mdash; which reframes the harness-commoditization argument: if the single-agent harness becomes a commodity component, the new differentiator is the orchestration and governance layer stacked on top of it.</p>
             <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -941,6 +973,14 @@
         <h3>Multi-agent orchestration</h3>
         <p class="lead">Small teams of agents specialised by role &mdash; product, research, dev, eval &mdash; or by station, and the two venues they coordinate in: the team&rsquo;s own chat channel, or a fixed pipeline. The unsolved part is not dispatch but reconciliation &mdash; many agents each correct about overlapping regions of one codebase. Judge entries on where verification sits.</p>
 
+        <article class="story" id="vals-multi-agent-vibe-code-bench">
+          <span class="when">2026-10-12</span>
+          <h4><a href="https://www.vals.ai/blogs/multi-agent-vibe-code-bench">Vals AI: agent teams cost 1.8&ndash;5.1&times; more on Vibe Code Bench and mostly score no better than one agent</a></h4>
+          <p>Vals AI ran GPT-6 Sol and Claude Opus 5.5 on <strong>Vibe Code Bench</strong> as single agents and as teams, at medium and maximum reasoning effort. Teams cost <strong>1.8 to 5.1 times as much</strong>, and the score difference was not statistically significant in any configuration except Sol at medium effort.</p>
+          <p>It is a measured null for this section: whether a team paid depended on model, task and budget, and raising one agent&rsquo;s reasoning effort may buy the same gain for less. It is one benchmark from one evaluator.</p>
+          <div class="sources"><a href="https://www.vals.ai/blogs/multi-agent-vibe-code-bench">Vals AI</a> &middot; <span class="via">via TLDR AI (Oct 12)</span></div>
+        </article>
+
         <article class="story" id="agent-tincan">
           <span class="when">2026-09-27</span>
           <h4><a href="https://github.com/mvanhorn/agent-tincan">Agent Tincan lets Grok Bot, Muse, Codex and Claude agents ask each other for help across products</a></h4>
@@ -956,15 +996,15 @@
           <div class="sources"><a href="https://arxiv.org/abs/2607.01077">arXiv</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-372/#agents-work-better-when-they-can-pass-each-other-notes">The Batch</a> &middot; <span class="via">via The Batch (Sep 25)</span></div>
         </article>
 
-        <article class="story" id="swarm-scaling">
-          <span class="when">2026-09-22</span>
-          <h4><a href="https://www.tobyord.com/writing/swarm-scaling">Toby Ord: ten times the agents buys less than ten times the tokens in one agent, but finishes sooner</a></h4>
-          <p>Toby Ord&rsquo;s analysis finds that scaling a swarm to <strong>10&times; the agents</strong> yields less performance than giving one agent <strong>10&times; the tokens</strong>, and that the shortfall compounds at larger scale-ups. What the swarm buys is wall-clock time: agents running in parallel finish far sooner, so swarms pay where speed carries a large premium. On this account multi-agent orchestration is a latency purchase, not a capability one.</p>
-          <div class="sources"><a href="https://www.tobyord.com/writing/swarm-scaling">tobyord.com</a> (analysis) &middot; <span class="via">via TLDR AI (Sep 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="swarm-scaling">
+            <span class="when">2026-09-22</span>
+            <h4><a href="https://www.tobyord.com/writing/swarm-scaling">Toby Ord: ten times the agents buys less than ten times the tokens in one agent, but finishes sooner</a></h4>
+            <p>Toby Ord&rsquo;s analysis finds that scaling a swarm to <strong>10&times; the agents</strong> yields less performance than giving one agent <strong>10&times; the tokens</strong>, and that the shortfall compounds at larger scale-ups. What the swarm buys is wall-clock time: agents running in parallel finish far sooner, so swarms pay where speed carries a large premium. On this account multi-agent orchestration is a latency purchase, not a capability one.</p>
+            <div class="sources"><a href="https://www.tobyord.com/writing/swarm-scaling">tobyord.com</a> (analysis) &middot; <span class="via">via TLDR AI (Sep 22)</span></div>
+          </article>
 
           <article class="story" id="agora">
             <span class="when">2026-09-18</span>
@@ -1099,6 +1139,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-12</span><span class="label"><a href="#vals-multi-agent-vibe-code-bench">Vals AI: agent teams cost 1.8&ndash;5.1&times; more on Vibe Code Bench and mostly score no better than one agent</a></span></li>
+        <li><span class="date">2026-10-09</span><span class="label"><a href="#harvey-wake-sleep">Harvey&rsquo;s wake-sleep agent distils graded trajectories into lessons, raising held-out all-pass from 2.9% to 15.7%</a></span></li>
+        <li><span class="date">2026-10-09</span><span class="label"><a href="#hyset">HYSET picks an agent&rsquo;s tools as a set rather than one by one, lifting ToolBench task completion from 61.8% to 69.9%</a></span></li>
+        <li><span class="date">2026-10-09</span><span class="label"><a href="#quicksand">Microsoft&rsquo;s Quicksand launches and snapshots QEMU VMs from async Python to sandbox agents, with no root and no Docker</a></span></li>
+        <li><span class="date">2026-10-08</span><span class="label"><a href="#gemini-agent">Google Cloud&rsquo;s Gemini Agent puts one agent behind one API, routing across Gemini and Claude with per-project spend caps</a></span></li>
         <li><span class="date">2026-10-08</span><span class="label"><a href="#grok-bot-model-router">Grok Bot becomes a router that sends hard tasks to Claude Opus 5.5, Midjourney and Suno</a></span></li>
         <li><span class="date">2026-10-08</span><span class="label"><a href="#claude-sdk-browser-use">Claude&rsquo;s Python and TypeScript SDKs now run the computer- and browser-use loop themselves, in beta</a></span></li>
         <li><span class="date">2026-10-07</span><span class="label"><a href="#personal-agent-protocol">Meta and Sierra&rsquo;s Personal Agent Protocol is an OAuth-based open standard for personal agents to act on businesses</a></span></li>
