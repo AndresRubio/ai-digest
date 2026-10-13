@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-10-12</div>
+      <div class="meta">Last updated: 2026-10-13</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 13 cycle, all from one Simon Willison issue, moved a sandbox off the laptop and put a dictation habit on the record. Cowork now runs <a href="#cowork-cloud-vm">its VM in the cloud</a>, one sandbox per session, with the desktop app answering only the tool calls that need a local file &mdash; the trade <a href="#claude-code-cloud-sessions-ga">Claude Code cloud sessions</a> made, with the file bridge as the new thing to audit. Willison built a Django feature <a href="#codex-voice-blog-feature">by voice in Codex</a> while cooking: half an hour of talking, a pull-request review that caught Git in a subprocess where the API was needed, and half an hour of typing to finish. Two of his releases sit on the tooling side: <a href="#llm-openai-decisions">llm-openai-decisions</a> exposes OpenAI&rsquo;s decision model with the image input Jev lacks, and <a href="#ttok-1-0">ttok 1.0</a> defaults to the GPT-5 tokenizer for GPT-6 on an outside 31-fixture test rather than any word from OpenAI.</p>
         <p>The Oct 9&ndash;12 cycle opened one coordinator to everyone and added a tool built for agents to read. <a href="#claude-code-projects">Claude Code Projects</a> left its waitlist for every Pro and Max user, so the coordinator-and-threads shape the parallel-work section describes is now available by default rather than by invitation. <a href="#rea-reverse-engineer-anything">REA</a> gives Claude Code, Codex and Cursor reverse-engineering tools for apps, binaries, APKs and firmware and has them cite file, function and address for each finding &mdash; agent-native in this page&rsquo;s sense, with the licence check left to the prompt.</p>
         <p>The Oct 7 cycle produced the review number this section has been asking for, from the lab that says 80% of its code is agent-written. Addy Osmani&rsquo;s <a href="#code-nobody-reads">essay</a> on teams that stopped reading diffs gives Anthropic&rsquo;s own figures: an automated reviewer on nearly every PR, fewer than 1% of its findings marked wrong, and substantive review coverage up from 16% to 54%, with a workflow of multiple finding-and-verifying agents, light human review on low-risk changes and a person on every merge. It measures how much gets reviewed rather than what ships broken, so the lead&rsquo;s missing defect rate stays missing, but it is the first fast-path figure here that is not a cost or a multiple.</p>
         <p>The Oct 6 cycle put a price on the factory and moved a check into the compiler. Warp says running its own changes through an <a href="#warp-factory-cost-per-pr">agent factory</a> &mdash; triage, spec, build, verify and review agents, a human at the end, monitors feeding production alerts back in as tickets &mdash; cut its internal cost per PR from $80 to $30, a self-reported figure with no defect rate beside it. Vercel&rsquo;s <a href="#gdp-ts">gdp-ts</a> makes an unauthorized call a TypeScript compile error and ships an agent skill to apply it, so an access-control bug an agent writes fails before review rather than in it. <a href="#framefields">Framefields</a> gives a coding agent a GPU renderer for compositing, motion and 3D that it drives from TypeScript and checks frame by frame.</p>
         <p>The Oct 5 cycle was two of Simon Willison&rsquo;s own releases, one on each side of the agent. <a href="#pwasm-0-2a0">pwasm 0.2a0</a> is what one prompt and minimal follow-up got from Opus 5.5 on a pure-Python WebAssembly engine left untouched since January: 42 commits, almost all of the WASM specification, and MicroPython and QuickJS builds bundled in the wheel &mdash; tagged alpha because its author would not trust it, which is this page&rsquo;s auditing problem in miniature. <a href="#llm-anthropic-0-30">llm-anthropic 0.30</a> removes a release step instead: the plugin now reads Anthropic&rsquo;s model list from the API, so a new model is callable the day it ships, and counts a prompt&rsquo;s tokens through the free counting endpoint before it is sent. The addition-in-words experiment from the same issue is on <a href="evals-and-benchmarks.html">Evals &amp; benchmarks</a>.</p>
-        <p>The Oct 2&ndash;5 cycle put numbers on the effort dial and on the verification step. Anthropic&rsquo;s <a href="#spending-your-effort">effort guide</a> finds the top setting uses about three times the tokens of the lowest on Terminal-Bench 3.0 and pays off where there is something to verify &mdash; security from 64% to 87%, operations filings only from 12% to 22% &mdash; and never rescues a wrong approach. Boris Cherny&rsquo;s <a href="#lean-state-machine-verification">Lean run</a> is that verification made formal: Opus 5.5 modelled a state machine, every counter-example had to reproduce as a failing test, and the result was 16 PRs fixing 24 bugs that tests and review had missed.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 2&ndash;5 cycle put numbers on the effort dial and on the verification step. Anthropic&rsquo;s <a href="#spending-your-effort">effort guide</a> finds the top setting uses about three times the tokens of the lowest on Terminal-Bench 3.0 and pays off where there is something to verify &mdash; security from 64% to 87%, operations filings only from 12% to 22% &mdash; and never rescues a wrong approach. Boris Cherny&rsquo;s <a href="#lean-state-machine-verification">Lean run</a> is that verification made formal: Opus 5.5 modelled a state machine, every counter-example had to reproduce as a failing test, and the result was 16 PRs fixing 24 bugs that tests and review had missed.</p>
           <p>Around it the harness kept moving toward where the code lives. <a href="#claude-mods">Claude Code mods</a> shipped beyond the flag with an official guide, unsandboxed and able to replace built-ins such as <code>/diff</code>; IBM&rsquo;s <a href="#ibm-bob-self-hosted">Bob</a> went self-hosted and air-gapped on Nemotron or Poolside Laguna with no model bundled; and <a href="#e2e-testing-framework">e2e</a> replays an agent&rsquo;s recorded test actions instead of paying for the reasoning again. 37signals is having agents <a href="#hey-rust-rewrite">rewrite HEY&rsquo;s backend in Rust</a> for a 99% CPU cut in early tests, the choice of language no longer priced by who has to type it.</p>
           <p>The Sep 30 cycle was tooling sized for the agent rather than the person. Cloudflare&rsquo;s <a href="#cloudflare-cf-cli">cf CLI</a> exposes more than 3,000 API operations where Wrangler had about 280 command paths, because agents are now 48% of its CLI traffic, and is generated by the Forge pipeline it open-sourced alongside. <a href="#tapkit">Tapkit</a> hands Claude or Codex a physical iPhone with nothing installed on it, and <a href="#boxd">boxd</a> sells a full KVM machine per agent that boots in under 10ms and forks while running. Vercel put a number on the mechanism underneath: <a href="#vercel-state-of-agent-skills">skills.sh</a> reached a million skills and nearly 280 million installs in seven months, an operator&rsquo;s count of distribution rather than of skills that worked. The eval commands Anthropic added to the claude-api skill are on <a href="evals-and-benchmarks.html">Evals &amp; benchmarks</a>.</p>
           <p>The Sep 29 cycle was a year&rsquo;s worth of the question this section asks. Simon Willison&rsquo;s <a href="#2026-in-llms-so-far">2026 retrospective</a> dates the crossing to November 2025, when Opus 4.5 and GPT-5.1 made coding agents daily-usable, follows tokenmaxxing up and back down once a day of agent work could cost $1,000, and lands on the claim that agents make the job harder because only the difficult work is left &mdash; with StrongDM&rsquo;s no-human-code, no-human-review rules as the far end and a felony tally, on <a href="safety-and-policy.html">Safety &amp; policy</a>, as the year&rsquo;s better benchmark. Underneath it, <a href="#llm-0-36">LLM 0.36</a> gives single-turn decision models a way to refuse a transcript, first used by a Jev plugin.</p>
@@ -98,10 +99,10 @@
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">11</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">17</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
-          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">11</span></a></li>
+          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">13</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">17</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">22</span></a></li>
-          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">6</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">23</span></a></li>
+          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">7</span></a></li>
         </ul>
       </nav>
 
@@ -873,6 +874,14 @@
         <h3>Open-source agent infrastructure</h3>
         <p class="lead">Open-source projects filling in the stack around agents rather than the agents themselves &mdash; security, source hosting, data, UI, onboarding, release engineering. Judge entries on what limit the project states about itself; the ones worth recording here publish the case their own design does not cover.</p>
 
+        <article class="story" id="ttok-1-0">
+          <span class="when">2026-10-08</span>
+          <h4><a href="https://github.com/simonw/ttok/releases/tag/1.0">ttok 1.0 defaults to the GPT-5 tokenizer for GPT-6 &mdash; on an outside test, not OpenAI&rsquo;s word</a></h4>
+          <p>Simon Willison&rsquo;s <strong>ttok</strong>, a CLI that counts tokens with OpenAI&rsquo;s open-source tiktoken, went to 1.0 days after 0.4 because it still defaulted to the GPT-4 tokenizer. The new default rests on William Liu&rsquo;s comparison, in which all <strong>seven GPT models</strong> from 5.5 to 6 Astra/Sol/Luna count 44,794 tokens and agree on each of <strong>31 fixtures</strong>, while a tiktoken issue asks OpenAI to confirm it.</p>
+          <p>That is the limit worth recording: a GPT-6 token count from any tool built on tiktoken is an inference until OpenAI says otherwise.</p>
+          <div class="sources"><a href="https://github.com/simonw/ttok/releases/tag/1.0">GitHub release</a> &middot; <a href="https://simonwillison.net/2026/Oct/8/ttok/">Simon Willison (ttok 0.4)</a> &middot; <a href="https://github.com/williamliu-ai/token-count-compare/commit/8d8a2178538bb37beb548fc37378135e4ff4b0c8">Token-count comparison</a> &middot; <a href="https://github.com/openai/tiktoken/issues/608">tiktoken issue</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
+        </article>
+
         <article class="story" id="gdp-ts">
           <span class="when">2026-10-06</span>
           <h4><a href="https://github.com/rauchg/gdp-ts">gdp-ts makes authorization mistakes a TypeScript compile error, with an agent skill to apply it</a></h4>
@@ -880,23 +889,30 @@
           <div class="sources"><a href="https://github.com/rauchg/gdp-ts">GitHub</a> &middot; <span class="via">via The Code (Oct 6)</span></div>
         </article>
 
-        <article class="story" id="llm-anthropic-0-30">
-          <span class="when">2026-09-28</span>
-          <h4><a href="https://github.com/simonw/llm-anthropic/releases/tag/0.30">llm-anthropic 0.30 reads Anthropic&rsquo;s model list from the API and counts a prompt&rsquo;s tokens before it is sent</a></h4>
-          <p>Simon Willison&rsquo;s <strong>llm-anthropic 0.30</strong> plugin for <a href="#llm-0-36">LLM</a> adds Claude Sonnet 5.5 and a new <code>llm anthropic refresh</code> command that pulls the model list directly from Anthropic&rsquo;s API, so a newly released model no longer waits on a plugin release to become callable. A second command, <code>llm anthropic count</code>, uses Anthropic&rsquo;s free token-counting API to report what a prompt will consume before it is sent.</p>
-          <div class="sources"><a href="https://github.com/simonw/llm-anthropic/releases/tag/0.30">GitHub release</a> &middot; <a href="https://simonw.substack.com/p/openai-devday-2026-live-blog">Simon Willison&rsquo;s newsletter</a> (issue) &middot; <span class="via">via Simon Willison (Oct 5)</span></div>
-        </article>
-
-        <article class="story unlinked" id="llm-0-36">
-          <span class="when">2026-09-22</span>
-          <h4>LLM 0.36 adds GPT-6 Sol and Luna, and a flag for models that cannot hold a conversation, first used by a Jev plugin</h4>
-          <p>Simon Willison&rsquo;s <strong>LLM</strong> command-line tool reached 0.36 with <code>gpt-6-sol</code> and <code>gpt-6-luna</code>, reasoning traces folded into <code>&lt;details&gt;</code> in its Markdown logs, and a new <code>supports_conversation = False</code> declaration for single-turn models, which makes the tool refuse assistant or tool history rather than send it. The first plugin to use it is <strong>llm-typesafe 0.1a0</strong>, which exposes <a href="model-releases.html">Jev</a>&rsquo;s yes/no, choice and score questions from the shell; llm-anthropic 0.29 added Claude Opus 5.5.</p>
-          <p>A decision model that cannot take a transcript needed a place in the tooling to say so, and this is the first one to add it. The releases are described in the newsletter, which linked no release page.</p>
-          <div class="sources"><a href="https://simonw.substack.com/p/2026-in-llms-so-far">Simon Willison&rsquo;s newsletter</a> (issue) &middot; <span class="via">via Simon Willison (Sep 28) &mdash; no public URL given</span></div>
+        <article class="story" id="llm-openai-decisions">
+          <span class="when">2026-10-06</span>
+          <h4><a href="https://github.com/simonw/llm-openai-decisions/releases/tag/0.1a0">llm-openai-decisions 0.1a0 puts OpenAI&rsquo;s Decisions API in the LLM CLI, with the image input Jev lacks</a></h4>
+          <p>Simon Willison&rsquo;s <strong>llm-openai-decisions 0.1a0</strong>, an alpha plugin GPT-6 Astra wrote from OpenAI&rsquo;s API documentation on the pattern of llm-typesafe, exposes the <a href="model-releases.html">Decisions API</a>&rsquo;s <code>gpt-6-luna</code> decision model from the shell with Jev&rsquo;s three question types: yes/no, choice and score. Unlike Jev it accepts image attachments, and both bill input only &mdash; <strong>10 cents per million tokens</strong> for OpenAI against 4.2 cents for Jev, by Willison&rsquo;s comparison. <strong>llm-mistral 0.16</strong>, released alongside, adds reasoning-model support for Mistral Large 4.</p>
+          <div class="sources"><a href="https://github.com/simonw/llm-openai-decisions/releases/tag/0.1a0">GitHub release</a> &middot; <a href="https://github.com/simonw/llm-openai-decisions/blob/main/README.md">README</a> &middot; <a href="https://github.com/simonw/llm-mistral/releases/tag/0.16">llm-mistral 0.16</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="llm-anthropic-0-30">
+            <span class="when">2026-09-28</span>
+            <h4><a href="https://github.com/simonw/llm-anthropic/releases/tag/0.30">llm-anthropic 0.30 reads Anthropic&rsquo;s model list from the API and counts a prompt&rsquo;s tokens before it is sent</a></h4>
+            <p>Simon Willison&rsquo;s <strong>llm-anthropic 0.30</strong> plugin for <a href="#llm-0-36">LLM</a> adds Claude Sonnet 5.5 and a new <code>llm anthropic refresh</code> command that pulls the model list directly from Anthropic&rsquo;s API, so a newly released model no longer waits on a plugin release to become callable. A second command, <code>llm anthropic count</code>, uses Anthropic&rsquo;s free token-counting API to report what a prompt will consume before it is sent.</p>
+            <div class="sources"><a href="https://github.com/simonw/llm-anthropic/releases/tag/0.30">GitHub release</a> &middot; <a href="https://simonw.substack.com/p/openai-devday-2026-live-blog">Simon Willison&rsquo;s newsletter</a> (issue) &middot; <span class="via">via Simon Willison (Oct 5)</span></div>
+          </article>
+
+          <article class="story unlinked" id="llm-0-36">
+            <span class="when">2026-09-22</span>
+            <h4>LLM 0.36 adds GPT-6 Sol and Luna, and a flag for models that cannot hold a conversation, first used by a Jev plugin</h4>
+            <p>Simon Willison&rsquo;s <strong>LLM</strong> command-line tool reached 0.36 with <code>gpt-6-sol</code> and <code>gpt-6-luna</code>, reasoning traces folded into <code>&lt;details&gt;</code> in its Markdown logs, and a new <code>supports_conversation = False</code> declaration for single-turn models, which makes the tool refuse assistant or tool history rather than send it. The first plugin to use it is <strong>llm-typesafe 0.1a0</strong>, which exposes <a href="model-releases.html">Jev</a>&rsquo;s yes/no, choice and score questions from the shell; llm-anthropic 0.29 added Claude Opus 5.5.</p>
+            <p>A decision model that cannot take a transcript needed a place in the tooling to say so, and this is the first one to add it. The releases are described in the newsletter, which linked no release page.</p>
+            <div class="sources"><a href="https://simonw.substack.com/p/2026-in-llms-so-far">Simon Willison&rsquo;s newsletter</a> (issue) &middot; <span class="via">via Simon Willison (Sep 28) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story" id="localjev">
             <span class="when">2026-09-20</span>
@@ -1113,6 +1129,14 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and no defect rate for the fast path is recorded here.</p>
 
+        <article class="story" id="codex-voice-blog-feature">
+          <span class="when">2026-10-09</span>
+          <h4><a href="https://simonwillison.net/2026/Oct/9/built-using-my-voice/">Simon Willison built a Django feature by talking to Codex while cooking, then finished it by typing</a></h4>
+          <p>Using the voice conversation mode in the ChatGPT desktop app&rsquo;s Codex tab against a local dev server, Willison spent about <strong>half an hour</strong> talking GPT-6 Astra High through a newsletter archive for his blog: a Django model and migration, admin configuration, <strong>four importers</strong> (Substack RSS, Substack&rsquo;s undocumented archive API, a public GitHub repository and a private one), archive pages and search integration. Review in the GitHub pull request caught one wrong choice &mdash; Git in a subprocess where the private repository needed the API &mdash; and another half hour of typed prompting got it to production.</p>
+          <p>His verdict is that voice is for multi-tasking, not a daily driver: pasting examples and error messages, or pointing at the code to change, is still faster at the keyboard. The fix happened at review, which is this section&rsquo;s argument in miniature.</p>
+          <div class="sources"><a href="https://simonwillison.net/2026/Oct/9/built-using-my-voice/">Simon Willison</a> &middot; <a href="https://github.com/simonw/simonwillisonblog/pull/719">Pull request</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
+        </article>
+
         <article class="story" id="code-nobody-reads">
           <span class="when">2026-10-07</span>
           <h4><a href="https://addyo.substack.com/p/the-code-nobody-reads">Addy Osmani: Anthropic&rsquo;s automated reviewer runs on nearly every PR, is marked wrong under 1% of the time, and lifted substantive review coverage from 16% to 54%</a></h4>
@@ -1129,15 +1153,15 @@
           <div class="sources"><a href="https://www.warp.dev/factories/configuration">Warp Factories</a> &middot; <a href="https://github.com/warpdotdev/warp-factory-examples">Starter templates</a> &middot; <span class="via">via The Code (Oct 6), TLDR AI (Oct 6)</span></div>
         </article>
 
-        <article class="story" id="hey-rust-rewrite">
-          <span class="when">2026-10-05</span>
-          <h4><a href="https://www.youtube.com/watch?v=vDjW_dRyKXY">37signals is having agents rewrite HEY&rsquo;s email backend in Rust, cutting CPU 99% in early tests</a></h4>
-          <p>At Rails World, David Heinemeier Hansson said 37signals has gone &ldquo;pencils down&rdquo; on hand-written code and is using agents to rewrite the HEY email backend in Rust, with <strong>CPU use down 99%</strong> in early tests. The argument is that agents remove the authoring cost that kept teams on the convenient language; the cautionary half of the same talk is that designer-written Basecamp 5 PRs looked fine one at a time and left architectural holes together.</p>
-          <div class="sources"><a href="https://www.youtube.com/watch?v=vDjW_dRyKXY">Rails World keynote (YouTube)</a> &middot; <a href="https://codenewsletter.ai/p/devs-turn-to-rust-as-agents-code-more">The Code</a> &middot; <span class="via">via The Code (Oct 5), The Code (Oct 2), TLDR (Oct 2)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (20)</summary>
+
+          <article class="story" id="hey-rust-rewrite">
+            <span class="when">2026-10-05</span>
+            <h4><a href="https://www.youtube.com/watch?v=vDjW_dRyKXY">37signals is having agents rewrite HEY&rsquo;s email backend in Rust, cutting CPU 99% in early tests</a></h4>
+            <p>At Rails World, David Heinemeier Hansson said 37signals has gone &ldquo;pencils down&rdquo; on hand-written code and is using agents to rewrite the HEY email backend in Rust, with <strong>CPU use down 99%</strong> in early tests. The argument is that agents remove the authoring cost that kept teams on the convenient language; the cautionary half of the same talk is that designer-written Basecamp 5 PRs looked fine one at a time and left architectural holes together.</p>
+            <div class="sources"><a href="https://www.youtube.com/watch?v=vDjW_dRyKXY">Rails World keynote (YouTube)</a> &middot; <a href="https://codenewsletter.ai/p/devs-turn-to-rust-as-agents-code-more">The Code</a> &middot; <span class="via">via The Code (Oct 5), The Code (Oct 2), TLDR (Oct 2)</span></div>
+          </article>
 
           <article class="story unlinked" id="lean-state-machine-verification">
             <span class="when">2026-10-03</span>
@@ -1291,6 +1315,14 @@
         <h3>Multi-session and parallel work</h3>
         <p class="lead">Running 3&ndash;6 sessions in parallel via tmux and git worktrees is the practitioner default, and the bottleneck moved from execution to writing clear specs and reviewing output. Every coordinator here is itself an agent whose output someone still has to check.</p>
 
+        <article class="story" id="cowork-cloud-vm">
+          <span class="when">2026-10-05</span>
+          <h4><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile#h_f951c27c48">Claude Cowork moves its VM to the cloud: one sandbox per session, and work continues with the laptop closed</a></h4>
+          <p>Anthropic&rsquo;s Felix Rieseberg described the change: the original Cowork ran inference in the cloud but executed tool calls in an Anthropic-provided VM shipped to the user&rsquo;s computer, mapping in only the data added to a session, while the new version runs <strong>both inference and the VM in the cloud</strong>, each session in its own sandbox with no shared state, and the desktop app answers any tool call that needs something on the device, such as a file. The stated reasons are the disk, battery and performance cost of the local VM and work stopping when the laptop closed; it also makes Cowork usable from a phone.</p>
+          <p>It is the trade <a href="#claude-code-cloud-sessions-ga">Claude Code cloud sessions</a> made: the isolation boundary moves off the user&rsquo;s machine, and the file bridge back to it becomes the part to audit.</p>
+          <div class="sources"><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile#h_f951c27c48">Claude Help Center</a> &middot; <a href="https://twitter.com/felixrieseberg/status/2107206431376334975">Felix Rieseberg on X</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
+        </article>
+
         <article class="story unlinked" id="claude-code-cloud-sessions-ga">
           <span class="when">2026-09-24</span>
           <h4>Claude Code cloud sessions reach general availability, each on its own branch</h4>
@@ -1307,16 +1339,16 @@
           <div class="sources"><a href="https://devin.ai/blog/devin-cloud-in-your-terminal">Cognition</a> &middot; <span class="via">via TLDR AI (Sep 22), Unwind AI (Sep 22)</span></div>
         </article>
 
-        <article class="story" id="codex-thread-coordination">
-          <span class="when">2026-09-18</span>
-          <h4><a href="https://codenewsletter.ai/p/no-more-juggling-sessions-on-claude-code">Codex threads can now reference, message and monitor each other</a></h4>
-          <p>An engineer on OpenAI&rsquo;s Codex team documented a fix for parallel threads that knew nothing about one another: a thread can now be referenced from any composer with <code>@</code> or dragged in from the sidebar, and one thread can be made a coordinator that monitors named threads, reviews their diffs when they finish and sends each one the fixes it needs. Adding a schedule to the coordinator lets it check the fleet unattended.</p>
-          <p>It removes the copy-paste-between-threads step that made parallel sessions cost supervision time, which is the overhead this section has recorded since worktrees. It also completes a symmetry worth naming: Cursor Projects, Claude Code Projects and now Codex all ship a coordinator, differing mainly in where the threads run and what ceiling each publishes.</p>
-          <div class="sources"><a href="https://codenewsletter.ai/p/no-more-juggling-sessions-on-claude-code">The Code</a> &middot; <span class="via">via The Code (Sep 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="codex-thread-coordination">
+            <span class="when">2026-09-18</span>
+            <h4><a href="https://codenewsletter.ai/p/no-more-juggling-sessions-on-claude-code">Codex threads can now reference, message and monitor each other</a></h4>
+            <p>An engineer on OpenAI&rsquo;s Codex team documented a fix for parallel threads that knew nothing about one another: a thread can now be referenced from any composer with <code>@</code> or dragged in from the sidebar, and one thread can be made a coordinator that monitors named threads, reviews their diffs when they finish and sends each one the fixes it needs. Adding a schedule to the coordinator lets it check the fleet unattended.</p>
+            <p>It removes the copy-paste-between-threads step that made parallel sessions cost supervision time, which is the overhead this section has recorded since worktrees. It also completes a symmetry worth naming: Cursor Projects, Claude Code Projects and now Codex all ship a coordinator, differing mainly in where the threads run and what ceiling each publishes.</p>
+            <div class="sources"><a href="https://codenewsletter.ai/p/no-more-juggling-sessions-on-claude-code">The Code</a> &middot; <span class="via">via The Code (Sep 18)</span></div>
+          </article>
 
           <article class="story" id="claude-code-projects">
             <span class="when">2026-09-17</span>
@@ -1348,13 +1380,17 @@
       <h2>Timeline</h2>
       <ul class="timeline index">
         <li><span class="date">2026-10-09</span><span class="label"><a href="#rea-reverse-engineer-anything">REA gives coding agents reverse-engineering tools for apps, binaries, APKs and firmware, and has them cite the evidence</a></span></li>
+        <li><span class="date">2026-10-09</span><span class="label"><a href="#codex-voice-blog-feature">Simon Willison built a Django feature by talking to Codex while cooking, then finished it by typing</a></span></li>
+        <li><span class="date">2026-10-08</span><span class="label"><a href="#ttok-1-0">ttok 1.0 defaults to the GPT-5 tokenizer for GPT-6 &mdash; on an outside test, not OpenAI&rsquo;s word</a></span></li>
         <li><span class="date">2026-10-07</span><span class="label"><a href="#code-nobody-reads">Addy Osmani: Anthropic&rsquo;s automated reviewer is marked wrong under 1% of the time and lifted review coverage from 16% to 54%</a></span></li>
         <li><span class="date">2026-10-06</span><span class="label"><a href="#warp-factory-cost-per-pr">Warp runs its own code through an agent factory and cut internal cost per PR from $80 to $30</a></span></li>
         <li><span class="date">2026-10-06</span><span class="label"><a href="#gdp-ts">gdp-ts makes authorization mistakes a TypeScript compile error, with an agent skill to apply it</a></span></li>
         <li><span class="date">2026-10-06</span><span class="label"><a href="#framefields">Framefields lets a coding agent composite, animate and render video to MP4 from TypeScript</a></span></li>
+        <li><span class="date">2026-10-06</span><span class="label"><a href="#llm-openai-decisions">llm-openai-decisions 0.1a0 puts OpenAI&rsquo;s Decisions API in the LLM CLI, with the image input Jev lacks</a></span></li>
         <li><span class="date">2026-10-05</span><span class="label"><a href="#hey-rust-rewrite">37signals is having agents rewrite HEY&rsquo;s email backend in Rust, cutting CPU 99% in early tests</a></span></li>
         <li><span class="date">2026-10-05</span><span class="label"><a href="#e2e-testing-framework">e2e is an open-source AI testing framework that replays an agent&rsquo;s recorded actions</a></span></li>
         <li><span class="date">2026-10-05</span><span class="label"><a href="#spending-your-effort">Anthropic&rsquo;s effort guide: max effort triples tokens, lifts security tasks 64%&rarr;87%</a></span></li>
+        <li><span class="date">2026-10-05</span><span class="label"><a href="#cowork-cloud-vm">Claude Cowork moves its VM to the cloud: one sandbox per session, and work continues with the laptop closed</a></span></li>
         <li><span class="date">2026-10-03</span><span class="label"><a href="#lean-state-machine-verification">Verifying a state machine in Lean with Opus 5.5 produced 16 PRs fixing 24 bugs</a></span></li>
         <li><span class="date">2026-10-02</span><span class="label"><a href="#ibm-bob-self-hosted">IBM&rsquo;s Bob goes self-hosted and air-gapped, isolated on Nemotron or Poolside Laguna</a></span></li>
         <li><span class="date">2026-10-01</span><span class="label"><a href="#pwasm-0-2a0">Opus 5.5 took a vibe-coded pure-Python WebAssembly engine to near-full spec in 42 commits</a></span></li>
