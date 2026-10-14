@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-12</div>
+      <div class="meta">Last updated: 2026-10-14</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 14 cycle measured a decision model inside a loop and priced a domain agent by its failures. Routing a Qwen agent&rsquo;s step-completion checks and other bounded decisions to Jev cut <a href="#decision-offloading-sop-bench">LLM calls by 29.6%</a>, estimated cost by 26.6% and latency by 19.7% over 360 SOP-Bench cases &mdash; a forum write-up, but the first in-loop saving on this page rather than a standalone benchmark score. Z.ai&rsquo;s <a href="#glm-legal">GLM-Legal</a> lifts its base model&rsquo;s Harvey LAB pass rate from 6.67% to 19.17%, which still leaves four in five end-to-end legal tasks failed. Meta&rsquo;s Muse agents gained a frontier model of their own, <a href="model-releases.html#muse-wonder">Muse Wonder</a>, on Model releases.</p>
         <p>The Oct 9&ndash;12 cycle put a governed enterprise agent beside the first measurement of agent teams. Google Cloud&rsquo;s <a href="#gemini-agent">Gemini Agent</a> is one agent behind one API that routes across Gemini and Claude, keeps four kinds of memory and stops at a per-project spend cap until a human resumes it &mdash; governance described, not measured. Vals AI&rsquo;s <a href="#vals-multi-agent-vibe-code-bench">Vibe Code Bench test</a> is the number the multi-agent section lacked, and it is a null: teams cost 1.8&ndash;5.1&times; more and scored no better except in one configuration. Two harness pieces arrived, one from research and one from Microsoft: <a href="#hyset">HYSET</a> chooses tools as a compatible set and lifts ToolBench completion from 61.8% to 69.9%, and <a href="#quicksand">Quicksand</a> makes a snapshotable QEMU VM the agent sandbox without root or Docker. Harvey&rsquo;s <a href="#harvey-wake-sleep">wake-sleep</a> agent adds a memory datapoint &mdash; lessons distilled from graded trajectories raised held-out all-pass from 2.9% to 15.7% &mdash; reported in a post rather than a paper.</p>
         <p>The Oct 8 cycle moved two pieces of the harness out of application code. SpaceXAI turned <a href="#grok-bot-model-router">Grok Bot</a> into a router that keeps simple requests on its own small models and sends reasoning to Claude Opus 5.5, images to Midjourney and music to Suno &mdash; a personal agent treating rival labs&rsquo; models as interchangeable tools, which is the harness-over-model argument this page has made from the build side, now made by a product. Anthropic&rsquo;s <a href="#claude-sdk-browser-use">Python and TypeScript SDKs</a> now run the computer- and browser-use action loop against a driver such as Browserbase, in beta, so the glue a computer-use agent most often gets wrong becomes vendor code whose behaviour can change between versions.</p>
         <p>The Oct 7 cycle put authentication under the personal agent. Meta and Sierra&rsquo;s <a href="#personal-agent-protocol">Personal Agent Protocol</a> is an OAuth-based open standard for a consumer&rsquo;s agent to act on a business through its site, APIs or agents, with the consumer scoping access, the company bounding actions and seeing what was done, and Shopify, Stripe and Walmart named as backers. It is the trust decision this page&rsquo;s extension section has treated as unresolved, answered by the parties on both ends of a Muse transaction rather than by the MCP working group, and published so far as a spec and a partner list with no conformance test. The decision models that agents increasingly route through gained a frontier price &mdash; OpenAI&rsquo;s Decisions API at $0.10 per million input tokens &mdash; on <a href="model-releases.html">Model releases</a>.</p>
         <p>The Oct 6 cycle was memory that reorganizes itself and steering exposed as an API. Cognition&rsquo;s <a href="#devin-memory-dreaming">Devin Memory</a> carries corrections and project learnings across sessions, and Dreaming periodically deduplicates them, links each to the session it came from and derives new knowledge &mdash; the provenance link answers this page&rsquo;s inspection question, and the derivation step is where a store can start holding facts nobody stated. Cursor&rsquo;s <a href="#cursor-sdk-steer">SDK update</a> puts mid-turn steering behind <code>run.steer()</code>, backgrounds busy subagents, and lets tools be tagged read-only or destructive, a declaration the model reads rather than a permission the runtime enforces.</p>
-        <p>The Oct 2&ndash;5 cycle was about what survives a long run and who controls it. Earendil&rsquo;s <a href="#pi-durable">Pi Durable</a> lets an agent keep an indefinitely long conversation, survive internal and external failures and take steering from several people at once, with no recovery figure attached. DeepSeek&rsquo;s <a href="#deepseek-harness-v0-2">Harness v0.2</a> goes the other way on control: desktop installers, every layer a plugin, and a Creator mode in which the agent writes and installs its own plugins, beside a self-reported 82.7 on Terminal-Bench 2.1 and an experimental layer for Claude Code mods. An agent that rewrites its own harness is exactly what this page&rsquo;s governance section has no instrument for yet.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 2&ndash;5 cycle was about what survives a long run and who controls it. Earendil&rsquo;s <a href="#pi-durable">Pi Durable</a> lets an agent keep an indefinitely long conversation, survive internal and external failures and take steering from several people at once, with no recovery figure attached. DeepSeek&rsquo;s <a href="#deepseek-harness-v0-2">Harness v0.2</a> goes the other way on control: desktop installers, every layer a plugin, and a Creator mode in which the agent writes and installs its own plugins, beside a self-reported 82.7 on Terminal-Bench 2.1 and an experimental layer for Claude Code mods. An agent that rewrites its own harness is exactly what this page&rsquo;s governance section has no instrument for yet.</p>
           <p>The Oct 1 cycle was OpenAI taking the always-on agent slot that Muse and Grok Bot opened. <a href="#openai-dots">dots</a> give each GPT-6 Astra agent its own cloud computer and browser, reach 4,000-plus apps, and gate risky actions with Custom Rules and auto-review &mdash; and inadvertently posted images for 53 users the day before launch, this page&rsquo;s containment question arriving on schedule. <a href="#chatgpt-mcp-events">MCP Events</a> lets ChatGPT react to pushes from an MCP server, but implements only webhook delivery from the draft spec, without the <code>gap</code> notification that tells a client it missed something. And <a href="#rrsi">RRSI</a> is now open source with its split-level numbers: six points on the Terminal-Bench split it evolved on, 1.8 on held-out SWE-bench Verified &mdash; transfer, but smaller than the headline.</p>
           <p>The Sep 30 cycle gave the agent an identity of its own. Manus&rsquo;s <a href="#manus-2-0">Cue</a> assigns each agent an email address, a phone number, a wallet and a computer, and <a href="#fo-personal-agent">Fo</a> adds a voice and a credit card, routing to human experts when software gets stuck and reporting 71% task completion on evals nobody else has seen. Neither states a spending boundary, which is the governor this page judges such agents on. In retrieval, <a href="#gpt-researcher-jev-context-filter">GPT Researcher</a> swapped embedding similarity for Jev as its default context filter and keeps 73% of relevant passages against 46% at the same cost, on its own benchmark. The phone an agent can now drive, Tapkit, is on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
           <p>The Sep 29 cycle was the open computer-use model and the org chart above the agents. H Company&rsquo;s <a href="#holo4">Holo4</a> puts open weights at <strong>85.2% on OSWorld for about $0.08 a task</strong>, one point above its Qwen3.8-27B base and twenty points behind Opus 5.5 on OSWorld 2.0&rsquo;s long workflows &mdash; near parity on short tasks, still losing on the horizon. <a href="#manus-2-0">Manus 2.0</a> reports 23% fewer tokens and 32% lower cost from its Cascade architecture in one configuration, and moves automations from schedules to events. <a href="#paperclip">Paperclip</a> runs Claude Code, Codex, Cursor and OpenClaw agents as a company, with roles, budgets and approvals, and publishes no figure for what the approvals cost. The other side of Muse&rsquo;s reach is on <a href="safety-and-policy.html">Safety &amp; policy</a>: two privacy incidents in which the agent stayed inside its permissions and still gave out a home address.</p>
@@ -89,7 +90,7 @@
           <li><a href="#agent-memory">Agent memory <span class="n">10</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">19</span></a></li>
           <li><a href="#the-agentic-harness">The agentic harness <span class="n">26</span></a></li>
-          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">11</span></a></li>
+          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">12</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">12</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">2</span></a></li>
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">9</span></a></li>
@@ -97,7 +98,7 @@
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">7</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">13</span></a></li>
-          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">7</span></a></li>
+          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">8</span></a></li>
         </ul>
       </nav>
 
@@ -537,6 +538,14 @@
         <h3>Agent loop design &amp; reliability</h3>
         <p class="lead">Plan, act, verify, repeat &mdash; and the primitives that decide whether a loop finishes or just burns budget: verifiers, persistent state, stop conditions, and a compaction policy. Judge entries on whether the measurement was fixed before the results appeared, because that is exactly how far agent self-improvement claims have held up.</p>
 
+        <article class="story" id="decision-offloading-sop-bench">
+          <span class="when">2026-10-13</span>
+          <h4><a href="https://discuss.huggingface.co/t/offloading-bounded-decisions-cut-agent-llm-calls-by-29-6-on-360-sop-bench-cases/190420">Offloading bounded decisions to Jev cut a Qwen agent&rsquo;s LLM calls by 29.6% across 360 SOP-Bench cases</a></h4>
+          <p>A practitioner write-up moved an agent&rsquo;s step-completion checks and other bounded decisions from the Qwen model running the loop to <a href="model-releases.html#jev">Jev</a>, and across <strong>360 SOP-Bench cases</strong> measured <strong>29.6% fewer LLM calls</strong>, <strong>26.6% lower estimated API cost</strong> and <strong>19.7% lower latency</strong>.</p>
+          <p>It is the first figure on this page for what a decision model saves inside a loop rather than on a standalone benchmark; the cost is an estimate, and the source is a forum post rather than a reviewed study.</p>
+          <div class="sources"><a href="https://discuss.huggingface.co/t/offloading-bounded-decisions-cut-agent-llm-calls-by-29-6-on-360-sop-bench-cases/190420">Hugging Face forum</a> &middot; <span class="via">via TLDR AI (Oct 13)</span></div>
+        </article>
+
         <article class="story" id="pi-durable">
           <span class="when">2026-10-02</span>
           <h4><a href="https://earendil.com/posts/pi-durable/">Pi Durable makes an agent survive crashes, run indefinitely and take steering from several humans</a></h4>
@@ -552,17 +561,17 @@
           <div class="sources"><a href="https://manus.im/blog/introducing-manus-2-0">Manus</a> &middot; <a href="https://x.com/ManusAI/status/2104592659142869352">Announcement on X</a> &middot; <a href="https://cue.im/">Cue</a> &middot; <span class="via">via MarkTechPost (Sep 28), Unwind AI (Sep 29)</span></div>
         </article>
 
-        <article class="story" id="rrsi">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://regularized-rsi.com/">Google&rsquo;s RRSI regularizes harness self-improvement so gains transfer beyond the benchmark</a></h4>
-          <p>Google published <strong>RRSI</strong>, a method that regularizes how an agent harness recursively improves itself, penalizing changes that overfit the benchmark it is tuned on and favouring ones that transfer. Across <strong>eight benchmarks</strong> it improved out-of-distribution performance while using fewer policy tokens &mdash; a direct answer to this section&rsquo;s standing complaint that self-improvement claims hold only where the measurement was fixed in advance.</p>
-          <p><em>Updated Sep 24:</em> the edit space is deliberately left open &mdash; prompts, control flow, configuration, context management, tools, skills, memory and sub-agents may all change &mdash; and the regularizer constrains how the search moves through it rather than what the harness may contain.</p>
-          <p><em>Updated Sep 30:</em> the code is now open source under Apache 2.0 (research code, not a Google product; any LiteLLM model string). Terminal-Bench 2.1 rises from 74.2% to 80.2% on the evolve split, SWE-bench Verified &mdash; never used for selection &mdash; from 82.0% to 83.8%, all six held-out splits improve, and policy tokens per trial fall 30&ndash;36%; it trails Meta-Harness on the Harvey LAB evolve split, 90.5 against 93.0.</p>
-          <div class="sources"><a href="https://regularized-rsi.com/">Project page</a> &middot; <a href="https://github.com/google-research/rrsi">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 23), TLDR AI (Sep 24), MarkTechPost (Sep 30)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (9)</summary>
+
+          <article class="story" id="rrsi">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://regularized-rsi.com/">Google&rsquo;s RRSI regularizes harness self-improvement so gains transfer beyond the benchmark</a></h4>
+            <p>Google published <strong>RRSI</strong>, a method that regularizes how an agent harness recursively improves itself, penalizing changes that overfit the benchmark it is tuned on and favouring ones that transfer. Across <strong>eight benchmarks</strong> it improved out-of-distribution performance while using fewer policy tokens &mdash; a direct answer to this section&rsquo;s standing complaint that self-improvement claims hold only where the measurement was fixed in advance.</p>
+            <p><em>Updated Sep 24:</em> the edit space is deliberately left open &mdash; prompts, control flow, configuration, context management, tools, skills, memory and sub-agents may all change &mdash; and the regularizer constrains how the search moves through it rather than what the harness may contain.</p>
+            <p><em>Updated Sep 30:</em> the code is now open source under Apache 2.0 (research code, not a Google product; any LiteLLM model string). Terminal-Bench 2.1 rises from 74.2% to 80.2% on the evolve split, SWE-bench Verified &mdash; never used for selection &mdash; from 82.0% to 83.8%, all six held-out splits improve, and policy tokens per trial fall 30&ndash;36%; it trails Meta-Harness on the Harvey LAB evolve split, 90.5 against 93.0.</p>
+            <div class="sources"><a href="https://regularized-rsi.com/">Project page</a> &middot; <a href="https://github.com/google-research/rrsi">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 23), TLDR AI (Sep 24), MarkTechPost (Sep 30)</span></div>
+          </article>
 
           <article class="story" id="compaction-loses-the-code">
             <span class="when">2026-09-12</span>
@@ -1080,6 +1089,14 @@
         <h3>Agentic domain applications</h3>
         <p class="lead">Agentic X as a domain reframing rather than a tooling story: a loop with its own verification and observability, built for one field, instead of a generic coding agent pointed at it. Judge entries on the governor &mdash; a compute budget the agent is held to, or a permission boundary the account enforces.</p>
 
+        <article class="story" id="glm-legal">
+          <span class="when">2026-10-13</span>
+          <h4><a href="https://z.ai/blog/glm-legal">Z.ai&rsquo;s GLM-Legal nearly triples its base model&rsquo;s Harvey LAB pass rate, to 19.17%</a></h4>
+          <p>Z.ai released <strong>GLM-Legal</strong>, built on GLM-5.3-Flash for contract review, evidence analysis and compliance research, which passes <strong>19.17% of tasks</strong> on Harvey&rsquo;s Legal Agent Benchmark against <strong>6.67%</strong> for the base model. Z.ai says it beats Claude Fable 5 and Kimi K3 on Harvey LAB and matches frontier closed models on LegalBench and PLawBench with a leaner parameter footprint.</p>
+          <p>Even the improved model fails more than four in five end-to-end legal tasks, and every comparison is Z.ai&rsquo;s own.</p>
+          <div class="sources"><a href="https://z.ai/blog/glm-legal">Z.ai</a> &middot; <a href="https://www.marktechpost.com/2026/10/13/zai-glm-legal-harvey-lab-legal-ai-model/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 13), MarkTechPost (Oct 13)</span></div>
+        </article>
+
         <article class="story" id="fo-personal-agent">
           <span class="when">2026-09-29</span>
           <h4><a href="https://x.com/shivanipod/status/2104624129626309024">Fo gives each agent its own inbox, phone number, voice and credit card, and routes to human experts when software gets stuck</a></h4>
@@ -1095,16 +1112,16 @@
           <div class="sources"><a href="https://www.anthropic.com/research/project-swap">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 25)</span></div>
         </article>
 
-        <article class="story" id="google-family-agent">
-          <span class="when">2026-09-18</span>
-          <h4><a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/cc-expanding-to-groups">Google&rsquo;s family agent gets its own cloud computer, its own account and six users</a></h4>
-          <p>Google began a US waitlisted experiment with a <strong>family agent that runs on its own cloud computer under its own Google account</strong>, turning a household&rsquo;s shared email, files and calendars into daily briefings and updated plans for <strong>up to six people</strong>. It can fill out forms and coordinate activities, and asks permission before acting outside the group.</p>
-          <p>Giving the agent its own identity rather than borrowing a member&rsquo;s is the design decision worth noting &mdash; it makes the permission boundary a property of the account instead of a prompt instruction, which is the same conclusion <a href="safety-and-policy.html">Meta&rsquo;s Sentinel</a> reached from the security side. It is a waitlisted US experiment with no reliability data, so what is recorded here is an architecture, not a working product.</p>
-          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/cc-expanding-to-groups">Google</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="google-family-agent">
+            <span class="when">2026-09-18</span>
+            <h4><a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/cc-expanding-to-groups">Google&rsquo;s family agent gets its own cloud computer, its own account and six users</a></h4>
+            <p>Google began a US waitlisted experiment with a <strong>family agent that runs on its own cloud computer under its own Google account</strong>, turning a household&rsquo;s shared email, files and calendars into daily briefings and updated plans for <strong>up to six people</strong>. It can fill out forms and coordinate activities, and asks permission before acting outside the group.</p>
+            <p>Giving the agent its own identity rather than borrowing a member&rsquo;s is the design decision worth noting &mdash; it makes the permission boundary a property of the account instead of a prompt instruction, which is the same conclusion <a href="safety-and-policy.html">Meta&rsquo;s Sentinel</a> reached from the security side. It is a waitlisted US experiment with no reliability data, so what is recorded here is an architecture, not a working product.</p>
+            <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/cc-expanding-to-groups">Google</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
+          </article>
 
           <article class="story" id="hugging-face-ml-engineer">
             <span class="when">2026-09-10</span>
@@ -1139,6 +1156,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-13</span><span class="label"><a href="#glm-legal">Z.ai&rsquo;s GLM-Legal nearly triples its base model&rsquo;s Harvey LAB pass rate, to 19.17%</a></span></li>
+        <li><span class="date">2026-10-13</span><span class="label"><a href="#decision-offloading-sop-bench">Offloading bounded decisions to Jev cut a Qwen agent&rsquo;s LLM calls by 29.6% across 360 SOP-Bench cases</a></span></li>
         <li><span class="date">2026-10-12</span><span class="label"><a href="#vals-multi-agent-vibe-code-bench">Vals AI: agent teams cost 1.8&ndash;5.1&times; more on Vibe Code Bench and mostly score no better than one agent</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#harvey-wake-sleep">Harvey&rsquo;s wake-sleep agent distils graded trajectories into lessons, raising held-out all-pass from 2.9% to 15.7%</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#hyset">HYSET picks an agent&rsquo;s tools as a set rather than one by one, lifting ToolBench task completion from 61.8% to 69.9%</a></span></li>

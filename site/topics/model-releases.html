@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-10-13</div>
+      <div class="meta">Last updated: 2026-10-14</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 14 cycle brought Meta into the frontier section and two more entrants into the decision-model field. <a href="#muse-wonder">Muse Wonder and Wonder Full</a> are Meta&rsquo;s first frontier-class models, built around Active Memory and Active Focus for long-running agents; Meta claims Wonder Full beats Opus 5.5 on long-horizon coding, but Wonder Full is subscription-only inside Muse Code and early testers find the API model noticeably weaker, so the claim attaches to the version developers cannot call. In decision models, vLLM Semantic Router&rsquo;s <a href="#vllm-sr-decision-3">Decision 3.0</a> ships five Apache-2.0 sizes from 0.8B to 27B with image input and a self-run 64.1 on Decision Index 0.3.1, and Subquadratic&rsquo;s <a href="#subq-snap">SubQ Snap</a> argues on context rather than price, 384K tokens at $0.05 per million input. TII&rsquo;s <a href="#falcon-asr">Falcon-ASR</a> adds a 1.6B Emirati-first transcriber at 20.92% average Arabic WER, with three of its five languages unscored.</p>
         <p>The Oct 13 cycle added an outside reading rather than a release. <a href="#mistral-large-4">Mistral Large 4</a> got its first independent number &mdash; 38 on Artificial Analysis&rsquo;s index, just behind the 552B DeepSeek 4.1 Flash and up from Mistral Large 3&rsquo;s 9 &mdash; and turns out to expose only two reasoning levels through the API, none and high. Its weights are still promised for the end of October, so the reproducibility gap Mistral itself admitted stands.</p>
         <p>The Oct 9&ndash;12 cycle widened the decision-model field again and gave two flagships their first outside numbers. Microsoft&rsquo;s <a href="#microsoft-decision-1">Microsoft-Decision-1</a> is a hosted Qwen3.5-9B scorer at Jev&rsquo;s $0.042 per million input tokens with an 85&nbsp;ms p50 that H2O.ai disputes; Nace&rsquo;s open <a href="#drex-1-5">Drex 1.5</a> ties closed Jev on Decision Index 0.3.1 at 9B; <a href="#pplx-decider-v1-27b">pplx-decider</a> v1.1 claims 61.56 on the same index; and Cloudflare added a multimodal Clef-omni and cut <a href="#cloudflare-clef">Clef-flash</a> to $0.038. Artificial Analysis puts <a href="#gpt-6-1-sol">GPT-6.1 Sol</a> one point behind Astra at under a quarter of the cost per task, and OpenAI now sells it up to 8&times; faster as Ultrafast at six times the price; <a href="#gemini-4-argon">Gemini 4 Argon</a> tops Vals AI&rsquo;s index with the lowest hallucination rate among high scorers while staying unavailable outside Google&rsquo;s cyber programme. Below the frontier, JetBrains&rsquo; <a href="#mellum2-1">Mellum2.1</a> shows RL alone taking a 12B MoE from 2.0 to 47.0 on SWE-bench Verified, <a href="#claude-sonnet-5-5">Sonnet 5.5</a> cache reads were halved, and <a href="#qwen-image-2-1-turbo">Qwen-Image-2.1-Turbo</a>, <a href="#ltx-2-5">LTX-2.5</a> and <a href="#lightonocr-3">LightOnOCR-3</a> filled the image, video and document tiers.</p>
         <p>The Oct 8 cycle filled in the cheap end of the frontier and opened two decision-model weights. Anthropic&rsquo;s <a href="#claude-haiku-5-5">Claude Haiku 5.5</a> lands at <strong>$0.10/$0.50</strong> per million tokens up to 100K with a 1M context, the same list price as GPT-6 Luna, and claims 72.4% on OSWorld 2.1 against Luna&rsquo;s 48.9% &mdash; but the price rises 5&times; past 100K and a new tokenizer counts about 30% more tokens, so the &ldquo;75% cheaper than Haiku 4.5&rdquo; figure is an average that depends on prompt length. Liquid put <a href="#liquid-d1">d1</a> on Hugging Face as d1-3B and d1-omni-600M, the first decision models from a lab whose hosted version was already ranked, at 48.57 on its own run of the Decision Index. Perplexity&rsquo;s <a href="#pplx-embed-v2-late">pplx-embed-v2-late</a> takes the opposite trade from last week&rsquo;s single-vector model, keeping a vector per token for 92.4% on MADQA at the cost of an index that grows with document length. <a href="#gpt-6-intelligent-ui">GPT-6</a> reached all 1.2 billion ChatGPT users with generated interfaces, and LlamaIndex&rsquo;s <a href="#opendocrouter">OpenDocRouter</a> put the parsing tier behind one versioned API.</p>
         <p>The Oct 7 cycle was a European trillion-parameter model and the frontier lab pricing the decision interface. Mistral&rsquo;s <a href="#mistral-large-4">Mistral Large 4</a> is a 1.05T MoE with 49B active over a 1M context, trained on 3,800 Grace Blackwell GPUs in EU datacentres, with cyber scores (93% on Cybench) that closed models often refuse to produce, API pricing of $1.36/$4.18, and weights promised by the end of October &mdash; a second large MoE in two days announced ahead of its weights, after <a href="#reflection-beam">Beam</a>. OpenAI&rsquo;s <a href="#openai-decisions-api">Decisions API</a> left limited preview for public beta at $0.10 per million input tokens with no output charge and up to 10&times; Luna&rsquo;s speed, which is now the price every open decision model below is measured against; Nace.AI&rsquo;s <a href="#drex-dlm">Drex DLM</a> adds an 8B diffusion decoder to that field at 52.31 on Decision Index 0.2, under CC BY-NC. Google&rsquo;s <a href="#embeddinggemma-2">EmbeddingGemma 2</a> puts text, code, images, audio and video into one 768-d space at 740M parameters under Apache 2.0, with MTEB Code up ten points and a stated floor at 256 dimensions, and <a href="#nano-banana-2-1">Nano Banana 2.1</a> arrives as a Gemini 3.6 Flash-based image model described rather than scored.</p>
-        <p>The Oct 6 cycle added one announced release and one new capability. Reflection&rsquo;s <a href="#reflection-beam">Beam</a> is a 501B-total, 23B-active MoE trained on 23.8T tokens with more than 100M RL rollouts, in the same active-parameter band as the large MoEs already here &mdash; but its weights are promised for later in October, so for now it is a spec sheet rather than something to run. Liquid AI&rsquo;s <a href="#liquid-d1">d1</a> gained vision: a decision can now take images as well as text, and Liquid claims a 19&ndash;200&times; cost advantage over GPT-6.1 Sol and Opus 5.5 with text decisions in 200&ndash;300&nbsp;ms, while size, context window and weights all stay undisclosed.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 6 cycle added one announced release and one new capability. Reflection&rsquo;s <a href="#reflection-beam">Beam</a> is a 501B-total, 23B-active MoE trained on 23.8T tokens with more than 100M RL rollouts, in the same active-parameter band as the large MoEs already here &mdash; but its weights are promised for later in October, so for now it is a spec sheet rather than something to run. Liquid AI&rsquo;s <a href="#liquid-d1">d1</a> gained vision: a decision can now take images as well as text, and Liquid claims a 19&ndash;200&times; cost advantage over GPT-6.1 Sol and Opus 5.5 with text decisions in 200&ndash;300&nbsp;ms, while size, context window and weights all stay undisclosed.</p>
           <p>The Oct 5 cycle added no release, only where one now runs. <a href="#claude-sonnet-5-5">Claude Sonnet 5.5</a> has become the model behind claude.ai&rsquo;s free tier, against ChatGPT&rsquo;s Luna 5.6, which Simon Willison reads as the more capable free offering of the two. It also inherits Opus 5.5&rsquo;s max-effort failure: 128,000 thinking tokens and $1.28 spent on a one-line SVG prompt with no output at all, where &ldquo;xhigh&rdquo; finished in 41 seconds for under six cents &mdash; so on both models the top setting is a cost to opt into, not a default.</p>
           <p>The Oct 2&ndash;5 cycle turned the System One line into an open-weights field within two days. Cloudflare&rsquo;s <a href="#cloudflare-clef">Clef</a> and Clef-flash are Apache-2.0, Jev-API compatible and lead Jev on 7 of 10 of Cloudflare&rsquo;s own tests at 209 and 39&nbsp;ms; AWS&rsquo;s <a href="#strands-decider-2b">Strands Decider 2B</a> publishes its training recipe and a calibration error of 0.052; Perplexity&rsquo;s <a href="#pplx-decider-v1-27b">pplx-decider-v1-27b</a> is a Qwen3.8-27B fine-tune; and <a href="#kev">kev</a> grew into a family of four from 0.8B to 27B. Every comparison is still run on a suite its publisher chose, so the question the section lead asks &mdash; whether anyone outside the vendor has measured it &mdash; has multiplied rather than been answered.</p>
           <p>The rest of the cycle was priced or sized rather than ranked. Microsoft&rsquo;s <a href="#mai-transcribe-2-streaming">MAI-Transcribe-2-Streaming</a> takes first of 38 on Artificial Analysis&rsquo; streaming WER at 2.5% but charges $0.54 an hour, above xAI and Meta, while Cactus&rsquo;s <a href="#cactus-whistle">Whistle</a> fits seven languages into 16.8&nbsp;MB with no accuracy figure at all. Aleph Alpha&rsquo;s <a href="#aleph-alpha-kolibri">Kolibri</a> runs 3.46B of 78.1B parameters per token over a 1M context and sells sovereignty rather than rank. Retrieval gained <a href="#cohere-embed-5">Embed 5</a>, a two-tier shared space scored partly on Cohere&rsquo;s own metric, and <a href="#pplx-embed-v2-context">pplx-embed-v2-context</a>, 14.4 points up on a private benchmark; NVIDIA&rsquo;s <a href="#nvidia-kumo-tabular">Kumo Tabular</a> tops TabArena on a licence its rivals lack; and Tavus is keeping <a href="#tavus-griffin">Griffin</a> off its API because 48% of testers took it for a human. Two older entries gained outside numbers: <a href="#mimo-v2-6">MiMo-V2.6-Pro</a> now leads open models on Artificial Analysis at 46 with its RL bill disclosed, and <a href="#deepseek-v4-1-flash">DeepSeek-V4.1-Flash</a> holds its cache to 890 bytes a token.</p>
@@ -91,15 +92,15 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">24</span></a></li>
+          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">25</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">17</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">15</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">5</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">14</span></a></li>
-          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">19</span></a></li>
+          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">21</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">25</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">26</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">4</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">5</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">1</span></a></li>
@@ -111,6 +112,14 @@
       <section class="topic-section" id="frontier-proprietary-models">
         <h3>Frontier proprietary models</h3>
         <p class="lead">Anthropic&rsquo;s Claude line and OpenAI&rsquo;s GPT line set the pace, with SpaceXAI, Google, Meta and Microsoft pricing against them. A 1M-token context is table stakes here. Almost every figure below is vendor-reported on a harness nobody outside the lab can run, so judge entries on what an outsider could check.</p>
+
+        <article class="story" id="muse-wonder">
+          <span class="when">2026-10-13</span>
+          <h4><a href="https://research.meta.ai/blog/muse-wonder">Meta&rsquo;s Muse Wonder and Wonder Full are its first frontier-class models, and only Wonder reaches the API</a></h4>
+          <p>Meta released <strong>Muse Wonder</strong> and <strong>Muse Wonder Full</strong>, its first frontier-class models, pairing <strong>Active Memory</strong> (personal context carried across conversations and retrieved when a task calls for it) with <strong>Active Focus</strong> (trying alternative approaches, handling blockers and checking before important actions on long-running goals). Wonder is available through the Meta Model API and Muse Code; Wonder Full is limited to Muse Code subscribers, and Meta claims it beats Claude Opus 5.5 on long-horizon coding tasks.</p>
+          <p>The headline claim belongs to the model developers cannot call: early testers report the API-accessible Wonder is noticeably weaker, and no benchmark figure reached the newsletters. It extends Meta&rsquo;s <a href="agents.html#meta-muse">Muse</a> agent line from an app to a model family.</p>
+          <div class="sources"><a href="https://research.meta.ai/blog/muse-wonder">Meta</a> &middot; <a href="https://www.testingcatalog.com/meta-launches-muse-wonder-and-wonder-full-for-ai-agents/">TestingCatalog</a> &middot; <span class="via">via TLDR AI (Oct 13), TLDR (Oct 13), The Code (Oct 13)</span></div>
+        </article>
 
         <article class="story" id="gpt-6-intelligent-ui">
           <span class="when">2026-10-08</span>
@@ -127,17 +136,17 @@
           <div class="sources"><a href="https://www.anthropic.com/claude-haiku-5-5">Anthropic</a> &middot; <a href="https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/">Simon Willison</a> &middot; <span class="via">via TLDR AI (Oct 8), TLDR (Oct 8), MarkTechPost (Oct 8), The Code (Oct 8)</span></div>
         </article>
 
-        <article class="story" id="gpt-6-1-sol">
-          <span class="when">2026-09-30</span>
-          <h4><a href="https://openai.com/index/introducing-gpt-6-1-sol/">GPT-6.1 Sol matches Astra on DeepSWE v1.1 at $2/$10, about a fifth of Astra&rsquo;s price</a></h4>
-          <p>OpenAI released <strong>GPT-6.1 Sol</strong> at DevDay at <strong>$2 input / $10 output per 1M tokens</strong> with cached input at $0.10, a <strong>1,050,000-token context</strong>, 128K output and five reasoning levels; prompts over 272K tokens pay 2&times; on input and 1.5&times; on output. OpenAI says it matches <a href="#gpt-6-astra">GPT-6 Astra</a> on DeepSWE v1.1, beats <a href="#claude-opus-5-5">Opus 5.5</a> by 2.2 points on AutomationBench at about a third of the cost, and cuts the factuality error rate from 11.4% to 7.7%.</p>
-          <p>Every score is OpenAI&rsquo;s own, Astra still leads on the hardest science tasks, and there is no fine-tuning. It is live as <code>gpt-6.1-sol</code> in the API, ChatGPT Work and Codex.</p>
-          <p><em>Updated Oct 12:</em> Artificial Analysis&rsquo;s own run largely backs the Astra comparison: at max reasoning Sol scores <strong>52</strong> on its Intelligence Index against Astra&rsquo;s 53, at <strong>$0.72 a task against $3.26</strong>, though it generates 57.7 tokens a second against GPT-6 Sol&rsquo;s 87.6, and <a href="#claude-opus-5-5">Opus 5.5</a> (58) and <a href="#claude-sonnet-5-5">Sonnet 5.5</a> (56) still top the index. On Oct 9 OpenAI rolled out <strong>Ultrafast</strong> for it in the API, Codex and ChatGPT Work: up to 8&times; faster than standard at <strong>$12/$60 per 1M tokens</strong>, six times the standard price.</p>
-          <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-1-sol/">OpenAI</a> &middot; <a href="https://artificialanalysis.ai/models/gpt-6-1-sol">Artificial Analysis</a> &middot; <a href="https://threadreaderapp.com/thread/2108262812489531498.html">Ultrafast announcement</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-374#sol-nearly-eclipses-astra">The Batch</a> &middot; <span class="via">via MarkTechPost (Sep 30), TLDR AI (Sep 30), The Code (Sep 30), TLDR AI (Oct 9), The Batch (Oct 9)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (21)</summary>
+          <summary>Earlier in this section (22)</summary>
+
+          <article class="story" id="gpt-6-1-sol">
+            <span class="when">2026-09-30</span>
+            <h4><a href="https://openai.com/index/introducing-gpt-6-1-sol/">GPT-6.1 Sol matches Astra on DeepSWE v1.1 at $2/$10, about a fifth of Astra&rsquo;s price</a></h4>
+            <p>OpenAI released <strong>GPT-6.1 Sol</strong> at DevDay at <strong>$2 input / $10 output per 1M tokens</strong> with cached input at $0.10, a <strong>1,050,000-token context</strong>, 128K output and five reasoning levels; prompts over 272K tokens pay 2&times; on input and 1.5&times; on output. OpenAI says it matches <a href="#gpt-6-astra">GPT-6 Astra</a> on DeepSWE v1.1, beats <a href="#claude-opus-5-5">Opus 5.5</a> by 2.2 points on AutomationBench at about a third of the cost, and cuts the factuality error rate from 11.4% to 7.7%.</p>
+            <p>Every score is OpenAI&rsquo;s own, Astra still leads on the hardest science tasks, and there is no fine-tuning. It is live as <code>gpt-6.1-sol</code> in the API, ChatGPT Work and Codex.</p>
+            <p><em>Updated Oct 12:</em> Artificial Analysis&rsquo;s own run largely backs the Astra comparison: at max reasoning Sol scores <strong>52</strong> on its Intelligence Index against Astra&rsquo;s 53, at <strong>$0.72 a task against $3.26</strong>, though it generates 57.7 tokens a second against GPT-6 Sol&rsquo;s 87.6, and <a href="#claude-opus-5-5">Opus 5.5</a> (58) and <a href="#claude-sonnet-5-5">Sonnet 5.5</a> (56) still top the index. On Oct 9 OpenAI rolled out <strong>Ultrafast</strong> for it in the API, Codex and ChatGPT Work: up to 8&times; faster than standard at <strong>$12/$60 per 1M tokens</strong>, six times the standard price.</p>
+            <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-1-sol/">OpenAI</a> &middot; <a href="https://artificialanalysis.ai/models/gpt-6-1-sol">Artificial Analysis</a> &middot; <a href="https://threadreaderapp.com/thread/2108262812489531498.html">Ultrafast announcement</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-374#sol-nearly-eclipses-astra">The Batch</a> &middot; <span class="via">via MarkTechPost (Sep 30), TLDR AI (Sep 30), The Code (Sep 30), TLDR AI (Oct 9), The Batch (Oct 9)</span></div>
+          </article>
 
           <article class="story" id="gemini-4-argon">
             <span class="when">2026-09-30</span>
@@ -741,6 +750,22 @@
         <h3>Alternative decoding architectures</h3>
         <p class="lead">A research line attacking the autoregressive decode bottleneck from two directions: parallelising within one token stream, and removing the stream entirely. Both buy latency and price rather than capability, so the question for every entry here is what the speed costs in quality, and whether anyone outside the vendor has measured it.</p>
 
+        <article class="story" id="subq-snap">
+          <span class="when">2026-10-13</span>
+          <h4><a href="https://subq.ai/introducing-subq-snap">Subquadratic&rsquo;s SubQ Snap decision model takes 384K tokens of context and claims 13 of 16 enterprise wins over Jev</a></h4>
+          <p>Subquadratic released <strong>SubQ Snap</strong>, a decision model for the calls enterprise agents make on every turn, such as picking a tool or verifying that a test passed, with up to <strong>384K tokens</strong> of context, which it says is 12&times; <a href="#jev">Jev</a>&rsquo;s. It claims to beat Jev on <strong>13 of 16 enterprise benchmarks</strong> at <strong>$0.05 per 1M input tokens</strong>.</p>
+          <p>That price sits just above Jev&rsquo;s $0.042, so the argument is context length rather than cost, and the benchmark tally is Subquadratic&rsquo;s own.</p>
+          <div class="sources"><a href="https://subq.ai/introducing-subq-snap">Subquadratic</a> &middot; <span class="via">via The Code (Oct 13)</span></div>
+        </article>
+
+        <article class="story" id="vllm-sr-decision-3">
+          <span class="when">2026-10-11</span>
+          <h4><a href="https://huggingface.co/collections/vllm-sr/decision-30">vLLM Semantic Router&rsquo;s Decision 3.0 ships five Apache-2.0 decision models from 0.8B to 27B, all with image input</a></h4>
+          <p>The vLLM Semantic Router project released <strong>Decision 3.0</strong>, five open decision models from <strong>0.8B to 27B</strong> under Apache 2.0, which read text, JSON and images and return a probability per answer. The largest, <strong>d3 (27B)</strong>, scores <strong>64.1 on text</strong> in the team&rsquo;s internal run of Decision Index 0.3.1, the version on which <a href="#drex-1-5">Drex 1.5</a> reported 58.08.</p>
+          <p>The run is the team&rsquo;s own and carries no latency or price, so it adds a size ladder and image input to the open field rather than a measured lead.</p>
+          <div class="sources"><a href="https://huggingface.co/collections/vllm-sr/decision-30">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/10/11/what-is-decision-3-0-vllm-semantic-routers-new-open-decision-models/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 13)</span></div>
+        </article>
+
         <article class="story" id="drex-1-5">
           <span class="when">2026-10-09</span>
           <h4><a href="https://huggingface.co/nace-ai/drex-v1.5">Nace AI&rsquo;s open Drex 1.5 (9B) scores 58.08 on Decision Index 0.3.1, a statistical tie with closed Jev</a></h4>
@@ -749,24 +774,24 @@
           <div class="sources"><a href="https://huggingface.co/nace-ai/drex-v1.5">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/10/09/nace-ai-open-sources-drex-1-5-a-9b-decision-model-that-scores-options-not-text/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 10)</span></div>
         </article>
 
-        <article class="story" id="microsoft-decision-1">
-          <span class="when">2026-10-09</span>
-          <h4><a href="https://commandline.microsoft.com/microsoft-decision-1-model-foundry/">Microsoft-Decision-1 is a hosted Qwen3.5-9B decision model at $0.042 per 1M input tokens, with an 85&nbsp;ms p50 that rivals dispute</a></h4>
-          <p>Microsoft released <strong>Microsoft-Decision-1</strong>, post-trained from Alibaba&rsquo;s Qwen3.5-9B, which returns a calibrated probability per fixed option &mdash; yes/no, multiple choice, rating or rubric grade &mdash; over a <strong>32,768-token context</strong> and writes no text. Microsoft reports <strong>83.5% averaged over 36 benchmarks</strong> against 81.9% for Quyet-1.0-Large, a p50 of <strong>85&nbsp;ms</strong> (p95 125&nbsp;ms), decisions that flip 1.3% of the time under paraphrase and option shuffling, and <strong>$0.042 per 1M input tokens</strong> with output free &mdash; <a href="#jev">Jev</a>&rsquo;s price, and under the <a href="#openai-decisions-api">Decisions API</a>&rsquo;s $0.10.</p>
-          <p>Every benchmark is Microsoft&rsquo;s, there are no weights (Foundry and OpenRouter only), and the latency comparison is contested: competitor timings use JevBench&rsquo;s adjusted median, which H2O.ai says roughly doubles measured time, and Decision-1 is not on the JevBench board.</p>
-          <div class="sources"><a href="https://commandline.microsoft.com/microsoft-decision-1-model-foundry/">Microsoft</a> &middot; <a href="https://www.marktechpost.com/2026/10/09/microsoft-ai-releases-microsoft-decision-1-a-qwen3-5-9b-decision-scoring-model/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 10), TLDR AI (Oct 12), The Code (Oct 12)</span></div>
-        </article>
-
-        <article class="story" id="drex-dlm">
-          <span class="when">2026-10-07</span>
-          <h4><a href="https://github.com/nace-ai/drex-dlm">Nace.AI&rsquo;s Drex DLM is an 8B diffusion-based decision model scoring 52.31 on Decision Index 0.2, weights CC BY-NC</a></h4>
-          <p>Nace.AI published <strong>Drex DLM</strong>, an <strong>8B</strong> decision model that answers typed questions through a diffusion decoder rather than an autoregressive one, reporting <strong>52.31 on Decision Index 0.2</strong>. It joins the open System One field beside <a href="#cloudflare-clef">Clef</a>, <a href="#strands-decider-2b">Strands Decider 2B</a> and <a href="#pplx-decider-v1-27b">pplx-decider-v1-27b</a>, and is the first of them to put diffusion decoding under the decision interface, the pairing Google&rsquo;s <a href="infrastructure.html">djev</a> made on the serving side.</p>
-          <p>The licence is <strong>CC BY-NC</strong>, so the weights can be inspected but not shipped commercially, and the one score comes with no latency figure and no comparison row from anyone but the publisher.</p>
-          <div class="sources"><a href="https://github.com/nace-ai/drex-dlm">GitHub</a> &middot; <span class="via">via MarkTechPost (Oct 7)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (16)</summary>
+          <summary>Earlier in this section (18)</summary>
+
+          <article class="story" id="microsoft-decision-1">
+            <span class="when">2026-10-09</span>
+            <h4><a href="https://commandline.microsoft.com/microsoft-decision-1-model-foundry/">Microsoft-Decision-1 is a hosted Qwen3.5-9B decision model at $0.042 per 1M input tokens, with an 85&nbsp;ms p50 that rivals dispute</a></h4>
+            <p>Microsoft released <strong>Microsoft-Decision-1</strong>, post-trained from Alibaba&rsquo;s Qwen3.5-9B, which returns a calibrated probability per fixed option &mdash; yes/no, multiple choice, rating or rubric grade &mdash; over a <strong>32,768-token context</strong> and writes no text. Microsoft reports <strong>83.5% averaged over 36 benchmarks</strong> against 81.9% for Quyet-1.0-Large, a p50 of <strong>85&nbsp;ms</strong> (p95 125&nbsp;ms), decisions that flip 1.3% of the time under paraphrase and option shuffling, and <strong>$0.042 per 1M input tokens</strong> with output free &mdash; <a href="#jev">Jev</a>&rsquo;s price, and under the <a href="#openai-decisions-api">Decisions API</a>&rsquo;s $0.10.</p>
+            <p>Every benchmark is Microsoft&rsquo;s, there are no weights (Foundry and OpenRouter only), and the latency comparison is contested: competitor timings use JevBench&rsquo;s adjusted median, which H2O.ai says roughly doubles measured time, and Decision-1 is not on the JevBench board.</p>
+            <div class="sources"><a href="https://commandline.microsoft.com/microsoft-decision-1-model-foundry/">Microsoft</a> &middot; <a href="https://www.marktechpost.com/2026/10/09/microsoft-ai-releases-microsoft-decision-1-a-qwen3-5-9b-decision-scoring-model/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 10), TLDR AI (Oct 12), The Code (Oct 12)</span></div>
+          </article>
+
+          <article class="story" id="drex-dlm">
+            <span class="when">2026-10-07</span>
+            <h4><a href="https://github.com/nace-ai/drex-dlm">Nace.AI&rsquo;s Drex DLM is an 8B diffusion-based decision model scoring 52.31 on Decision Index 0.2, weights CC BY-NC</a></h4>
+            <p>Nace.AI published <strong>Drex DLM</strong>, an <strong>8B</strong> decision model that answers typed questions through a diffusion decoder rather than an autoregressive one, reporting <strong>52.31 on Decision Index 0.2</strong>. It joins the open System One field beside <a href="#cloudflare-clef">Clef</a>, <a href="#strands-decider-2b">Strands Decider 2B</a> and <a href="#pplx-decider-v1-27b">pplx-decider-v1-27b</a>, and is the first of them to put diffusion decoding under the decision interface, the pairing Google&rsquo;s <a href="infrastructure.html">djev</a> made on the serving side.</p>
+            <p>The licence is <strong>CC BY-NC</strong>, so the weights can be inspected but not shipped commercially, and the one score comes with no latency figure and no comparison row from anyone but the publisher.</p>
+            <div class="sources"><a href="https://github.com/nace-ai/drex-dlm">GitHub</a> &middot; <span class="via">via MarkTechPost (Oct 7)</span></div>
+          </article>
 
           <article class="story" id="pplx-decider-v1-27b">
             <span class="when">2026-10-02</span>
@@ -1006,6 +1031,14 @@
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
 
+        <article class="story" id="falcon-asr">
+          <span class="when">2026-10-11</span>
+          <h4><a href="https://huggingface.co/blog/tiiuae/falcon-asr">TII&rsquo;s Falcon-ASR (1.6B) averages 20.92% Arabic WER and beats 30B Qwen3-Omni on Emirati dialect</a></h4>
+          <p>TII released <strong>Falcon-ASR</strong>, a <strong>1.6B</strong> speech model centred on Emirati Arabic that also transcribes English, French, Spanish and Portuguese, with word-level timestamps, from one set of weights. It averages <strong>20.92% WER across six Arabic test sets</strong> against 23.17% for Audar-ASR-V1-Turbo, scores <strong>22.73%</strong> on TII&rsquo;s internal Emirati set against 26.80% for Qwen3-Omni (30B total, 3B active), and averages <strong>5.74%</strong> across seven English Open ASR sets.</p>
+          <p>Every score is TII&rsquo;s, the Emirati set is private, and architecture and training data are undisclosed; language coverage is the pitch, but there are no scores at all for French, Spanish or Portuguese.</p>
+          <div class="sources"><a href="https://huggingface.co/blog/tiiuae/falcon-asr">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/10/11/tii-falcon-asr-arabic-speech-recognition/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 13)</span></div>
+        </article>
+
         <article class="story" id="cactus-whistle">
           <span class="when">2026-10-05</span>
           <h4><a href="https://cactuscompute.com/blog/whistle">Cactus&rsquo;s Whistle transcribes seven European languages in a 16.8&nbsp;MB model</a></h4>
@@ -1021,16 +1054,16 @@
           <div class="sources"><a href="https://microsoft.ai/news/our-first-streaming-transcription-model/">Microsoft AI</a> &middot; <a href="https://www.marktechpost.com/2026/10/02/microsoft-ai-releases-mai-transcribe-2-streaming-1-real-time-speech-to-text-model-on-artificial-analysis/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 2), TLDR AI (Oct 2), MarkTechPost (Oct 3)</span></div>
         </article>
 
-        <article class="story" id="eleven-v4">
-          <span class="when">2026-09-28</span>
-          <h4><a href="https://elevenlabs.io/blog/eleven-v4">ElevenLabs&rsquo; Eleven v4 covers 90 languages at about 100 ms median latency, with a Turbo tier that starts speaking as the LLM replies</a></h4>
-          <p>ElevenLabs released <strong>Eleven v4</strong> and <strong>v4 Turbo</strong>: 90 languages against v3&rsquo;s 70, stackable expression tags, and a median latency of about 100 ms, with Turbo built for agents so audio starts as the LLM begins its reply. Introductory pricing is <strong>$22 per 1M characters for v4 and $11 for Turbo</strong> for two weeks, and v4 ranks first on Artificial Analysis&rsquo; Provider Voice Arena at 1,319 Elo.</p>
-          <p>The launch claims cloning from 10 seconds of audio while the docs still say one to two minutes, so the cloning figure is the one to check before building on it. The Elo is the one outside number; latency and price are ElevenLabs&rsquo; own. Its post, linked since Sep 29, adds inline direction for laughs, whispers, pauses, accents and sound effects, and one newsletter quotes 150&nbsp;ms where the launch says about 100.</p>
-          <div class="sources"><a href="https://elevenlabs.io/blog/eleven-v4">ElevenLabs</a> &middot; <a href="https://techcrunch.com/2026/09/28/elevenlabs-new-v4-speech-model-supports-more-expression-control-and-90-languages/">TechCrunch</a> (report) &middot; <a href="https://x.com/ElevenLabs/status/2104572127617994917">Announcement on X</a> &middot; <span class="via">via MarkTechPost (Sep 28), TLDR AI (Sep 29), Unwind AI (Sep 29)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (22)</summary>
+          <summary>Earlier in this section (23)</summary>
+
+          <article class="story" id="eleven-v4">
+            <span class="when">2026-09-28</span>
+            <h4><a href="https://elevenlabs.io/blog/eleven-v4">ElevenLabs&rsquo; Eleven v4 covers 90 languages at about 100 ms median latency, with a Turbo tier that starts speaking as the LLM replies</a></h4>
+            <p>ElevenLabs released <strong>Eleven v4</strong> and <strong>v4 Turbo</strong>: 90 languages against v3&rsquo;s 70, stackable expression tags, and a median latency of about 100 ms, with Turbo built for agents so audio starts as the LLM begins its reply. Introductory pricing is <strong>$22 per 1M characters for v4 and $11 for Turbo</strong> for two weeks, and v4 ranks first on Artificial Analysis&rsquo; Provider Voice Arena at 1,319 Elo.</p>
+            <p>The launch claims cloning from 10 seconds of audio while the docs still say one to two minutes, so the cloning figure is the one to check before building on it. The Elo is the one outside number; latency and price are ElevenLabs&rsquo; own. Its post, linked since Sep 29, adds inline direction for laughs, whispers, pauses, accents and sound effects, and one newsletter quotes 150&nbsp;ms where the launch says about 100.</p>
+            <div class="sources"><a href="https://elevenlabs.io/blog/eleven-v4">ElevenLabs</a> &middot; <a href="https://techcrunch.com/2026/09/28/elevenlabs-new-v4-speech-model-supports-more-expression-control-and-90-languages/">TechCrunch</a> (report) &middot; <a href="https://x.com/ElevenLabs/status/2104572127617994917">Announcement on X</a> &middot; <span class="via">via MarkTechPost (Sep 28), TLDR AI (Sep 29), Unwind AI (Sep 29)</span></div>
+          </article>
 
           <article class="story" id="qwen-audio-3-1-realtime">
             <span class="when">2026-09-28</span>
@@ -1362,6 +1395,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-13</span><span class="label"><a href="#muse-wonder">Meta&rsquo;s Muse Wonder and Wonder Full are its first frontier-class models, and only Wonder reaches the API</a></span></li>
+        <li><span class="date">2026-10-13</span><span class="label"><a href="#subq-snap">Subquadratic&rsquo;s SubQ Snap decision model takes 384K tokens of context and claims 13 of 16 enterprise wins over Jev</a></span></li>
+        <li><span class="date">2026-10-11</span><span class="label"><a href="#falcon-asr">TII&rsquo;s Falcon-ASR (1.6B) averages 20.92% Arabic WER and beats 30B Qwen3-Omni on Emirati dialect</a></span></li>
+        <li><span class="date">2026-10-11</span><span class="label"><a href="#vllm-sr-decision-3">vLLM Semantic Router&rsquo;s Decision 3.0 ships five Apache-2.0 decision models from 0.8B to 27B, all with image input</a></span></li>
         <li><span class="date">2026-10-10</span><span class="label"><a href="#ltx-2-5">Lightricks&rsquo; LTX-2.5 is a 22B joint video-and-audio model, free for commercial use under $10M revenue</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#lightonocr-3">LightOnOCR-3 adds layout, grounding and chart extraction at 4B and 0.8B, and reports 86.3 on olmOCR-Bench</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#qwen-image-2-1-turbo">Qwen-Image-2.1-Turbo cuts Qwen-Image-2.1 from 40 denoising steps to 8</a></span></li>
