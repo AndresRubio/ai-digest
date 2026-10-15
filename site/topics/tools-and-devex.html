@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-10-14</div>
+      <div class="meta">Last updated: 2026-10-15</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 15 cycle was the plumbing under agent-written code. Anthropic replaced git with <a href="#anthropic-scion">Scion</a> after daily merges went from about 2,500 in May to over 30,000, migrating its monorepo in five months with seven people &mdash; the clearest statement yet that the review-and-landing machinery, not the model, is what breaks first at agent volume. Two tools sit on the reviewer&rsquo;s side of that machinery: <a href="#diff-tour">diff-tour</a> has a coding agent write a read-only guided tour of a diff, and <a href="#openqodex">OpenQodex</a> runs over 100 scanners with the developer&rsquo;s own Claude Code or Codex login checking each finding; both are model-written review aids with no published error rate. <a href="#opencode-2-0">OpenCode 2.0</a> became a background server and an SDK library, the build-your-own harness getting easier to embed.</p>
         <p>The Oct 14 cycle was two ways of managing what a coding agent holds. <a href="#context-mode">Context Mode</a>, an MCP server at 26.7k stars, sandboxes tool calls so that, by its own figure, 98% less raw output reaches the model, and keeps session history in SQLite across compaction &mdash; a measure of what was kept out, not of what was lost. <a href="#agent-engineer-plugin">AGENT-ENGINEER</a> bundles 11 skills, 4 subagents and 5 hooks for agent-engineering work into one plugin without saying which clients it targets, the first question the plugin section asks.</p>
         <p>The Oct 13 cycle, all from one Simon Willison issue, moved a sandbox off the laptop and put a dictation habit on the record. Cowork now runs <a href="#cowork-cloud-vm">its VM in the cloud</a>, one sandbox per session, with the desktop app answering only the tool calls that need a local file &mdash; the trade <a href="#claude-code-cloud-sessions-ga">Claude Code cloud sessions</a> made, with the file bridge as the new thing to audit. Willison built a Django feature <a href="#codex-voice-blog-feature">by voice in Codex</a> while cooking: half an hour of talking, a pull-request review that caught Git in a subprocess where the API was needed, and half an hour of typing to finish. Two of his releases sit on the tooling side: <a href="#llm-openai-decisions">llm-openai-decisions</a> exposes OpenAI&rsquo;s decision model with the image input Jev lacks, and <a href="#ttok-1-0">ttok 1.0</a> defaults to the GPT-5 tokenizer for GPT-6 on an outside 31-fixture test rather than any word from OpenAI.</p>
         <p>The Oct 9&ndash;12 cycle opened one coordinator to everyone and added a tool built for agents to read. <a href="#claude-code-projects">Claude Code Projects</a> left its waitlist for every Pro and Max user, so the coordinator-and-threads shape the parallel-work section describes is now available by default rather than by invitation. <a href="#rea-reverse-engineer-anything">REA</a> gives Claude Code, Codex and Cursor reverse-engineering tools for apps, binaries, APKs and firmware and has them cite file, function and address for each finding &mdash; agent-native in this page&rsquo;s sense, with the licence check left to the prompt.</p>
         <p>The Oct 7 cycle produced the review number this section has been asking for, from the lab that says 80% of its code is agent-written. Addy Osmani&rsquo;s <a href="#code-nobody-reads">essay</a> on teams that stopped reading diffs gives Anthropic&rsquo;s own figures: an automated reviewer on nearly every PR, fewer than 1% of its findings marked wrong, and substantive review coverage up from 16% to 54%, with a workflow of multiple finding-and-verifying agents, light human review on low-risk changes and a person on every merge. It measures how much gets reviewed rather than what ships broken, so the lead&rsquo;s missing defect rate stays missing, but it is the first fast-path figure here that is not a cost or a multiple.</p>
-        <p>The Oct 6 cycle put a price on the factory and moved a check into the compiler. Warp says running its own changes through an <a href="#warp-factory-cost-per-pr">agent factory</a> &mdash; triage, spec, build, verify and review agents, a human at the end, monitors feeding production alerts back in as tickets &mdash; cut its internal cost per PR from $80 to $30, a self-reported figure with no defect rate beside it. Vercel&rsquo;s <a href="#gdp-ts">gdp-ts</a> makes an unauthorized call a TypeScript compile error and ships an agent skill to apply it, so an access-control bug an agent writes fails before review rather than in it. <a href="#framefields">Framefields</a> gives a coding agent a GPU renderer for compositing, motion and 3D that it drives from TypeScript and checks frame by frame.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 6 cycle put a price on the factory and moved a check into the compiler. Warp says running its own changes through an <a href="#warp-factory-cost-per-pr">agent factory</a> &mdash; triage, spec, build, verify and review agents, a human at the end, monitors feeding production alerts back in as tickets &mdash; cut its internal cost per PR from $80 to $30, a self-reported figure with no defect rate beside it. Vercel&rsquo;s <a href="#gdp-ts">gdp-ts</a> makes an unauthorized call a TypeScript compile error and ships an agent skill to apply it, so an access-control bug an agent writes fails before review rather than in it. <a href="#framefields">Framefields</a> gives a coding agent a GPU renderer for compositing, motion and 3D that it drives from TypeScript and checks frame by frame.</p>
           <p>The Oct 5 cycle was two of Simon Willison&rsquo;s own releases, one on each side of the agent. <a href="#pwasm-0-2a0">pwasm 0.2a0</a> is what one prompt and minimal follow-up got from Opus 5.5 on a pure-Python WebAssembly engine left untouched since January: 42 commits, almost all of the WASM specification, and MicroPython and QuickJS builds bundled in the wheel &mdash; tagged alpha because its author would not trust it, which is this page&rsquo;s auditing problem in miniature. <a href="#llm-anthropic-0-30">llm-anthropic 0.30</a> removes a release step instead: the plugin now reads Anthropic&rsquo;s model list from the API, so a new model is callable the day it ships, and counts a prompt&rsquo;s tokens through the free counting endpoint before it is sent. The addition-in-words experiment from the same issue is on <a href="evals-and-benchmarks.html">Evals &amp; benchmarks</a>.</p>
           <p>The Oct 2&ndash;5 cycle put numbers on the effort dial and on the verification step. Anthropic&rsquo;s <a href="#spending-your-effort">effort guide</a> finds the top setting uses about three times the tokens of the lowest on Terminal-Bench 3.0 and pays off where there is something to verify &mdash; security from 64% to 87%, operations filings only from 12% to 22% &mdash; and never rescues a wrong approach. Boris Cherny&rsquo;s <a href="#lean-state-machine-verification">Lean run</a> is that verification made formal: Opus 5.5 modelled a state machine, every counter-example had to reproduce as a failing test, and the result was 16 PRs fixing 24 bugs that tests and review had missed.</p>
           <p>Around it the harness kept moving toward where the code lives. <a href="#claude-mods">Claude Code mods</a> shipped beyond the flag with an official guide, unsandboxed and able to replace built-ins such as <code>/diff</code>; IBM&rsquo;s <a href="#ibm-bob-self-hosted">Bob</a> went self-hosted and air-gapped on Nemotron or Poolside Laguna with no model bundled; and <a href="#e2e-testing-framework">e2e</a> replays an agent&rsquo;s recorded test actions instead of paying for the reasoning again. 37signals is having agents <a href="#hey-rust-rewrite">rewrite HEY&rsquo;s backend in Rust</a> for a 99% CPU cut in early tests, the choice of language no longer priced by who has to type it.</p>
@@ -100,9 +101,9 @@
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">12</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">17</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
-          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">13</span></a></li>
-          <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">17</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">23</span></a></li>
+          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">14</span></a></li>
+          <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">18</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">25</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">7</span></a></li>
         </ul>
       </nav>
@@ -891,6 +892,13 @@
         <h3>Open-source agent infrastructure</h3>
         <p class="lead">Open-source projects filling in the stack around agents rather than the agents themselves &mdash; security, source hosting, data, UI, onboarding, release engineering. Judge entries on what limit the project states about itself; the ones worth recording here publish the case their own design does not cover.</p>
 
+        <article class="story" id="openqodex">
+          <span class="when">2026-10-14</span>
+          <h4><a href="https://github.com/openqodex/openqodex">OpenQodex runs 100+ scanners and has your own Claude Code or Codex login investigate each finding</a></h4>
+          <p><strong>OpenQodex</strong> is an open-source pre-push code reviewer that pairs more than <strong>100 scanners</strong> with an AI reviewer that investigates every finding through the developer&rsquo;s existing Claude Code or Codex login, so the model cost lands on a subscription already paid for. Its claim to match paid per-seat reviewers at $0 is the project&rsquo;s own comparison, and it publishes no false-positive rate.</p>
+          <div class="sources"><a href="https://github.com/openqodex/openqodex">GitHub</a> &middot; <span class="via">via The Code (Oct 14)</span></div>
+        </article>
+
         <article class="story" id="ttok-1-0">
           <span class="when">2026-10-08</span>
           <h4><a href="https://github.com/simonw/ttok/releases/tag/1.0">ttok 1.0 defaults to the GPT-5 tokenizer for GPT-6 &mdash; on an outside test, not OpenAI&rsquo;s word</a></h4>
@@ -906,15 +914,15 @@
           <div class="sources"><a href="https://github.com/rauchg/gdp-ts">GitHub</a> &middot; <span class="via">via The Code (Oct 6)</span></div>
         </article>
 
-        <article class="story" id="llm-openai-decisions">
-          <span class="when">2026-10-06</span>
-          <h4><a href="https://github.com/simonw/llm-openai-decisions/releases/tag/0.1a0">llm-openai-decisions 0.1a0 puts OpenAI&rsquo;s Decisions API in the LLM CLI, with the image input Jev lacks</a></h4>
-          <p>Simon Willison&rsquo;s <strong>llm-openai-decisions 0.1a0</strong>, an alpha plugin GPT-6 Astra wrote from OpenAI&rsquo;s API documentation on the pattern of llm-typesafe, exposes the <a href="model-releases.html">Decisions API</a>&rsquo;s <code>gpt-6-luna</code> decision model from the shell with Jev&rsquo;s three question types: yes/no, choice and score. Unlike Jev it accepts image attachments, and both bill input only &mdash; <strong>10 cents per million tokens</strong> for OpenAI against 4.2 cents for Jev, by Willison&rsquo;s comparison. <strong>llm-mistral 0.16</strong>, released alongside, adds reasoning-model support for Mistral Large 4.</p>
-          <div class="sources"><a href="https://github.com/simonw/llm-openai-decisions/releases/tag/0.1a0">GitHub release</a> &middot; <a href="https://github.com/simonw/llm-openai-decisions/blob/main/README.md">README</a> &middot; <a href="https://github.com/simonw/llm-mistral/releases/tag/0.16">llm-mistral 0.16</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (10)</summary>
+          <summary>Earlier in this section (11)</summary>
+
+          <article class="story" id="llm-openai-decisions">
+            <span class="when">2026-10-06</span>
+            <h4><a href="https://github.com/simonw/llm-openai-decisions/releases/tag/0.1a0">llm-openai-decisions 0.1a0 puts OpenAI&rsquo;s Decisions API in the LLM CLI, with the image input Jev lacks</a></h4>
+            <p>Simon Willison&rsquo;s <strong>llm-openai-decisions 0.1a0</strong>, an alpha plugin GPT-6 Astra wrote from OpenAI&rsquo;s API documentation on the pattern of llm-typesafe, exposes the <a href="model-releases.html">Decisions API</a>&rsquo;s <code>gpt-6-luna</code> decision model from the shell with Jev&rsquo;s three question types: yes/no, choice and score. Unlike Jev it accepts image attachments, and both bill input only &mdash; <strong>10 cents per million tokens</strong> for OpenAI against 4.2 cents for Jev, by Willison&rsquo;s comparison. <strong>llm-mistral 0.16</strong>, released alongside, adds reasoning-model support for Mistral Large 4.</p>
+            <div class="sources"><a href="https://github.com/simonw/llm-openai-decisions/releases/tag/0.1a0">GitHub release</a> &middot; <a href="https://github.com/simonw/llm-openai-decisions/blob/main/README.md">README</a> &middot; <a href="https://github.com/simonw/llm-mistral/releases/tag/0.16">llm-mistral 0.16</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
+          </article>
 
           <article class="story" id="llm-anthropic-0-30">
             <span class="when">2026-09-28</span>
@@ -1001,6 +1009,13 @@
         <h3>The agentic harness: build vs buy</h3>
         <p class="lead">The harness is a discrete, standardizable component, commoditizing into a few batteries-included frameworks. The durable test for harness code is whether it helps inspect, verify, recover or merge the model&rsquo;s work. Buying one increasingly means buying the surrounding development platform; the <a href="agents.html">Agents</a> page carries this argument from the framework side.</p>
 
+        <article class="story" id="opencode-2-0">
+          <span class="when">2026-10-14</span>
+          <h4><a href="https://anoma.ly/notes/opencode-2-0/">OpenCode 2.0 runs as one background server that clients autodiscover, and ships as an SDK library</a></h4>
+          <p><strong>OpenCode 2.0</strong> turns the open-source coding agent&rsquo;s server into a single background process that programmatic clients discover automatically, and publishes the agent as a library through its SDK package, alongside performance work and bug fixes. That moves it from a terminal client toward an embeddable harness &mdash; the build side of this section&rsquo;s choice &mdash; though the release notes quote no performance figures.</p>
+          <div class="sources"><a href="https://anoma.ly/notes/opencode-2-0/">Release notes</a> &middot; <span class="via">via TLDR AI (Oct 14)</span></div>
+        </article>
+
         <article class="story" id="ibm-bob-self-hosted">
           <span class="when">2026-10-02</span>
           <h4><a href="https://bob.ibm.com/">IBM&rsquo;s Bob goes self-hosted and air-gapped, isolated on Nemotron or Poolside Laguna</a></h4>
@@ -1015,17 +1030,17 @@
           <div class="sources"><a href="https://github.com/stepfun-ai/Step-Code">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="openai-software-factory">
-          <span class="when">2026-09-18</span>
-          <h4><a href="https://newsletter.pragmaticengineer.com/p/openai-software-factory">Orosz on OpenAI&rsquo;s &ldquo;software factory&rdquo;: Codex opens the PR, agents review it, a deploy agent ships it</a></h4>
-          <p>Gergely Orosz described the internal pipeline OpenAI is building, in which Codex reads the codebase, Slack and internal data, writes the change, runs tests, fixes failures and opens a PR, iterating until CI is green while a separate tool checks for performance regressions. <strong>Multiple review agents inspect the PR by domain</strong> &mdash; cloud, infrastructure, security &mdash; and low-risk changes can be approved automatically; after human sign-off a deploy agent ships, creates monitoring dashboards and can roll back.</p>
-          <p><strong>Perf Factory</strong> watches production, deduplicates alerts and traces slowdowns to cause; <strong>Sevbot</strong>, an incident agent on Codex, gathers context and suggests fixes without applying them. The shape to notice is that every autonomous step is paired with a narrower agent whose job is to catch it, and the only mandatory human is the one signing off the merge.</p>
-          <p>Orosz&rsquo;s stated catch is cost: the setup burns compute OpenAI can absorb more easily than most teams, and he expects the gap to close as token prices fall. Nothing here measures it.</p>
-          <div class="sources"><a href="https://newsletter.pragmaticengineer.com/p/openai-software-factory">Pragmatic Engineer</a> &middot; <span class="via">via The Code (Sep 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="openai-software-factory">
+            <span class="when">2026-09-18</span>
+            <h4><a href="https://newsletter.pragmaticengineer.com/p/openai-software-factory">Orosz on OpenAI&rsquo;s &ldquo;software factory&rdquo;: Codex opens the PR, agents review it, a deploy agent ships it</a></h4>
+            <p>Gergely Orosz described the internal pipeline OpenAI is building, in which Codex reads the codebase, Slack and internal data, writes the change, runs tests, fixes failures and opens a PR, iterating until CI is green while a separate tool checks for performance regressions. <strong>Multiple review agents inspect the PR by domain</strong> &mdash; cloud, infrastructure, security &mdash; and low-risk changes can be approved automatically; after human sign-off a deploy agent ships, creates monitoring dashboards and can roll back.</p>
+            <p><strong>Perf Factory</strong> watches production, deduplicates alerts and traces slowdowns to cause; <strong>Sevbot</strong>, an incident agent on Codex, gathers context and suggests fixes without applying them. The shape to notice is that every autonomous step is paired with a narrower agent whose job is to catch it, and the only mandatory human is the one signing off the merge.</p>
+            <p>Orosz&rsquo;s stated catch is cost: the setup burns compute OpenAI can absorb more easily than most teams, and he expects the gap to close as token prices fall. Nothing here measures it.</p>
+            <div class="sources"><a href="https://newsletter.pragmaticengineer.com/p/openai-software-factory">Pragmatic Engineer</a> &middot; <span class="via">via The Code (Sep 18)</span></div>
+          </article>
 
           <article class="story" id="cowork-becomes-claude">
             <span class="when">2026-09-17</span>
@@ -1146,6 +1161,21 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and no defect rate for the fast path is recorded here.</p>
 
+        <article class="story" id="diff-tour">
+          <span class="when">2026-10-14</span>
+          <h4><a href="https://github.com/init-co-jp/diff-tour">diff-tour turns a git diff into a guided, read-only walkthrough written by Claude Code, Codex or Gemini CLI</a></h4>
+          <p><strong>diff-tour</strong> has a signed-in Claude Code, Codex CLI or Gemini CLI write an interactive tour of the current branch&rsquo;s diff with <strong>read-only access</strong>, in 2&ndash;5 minutes: what the change is for, must-fix items split from nice-to-haves, and questions put to the reviewer before the answers are shown. It is built for the auditing role this section describes, but the tour is itself model-written, so its must-fix list is a starting point for review rather than a verdict.</p>
+          <div class="sources"><a href="https://github.com/init-co-jp/diff-tour">GitHub</a> &middot; <span class="via">via The Code (Oct 14)</span></div>
+        </article>
+
+        <article class="story" id="anthropic-scion">
+          <span class="when">2026-10-14</span>
+          <h4><a href="https://www.anthropic.com/engineering/redesigning-source-control">Anthropic replaced git with Scion after merges grew from 2,500 to over 30,000 a day</a></h4>
+          <p>Anthropic built <strong>Scion</strong>, an in-house version-control system designed for agent-written code, and migrated its monorepo off git in <strong>five months</strong> with a seven-person team, shipping its own code review surface, code search and source-control IAM alongside it. Daily merges rose from about <strong>2,500 in May to over 30,000</strong>, and CI checkouts now take seconds instead of minutes.</p>
+          <p>It is the throughput side of this section&rsquo;s question: the review and landing machinery had to be rebuilt before the human role in it could be. Anthropic expects other teams to hit the same bottleneck within a year, a forecast from the one company already past it.</p>
+          <div class="sources"><a href="https://www.anthropic.com/engineering/redesigning-source-control">Anthropic</a> &middot; <span class="via">via TLDR (Oct 14), The Code (Oct 14)</span></div>
+        </article>
+
         <article class="story" id="codex-voice-blog-feature">
           <span class="when">2026-10-09</span>
           <h4><a href="https://simonwillison.net/2026/Oct/9/built-using-my-voice/">Simon Willison built a Django feature by talking to Codex while cooking, then finished it by typing</a></h4>
@@ -1154,24 +1184,24 @@
           <div class="sources"><a href="https://simonwillison.net/2026/Oct/9/built-using-my-voice/">Simon Willison</a> &middot; <a href="https://github.com/simonw/simonwillisonblog/pull/719">Pull request</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
         </article>
 
-        <article class="story" id="code-nobody-reads">
-          <span class="when">2026-10-07</span>
-          <h4><a href="https://addyo.substack.com/p/the-code-nobody-reads">Addy Osmani: Anthropic&rsquo;s automated reviewer runs on nearly every PR, is marked wrong under 1% of the time, and lifted substantive review coverage from 16% to 54%</a></h4>
-          <p>In an essay on teams that stopped reading diffs without putting any verification in their place, Anthropic engineer Addy Osmani puts numbers on the company&rsquo;s own review path: an <strong>automated reviewer runs on nearly every PR, engineers mark fewer than 1% of its findings incorrect, and substantive review coverage rose from 16% to 54%</strong>. His recommended workflow has several agents find, verify and rank bugs on every PR and suggest fixes, light human review for low-risk changes after a clean pass, an owner and a full human review on core and sensitive code, checks independent of whatever wrote the code, and a person approving every merge.</p>
-          <p>The coverage figure is the one this section&rsquo;s lead said was missing, though it measures how much is reviewed, not the defect rate of what ships; the headline links the essay, and the reviewer itself is described in Anthropic&rsquo;s code-review post and documentation.</p>
-          <div class="sources"><a href="https://addyo.substack.com/p/the-code-nobody-reads">Essay (Substack)</a> &middot; <a href="https://claude.com/blog/code-review">Anthropic</a> &middot; <a href="https://code.claude.com/docs/en/code-review">Code review docs</a> &middot; <span class="via">via The Code (Oct 7)</span></div>
-        </article>
-
-        <article class="story" id="warp-factory-cost-per-pr">
-          <span class="when">2026-10-06</span>
-          <h4><a href="https://www.warp.dev/factories/configuration">Warp runs its own code through an agent factory and cut internal cost per PR from $80 to $30</a></h4>
-          <p>Warp&rsquo;s Ben Holmes described how the company&rsquo;s own changes move from a Slack or Linear request to production: an agent triages, a subagent drafts a spec for human approval, an implementation agent builds, another subagent verifies end to end, a review agent and the builder iterate, and a human takes the final look and ships; a monitor turns production alerts into new tickets. Warp says this cut its internal <strong>cost per PR from $80 to $30</strong> &mdash; a self-reported figure with no defect rate beside it.</p>
-          <p>It is the operational form of the <a href="#warp-agent-memory">Warp Factories</a> product announced in August, and cost per merged PR is the same metric a TLDR-linked <a href="https://www.theaithinker.com/p/how-to-build-an-ai-native-software">write-up of Uber&rsquo;s software factory</a> recommends tracking.</p>
-          <div class="sources"><a href="https://www.warp.dev/factories/configuration">Warp Factories</a> &middot; <a href="https://github.com/warpdotdev/warp-factory-examples">Starter templates</a> &middot; <span class="via">via The Code (Oct 6), TLDR AI (Oct 6)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (20)</summary>
+          <summary>Earlier in this section (22)</summary>
+
+          <article class="story" id="code-nobody-reads">
+            <span class="when">2026-10-07</span>
+            <h4><a href="https://addyo.substack.com/p/the-code-nobody-reads">Addy Osmani: Anthropic&rsquo;s automated reviewer runs on nearly every PR, is marked wrong under 1% of the time, and lifted substantive review coverage from 16% to 54%</a></h4>
+            <p>In an essay on teams that stopped reading diffs without putting any verification in their place, Anthropic engineer Addy Osmani puts numbers on the company&rsquo;s own review path: an <strong>automated reviewer runs on nearly every PR, engineers mark fewer than 1% of its findings incorrect, and substantive review coverage rose from 16% to 54%</strong>. His recommended workflow has several agents find, verify and rank bugs on every PR and suggest fixes, light human review for low-risk changes after a clean pass, an owner and a full human review on core and sensitive code, checks independent of whatever wrote the code, and a person approving every merge.</p>
+            <p>The coverage figure is the one this section&rsquo;s lead said was missing, though it measures how much is reviewed, not the defect rate of what ships; the headline links the essay, and the reviewer itself is described in Anthropic&rsquo;s code-review post and documentation.</p>
+            <div class="sources"><a href="https://addyo.substack.com/p/the-code-nobody-reads">Essay (Substack)</a> &middot; <a href="https://claude.com/blog/code-review">Anthropic</a> &middot; <a href="https://code.claude.com/docs/en/code-review">Code review docs</a> &middot; <span class="via">via The Code (Oct 7)</span></div>
+          </article>
+
+          <article class="story" id="warp-factory-cost-per-pr">
+            <span class="when">2026-10-06</span>
+            <h4><a href="https://www.warp.dev/factories/configuration">Warp runs its own code through an agent factory and cut internal cost per PR from $80 to $30</a></h4>
+            <p>Warp&rsquo;s Ben Holmes described how the company&rsquo;s own changes move from a Slack or Linear request to production: an agent triages, a subagent drafts a spec for human approval, an implementation agent builds, another subagent verifies end to end, a review agent and the builder iterate, and a human takes the final look and ships; a monitor turns production alerts into new tickets. Warp says this cut its internal <strong>cost per PR from $80 to $30</strong> &mdash; a self-reported figure with no defect rate beside it.</p>
+            <p>It is the operational form of the <a href="#warp-agent-memory">Warp Factories</a> product announced in August, and cost per merged PR is the same metric a TLDR-linked <a href="https://www.theaithinker.com/p/how-to-build-an-ai-native-software">write-up of Uber&rsquo;s software factory</a> recommends tracking.</p>
+            <div class="sources"><a href="https://www.warp.dev/factories/configuration">Warp Factories</a> &middot; <a href="https://github.com/warpdotdev/warp-factory-examples">Starter templates</a> &middot; <span class="via">via The Code (Oct 6), TLDR AI (Oct 6)</span></div>
+          </article>
 
           <article class="story" id="hey-rust-rewrite">
             <span class="when">2026-10-05</span>
@@ -1396,6 +1426,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-14</span><span class="label"><a href="#openqodex">OpenQodex runs 100+ scanners and has your own Claude Code or Codex login investigate each finding</a></span></li>
+        <li><span class="date">2026-10-14</span><span class="label"><a href="#opencode-2-0">OpenCode 2.0 runs as one background server that clients autodiscover, and ships as an SDK library</a></span></li>
+        <li><span class="date">2026-10-14</span><span class="label"><a href="#diff-tour">diff-tour turns a git diff into a guided, read-only walkthrough written by Claude Code, Codex or Gemini CLI</a></span></li>
+        <li><span class="date">2026-10-14</span><span class="label"><a href="#anthropic-scion">Anthropic replaced git with Scion after merges grew from 2,500 to over 30,000 a day</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#agent-engineer-plugin">AGENT-ENGINEER bundles 11 skills, 4 subagents and 5 hooks for coding assistants doing agent-engineering work</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#context-mode">Context Mode, an MCP server at 26.7k stars, sandboxes tool output to cut raw context use by 98%</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#rea-reverse-engineer-anything">REA gives coding agents reverse-engineering tools for apps, binaries, APKs and firmware, and has them cite the evidence</a></span></li>

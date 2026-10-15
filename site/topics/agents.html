@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-14</div>
+      <div class="meta">Last updated: 2026-10-15</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 15 cycle let the model write its own orchestration and widened what gets remembered. Anthropic&rsquo;s <a href="#claude-dynamic-workflows">dynamic workflows</a> have Claude write the program that assigns, passes and checks subagent work; the presenters said a multi-agent stock-research run found more than one agent did but cost much more, and the running model is not told the session&rsquo;s spending cap &mdash; the cost pattern Vals AI measured on Vibe Code Bench, now with a budget the coordinator cannot see. CopilotKit&rsquo;s <a href="#copilotkit-clif">CLiF</a> learns from full-stack trajectories, agent traces and user actions together over AG-UI, which puts it on the remember-the-work side of the memory section with no figure for what it improves. The payment rail&rsquo;s answer to agent purchases, Amex&rsquo;s Proof of Intent Token, is filed on <a href="safety-and-policy.html#amex-intent-intelligence">Safety &amp; policy</a>.</p>
         <p>The Oct 14 cycle measured a decision model inside a loop and priced a domain agent by its failures. Routing a Qwen agent&rsquo;s step-completion checks and other bounded decisions to Jev cut <a href="#decision-offloading-sop-bench">LLM calls by 29.6%</a>, estimated cost by 26.6% and latency by 19.7% over 360 SOP-Bench cases &mdash; a forum write-up, but the first in-loop saving on this page rather than a standalone benchmark score. Z.ai&rsquo;s <a href="#glm-legal">GLM-Legal</a> lifts its base model&rsquo;s Harvey LAB pass rate from 6.67% to 19.17%, which still leaves four in five end-to-end legal tasks failed. Meta&rsquo;s Muse agents gained a frontier model of their own, <a href="model-releases.html#muse-wonder">Muse Wonder</a>, on Model releases.</p>
         <p>The Oct 9&ndash;12 cycle put a governed enterprise agent beside the first measurement of agent teams. Google Cloud&rsquo;s <a href="#gemini-agent">Gemini Agent</a> is one agent behind one API that routes across Gemini and Claude, keeps four kinds of memory and stops at a per-project spend cap until a human resumes it &mdash; governance described, not measured. Vals AI&rsquo;s <a href="#vals-multi-agent-vibe-code-bench">Vibe Code Bench test</a> is the number the multi-agent section lacked, and it is a null: teams cost 1.8&ndash;5.1&times; more and scored no better except in one configuration. Two harness pieces arrived, one from research and one from Microsoft: <a href="#hyset">HYSET</a> chooses tools as a compatible set and lifts ToolBench completion from 61.8% to 69.9%, and <a href="#quicksand">Quicksand</a> makes a snapshotable QEMU VM the agent sandbox without root or Docker. Harvey&rsquo;s <a href="#harvey-wake-sleep">wake-sleep</a> agent adds a memory datapoint &mdash; lessons distilled from graded trajectories raised held-out all-pass from 2.9% to 15.7% &mdash; reported in a post rather than a paper.</p>
         <p>The Oct 8 cycle moved two pieces of the harness out of application code. SpaceXAI turned <a href="#grok-bot-model-router">Grok Bot</a> into a router that keeps simple requests on its own small models and sends reasoning to Claude Opus 5.5, images to Midjourney and music to Suno &mdash; a personal agent treating rival labs&rsquo; models as interchangeable tools, which is the harness-over-model argument this page has made from the build side, now made by a product. Anthropic&rsquo;s <a href="#claude-sdk-browser-use">Python and TypeScript SDKs</a> now run the computer- and browser-use action loop against a driver such as Browserbase, in beta, so the glue a computer-use agent most often gets wrong becomes vendor code whose behaviour can change between versions.</p>
         <p>The Oct 7 cycle put authentication under the personal agent. Meta and Sierra&rsquo;s <a href="#personal-agent-protocol">Personal Agent Protocol</a> is an OAuth-based open standard for a consumer&rsquo;s agent to act on a business through its site, APIs or agents, with the consumer scoping access, the company bounding actions and seeing what was done, and Shopify, Stripe and Walmart named as backers. It is the trust decision this page&rsquo;s extension section has treated as unresolved, answered by the parties on both ends of a Muse transaction rather than by the MCP working group, and published so far as a spec and a partner list with no conformance test. The decision models that agents increasingly route through gained a frontier price &mdash; OpenAI&rsquo;s Decisions API at $0.10 per million input tokens &mdash; on <a href="model-releases.html">Model releases</a>.</p>
-        <p>The Oct 6 cycle was memory that reorganizes itself and steering exposed as an API. Cognition&rsquo;s <a href="#devin-memory-dreaming">Devin Memory</a> carries corrections and project learnings across sessions, and Dreaming periodically deduplicates them, links each to the session it came from and derives new knowledge &mdash; the provenance link answers this page&rsquo;s inspection question, and the derivation step is where a store can start holding facts nobody stated. Cursor&rsquo;s <a href="#cursor-sdk-steer">SDK update</a> puts mid-turn steering behind <code>run.steer()</code>, backgrounds busy subagents, and lets tools be tagged read-only or destructive, a declaration the model reads rather than a permission the runtime enforces.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 6 cycle was memory that reorganizes itself and steering exposed as an API. Cognition&rsquo;s <a href="#devin-memory-dreaming">Devin Memory</a> carries corrections and project learnings across sessions, and Dreaming periodically deduplicates them, links each to the session it came from and derives new knowledge &mdash; the provenance link answers this page&rsquo;s inspection question, and the derivation step is where a store can start holding facts nobody stated. Cursor&rsquo;s <a href="#cursor-sdk-steer">SDK update</a> puts mid-turn steering behind <code>run.steer()</code>, backgrounds busy subagents, and lets tools be tagged read-only or destructive, a declaration the model reads rather than a permission the runtime enforces.</p>
           <p>The Oct 2&ndash;5 cycle was about what survives a long run and who controls it. Earendil&rsquo;s <a href="#pi-durable">Pi Durable</a> lets an agent keep an indefinitely long conversation, survive internal and external failures and take steering from several people at once, with no recovery figure attached. DeepSeek&rsquo;s <a href="#deepseek-harness-v0-2">Harness v0.2</a> goes the other way on control: desktop installers, every layer a plugin, and a Creator mode in which the agent writes and installs its own plugins, beside a self-reported 82.7 on Terminal-Bench 2.1 and an experimental layer for Claude Code mods. An agent that rewrites its own harness is exactly what this page&rsquo;s governance section has no instrument for yet.</p>
           <p>The Oct 1 cycle was OpenAI taking the always-on agent slot that Muse and Grok Bot opened. <a href="#openai-dots">dots</a> give each GPT-6 Astra agent its own cloud computer and browser, reach 4,000-plus apps, and gate risky actions with Custom Rules and auto-review &mdash; and inadvertently posted images for 53 users the day before launch, this page&rsquo;s containment question arriving on schedule. <a href="#chatgpt-mcp-events">MCP Events</a> lets ChatGPT react to pushes from an MCP server, but implements only webhook delivery from the draft spec, without the <code>gap</code> notification that tells a client it missed something. And <a href="#rrsi">RRSI</a> is now open source with its split-level numbers: six points on the Terminal-Bench split it evolved on, 1.8 on held-out SWE-bench Verified &mdash; transfer, but smaller than the headline.</p>
           <p>The Sep 30 cycle gave the agent an identity of its own. Manus&rsquo;s <a href="#manus-2-0">Cue</a> assigns each agent an email address, a phone number, a wallet and a computer, and <a href="#fo-personal-agent">Fo</a> adds a voice and a credit card, routing to human experts when software gets stuck and reporting 71% task completion on evals nobody else has seen. Neither states a spending boundary, which is the governor this page judges such agents on. In retrieval, <a href="#gpt-researcher-jev-context-filter">GPT Researcher</a> swapped embedding similarity for Jev as its default context filter and keeps 73% of relevant passages against 46% at the same cost, on its own benchmark. The phone an agent can now drive, Tapkit, is on <a href="tools-and-devex.html">Tools &amp; DevEx</a>.</p>
@@ -87,7 +88,7 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#agent-memory">Agent memory <span class="n">10</span></a></li>
+          <li><a href="#agent-memory">Agent memory <span class="n">11</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">19</span></a></li>
           <li><a href="#the-agentic-harness">The agentic harness <span class="n">26</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">12</span></a></li>
@@ -97,7 +98,7 @@
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">7</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">7</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
-          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">13</span></a></li>
+          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">14</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">8</span></a></li>
         </ul>
       </nav>
@@ -105,6 +106,13 @@
       <section class="topic-section" id="agent-memory">
         <h3>Agent memory</h3>
         <p class="lead">The axis that matters is what gets remembered &mdash; the user, or the work. Three answers to where it lives: a file you can read, a wiki the agent consolidates, or the offload decision pushed into the weights (<a href="model-releases.html">ContextPilot-14B</a>). Judge entries on whether a human can inspect and an administrator can restrict what is stored.</p>
+
+        <article class="story" id="copilotkit-clif">
+          <span class="when">2026-10-14</span>
+          <h4><a href="https://www.copilotkit.ai/blog/introducing-clif">CopilotKit&rsquo;s CLiF learns continually from agent traces and user actions captured over AG-UI</a></h4>
+          <p>CopilotKit released <strong>CLiF</strong> (Continual Learning from Full-stack trajectories), which records what the agent did and what the user did in the front end &mdash; captured through the <strong>AG-UI protocol</strong> &mdash; as one trajectory to learn from. On this section&rsquo;s axis it remembers the work rather than the user, but no improvement figure reached the newsletter and what a deployer can inspect or delete is not stated.</p>
+          <div class="sources"><a href="https://www.copilotkit.ai/blog/introducing-clif">CopilotKit</a> &middot; <span class="via">via TLDR AI (Oct 14)</span></div>
+        </article>
 
         <article class="story" id="harvey-wake-sleep">
           <span class="when">2026-10-09</span>
@@ -121,16 +129,16 @@
           <div class="sources"><a href="https://devin.ai/blog/memory-and-dreaming">Cognition</a> &middot; <span class="via">via TLDR AI (Oct 6)</span></div>
         </article>
 
-        <article class="story" id="proactive-memory-agent">
-          <span class="when">2026-09-18</span>
-          <h4><a href="https://www.deeplearning.ai/the-batch/issue-371#even-agents-benefit-from-reminders">A second agent deciding when to remind the first lifts Terminal-Bench 2.0 by 8.3 points</a></h4>
-          <p>Yifan Wu and colleagues at Meta AI ran a <strong>Proactive Memory Agent</strong> alongside an action agent: it maintains notes on the problem &mdash; facts, environment details such as the working directory, fixes that worked, unfinished parts, commands that failed &mdash; from the action agent&rsquo;s eight most recent outputs, and at each step injects either nothing or one short reminder. On <strong>Terminal-Bench 2.0</strong> Claude Sonnet 4.5 went from <strong>37.6% to 45.9%</strong>, Opus 4.6 from 43.5% to 45.9%, and a fine-tuned Qwen3.5-27B memory agent lifted Qwen3.5-27B from 37.6% to 41.1%; on <strong>&tau;2-Bench</strong> Sonnet went from <strong>55.0% to 61.8%</strong> and Opus from 66.2% to 68.7%.</p>
-          <p>The control is what makes it a finding rather than a prompting trick: reminding at <em>every</em> step performed worse than letting the memory agent choose when, which says the deficit repaired is attention allocation rather than lost context. It bolts on without retraining the action model, so it survives swapping the model underneath &mdash; and the gains are smallest on the strongest action model, which is the number to watch if the effect is partly compensating for weaker instruction-following.</p>
-          <div class="sources"><a href="https://www.deeplearning.ai/the-batch/issue-371#even-agents-benefit-from-reminders">The Batch</a> &middot; <span class="via">via The Batch (Sep 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="proactive-memory-agent">
+            <span class="when">2026-09-18</span>
+            <h4><a href="https://www.deeplearning.ai/the-batch/issue-371#even-agents-benefit-from-reminders">A second agent deciding when to remind the first lifts Terminal-Bench 2.0 by 8.3 points</a></h4>
+            <p>Yifan Wu and colleagues at Meta AI ran a <strong>Proactive Memory Agent</strong> alongside an action agent: it maintains notes on the problem &mdash; facts, environment details such as the working directory, fixes that worked, unfinished parts, commands that failed &mdash; from the action agent&rsquo;s eight most recent outputs, and at each step injects either nothing or one short reminder. On <strong>Terminal-Bench 2.0</strong> Claude Sonnet 4.5 went from <strong>37.6% to 45.9%</strong>, Opus 4.6 from 43.5% to 45.9%, and a fine-tuned Qwen3.5-27B memory agent lifted Qwen3.5-27B from 37.6% to 41.1%; on <strong>&tau;2-Bench</strong> Sonnet went from <strong>55.0% to 61.8%</strong> and Opus from 66.2% to 68.7%.</p>
+            <p>The control is what makes it a finding rather than a prompting trick: reminding at <em>every</em> step performed worse than letting the memory agent choose when, which says the deficit repaired is attention allocation rather than lost context. It bolts on without retraining the action model, so it survives swapping the model underneath &mdash; and the gains are smallest on the strongest action model, which is the number to watch if the effect is partly compensating for weaker instruction-following.</p>
+            <div class="sources"><a href="https://www.deeplearning.ai/the-batch/issue-371#even-agents-benefit-from-reminders">The Batch</a> &middot; <span class="via">via The Batch (Sep 18)</span></div>
+          </article>
 
           <article class="story unlinked" id="database-backed-agent-memory">
             <span class="when">2026-09-09</span>
@@ -982,6 +990,14 @@
         <h3>Multi-agent orchestration</h3>
         <p class="lead">Small teams of agents specialised by role &mdash; product, research, dev, eval &mdash; or by station, and the two venues they coordinate in: the team&rsquo;s own chat channel, or a fixed pipeline. The unsolved part is not dispatch but reconciliation &mdash; many agents each correct about overlapping regions of one codebase. Judge entries on where verification sits.</p>
 
+        <article class="story" id="claude-dynamic-workflows">
+          <span class="when">2026-10-12</span>
+          <h4><a href="https://www.latent.space/p/claude-dynamic-workflows">Anthropic&rsquo;s dynamic workflows let Claude write the program that coordinates its subagents</a></h4>
+          <p>In Anthropic&rsquo;s <strong>dynamic workflows</strong>, Claude writes the orchestration program itself &mdash; who does what, how results pass between agents, how they are checked &mdash; instead of following a fixed pipeline. An Oct 12 demonstration gave separate agents separate stock tickers and reviewed their findings before writing a report; the presenters said it found more detail than one agent but cost much more.</p>
+          <p>Developers can set a session spending limit, but the running model is not told that budget, so the program it writes cannot plan against it.</p>
+          <div class="sources"><a href="https://www.latent.space/p/claude-dynamic-workflows">Latent Space</a> (analysis) &middot; <span class="via">via TLDR AI (Oct 14)</span></div>
+        </article>
+
         <article class="story" id="vals-multi-agent-vibe-code-bench">
           <span class="when">2026-10-12</span>
           <h4><a href="https://www.vals.ai/blogs/multi-agent-vibe-code-bench">Vals AI: agent teams cost 1.8&ndash;5.1&times; more on Vibe Code Bench and mostly score no better than one agent</a></h4>
@@ -997,16 +1013,16 @@
           <div class="sources"><a href="https://github.com/mvanhorn/agent-tincan">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
         </article>
 
-        <article class="story" id="mplm">
-          <span class="when">2026-09-25</span>
-          <h4><a href="https://arxiv.org/abs/2607.01077">Message Passing Language Models drop the coordinator and let parallel threads message each other</a></h4>
-          <p>A Carnegie Mellon team proposed <strong>MPLM</strong>, a harness in which a model spawns threads, each running its own copy, that send results directly to one another rather than through a coordinator. Trained into Qwen3-0.6B-Base, it solved 100% of 9&times;9 Sudoku in about 15 seconds against 93% in about 60 for a coordinator-based parallel method, and 72% of 25&times;25 grids where both baselines hit their limits; on 3-SAT it roughly tied the parallel method (92% against 91%).</p>
-          <p>The gain depends on knowing in advance which threads must talk, trivial for Sudoku and unsolved for open-ended tasks, and the Sudoku set was limited to puzzles solvable by elimination.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2607.01077">arXiv</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-372/#agents-work-better-when-they-can-pass-each-other-notes">The Batch</a> &middot; <span class="via">via The Batch (Sep 25)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (10)</summary>
+          <summary>Earlier in this section (11)</summary>
+
+          <article class="story" id="mplm">
+            <span class="when">2026-09-25</span>
+            <h4><a href="https://arxiv.org/abs/2607.01077">Message Passing Language Models drop the coordinator and let parallel threads message each other</a></h4>
+            <p>A Carnegie Mellon team proposed <strong>MPLM</strong>, a harness in which a model spawns threads, each running its own copy, that send results directly to one another rather than through a coordinator. Trained into Qwen3-0.6B-Base, it solved 100% of 9&times;9 Sudoku in about 15 seconds against 93% in about 60 for a coordinator-based parallel method, and 72% of 25&times;25 grids where both baselines hit their limits; on 3-SAT it roughly tied the parallel method (92% against 91%).</p>
+            <p>The gain depends on knowing in advance which threads must talk, trivial for Sudoku and unsolved for open-ended tasks, and the Sudoku set was limited to puzzles solvable by elimination.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2607.01077">arXiv</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-372/#agents-work-better-when-they-can-pass-each-other-notes">The Batch</a> &middot; <span class="via">via The Batch (Sep 25)</span></div>
+          </article>
 
           <article class="story" id="swarm-scaling">
             <span class="when">2026-09-22</span>
@@ -1156,8 +1172,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-14</span><span class="label"><a href="#copilotkit-clif">CopilotKit&rsquo;s CLiF learns continually from agent traces and user actions captured over AG-UI</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#glm-legal">Z.ai&rsquo;s GLM-Legal nearly triples its base model&rsquo;s Harvey LAB pass rate, to 19.17%</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#decision-offloading-sop-bench">Offloading bounded decisions to Jev cut a Qwen agent&rsquo;s LLM calls by 29.6% across 360 SOP-Bench cases</a></span></li>
+        <li><span class="date">2026-10-12</span><span class="label"><a href="#claude-dynamic-workflows">Anthropic&rsquo;s dynamic workflows let Claude write the program that coordinates its subagents</a></span></li>
         <li><span class="date">2026-10-12</span><span class="label"><a href="#vals-multi-agent-vibe-code-bench">Vals AI: agent teams cost 1.8&ndash;5.1&times; more on Vibe Code Bench and mostly score no better than one agent</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#harvey-wake-sleep">Harvey&rsquo;s wake-sleep agent distils graded trajectories into lessons, raising held-out all-pass from 2.9% to 15.7%</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#hyset">HYSET picks an agent&rsquo;s tools as a set rather than one by one, lifting ToolBench task completion from 61.8% to 69.9%</a></span></li>

@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Applications &amp; case studies</h1>
-      <div class="meta">Last updated: 2026-10-12</div>
+      <div class="meta">Last updated: 2026-10-15</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 15 entry is a deployment report from inside a company rather than a vendor pitch. Ramp&rsquo;s <a href="#ramp-glass">Glass</a> lets non-engineers build and share tools over company knowledge and skills, counts 6,500+ knowledge edits, and credits model routing with a 30% cut in AI costs; Stripe built a comparable tool, Harbor, with one engineer in about six weeks. Both numbers are Ramp&rsquo;s own, and the case Gergely Orosz reports for building rather than buying is control of company data &mdash; the knowledge-work section&rsquo;s point that what gets deployed is the thing that had to be built first.</p>
         <p>The Oct 9 update is mathematicians answering <a href="#openai-mathematics-results">OpenAI&rsquo;s mathematics repository</a>: a survey of more than 100 reactions, and a statement from the Association for Human Mathematics&rsquo; communications working group, shared by Terence Tao, urging mathematicians to stop working with OpenAI. It turns the section&rsquo;s question &mdash; what has been checked outside the model &mdash; into one about who is willing to do the checking.</p>
         <p>The Oct 8 cycle added the first outside reading of OpenAI&rsquo;s <a href="#openai-mathematics-results">mathematics results</a>: experts quoted on Scott Aaronson&rsquo;s blog say no human has yet understood any of the proofs, which are too badly written to follow without AI help and cite irrelevant sources &mdash; leaving the Lean-formalized subset as the only verified part, as this section&rsquo;s lead predicted. Biohub, the DOE and the NIH committed <a href="#biohub-ai-ready-data">$1.8 billion</a> to AI-ready biological data, the DOE&rsquo;s share more than $500 million over five years, money aimed at the training-data bottleneck rather than at another model. And Google Labs&rsquo; <a href="#google-playground">Playground</a> builds playable 2D and 3D games from a chat description, US-only, with a Unity Spark path to full builds still in testing.</p>
         <p>The Oct 7 cycle widened the newest section to mathematics. OpenAI published a repository of results on <a href="#openai-mathematics-results">377 problems</a> produced by an internal model it has not released, with Lean formalizations for many of the proofs, ten summaries of the model&rsquo;s reasoning and compute estimates in ChatGPT Pro usage. The checkable part is the formalized subset; the contested part is authorship, since mathematicians are already asking whether the model found ideas or finished proofs built on theirs. It is the same shape as the materials and crop entries beside it &mdash; the model&rsquo;s contribution announced, the independent check pending &mdash; with the difference that here a formal verifier exists.</p>
         <p>The Oct 6 cycle opened a section for discovery outside biomedicine. Vals AI reports that a team of agents designed two <a href="#vals-antiferromagnetic-semiconductors">room-temperature antiferromagnetic semiconductor</a> candidates for spin-based memory, and Living Models pairs Gemma 4 with its <a href="#living-models-botanic-1">BOTANIC-1</a> genomics model and claims years of crop-genetics work compressed into hours. Both are candidates and timelines rather than a material made or a variety grown &mdash; the same gap the drug-discovery entries carry: the model&rsquo;s part is announced, the bench or field result is not.</p>
-        <p>The Sep 24 entry was the first on this page where the model&rsquo;s contribution is a finding rather than throughput or access. Anthropic says Claude autonomously identified an <a href="#claude-novel-enzyme-system">enzyme system</a> (Sep 24) built on a known reverse transcriptase, whose defining features &mdash; an array of non-coding DNA repeats and an accessory protein of unknown function &mdash; nobody had noticed; Anthropic calls it programmable, able to cut, copy and paste DNA, with its biological role still unknown. It lands three days after the same company confirmed the wet lab where its models run experiments, and the pairing is the point: a pattern found in sequence data is what that lab exists to test, and no such test is reported yet.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Sep 24 entry was the first on this page where the model&rsquo;s contribution is a finding rather than throughput or access. Anthropic says Claude autonomously identified an <a href="#claude-novel-enzyme-system">enzyme system</a> (Sep 24) built on a known reverse transcriptase, whose defining features &mdash; an array of non-coding DNA repeats and an accessory protein of unknown function &mdash; nobody had noticed; Anthropic calls it programmable, able to cut, copy and paste DNA, with its biological role still unknown. It lands three days after the same company confirmed the wet lab where its models run experiments, and the pairing is the point: a pattern found in sequence data is what that lab exists to test, and no such test is reported yet.</p>
           <p>The Sep 21 item changed what &ldquo;applying a model&rdquo; means on this page. Anthropic confirmed it runs a <strong>wet biology lab in the Bay Area</strong> where its models drive physical experiments, focused on fundamental biology rather than drug discovery, with some work done with external partners &mdash; and opened a <strong>Life Sciences Verification</strong> programme giving vetted biology researchers access to its most capable models. Every other entry here is a model reading data someone else produced; this puts the instrument, the experimental design and the training loop inside one company. The verification programme is the same movement seen from the outside: capability on biological work is now rationed by who the lab agrees to vet. Nothing has been published about experiments, results or throughput, so the confirmed facts are the lab&rsquo;s existence and its stated scope.</p>
           <p>The Sep 19 cycle put a number on the thing every clinical deployment on this page has quietly assumed away. A London teaching hospital reviewed the notes of <strong>516 patients</strong> a year after going live on Epic: the problem lists carried <strong>2,841 diagnoses</strong>, chart review of the free text found <strong>1,722 more</strong>, and only <strong>62% of what clinicians documented ever reached a structured field</strong>. The missing 38% is not a random sample &mdash; it is what a clinician wrote out instead of coding. Any model trained or evaluated on the structured record is therefore working from three-fifths of the clinical picture, which reframes document understanding in this setting from a convenience to the difference between reading the record and reading a summary of it. One hospital and one EHR, so treat the ratio as an example rather than a rate.</p>
           <p>The day&rsquo;s other deployment is engineering throughput rather than method. Anthropic says Claude worked over <strong>more than 30 biomolecular models</strong> for a <strong>4&times; speed increase</strong> and a low-memory mode that predicts larger systems on <strong>a single NVIDIA GPU</strong>, with the optimisations open-sourced and a protein-design competition co-sponsored with Adaptyv Bio carrying up to $1 million in Claude credits. Collapsing a multi-GPU requirement to one card changes who can run structure prediction more than the wall-clock multiple does, which is the same pattern as the free-text finding above: the constraint that actually bound was infrastructural, not intellectual. No per-model breakdown is published, so the 4&times; is an aggregate over a set Anthropic picked, and a prize denominated in its own credits is partly a distribution move.</p>
@@ -73,7 +74,7 @@
           <li><a href="#speech-to-text-in-production">Speech-to-text in production <span class="n">3</span></a></li>
           <li><a href="#voice-agent-architecture-and-latency-budgets">Voice agent architecture &amp; latency budgets <span class="n">1</span></a></li>
           <li><a href="#healthcare-ai-and-deployment-economics">Healthcare AI &amp; deployment economics <span class="n">10</span></a></li>
-          <li><a href="#knowledge-work-productivity">Knowledge-work productivity <span class="n">7</span></a></li>
+          <li><a href="#knowledge-work-productivity">Knowledge-work productivity <span class="n">8</span></a></li>
           <li><a href="#agentic-data-science">Agentic data science <span class="n">1</span></a></li>
           <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">11</span></a></li>
           <li><a href="#scientific-discovery-beyond-biomedicine">Scientific discovery beyond biomedicine <span class="n">3</span></a></li>
@@ -333,6 +334,14 @@
         <h3>Knowledge-work productivity</h3>
         <p class="lead">What each of these deploys is not the model but something that had to be built first &mdash; a curated store, a conversion pipeline, accumulated task context. The headline percentages are published by the parties they favour, so the mechanism described carries more weight here than the number attached to it.</p>
 
+        <article class="story" id="ramp-glass">
+          <span class="when">2026-10-14</span>
+          <h4><a href="https://ramp.com/blog/introducing-glass">Ramp&rsquo;s in-house Glass workspace logs 6,500+ knowledge edits and cut AI costs 30% through model routing</a></h4>
+          <p>Ramp launched <strong>Glass</strong>, an internal AI workspace in which non-engineers build, share and modify their own tools on top of shared company knowledge, reusable skills and collaborative sessions; building one is now part of new-hire onboarding. Ramp reports <strong>6,500+ knowledge edits</strong> by employees and a <strong>30% cut in AI costs</strong> from model routing, and Stripe built a comparable tool, <a href="https://stripe.dev/blog/harbor-stripes-ai-assisted-prototyping-tool">Harbor</a>, with one engineer in about six weeks.</p>
+          <p>Both figures are Ramp&rsquo;s own; the case for building rather than buying, in Gergely Orosz&rsquo;s reporting, is control over company data and design rules.</p>
+          <div class="sources"><a href="https://ramp.com/blog/introducing-glass">Ramp</a> &middot; <a href="https://newsletter.pragmaticengineer.com/p/the-pulse-new-trend-of-building-internal">The Pragmatic Engineer</a> (analysis) &middot; <span class="via">via TLDR AI (Oct 14), The Code (Oct 14)</span></div>
+        </article>
+
         <article class="story" id="pinecone-nexus">
           <span class="when">2026-09-16</span>
           <h4><a href="https://www.pinecone.io/blog/">Pinecone&rsquo;s support agent closes 55.1% of tickets with no person, up from 24.6%</a></h4>
@@ -349,16 +358,16 @@
           <div class="sources"><a href="https://claude.com/blog/salesforce-in-claude">Anthropic</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
         </article>
 
-        <article class="story" id="posthog-replay-vision">
-          <span class="when">2026-09-10</span>
-          <h4><a href="https://posthog.com/blog/multimodal-models-need-video">PostHog built a rasterizer so models can watch session replays: 370 years of recordings into 3.5M videos</a></h4>
-          <p>PostHog&rsquo;s Replay Vision lets a model actually watch a session recording rather than read a description of one, and the engineering is the story. Session replays are not video &mdash; they are DOM mutation streams &mdash; so PostHog wrote a custom rasterizer that renders them to frames, running hundreds of concurrent jobs across many pods. Since going to production in March it has rasterized more than 370 years of recorded sessions into roughly 3.5 million videos.</p>
-          <p>It is a concrete instance of the general pattern this page keeps meeting: the model was ready for the modality before the data was in a shape any model could consume, and the deployable work was the conversion pipeline.</p>
-          <div class="sources"><a href="https://posthog.com/blog/multimodal-models-need-video">PostHog</a> &middot; <span class="via">via TLDR (Sep 10)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="posthog-replay-vision">
+            <span class="when">2026-09-10</span>
+            <h4><a href="https://posthog.com/blog/multimodal-models-need-video">PostHog built a rasterizer so models can watch session replays: 370 years of recordings into 3.5M videos</a></h4>
+            <p>PostHog&rsquo;s Replay Vision lets a model actually watch a session recording rather than read a description of one, and the engineering is the story. Session replays are not video &mdash; they are DOM mutation streams &mdash; so PostHog wrote a custom rasterizer that renders them to frames, running hundreds of concurrent jobs across many pods. Since going to production in March it has rasterized more than 370 years of recorded sessions into roughly 3.5 million videos.</p>
+            <p>It is a concrete instance of the general pattern this page keeps meeting: the model was ready for the modality before the data was in a shape any model could consume, and the deployable work was the conversion pipeline.</p>
+            <div class="sources"><a href="https://posthog.com/blog/multimodal-models-need-video">PostHog</a> &middot; <span class="via">via TLDR (Sep 10)</span></div>
+          </article>
 
           <article class="story unlinked" id="codex-outside-engineering">
             <span class="when">2026-08-24</span>
@@ -559,6 +568,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-14</span><span class="label"><a href="#ramp-glass">Ramp&rsquo;s in-house Glass workspace logs 6,500+ knowledge edits and cut AI costs 30% through model routing</a></span></li>
         <li><span class="date">2026-10-08</span><span class="label"><a href="#google-playground">Google Labs&rsquo; Playground builds playable 2D and 3D games from a chat description</a></span></li>
         <li><span class="date">2026-10-08</span><span class="label"><a href="#biohub-ai-ready-data">Biohub, DOE and NIH commit $1.8 billion to biological data built for training AI models</a></span></li>
         <li><span class="date">2026-10-06</span><span class="label"><a href="#openai-mathematics-results">OpenAI publishes findings on 377 mathematics problems from an unreleased internal model, with Lean formalizations</a></span></li>
