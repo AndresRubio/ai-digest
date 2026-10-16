@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-10-15</div>
+      <div class="meta">Last updated: 2026-10-16</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 16 cycle was the desk and the failure path. Tom&rsquo;s Hardware, cited by The Batch, put local machines on one agent benchmark: on AgentPerf-Local with a quantized Qwen 3.8-27B the NVIDIA-based <a href="#local-ai-workstations">Surface Laptop Ultra</a> finished in 18.9 minutes against an M5 Max MacBook Pro&rsquo;s 24.74 and AMD&rsquo;s AI Ryzen Halo&rsquo;s 42.1, though NVIDIA&rsquo;s chips stop at 128 GB where an $18,299 Mac Studio reaches 256 GB &mdash; the quantization section&rsquo;s trade of speed against residency, on named hardware. vLLM&rsquo;s <a href="#vllm-nixl-push-connector">push-based NIXL connector</a> takes KV-transfer setup off the critical path between prefill and decode workers, and Netflix described the <a href="#netflix-gpu-reliability">detection and auto-remediation</a> that keeps distributed training alive through hardware faults; neither summary carried a number, so both are designs to read rather than results to compare.</p>
         <p>The Oct 15 cycle was mostly the rack and the box. NVIDIA contributed <a href="#vera-rubin-ocp-mgx">Vera Rubin rack designs</a> to OCP with a 5,000A busbar and up to 250kW a rack, and AMD&rsquo;s <a href="#amd-helion">Helion</a> blueprint packs up to 32,768 EPYC cores into a rack for agent workloads, partner systems due in November &mdash; one power figure and one bet that agent loops are CPU-bound, neither with a workload measurement. NVIDIA also open-sourced <a href="#nvidia-runai-open-source">Run:ai</a>, KAI Scheduler and GPU fractioning included, putting a vendor&rsquo;s GPU queue into the Kubernetes section with no utilisation number of its own. At the desk end, AMD&rsquo;s <a href="#amd-ryzen-ai-halo">Ryzen AI Halo</a> lets the GPU address 160GB of 192GB unified memory &mdash; more memory in the machine, with no tokens-per-second figure yet.</p>
         <p>The Oct 14 entry is a chip measured in the unit this page cares about. Microsoft&rsquo;s <a href="#maia-300">Maia 300</a> is a third-generation in-house inference accelerator claimed at 40% more tokens per megawatt than leading GPU systems, deploying from 2027 at multiple gigawatts &mdash; power rather than FLOPs as the denominator, which is the compute section&rsquo;s point that the constraint has moved off the die. Microsoft does not plan to rent the chips directly, so for anyone outside Microsoft it is a cost curve behind its services rather than hardware to target.</p>
         <p>The Oct 9 entry is two answers to running a 27B model on less. Conway Research&rsquo;s <a href="#underdog-saluki-27b">Saluki 27B</a> takes Qwen3.8-27B to 2 bits and 7.89&nbsp;GB with a pass tuned for tool calling, beats its parent on its own 120-task tool benchmark and gives up 17 points on AIME &mdash; the quantization section&rsquo;s point that compression is measured best where it was tuned, made by a single model card. LithosAI&rsquo;s <a href="#lithos-metal">lithos-metal</a> attacks the compute side with generated Metal megakernels and claims over 200 tokens a second for the same model on an M5 Max, a figure that arrives without batch size, precision or baseline.</p>
         <p>The Oct 7 entry opens a section below scheduling. Meta open-sourced <a href="#meta-rebalancer">Rebalancer</a>, the C++ assignment solver that has placed objects into bins under constraints in its production for over nine years, about 40 million problems a day: the formulation is separate from the backend, so one spec runs on local search or on Xpress, Gurobi or HiGHS, and the local-search path solves 265,000 objects into 3,200 bins at a p99 of 12 seconds where MIP gives up past a million objects. It is not a model and not Kubernetes; it is the layer that decides where the fleets in the sections above actually put their work, now installable with <code>pip</code>, with every figure Meta&rsquo;s own.</p>
-        <p>The Oct 6 entry is a box rather than a benchmark. Ghost&rsquo;s <a href="#ghost-core">Core</a> is a $3,499 screenless machine for running local models around the clock, with swappable Hugging Face models, harnesses such as OpenCode, and encryption the company says locks even itself out; the first batch sold out. What it does not publish is the figure this page judges local hardware on &mdash; memory size and tokens per second &mdash; so it cannot yet be placed against DGX Spark 64GB&rsquo;s 273&nbsp;GB/s or Splash Engine&rsquo;s 74 tokens per second on a 48GB M5 Pro. Added by hand the same day, Google Research&rsquo;s March <a href="#turboquant">TurboQuant</a> attacks the same memory wall from the software side: a rotation, a polar-coordinate quantizer and one bit of residual correction take the KV cache to 3 bits with no retraining and, on Google&rsquo;s own long-context tests, no accuracy loss &mdash; up to 8&times; faster attention logits on an H100, though against a JAX baseline rather than a serving kernel.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 6 entry is a box rather than a benchmark. Ghost&rsquo;s <a href="#ghost-core">Core</a> is a $3,499 screenless machine for running local models around the clock, with swappable Hugging Face models, harnesses such as OpenCode, and encryption the company says locks even itself out; the first batch sold out. What it does not publish is the figure this page judges local hardware on &mdash; memory size and tokens per second &mdash; so it cannot yet be placed against DGX Spark 64GB&rsquo;s 273&nbsp;GB/s or Splash Engine&rsquo;s 74 tokens per second on a 48GB M5 Pro. Added by hand the same day, Google Research&rsquo;s March <a href="#turboquant">TurboQuant</a> attacks the same memory wall from the software side: a rotation, a polar-coordinate quantizer and one bit of residual correction take the KV cache to 3 bits with no retraining and, on Google&rsquo;s own long-context tests, no accuracy loss &mdash; up to 8&times; faster attention logits on an H100, though against a JAX baseline rather than a serving kernel.</p>
           <p>The Oct 2&ndash;5 cycle was serving and scheduling at fleet scale, with every figure the operator&rsquo;s own. Prime Intellect opened <a href="#prime-inference">Prime Inference</a> after serving about a trillion tokens a day to itself; GLM-5.3 runs on GB200 NVL72, where splitting prefill from decode cut p90 inter-token latency 40% and NVFP4 lifted cached tokens per decoder from 1.09M to 1.63M. <a href="#ai21-kueue">AI21</a> put a 10,000-GPU fleet behind Kueue and reports high-priority jobs starting 83% sooner, on a figure from the cloud it runs on. NVIDIA&rsquo;s <a href="#dgx-spark-64gb">DGX Spark 64GB</a> halves the desk box&rsquo;s memory at 273&nbsp;GB/s, aimed at 30&ndash;35B models and long-input work rather than at serving a chat endpoint.</p>
           <p>Two entries sit upstream of serving. Ai2&rsquo;s <a href="#olmo-core-3">OLMo-core 3</a> is an open framework for training MoEs into the trillion-parameter range, and <a href="#vx-language">Vx</a> puts topology and memory placement into a type system so placement bugs fail at compile time instead of deep into a run &mdash; neither with a throughput number yet. The cache thread gained the specification behind a claim already recorded: DeepSeek-V4.1-Flash stores <strong>890 bytes of cache per token</strong> by having 4 of its 40 layers compute it and the rest borrow it, detailed on <a href="model-releases.html">Model releases</a>.</p>
           <p>The Oct 2 cycle brought one reference and one specification. Modal&rsquo;s <a href="#modal-gpu-glossary">GPU Glossary</a> opens a new section for reference material: an interlinked, MIT-licensed guide from streaming multiprocessors and the warp scheduler up to <code>nvcc</code> flags, the vocabulary every serving and kernel entry here assumes. Separately, <a href="#openai-jalapeno">OpenAI&rsquo;s Jalape&ntilde;o</a>, an older entry first reported in August with throughput-per-kilowatt figures on a single model, now has a published configuration &mdash; <strong>216 GiB of HBM4</strong> beside a compute die and an I/O chiplet &mdash; from a More Than Moore deep-dive that is now its headline link. The memory figure is the one this page&rsquo;s cache and long-context entries can be read against; the power and benchmark detail is the analyst&rsquo;s account, not an OpenAI disclosure.</p>
@@ -85,12 +86,12 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">8</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">12</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">13</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">2</span></a></li>
-          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">7</span></a></li>
+          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">8</span></a></li>
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">3</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">2</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">24</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">25</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">9</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">8</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">4</span></a></li>
@@ -177,6 +178,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story unlinked" id="local-ai-workstations">
+          <span class="when">2026-10-16</span>
+          <h4>Surface Laptop Ultra beats an M5 Max MacBook Pro on AgentPerf-Local, 18.9 to 24.7 minutes on Qwen 3.8-27B</h4>
+          <p>The Batch surveyed machines built for local models &mdash; Apple&rsquo;s upgraded Mac mini and Mac Studio, NVIDIA&rsquo;s DGX Spark line, and Microsoft&rsquo;s Surface Ultra on NVIDIA&rsquo;s chip &mdash; and cited Tom&rsquo;s Hardware on AgentPerf-Local with a quantized <strong>Qwen 3.8-27B</strong>: the Surface Laptop Ultra solved every problem in <strong>18.9 minutes</strong>, an M5 Max MacBook Pro in 24.74 and AMD&rsquo;s AI Ryzen Halo in 42.1, and the order held on Qwen 3.6 35B A3B at 8.08, 10.12 and 13.29.</p>
+          <p>Memory is where they part: NVIDIA&rsquo;s chips top out at <strong>128 GB</strong> of unified memory, with a fully specified Surface Ultra at $5,899, while a 256 GB Mac Studio costs <strong>$18,299</strong>. Apple&rsquo;s and NVIDIA&rsquo;s own speed-up claims (up to 4&times; for the M6 Mac mini, 1 petaflop FP4 for RTX Spark N1) are self-reported.</p>
+          <div class="sources"><span class="via">via The Batch (Oct 16) &mdash; no public URL given</span></div>
+        </article>
+
         <article class="story" id="amd-ryzen-ai-halo">
           <span class="when">2026-10-14</span>
           <h4><a href="https://www.amd.com/en/blogs/2026/meet-the-next-amd-ryzen-ai-halo.html">AMD&rsquo;s Ryzen AI Halo developer platform lets the GPU take 160GB of its 192GB unified memory</a></h4>
@@ -192,16 +201,16 @@
           <div class="sources"><a href="https://www.lithosai.com/blog/lithos-metal">LithosAI</a> &middot; <span class="via">via MarkTechPost (Oct 9)</span></div>
         </article>
 
-        <article class="story" id="underdog-saluki-27b">
-          <span class="when">2026-10-09</span>
-          <h4><a href="https://huggingface.co/ConwayResearch/Underdog-Saluki-27B-1.0">Saluki 27B squeezes Qwen3.8-27B to 2 bits and 7.89&nbsp;GB, keeping tool calling and losing 17 points on AIME</a></h4>
-          <p>Conway Research compressed Qwen3.8-27B to <strong>7.89&nbsp;GB</strong> from 54&nbsp;GB in BF16, with a pass tuned to preserve tool calling: on Underdog Bench, 120 BFCL v4-derived tasks, <strong>Saluki scores 88 to the parent&rsquo;s 84</strong>, and on parallel tool calls 42 of 100 to 35.</p>
-          <p>The cost lands elsewhere &mdash; AIME 2025 falls from <strong>96.7 to 79.2</strong>, SWE-bench Verified fixes 30 of 50 against 33, and MuSR and MBPP+ slip &mdash; so the compression is measured best exactly where it was tuned. The 96% average retention across nine benchmarks is Underdog&rsquo;s claim, and its tool-calling sets are its own and small.</p>
-          <div class="sources"><a href="https://huggingface.co/ConwayResearch/Underdog-Saluki-27B-1.0">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 9)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="underdog-saluki-27b">
+            <span class="when">2026-10-09</span>
+            <h4><a href="https://huggingface.co/ConwayResearch/Underdog-Saluki-27B-1.0">Saluki 27B squeezes Qwen3.8-27B to 2 bits and 7.89&nbsp;GB, keeping tool calling and losing 17 points on AIME</a></h4>
+            <p>Conway Research compressed Qwen3.8-27B to <strong>7.89&nbsp;GB</strong> from 54&nbsp;GB in BF16, with a pass tuned to preserve tool calling: on Underdog Bench, 120 BFCL v4-derived tasks, <strong>Saluki scores 88 to the parent&rsquo;s 84</strong>, and on parallel tool calls 42 of 100 to 35.</p>
+            <p>The cost lands elsewhere &mdash; AIME 2025 falls from <strong>96.7 to 79.2</strong>, SWE-bench Verified fixes 30 of 50 against 33, and MuSR and MBPP+ slip &mdash; so the compression is measured best exactly where it was tuned. The 96% average retention across nine benchmarks is Underdog&rsquo;s claim, and its tool-calling sets are its own and small.</p>
+            <div class="sources"><a href="https://huggingface.co/ConwayResearch/Underdog-Saluki-27B-1.0">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 9)</span></div>
+          </article>
 
           <article class="story" id="ghost-core">
             <span class="when">2026-10-06</span>
@@ -300,6 +309,13 @@
         <h3>High-throughput serving of large MoEs</h3>
         <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format, prefill split from decode. None of these makes a model smaller. Every rate here is only as meaningful as the GPU and batch size beside it.</p>
 
+        <article class="story" id="vllm-nixl-push-connector">
+          <span class="when">2026-10-14</span>
+          <h4><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM&rsquo;s push-based NIXL connector moves KV-transfer setup off the critical path in disaggregated serving</a></h4>
+          <p>vLLM published a <strong>push-based NIXL connector</strong> for disaggregated inference, where prefill and decode run on separate workers: it moves post-prefill KV-transfer coordination and setup off the critical path. The post reports better <strong>time-to-first-token and time-per-output-token</strong>, mostly at high request rates; the newsletter carried no figures, so the GPU, model and rate behind them are what to read for.</p>
+          <div class="sources"><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM blog</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
+        </article>
+
         <article class="story" id="prime-inference">
           <span class="when">2026-10-02</span>
           <h4><a href="https://www.primeintellect.ai/blog/prime-inference">Prime Inference serves GLM-5.3 on GB200 NVL72; splitting prefill from decode cut p90 inter-token latency 40%</a></h4>
@@ -316,16 +332,16 @@
           <div class="sources"><a href="https://modal.com/blog/quail-billion-tpm">Modal</a> &middot; <span class="via">via TLDR AI (Sep 28)</span></div>
         </article>
 
-        <article class="story" id="glm-infra-agent">
-          <span class="when">2026-09-18</span>
-          <h4><a href="https://z.ai/blog/glm-built-its-inference-infrastructure">Z.ai had GLM-5.3 build GLM-5.3-Flash&rsquo;s serving stack on 100,000+ domestic accelerators</a></h4>
-          <p>Z.ai used a <strong>GLM-5.3-powered Infra Agent</strong> to build the production serving stack for GLM-5.3-Flash across <strong>more than 100,000 Chinese accelerators in under two weeks</strong>. The agent worked from dense feedback on kernel fixes and system-level optimisation, and Z.ai reports the result <strong>tripled throughput</strong>; humans kept ownership of objectives and risk.</p>
-          <p>The interesting claim is not the speedup but where the agent was pointed. Serving infrastructure is the part of the stack with the tightest feedback loop and the most mechanical search space &mdash; kernel variants, batching, placement &mdash; which is exactly what makes it tractable to an agent and exactly what makes &ldquo;recursive self-improvement&rdquo; an overstatement for what happened. Every figure is Z.ai&rsquo;s, and the throughput baseline it tripled is not published, so this reads as a credible account of an internal programme rather than a measured result.</p>
-          <div class="sources"><a href="https://z.ai/blog/glm-built-its-inference-infrastructure">Z.ai</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="glm-infra-agent">
+            <span class="when">2026-09-18</span>
+            <h4><a href="https://z.ai/blog/glm-built-its-inference-infrastructure">Z.ai had GLM-5.3 build GLM-5.3-Flash&rsquo;s serving stack on 100,000+ domestic accelerators</a></h4>
+            <p>Z.ai used a <strong>GLM-5.3-powered Infra Agent</strong> to build the production serving stack for GLM-5.3-Flash across <strong>more than 100,000 Chinese accelerators in under two weeks</strong>. The agent worked from dense feedback on kernel fixes and system-level optimisation, and Z.ai reports the result <strong>tripled throughput</strong>; humans kept ownership of objectives and risk.</p>
+            <p>The interesting claim is not the speedup but where the agent was pointed. Serving infrastructure is the part of the stack with the tightest feedback loop and the most mechanical search space &mdash; kernel variants, batching, placement &mdash; which is exactly what makes it tractable to an agent and exactly what makes &ldquo;recursive self-improvement&rdquo; an overstatement for what happened. Every figure is Z.ai&rsquo;s, and the throughput baseline it tripled is not published, so this reads as a credible account of an internal programme rather than a measured result.</p>
+            <div class="sources"><a href="https://z.ai/blog/glm-built-its-inference-infrastructure">Z.ai</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
+          </article>
 
           <article class="story unlinked" id="cohere-megakernel">
             <span class="when">2026-09-09</span>
@@ -412,6 +428,13 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story" id="netflix-gpu-reliability">
+          <span class="when">2026-10-15</span>
+          <h4><a href="https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a">Netflix detects faulty GPUs and network hardware and remediates them automatically to keep distributed training alive</a></h4>
+          <p>Netflix described the infrastructure that keeps its large GPU training and inference jobs running: detection of faulty GPUs and network hardware, automatic remediation of unhealthy machines, and distributed training jobs that survive hardware failures. It is an operator&rsquo;s account with no failure rates or recovery times in the newsletter summary, but it adds hardware reliability to what binds here beside memory and power.</p>
+          <div class="sources"><a href="https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a">Netflix Tech Blog</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
+        </article>
+
         <article class="story" id="amd-helion">
           <span class="when">2026-10-14</span>
           <h4><a href="https://ir.amd.com/news-events/press-releases/detail/1301/introducing-amd-helion-agentic-ai-compute-at-rack-scale">AMD Helion is an open rack blueprint for agentic AI with up to 32,768 EPYC cores</a></h4>
@@ -426,16 +449,16 @@
           <div class="sources"><a href="https://blogs.nvidia.com/blog/ocp-global-summit-vera-rubin-scale-ai-factories">NVIDIA</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
         </article>
 
-        <article class="story" id="maia-300">
-          <span class="when">2026-10-13</span>
-          <h4><a href="https://news.microsoft.com/maia-2026/">Microsoft&rsquo;s Maia 300 inference chip claims 40% more tokens per megawatt, deploying at gigawatt scale from 2027</a></h4>
-          <p>Microsoft unveiled <strong>Maia 300</strong>, its third-generation in-house accelerator, built for inference and claimed to deliver <strong>40% more tokens per megawatt</strong> than leading GPU-based systems. Rollout starts in <strong>2027</strong>, with multiple gigawatts of the chips planned across Microsoft&rsquo;s data centres.</p>
-          <p>The figure is denominated in power, the constraint this section tracks, and it is Microsoft&rsquo;s own; Microsoft is not currently planning to rent Maia capacity directly to cloud customers, so outside developers will meet it only through Microsoft&rsquo;s own services.</p>
-          <div class="sources"><a href="https://news.microsoft.com/maia-2026/">Microsoft</a> &middot; <span class="via">via TLDR AI (Oct 13), TLDR (Oct 13)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (21)</summary>
+          <summary>Earlier in this section (22)</summary>
+
+          <article class="story" id="maia-300">
+            <span class="when">2026-10-13</span>
+            <h4><a href="https://news.microsoft.com/maia-2026/">Microsoft&rsquo;s Maia 300 inference chip claims 40% more tokens per megawatt, deploying at gigawatt scale from 2027</a></h4>
+            <p>Microsoft unveiled <strong>Maia 300</strong>, its third-generation in-house accelerator, built for inference and claimed to deliver <strong>40% more tokens per megawatt</strong> than leading GPU-based systems. Rollout starts in <strong>2027</strong>, with multiple gigawatts of the chips planned across Microsoft&rsquo;s data centres.</p>
+            <p>The figure is denominated in power, the constraint this section tracks, and it is Microsoft&rsquo;s own; Microsoft is not currently planning to rent Maia capacity directly to cloud customers, so outside developers will meet it only through Microsoft&rsquo;s own services.</p>
+            <div class="sources"><a href="https://news.microsoft.com/maia-2026/">Microsoft</a> &middot; <span class="via">via TLDR AI (Oct 13), TLDR (Oct 13)</span></div>
+          </article>
 
           <article class="story" id="muse-compute-demand">
             <span class="when">2026-09-28</span>
@@ -968,10 +991,13 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-16</span><span class="label"><a href="#local-ai-workstations">Surface Laptop Ultra beats an M5 Max MacBook Pro on AgentPerf-Local, 18.9 to 24.7 minutes on Qwen 3.8-27B</a></span></li>
+        <li><span class="date">2026-10-15</span><span class="label"><a href="#netflix-gpu-reliability">Netflix detects faulty GPUs and network hardware and remediates them automatically to keep distributed training alive</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#amd-helion">AMD Helion is an open rack blueprint for agentic AI with up to 32,768 EPYC cores</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#vera-rubin-ocp-mgx">NVIDIA contributes Vera Rubin rack designs to OCP through MGX 1.2, with racks up to 250kW</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#amd-ryzen-ai-halo">AMD&rsquo;s Ryzen AI Halo developer platform lets the GPU take 160GB of its 192GB unified memory</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#nvidia-runai-open-source">NVIDIA open-sources the full Run:ai platform, including KAI Scheduler and GPU fractioning</a></span></li>
+        <li><span class="date">2026-10-14</span><span class="label"><a href="#vllm-nixl-push-connector">vLLM&rsquo;s push-based NIXL connector moves KV-transfer setup off the critical path in disaggregated serving</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#maia-300">Microsoft&rsquo;s Maia 300 inference chip claims 40% more tokens per megawatt, deploying at gigawatt scale from 2027</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#lithos-metal">LithosAI&rsquo;s lithos-metal generates Metal megakernels that run Qwen3.8-27B at over 200 tokens a second on an M5 Max</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#underdog-saluki-27b">Saluki 27B squeezes Qwen3.8-27B to 2 bits and 7.89&nbsp;GB, keeping tool calling and losing 17 points on AIME</a></span></li>

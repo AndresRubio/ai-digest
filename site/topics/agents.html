@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-15</div>
+      <div class="meta">Last updated: 2026-10-16</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 16 cycle moved observability and self-improvement into layers someone else can inspect. Anthropic&rsquo;s Managed Agents, Messages API and SDKs now emit <a href="#claude-otel-observability">OpenTelemetry traces</a> under the GenAI semantic conventions to any OTLP endpoint, so watching an agent depends on a standard rather than a vendor console. Google Research&rsquo;s <a href="#harness2">Harness&sup2;</a> lets an agent refine its own prompts, tools, memory and orchestration per task with the weights frozen &mdash; the harness-over-model argument run as a loop, published without a gain figure. And Google&rsquo;s <a href="#google-deep-review">Deep Review</a> points an agent at technical documents, starting from computer-science papers, again with no figure for how often it agrees with human reviewers. All three are mechanisms described; none yet arrives with the measurement this page asks for.</p>
         <p>The Oct 15 cycle let the model write its own orchestration and widened what gets remembered. Anthropic&rsquo;s <a href="#claude-dynamic-workflows">dynamic workflows</a> have Claude write the program that assigns, passes and checks subagent work; the presenters said a multi-agent stock-research run found more than one agent did but cost much more, and the running model is not told the session&rsquo;s spending cap &mdash; the cost pattern Vals AI measured on Vibe Code Bench, now with a budget the coordinator cannot see. CopilotKit&rsquo;s <a href="#copilotkit-clif">CLiF</a> learns from full-stack trajectories, agent traces and user actions together over AG-UI, which puts it on the remember-the-work side of the memory section with no figure for what it improves. The payment rail&rsquo;s answer to agent purchases, Amex&rsquo;s Proof of Intent Token, is filed on <a href="safety-and-policy.html#amex-intent-intelligence">Safety &amp; policy</a>.</p>
         <p>The Oct 14 cycle measured a decision model inside a loop and priced a domain agent by its failures. Routing a Qwen agent&rsquo;s step-completion checks and other bounded decisions to Jev cut <a href="#decision-offloading-sop-bench">LLM calls by 29.6%</a>, estimated cost by 26.6% and latency by 19.7% over 360 SOP-Bench cases &mdash; a forum write-up, but the first in-loop saving on this page rather than a standalone benchmark score. Z.ai&rsquo;s <a href="#glm-legal">GLM-Legal</a> lifts its base model&rsquo;s Harvey LAB pass rate from 6.67% to 19.17%, which still leaves four in five end-to-end legal tasks failed. Meta&rsquo;s Muse agents gained a frontier model of their own, <a href="model-releases.html#muse-wonder">Muse Wonder</a>, on Model releases.</p>
         <p>The Oct 9&ndash;12 cycle put a governed enterprise agent beside the first measurement of agent teams. Google Cloud&rsquo;s <a href="#gemini-agent">Gemini Agent</a> is one agent behind one API that routes across Gemini and Claude, keeps four kinds of memory and stops at a per-project spend cap until a human resumes it &mdash; governance described, not measured. Vals AI&rsquo;s <a href="#vals-multi-agent-vibe-code-bench">Vibe Code Bench test</a> is the number the multi-agent section lacked, and it is a null: teams cost 1.8&ndash;5.1&times; more and scored no better except in one configuration. Two harness pieces arrived, one from research and one from Microsoft: <a href="#hyset">HYSET</a> chooses tools as a compatible set and lifts ToolBench completion from 61.8% to 69.9%, and <a href="#quicksand">Quicksand</a> makes a snapshotable QEMU VM the agent sandbox without root or Docker. Harvey&rsquo;s <a href="#harvey-wake-sleep">wake-sleep</a> agent adds a memory datapoint &mdash; lessons distilled from graded trajectories raised held-out all-pass from 2.9% to 15.7% &mdash; reported in a post rather than a paper.</p>
         <p>The Oct 8 cycle moved two pieces of the harness out of application code. SpaceXAI turned <a href="#grok-bot-model-router">Grok Bot</a> into a router that keeps simple requests on its own small models and sends reasoning to Claude Opus 5.5, images to Midjourney and music to Suno &mdash; a personal agent treating rival labs&rsquo; models as interchangeable tools, which is the harness-over-model argument this page has made from the build side, now made by a product. Anthropic&rsquo;s <a href="#claude-sdk-browser-use">Python and TypeScript SDKs</a> now run the computer- and browser-use action loop against a driver such as Browserbase, in beta, so the glue a computer-use agent most often gets wrong becomes vendor code whose behaviour can change between versions.</p>
-        <p>The Oct 7 cycle put authentication under the personal agent. Meta and Sierra&rsquo;s <a href="#personal-agent-protocol">Personal Agent Protocol</a> is an OAuth-based open standard for a consumer&rsquo;s agent to act on a business through its site, APIs or agents, with the consumer scoping access, the company bounding actions and seeing what was done, and Shopify, Stripe and Walmart named as backers. It is the trust decision this page&rsquo;s extension section has treated as unresolved, answered by the parties on both ends of a Muse transaction rather than by the MCP working group, and published so far as a spec and a partner list with no conformance test. The decision models that agents increasingly route through gained a frontier price &mdash; OpenAI&rsquo;s Decisions API at $0.10 per million input tokens &mdash; on <a href="model-releases.html">Model releases</a>.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 7 cycle put authentication under the personal agent. Meta and Sierra&rsquo;s <a href="#personal-agent-protocol">Personal Agent Protocol</a> is an OAuth-based open standard for a consumer&rsquo;s agent to act on a business through its site, APIs or agents, with the consumer scoping access, the company bounding actions and seeing what was done, and Shopify, Stripe and Walmart named as backers. It is the trust decision this page&rsquo;s extension section has treated as unresolved, answered by the parties on both ends of a Muse transaction rather than by the MCP working group, and published so far as a spec and a partner list with no conformance test. The decision models that agents increasingly route through gained a frontier price &mdash; OpenAI&rsquo;s Decisions API at $0.10 per million input tokens &mdash; on <a href="model-releases.html">Model releases</a>.</p>
           <p>The Oct 6 cycle was memory that reorganizes itself and steering exposed as an API. Cognition&rsquo;s <a href="#devin-memory-dreaming">Devin Memory</a> carries corrections and project learnings across sessions, and Dreaming periodically deduplicates them, links each to the session it came from and derives new knowledge &mdash; the provenance link answers this page&rsquo;s inspection question, and the derivation step is where a store can start holding facts nobody stated. Cursor&rsquo;s <a href="#cursor-sdk-steer">SDK update</a> puts mid-turn steering behind <code>run.steer()</code>, backgrounds busy subagents, and lets tools be tagged read-only or destructive, a declaration the model reads rather than a permission the runtime enforces.</p>
           <p>The Oct 2&ndash;5 cycle was about what survives a long run and who controls it. Earendil&rsquo;s <a href="#pi-durable">Pi Durable</a> lets an agent keep an indefinitely long conversation, survive internal and external failures and take steering from several people at once, with no recovery figure attached. DeepSeek&rsquo;s <a href="#deepseek-harness-v0-2">Harness v0.2</a> goes the other way on control: desktop installers, every layer a plugin, and a Creator mode in which the agent writes and installs its own plugins, beside a self-reported 82.7 on Terminal-Bench 2.1 and an experimental layer for Claude Code mods. An agent that rewrites its own harness is exactly what this page&rsquo;s governance section has no instrument for yet.</p>
           <p>The Oct 1 cycle was OpenAI taking the always-on agent slot that Muse and Grok Bot opened. <a href="#openai-dots">dots</a> give each GPT-6 Astra agent its own cloud computer and browser, reach 4,000-plus apps, and gate risky actions with Custom Rules and auto-review &mdash; and inadvertently posted images for 53 users the day before launch, this page&rsquo;s containment question arriving on schedule. <a href="#chatgpt-mcp-events">MCP Events</a> lets ChatGPT react to pushes from an MCP server, but implements only webhook delivery from the draft spec, without the <code>gap</code> notification that tells a client it missed something. And <a href="#rrsi">RRSI</a> is now open source with its split-level numbers: six points on the Terminal-Bench split it evolved on, 1.8 on held-out SWE-bench Verified &mdash; transfer, but smaller than the headline.</p>
@@ -89,8 +90,8 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">11</span></a></li>
-          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">19</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">26</span></a></li>
+          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">20</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">27</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">12</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">12</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">2</span></a></li>
@@ -99,7 +100,7 @@
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">7</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">14</span></a></li>
-          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">8</span></a></li>
+          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">9</span></a></li>
         </ul>
       </nav>
 
@@ -196,6 +197,14 @@
         <h3>Frameworks &amp; infrastructure</h3>
         <p class="lead">MCP is the connective tissue, and the interesting servers are no longer wrappers somebody wrote but the canonical interface a platform or an artifact ships. Judge entries on where the dependency lands: aggregating across vendors is substitutable, a vendor aggregating its own catalogue makes the protocol the integration point and itself the only thing behind it.</p>
 
+        <article class="story" id="claude-otel-observability">
+          <span class="when">2026-10-15</span>
+          <h4><a href="https://claude.com/resources/articles/agent-observability-on-the-claude-platform">Claude Managed Agents, the Messages API and Claude SDKs now emit OpenTelemetry traces to any OTLP endpoint</a></h4>
+          <p>Anthropic added <strong>OpenTelemetry tracing</strong> across Claude Managed Agents, the Messages API and the Claude SDKs, so each step an agent takes can be followed in any tool that accepts a standard <strong>OTLP endpoint</strong>. The traces follow the <strong>OpenTelemetry GenAI semantic conventions</strong>, so Claude spans land in the same dashboards as other providers&rsquo; rather than in a Claude-only console.</p>
+          <p>Anthropic pitches it for debugging agents, improving them with production data and tracking usage across an organisation; for this section the point is where the dependency lands &mdash; on an open standard, not on the vendor&rsquo;s own viewer.</p>
+          <div class="sources"><a href="https://claude.com/resources/articles/agent-observability-on-the-claude-platform">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
+        </article>
+
         <article class="story" id="managed-deep-agents-0-8">
           <span class="when">2026-09-25</span>
           <h4><a href="https://www.langchain.com/blog/langsmith-managed-deep-agents-whats-new">LangSmith Managed Deep Agents 0.8 adds user-owned credentials, per-user memory and HTTP channels</a></h4>
@@ -210,16 +219,16 @@
           <div class="sources"><a href="https://github.com/superdesigndev/treg">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="google-ax">
-          <span class="when">2026-09-21</span>
-          <h4><a href="https://github.com/google/ax">Google&rsquo;s AX declares agent workloads the way Kubernetes declares pods</a></h4>
-          <p>Google open-sourced <strong>AX</strong>, a declarative orchestrator for running large volumes of autonomous agent workloads on a cluster. An agentic task is declared with its workspace and gateway specification; AX sandboxes it, wires up the workspace, fences the network and schedules it, sitting on top of Agent Substrate. The project describes the experience as close to using Kubernetes, which is the honest summary of the bet: that agent runs are becoming numerous and uniform enough to want a scheduler and a declarative spec rather than bespoke orchestration per application.</p>
-          <p>The isolation primitives are the part worth copying &mdash; sandboxing and network fencing are properties of the scheduler, so an agent cannot argue its way out of them any more than it can out of <code>action.Guard</code>. No throughput numbers accompany the release beyond the claim of billions of workloads, so the design is checkable and the scale claim is not.</p>
-          <div class="sources"><a href="https://github.com/google/ax">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (16)</summary>
+          <summary>Earlier in this section (17)</summary>
+
+          <article class="story" id="google-ax">
+            <span class="when">2026-09-21</span>
+            <h4><a href="https://github.com/google/ax">Google&rsquo;s AX declares agent workloads the way Kubernetes declares pods</a></h4>
+            <p>Google open-sourced <strong>AX</strong>, a declarative orchestrator for running large volumes of autonomous agent workloads on a cluster. An agentic task is declared with its workspace and gateway specification; AX sandboxes it, wires up the workspace, fences the network and schedules it, sitting on top of Agent Substrate. The project describes the experience as close to using Kubernetes, which is the honest summary of the bet: that agent runs are becoming numerous and uniform enough to want a scheduler and a declarative spec rather than bespoke orchestration per application.</p>
+            <p>The isolation primitives are the part worth copying &mdash; sandboxing and network fencing are properties of the scheduler, so an agent cannot argue its way out of them any more than it can out of <code>action.Guard</code>. No throughput numbers accompany the release beyond the claim of billions of workloads, so the design is checkable and the scale claim is not.</p>
+            <div class="sources"><a href="https://github.com/google/ax">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 21)</span></div>
+          </article>
 
           <article class="story" id="elevenlabs-mcp">
             <span class="when">2026-09-16</span>
@@ -345,6 +354,13 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="harness2">
+          <span class="when">2026-10-15</span>
+          <h4><a href="https://github.com/google-research/harness2">Google Research&rsquo;s Harness&sup2; improves an agent&rsquo;s prompts, tools, memory and orchestration without touching weights</a></h4>
+          <p>Google Research open-sourced <strong>Harness&sup2;</strong>, which has an agent iteratively refine its own harness &mdash; prompts, tools, memory and orchestration &mdash; for each task while the model weights stay fixed, then carry &ldquo;evidence-backed&rdquo; lessons forward into later tasks. It is the self-improvement loop moved entirely into the scaffold; the newsletter quotes no benchmark gain, so what the repository measures, and against which baseline harness, is the thing to check.</p>
+          <div class="sources"><a href="https://github.com/google-research/harness2">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
+        </article>
+
         <article class="story" id="hyset">
           <span class="when">2026-10-09</span>
           <h4><a href="https://arxiv.org/abs/2607.25718">HYSET picks an agent&rsquo;s tools as a set rather than one by one, lifting ToolBench task completion from 61.8% to 69.9%</a></h4>
@@ -361,15 +377,15 @@
           <div class="sources"><a href="https://github.com/microsoft/quicksand">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 9)</span></div>
         </article>
 
-        <article class="story" id="grok-bot-model-router">
-          <span class="when">2026-10-08</span>
-          <h4><a href="https://thenextweb.com/news/grok-bot-claude-opus-midjourney-suno-musk">Grok Bot becomes a router that sends hard tasks to Claude Opus 5.5, Midjourney and Suno</a></h4>
-          <p>SpaceXAI turned <strong>Grok Bot</strong> into a model router: simple requests go to small, fast in-house models, while reasoning goes to Anthropic&rsquo;s <strong>Claude Opus 5.5</strong>, images to <strong>Midjourney</strong> and music to <strong>Suno</strong> &mdash; a personal agent from a frontier lab choosing rivals&rsquo; models where they are better. It can also now search and monitor X without a connector, and the change follows reported access problems with Grok on mobile and web.</p>
-          <div class="sources"><a href="https://thenextweb.com/news/grok-bot-claude-opus-midjourney-suno-musk">The Next Web</a> &middot; <span class="via">via TLDR AI (Oct 8), The Code (Oct 8)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (23)</summary>
+          <summary>Earlier in this section (24)</summary>
+
+          <article class="story" id="grok-bot-model-router">
+            <span class="when">2026-10-08</span>
+            <h4><a href="https://thenextweb.com/news/grok-bot-claude-opus-midjourney-suno-musk">Grok Bot becomes a router that sends hard tasks to Claude Opus 5.5, Midjourney and Suno</a></h4>
+            <p>SpaceXAI turned <strong>Grok Bot</strong> into a model router: simple requests go to small, fast in-house models, while reasoning goes to Anthropic&rsquo;s <strong>Claude Opus 5.5</strong>, images to <strong>Midjourney</strong> and music to <strong>Suno</strong> &mdash; a personal agent from a frontier lab choosing rivals&rsquo; models where they are better. It can also now search and monitor X without a connector, and the change follows reported access problems with Grok on mobile and web.</p>
+            <div class="sources"><a href="https://thenextweb.com/news/grok-bot-claude-opus-midjourney-suno-musk">The Next Web</a> &middot; <span class="via">via TLDR AI (Oct 8), The Code (Oct 8)</span></div>
+          </article>
 
           <article class="story" id="cursor-sdk-steer">
             <span class="when">2026-10-06</span>
@@ -1105,6 +1121,13 @@
         <h3>Agentic domain applications</h3>
         <p class="lead">Agentic X as a domain reframing rather than a tooling story: a loop with its own verification and observability, built for one field, instead of a generic coding agent pointed at it. Judge entries on the governor &mdash; a compute budget the agent is held to, or a permission boundary the account enforces.</p>
 
+        <article class="story" id="google-deep-review">
+          <span class="when">2026-10-15</span>
+          <h4><a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Google&rsquo;s Deep Review agent verifies technical documents, starting from computer-science papers</a></h4>
+          <p>Google Research described <strong>Deep Review</strong>, an agentic system built to give rigorous feedback and technical verification on complex documents; it began as a reviewer for computer-science papers and has since been widened to other domains. Input is <strong>PDF or plain text</strong> for now, with multi-file input promised, and Google expects tools like it on both the author and the reviewer side of peer review &mdash; no accuracy or reviewer-agreement figure reached the newsletter.</p>
+          <div class="sources"><a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Google Research</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
+        </article>
+
         <article class="story" id="glm-legal">
           <span class="when">2026-10-13</span>
           <h4><a href="https://z.ai/blog/glm-legal">Z.ai&rsquo;s GLM-Legal nearly triples its base model&rsquo;s Harvey LAB pass rate, to 19.17%</a></h4>
@@ -1121,15 +1144,15 @@
           <div class="sources"><a href="https://x.com/shivanipod/status/2104624129626309024">Announcement on X</a> &middot; <span class="via">via Unwind AI (Sep 29)</span></div>
         </article>
 
-        <article class="story" id="project-swap">
-          <span class="when">2026-09-25</span>
-          <h4><a href="https://www.anthropic.com/research/project-swap">Anthropic&rsquo;s Project Swap: Claude agents trading for employees matched their preferences on 61% of pairs</a></h4>
-          <p>Anthropic ran an experiment in which Claude agents, briefed through five-minute interviews, traded books on behalf of employees; the agents&rsquo; preference rankings matched the humans&rsquo; on 61% of pairs. It measures how much of a person&rsquo;s preferences a short interview hands to a delegate, the quantity any agent negotiating for someone depends on.</p>
-          <div class="sources"><a href="https://www.anthropic.com/research/project-swap">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 25)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="project-swap">
+            <span class="when">2026-09-25</span>
+            <h4><a href="https://www.anthropic.com/research/project-swap">Anthropic&rsquo;s Project Swap: Claude agents trading for employees matched their preferences on 61% of pairs</a></h4>
+            <p>Anthropic ran an experiment in which Claude agents, briefed through five-minute interviews, traded books on behalf of employees; the agents&rsquo; preference rankings matched the humans&rsquo; on 61% of pairs. It measures how much of a person&rsquo;s preferences a short interview hands to a delegate, the quantity any agent negotiating for someone depends on.</p>
+            <div class="sources"><a href="https://www.anthropic.com/research/project-swap">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 25)</span></div>
+          </article>
 
           <article class="story" id="google-family-agent">
             <span class="when">2026-09-18</span>
@@ -1172,6 +1195,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-15</span><span class="label"><a href="#claude-otel-observability">Claude Managed Agents, the Messages API and Claude SDKs now emit OpenTelemetry traces to any OTLP endpoint</a></span></li>
+        <li><span class="date">2026-10-15</span><span class="label"><a href="#harness2">Google Research&rsquo;s Harness&sup2; improves an agent&rsquo;s prompts, tools, memory and orchestration without touching weights</a></span></li>
+        <li><span class="date">2026-10-15</span><span class="label"><a href="#google-deep-review">Google&rsquo;s Deep Review agent verifies technical documents, starting from computer-science papers</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#copilotkit-clif">CopilotKit&rsquo;s CLiF learns continually from agent traces and user actions captured over AG-UI</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#glm-legal">Z.ai&rsquo;s GLM-Legal nearly triples its base model&rsquo;s Harvey LAB pass rate, to 19.17%</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#decision-offloading-sop-bench">Offloading bounded decisions to Jev cut a Qwen agent&rsquo;s LLM calls by 29.6% across 360 SOP-Bench cases</a></span></li>
