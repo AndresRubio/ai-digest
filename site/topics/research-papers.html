@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-10-14</div>
+      <div class="meta">Last updated: 2026-10-19</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 16 addition opens a section on what networks encode. Goodfire&rsquo;s <a href="#goodfire-already-clean">&ldquo;Neural networks are already clean&rdquo;</a> argues that the polysemanticity in early model organisms, read by the field as superposition, was mostly recursive generalization, which would mean networks can be studied directly rather than untangled first. It is a reinterpretation of existing evidence in essay form, so the check is which organisms it re-examines and whether the claim holds on a production-scale model.</p>
         <p>The Oct 14 addition is a way to change an architecture after pretraining. Amazon&rsquo;s <a href="#amazon-priming">Priming</a> initialises more efficient variants &mdash; different layer types, hybrid ratios and placements &mdash; from pretrained Transformer weights at under 1% of the original training cost with up to twice the throughput, which turns architecture search into a cheap sweep from one shared starting point. What it does not report is quality held at long context, the measure the attention section judges cost results on, so it is recorded as a cost result still waiting for its quality check.</p>
         <p>The Oct 9&ndash;12 cycle added a judge that can itself be graded and widened a toolkit already here. Sakana AI&rsquo;s <a href="#sakana-llm-peer-review">peer-review paper</a> scores AI reviewers on errors planted on purpose rather than on agreement with humans, and its system catches 73% of core-claim mistakes &mdash; a ground truth the verifier section had lacked. <a href="#claude-shaped-science">BootLoops</a>, recorded on Oct 2 as technically correct but in need of domain experts, has since produced 36 preprints across 22 fields, which is the volume that makes the expert check the bottleneck.</p>
         <p>The Oct 2&ndash;5 cycle put a human check back into three sections. BAAI&rsquo;s <a href="#arex">AREX</a> checks a provisional answer requirement by requirement and turns the gaps into its next search; fine-tuned on rule-flagged decision points, its 4B model beat an untuned 35B on five of six benchmarks and its 122B reached 82.5% on BrowseComp, three points under the same harness on Gemini Pro 3.1. Matthew Schwartz&rsquo;s <a href="#claude-shaped-science">BootLoops</a> was technically correct early and still needed domain experts to become relevant &mdash; the provenance section&rsquo;s split between a valid result and a useful one, seen from the other side. And <a href="#neuralink-50000-hours">Neuralink</a> pretrained its per-user decoders on 50,000 hours of unlabeled recordings, the archive-as-asset bet with no figure yet for what it bought.</p>
         <p>Two technical reports behind releases filed elsewhere belong to this page&rsquo;s reading list. DeepSeek&rsquo;s V4.1-Flash paper builds on Microsoft and Tsinghua&rsquo;s 2024 YOCO design, letting 36 of 40 layers borrow another layer&rsquo;s cache and storing it at 4 bits, for 890 bytes per token; Xiaomi&rsquo;s MiMo-V2.6 report multiplies each coding attempt&rsquo;s pass/fail reward by two checklist scores, after finding a test-only reward taught the model to let errors pass silently. Both are recorded on <a href="model-releases.html">Model releases</a>, and neither has been reproduced outside its lab.</p>
-        <p>The Oct 2 addition measured the state-carrying idea the attention section has been waiting on. <a href="#lift">LIFT</a> feeds a transformer&rsquo;s hidden state into the next generation step rather than squeezing it through the emitted token, keeps training parallel by borrowing those states from an off-the-shelf model&rsquo;s predictions, and beats token-matched transformers from 135M to 1B parameters on language modelling, reasoning and procedural tasks. Unlike the <a href="#recurrent-looped-transformer">Recurrent Looped Transformer</a> beside it, it reports a comparison; what remains open is scale, and the switch from borrowed states in training to its own at inference.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 2 addition measured the state-carrying idea the attention section has been waiting on. <a href="#lift">LIFT</a> feeds a transformer&rsquo;s hidden state into the next generation step rather than squeezing it through the emitted token, keeps training parallel by borrowing those states from an off-the-shelf model&rsquo;s predictions, and beats token-matched transformers from 135M to 1B parameters on language modelling, reasoning and procedural tasks. Unlike the <a href="#recurrent-looped-transformer">Recurrent Looped Transformer</a> beside it, it reports a comparison; what remains open is scale, and the switch from borrowed states in training to its own at inference.</p>
           <p>The Sep 28 addition widened the provenance section beyond Lean. Anthropic reports that <a href="#claude-nine-loops">Claude Fable 5.1 completed a nine-loop physics calculation</a> by two methods a month after a physicist challenged the labs, and Lance Dixon validated it independently. An outside expert&rsquo;s check confirms the number but, like a proof assistant, says nothing about how much of the method was the model&rsquo;s; the section now holds three results and two kinds of checker.</p>
           <p>The Sep 23 addition extended the provenance thread rather than resolving it. OpenAI now says the model behind the <a href="#navier-stokes-proof">Navier&ndash;Stokes claim</a> also solved more than 100 open mathematical problems, and it has convened an independent advisory group of mathematicians to assess and communicate such results &mdash; review in form, but by a body OpenAI appointed, beside a Clay process that still requires publication, a two-year wait and expert acceptance.</p>
           <p>The previous cycle kept three architectures honest by holding something constant. Linkup trained a dense, a late-interaction and a sparse encoder on identical data and published the gaps: <strong>SPARSEUP</strong> at 149M parameters scores <strong>56.4 nDCG@10 on BEIR-13</strong>, trailing its own dense model by 1.52 points and the late-interaction one by 2.5, and reaches <strong>over 97% recall in about 380 microseconds per query</strong> on a Seismic index. Fixing the data is what turns those into architecture costs instead of leaderboard noise, and 1.52 points is small enough that an inverted index usually wins the argument. The figures are Linkup&rsquo;s own and BEIR-13 is a subset, so the &ldquo;best public sparse encoder under 150M&rdquo; claim describes a narrow bracket.</p>
@@ -80,6 +81,7 @@
           <li><a href="#world-models-and-embodied-policy-methods">World models &amp; embodied-policy methods <span class="n">1</span></a></li>
           <li><a href="#rl-on-agents">RL on agents <span class="n">4</span></a></li>
           <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">4</span></a></li>
+          <li><a href="#mechanistic-interpretability">Mechanistic interpretability <span class="n">1</span></a></li>
           <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">4</span></a></li>
           <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">4</span></a></li>
           <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
@@ -370,6 +372,19 @@
         </details>
       </section>
 
+      <section class="topic-section" id="mechanistic-interpretability">
+        <h3>Mechanistic interpretability</h3>
+        <p class="lead">Work on what a network&rsquo;s internals actually encode, and whether the field&rsquo;s standing assumptions about them hold. The claims here come from the labs that build interpretability tools, on models they chose, so judge each on the model organisms used and on whether the finding has been checked on a production-scale model.</p>
+
+        <article class="story" id="goodfire-already-clean">
+          <span class="when">2026-10-16</span>
+          <h4><a href="https://already-clean.goodfire.com/">Goodfire argues neural networks are &ldquo;already clean&rdquo;: what looked like superposition was mostly recursive generalization</a></h4>
+          <p>Goodfire published a long analysis arguing that the polysemanticity seen in early model organisms, which the field attributed to <strong>superposition</strong> (networks packing unrelated concepts into shared directions), was mostly <strong>recursive generalization</strong>, a structured reuse of features that is far less concerning. If that holds, networks can be studied directly instead of being untangled first, and the authors say the outlook for mechanistic interpretability is better than assumed.</p>
+          <p>It is a reinterpretation of existing evidence rather than a new tool, published as a 65-minute essay, so the thing to check is which model organisms it re-examines and whether the claim survives on a production-scale model.</p>
+          <div class="sources"><a href="https://already-clean.goodfire.com/">Goodfire</a> &middot; <span class="via">via TLDR AI (Oct 16)</span></div>
+        </article>
+      </section>
+
       <section class="topic-section" id="machine-produced-proof-and-its-provenance">
         <h3>Machine-produced proof and its provenance</h3>
         <p class="lead">Four results a machine produced and someone other than the model checked &mdash; Lean for two proofs, a physicist for a nine-loop calculation, domain experts for a calculation toolkit. Verification and attribution come apart here: a checker can confirm a result is valid and say nothing about whose method it was. Judge these on publication order and disclosed training data.</p>
@@ -496,6 +511,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-16</span><span class="label"><a href="#goodfire-already-clean">Goodfire argues neural networks are &ldquo;already clean&rdquo;: what looked like superposition was mostly recursive generalization</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#amazon-priming">Amazon&rsquo;s Priming rebuilds pretrained Transformers into more efficient architectures for under 1% of the training cost</a></span></li>
         <li><span class="date">2026-10-10</span><span class="label"><a href="#sakana-llm-peer-review">Sakana AI grades LLM peer reviewers on errors planted on purpose, and its system catches 73% of core-claim mistakes</a></span></li>
         <li><span class="date">2026-10-05</span><span class="label"><a href="#neuralink-50000-hours">Neuralink pretrains its decoders on 50,000 hours of unlabeled neural data</a></span></li>
