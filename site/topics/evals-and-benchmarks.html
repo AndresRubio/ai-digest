@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-10-12</div>
+      <div class="meta">Last updated: 2026-10-20</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 19 cycle was two benchmarks about coverage, one of languages and one of work. OpenAI&rsquo;s <a href="#multilangbench">MultiLangBench</a> has a model build a database engine in 20 languages and reports GPT-6 Astra at 87.4% against 26.8% for GPT-5.6 Sol, with COBOL from 10.9% to 72.1% and Fortran at 83.5%: a lab scoring its own models on a test it designed for the legacy languages SWE-bench never reached. Mercor&rsquo;s <a href="#mercor-benchmark-map">Benchmark Map</a> works the other direction, matching published benchmarks to American working time and finding 90% of hours on tasks with little or no coverage, a number for this page&rsquo;s standing complaint that benchmark scope and paid work diverge, from a company that sells the labour to close the gap.</p>
         <p>The Oct 9&ndash;12 cycle was two benchmarks built where the work happens. Epoch&rsquo;s <a href="#epoch-automation-reports">Automation Reports</a> test whether models can do Epoch&rsquo;s own research and find the split this page keeps meeting: reliable on well-defined tasks, short of the judgment the open-ended part needs, with open-weight models behind even on the defined part. Exa&rsquo;s <a href="#exa-atlas">ATLAS</a> joins the web-scale retrieval section with non-memorised, multi-domain search tasks graded on completeness, and finds high-effort agents still missing golden answers &mdash; a conclusion from a search vendor that points at search. The agent-team and peer-review evaluations from the same days are filed on <a href="agents.html">Agents</a> and <a href="research-papers.html">Research papers</a>.</p>
         <p>The Oct 8 cycle was the arithmetic of a small eval set. Sergii Makarevych&rsquo;s <a href="#makarevych-eval-playbook">eval playbook</a> works a 60-case support bot end to end and reports the numbers most write-ups leave out: 34 of 60 replies passed, the LLM judge agreed with human labels at a kappa of 0.15 against a 0.6 release bar, two prompts tied at 70% while one regressed on 14% of tickets, and 60 cases cannot detect a drop smaller than about 12 points. It belongs beside the FAQ entries in its section as the worked example of why a tied headline score is not a tie. Scale&rsquo;s <a href="#humanitys-sixth-sense">Humanity&rsquo;s Sixth Sense</a> added a 522-task test of intuitive visual reasoning on which the best model, GPT-6 Astra, scores 53.6% &mdash; a benchmark with headroom, whose construct is the part still to inspect.</p>
         <p>The Oct 7 addition is two installable frameworks, added by hand, that bracket the model rather than score it. Great Expectations&rsquo; <a href="#great-expectations-gx-core">GX Core</a> sits upstream: declared Expectations validate a training set, RAG corpus or feature table, and Actions can block bad data before anything is trained or evaluated on it. <a href="#evidently">Evidently</a> sits downstream, with more than 100 metrics for LLM outputs, RAG retrieval, agents and classic ML, synthetic test generation and a drift dashboard. Both are Apache-2.0 and open a new section, Open-source testing frameworks; neither decides which failures matter for a given product, which is still the error analysis this page keeps returning to.</p>
         <p>The Oct 6 cycle was a well-posed question settled on a desk. Simon Willison reran a two-year-old GPT-4o test &mdash; add two large numbers and write the answer out in words &mdash; on a local <a href="#qwen3-8-27b-addition-in-words">Qwen3.8-27B</a> on a DGX Spark, so no hidden tool could be involved, and with reasoning on it got 167 of 169 right through visible column addition. The caveat is the one this page keeps asking for: the reasoning run is a single sample per cell, and its author expects a second run to come out differently.</p>
-        <p>The Oct 1 cycle was the first outside review of Anthropic&rsquo;s eval commands. Hamel Husain ran Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval</a> on an apartment-leasing assistant&rsquo;s traces and found it better at one-shot issue discovery than any auto-eval tool he had tried, and weaker at the step this page treats as the job: it asked for an eval before anyone had read the data, collected label corrections in chat instead of an annotation view, and bundled four checks into one evaluator. His verdict is to wait for the revision the author has promised.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 1 cycle was the first outside review of Anthropic&rsquo;s eval commands. Hamel Husain ran Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval</a> on an apartment-leasing assistant&rsquo;s traces and found it better at one-shot issue discovery than any auto-eval tool he had tried, and weaker at the step this page treats as the job: it asked for an eval before anyone had read the data, collected label corrections in chat instead of an annotation view, and bundled four checks into one evaluator. His verdict is to wait for the revision the author has promised.</p>
           <p>The Sep 30 cycle shipped the discipline as commands. Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval and hillclimb</a> for the claude-api skill draft an eval from real traffic and bug reports, propose a grader, then improve the app one change at a time against a held-out set, rolling back edits that overfit and checking for variance, impossible tasks and broken graders &mdash; the failure modes this page has catalogued, now written into the loop, with the grader&rsquo;s quality still the developer&rsquo;s judgment. <a href="#glean-jev-enterprise-tasks">Glean&rsquo;s test of Jev</a> on four enterprise decision jobs adds an outside datapoint for the decision-model class: an 8.1&times; median speedup on routing, counted over the cases that transferred, and reranking that still needed production tie-breaks.</p>
           <p>The Sep 28 addition scores whole jobs rather than questions. Surge&rsquo;s <a href="#dayjob-finance">DAYJOB: Finance</a> asks an agent to finish 80 realistic finance assignments from supporting documents and produce analysis a professional can use &mdash; the second family in the automated-evals section, an agent in a real environment, applied to one profession. It arrived without model scores, so for now it is an instrument without readings.</p>
           <p>The Sep 23 cycle revised one instrument and built another. Scale&rsquo;s <a href="#swe-bench-pro-v2">SWE-Bench Pro v2</a> corrects the previous task set&rsquo;s errors and ships 642 tasks from 11 repositories, with GPT-5 and Opus 4.1 near 23% on the public set &mdash; a reminder that an instrument carries defects of its own until someone revises it, and that the board&rsquo;s named models lag the current frontier. <a href="#jevbench">JevBench</a> is the first outside measurement of the Jev class: 534 English decisions scored for intelligence, calibration, speed and cost, with Jev leading and the open SemIf and djev within a point. That narrow margin is the result; the caveat is that one combined score blends four properties a buyer would weigh differently.</p>
@@ -81,14 +82,14 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#document-ocr-vlm-parsing">Document OCR &amp; VLM parsing <span class="n">3</span></a></li>
-          <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">3</span></a></li>
+          <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">4</span></a></li>
           <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">8</span></a></li>
           <li><a href="#active-parameter-efficiency-benchmarks">Active-parameter efficiency benchmarks <span class="n">1</span></a></li>
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
           <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">9</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">2</span></a></li>
-          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">21</span></a></li>
+          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">22</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">4</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">8</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">2</span></a></li>
@@ -128,7 +129,15 @@
 
       <section class="topic-section" id="coding-benchmarks-swe-bench">
         <h3>Coding benchmarks (SWE-bench)</h3>
-        <p class="lead">SWE-bench Verified and the harder SWE-bench Pro are the public coding scoreboards. Each entry here turns on what a score leaves out: who reported it, how much it moves between runs, and the task errors a revision had to fix. When the top of the field sits inside its own noise, cost per task and consistency are the discriminators left.</p>
+        <p class="lead">SWE-bench Verified and the harder SWE-bench Pro are the public coding scoreboards, now joined by a lab-built test for languages they never covered. Each entry here turns on what a score leaves out: who reported it, how much it moves between runs, and the task errors a revision had to fix. Cost per task and consistency are the discriminators left.</p>
+
+        <article class="story" id="multilangbench">
+          <span class="when">2026-10-19</span>
+          <h4><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI&rsquo;s MultiLangBench has GPT-6 Astra building a database engine in 20 languages at 87.4%, COBOL up from 10.9% to 72.1%</a></h4>
+          <p>OpenAI released <strong>MultiLangBench</strong>, which asks a model to build a database engine in each of 20 programming languages, and reports <strong>GPT-6 Astra averaging 87.4%</strong> against 26.8% for GPT-5.6 Sol. The low-resource rows move most: COBOL from 10.9% to 72.1%, Fortran to 83.5%, Visual Basic to 89.4%.</p>
+          <p>A lab benchmarking its own models on a task it designed, with no outside run yet; what it adds to this section is a scoreboard for languages SWE-bench never covered, which is where most legacy-code work sits.</p>
+          <div class="sources"><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI</a> &middot; <span class="via">via MarkTechPost (Oct 19)</span></div>
+        </article>
 
         <article class="story" id="swe-bench-pro-v2">
           <span class="when">2026-09-23</span>
@@ -145,13 +154,17 @@
           <div class="sources"><span class="via">via Unwind AI (Sep 16) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="fable-5-swe-bench-records">
-          <span class="when">2026-06-13</span>
-          <h4>Claude Fable 5 is reported at 95.0% on SWE-bench Verified and 80.3% on SWE-bench Pro</h4>
-          <p>Reporting on Anthropic&rsquo;s Claude Fable 5 put it at <strong>95.0% on SWE-bench Verified</strong> &mdash; described as the highest score ever recorded by any model, up from the prior 88.6% held by Opus 4.8 two weeks earlier &mdash; and <strong>80.3% on SWE-bench Pro</strong>, 21 points ahead of GPT-5.5&rsquo;s 58.6%. Both figures are as reported, not independently reproduced.</p>
-          <p>The brief framed the SWE-bench Pro gap as generational rather than marginal, and advised teams still routing coding work to GPT-5.5 or Gemini to run their own head-to-head on Pro-style workloads rather than trust one aggregate number. (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
-          <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="fable-5-swe-bench-records">
+            <span class="when">2026-06-13</span>
+            <h4>Claude Fable 5 is reported at 95.0% on SWE-bench Verified and 80.3% on SWE-bench Pro</h4>
+            <p>Reporting on Anthropic&rsquo;s Claude Fable 5 put it at <strong>95.0% on SWE-bench Verified</strong> &mdash; described as the highest score ever recorded by any model, up from the prior 88.6% held by Opus 4.8 two weeks earlier &mdash; and <strong>80.3% on SWE-bench Pro</strong>, 21 points ahead of GPT-5.5&rsquo;s 58.6%. Both figures are as reported, not independently reproduced.</p>
+            <p>The brief framed the SWE-bench Pro gap as generational rather than marginal, and advised teams still routing coding work to GPT-5.5 or Gemini to run their own head-to-head on Pro-style workloads rather than trust one aggregate number. (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="scores-denominated-in-money">
@@ -398,6 +411,14 @@
         <h3>Construct validity &amp; benchmark scope</h3>
         <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and one finds the observing condition itself disappearing.</p>
 
+        <article class="story" id="mercor-benchmark-map">
+          <span class="when">2026-10-19</span>
+          <h4><a href="https://www.mercor.com/research/labor-index/benchmark-map/">Mercor&rsquo;s Benchmark Map finds 90% of US working hours fall on tasks existing benchmarks barely cover</a></h4>
+          <p>Mercor&rsquo;s <strong>Benchmark Map</strong> sets out to be a continuously updated map of AI capability across the economy by matching published benchmarks to the tasks that make up American working time. Its first finding is that <strong>90% of working hours</strong> go to tasks with little or no coverage from any existing benchmark.</p>
+          <p>It is a coverage audit rather than a score, from a company that sells evaluation labour, and the matching method is the part to inspect; but it puts a number on this section&rsquo;s recurring complaint that benchmark scope and the work people are paid for are different things.</p>
+          <div class="sources"><a href="https://www.mercor.com/research/labor-index/benchmark-map/">Mercor</a> &middot; <span class="via">via TLDR AI (Oct 19)</span></div>
+        </article>
+
         <article class="story" id="humanitys-sixth-sense">
           <span class="when">2026-10-08</span>
           <h4><a href="https://labs.scale.com/papers/humanitys-sixth-sense">Scale&rsquo;s Humanity&rsquo;s Sixth Sense tests intuitive visual reasoning on 522 tasks; GPT-6 Astra leads at 53.6%</a></h4>
@@ -412,16 +433,16 @@
           <div class="sources"><a href="https://benchmarkheaven.com/jev-models">Leaderboard</a> &middot; <a href="https://github.com/fstandhartinger/jevbench">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="biasmedqa-contamination">
-          <span class="when">2026-09-19</span>
-          <h4><a href="https://www.talby.com/p/ten-regulatory-duties-for-clinical">Re-running BiasMedQA on unpublished prompts costs up to 41 points</a></h4>
-          <p>The same write-up surfaces the cleanest contamination measurement this page has recorded. When Kim and colleagues re-ran <strong>BiasMedQA</strong> on unpublished prompts of identical construction, scores fell from a published range of <strong>80.0&ndash;88.6% to 47.4&ndash;86.1%</strong> &mdash; <strong>a gap of up to 41 points attributable to publication alone</strong>.</p>
-          <p>That number is the argument for the private split PacificMed holds back, and it dates the shelf life of an open safety benchmark at roughly one model generation. It also lands on a live case: CARES has been public since May 2025 and at least two papers have already fine-tuned on its training split, so its current scores measure exposure as much as behaviour. The uncomfortable corollary for this section is that the benchmarks easiest to check independently are the ones decaying fastest.</p>
-          <div class="sources"><a href="https://www.talby.com/p/ten-regulatory-duties-for-clinical">AI in Healthcare</a> &middot; <span class="via">via AI in Healthcare (Sep 19)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (18)</summary>
+          <summary>Earlier in this section (19)</summary>
+
+          <article class="story" id="biasmedqa-contamination">
+            <span class="when">2026-09-19</span>
+            <h4><a href="https://www.talby.com/p/ten-regulatory-duties-for-clinical">Re-running BiasMedQA on unpublished prompts costs up to 41 points</a></h4>
+            <p>The same write-up surfaces the cleanest contamination measurement this page has recorded. When Kim and colleagues re-ran <strong>BiasMedQA</strong> on unpublished prompts of identical construction, scores fell from a published range of <strong>80.0&ndash;88.6% to 47.4&ndash;86.1%</strong> &mdash; <strong>a gap of up to 41 points attributable to publication alone</strong>.</p>
+            <p>That number is the argument for the private split PacificMed holds back, and it dates the shelf life of an open safety benchmark at roughly one model generation. It also lands on a live case: CARES has been public since May 2025 and at least two papers have already fine-tuned on its training split, so its current scores measure exposure as much as behaviour. The uncomfortable corollary for this section is that the benchmarks easiest to check independently are the ones decaying fastest.</p>
+            <div class="sources"><a href="https://www.talby.com/p/ten-regulatory-duties-for-clinical">AI in Healthcare</a> &middot; <span class="via">via AI in Healthcare (Sep 19)</span></div>
+          </article>
 
           <article class="story" id="pacificmed">
             <span class="when">2026-09-19</span>
@@ -750,6 +771,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-19</span><span class="label"><a href="#mercor-benchmark-map">Mercor&rsquo;s Benchmark Map: 90% of US working hours fall on tasks benchmarks barely cover</a></span></li>
+        <li><span class="date">2026-10-19</span><span class="label"><a href="#multilangbench">MultiLangBench: GPT-6 Astra builds a database engine in 20 languages at 87.4%, COBOL 10.9% to 72.1%</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#exa-atlas">Exa&rsquo;s ATLAS scores search agents on non-memorised, multi-domain tasks and finds even high-effort agents miss golden answers</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#epoch-automation-reports">Epoch&rsquo;s Automation Reports: frontier models handle its well-defined tasks but cannot yet produce Epoch-quality work</a></span></li>
         <li><span class="date">2026-10-08</span><span class="label"><a href="#makarevych-eval-playbook">Makarevych&rsquo;s eval playbook: 34 of 60 replies passed, the judge scored 0.15 kappa, and 60 cases cannot see a 12-point drop</a></span></li>
