@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-20</div>
+      <div class="meta">Last updated: 2026-10-21</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 20 cycle priced retrieval and thinned the router. <a href="#exa-3-0">Exa 3.0</a> adds Exa Lite at $4 per 1,000 requests on Exa&rsquo;s own index, over 2 trillion URLs tracked and 100 billion pages served, with 1.27 billion e-commerce listings and 211 million local businesses inside it: the build-good-retrieval pattern in the agentic-search section, now with DeepSeek&rsquo;s $0.75 per 1,000 as the comparator and only Exa&rsquo;s own evaluations behind the wins. Meta&rsquo;s <a href="#meta-thin-orchestrator">thin orchestrator</a> is a router that assigns work to specialised agents and does none of the domain work itself, which Meta says made its production agents more reliable, a design without a figure that answers the dispatch half of the multi-agent section&rsquo;s question and leaves reconciliation where it was. The harness experiment that names GPT-6 Luna and Sol with the cost in both columns is filed on <a href="evals-and-benchmarks.html#specmatic-harness-experiment">Evals &amp; benchmarks</a>.</p>
         <p>The Oct 19 cycle added the retrieval under DeepSeek&rsquo;s agents and the rest of Harness&sup2;&rsquo;s table. DeepSeek&rsquo;s <a href="#deepseek-search-fetch-api">Search and Fetch APIs</a> return structured results and page Markdown over the model API&rsquo;s own bearer token, priced by The Code at $0.75 per 1,000 requests: a lab supplying the web access its own agents assume, which is the dependency the frameworks section says to read for. <a href="#harness2">Harness&sup2;</a> gained its wider numbers, with k=5 parallel recursion taking Gemini under OpenCode to 80.8, the smallest gain 1.2 points on JobBench, and two of three columns won against Meta-Harness, ReasoningBank and Harness Scaling, still with Google as the only scorer.</p>
         <p>The Oct 16&ndash;18 cycle put numbers on last week&rsquo;s mechanism and opened the sandbox a lab actually runs. <a href="#harness2">Harness&sup2;</a> now has its measurement: one refinement step improved every executor-harness pairing on WorkBuddy-Bench, JobBench and Harvey&rsquo;s LAB, GLM-5 under OpenCode most, 64.2 to 75.7, with Claude Opus 4.8 as the editor and Google as the only scorer. Perplexity open-sourced <a href="#perplexity-space-open-source">SPACE</a>, the Firecracker microVM platform under every Computer task, as Rust under Apache 2.0, with its own red team&rsquo;s result attached: zero host-secret reads in 108 escape attempts and 11 of 54 egress bypasses before fixes, which puts the boundary at the network policy rather than the VM. Cognition&rsquo;s <a href="#devin-oncall">Devin Oncall</a> is a domain agent for production incidents that escalates or opens a tested PR and claims to skip 60% of repeat investigations, and a paper has <a href="#gemini-argon-minecraft">four Gemini 4 Argon agents</a> finishing Minecraft in 27 hours with no single-agent baseline given, the comparison Vals AI found wanting for coding.</p>
         <p>The Oct 16 cycle moved observability and self-improvement into layers someone else can inspect. Anthropic&rsquo;s Managed Agents, Messages API and SDKs now emit <a href="#claude-otel-observability">OpenTelemetry traces</a> under the GenAI semantic conventions to any OTLP endpoint, so watching an agent depends on a standard rather than a vendor console. Google Research&rsquo;s <a href="#harness2">Harness&sup2;</a> lets an agent refine its own prompts, tools, memory and orchestration per task with the weights frozen &mdash; the harness-over-model argument run as a loop, published without a gain figure. And Google&rsquo;s <a href="#google-deep-review">Deep Review</a> points an agent at technical documents, starting from computer-science papers, again with no figure for how often it agrees with human reviewers. All three are mechanisms described; none yet arrives with the measurement this page asks for.</p>
         <p>The Oct 15 cycle let the model write its own orchestration and widened what gets remembered. Anthropic&rsquo;s <a href="#claude-dynamic-workflows">dynamic workflows</a> have Claude write the program that assigns, passes and checks subagent work; the presenters said a multi-agent stock-research run found more than one agent did but cost much more, and the running model is not told the session&rsquo;s spending cap &mdash; the cost pattern Vals AI measured on Vibe Code Bench, now with a budget the coordinator cannot see. CopilotKit&rsquo;s <a href="#copilotkit-clif">CLiF</a> learns from full-stack trajectories, agent traces and user actions together over AG-UI, which puts it on the remember-the-work side of the memory section with no figure for what it improves. The payment rail&rsquo;s answer to agent purchases, Amex&rsquo;s Proof of Intent Token, is filed on <a href="safety-and-policy.html#amex-intent-intelligence">Safety &amp; policy</a>.</p>
-        <p>The Oct 14 cycle measured a decision model inside a loop and priced a domain agent by its failures. Routing a Qwen agent&rsquo;s step-completion checks and other bounded decisions to Jev cut <a href="#decision-offloading-sop-bench">LLM calls by 29.6%</a>, estimated cost by 26.6% and latency by 19.7% over 360 SOP-Bench cases &mdash; a forum write-up, but the first in-loop saving on this page rather than a standalone benchmark score. Z.ai&rsquo;s <a href="#glm-legal">GLM-Legal</a> lifts its base model&rsquo;s Harvey LAB pass rate from 6.67% to 19.17%, which still leaves four in five end-to-end legal tasks failed. Meta&rsquo;s Muse agents gained a frontier model of their own, <a href="model-releases.html#muse-wonder">Muse Wonder</a>, on Model releases.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 14 cycle measured a decision model inside a loop and priced a domain agent by its failures. Routing a Qwen agent&rsquo;s step-completion checks and other bounded decisions to Jev cut <a href="#decision-offloading-sop-bench">LLM calls by 29.6%</a>, estimated cost by 26.6% and latency by 19.7% over 360 SOP-Bench cases &mdash; a forum write-up, but the first in-loop saving on this page rather than a standalone benchmark score. Z.ai&rsquo;s <a href="#glm-legal">GLM-Legal</a> lifts its base model&rsquo;s Harvey LAB pass rate from 6.67% to 19.17%, which still leaves four in five end-to-end legal tasks failed. Meta&rsquo;s Muse agents gained a frontier model of their own, <a href="model-releases.html#muse-wonder">Muse Wonder</a>, on Model releases.</p>
           <p>The Oct 9&ndash;12 cycle put a governed enterprise agent beside the first measurement of agent teams. Google Cloud&rsquo;s <a href="#gemini-agent">Gemini Agent</a> is one agent behind one API that routes across Gemini and Claude, keeps four kinds of memory and stops at a per-project spend cap until a human resumes it &mdash; governance described, not measured. Vals AI&rsquo;s <a href="#vals-multi-agent-vibe-code-bench">Vibe Code Bench test</a> is the number the multi-agent section lacked, and it is a null: teams cost 1.8&ndash;5.1&times; more and scored no better except in one configuration. Two harness pieces arrived, one from research and one from Microsoft: <a href="#hyset">HYSET</a> chooses tools as a compatible set and lifts ToolBench completion from 61.8% to 69.9%, and <a href="#quicksand">Quicksand</a> makes a snapshotable QEMU VM the agent sandbox without root or Docker. Harvey&rsquo;s <a href="#harvey-wake-sleep">wake-sleep</a> agent adds a memory datapoint &mdash; lessons distilled from graded trajectories raised held-out all-pass from 2.9% to 15.7% &mdash; reported in a post rather than a paper.</p>
           <p>The Oct 8 cycle moved two pieces of the harness out of application code. SpaceXAI turned <a href="#grok-bot-model-router">Grok Bot</a> into a router that keeps simple requests on its own small models and sends reasoning to Claude Opus 5.5, images to Midjourney and music to Suno &mdash; a personal agent treating rival labs&rsquo; models as interchangeable tools, which is the harness-over-model argument this page has made from the build side, now made by a product. Anthropic&rsquo;s <a href="#claude-sdk-browser-use">Python and TypeScript SDKs</a> now run the computer- and browser-use action loop against a driver such as Browserbase, in beta, so the glue a computer-use agent most often gets wrong becomes vendor code whose behaviour can change between versions.</p>
           <p>The Oct 7 cycle put authentication under the personal agent. Meta and Sierra&rsquo;s <a href="#personal-agent-protocol">Personal Agent Protocol</a> is an OAuth-based open standard for a consumer&rsquo;s agent to act on a business through its site, APIs or agents, with the consumer scoping access, the company bounding actions and seeing what was done, and Shopify, Stripe and Walmart named as backers. It is the trust decision this page&rsquo;s extension section has treated as unresolved, answered by the parties on both ends of a Muse transaction rather than by the MCP working group, and published so far as a spec and a partner list with no conformance test. The decision models that agents increasingly route through gained a frontier price &mdash; OpenAI&rsquo;s Decisions API at $0.10 per million input tokens &mdash; on <a href="model-releases.html">Model releases</a>.</p>
@@ -96,12 +97,12 @@
           <li><a href="#the-agentic-harness">The agentic harness <span class="n">28</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">12</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">12</span></a></li>
-          <li><a href="#agentic-search">Agentic search <span class="n">2</span></a></li>
+          <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">9</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">7</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">7</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
-          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">15</span></a></li>
+          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">16</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">10</span></a></li>
         </ul>
       </nav>
@@ -781,6 +782,14 @@
         <h3>Agentic search</h3>
         <p class="lead">Agentic search names three different implementations &mdash; build good retrieval, steer the agent toward context despite weak retrieval, or fine-tune a model to search one corpus &mdash; and conflating them causes most of the confusion. The entries below cover the first two. Judge entries on which pattern is actually being described.</p>
 
+        <article class="story" id="exa-3-0">
+          <span class="when">2026-10-19</span>
+          <h4><a href="https://exa.ai/blog/exa-3">Exa 3.0 adds Exa Lite at $4 per 1,000 requests on an independent index tracking 2 trillion URLs</a></h4>
+          <p>Exa released <strong>Exa 3.0</strong>, which it says leads its own evaluations across coding, finance, deep research and company intelligence, and added <strong>Exa Lite</strong>, a cheaper search type at <strong>$4 per 1,000 requests</strong>. Exa runs its own crawler and index, tracking over 2 trillion URLs and serving 100 billion pages, including 1.27 billion e-commerce listings with prices and availability, 211 million local businesses with hours and ratings, and live news, sports, weather and market data.</p>
+          <p>It is the build-good-retrieval pattern this section separates from the other two, priced against <a href="#deepseek-search-fetch-api">DeepSeek&rsquo;s $0.75 per 1,000</a>; the evaluation wins are Exa&rsquo;s own, and the one outside instrument on the site is Exa&rsquo;s too, its <a href="evals-and-benchmarks.html#exa-atlas">ATLAS</a> benchmark.</p>
+          <div class="sources"><a href="https://exa.ai/blog/exa-3">Exa</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
+        </article>
+
         <article class="story" id="firecrawl-alexandria">
           <span class="when">2026-09-23</span>
           <h4><a href="https://www.firecrawl.dev/blog/introducing-alexandria-series-b">Firecrawl raises $75M and launches Alexandria, one search layer over 100+ data providers</a></h4>
@@ -1026,6 +1035,14 @@
         <h3>Multi-agent orchestration</h3>
         <p class="lead">Small teams of agents specialised by role &mdash; product, research, dev, eval &mdash; or by station, and the two venues they coordinate in: the team&rsquo;s own chat channel, or a fixed pipeline. The unsolved part is not dispatch but reconciliation &mdash; many agents each correct about overlapping regions of one codebase. Judge entries on where verification sits.</p>
 
+        <article class="story" id="meta-thin-orchestrator">
+          <span class="when">2026-10-19</span>
+          <h4><a href="https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/">Meta&rsquo;s thin orchestrator routes work to specialised agents and does none of the domain work itself</a></h4>
+          <p>Meta Engineering described the <strong>thin orchestrator</strong> behind its production agents: a router that assigns a workflow to specialised agents and performs no domain work of its own, which Meta says made the system more reliable than a router that also reasoned about the task.</p>
+          <p>It is an architectural answer to this section&rsquo;s dispatch question, with reconciliation left where it was; the summary carries no reliability figure, so what the post has to show is how a failure in a specialist is detected and retried without the router taking the work back.</p>
+          <div class="sources"><a href="https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/">Meta Engineering</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
+        </article>
+
         <article class="story" id="gemini-argon-minecraft">
           <span class="when">2026-10-16</span>
           <h4><a href="https://arxiv.org/abs/2610.22319">Four Gemini 4 Argon agents beat Minecraft from a random seed in 27 hours, writing 2,783 programs and dying 605 times</a></h4>
@@ -1042,16 +1059,16 @@
           <div class="sources"><a href="https://www.latent.space/p/claude-dynamic-workflows">Latent Space</a> (analysis) &middot; <span class="via">via TLDR AI (Oct 14)</span></div>
         </article>
 
-        <article class="story" id="vals-multi-agent-vibe-code-bench">
-          <span class="when">2026-10-12</span>
-          <h4><a href="https://www.vals.ai/blogs/multi-agent-vibe-code-bench">Vals AI: agent teams cost 1.8&ndash;5.1&times; more on Vibe Code Bench and mostly score no better than one agent</a></h4>
-          <p>Vals AI ran GPT-6 Sol and Claude Opus 5.5 on <strong>Vibe Code Bench</strong> as single agents and as teams, at medium and maximum reasoning effort. Teams cost <strong>1.8 to 5.1 times as much</strong>, and the score difference was not statistically significant in any configuration except Sol at medium effort.</p>
-          <p>It is a measured null for this section: whether a team paid depended on model, task and budget, and raising one agent&rsquo;s reasoning effort may buy the same gain for less. It is one benchmark from one evaluator.</p>
-          <div class="sources"><a href="https://www.vals.ai/blogs/multi-agent-vibe-code-bench">Vals AI</a> &middot; <span class="via">via TLDR AI (Oct 12)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="vals-multi-agent-vibe-code-bench">
+            <span class="when">2026-10-12</span>
+            <h4><a href="https://www.vals.ai/blogs/multi-agent-vibe-code-bench">Vals AI: agent teams cost 1.8&ndash;5.1&times; more on Vibe Code Bench and mostly score no better than one agent</a></h4>
+            <p>Vals AI ran GPT-6 Sol and Claude Opus 5.5 on <strong>Vibe Code Bench</strong> as single agents and as teams, at medium and maximum reasoning effort. Teams cost <strong>1.8 to 5.1 times as much</strong>, and the score difference was not statistically significant in any configuration except Sol at medium effort.</p>
+            <p>It is a measured null for this section: whether a team paid depended on model, task and budget, and raising one agent&rsquo;s reasoning effort may buy the same gain for less. It is one benchmark from one evaluator.</p>
+            <div class="sources"><a href="https://www.vals.ai/blogs/multi-agent-vibe-code-bench">Vals AI</a> &middot; <span class="via">via TLDR AI (Oct 12)</span></div>
+          </article>
 
           <article class="story" id="agent-tincan">
             <span class="when">2026-09-27</span>
@@ -1231,6 +1248,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-19</span><span class="label"><a href="#meta-thin-orchestrator">Meta&rsquo;s thin orchestrator routes work to specialised agents and does none of the domain work itself</a></span></li>
+        <li><span class="date">2026-10-19</span><span class="label"><a href="#exa-3-0">Exa 3.0 adds Exa Lite at $4 per 1,000 requests on an independent index tracking 2 trillion URLs</a></span></li>
         <li><span class="date">2026-10-17</span><span class="label"><a href="#deepseek-search-fetch-api">DeepSeek Search and Fetch APIs: live web results and page Markdown at $0.75 per 1,000 requests</a></span></li>
         <li><span class="date">2026-10-16</span><span class="label"><a href="#perplexity-space-open-source">Perplexity open-sources SPACE, the Firecracker microVM sandbox under every Computer task, as Rust under Apache 2.0</a></span></li>
         <li><span class="date">2026-10-16</span><span class="label"><a href="#gemini-argon-minecraft">Four Gemini 4 Argon agents beat Minecraft from a random seed in 27 hours, writing 2,783 programs and dying 605 times</a></span></li>

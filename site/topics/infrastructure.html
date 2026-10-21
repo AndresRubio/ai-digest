@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-10-20</div>
+      <div class="meta">Last updated: 2026-10-21</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 20 cycle was three operators describing their own bills and plants. Cloudflare cut the inference cost of its automated code review from <a href="#cloudflare-inference-bill-68">$2.43 to $0.77 a review</a>, 68%, mostly by checking what reached the provider on a session&rsquo;s first request and ordering messages so the cached prefix stayed stable across commits and repositories: the cache section&rsquo;s argument that the hit is something to verify, done by a caller rather than asserted by the provider. Meta published the design of <a href="#meta-prometheus-supercluster">Prometheus</a>, the gigawatt-scale supercluster under Muse, with closed-loop liquid cooling and a plan toward about one million GPUs, a target without a utilisation or cost figure. AWS&rsquo;s <a href="#torchneuron">TorchNeuron</a> puts a native PyTorch backend on Trainium in public beta under Apache 2.0, the accelerator-portability bet still owing its efficiency gap, and vLLM&rsquo;s <a href="#vllm-nixl-push-connector">push-based NIXL connector</a> gained AWS&rsquo;s own write-up, still with no number in the summary.</p>
         <p>The Oct 19 addition is the shape of what NVIDIA gave away. <a href="#nvidia-runai-open-source">Run:ai</a> turns out to be one Apache-2.0 monorepo of about 50 Go services, control plane, cluster services, installer, CLI and an MCP server, with four pieces usable on their own: KAI Scheduler, now a CNCF Sandbox project, does gang scheduling, fair-share and topology awareness, and the GPU Fractioning Operator gives CUDA 13.4-native fractions with a hard memory cap per workload. The utilisation figure the Kubernetes section has been waiting for is still absent; what changed is that the queue is something an estate can read and fork rather than license.</p>
         <p>The Oct 16 cycle was the desk and the failure path. Tom&rsquo;s Hardware, cited by The Batch, put local machines on one agent benchmark: on AgentPerf-Local with a quantized Qwen 3.8-27B the NVIDIA-based <a href="#local-ai-workstations">Surface Laptop Ultra</a> finished in 18.9 minutes against an M5 Max MacBook Pro&rsquo;s 24.74 and AMD&rsquo;s AI Ryzen Halo&rsquo;s 42.1, though NVIDIA&rsquo;s chips stop at 128 GB where an $18,299 Mac Studio reaches 256 GB &mdash; the quantization section&rsquo;s trade of speed against residency, on named hardware. vLLM&rsquo;s <a href="#vllm-nixl-push-connector">push-based NIXL connector</a> takes KV-transfer setup off the critical path between prefill and decode workers, and Netflix described the <a href="#netflix-gpu-reliability">detection and auto-remediation</a> that keeps distributed training alive through hardware faults; neither summary carried a number, so both are designs to read rather than results to compare.</p>
         <p>The Oct 15 cycle was mostly the rack and the box. NVIDIA contributed <a href="#vera-rubin-ocp-mgx">Vera Rubin rack designs</a> to OCP with a 5,000A busbar and up to 250kW a rack, and AMD&rsquo;s <a href="#amd-helion">Helion</a> blueprint packs up to 32,768 EPYC cores into a rack for agent workloads, partner systems due in November &mdash; one power figure and one bet that agent loops are CPU-bound, neither with a workload measurement. NVIDIA also open-sourced <a href="#nvidia-runai-open-source">Run:ai</a>, KAI Scheduler and GPU fractioning included, putting a vendor&rsquo;s GPU queue into the Kubernetes section with no utilisation number of its own. At the desk end, AMD&rsquo;s <a href="#amd-ryzen-ai-halo">Ryzen AI Halo</a> lets the GPU address 160GB of 192GB unified memory &mdash; more memory in the machine, with no tokens-per-second figure yet.</p>
         <p>The Oct 14 entry is a chip measured in the unit this page cares about. Microsoft&rsquo;s <a href="#maia-300">Maia 300</a> is a third-generation in-house inference accelerator claimed at 40% more tokens per megawatt than leading GPU systems, deploying from 2027 at multiple gigawatts &mdash; power rather than FLOPs as the denominator, which is the compute section&rsquo;s point that the constraint has moved off the die. Microsoft does not plan to rent the chips directly, so for anyone outside Microsoft it is a cost curve behind its services rather than hardware to target.</p>
-        <p>The Oct 9 entry is two answers to running a 27B model on less. Conway Research&rsquo;s <a href="#underdog-saluki-27b">Saluki 27B</a> takes Qwen3.8-27B to 2 bits and 7.89&nbsp;GB with a pass tuned for tool calling, beats its parent on its own 120-task tool benchmark and gives up 17 points on AIME &mdash; the quantization section&rsquo;s point that compression is measured best where it was tuned, made by a single model card. LithosAI&rsquo;s <a href="#lithos-metal">lithos-metal</a> attacks the compute side with generated Metal megakernels and claims over 200 tokens a second for the same model on an M5 Max, a figure that arrives without batch size, precision or baseline.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 9 entry is two answers to running a 27B model on less. Conway Research&rsquo;s <a href="#underdog-saluki-27b">Saluki 27B</a> takes Qwen3.8-27B to 2 bits and 7.89&nbsp;GB with a pass tuned for tool calling, beats its parent on its own 120-task tool benchmark and gives up 17 points on AIME &mdash; the quantization section&rsquo;s point that compression is measured best where it was tuned, made by a single model card. LithosAI&rsquo;s <a href="#lithos-metal">lithos-metal</a> attacks the compute side with generated Metal megakernels and claims over 200 tokens a second for the same model on an M5 Max, a figure that arrives without batch size, precision or baseline.</p>
           <p>The Oct 7 entry opens a section below scheduling. Meta open-sourced <a href="#meta-rebalancer">Rebalancer</a>, the C++ assignment solver that has placed objects into bins under constraints in its production for over nine years, about 40 million problems a day: the formulation is separate from the backend, so one spec runs on local search or on Xpress, Gurobi or HiGHS, and the local-search path solves 265,000 objects into 3,200 bins at a p99 of 12 seconds where MIP gives up past a million objects. It is not a model and not Kubernetes; it is the layer that decides where the fleets in the sections above actually put their work, now installable with <code>pip</code>, with every figure Meta&rsquo;s own.</p>
           <p>The Oct 6 entry is a box rather than a benchmark. Ghost&rsquo;s <a href="#ghost-core">Core</a> is a $3,499 screenless machine for running local models around the clock, with swappable Hugging Face models, harnesses such as OpenCode, and encryption the company says locks even itself out; the first batch sold out. What it does not publish is the figure this page judges local hardware on &mdash; memory size and tokens per second &mdash; so it cannot yet be placed against DGX Spark 64GB&rsquo;s 273&nbsp;GB/s or Splash Engine&rsquo;s 74 tokens per second on a 48GB M5 Pro. Added by hand the same day, Google Research&rsquo;s March <a href="#turboquant">TurboQuant</a> attacks the same memory wall from the software side: a rotation, a polar-coordinate quantizer and one bit of residual correction take the KV cache to 3 bits with no retraining and, on Google&rsquo;s own long-context tests, no accuracy loss &mdash; up to 8&times; faster attention logits on an H100, though against a JAX baseline rather than a serving kernel.</p>
           <p>The Oct 2&ndash;5 cycle was serving and scheduling at fleet scale, with every figure the operator&rsquo;s own. Prime Intellect opened <a href="#prime-inference">Prime Inference</a> after serving about a trillion tokens a day to itself; GLM-5.3 runs on GB200 NVL72, where splitting prefill from decode cut p90 inter-token latency 40% and NVFP4 lifted cached tokens per decoder from 1.09M to 1.63M. <a href="#ai21-kueue">AI21</a> put a 10,000-GPU fleet behind Kueue and reports high-priority jobs starting 83% sooner, on a figure from the cloud it runs on. NVIDIA&rsquo;s <a href="#dgx-spark-64gb">DGX Spark 64GB</a> halves the desk box&rsquo;s memory at 273&nbsp;GB/s, aimed at 30&ndash;35B models and long-input work rather than at serving a chat endpoint.</p>
@@ -90,11 +91,11 @@
           <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">13</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">2</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">8</span></a></li>
-          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">3</span></a></li>
+          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">4</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">2</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">25</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">26</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">9</span></a></li>
-          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">8</span></a></li>
+          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">9</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">4</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
           <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">10</span></a></li>
@@ -314,7 +315,8 @@
           <span class="when">2026-10-14</span>
           <h4><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM&rsquo;s push-based NIXL connector moves KV-transfer setup off the critical path in disaggregated serving</a></h4>
           <p>vLLM published a <strong>push-based NIXL connector</strong> for disaggregated inference, where prefill and decode run on separate workers: it moves post-prefill KV-transfer coordination and setup off the critical path. The post reports better <strong>time-to-first-token and time-per-output-token</strong>, mostly at high request rates; the newsletter carried no figures, so the GPU, model and rate behind them are what to read for.</p>
-          <div class="sources"><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM blog</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
+          <p><em>Updated Oct 20:</em> AWS published its own write-up of the push-based transfer on its machine-learning blog, which is where any TTFT and TPOT figures on AWS hardware would sit; TLDR&rsquo;s summary of it again carries none.</p>
+          <div class="sources"><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM blog</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/push-based-kv-transfer-to-improve-ttft-and-tpot-for-disaggregated-inference-in-vllm/">AWS ML blog</a> &middot; <span class="via">via TLDR AI (Oct 15), TLDR AI (Oct 20)</span></div>
         </article>
 
         <article class="story" id="prime-inference">
@@ -382,6 +384,14 @@
         <h3>Serving across accelerators</h3>
         <p class="lead">Portability as its own serving problem: write a model once and run it on whatever accelerator is in the rack, not only the GPU its kernels were tuned for. Judge entries on the efficiency given up against the native path, and on which hardware that figure was measured.</p>
 
+        <article class="story" id="torchneuron">
+          <span class="when">2026-10-20</span>
+          <h4><a href="https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/">TorchNeuron is a native PyTorch backend for AWS Trainium, in public beta under Apache 2.0</a></h4>
+          <p>AWS released <strong>TorchNeuron</strong>, an open-source native PyTorch backend for its Trainium chips: it runs the model code, libraries and tools a developer already uses on Trainium, supports <strong>eager execution</strong> for research and debugging, and ships as a public beta under Apache 2.0.</p>
+          <p>It is the portability bet this section judges on the efficiency given up against the native path, and that figure is not in the summary: what to read for is the gap between eager and compiled execution, and which Trainium generation the numbers were taken on.</p>
+          <div class="sources"><a href="https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/">PyTorch blog</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
+        </article>
+
         <article class="story" id="vx-language">
           <span class="when">2026-10-05</span>
           <h4><a href="https://vxlang.org/">Vx puts hardware topology and memory placement into the type system</a></h4>
@@ -396,12 +406,16 @@
           <div class="sources"><a href="https://inferact.ai/blog/tpu-megakernels">Inferact</a> &middot; <span class="via">via TLDR AI (Sep 25)</span></div>
         </article>
 
-        <article class="story" id="vllm-hardware-agnostic">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://pytorch.org/blog/hardware-agnostic-models-in-vllm/">vLLM&rsquo;s hardware-agnostic layers reach 96.6% of native efficiency on H100</a></h4>
-          <p>vLLM introduced hardware-agnostic model layers that remain torch-compilable and extensible, reaching up to <strong>96.6% of native implementations&rsquo; efficiency on NVIDIA H100</strong>. The point is portability: a model written once can follow new GPUs without dropping older and niche accelerators, at a cost of a few percent on the hardware the native kernels were written for.</p>
-          <div class="sources"><a href="https://pytorch.org/blog/hardware-agnostic-models-in-vllm/">PyTorch blog</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story" id="vllm-hardware-agnostic">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://pytorch.org/blog/hardware-agnostic-models-in-vllm/">vLLM&rsquo;s hardware-agnostic layers reach 96.6% of native efficiency on H100</a></h4>
+            <p>vLLM introduced hardware-agnostic model layers that remain torch-compilable and extensible, reaching up to <strong>96.6% of native implementations&rsquo; efficiency on NVIDIA H100</strong>. The point is portability: a model written once can follow new GPUs without dropping older and niche accelerators, at a cost of a few percent on the hardware the native kernels were written for.</p>
+            <div class="sources"><a href="https://pytorch.org/blog/hardware-agnostic-models-in-vllm/">PyTorch blog</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="parallel-and-diffusion-decoding">
@@ -429,6 +443,14 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story" id="meta-prometheus-supercluster">
+          <span class="when">2026-10-19</span>
+          <h4><a href="https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/">Meta details Prometheus, the gigawatt-scale supercluster under Muse, with a plan to reach about one million GPUs</a></h4>
+          <p>Meta Engineering published the design of <strong>Prometheus</strong>, the gigawatt-scale AI supercluster that trains and serves the Muse model family: the infrastructure layout, closed-loop liquid cooling, and a scaling plan toward <strong>roughly one million GPUs</strong>.</p>
+          <p>What the newsletter carries is the shape and the target, with no utilisation, cost or power-usage figure; it is this section&rsquo;s point that the binding constraint has moved to cooling and grid capacity, stated by the operator building at that scale. The models it serves are on <a href="model-releases.html#muse-wonder">Model releases</a>.</p>
+          <div class="sources"><a href="https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/">Meta Engineering</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
+        </article>
+
         <article class="story" id="netflix-gpu-reliability">
           <span class="when">2026-10-15</span>
           <h4><a href="https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a">Netflix detects faulty GPUs and network hardware and remediates them automatically to keep distributed training alive</a></h4>
@@ -443,15 +465,15 @@
           <div class="sources"><a href="https://ir.amd.com/news-events/press-releases/detail/1301/introducing-amd-helion-agentic-ai-compute-at-rack-scale">AMD</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
         </article>
 
-        <article class="story" id="vera-rubin-ocp-mgx">
-          <span class="when">2026-10-14</span>
-          <h4><a href="https://blogs.nvidia.com/blog/ocp-global-summit-vera-rubin-scale-ai-factories">NVIDIA contributes Vera Rubin rack designs to OCP through MGX 1.2, with racks up to 250kW</a></h4>
-          <p>NVIDIA contributed its <strong>Vera Rubin</strong> rack designs to the Open Compute Project through <strong>MGX 1.2</strong>, specifying a <strong>5,000A busbar</strong> and racks of up to <strong>250kW</strong>. These are power-delivery numbers rather than compute ones, which is this section&rsquo;s point: what an operator has to build for the next generation is set by its electrical design.</p>
-          <div class="sources"><a href="https://blogs.nvidia.com/blog/ocp-global-summit-vera-rubin-scale-ai-factories">NVIDIA</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (22)</summary>
+          <summary>Earlier in this section (23)</summary>
+
+          <article class="story" id="vera-rubin-ocp-mgx">
+            <span class="when">2026-10-14</span>
+            <h4><a href="https://blogs.nvidia.com/blog/ocp-global-summit-vera-rubin-scale-ai-factories">NVIDIA contributes Vera Rubin rack designs to OCP through MGX 1.2, with racks up to 250kW</a></h4>
+            <p>NVIDIA contributed its <strong>Vera Rubin</strong> rack designs to the Open Compute Project through <strong>MGX 1.2</strong>, specifying a <strong>5,000A busbar</strong> and racks of up to <strong>250kW</strong>. These are power-delivery numbers rather than compute ones, which is this section&rsquo;s point: what an operator has to build for the next generation is set by its electrical design.</p>
+            <div class="sources"><a href="https://blogs.nvidia.com/blog/ocp-global-summit-vera-rubin-scale-ai-factories">NVIDIA</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
+          </article>
 
           <article class="story" id="maia-300">
             <span class="when">2026-10-13</span>
@@ -715,6 +737,14 @@
         <h3>Cache &amp; context economics</h3>
         <p class="lead">For a long agent run the rate on the model card is nearly irrelevant: the bill is set by what gets re-read, at the cached rate or the fresh one. These entries make that visible, shrink it, route around it &mdash; and then point out that the hit is asserted by the party billing you.</p>
 
+        <article class="story" id="cloudflare-inference-bill-68">
+          <span class="when">2026-10-20</span>
+          <h4><a href="https://blog.cloudflare.com/obsessive-inference-optimization">Cloudflare cut its AI code-review cost from $2.43 to $0.77 a review by fixing what reached the prompt cache</a></h4>
+          <p>Cloudflare reports cutting the inference bill for its automated code review by <strong>68%</strong>, from an average of <strong>$2.43 to $0.77 a review</strong>. The largest single saving came from checking what actually reached the provider on each session&rsquo;s first request, then ordering those messages so the prefix stayed as consistent as possible across commits, merge requests and repositories, so the cache hit instead of missing.</p>
+          <p>It is this section&rsquo;s argument as a worked case: the bill is set by what gets re-read at the cached rate, and the hit is something the caller has to verify rather than assume. Cloudflare&rsquo;s own checks are whether each session&rsquo;s first request reads from the cache and whether reviewers still find real problems at the effort level being paid for; review quality before and after is not quantified in the summary. The prompt-side techniques are on <a href="tools-and-devex.html#token-economics-and-prompt-caching">Tools &amp; DevEx</a>.</p>
+          <div class="sources"><a href="https://blog.cloudflare.com/obsessive-inference-optimization">Cloudflare</a> &middot; <span class="via">via TLDR (Oct 20)</span></div>
+        </article>
+
         <article class="story" id="firerouter-with-opus">
           <span class="when">2026-09-29</span>
           <h4><a href="https://fireworks.ai/blog/introducing-firerouter-with-opus">Fireworks&rsquo; FireRouter keeps 98.1% of Opus-only accuracy at 57% lower cost by routing each turn across Opus 5.5 and GLM 5.3</a></h4>
@@ -731,17 +761,17 @@
           <div class="sources"><a href="https://openrouter.ai/typesafe/jev-router">OpenRouter</a> &middot; <span class="via">via Unwind AI (Sep 27), The Code (Sep 28)</span></div>
         </article>
 
-        <article class="story" id="spotify-portal">
-          <span class="when">2026-09-14</span>
-          <h4><a href="https://engineering.atspotify.com/2026/9/portal-by-spotify-cut-my-claude-code-token-usage-by-90">Spotify cut routine Claude Code token spend by roughly 90% by routing file reads to a cheaper model</a></h4>
-          <p>Dimitri Mazmanov, a principal product manager at Spotify, found his coding agent burning most of its tokens reading files rather than reasoning, and used Portal, Spotify&rsquo;s developer platform, to cut token use on routine reads by roughly 90% &mdash; on routine reads, not on the whole bill. Three pieces do the work: a reader agent on a cheaper model that ingests large files and returns a short summary, so raw files never enter the frontier model&rsquo;s context; a writer that generates tests and config from a spec plus an example straight to disk; and a plugin that intercepts large reads and routes them automatically.</p>
-          <p>The limits are stated rather than buried, which is what makes it usable. In one benchmark the cheaper model missed a subtle thread-safety bug the frontier model caught immediately, so debugging and safety-critical logic stay on the flagship; summaries lose exact line numbers, so direct edits do too; and routing small files costs more overhead than it saves. Gartner&rsquo;s projection that per-developer token spend passes the average developer salary by 2028 is the pressure behind it.</p>
-          <p>Read against the compression work below, the two are complementary and fail differently: compression rewrites the prefix and breaks the cache, while routing leaves the prefix alone and moves whole categories of work off the expensive model &mdash; but it introduces a judgement boundary, and the benchmark miss is what being wrong about that boundary looks like.</p>
-          <div class="sources"><a href="https://engineering.atspotify.com/2026/9/portal-by-spotify-cut-my-claude-code-token-usage-by-90">Spotify Engineering</a> &middot; <span class="via">via The Code (Sep 14)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="spotify-portal">
+            <span class="when">2026-09-14</span>
+            <h4><a href="https://engineering.atspotify.com/2026/9/portal-by-spotify-cut-my-claude-code-token-usage-by-90">Spotify cut routine Claude Code token spend by roughly 90% by routing file reads to a cheaper model</a></h4>
+            <p>Dimitri Mazmanov, a principal product manager at Spotify, found his coding agent burning most of its tokens reading files rather than reasoning, and used Portal, Spotify&rsquo;s developer platform, to cut token use on routine reads by roughly 90% &mdash; on routine reads, not on the whole bill. Three pieces do the work: a reader agent on a cheaper model that ingests large files and returns a short summary, so raw files never enter the frontier model&rsquo;s context; a writer that generates tests and config from a spec plus an example straight to disk; and a plugin that intercepts large reads and routes them automatically.</p>
+            <p>The limits are stated rather than buried, which is what makes it usable. In one benchmark the cheaper model missed a subtle thread-safety bug the frontier model caught immediately, so debugging and safety-critical logic stay on the flagship; summaries lose exact line numbers, so direct edits do too; and routing small files costs more overhead than it saves. Gartner&rsquo;s projection that per-developer token spend passes the average developer salary by 2028 is the pressure behind it.</p>
+            <p>Read against the compression work below, the two are complementary and fail differently: compression rewrites the prefix and breaks the cache, while routing leaves the prefix alone and moves whole categories of work off the expensive model &mdash; but it introduces a judgement boundary, and the benchmark miss is what being wrong about that boundary looks like.</p>
+            <div class="sources"><a href="https://engineering.atspotify.com/2026/9/portal-by-spotify-cut-my-claude-code-token-usage-by-90">Spotify Engineering</a> &middot; <span class="via">via The Code (Sep 14)</span></div>
+          </article>
 
           <article class="story" id="cache-hit-not-evidence">
             <span class="when">2026-09-12</span>
@@ -993,6 +1023,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-20</span><span class="label"><a href="#cloudflare-inference-bill-68">Cloudflare cuts its AI code-review cost from $2.43 to $0.77 a review by fixing what reached the prompt cache</a></span></li>
+        <li><span class="date">2026-10-20</span><span class="label"><a href="#torchneuron">TorchNeuron: a native PyTorch backend for AWS Trainium, in public beta under Apache 2.0</a></span></li>
+        <li><span class="date">2026-10-19</span><span class="label"><a href="#meta-prometheus-supercluster">Meta details Prometheus, its gigawatt-scale supercluster under Muse, with a plan to reach about one million GPUs</a></span></li>
         <li><span class="date">2026-10-16</span><span class="label"><a href="#local-ai-workstations">Surface Laptop Ultra beats an M5 Max MacBook Pro on AgentPerf-Local, 18.9 to 24.7 minutes on Qwen 3.8-27B</a></span></li>
         <li><span class="date">2026-10-15</span><span class="label"><a href="#netflix-gpu-reliability">Netflix detects faulty GPUs and network hardware and remediates them automatically to keep distributed training alive</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#amd-helion">AMD Helion is an open rack blueprint for agentic AI with up to 32,768 EPYC cores</a></span></li>

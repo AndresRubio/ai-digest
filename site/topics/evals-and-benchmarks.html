@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-10-20</div>
+      <div class="meta">Last updated: 2026-10-21</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 20 cycle was two experiments with the harness and the judge named, and the cost in the same table as the score. Naresh Jain&rsquo;s <a href="#specmatic-harness-experiment">Specmatic experiment</a> had Codex build one Java backend 40 times: GPT-6 Luna alone passed 3 of 10 builds against 178 hidden acceptance tests, passed all 10 inside a behavioural harness at $0.273 a run, a third less than unaided GPT-6 Sol&rsquo;s $0.406, while the same harness left Sol&rsquo;s pass rate alone and multiplied its bill about 7&times;. Hamel Husain scored six <a href="#decision-models-for-evals">decision models as pass/fail judges</a> on 100 leasing-agent traces and found the default 0.50 threshold the first thing to fix; after tuning under an 80/80 precision-recall floor, Perplexity&rsquo;s Decider reached 0.79 F1 at 0.82 cents per 100 runs and OpenAI Decisions 0.87 at 3.72 cents, with Jev and d1-ultra already calibrated and one Clef Flash bucket at 8% predicted against 60% observed. Both are one task, one author and one labelled set, which is also what makes them rerunnable.</p>
         <p>The Oct 19 cycle was two benchmarks about coverage, one of languages and one of work. OpenAI&rsquo;s <a href="#multilangbench">MultiLangBench</a> has a model build a database engine in 20 languages and reports GPT-6 Astra at 87.4% against 26.8% for GPT-5.6 Sol, with COBOL from 10.9% to 72.1% and Fortran at 83.5%: a lab scoring its own models on a test it designed for the legacy languages SWE-bench never reached. Mercor&rsquo;s <a href="#mercor-benchmark-map">Benchmark Map</a> works the other direction, matching published benchmarks to American working time and finding 90% of hours on tasks with little or no coverage, a number for this page&rsquo;s standing complaint that benchmark scope and paid work diverge, from a company that sells the labour to close the gap.</p>
         <p>The Oct 9&ndash;12 cycle was two benchmarks built where the work happens. Epoch&rsquo;s <a href="#epoch-automation-reports">Automation Reports</a> test whether models can do Epoch&rsquo;s own research and find the split this page keeps meeting: reliable on well-defined tasks, short of the judgment the open-ended part needs, with open-weight models behind even on the defined part. Exa&rsquo;s <a href="#exa-atlas">ATLAS</a> joins the web-scale retrieval section with non-memorised, multi-domain search tasks graded on completeness, and finds high-effort agents still missing golden answers &mdash; a conclusion from a search vendor that points at search. The agent-team and peer-review evaluations from the same days are filed on <a href="agents.html">Agents</a> and <a href="research-papers.html">Research papers</a>.</p>
         <p>The Oct 8 cycle was the arithmetic of a small eval set. Sergii Makarevych&rsquo;s <a href="#makarevych-eval-playbook">eval playbook</a> works a 60-case support bot end to end and reports the numbers most write-ups leave out: 34 of 60 replies passed, the LLM judge agreed with human labels at a kappa of 0.15 against a 0.6 release bar, two prompts tied at 70% while one regressed on 14% of tickets, and 60 cases cannot detect a drop smaller than about 12 points. It belongs beside the FAQ entries in its section as the worked example of why a tied headline score is not a tie. Scale&rsquo;s <a href="#humanitys-sixth-sense">Humanity&rsquo;s Sixth Sense</a> added a 522-task test of intuitive visual reasoning on which the best model, GPT-6 Astra, scores 53.6% &mdash; a benchmark with headroom, whose construct is the part still to inspect.</p>
         <p>The Oct 7 addition is two installable frameworks, added by hand, that bracket the model rather than score it. Great Expectations&rsquo; <a href="#great-expectations-gx-core">GX Core</a> sits upstream: declared Expectations validate a training set, RAG corpus or feature table, and Actions can block bad data before anything is trained or evaluated on it. <a href="#evidently">Evidently</a> sits downstream, with more than 100 metrics for LLM outputs, RAG retrieval, agents and classic ML, synthetic test generation and a drift dashboard. Both are Apache-2.0 and open a new section, Open-source testing frameworks; neither decides which failures matter for a given product, which is still the error analysis this page keeps returning to.</p>
-        <p>The Oct 6 cycle was a well-posed question settled on a desk. Simon Willison reran a two-year-old GPT-4o test &mdash; add two large numbers and write the answer out in words &mdash; on a local <a href="#qwen3-8-27b-addition-in-words">Qwen3.8-27B</a> on a DGX Spark, so no hidden tool could be involved, and with reasoning on it got 167 of 169 right through visible column addition. The caveat is the one this page keeps asking for: the reasoning run is a single sample per cell, and its author expects a second run to come out differently.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 6 cycle was a well-posed question settled on a desk. Simon Willison reran a two-year-old GPT-4o test &mdash; add two large numbers and write the answer out in words &mdash; on a local <a href="#qwen3-8-27b-addition-in-words">Qwen3.8-27B</a> on a DGX Spark, so no hidden tool could be involved, and with reasoning on it got 167 of 169 right through visible column addition. The caveat is the one this page keeps asking for: the reasoning run is a single sample per cell, and its author expects a second run to come out differently.</p>
           <p>The Oct 1 cycle was the first outside review of Anthropic&rsquo;s eval commands. Hamel Husain ran Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval</a> on an apartment-leasing assistant&rsquo;s traces and found it better at one-shot issue discovery than any auto-eval tool he had tried, and weaker at the step this page treats as the job: it asked for an eval before anyone had read the data, collected label corrections in chat instead of an annotation view, and bundled four checks into one evaluator. His verdict is to wait for the revision the author has promised.</p>
           <p>The Sep 30 cycle shipped the discipline as commands. Anthropic&rsquo;s <a href="#claude-api-build-eval-hillclimb">build-eval and hillclimb</a> for the claude-api skill draft an eval from real traffic and bug reports, propose a grader, then improve the app one change at a time against a held-out set, rolling back edits that overfit and checking for variance, impossible tasks and broken graders &mdash; the failure modes this page has catalogued, now written into the loop, with the grader&rsquo;s quality still the developer&rsquo;s judgment. <a href="#glean-jev-enterprise-tasks">Glean&rsquo;s test of Jev</a> on four enterprise decision jobs adds an outside datapoint for the decision-model class: an 8.1&times; median speedup on routing, counted over the cases that transferred, and reranking that still needed production tie-breaks.</p>
           <p>The Sep 28 addition scores whole jobs rather than questions. Surge&rsquo;s <a href="#dayjob-finance">DAYJOB: Finance</a> asks an agent to finish 80 realistic finance assignments from supporting documents and produce analysis a professional can use &mdash; the second family in the automated-evals section, an agent in a real environment, applied to one profession. It arrived without model scores, so for now it is an instrument without readings.</p>
@@ -86,11 +87,11 @@
           <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">8</span></a></li>
           <li><a href="#active-parameter-efficiency-benchmarks">Active-parameter efficiency benchmarks <span class="n">1</span></a></li>
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
-          <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">9</span></a></li>
+          <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">10</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">2</span></a></li>
           <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">22</span></a></li>
-          <li><a href="#harness-versus-model">Harness versus model <span class="n">4</span></a></li>
+          <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">8</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">2</span></a></li>
           <li><a href="#speech-and-voice-benchmarks">Speech &amp; voice benchmarks <span class="n">3</span></a></li>
@@ -136,7 +137,7 @@
           <h4><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI&rsquo;s MultiLangBench has GPT-6 Astra building a database engine in 20 languages at 87.4%, COBOL up from 10.9% to 72.1%</a></h4>
           <p>OpenAI released <strong>MultiLangBench</strong>, which asks a model to build a database engine in each of 20 programming languages, and reports <strong>GPT-6 Astra averaging 87.4%</strong> against 26.8% for GPT-5.6 Sol. The low-resource rows move most: COBOL from 10.9% to 72.1%, Fortran to 83.5%, Visual Basic to 89.4%.</p>
           <p>A lab benchmarking its own models on a task it designed, with no outside run yet; what it adds to this section is a scoreboard for languages SWE-bench never covered, which is where most legacy-code work sits.</p>
-          <div class="sources"><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI</a> &middot; <span class="via">via MarkTechPost (Oct 19)</span></div>
+          <div class="sources"><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20)</span></div>
         </article>
 
         <article class="story" id="swe-bench-pro-v2">
@@ -286,6 +287,14 @@
         <h3>From vibes to discipline</h3>
         <p class="lead">Eval rigour as a craft: what to measure, what to stop measuring, and how to tell a well-posed question from an open-ended one. The entries run from written practice and installable tooling to experiments showing what a well-posed question settles in an afternoon &mdash; and what the vocabulary of rigour looks like without the judgment behind it.</p>
 
+        <article class="story" id="decision-models-for-evals">
+          <span class="when">2026-10-20</span>
+          <h4><a href="https://hamel.dev/blog/posts/decision-model-evals/">Decision models as eval judges: after threshold tuning, Perplexity scores 0.79 F1 at 0.82 cents per 100 runs and OpenAI Decisions 0.87 at 3.72</a></h4>
+          <p>Hamel Husain scored six decision models as pass/fail judges on <strong>100 traces</strong> from an apartment-leasing agent, the failure-finding task of his earlier auto-evals post: Jev 1.13, Perplexity Decider 1.1 27B, Liquid d1 and d1-ultra, Cloudflare Clef Flash and OpenAI Decisions on GPT-6 Luna, all given the same criteria. The default <strong>0.50 threshold</strong> is the first thing he changes, since a model can separate the classes perfectly and still catch nothing at 0.50; thresholds are tuned per model under five-fold cross-validation with a floor of 80% precision and 80% recall, which only Perplexity, d1-ultra and OpenAI met.</p>
+          <p>After tuning, Perplexity reached an <strong>F1 of 0.79 at 0.82 cents per 100 runs</strong> and OpenAI Decisions <strong>0.87 at 3.72 cents</strong>, about 4.5&times; the cost; Jev and d1-ultra were already well calibrated, one Clef Flash bucket predicted an 8% failure rate where 60% of traces had failed, and Platt scaling fixed that while slightly worsening OpenAI&rsquo;s. It is the discipline this section records, set the floor, tune the threshold, then compare cost, on one task and one labelled set, with the prompts published.</p>
+          <div class="sources"><a href="https://hamel.dev/blog/posts/decision-model-evals/">hamel.dev</a> &middot; <span class="via">via Parlance Labs (Oct 20)</span></div>
+        </article>
+
         <article class="story unlinked" id="makarevych-eval-playbook">
           <span class="when">2026-10-08</span>
           <h4>Makarevych&rsquo;s eval playbook: 34 of 60 replies passed, the judge scored 0.15 kappa, and 60 cases cannot see a 12-point drop</h4>
@@ -302,17 +311,17 @@
           <div class="sources"><a href="https://github.com/simonw/research/tree/main/qwen38-addition-in-words#readme">Research report</a> &middot; <a href="https://gist.github.com/simonw/8ef79c777ad34c53e9c09094800576a5#full-reasoning-transcript-2">Reasoning transcripts</a> &middot; <span class="via">via Simon Willison (Oct 5)</span></div>
         </article>
 
-        <article class="story" id="claude-api-build-eval-hillclimb">
-          <span class="when">2026-09-29</span>
-          <h4><a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/">Anthropic&rsquo;s claude-api skill gains build-eval and hillclimb, with the checks against fooling yourself written into the loop</a></h4>
-          <p>Anthropic added <code>/claude-api build-eval</code> and <code>/claude-api hillclimb</code> to the claude-api skill in Claude Code. The first interviews the developer, samples production-like cases from real traffic and bug reports, proposes a grader and runs a baseline; the second improves the app one change at a time against a held-out set, rolling back edits that overfit and checking for variance, impossible tasks and broken graders.</p>
-          <p>It is this section&rsquo;s written practice shipped as installable tooling. The held-out set and the broken-grader check are the judgment the commands encode; whether the proposed grader measures the right thing is still the developer&rsquo;s call.</p>
-          <p><em>Updated Oct 1:</em> Hamel Husain&rsquo;s hands-on review, on traces from an apartment-leasing assistant, found the strongest one-shot issue discovery he has seen from an auto-eval tool, but says it pushes for an eval before anyone has looked at the data, asks for label corrections in chat rather than building an annotation view, and bundled four checks into one call-transfer evaluator; he would hold off for now, and says the author plans changes.</p>
-          <div class="sources"><a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/">Anthropic</a> &middot; <a href="https://hamel.dev/blog/posts/claude-auto-evals/">Hamel Husain&rsquo;s review</a> &middot; <span class="via">via TLDR AI (Sep 29), The Code (Sep 29), Unwind AI (Sep 29), Parlance Labs (Oct 1)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="claude-api-build-eval-hillclimb">
+            <span class="when">2026-09-29</span>
+            <h4><a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/">Anthropic&rsquo;s claude-api skill gains build-eval and hillclimb, with the checks against fooling yourself written into the loop</a></h4>
+            <p>Anthropic added <code>/claude-api build-eval</code> and <code>/claude-api hillclimb</code> to the claude-api skill in Claude Code. The first interviews the developer, samples production-like cases from real traffic and bug reports, proposes a grader and runs a baseline; the second improves the app one change at a time against a held-out set, rolling back edits that overfit and checking for variance, impossible tasks and broken graders.</p>
+            <p>It is this section&rsquo;s written practice shipped as installable tooling. The held-out set and the broken-grader check are the judgment the commands encode; whether the proposed grader measures the right thing is still the developer&rsquo;s call.</p>
+            <p><em>Updated Oct 1:</em> Hamel Husain&rsquo;s hands-on review, on traces from an apartment-leasing assistant, found the strongest one-shot issue discovery he has seen from an auto-eval tool, but says it pushes for an eval before anyone has looked at the data, asks for label corrections in chat rather than building an annotation view, and bundled four checks into one call-transfer evaluator; he would hold off for now, and says the author plans changes.</p>
+            <div class="sources"><a href="https://claude.dev/blog/automating-eval-design-and-hillclimbing/">Anthropic</a> &middot; <a href="https://hamel.dev/blog/posts/claude-auto-evals/">Hamel Husain&rsquo;s review</a> &middot; <span class="via">via TLDR AI (Sep 29), The Code (Sep 29), Unwind AI (Sep 29), Parlance Labs (Oct 1)</span></div>
+          </article>
 
           <article class="story" id="ai-evals-faq-48">
             <span class="when">2026-09-15</span>
@@ -593,7 +602,15 @@
 
       <section class="topic-section" id="harness-versus-model">
         <h3>Harness versus model</h3>
-        <p class="lead">The scaffolding around a model is not a neutral wrapper. These four measure it directly: one finds the harness barely moves the score but multiplies cost, one finds a 37-point spread on a single checkpoint, one shows cost moving nearly 3&times;, and one holds the harness fixed on purpose. Name the harness, or the number is unfinished.</p>
+        <p class="lead">A harness is not a neutral wrapper. Five entries measure it: one finds the harness barely moves the score but multiplies cost, one a 37-point spread on one checkpoint, one cost moving nearly 3&times;, one holds it fixed, one lifts a cheap model to parity and only raises a frontier model&rsquo;s bill. Name the harness, or the number is unfinished.</p>
+
+        <article class="story" id="specmatic-harness-experiment">
+          <span class="when">2026-10-20</span>
+          <h4><a href="https://martinfowler.com/articles/are-harnesses-worth-the-cost.html">With a Specmatic harness GPT-6 Luna passed 10 of 10 builds at $0.273 a run, a third less than unaided GPT-6 Sol</a></h4>
+          <p>Specmatic founder Naresh Jain had Codex build the same Java backend 40 times: GPT-6 Sol and the cheaper GPT-6 Luna, ten runs each alone and ten each inside a <strong>behavioural harness</strong> of specs, examples and tests that flag mistakes as the agent codes, every build then facing <strong>178 hidden acceptance tests</strong>. Luna alone passed 3 of 10; with the harness it passed all 10, matching Sol, at <strong>$0.273 a run</strong> against $0.406 for unaided Sol. The harness changed nothing for Sol except its bill, which rose about 7&times;.</p>
+          <p>It is this section&rsquo;s point with the harness named and the cost in both columns: the guidance pays only for the model that needs it, so the running check belongs under the cheap model and a one-time gate after the frontier one. The application brief is published for reruns; it is one task, one harness and one author&rsquo;s runs. The harness side of the argument is on <a href="agents.html#the-agentic-harness">Agents</a>.</p>
+          <div class="sources"><a href="https://martinfowler.com/articles/are-harnesses-worth-the-cost.html">martinfowler.com</a> &middot; <span class="via">via The Code (Oct 20)</span></div>
+        </article>
 
         <article class="story" id="arena-ai-harness-tax">
           <span class="when">2026-09-17</span>
@@ -612,16 +629,16 @@
           <div class="sources"><span class="via">via Unwind AI (Sep 9) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="arc-agi-3-harness">
-          <span class="when">2026-09-04</span>
-          <h4>OpenAI&rsquo;s AGI number came from the harness, not the model &mdash; 99.9% against 62.7% on ARC-AGI-3</h4>
-          <p>GPT-6 Astra scored <strong>62.7%</strong> on ARC-AGI-3 Semi-Private through the benchmark&rsquo;s standard harness and <strong>99.9%</strong> through a provider adapter harness OpenAI supplied. The claim that Astra marks the onset of AGI rests on the second number. This is the sharpest instance yet of the measurement problem this page tracks: the scaffolding around a model is a load-bearing part of the score, and a 37-point spread on one checkpoint is larger than the gap between most model generations.</p>
-          <p>It lands three weeks after DeepSeek published the harness its own benchmarks ran in and exposed a 33-point Terminal-Bench spread (see <a href="agents.html">Agents</a>) &mdash; two independent demonstrations that agentic benchmark numbers are uninterpretable without the harness that produced them. Astra&rsquo;s underlying result is still striking on its own terms: fewer actions than the median human on 96% of levels, achieved by turning unfamiliar environments into compact symbolic world models, representing game mechanics as logical rules and inventing its own shorthand to track state and plan.</p>
-          <div class="sources"><span class="via">via TLDR AI (Sep 4), TLDR AI (Sep 7) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story unlinked" id="arc-agi-3-harness">
+            <span class="when">2026-09-04</span>
+            <h4>OpenAI&rsquo;s AGI number came from the harness, not the model &mdash; 99.9% against 62.7% on ARC-AGI-3</h4>
+            <p>GPT-6 Astra scored <strong>62.7%</strong> on ARC-AGI-3 Semi-Private through the benchmark&rsquo;s standard harness and <strong>99.9%</strong> through a provider adapter harness OpenAI supplied. The claim that Astra marks the onset of AGI rests on the second number. This is the sharpest instance yet of the measurement problem this page tracks: the scaffolding around a model is a load-bearing part of the score, and a 37-point spread on one checkpoint is larger than the gap between most model generations.</p>
+            <p>It lands three weeks after DeepSeek published the harness its own benchmarks ran in and exposed a 33-point Terminal-Bench spread (see <a href="agents.html">Agents</a>) &mdash; two independent demonstrations that agentic benchmark numbers are uninterpretable without the harness that produced them. Astra&rsquo;s underlying result is still striking on its own terms: fewer actions than the median human on 96% of levels, achieved by turning unfamiliar environments into compact symbolic world models, representing game mechanics as logical rules and inventing its own shorthand to track state and plan.</p>
+            <div class="sources"><span class="via">via TLDR AI (Sep 4), TLDR AI (Sep 7) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="harness-controlled-coding-benchmark">
             <span class="when">2026-07-15</span>
@@ -771,6 +788,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-20</span><span class="label"><a href="#decision-models-for-evals">Decision models as eval judges: after threshold tuning, Perplexity scores 0.79 F1 at 0.82 cents per 100 runs, OpenAI Decisions 0.87 at 3.72</a></span></li>
+        <li><span class="date">2026-10-20</span><span class="label"><a href="#specmatic-harness-experiment">With a Specmatic harness GPT-6 Luna passes 10 of 10 builds at $0.273 a run, a third less than unaided GPT-6 Sol</a></span></li>
         <li><span class="date">2026-10-19</span><span class="label"><a href="#mercor-benchmark-map">Mercor&rsquo;s Benchmark Map: 90% of US working hours fall on tasks benchmarks barely cover</a></span></li>
         <li><span class="date">2026-10-19</span><span class="label"><a href="#multilangbench">MultiLangBench: GPT-6 Astra builds a database engine in 20 languages at 87.4%, COBOL 10.9% to 72.1%</a></span></li>
         <li><span class="date">2026-10-09</span><span class="label"><a href="#exa-atlas">Exa&rsquo;s ATLAS scores search agents on non-memorised, multi-domain tasks and finds even high-effort agents miss golden answers</a></span></li>
