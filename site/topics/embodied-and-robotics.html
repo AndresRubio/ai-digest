@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-10-21</div>
+      <div class="meta">Last updated: 2026-10-22</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 21 entry is a price for a robot that a person is driving. A customer paid <a href="#tau-robotics-home-cleaning">$60 for two Tau Robotics humanoids</a> to clean a San Francisco home for an hour, both human-operator-controlled, and wrote up the economics; it belongs beside <a href="#humxn-free-home-services">HUMXN</a> as a real-world deployment number, with the autonomy share zero and no statement of whether the sessions also feed training.</p>
         <p>The Oct 20 entry buys demonstrations with a service. <a href="#humxn-free-home-services">HUMXN</a> is subsidising plumbing, electrical, HVAC, duct and carpet work in Minneapolis, Chicago and Miami, with the tradespeople wearing cameras so that work inside real homes becomes robot training footage, and lets residents check their eligibility online. It joins Pantheon&rsquo;s $10-an-hour UMI pipeline as the fourth claim on this page that the demonstration has become cheap, with a different unit, a repair instead of an hour, and the same gap after it: no hours collected, no dataset, no policy and no robot, so the method of acquisition is what is recorded.</p>
         <p>The Oct 17 entry is a small policy with an explicit memory design. Kyutai&rsquo;s <a href="#kyutai-reki">REKI</a>, built with Inria and &Eacute;cole des Ponts, is a 2.4B vision-language-action model: a 2.2B Qwen3.5-2B backbone, a 0.2B flow-matching action expert, and 32 learned register tokens per frame covering the last three frames a second apart, pretrained only on public data. The architecture is what can be checked; no success rate, embodiment count or licence is given, so it joins the section&rsquo;s open question from the memory side rather than the demonstration side.</p>
         <p>The Oct 15 entry turns a reference policy into a service. Physical Intelligence opened its models through the <a href="#pi-api-beta">Pi API beta</a>: a customer uploads robot data, fine-tunes on managed compute and calls the result through a hosted gateway. It answers the demonstration-cost question by handing the demonstrations to the customer, and the open-versus-closed question on the closed side &mdash; a metered endpoint rather than the weights that made &pi;0.5 the policy others benchmark against &mdash; with no price, latency or success rate published.</p>
         <p>The Oct 9&ndash;12 cycle brought outside context to three existing entries rather than a new one. The Batch&rsquo;s reading of RoboLab-120 shows <a href="#flux-3-action">FLUX 3 Action</a>&rsquo;s lead is three points wide, lost on the hardest tasks and bought with 69&nbsp;GB of GPU memory against Cosmos 3 Nano&rsquo;s 40&nbsp;GB, and none of the top five has yet run on the real-robot RoboArena. <a href="#odyssey-3">Odyssey-3</a> gained its first number, 66.1 on Physics-IQ Verified &mdash; still one in-domain test for a model sold on cross-domain breadth &mdash; and <a href="#skild-s1">Skild&rsquo;s S1</a> gained one through the State of AI report: 66% against 9% on the company&rsquo;s own per-step success measure.</p>
-        <p>The Oct 7 entry put a price on the input this page keeps calling expensive. Pantheon says its <a href="#pantheon-diverse-umi">UMI collection operation</a> took demonstration cost from $60 to $10 an hour with custom hardware and a mix of free-form and scripted collection, and accumulated more than a million unique tasks with diversity as the target. It is the first entry here to state an hourly figure, and it stops where the others do: no released dataset, no policy trained on it, no success rate, so the million is an input rather than an outcome.</p>
+
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 7 entry put a price on the input this page keeps calling expensive. Pantheon says its <a href="#pantheon-diverse-umi">UMI collection operation</a> took demonstration cost from $60 to $10 an hour with custom hardware and a mix of free-form and scripted collection, and accumulated more than a million unique tasks with diversity as the target. It is the first entry here to state an hourly figure, and it stops where the others do: no released dataset, no policy trained on it, no success rate, so the million is an input rather than an outcome.</p>
           <p>The Oct 1 cycle&rsquo;s two entries put the page&rsquo;s standing questions as a ratio and a promise. Anthropic&rsquo;s <a href="#what-work-can-robots-do">study of robot-doable work</a> says robots can technically perform 74% of US physical job tasks but are cost-effective for only 0.3% &mdash; the gap between a robot working and a robot deployed, reduced to two numbers. Runway&rsquo;s <a href="#praxis-1">Praxis-1</a> attacks the demonstration bottleneck from the other side, turning video pretraining into robot control under a promised open-weight release; for now it runs only with partners and its evidence is clips.</p>
           <p>The Oct 1 entry measured physics rather than inferring it from a demo. NVIDIA&rsquo;s <a href="#physis-lang">Physis-Lang</a> has critic agents rewrite physics captions for a frozen captioner, lifting PhysCapBench F1 from 78.64 to 87.82, and the resulting Cosmos3-Super tops Physics-IQ Verified at 48.2 while Cosmos3-Nano beats Veo 3.1 on PhyGenBench and trails it on VideoPhy-2. It answers the world-models section&rsquo;s open question with a benchmark, but the judge is GPT-5.5 and nothing shipped beyond the paper.</p>
           <p>The Sep 29 entry priced the demonstrations. Tesla put factory workers in motion-recording suits to feed Optimus&rsquo;s imitation-learning pipeline while they assembled the robot&rsquo;s 100-plus-part hands, some <a href="#optimus-imitation-data">balked at training their replacements</a>, and collection moved to dedicated teams &mdash; the cost of human data paid in labour relations, with no figure for hours collected or for what the policy does with them.</p>
@@ -76,7 +78,7 @@
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">12</span></a></li>
           <li><a href="#world-models">World models <span class="n">11</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">5</span></a></li>
-          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">12</span></a></li>
+          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">13</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
           <li><a href="#low-cost-and-map-less-navigation">Low-cost &amp; map-less navigation <span class="n">1</span></a></li>
         </ul>
@@ -359,9 +361,18 @@
         </details>
       </section>
 
+
       <section class="topic-section" id="hardware-and-real-world-deployment">
         <h3>Hardware &amp; real-world deployment</h3>
         <p class="lead">These entries are about the gap between a robot working and a robot deployed: safety certification, regulatory approval, unit economics, the price of demonstrations, the plumbing between three compute targets, and generalization outside test conditions. Ask of each whether its evidence is work actually done or a performance under chosen conditions.</p>
+
+        <article class="story" id="tau-robotics-home-cleaning">
+          <span class="when">2026-10-21</span>
+          <h4><a href="https://read.corematter.com/p/tau-robotics-humanoid-house-cleaning-review-san-francisco">Two teleoperated Tau Robotics humanoids clean a San Francisco home for an hour at $60</a></h4>
+          <p>A customer account of hiring <strong>Tau Robotics</strong>&rsquo; humanoids: two human-operator-controlled robots cleaned a home for one hour for <strong>$60</strong>, a service now sold in San Francisco. The post works through the economics for the customer and the company and what a future of productive robots would look like.</p>
+          <p>It is unit economics for a performance under chosen conditions: the robots were driven by people, so the price buys human labour routed through a robot, and whether the sessions also serve as demonstration collection, as <a href="#humxn-free-home-services">HUMXN</a>&rsquo;s do, the post does not say. No autonomy share or throughput figure is given.</p>
+          <div class="sources"><a href="https://read.corematter.com/p/tau-robotics-humanoid-house-cleaning-review-san-francisco">Core Matter</a> (customer review) &middot; <span class="via">via TLDR (Oct 21)</span></div>
+        </article>
 
         <article class="story" id="what-work-can-robots-do">
           <span class="when">2026-10-01</span>
@@ -379,15 +390,15 @@
           <div class="sources"><a href="https://arstechnica.com/ai/2026/09/tesla-workers-balk-at-training-optimus-humanoid-robots-as-replacements/">Ars Technica</a> &middot; <span class="via">via TLDR (Sep 28)</span></div>
         </article>
 
-        <article class="story" id="intrinsic-core">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://www.therobotreport.com/intrinsic-open-sources-key-parts-platform-easier-development/">Intrinsic open-sources Intrinsic Core, ROS-compatible building blocks for robot behaviour</a></h4>
-          <p>Intrinsic released <strong>Intrinsic Core</strong>, an open-source set of Robot Operating System-compatible capabilities that act as composable building blocks of robot behaviour for adaptive AI applications. It is plumbing rather than a policy, and the report gives no licence, adoption figure or measured deployment.</p>
-          <div class="sources"><a href="https://www.therobotreport.com/intrinsic-open-sources-key-parts-platform-easier-development/">The Robot Report</a> (news report) &middot; <span class="via">via TLDR (Sep 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="intrinsic-core">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://www.therobotreport.com/intrinsic-open-sources-key-parts-platform-easier-development/">Intrinsic open-sources Intrinsic Core, ROS-compatible building blocks for robot behaviour</a></h4>
+            <p>Intrinsic released <strong>Intrinsic Core</strong>, an open-source set of Robot Operating System-compatible capabilities that act as composable building blocks of robot behaviour for adaptive AI applications. It is plumbing rather than a policy, and the report gives no licence, adoption figure or measured deployment.</p>
+            <div class="sources"><a href="https://www.therobotreport.com/intrinsic-open-sources-key-parts-platform-easier-development/">The Robot Report</a> (news report) &middot; <span class="via">via TLDR (Sep 23)</span></div>
+          </article>
 
           <article class="story" id="agility-cageless-humanoid">
             <span class="when">2026-09-16</span>
@@ -461,6 +472,7 @@
             <p>Unitree is also the accessible-hardware entry in the <a href="#physical-ai-leaderboard">ranking</a>: the G1 from $16,000 and the research-grade H1 at $90K, both with open SDKs, ROS 2 support and 3D LiDAR, with a 1.9km autonomous marathon in April 2026 and synchronized multi-robot performances as its reliability demonstrations.</p>
             <div class="sources"><span class="via">via TLDR (Aug 20) &mdash; no public URL given</span></div>
           </article>
+
         </details>
       </section>
 
@@ -492,6 +504,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-21</span><span class="label"><a href="#tau-robotics-home-cleaning">Two teleoperated Tau Robotics humanoids clean a San Francisco home for an hour at $60</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#humxn-free-home-services">HUMXN pays for plumbing and HVAC repairs in three cities to record the work as robot training data</a></span></li>
         <li><span class="date">2026-10-17</span><span class="label"><a href="#kyutai-reki">Kyutai&rsquo;s REKI: a 2.4B vision-language-action model with 32 register tokens of memory per frame, pretrained only on public data</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#pi-api-beta">Physical Intelligence opens its robot foundation models to outside fine-tuning and hosted inference in the Pi API beta</a></span></li>

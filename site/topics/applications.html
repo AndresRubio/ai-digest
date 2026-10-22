@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Applications &amp; case studies</h1>
-      <div class="meta">Last updated: 2026-10-21</div>
+      <div class="meta">Last updated: 2026-10-22</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 21 entry is a design result with the function test still to come. Anthropic had an internal research model design mini binders against <a href="#claude-scorpion-toxin-binders">scorpion neurotoxins</a>, and 17 of 211 tested met its criteria, designs produced in days and confirmed in the lab within weeks; it has not shown the binders neutralise venom in cells and claims no antivenom. Beside <a href="#chai-discovery-gsk">Chai&rsquo;s GSK result</a> it is the drug-discovery section&rsquo;s question answered halfway, binding measured and function not.</p>
         <p>The Oct 19 entry from Quanta puts a name on the largest of OpenAI&rsquo;s mathematics results. Quanta Magazine calls OpenAI&rsquo;s released proof of the <a href="#openai-quasi-riemann-proof">quasi-Riemann hypothesis</a>, a weaker form of the Riemann hypothesis, the most significant AI-for-mathematics result so far by some margin, since most of what mathematicians want from Riemann about the primes already follows from the quasi version. It joins the <a href="#openai-mathematics-results">mathematics repository</a> in the discovery section with the same question attached: the summary says nothing about a Lean formalization or a human referee, so what has been checked outside the model is the statement and not yet the argument.</p>
         <p>The Oct 19 addition widens the discovery section to cryptography with a claim that can be rerun. Anthropic says <a href="#claude-ecdsa-curve-origins">Claude traced the ECDSA curve seeds</a> to a C library&rsquo;s <code>lrand48</code> generator seeded with Unix timestamps, rather than a hash construction or a backdoor; unlike the mathematics results, anyone can regenerate the seeds and compare them to the published curves, which makes it the section&rsquo;s most checkable entry and leaves only the question of how much of the search was the model&rsquo;s.</p>
         <p>The Oct 16 addition is a research loop with the model left as a parameter. Sakana&rsquo;s <a href="#sakana-agentic-scientist-v3">Agentic Scientist v3</a> drives Claude, Codex, Cursor or OpenCode through six phases from idea to paper under Apache 2.0, the harness-over-model shape applied to science; the repository is the release and no produced paper or acceptance figure comes with it, which makes Sakana&rsquo;s own peer-review scorer on Research papers the natural check.</p>
         <p>The Oct 16 cycle brought two checks made outside the model, one in a wet lab and one against a physics baseline. <a href="#chai-discovery-gsk">Chai Discovery</a> signed GSK after GSK&rsquo;s own lab found binders to every target it tested &mdash; the rare drug-discovery entry here whose claim a partner verified, though the number of targets is undisclosed. Ai2&rsquo;s <a href="#hiro-acev2">HiRO-ACEv2</a> widens the discovery section to climate, generating global 3 km climate data at about 1/300th the cost of X-SHiELD; the cost ratio is Ai2&rsquo;s, and accuracy on held-out extremes is what will decide whether it can stand in for the simulator.</p>
-        <p>The Oct 15 entry is a deployment report from inside a company rather than a vendor pitch. Ramp&rsquo;s <a href="#ramp-glass">Glass</a> lets non-engineers build and share tools over company knowledge and skills, counts 6,500+ knowledge edits, and credits model routing with a 30% cut in AI costs; Stripe built a comparable tool, Harbor, with one engineer in about six weeks. Both numbers are Ramp&rsquo;s own, and the case Gergely Orosz reports for building rather than buying is control of company data &mdash; the knowledge-work section&rsquo;s point that what gets deployed is the thing that had to be built first.</p>
+
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 15 entry is a deployment report from inside a company rather than a vendor pitch. Ramp&rsquo;s <a href="#ramp-glass">Glass</a> lets non-engineers build and share tools over company knowledge and skills, counts 6,500+ knowledge edits, and credits model routing with a 30% cut in AI costs; Stripe built a comparable tool, Harbor, with one engineer in about six weeks. Both numbers are Ramp&rsquo;s own, and the case Gergely Orosz reports for building rather than buying is control of company data &mdash; the knowledge-work section&rsquo;s point that what gets deployed is the thing that had to be built first.</p>
           <p>The Oct 9 update is mathematicians answering <a href="#openai-mathematics-results">OpenAI&rsquo;s mathematics repository</a>: a survey of more than 100 reactions, and a statement from the Association for Human Mathematics&rsquo; communications working group, shared by Terence Tao, urging mathematicians to stop working with OpenAI. It turns the section&rsquo;s question &mdash; what has been checked outside the model &mdash; into one about who is willing to do the checking.</p>
           <p>The Oct 8 cycle added the first outside reading of OpenAI&rsquo;s <a href="#openai-mathematics-results">mathematics results</a>: experts quoted on Scott Aaronson&rsquo;s blog say no human has yet understood any of the proofs, which are too badly written to follow without AI help and cite irrelevant sources &mdash; leaving the Lean-formalized subset as the only verified part, as this section&rsquo;s lead predicted. Biohub, the DOE and the NIH committed <a href="#biohub-ai-ready-data">$1.8 billion</a> to AI-ready biological data, the DOE&rsquo;s share more than $500 million over five years, money aimed at the training-data bottleneck rather than at another model. And Google Labs&rsquo; <a href="#google-playground">Playground</a> builds playable 2D and 3D games from a chat description, US-only, with a Unity Spark path to full builds still in testing.</p>
           <p>The Oct 7 cycle widened the newest section to mathematics. OpenAI published a repository of results on <a href="#openai-mathematics-results">377 problems</a> produced by an internal model it has not released, with Lean formalizations for many of the proofs, ten summaries of the model&rsquo;s reasoning and compute estimates in ChatGPT Pro usage. The checkable part is the formalized subset; the contested part is authorship, since mathematicians are already asking whether the model found ideas or finished proofs built on theirs. It is the same shape as the materials and crop entries beside it &mdash; the model&rsquo;s contribution announced, the independent check pending &mdash; with the difference that here a formal verifier exists.</p>
@@ -80,7 +82,7 @@
           <li><a href="#healthcare-ai-and-deployment-economics">Healthcare AI &amp; deployment economics <span class="n">10</span></a></li>
           <li><a href="#knowledge-work-productivity">Knowledge-work productivity <span class="n">8</span></a></li>
           <li><a href="#agentic-data-science">Agentic data science <span class="n">1</span></a></li>
-          <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">12</span></a></li>
+          <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">13</span></a></li>
           <li><a href="#scientific-discovery-beyond-biomedicine">Scientific discovery beyond biomedicine <span class="n">7</span></a></li>
           <li><a href="#product-search-and-e-commerce">Product search &amp; e-commerce <span class="n">1</span></a></li>
           <li><a href="#access-to-frontier-models-in-research">Access to frontier models in research <span class="n">1</span></a></li>
@@ -420,9 +422,18 @@
         </article>
       </section>
 
+
       <section class="topic-section" id="drug-discovery-and-biomedicine">
         <h3>Drug discovery &amp; biomedicine</h3>
         <p class="lead">Discovery runs on a different clock from a deployed agent: wet-lab validation, trials, and one result amortised across a whole drug programme. Most entries here announce a capability rather than report a validated outcome, so the question each one has to answer is what has been tested outside the model.</p>
+
+        <article class="story" id="claude-scorpion-toxin-binders">
+          <span class="when">2026-10-21</span>
+          <h4><a href="https://www.anthropic.com/research/claude-scorpion-toxin-binder-design">Claude designed protein binders against scorpion neurotoxins, and 17 of 211 tested met Anthropic&rsquo;s criteria</a></h4>
+          <p>Anthropic asked an internal research model to design mini binders, small proteins that attach tightly to a target, against scorpion neurotoxins; of <strong>211 designs tested, 17</strong> met its criteria, with designs produced in days and lab confirmation within weeks.</p>
+          <p>Anthropic has not confirmed that the binders neutralise venom in a cellular environment and is not claiming an antivenom, which is the test-outside-the-model this section asks about answered halfway: binding was measured, function was not, and turning a binder into a safe, affordable drug is the part no AI result here has yet reached.</p>
+          <div class="sources"><a href="https://www.anthropic.com/research/claude-scorpion-toxin-binder-design">Anthropic</a> &middot; <span class="via">via TLDR (Oct 21)</span></div>
+        </article>
 
         <article class="story" id="chai-discovery-gsk">
           <span class="when">2026-10-15</span>
@@ -438,16 +449,16 @@
           <div class="sources"><a href="https://www.wsj.com/tech/ai/zuckerbergs-biohub-partners-with-doe-nih-to-invest-1-8-billion-in-biological-data-for-ai-models-f8d5f799">The Wall Street Journal</a> &middot; <span class="via">via TLDR (Oct 8)</span></div>
         </article>
 
-        <article class="story" id="claude-novel-enzyme-system">
-          <span class="when">2026-09-24</span>
-          <h4><a href="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system">Claude flags a previously unnoticed enzyme system with CRISPR-like DNA repeats</a></h4>
-          <p>Anthropic says Claude autonomously identified an enzyme system built around a <strong>reverse transcriptase already known to science</strong>, whose defining features nobody had noticed: an associated <strong>array of non-coding DNA repeats</strong> and an <strong>accessory protein of unknown function</strong>. Anthropic describes the system as programmable, able to cut, copy and paste DNA, and says its biological function is still unknown.</p>
-          <p>It is the first entry here where the model&rsquo;s contribution is a finding rather than throughput or access, and it is also the section&rsquo;s standing caveat in its sharpest form: the discovery is a pattern noticed in sequence data, and what has been tested outside the model is what the announcement is thinnest on.</p>
-          <div class="sources"><a href="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 24), TLDR (Sep 24)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="claude-novel-enzyme-system">
+            <span class="when">2026-09-24</span>
+            <h4><a href="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system">Claude flags a previously unnoticed enzyme system with CRISPR-like DNA repeats</a></h4>
+            <p>Anthropic says Claude autonomously identified an enzyme system built around a <strong>reverse transcriptase already known to science</strong>, whose defining features nobody had noticed: an associated <strong>array of non-coding DNA repeats</strong> and an <strong>accessory protein of unknown function</strong>. Anthropic describes the system as programmable, able to cut, copy and paste DNA, and says its biological function is still unknown.</p>
+            <p>It is the first entry here where the model&rsquo;s contribution is a finding rather than throughput or access, and it is also the section&rsquo;s standing caveat in its sharpest form: the discovery is a pattern noticed in sequence data, and what has been tested outside the model is what the announcement is thinnest on.</p>
+            <div class="sources"><a href="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 24), TLDR (Sep 24)</span></div>
+          </article>
 
           <article class="story" id="anthropic-wet-lab">
             <span class="when">2026-09-21</span>
@@ -520,6 +531,7 @@
             <p>It opened this thread on the page as a concrete instance of model-driven mining of existing biological data standing in for synthetic-chemistry search &mdash; worth tracking separately from clinical deployment because both the evaluation regime and the economics differ entirely from per-conversation agent work.</p>
             <div class="sources"><span class="via">via AI Loves Data (Jul 31) &mdash; no public URL given</span></div>
           </article>
+
         </details>
       </section>
 
@@ -614,6 +626,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-21</span><span class="label"><a href="#claude-scorpion-toxin-binders">Claude designed protein binders against scorpion neurotoxins, and 17 of 211 tested met Anthropic&rsquo;s criteria</a></span></li>
         <li><span class="date">2026-10-19</span><span class="label"><a href="#openai-quasi-riemann-proof">Quanta: OpenAI&rsquo;s proof of the quasi-Riemann hypothesis is the largest AI mathematics result so far</a></span></li>
         <li><span class="date">2026-10-19</span><span class="label"><a href="#claude-ecdsa-curve-origins">Anthropic says Claude traced the ECDSA curve seeds to lrand48 seeded with Unix timestamps</a></span></li>
         <li><span class="date">2026-10-16</span><span class="label"><a href="#sakana-agentic-scientist-v3">Sakana&rsquo;s Agentic Scientist v3 drives Claude, Codex, Cursor and OpenCode through six phases to a paper, under Apache 2.0</a></span></li>

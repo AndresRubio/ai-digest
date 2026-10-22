@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-10-21</div>
+      <div class="meta">Last updated: 2026-10-22</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 21 cycle was voice, from two directions. Mistral&rsquo;s <a href="#voxtral-3">Voxtral 3</a> ships three transcribers, a TTS model and a LiveKit agent SDK in public preview, 4.1% WER on FLEURS 45 for Small by Mistral&rsquo;s count against 16.0% for Whisper large-v3 and transcription at $0.0035 a minute, with the stack runnable on a customer&rsquo;s own servers. ElevenLabs&rsquo; <a href="#eleven-realtime">Eleven Realtime</a> is a speech-to-speech pair, Mini and Max, that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name, with no latency or price in the summary. Both land on the speech section&rsquo;s judging axes, price and migration cost rather than accuracy. Below them, SparkLLM&rsquo;s <a href="#spark-x2-6-4b">Spark-X2.6-4B</a> is a 4B open model post-trained for on-device agents, with no benchmark in the issue; Mercury 3 was carried once more with nothing new.</p>
         <p>The Oct 20&ndash;21 cycle added outside prices and comparators to four models already here, with no new release. Simon Willison&rsquo;s reading of Artificial Analysis puts <a href="#muse-wonder">Muse Wonder</a> at its Max level even with GPT-6.1 Sol, and <a href="#gemini-4-argon">Gemini 4 Argon</a>&rsquo;s benchmark-run cost at $2,407, close to GLM-5.3 and well under OpenAI&rsquo;s, Anthropic&rsquo;s and Meta&rsquo;s newest, with Argon&rsquo;s $2/$10 doubling on December 1. MiniMax&rsquo;s own framing of <a href="#minimax-m3-1-flash">M3.1 Flash</a> is online inference nearly three times faster and 70% cheaper than its predecessor, with weights still to come, and Inception now names <a href="#mercury-3">Mercury 3</a>&rsquo;s comparators, GPT-6 Luna and Claude Haiku 5.5 on agentic coding at 1,068 tokens a second, while conceding Haiku still wins on longer coding tasks. Clairic was carried by three more newsletters with nothing new. Hamel Husain&rsquo;s judge comparison of six decision models, Jev to OpenAI Decisions, is on <a href="evals-and-benchmarks.html#decision-models-for-evals">Evals &amp; benchmarks</a>.</p>
         <p>The Oct 19 cycle was price and shape rather than scale. MiniMax&rsquo;s <a href="#minimax-m3-1-flash">M3.1 Flash</a> puts a 428B MoE with about 23B active and a 1M context at a flat $0.15/$0.60 per million tokens, with 62.2 on Automation-Bench to Opus 5&rsquo;s 50.3 and a weak Terminal-Bench 4.0 row, all MiniMax&rsquo;s. Three entries joined the alternative-decoding section and none is an autoregressive chat model: Inception&rsquo;s <a href="#mercury-3">Mercury 3</a> diffusion LLM claims 1,000+ tokens a second and a 1M context at $0.10 per million input, Nace&rsquo;s <a href="#drex-max">Drex Max</a> scores a probability per option over screenshots at 67.59 on Decision Index to Jev 1.14&rsquo;s 60.7, and Cloudflare&rsquo;s <a href="#cloudflare-clairic">Clairic</a> extracts typed values with confidence and source pointers, 3.2&times; faster and 49% cheaper on Cloudflare&rsquo;s own claims test. Mistral&rsquo;s <a href="#timestral">Timestral</a> gives the time-series section a second entry, four CPU-sized models edging TimesFM-3 on GIFT-Eval by 0.009 MASE. And <a href="#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a>&rsquo;s card explains its price: an 890-byte-per-token KV cache, about an eighth of V4-Flash&rsquo;s, at $0.30 per million input.</p>
         <p>The Oct 16&ndash;18 cycle was open weights at every scale. Meta&rsquo;s <a href="#muse-spark-open">Muse Spark Open</a> puts 816B parameters with 42B active and a 1M context on Hugging Face, leads MCP-Atlas on Meta&rsquo;s table at 89.2 but trails Kimi K3, GLM 5.3 and Qwen3.8 on Terminal-Bench 2.1 at 76.4 and scores 39 on Artificial Analysis to GLM 5.3&rsquo;s 45, so &ldquo;most capable US open model&rdquo; is exact only with the geography kept. NVIDIA&rsquo;s <a href="#nemotron-3-5-super-vl">Nemotron 3.5 Super VL</a> is 120B with 12B active and an NVFP4 build for one DGX Spark, at 89.9 on GPQA Diamond and 71.07 on SWE-bench Verified; Reflection&rsquo;s <a href="#reflection-beam">Beam</a> weights shipped under Apache 2.0 with an 80.1% Terminal-Bench 2.1 claim; and DeepSeek&rsquo;s <a href="#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a> moves DeepSWE from 74.2 to 77.0 by post-training alone. The decision-model field gained a new leader and a new size class: Liquid&rsquo;s hosted <a href="#liquid-d1-ultra">d1-ultra</a> scores 65 on the Artificial Analysis Decision Index to Jev 1.13&rsquo;s 58 at Jev&rsquo;s $0.042, and Shanghai AI Lab&rsquo;s <a href="#intern-decision">Intern-Decision</a> 4B claims 90.02% to Jev&rsquo;s 88.74% at 44 ms on one RTX 4090. Below those, <a href="#krea-3">Krea 3</a> prices an edit at $0.06 in under eight seconds, Black Forest Labs&rsquo; <a href="#flux-3-image-klein">FLUX 3 Image Klein</a> is a 5.6B open image model with native 4K, <a href="#gpt-live-1-1">GPT-Live-1.1</a> adds 13 voices in six languages, and <a href="#claude-opus-5-5">Opus 5.5</a> gained a fast mode at $8/$40 for up to 2.5&times; the output speed.</p>
         <p>The Oct 16 cycle added a voice leader, a new Jev and outside numbers for three models already here. SpaceXAI&rsquo;s <a href="#grok-voice-3">Grok Voice 3.0</a> tops Artificial Analysis&rsquo;s speech-to-speech index at 86.9 against GPT-Live-1&rsquo;s 83.2, at Voice 2.0&rsquo;s $0.08 a minute and with no open weights. TypeSafe&rsquo;s <a href="#jev-1-14">Jev 1.14</a> takes the decision model past text with image input, a bounding-box type and an opt-in 262K context, all experimental and all measured only by TypeSafe, and inclusionAI&rsquo;s <a href="#ling-3-1-flash">Ling-3.1-flash</a> is a 560B MoE with 25B active and a 1M context, published without a benchmark. The Batch supplied the outside readings: <a href="#claude-sonnet-5-5">Sonnet 5.5</a> at max effort leads Artificial Analysis&rsquo;s Coding Agent Index and is second on the Vals Index but spends about 193,000 output tokens a task, the most measured; <a href="#claude-haiku-5-5">Haiku 5.5</a> is the fastest model Artificial Analysis has clocked, at 237 tokens a second, yet averages 337 seconds to its first answer token; and <a href="#mistral-large-4">Mistral Large 4</a> posts the best public CyberGym-E2E-AA score, 82%, with The Batch giving 52B active parameters against the 49B Mistral launched with. The through-line is that the effort setting, not the model name, now decides what a task costs.</p>
-        <p>The Oct 15 cycle opened Gemini 4 Argon to everyone and gave Muse Wonder its numbers. <a href="#gemini-4-argon">Argon</a> left the Fairwind program for general availability across the Gemini API, AI Studio, Antigravity and Google Cloud at $2/$10 per million tokens until November 30, then $4/$20 &mdash; Opus 5.5&rsquo;s price &mdash; and still trails Opus 5.5 on Terminal-Bench 4.0, 57.4% to 66.4%. <a href="#muse-wonder">Muse Wonder</a>&rsquo;s figures arrived a day after launch: $4/$20 for the API model and 79.0 on DeepSWE 1.1 for the subscription-only Wonder Full against Opus 5.5&rsquo;s 74.2, with Wonder kept closed. <a href="#gpt-6-1-sol">GPT-6.1 Sol</a> now defaults to a 500K context. Two open releases meet the page&rsquo;s active-parameter test: Liquid&rsquo;s <a href="#lfm2-5-24b-a2b">LFM2.5-24B-A2B</a>, 2B active, triples Qwen3.6-35B-A3B on AutomationBench but trails it by 15 points on SWE-bench Verified, and Fish Audio&rsquo;s 35B <a href="#drama-3">Drama 3</a> ships open text-to-speech weights in 83 languages with no latency or licence published.</p>
+
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 15 cycle opened Gemini 4 Argon to everyone and gave Muse Wonder its numbers. <a href="#gemini-4-argon">Argon</a> left the Fairwind program for general availability across the Gemini API, AI Studio, Antigravity and Google Cloud at $2/$10 per million tokens until November 30, then $4/$20 &mdash; Opus 5.5&rsquo;s price &mdash; and still trails Opus 5.5 on Terminal-Bench 4.0, 57.4% to 66.4%. <a href="#muse-wonder">Muse Wonder</a>&rsquo;s figures arrived a day after launch: $4/$20 for the API model and 79.0 on DeepSWE 1.1 for the subscription-only Wonder Full against Opus 5.5&rsquo;s 74.2, with Wonder kept closed. <a href="#gpt-6-1-sol">GPT-6.1 Sol</a> now defaults to a 500K context. Two open releases meet the page&rsquo;s active-parameter test: Liquid&rsquo;s <a href="#lfm2-5-24b-a2b">LFM2.5-24B-A2B</a>, 2B active, triples Qwen3.6-35B-A3B on AutomationBench but trails it by 15 points on SWE-bench Verified, and Fish Audio&rsquo;s 35B <a href="#drama-3">Drama 3</a> ships open text-to-speech weights in 83 languages with no latency or licence published.</p>
           <p>The Oct 14 cycle brought Meta into the frontier section and two more entrants into the decision-model field. <a href="#muse-wonder">Muse Wonder and Wonder Full</a> are Meta&rsquo;s first frontier-class models, built around Active Memory and Active Focus for long-running agents; Meta claims Wonder Full beats Opus 5.5 on long-horizon coding, but Wonder Full is subscription-only inside Muse Code and early testers find the API model noticeably weaker, so the claim attaches to the version developers cannot call. In decision models, vLLM Semantic Router&rsquo;s <a href="#vllm-sr-decision-3">Decision 3.0</a> ships five Apache-2.0 sizes from 0.8B to 27B with image input and a self-run 64.1 on Decision Index 0.3.1, and Subquadratic&rsquo;s <a href="#subq-snap">SubQ Snap</a> argues on context rather than price, 384K tokens at $0.05 per million input. TII&rsquo;s <a href="#falcon-asr">Falcon-ASR</a> adds a 1.6B Emirati-first transcriber at 20.92% average Arabic WER, with three of its five languages unscored.</p>
           <p>The Oct 13 cycle added an outside reading rather than a release. <a href="#mistral-large-4">Mistral Large 4</a> got its first independent number &mdash; 38 on Artificial Analysis&rsquo;s index, just behind the 552B DeepSeek 4.1 Flash and up from Mistral Large 3&rsquo;s 9 &mdash; and turns out to expose only two reasoning levels through the API, none and high. Its weights are still promised for the end of October, so the reproducibility gap Mistral itself admitted stands.</p>
           <p>The Oct 9&ndash;12 cycle widened the decision-model field again and gave two flagships their first outside numbers. Microsoft&rsquo;s <a href="#microsoft-decision-1">Microsoft-Decision-1</a> is a hosted Qwen3.5-9B scorer at Jev&rsquo;s $0.042 per million input tokens with an 85&nbsp;ms p50 that H2O.ai disputes; Nace&rsquo;s open <a href="#drex-1-5">Drex 1.5</a> ties closed Jev on Decision Index 0.3.1 at 9B; <a href="#pplx-decider-v1-27b">pplx-decider</a> v1.1 claims 61.56 on the same index; and Cloudflare added a multimodal Clef-omni and cut <a href="#cloudflare-clef">Clef-flash</a> to $0.038. Artificial Analysis puts <a href="#gpt-6-1-sol">GPT-6.1 Sol</a> one point behind Astra at under a quarter of the cost per task, and OpenAI now sells it up to 8&times; faster as Ultrafast at six times the price; <a href="#gemini-4-argon">Gemini 4 Argon</a> tops Vals AI&rsquo;s index with the lowest hallucination rate among high scorers while staying unavailable outside Google&rsquo;s cyber programme. Below the frontier, JetBrains&rsquo; <a href="#mellum2-1">Mellum2.1</a> shows RL alone taking a 12B MoE from 2.0 to 47.0 on SWE-bench Verified, <a href="#claude-sonnet-5-5">Sonnet 5.5</a> cache reads were halved, and <a href="#qwen-image-2-1-turbo">Qwen-Image-2.1-Turbo</a>, <a href="#ltx-2-5">LTX-2.5</a> and <a href="#lightonocr-3">LightOnOCR-3</a> filled the image, video and document tiers.</p>
@@ -100,12 +102,12 @@
           <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">25</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">18</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">15</span></a></li>
-          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">5</span></a></li>
+          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">6</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">19</span></a></li>
           <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">27</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">29</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">31</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">4</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">7</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">2</span></a></li>
@@ -602,9 +604,18 @@
         </details>
       </section>
 
+
       <section class="topic-section" id="on-device-quantized-weights">
         <h3>On-device &amp; quantized weights</h3>
         <p class="lead">The open tier competing on local deployability rather than capability. &ldquo;Quantized&rdquo; is a range, not a property, so the number to judge an entry on is not the headline average but where the compression is measured &mdash; single-turn knowledge questions and multi-step agent work come apart sharply here.</p>
+
+        <article class="story" id="spark-x2-6-4b">
+          <span class="when">2026-10-21</span>
+          <h4><a href="https://huggingface.co/XHToken/Spark-X2.6-4B">Spark-X2.6-4B is a 4B open model post-trained for on-device agents</a></h4>
+          <p>SparkLLM released <strong>Spark-X2.6-4B</strong>, a 4B open-source model whose coding, reasoning, long-context and agentic ability it says improved through post-training alone, aimed at on-device agents.</p>
+          <p>The summary carries no benchmark, licence or quantized size, so it sits here on parameter count and intent; the number this section asks for, where the compression is measured, is on the model card rather than in the issue.</p>
+          <div class="sources"><a href="https://huggingface.co/XHToken/Spark-X2.6-4B">Hugging Face</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
+        </article>
 
         <article class="story" id="ternary-bonsai-2-27b">
           <span class="when">2026-09-18</span>
@@ -621,15 +632,15 @@
           <div class="sources"><a href="https://huggingface.co/nvidia/DeepSeek-V4-Pro-0813-NVFP4">Hugging Face</a> &middot; <span class="via">via TLDR AI (Aug 31)</span></div>
         </article>
 
-        <article class="story unlinked" id="minicpm5-1b-thinking-distill">
-          <span class="when">2026-07-20</span>
-          <h4>A 657MB local &ldquo;thinking model&rdquo; distills Claude Fable-5 reasoning traces onto MiniCPM5-1B</h4>
-          <p>A developer fine-tuned OpenBMB&rsquo;s MiniCPM5-1B on Claude Fable-5 reasoning traces to ship a <strong>657MB</strong>, MIT-licensed local model that keeps MiniCPM5&rsquo;s native thinking template and tool-calling with a 128K context window on a single GPU &mdash; no API key or cloud calls required. It extends the on-device distillation thread below <a href="#bonsai-27b">sub-2-bit Bonsai 27B</a> to under a gigabyte.</p>
-          <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story unlinked" id="minicpm5-1b-thinking-distill">
+            <span class="when">2026-07-20</span>
+            <h4>A 657MB local &ldquo;thinking model&rdquo; distills Claude Fable-5 reasoning traces onto MiniCPM5-1B</h4>
+            <p>A developer fine-tuned OpenBMB&rsquo;s MiniCPM5-1B on Claude Fable-5 reasoning traces to ship a <strong>657MB</strong>, MIT-licensed local model that keeps MiniCPM5&rsquo;s native thinking template and tool-calling with a 128K context window on a single GPU &mdash; no API key or cloud calls required. It extends the on-device distillation thread below <a href="#bonsai-27b">sub-2-bit Bonsai 27B</a> to under a gigabyte.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="bonsai-27b">
             <span class="when">2026-07-17</span>
@@ -645,6 +656,7 @@
             <p>Google DeepMind&rsquo;s Gemma 4 added a <strong>12B model built to power local agents on a 16GB laptop</strong>, with benchmark performance nearing the 26B model for multi-step reasoning and agentic workflows. New quantization-aware-trained (QAT) weights shipped across all Gemma 4 sizes (e2b, e4b, 12B, 26B, 31B), reducing memory footprint and speeding output at near-full quality without the loss of post-hoc quantization, with faster runs across Apple, AMD, Intel, NVIDIA and Qualcomm hardware (inference-economics angle on <a href="infrastructure.html">Infrastructure &amp; compute</a>).</p>
             <div class="sources"><span class="via">via Ollama newsletter &mdash; no public URL given</span></div>
           </article>
+
         </details>
       </section>
 
@@ -1134,9 +1146,27 @@
         </details>
       </section>
 
+
+
       <section class="topic-section" id="speech-audio-models">
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
+
+        <article class="story" id="eleven-realtime">
+          <span class="when">2026-10-21</span>
+          <h4><a href="https://elevenlabs.io/realtime">Eleven Realtime is a speech-to-speech model pair that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name</a></h4>
+          <p>ElevenLabs released <strong>Eleven Realtime</strong>, a new class of speech-to-speech models for voice agents in two sizes: a cheaper <strong>Mini</strong> for natural conversation and <strong>Max</strong>, which reasons through more complex tasks. The Code reports that an agent on OpenAI&rsquo;s Realtime API can switch by changing only the endpoint and model name.</p>
+          <p>It joins <a href="#grok-voice-3">Grok Voice 3.0</a> and GPT-Live in the fused speech-in, speech-out tier, and arrives with no latency, price or index score in either summary, so what is recorded is the shape and the migration path.</p>
+          <div class="sources"><a href="https://elevenlabs.io/realtime">ElevenLabs</a> &middot; <span class="via">via TLDR AI (Oct 21), The Code (Oct 21)</span></div>
+        </article>
+
+        <article class="story" id="voxtral-3">
+          <span class="when">2026-10-20</span>
+          <h4><a href="https://mistral.ai/news/voxtral-3/">Voxtral 3 ships three transcribers, a TTS model and a LiveKit agent SDK, with transcription at $0.0035 a minute</a></h4>
+          <p>Mistral released <strong>Voxtral 3</strong> in public preview: three transcription models, one text-to-speech model and a voice agent SDK built on LiveKit, across <strong>50+ languages</strong> with diarization and context biasing. Mini Transcribe 3 is 4B and Small&rsquo;s size is undisclosed; Mistral reports <strong>4.1% WER on FLEURS 45</strong> for Small, tied with MAI-Transcribe-2 against 16.0% for Whisper large-v3, and MarkTechPost puts speech-to-text at <strong>$0.0035 a minute</strong>, about $0.21 an audio hour.</p>
+          <p>The SDK lets the LLM, voice or language be swapped without rewriting the agent, and the stack can run on a customer&rsquo;s own servers, which with ElevenLabs&rsquo; <a href="#eleven-realtime">Eleven Realtime</a> the same day gives OpenAI&rsquo;s Realtime API two drop-in rivals; the WER is Mistral&rsquo;s and latency is not stated.</p>
+          <div class="sources"><a href="https://mistral.ai/news/voxtral-3/">Mistral</a> &middot; <a href="https://www.marktechpost.com/2026/10/20/mistral-voxtral-3-speech-models-voice-agent-sdk/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 21), MarkTechPost (Oct 21), The Code (Oct 21)</span></div>
+        </article>
 
         <article class="story" id="gpt-live-1-1">
           <span class="when">2026-10-16</span>
@@ -1146,23 +1176,23 @@
           <div class="sources"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI release notes</a> &middot; <a href="https://threadreaderapp.com/thread/2110797830361436604.html">Announcement thread</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16)</span></div>
         </article>
 
-        <article class="story" id="grok-voice-3">
-          <span class="when">2026-10-14</span>
-          <h4><a href="https://x.ai/news/grok-voice-3">Grok Voice 3.0 leads Artificial Analysis&rsquo;s speech-to-speech index at 86.9, at Voice 2.0&rsquo;s $0.08 a minute</a></h4>
-          <p>SpaceXAI released <strong>Grok Voice 3.0</strong>, a speech-in, speech-out model with reasoning and tool calls &mdash; web search, MCP servers &mdash; in between, aimed at support-call agents. It scores <strong>86.9</strong> on Artificial Analysis&rsquo;s Speech-to-Speech Index against 83.2 for GPT-Live-1 (Astra, medium) and 82.6 for Gemini 3.8 Live Extended Thinking, and The Code reports <strong>40% lower latency</strong> than GPT-Live-1.</p>
-          <p>It keeps Voice 2.0&rsquo;s endpoint, events and <strong>$0.08-per-minute</strong> price (about $4.80 an audio hour), so agents pinned to <code>grok-voice-latest</code> roll over with no migration; it is hosted-only through the Voice Agent API, with no open weights or local version.</p>
-          <div class="sources"><a href="https://x.ai/news/grok-voice-3">xAI</a> &middot; <a href="https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech">Voice Agent API docs</a> &middot; <a href="https://www.marktechpost.com/2026/10/14/meet-grok-voice-3-0-spacexai-voice-agent-model-ranks-1-on-artificial-analysis/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 15), MarkTechPost (Oct 15), The Code (Oct 15)</span></div>
-        </article>
-
-        <article class="story" id="drama-3">
-          <span class="when">2026-10-14</span>
-          <h4><a href="https://fish.audio/drama-3">Fish Audio&rsquo;s Drama 3 is a 35B open-weights text-to-speech model covering 83 languages</a></h4>
-          <p>Fish Audio released <strong>Drama 3</strong>, a <strong>35B-parameter</strong> text-to-speech model built for direction &mdash; steering how a line is performed &mdash; with <strong>open weights</strong> and <strong>83 languages</strong>. Its launch drew the week&rsquo;s largest open-weights conversation on X, mostly around a voice-clone demo, but no latency, price per audio hour or licence terms reached the newsletters, and those are what this section judges on. <em>Updated Oct 15:</em> Fish Audio&rsquo;s post gives the shape &mdash; a mixture-of-experts with about <strong>3B active</strong> of its 35B (8 of 256 experts plus one shared), plain-language acting direction and up to <strong>16 speakers per request</strong> &mdash; and reports <strong>93.2%</strong> on Artificial Analysis&rsquo;s Pronunciation Robustness, first, up from 88.1% for S2.1 Pro; latency, price and licence are still missing.</p>
-          <div class="sources"><a href="https://fish.audio/drama-3">Fish Audio</a> &middot; <a href="https://beta.fish.audio/blog/fish-audio-drama-3/">Fish Audio blog</a> &middot; <a href="https://www.marktechpost.com/2026/10/14/fish-audio-drama-3-open-weight-tts-model/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 14), MarkTechPost (Oct 14), MarkTechPost (Oct 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (26)</summary>
+          <summary>Earlier in this section (28)</summary>
+
+          <article class="story" id="grok-voice-3">
+            <span class="when">2026-10-14</span>
+            <h4><a href="https://x.ai/news/grok-voice-3">Grok Voice 3.0 leads Artificial Analysis&rsquo;s speech-to-speech index at 86.9, at Voice 2.0&rsquo;s $0.08 a minute</a></h4>
+            <p>SpaceXAI released <strong>Grok Voice 3.0</strong>, a speech-in, speech-out model with reasoning and tool calls &mdash; web search, MCP servers &mdash; in between, aimed at support-call agents. It scores <strong>86.9</strong> on Artificial Analysis&rsquo;s Speech-to-Speech Index against 83.2 for GPT-Live-1 (Astra, medium) and 82.6 for Gemini 3.8 Live Extended Thinking, and The Code reports <strong>40% lower latency</strong> than GPT-Live-1.</p>
+            <p>It keeps Voice 2.0&rsquo;s endpoint, events and <strong>$0.08-per-minute</strong> price (about $4.80 an audio hour), so agents pinned to <code>grok-voice-latest</code> roll over with no migration; it is hosted-only through the Voice Agent API, with no open weights or local version.</p>
+            <div class="sources"><a href="https://x.ai/news/grok-voice-3">xAI</a> &middot; <a href="https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech">Voice Agent API docs</a> &middot; <a href="https://www.marktechpost.com/2026/10/14/meet-grok-voice-3-0-spacexai-voice-agent-model-ranks-1-on-artificial-analysis/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 15), MarkTechPost (Oct 15), The Code (Oct 15)</span></div>
+          </article>
+
+          <article class="story" id="drama-3">
+            <span class="when">2026-10-14</span>
+            <h4><a href="https://fish.audio/drama-3">Fish Audio&rsquo;s Drama 3 is a 35B open-weights text-to-speech model covering 83 languages</a></h4>
+            <p>Fish Audio released <strong>Drama 3</strong>, a <strong>35B-parameter</strong> text-to-speech model built for direction &mdash; steering how a line is performed &mdash; with <strong>open weights</strong> and <strong>83 languages</strong>. Its launch drew the week&rsquo;s largest open-weights conversation on X, mostly around a voice-clone demo, but no latency, price per audio hour or licence terms reached the newsletters, and those are what this section judges on. <em>Updated Oct 15:</em> Fish Audio&rsquo;s post gives the shape &mdash; a mixture-of-experts with about <strong>3B active</strong> of its 35B (8 of 256 experts plus one shared), plain-language acting direction and up to <strong>16 speakers per request</strong> &mdash; and reports <strong>93.2%</strong> on Artificial Analysis&rsquo;s Pronunciation Robustness, first, up from 88.1% for S2.1 Pro; latency, price and licence are still missing.</p>
+            <div class="sources"><a href="https://fish.audio/drama-3">Fish Audio</a> &middot; <a href="https://beta.fish.audio/blog/fish-audio-drama-3/">Fish Audio blog</a> &middot; <a href="https://www.marktechpost.com/2026/10/14/fish-audio-drama-3-open-weight-tts-model/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 14), MarkTechPost (Oct 14), MarkTechPost (Oct 15)</span></div>
+          </article>
 
           <article class="story" id="falcon-asr">
             <span class="when">2026-10-11</span>
@@ -1361,6 +1391,7 @@
             <p>Together with Miso Labs&rsquo; MisoTTS on the generation side (see <a href="applications.html">Applications</a>), the open and efficient speech stack now spans both transcription and emotive synthesis.</p>
             <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
           </article>
+
         </details>
       </section>
 
@@ -1549,6 +1580,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-21</span><span class="label"><a href="#eleven-realtime">Eleven Realtime is a speech-to-speech model pair that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name</a></span></li>
+        <li><span class="date">2026-10-21</span><span class="label"><a href="#spark-x2-6-4b">Spark-X2.6-4B is a 4B open model post-trained for on-device agents</a></span></li>
+        <li><span class="date">2026-10-20</span><span class="label"><a href="#voxtral-3">Voxtral 3 ships three transcribers, a TTS model and a LiveKit agent SDK, with transcription at $0.0035 a minute</a></span></li>
         <li><span class="date">2026-10-19</span><span class="label"><a href="#cloudflare-clairic">Cloudflare Clairic extracts typed values without generating tokens, 3.2&times; faster, 49% cheaper</a></span></li>
         <li><span class="date">2026-10-19</span><span class="label"><a href="#drex-max">Drex Max: multimodal decision model at 67.59 on Decision Index to Jev 1.14&rsquo;s 60.7</a></span></li>
         <li><span class="date">2026-10-19</span><span class="label"><a href="#mercury-3">Mercury 3 diffusion LLM claims 1,000+ tokens a second, 1M context, $0.10 per million input</a></span></li>

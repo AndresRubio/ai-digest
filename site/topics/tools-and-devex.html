@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-10-21</div>
+      <div class="meta">Last updated: 2026-10-22</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 21 cycle was two factories with their plumbing listed. Uber&rsquo;s <a href="#uber-minion-devpods">Minion</a> ships about 15% of production pull requests, by Uber&rsquo;s count, on DevPods the company began building in 2017, an MCP Gateway generated from a pre-existing API contract registry and a staging path that routes a test account through the changed code; the lesson Gergely Orosz draws is that the companies gaining most already had developer-platform teams. <a href="#glass-town">Glass Town</a>, from the AAIF newsletter, is a multi-agent factory with five-minute worker limits, retries off and every commit linked to the prompts and tool calls that produced it, the paper trail built into the factory rather than the review. Neither reports a defect rate, which is the figure this page&rsquo;s section on agent-written code still lacks.</p>
         <p>The Oct 20 cycle was a game nobody reviewed and the scale behind a source-control rebuild. Simon Willison&rsquo;s <a href="#battle-drones">Battle Drones</a> is a browser RTS built in 321 agent commits over 12 iterations in a language he barely uses, with almost none of the code read by a human; one overnight dynamic-workflow run on the prompt &ldquo;Make it a LOT more fun&rdquo; played over a thousand simulated matches and reported undecided games down from 14% to 0.9% and comeback wins up from 24% to 46% across 1,200 AI-vs-AI games, which is this section&rsquo;s question answered with a simulator in place of a reviewer. Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a> gained its scale from Simon&rsquo;s reading of the post: a 100 GB main-branch history, 25 million CI checkouts a day that would be 600 PB of git traffic fetched naively, no offline support because Claude is the heaviest user, and a note that adversarial review can be myopic. Cloudflare&rsquo;s 68% cut to its code-review inference bill, won at the prompt cache, is on <a href="infrastructure.html#cloudflare-inference-bill-68">Infrastructure</a>.</p>
         <p>The Oct 19 cycle was two accounts of verification replacing review, one from a lab and one from a platform. The <a href="#anthropic-code-review-process">Claude Code team</a> says it automated most review stages: agents verify before a pull request opens, review runs continuously, fresh-context AI and security passes sit before any human, approval is tiered by risk and review rounds are capped, the process behind the Code Review product and its 6&ndash;10-minute figure, still with no escape rate for what the automated layers pass. Meta&rsquo;s engineers built <a href="#meta-forum-ai-native">Forum</a>, a standalone Groups app, in eight weeks with an agent whose changes counted only once build checks, unit tests and UI comparisons passed inside its loop, each pull request carrying a recording of the verification run; a stress test caught a memory issue the agent fixed and verified, roughly halving memory use, and engineers still approve every shipped change. Both answer the section&rsquo;s question the same way: the human is auditing the test suite, not the diff.</p>
         <p>The Oct 16 cycle was the repository under the agents, from two directions. GitHub reports <a href="#github-git-infra-agent-scale">7.38 billion commits in September</a>, five times a year earlier, and is keeping Git while splitting storage from compute for up to 35&times; the write throughput; Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a>, recorded last cycle, turns out to run on 200&times; less CPU and memory than the Git mirrors it replaced. One kept the tool and rebuilt what holds it, the other replaced the tool. On the review side, Anthropic&rsquo;s <a href="#claude-code-review-team-enterprise">Code Review</a> reached Team and Enterprise plans with most reviews cut to 6&ndash;10 minutes from about 20, a vendor figure for speed with the coverage and error numbers still those Addy Osmani gave on Oct 7.</p>
         <p>The Oct 16 cycle was about what a coding agent remembers, and which model does the remembering. Atlassian says agents with <a href="#atlassian-teamwork-graph">Teamwork Graph</a> access were 44% more accurate on 48% fewer tokens; the graph links tickets, docs and decisions, gates access at the data layer and writes every session back &mdash; a vendor number for a product it sells, but a memory design that can be audited. Codex, it turns out, writes its <a href="#codex-memory-models">memories</a> with GPT-5.6 Luna and Terra by default, and two config keys move extraction and consolidation to GPT-6-class models at a rate-limit cost. <a href="#opencode-2-0">OpenCode 2.0</a> gained background subagents and an async shell in a second report.</p>
-        <p>The Oct 15 cycle was the plumbing under agent-written code. Anthropic replaced git with <a href="#anthropic-scion">Scion</a> after daily merges went from about 2,500 in May to over 30,000, migrating its monorepo in five months with seven people &mdash; the clearest statement yet that the review-and-landing machinery, not the model, is what breaks first at agent volume. Two tools sit on the reviewer&rsquo;s side of that machinery: <a href="#diff-tour">diff-tour</a> has a coding agent write a read-only guided tour of a diff, and <a href="#openqodex">OpenQodex</a> runs over 100 scanners with the developer&rsquo;s own Claude Code or Codex login checking each finding; both are model-written review aids with no published error rate. <a href="#opencode-2-0">OpenCode 2.0</a> became a background server and an SDK library, the build-your-own harness getting easier to embed.</p>
+
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 15 cycle was the plumbing under agent-written code. Anthropic replaced git with <a href="#anthropic-scion">Scion</a> after daily merges went from about 2,500 in May to over 30,000, migrating its monorepo in five months with seven people &mdash; the clearest statement yet that the review-and-landing machinery, not the model, is what breaks first at agent volume. Two tools sit on the reviewer&rsquo;s side of that machinery: <a href="#diff-tour">diff-tour</a> has a coding agent write a read-only guided tour of a diff, and <a href="#openqodex">OpenQodex</a> runs over 100 scanners with the developer&rsquo;s own Claude Code or Codex login checking each finding; both are model-written review aids with no published error rate. <a href="#opencode-2-0">OpenCode 2.0</a> became a background server and an SDK library, the build-your-own harness getting easier to embed.</p>
           <p>The Oct 14 cycle was two ways of managing what a coding agent holds. <a href="#context-mode">Context Mode</a>, an MCP server at 26.7k stars, sandboxes tool calls so that, by its own figure, 98% less raw output reaches the model, and keeps session history in SQLite across compaction &mdash; a measure of what was kept out, not of what was lost. <a href="#agent-engineer-plugin">AGENT-ENGINEER</a> bundles 11 skills, 4 subagents and 5 hooks for agent-engineering work into one plugin without saying which clients it targets, the first question the plugin section asks.</p>
           <p>The Oct 13 cycle, all from one Simon Willison issue, moved a sandbox off the laptop and put a dictation habit on the record. Cowork now runs <a href="#cowork-cloud-vm">its VM in the cloud</a>, one sandbox per session, with the desktop app answering only the tool calls that need a local file &mdash; the trade <a href="#claude-code-cloud-sessions-ga">Claude Code cloud sessions</a> made, with the file bridge as the new thing to audit. Willison built a Django feature <a href="#codex-voice-blog-feature">by voice in Codex</a> while cooking: half an hour of talking, a pull-request review that caught Git in a subprocess where the API was needed, and half an hour of typing to finish. Two of his releases sit on the tooling side: <a href="#llm-openai-decisions">llm-openai-decisions</a> exposes OpenAI&rsquo;s decision model with the image input Jev lacks, and <a href="#ttok-1-0">ttok 1.0</a> defaults to the GPT-5 tokenizer for GPT-6 on an outside 31-fixture test rather than any word from OpenAI.</p>
           <p>The Oct 9&ndash;12 cycle opened one coordinator to everyone and added a tool built for agents to read. <a href="#claude-code-projects">Claude Code Projects</a> left its waitlist for every Pro and Max user, so the coordinator-and-threads shape the parallel-work section describes is now available by default rather than by invitation. <a href="#rea-reverse-engineer-anything">REA</a> gives Claude Code, Codex and Cursor reverse-engineering tools for apps, binaries, APKs and firmware and has them cite file, function and address for each finding &mdash; agent-native in this page&rsquo;s sense, with the licence check left to the prompt.</p>
@@ -106,8 +108,8 @@
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">17</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">14</span></a></li>
-          <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">18</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">30</span></a></li>
+          <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">19</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">31</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">7</span></a></li>
         </ul>
       </nav>
@@ -1025,9 +1027,18 @@
         </details>
       </section>
 
+
       <section class="topic-section" id="the-agentic-harness-build-vs-buy">
         <h3>The agentic harness: build vs buy</h3>
         <p class="lead">The harness is a discrete, standardizable component, commoditizing into a few batteries-included frameworks. The durable test for harness code is whether it helps inspect, verify, recover or merge the model&rsquo;s work. Buying one increasingly means buying the surrounding development platform; the <a href="agents.html">Agents</a> page carries this argument from the framework side.</p>
+
+        <article class="story" id="uber-minion-devpods">
+          <span class="when">2026-10-21</span>
+          <h4><a href="https://newsletter.pragmaticengineer.com/p/ubers-ai-infra-from-the-inside">Uber&rsquo;s Minion ships about 15% of production PRs on dev-platform plumbing the company started building in 2017</a></h4>
+          <p>On Gergely Orosz&rsquo;s podcast, Uber Distinguished Engineer Uday Medisetty says the background coding agent <strong>Minion</strong> now ships roughly <strong>15% of Uber&rsquo;s production pull requests</strong>. It runs on <strong>DevPods</strong>, cloud dev boxes Uber began building in 2017 that start in seconds with repos cloned and build caches warm; the MCP Gateway came together quickly because service API contracts already lived in one registry; and agents validate their branches on Slate, a private staging path that routes a test account through the changed code over Jaeger tracing.</p>
+          <p>It is the build side of this section with the bill of materials visible: the companies gaining most from agents already had developer-platform teams, and the transferable pieces are one documented build-and-test command, warm cloud workspaces, a contract registry to generate tools from and a safe end-to-end test path. The 15% is Uber&rsquo;s figure, with no defect or revert rate beside it.</p>
+          <div class="sources"><a href="https://newsletter.pragmaticengineer.com/p/ubers-ai-infra-from-the-inside">The Pragmatic Engineer</a> (podcast) &middot; <span class="via">via The Code (Oct 21)</span></div>
+        </article>
 
         <article class="story" id="opencode-2-0">
           <span class="when">2026-10-14</span>
@@ -1043,15 +1054,15 @@
           <div class="sources"><a href="https://bob.ibm.com/">IBM</a> &middot; <a href="https://www.marktechpost.com/2026/10/02/ibm-brings-bob-to-self-hosted-and-air-gapped-environments/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 3)</span></div>
         </article>
 
-        <article class="story" id="step-code">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://github.com/stepfun-ai/Step-Code">StepFun open-sources Step Code, a terminal coding agent with subagents, MCP and a /goal mode</a></h4>
-          <p>StepFun&rsquo;s <strong>Step Code</strong> reads code, edits files, runs tests, coordinates subagents, loads MCP servers and Agent Skills, and publishes static sites through StepPage, with a <code>/goal</code> mode for longer autonomous tasks. A model lab shipping its own open harness a day after its <a href="model-releases.html">Step 5 Preview</a> is the batteries-included pattern again; no benchmark accompanies it.</p>
-          <div class="sources"><a href="https://github.com/stepfun-ai/Step-Code">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="step-code">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://github.com/stepfun-ai/Step-Code">StepFun open-sources Step Code, a terminal coding agent with subagents, MCP and a /goal mode</a></h4>
+            <p>StepFun&rsquo;s <strong>Step Code</strong> reads code, edits files, runs tests, coordinates subagents, loads MCP servers and Agent Skills, and publishes static sites through StepPage, with a <code>/goal</code> mode for longer autonomous tasks. A model lab shipping its own open harness a day after its <a href="model-releases.html">Step 5 Preview</a> is the batteries-included pattern again; no benchmark accompanies it.</p>
+            <div class="sources"><a href="https://github.com/stepfun-ai/Step-Code">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
+          </article>
 
           <article class="story" id="openai-software-factory">
             <span class="when">2026-09-18</span>
@@ -1174,8 +1185,10 @@
             <p>It landed the same week Anthropic shipped Claude Managed Agents in public beta with Fable 5, which is the managed-harness &ldquo;buy&rdquo; option with built-in fallback. The implication for DevEx is that differentiation moves to model choice, context engineering and memory rather than the loop.</p>
             <div class="sources"><span class="via">via Decoding AI Magazine (Substack), Anthropic email announcement &mdash; no public URL given</span></div>
           </article>
+
         </details>
       </section>
+
 
       <section class="topic-section" id="working-when-the-agent-writes-the-code">
         <h3>Working when the agent writes the code</h3>
@@ -1188,6 +1201,7 @@
           <p>Later runs ported it to Three.js, added LLM-against-LLM agent battles with replays, multiplayer over audio chirps and then a stateless WebSockets relay on one Fly instance he expects to cost no more than $2.19 a month. For this section the detail that matters is what replaced review: a deterministic simulation and a measured balance change, with the author counting the cost in tokens rather than the defects in code.</p>
           <div class="sources"><a href="https://simonwillison.net/2026/Oct/20/battledrones/">simonwillison.net</a> &middot; <a href="https://github.com/simonw/battledrones#readme">GitHub</a> &middot; <span class="via">via Simon Willison (Oct 21)</span></div>
         </article>
+
         <article class="story" id="anthropic-code-review-process">
           <span class="when">2026-10-19</span>
           <h4><a href="https://claude.dev/blog/solving-code-review-at-anthropic/">The Claude Code team automates most review stages and tiers human approval by risk as agents write most of its code</a></h4>
@@ -1205,7 +1219,7 @@
         </article>
 
         <details>
-          <summary>Earlier in this section (27)</summary>
+          <summary>Earlier in this section (28)</summary>
 
           <article class="story" id="github-git-infra-agent-scale">
             <span class="when">2026-10-16</span>
@@ -1213,6 +1227,14 @@
             <p>GitHub reports <strong>7.38 billion commits</strong> in September, more than five times the year before, with pushes up <strong>4.9&times;</strong> and Actions runs more than quadrupled, as agents commit after nearly every step. Reads are cheap because caches absorb them; writes are the hard part, since each update has to be stored and made visible before the next agent builds on it, so merges pile up on the main branch.</p>
             <p>GitHub is keeping Git and separating storage from compute: Azure Blob Storage holds the data, caching workers serve reads, and only the branch update needs coordination, for up to <strong>35&times;</strong> higher write throughput in internal benchmarks. It is the other answer to the problem Anthropic solved by replacing Git with <a href="#anthropic-scion">Scion</a>; teams running agents in tight loops are told to watch push latency and merge queues.</p>
             <div class="sources"><a href="https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/">GitHub</a> &middot; <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue">Merge queue docs</a> &middot; <span class="via">via The Code (Oct 16)</span></div>
+          </article>
+
+          <article class="story" id="glass-town">
+            <span class="when">2026-10-15</span>
+            <h4><a href="https://aaif.io/blog/welcome-to-glass-town-building-a-software-factory-with-a-paper-trail">Glass Town is a multi-agent software factory with five-minute worker limits and every change linked to its prompts</a></h4>
+            <p><strong>Glass Town</strong> is an AAIF write-up of an autonomous coding factory built to be repeatable and auditable: agents run in cloud Sprites that isolate execution, keep dependencies between sessions and stop billing compute when idle; workers are capped at five minutes, automatic retries are off, cheaper models and plain scripts take non-LLM work; and the Entire CLI links prompts, responses and tool calls to each Git commit while <code>AGENTS.md</code> instructions enforce per-file checkpoints.</p>
+            <p>It is this section&rsquo;s evidence-constructed-not-skimmed answer built into the factory rather than the review, with the controls written down and no throughput, cost or defect figure reported.</p>
+            <div class="sources"><a href="https://aaif.io/blog/welcome-to-glass-town-building-a-software-factory-with-a-paper-trail">AAIF blog</a> &middot; <span class="via">via AAIF newsletter (Oct 15)</span></div>
           </article>
 
           <article class="story" id="meta-forum-ai-native">
@@ -1415,6 +1437,7 @@
             <p>Read with part 1, the pair describes a loop in which the expensive step is confirming a change was right, so changes are kept small enough that confirmation stays cheap and being wrong stays survivable &mdash; the same economics the frontier-engineering guide arrives at from the organisational side.</p>
             <div class="sources"><a href="https://x.ai/bot/plugin/9717366">pstack</a> &middot; <span class="via">via The Code (Sep 10)</span></div>
           </article>
+
         </details>
       </section>
 
@@ -1486,6 +1509,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-21</span><span class="label"><a href="#uber-minion-devpods">Uber&rsquo;s Minion ships about 15% of production PRs on dev-platform plumbing the company started building in 2017</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#battle-drones">Simon Willison&rsquo;s Battle Drones: an RTS built in 321 agent commits, playtested rather than reviewed, balanced by 1,200 simulated matches</a></span></li>
         <li><span class="date">2026-10-19</span><span class="label"><a href="#anthropic-code-review-process">The Claude Code team automates most review stages and tiers human approval by risk</a></span></li>
         <li><span class="date">2026-10-16</span><span class="label"><a href="#github-git-infra-agent-scale">GitHub rebuilds its Git storage for agent volume: 7.38 billion commits in September, five times a year earlier, and up to 35&times; write throughput</a></span></li>
@@ -1493,6 +1517,7 @@
         <li><span class="date">2026-10-15</span><span class="label"><a href="#meta-forum-ai-native">Meta builds Forum in eight weeks with an agent that verifies its own changes before review</a></span></li>
         <li><span class="date">2026-10-15</span><span class="label"><a href="#atlassian-teamwork-graph">Atlassian says agents with Teamwork Graph access were 44% more accurate on 48% fewer tokens</a></span></li>
         <li><span class="date">2026-10-15</span><span class="label"><a href="#codex-memory-models">Codex writes its memories with GPT-5.6 Luna and Terra by default, and two config keys move them to GPT-6-class models</a></span></li>
+        <li><span class="date">2026-10-15</span><span class="label"><a href="#glass-town">Glass Town is a multi-agent software factory with five-minute worker limits and every change linked to its prompts</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#openqodex">OpenQodex runs 100+ scanners and has your own Claude Code or Codex login investigate each finding</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#opencode-2-0">OpenCode 2.0 runs as one background server that clients autodiscover, and ships as an SDK library</a></span></li>
         <li><span class="date">2026-10-14</span><span class="label"><a href="#diff-tour">diff-tour turns a git diff into a guided, read-only walkthrough written by Claude Code, Codex or Gemini CLI</a></span></li>
