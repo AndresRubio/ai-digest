@@ -30,18 +30,19 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-10-22</div>
+      <div class="meta">Last updated: 2026-10-23</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 22 cycle was the API given a version number, and three small tools that put a second model between the agent and the work. Anthropic&rsquo;s <a href="#claude-api-version-2026-10-21">Claude API version 2026-10-21</a> is the first versioned release since 2023-06-10, with new major SDKs and a CLI defaulting to it and the old version kept, and OpenAI published an <a href="#openai-cli">official CLI</a> the same day. From the AAIF newsletter, LightOn&rsquo;s <a href="#colgrep-agent">ColGrep-Agent</a> hands code search to a local 2B model and cut Claude Code&rsquo;s API tokens by 34% over 52 questions; <a href="#sphinx-git-hook">Sphinx</a> is a pre-push hook that quizzes the developer on an agent&rsquo;s changes before a protected branch accepts them; and <a href="#james-ward-mcp-tool-design">James Ward</a> argues an MCP server&rsquo;s token bill is set by tool design, 100 records as 100 calls, with a constrained DSL proposed over 16,000 AWS APIs. <a href="#claude-mods">Claude Mods</a> gained Latent Space&rsquo;s reading of them as an interface the user programs, and the <a href="#cloudflare-security-audit-skill">Cloudflare security-audit skill</a> a star count, 37.8k; GitHub&rsquo;s <a href="#github-git-infra-agent-scale">agent-scale Git</a> gained the migration behind it, nearly every repository moved to Azure with per-reference quorums for the rest.</p>
         <p>The Oct 21 cycle was two factories with their plumbing listed. Uber&rsquo;s <a href="#uber-minion-devpods">Minion</a> ships about 15% of production pull requests, by Uber&rsquo;s count, on DevPods the company began building in 2017, an MCP Gateway generated from a pre-existing API contract registry and a staging path that routes a test account through the changed code; the lesson Gergely Orosz draws is that the companies gaining most already had developer-platform teams. <a href="#glass-town">Glass Town</a>, from the AAIF newsletter, is a multi-agent factory with five-minute worker limits, retries off and every commit linked to the prompts and tool calls that produced it, the paper trail built into the factory rather than the review. Neither reports a defect rate, which is the figure this page&rsquo;s section on agent-written code still lacks.</p>
         <p>The Oct 20 cycle was a game nobody reviewed and the scale behind a source-control rebuild. Simon Willison&rsquo;s <a href="#battle-drones">Battle Drones</a> is a browser RTS built in 321 agent commits over 12 iterations in a language he barely uses, with almost none of the code read by a human; one overnight dynamic-workflow run on the prompt &ldquo;Make it a LOT more fun&rdquo; played over a thousand simulated matches and reported undecided games down from 14% to 0.9% and comeback wins up from 24% to 46% across 1,200 AI-vs-AI games, which is this section&rsquo;s question answered with a simulator in place of a reviewer. Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a> gained its scale from Simon&rsquo;s reading of the post: a 100 GB main-branch history, 25 million CI checkouts a day that would be 600 PB of git traffic fetched naively, no offline support because Claude is the heaviest user, and a note that adversarial review can be myopic. Cloudflare&rsquo;s 68% cut to its code-review inference bill, won at the prompt cache, is on <a href="infrastructure.html#cloudflare-inference-bill-68">Infrastructure</a>.</p>
         <p>The Oct 19 cycle was two accounts of verification replacing review, one from a lab and one from a platform. The <a href="#anthropic-code-review-process">Claude Code team</a> says it automated most review stages: agents verify before a pull request opens, review runs continuously, fresh-context AI and security passes sit before any human, approval is tiered by risk and review rounds are capped, the process behind the Code Review product and its 6&ndash;10-minute figure, still with no escape rate for what the automated layers pass. Meta&rsquo;s engineers built <a href="#meta-forum-ai-native">Forum</a>, a standalone Groups app, in eight weeks with an agent whose changes counted only once build checks, unit tests and UI comparisons passed inside its loop, each pull request carrying a recording of the verification run; a stress test caught a memory issue the agent fixed and verified, roughly halving memory use, and engineers still approve every shipped change. Both answer the section&rsquo;s question the same way: the human is auditing the test suite, not the diff.</p>
         <p>The Oct 16 cycle was the repository under the agents, from two directions. GitHub reports <a href="#github-git-infra-agent-scale">7.38 billion commits in September</a>, five times a year earlier, and is keeping Git while splitting storage from compute for up to 35&times; the write throughput; Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a>, recorded last cycle, turns out to run on 200&times; less CPU and memory than the Git mirrors it replaced. One kept the tool and rebuilt what holds it, the other replaced the tool. On the review side, Anthropic&rsquo;s <a href="#claude-code-review-team-enterprise">Code Review</a> reached Team and Enterprise plans with most reviews cut to 6&ndash;10 minutes from about 20, a vendor figure for speed with the coverage and error numbers still those Addy Osmani gave on Oct 7.</p>
-        <p>The Oct 16 cycle was about what a coding agent remembers, and which model does the remembering. Atlassian says agents with <a href="#atlassian-teamwork-graph">Teamwork Graph</a> access were 44% more accurate on 48% fewer tokens; the graph links tickets, docs and decisions, gates access at the data layer and writes every session back &mdash; a vendor number for a product it sells, but a memory design that can be audited. Codex, it turns out, writes its <a href="#codex-memory-models">memories</a> with GPT-5.6 Luna and Terra by default, and two config keys move extraction and consolidation to GPT-6-class models at a rate-limit cost. <a href="#opencode-2-0">OpenCode 2.0</a> gained background subagents and an async shell in a second report.</p>
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 16 cycle was about what a coding agent remembers, and which model does the remembering. Atlassian says agents with <a href="#atlassian-teamwork-graph">Teamwork Graph</a> access were 44% more accurate on 48% fewer tokens; the graph links tickets, docs and decisions, gates access at the data layer and writes every session back &mdash; a vendor number for a product it sells, but a memory design that can be audited. Codex, it turns out, writes its <a href="#codex-memory-models">memories</a> with GPT-5.6 Luna and Terra by default, and two config keys move extraction and consolidation to GPT-6-class models at a rate-limit cost. <a href="#opencode-2-0">OpenCode 2.0</a> gained background subagents and an async shell in a second report.</p>
           <p>The Oct 15 cycle was the plumbing under agent-written code. Anthropic replaced git with <a href="#anthropic-scion">Scion</a> after daily merges went from about 2,500 in May to over 30,000, migrating its monorepo in five months with seven people &mdash; the clearest statement yet that the review-and-landing machinery, not the model, is what breaks first at agent volume. Two tools sit on the reviewer&rsquo;s side of that machinery: <a href="#diff-tour">diff-tour</a> has a coding agent write a read-only guided tour of a diff, and <a href="#openqodex">OpenQodex</a> runs over 100 scanners with the developer&rsquo;s own Claude Code or Codex login checking each finding; both are model-written review aids with no published error rate. <a href="#opencode-2-0">OpenCode 2.0</a> became a background server and an SDK library, the build-your-own harness getting easier to embed.</p>
           <p>The Oct 14 cycle was two ways of managing what a coding agent holds. <a href="#context-mode">Context Mode</a>, an MCP server at 26.7k stars, sandboxes tool calls so that, by its own figure, 98% less raw output reaches the model, and keeps session history in SQLite across compaction &mdash; a measure of what was kept out, not of what was lost. <a href="#agent-engineer-plugin">AGENT-ENGINEER</a> bundles 11 skills, 4 subagents and 5 hooks for agent-engineering work into one plugin without saying which clients it targets, the first question the plugin section asks.</p>
           <p>The Oct 13 cycle, all from one Simon Willison issue, moved a sandbox off the laptop and put a dictation habit on the record. Cowork now runs <a href="#cowork-cloud-vm">its VM in the cloud</a>, one sandbox per session, with the desktop app answering only the tool calls that need a local file &mdash; the trade <a href="#claude-code-cloud-sessions-ga">Claude Code cloud sessions</a> made, with the file bridge as the new thing to audit. Willison built a Django feature <a href="#codex-voice-blog-feature">by voice in Codex</a> while cooking: half an hour of talking, a pull-request review that caught Git in a subprocess where the API was needed, and half an hour of typing to finish. Two of his releases sit on the tooling side: <a href="#llm-openai-decisions">llm-openai-decisions</a> exposes OpenAI&rsquo;s decision model with the image input Jev lacks, and <a href="#ttok-1-0">ttok 1.0</a> defaults to the GPT-5 tokenizer for GPT-6 on an outside 31-fixture test rather than any word from OpenAI.</p>
@@ -100,16 +101,16 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">7</span></a></li>
-          <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">5</span></a></li>
-          <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">9</span></a></li>
+          <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">6</span></a></li>
+          <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">10</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
-          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">33</span></a></li>
+          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">35</span></a></li>
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">12</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">17</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">14</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">19</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">31</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">32</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">7</span></a></li>
         </ul>
       </nav>
@@ -181,6 +182,14 @@
         <h3>Skills vs MCPs vs custom tools</h3>
         <p class="lead">Skills are the lightweight default for a recurring workflow. MCPs are preferred when the extension has to handle nuance the skill abstraction cannot express. CLIs and custom tools remain valid for deterministic, distribution-friendly work. Judge entries on which mechanism a release picks and what it says about the boundary between them.</p>
 
+        <article class="story" id="james-ward-mcp-tool-design">
+          <span class="when">2026-10-22</span>
+          <h4><a href="https://aaif.io/blog/james-ward-thinks-your-mcp-server-could-use-some-work">James Ward on MCP tool design: 100 records should not be 100 calls, and a DSL over 16,000 AWS APIs beats generated Python</a></h4>
+          <p>James Ward&rsquo;s AAIF post argues that an MCP server&rsquo;s token bill is set by tool design: fetching <strong>100 customer records as 100 single-record calls</strong> succeeds every time and hides the waste unless traces are correlated, so aggregate tools and observability have to arrive together. For the roughly <strong>16,000 AWS APIs</strong> he proposes a constrained DSL whose multi-step operations are easier to validate than generated Python, and reports that a helpful documentation notice tripped prompt-injection warnings after release despite hundreds of local wording tests.</p>
+          <p>The method he lands on is evaluating whole tasks across models and harnesses, which separates what the protocol cannot do from what the tool author got wrong; it is the MCP side of this section&rsquo;s boundary argued from cost.</p>
+          <div class="sources"><a href="https://aaif.io/blog/james-ward-thinks-your-mcp-server-could-use-some-work">AAIF blog</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
+        </article>
+
         <article class="story" id="vercel-state-of-agent-skills">
           <span class="when">2026-09-29</span>
           <h4><a href="https://vercel.com/blog/state-of-agent-skills">Vercel&rsquo;s skills.sh registry reaches one million agent skills and nearly 280 million installs in seven months</a></h4>
@@ -197,16 +206,16 @@
           <div class="sources"><a href="https://www.notion.com/blog/a-skills-library-for-every-agent">Notion</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
         </article>
 
-        <article class="story" id="cloudflare-security-audit-skill">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://github.com/cloudflare/security-audit-skill">Cloudflare open-sources the security-audit skill behind its own vulnerability harness</a></h4>
-          <p>The skill turns a coding agent into a six-stage security process: map the architecture and attack surface, hunt by coverage gap rather than by pattern match, validate each candidate finding with fresh agents, and independently verify the final record. Two of those stages exist to defeat the failure that makes agent security review untrustworthy &mdash; the model that proposed a finding is also the one asked whether it is real, so it confirms itself.</p>
-          <p>Fresh validating agents and an independent verification pass put a different context behind each judgement, which is the separation Foreman applies to code review and the one the <a href="#datasette-security-releases">Datasette audit</a> reached by splitting test-writing from fixing across two people. Hunting by coverage gap is the other transferable idea, since it looks at the parts of a surface nothing has examined rather than for the bugs a model already knows how to name &mdash; and the release shows the skill abstraction is sufficient for a genuinely multi-stage procedure, provided the stages run in separate agents.</p>
-          <div class="sources"><a href="https://github.com/cloudflare/security-audit-skill">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="cloudflare-security-audit-skill">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://github.com/cloudflare/security-audit-skill">Cloudflare open-sources the security-audit skill behind its own vulnerability harness</a></h4>
+            <p>The skill turns a coding agent into a six-stage security process: map the architecture and attack surface, hunt by coverage gap rather than by pattern match, validate each candidate finding with fresh agents, and independently verify the final record. Two of those stages exist to defeat the failure that makes agent security review untrustworthy &mdash; the model that proposed a finding is also the one asked whether it is real, so it confirms itself.</p>
+            <p>Fresh validating agents and an independent verification pass put a different context behind each judgement, which is the separation Foreman applies to code review and the one the <a href="#datasette-security-releases">Datasette audit</a> reached by splitting test-writing from fixing across two people. Hunting by coverage gap is the other transferable idea, since it looks at the parts of a surface nothing has examined rather than for the bugs a model already knows how to name &mdash; and the release shows the skill abstraction is sufficient for a genuinely multi-stage procedure, provided the stages run in separate agents. By Oct 22 the repository had <strong>37.8k GitHub stars</strong>, per The Code.</p>
+            <div class="sources"><a href="https://github.com/cloudflare/security-audit-skill">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 16), The Code (Oct 22)</span></div>
+          </article>
 
           <article class="story unlinked" id="antigravity-custom-agents">
             <span class="when">2026-08-17</span>
@@ -229,6 +238,13 @@
         <h3>Token economics &amp; prompt caching</h3>
         <p class="lead">Standard prompt caching alone yields only modest savings. Structural techniques &mdash; keeping cacheable prefixes stable across turns, ordering context from least- to most-volatile, and avoiding mid-prompt edits that invalidate the cache &mdash; are what separate the teams seeing ~90% token reductions from those seeing 20&ndash;30%. Write prompts as if they will be cached, not patched.</p>
 
+        <article class="story" id="colgrep-agent">
+          <span class="when">2026-10-22</span>
+          <h4><a href="https://huggingface.co/blog/lightonai/colgrep-agent">ColGrep-Agent delegates code search to a local 2B model and cuts Claude Code&rsquo;s API tokens by 34% over 52 questions</a></h4>
+          <p>LightOn&rsquo;s <strong>ColGrep-Agent</strong> hands repository exploration to a local 2-billion-parameter model that returns the relevant files and code locations, so the frontier model reads results instead of grepping; across <strong>52 search questions</strong> it reduced Claude Code&rsquo;s API token consumption by <strong>34%</strong>. It is this section&rsquo;s logic applied before the cache, fewer tokens sent at all, with the answer quality on the 52 questions not stated in the summary.</p>
+          <div class="sources"><a href="https://huggingface.co/blog/lightonai/colgrep-agent">Hugging Face blog</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
+        </article>
+
         <article class="story" id="context-mode">
           <span class="when">2026-10-13</span>
           <h4><a href="https://github.com/mksglu/context-mode">Context Mode, an MCP server at 26.7k stars, sandboxes tool output to cut raw context use by 98%</a></h4>
@@ -244,16 +260,16 @@
           <div class="sources"><a href="https://x.com/ClaudeDevs/status/2103561342057943314">Claude Devs on X</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
         </article>
 
-        <article class="story" id="fast-jev-compaction">
-          <span class="when">2026-09-20</span>
-          <h4><a href="https://github.com/tamaratran/fast-jev-compaction">fast-jev-compaction cuts a Claude Code session from 1M tokens to 86K by asking which tool calls still matter</a></h4>
-          <p>Tamara Tran&rsquo;s plugin replaces summarisation-based context compaction with a decision: user and assistant text is kept verbatim, and <a href="model-releases.html">Jev</a> is asked, per old tool call, whether it still matters, with the rest dropped or truncated. Reported reductions reach <strong>up to 90%</strong> &mdash; one Claude Code session going from <strong>1M tokens to 86K in about a second</strong> &mdash; and if Jev errors, has no API key or cannot shrink the context enough, the plugin falls back to Claude Code&rsquo;s built-in summary.</p>
-          <p>The premise inverts what a summariser assumes, because in an agent transcript the compressible mass is tool output and the conversation is not, which changes the failure mode as well as the cost: a summariser degrades everything slightly, a judge occasionally discards the one tool result the next step needed. The reported figures are the plugin author&rsquo;s own, with no task-success comparison against the built-in path, and the classification runs at Jev prices, so the compaction pass stops being a cost worth deferring.</p>
-          <div class="sources"><a href="https://github.com/tamaratran/fast-jev-compaction">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 20), The Code (Sep 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="fast-jev-compaction">
+            <span class="when">2026-09-20</span>
+            <h4><a href="https://github.com/tamaratran/fast-jev-compaction">fast-jev-compaction cuts a Claude Code session from 1M tokens to 86K by asking which tool calls still matter</a></h4>
+            <p>Tamara Tran&rsquo;s plugin replaces summarisation-based context compaction with a decision: user and assistant text is kept verbatim, and <a href="model-releases.html">Jev</a> is asked, per old tool call, whether it still matters, with the rest dropped or truncated. Reported reductions reach <strong>up to 90%</strong> &mdash; one Claude Code session going from <strong>1M tokens to 86K in about a second</strong> &mdash; and if Jev errors, has no API key or cannot shrink the context enough, the plugin falls back to Claude Code&rsquo;s built-in summary.</p>
+            <p>The premise inverts what a summariser assumes, because in an agent transcript the compressible mass is tool output and the conversation is not, which changes the failure mode as well as the cost: a summariser degrades everything slightly, a judge occasionally discards the one tool result the next step needed. The reported figures are the plugin author&rsquo;s own, with no task-success comparison against the built-in path, and the classification runs at Jev prices, so the compaction pass stops being a cost worth deferring.</p>
+            <div class="sources"><a href="https://github.com/tamaratran/fast-jev-compaction">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 20), The Code (Sep 18)</span></div>
+          </article>
 
           <article class="story" id="shunt">
             <span class="when">2026-09-08</span>
@@ -364,6 +380,21 @@
         <h3>Agent-native tooling</h3>
         <p class="lead">Developer tools shipped with agents as the primary reader, not only humans: a skill file instead of a README, a structured handle instead of a screenshot, a deterministic artifact instead of a reconstruction. Judge entries on whether the agent operates the real target, and on what limit the author publishes alongside the demo.</p>
 
+        <article class="story" id="openai-cli">
+          <span class="when">2026-10-22</span>
+          <h4><a href="https://github.com/openai/openai-cli">OpenAI publishes an official CLI for its API</a></h4>
+          <p>OpenAI&rsquo;s <strong>openai-cli</strong> repository is the official command-line client for the OpenAI API, published on GitHub; the issue carries no command list, version or licence, so the entry records only that the surface exists and where. It lands the same day Anthropic&rsquo;s new CLI shipped against the <a href="#claude-api-version-2026-10-21">versioned Claude API</a>: the agent-native shape this section tracks, a terminal command the agent can call in place of a console.</p>
+          <div class="sources"><a href="https://github.com/openai/openai-cli">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
+        </article>
+
+        <article class="story" id="claude-api-version-2026-10-21">
+          <span class="when">2026-10-21</span>
+          <h4><a href="https://threadreaderapp.com/thread/2113013247209021918.html">Claude API version 2026-10-21: the first versioned release since 2023, with new major SDKs and a CLI that default to it</a></h4>
+          <p>Anthropic shipped API version <strong>2026-10-21</strong>, the first official version release since <strong>2023-06-10</strong>, and says versions will now come more often so developers can take breaking changes before a new model requires them. The 2023 version is not deprecated; new major versions of the Anthropic SDKs and the CLI are out the same day, default to the new API, and ship with a migration guide.</p>
+          <p>The headline links to a thread-reader copy of the announcement, the only public page the item carried. For this section the point is the CLI defaulting to a dated contract: an agent calling the API gets a surface that will not move under it until it opts in.</p>
+          <div class="sources"><a href="https://threadreaderapp.com/thread/2113013247209021918.html">Announcement thread (ThreadReader copy)</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
+        </article>
+
         <article class="story" id="rea-reverse-engineer-anything">
           <span class="when">2026-10-09</span>
           <h4><a href="https://github.com/morluto/rea">REA gives coding agents reverse-engineering tools for apps, binaries, APKs and firmware, and has them cite the evidence</a></h4>
@@ -372,22 +403,22 @@
           <div class="sources"><a href="https://github.com/morluto/rea">GitHub</a> &middot; <span class="via">via The Code (Oct 9), The Code (Oct 12)</span></div>
         </article>
 
-        <article class="story" id="framefields">
-          <span class="when">2026-10-06</span>
-          <h4><a href="https://github.com/gatewai-dev/framefields">Framefields lets a coding agent composite, animate and render video to MP4 from TypeScript</a></h4>
-          <p><strong>Framefields</strong> is an npm package written for coding agents: the agent writes a TypeScript composition covering Photoshop-style compositing, After Effects-style keyframed motion and typography, and Blender-style 3D scenes and cameras, checks individual frames, then renders an MP4. Rendering runs directly on the GPU in Node.js and in WebGPU browsers, and the frame check is what lets the agent inspect its own output rather than reconstruct it.</p>
-          <div class="sources"><a href="https://github.com/gatewai-dev/framefields">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 6)</span></div>
-        </article>
-
-        <article class="story" id="e2e-testing-framework">
-          <span class="when">2026-10-05</span>
-          <h4><a href="https://tester.army/e2e">e2e is an open-source AI testing framework that replays an agent&rsquo;s recorded actions instead of calling the model again</a></h4>
-          <p><strong>e2e</strong> is an open-source, model-agnostic testing framework for web and mobile apps whose testing agent remembers the actions it took and replays them where it can without another model call, so a passing suite stops costing reasoning tokens on every run. The saving depends on how often the UI changes enough to invalidate a replay, and the project publishes no hit rate.</p>
-          <div class="sources"><a href="https://tester.army/e2e">tester.army</a> &middot; <span class="via">via TLDR (Oct 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (30)</summary>
+          <summary>Earlier in this section (32)</summary>
+
+          <article class="story" id="framefields">
+            <span class="when">2026-10-06</span>
+            <h4><a href="https://github.com/gatewai-dev/framefields">Framefields lets a coding agent composite, animate and render video to MP4 from TypeScript</a></h4>
+            <p><strong>Framefields</strong> is an npm package written for coding agents: the agent writes a TypeScript composition covering Photoshop-style compositing, After Effects-style keyframed motion and typography, and Blender-style 3D scenes and cameras, checks individual frames, then renders an MP4. Rendering runs directly on the GPU in Node.js and in WebGPU browsers, and the frame check is what lets the agent inspect its own output rather than reconstruct it.</p>
+            <div class="sources"><a href="https://github.com/gatewai-dev/framefields">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 6)</span></div>
+          </article>
+
+          <article class="story" id="e2e-testing-framework">
+            <span class="when">2026-10-05</span>
+            <h4><a href="https://tester.army/e2e">e2e is an open-source AI testing framework that replays an agent&rsquo;s recorded actions instead of calling the model again</a></h4>
+            <p><strong>e2e</strong> is an open-source, model-agnostic testing framework for web and mobile apps whose testing agent remembers the actions it took and replays them where it can without another model call, so a passing suite stops costing reasoning tokens on every run. The saving depends on how often the UI changes enough to invalidate a replay, and the project publishes no hit rate.</p>
+            <div class="sources"><a href="https://tester.army/e2e">tester.army</a> &middot; <span class="via">via TLDR (Oct 5)</span></div>
+          </article>
 
           <article class="story" id="cloudflare-cf-cli">
             <span class="when">2026-09-29</span>
@@ -669,8 +700,8 @@
             <h4><a href="https://github.com/anthropics/claude-code/issues/91870">Claude Mods: a TypeScript plugin layer for Claude Code, with org-wide capability disabling</a></h4>
             <p>Anthropic began rolling out Claude Mods, a plugin system that lets developers change how Claude Code looks and behaves through plain TypeScript functions rather than configuration files, available behind an environment flag. The examples are deliberately small &mdash; hiding sensitive values during a screen share, tracking token usage in the interface, running a game above the prompt &mdash; but the administrative half is the substantial one: an admin can disable risky capabilities across an entire organisation.</p>
             <p>That is an enforcement point older extension mechanisms could not reliably provide, because a per-user config is advisory by construction and anyone who can edit it can edit it back. It is the second extensibility surface here to move from what can be added to what can be centrally removed, and the first to do it inside a single vendor&rsquo;s own harness; read against <a href="#geiger-scan">geiger-scan</a>, the two are the audit and the control for one problem.</p>
-            <p>By Oct 2 mods had shipped beyond the flag, with an <a href="https://claude.dev/blog/getting-started-with-claude-code-mods/">official guide</a> to having Claude write them; a mod can replace a built-in command such as <code>/diff</code>, and mods are not sandboxed, so only trusted sources belong in one.</p>
-            <div class="sources"><a href="https://github.com/anthropics/claude-code/issues/91870">claude-code#91870</a> &middot; <a href="https://claude.dev/blog/getting-started-with-claude-code-mods/">Claude</a> &middot; <span class="via">via The Code (Sep 15), The Code (Oct 2)</span></div>
+            <p>By Oct 2 mods had shipped beyond the flag, with an <a href="https://claude.dev/blog/getting-started-with-claude-code-mods/">official guide</a> to having Claude write them; a mod can replace a built-in command such as <code>/diff</code>, and mods are not sandboxed, so only trusted sources belong in one. Latent Space&rsquo;s Oct 22 analysis reads mods as the harness flipped to face the human, an attention interface the user programs, with Claude able to write its own.</p>
+            <div class="sources"><a href="https://github.com/anthropics/claude-code/issues/91870">claude-code#91870</a> &middot; <a href="https://claude.dev/blog/getting-started-with-claude-code-mods/">Claude</a> &middot; <a href="https://www.latent.space/p/claude-mods">Latent Space (analysis)</a> &middot; <span class="via">via The Code (Sep 15), The Code (Oct 2), TLDR AI (Oct 22)</span></div>
           </article>
 
           <article class="story" id="cloud-developer-plugin">
@@ -1194,6 +1225,13 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and no defect rate for the fast path is recorded here.</p>
 
+        <article class="story" id="sphinx-git-hook">
+          <span class="when">2026-10-22</span>
+          <h4><a href="https://github.com/parthh01/sphinx">Sphinx: a git hook that quizzes the developer on agent-written changes before a protected-branch push</a></h4>
+          <p><strong>Sphinx</strong> is a pre-push hook that uses an independent reviewer model to quiz the developer on the committed changes, their expected behaviour and their failure scenarios before a push to a protected branch goes through, and requires correct answers as evidence the code is understood. It is this section&rsquo;s auditing question turned on the human: proof that someone can explain the diff rather than a review of it, with no study yet of how often the quiz catches anything.</p>
+          <div class="sources"><a href="https://github.com/parthh01/sphinx">GitHub</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
+        </article>
+
         <article class="story" id="battle-drones">
           <span class="when">2026-10-20</span>
           <h4><a href="https://simonwillison.net/2026/Oct/20/battledrones/">Simon Willison&rsquo;s Battle Drones: an RTS built in 321 agent commits, playtested rather than reviewed, balanced by 1,200 simulated matches</a></h4>
@@ -1210,23 +1248,24 @@
           <div class="sources"><a href="https://claude.dev/blog/solving-code-review-at-anthropic/">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 19), The Code (Oct 19), Simon Willison (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="claude-code-review-team-enterprise">
-          <span class="when">2026-10-16</span>
-          <h4><a href="https://support.claude.com/en/articles/17603594-free-code-review-promotional-credits-for-claude-enterprise">Anthropic&rsquo;s Code Review comes to Team and Enterprise plans, with most reviews cut to 6&ndash;10 minutes from about 20</a></h4>
-          <p>Anthropic extended <strong>Code Review</strong> to Claude Team and Enterprise plans and says most reviews now finish in <strong>6 to 10 minutes</strong> instead of about 20, with eligible Enterprise organisations able to claim up to <strong>$50,000</strong> in promotional credits. The Claude Code desktop app also now splits parallel tasks into nested sessions, with a sidebar flagging which ones need input.</p>
-          <p>The speed figure is Anthropic&rsquo;s, and the only public page the item carried is the credits article, linked here; the reviewer&rsquo;s coverage and error-rate numbers remain those Addy Osmani gave in <a href="#code-nobody-reads">the Oct 7 essay</a>.</p>
-          <div class="sources"><a href="https://support.claude.com/en/articles/17603594-free-code-review-promotional-credits-for-claude-enterprise">Anthropic support</a> (promotional-credits page) &middot; <a href="https://code.claude.com/docs/en/code-review">Code review docs</a> &middot; <span class="via">via The Code (Oct 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (28)</summary>
+          <summary>Earlier in this section (29)</summary>
+
+          <article class="story" id="claude-code-review-team-enterprise">
+            <span class="when">2026-10-16</span>
+            <h4><a href="https://support.claude.com/en/articles/17603594-free-code-review-promotional-credits-for-claude-enterprise">Anthropic&rsquo;s Code Review comes to Team and Enterprise plans, with most reviews cut to 6&ndash;10 minutes from about 20</a></h4>
+            <p>Anthropic extended <strong>Code Review</strong> to Claude Team and Enterprise plans and says most reviews now finish in <strong>6 to 10 minutes</strong> instead of about 20, with eligible Enterprise organisations able to claim up to <strong>$50,000</strong> in promotional credits. The Claude Code desktop app also now splits parallel tasks into nested sessions, with a sidebar flagging which ones need input.</p>
+            <p>The speed figure is Anthropic&rsquo;s, and the only public page the item carried is the credits article, linked here; the reviewer&rsquo;s coverage and error-rate numbers remain those Addy Osmani gave in <a href="#code-nobody-reads">the Oct 7 essay</a>.</p>
+            <div class="sources"><a href="https://support.claude.com/en/articles/17603594-free-code-review-promotional-credits-for-claude-enterprise">Anthropic support</a> (promotional-credits page) &middot; <a href="https://code.claude.com/docs/en/code-review">Code review docs</a> &middot; <span class="via">via The Code (Oct 16)</span></div>
+          </article>
 
           <article class="story" id="github-git-infra-agent-scale">
             <span class="when">2026-10-16</span>
             <h4><a href="https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/">GitHub rebuilds its Git storage for agent volume: 7.38 billion commits in September, five times a year earlier, and up to 35&times; write throughput</a></h4>
             <p>GitHub reports <strong>7.38 billion commits</strong> in September, more than five times the year before, with pushes up <strong>4.9&times;</strong> and Actions runs more than quadrupled, as agents commit after nearly every step. Reads are cheap because caches absorb them; writes are the hard part, since each update has to be stored and made visible before the next agent builds on it, so merges pile up on the main branch.</p>
             <p>GitHub is keeping Git and separating storage from compute: Azure Blob Storage holds the data, caching workers serve reads, and only the branch update needs coordination, for up to <strong>35&times;</strong> higher write throughput in internal benchmarks. It is the other answer to the problem Anthropic solved by replacing Git with <a href="#anthropic-scion">Scion</a>; teams running agents in tight loops are told to watch push latency and merge queues.</p>
-            <div class="sources"><a href="https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/">GitHub</a> &middot; <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue">Merge queue docs</a> &middot; <span class="via">via The Code (Oct 16)</span></div>
+            <p><em>Updated Oct 22:</em> a second GitHub post says almost all repositories moved to Azure during the year Git traffic grew exponentially, that per-reference quorums will bring over the rest, and that object storage lets reads scale independently of writes; still no latency figure for the agent loops it is built for.</p>
+            <div class="sources"><a href="https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/">GitHub</a> &middot; <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue">Merge queue docs</a> &middot; <a href="https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/">GitHub (bridge post)</a> &middot; <span class="via">via The Code (Oct 16), TLDR (Oct 22)</span></div>
           </article>
 
           <article class="story" id="glass-town">
@@ -1509,7 +1548,12 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-22</span><span class="label"><a href="#openai-cli">OpenAI publishes an official CLI for its API</a></span></li>
+        <li><span class="date">2026-10-22</span><span class="label"><a href="#colgrep-agent">ColGrep-Agent delegates code search to a local 2B model and cuts Claude Code&rsquo;s API tokens by 34% over 52 questions</a></span></li>
+        <li><span class="date">2026-10-22</span><span class="label"><a href="#sphinx-git-hook">Sphinx: a git hook that quizzes the developer on agent-written changes before a protected-branch push</a></span></li>
+        <li><span class="date">2026-10-22</span><span class="label"><a href="#james-ward-mcp-tool-design">James Ward on MCP tool design: 100 records should not be 100 calls, and a DSL over 16,000 AWS APIs beats generated Python</a></span></li>
         <li><span class="date">2026-10-21</span><span class="label"><a href="#uber-minion-devpods">Uber&rsquo;s Minion ships about 15% of production PRs on dev-platform plumbing the company started building in 2017</a></span></li>
+        <li><span class="date">2026-10-21</span><span class="label"><a href="#claude-api-version-2026-10-21">Claude API version 2026-10-21: the first versioned release since 2023, with new major SDKs and a CLI that default to it</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#battle-drones">Simon Willison&rsquo;s Battle Drones: an RTS built in 321 agent commits, playtested rather than reviewed, balanced by 1,200 simulated matches</a></span></li>
         <li><span class="date">2026-10-19</span><span class="label"><a href="#anthropic-code-review-process">The Claude Code team automates most review stages and tiers human approval by risk</a></span></li>
         <li><span class="date">2026-10-16</span><span class="label"><a href="#github-git-infra-agent-scale">GitHub rebuilds its Git storage for agent volume: 7.38 billion commits in September, five times a year earlier, and up to 35&times; write throughput</a></span></li>

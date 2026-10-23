@@ -30,18 +30,19 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-10-22</div>
+      <div class="meta">Last updated: 2026-10-23</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 22 cycle was a coding model sized for a laptop and two decision models claiming the top of both indexes. Recursive&rsquo;s <a href="#recursive-flint">Flint</a> is a 40B mixture-of-experts with 2.5B active, built in under four months with agents writing most of it by the company&rsquo;s account, at 74.2% on SWE-Bench Verified and more than 125 tokens a second on an M4 Pro MacBook Pro, with weights on Hugging Face and the licence not in the issues: the narrow open release the open-weights section names, every figure Recursive&rsquo;s. Base Labs&rsquo; <a href="#mammoth-1-elephant-1">Mammoth-1 and Elephant-1</a> are reported to top the Jev Decision Index and the Artificial Analysis Decision Index with no score given, a week after d1-ultra took the second at 65.</p>
         <p>The Oct 21 cycle was voice, from two directions. Mistral&rsquo;s <a href="#voxtral-3">Voxtral 3</a> ships three transcribers, a TTS model and a LiveKit agent SDK in public preview, 4.1% WER on FLEURS 45 for Small by Mistral&rsquo;s count against 16.0% for Whisper large-v3 and transcription at $0.0035 a minute, with the stack runnable on a customer&rsquo;s own servers. ElevenLabs&rsquo; <a href="#eleven-realtime">Eleven Realtime</a> is a speech-to-speech pair, Mini and Max, that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name, with no latency or price in the summary. Both land on the speech section&rsquo;s judging axes, price and migration cost rather than accuracy. Below them, SparkLLM&rsquo;s <a href="#spark-x2-6-4b">Spark-X2.6-4B</a> is a 4B open model post-trained for on-device agents, with no benchmark in the issue; Mercury 3 was carried once more with nothing new.</p>
         <p>The Oct 20&ndash;21 cycle added outside prices and comparators to four models already here, with no new release. Simon Willison&rsquo;s reading of Artificial Analysis puts <a href="#muse-wonder">Muse Wonder</a> at its Max level even with GPT-6.1 Sol, and <a href="#gemini-4-argon">Gemini 4 Argon</a>&rsquo;s benchmark-run cost at $2,407, close to GLM-5.3 and well under OpenAI&rsquo;s, Anthropic&rsquo;s and Meta&rsquo;s newest, with Argon&rsquo;s $2/$10 doubling on December 1. MiniMax&rsquo;s own framing of <a href="#minimax-m3-1-flash">M3.1 Flash</a> is online inference nearly three times faster and 70% cheaper than its predecessor, with weights still to come, and Inception now names <a href="#mercury-3">Mercury 3</a>&rsquo;s comparators, GPT-6 Luna and Claude Haiku 5.5 on agentic coding at 1,068 tokens a second, while conceding Haiku still wins on longer coding tasks. Clairic was carried by three more newsletters with nothing new. Hamel Husain&rsquo;s judge comparison of six decision models, Jev to OpenAI Decisions, is on <a href="evals-and-benchmarks.html#decision-models-for-evals">Evals &amp; benchmarks</a>.</p>
         <p>The Oct 19 cycle was price and shape rather than scale. MiniMax&rsquo;s <a href="#minimax-m3-1-flash">M3.1 Flash</a> puts a 428B MoE with about 23B active and a 1M context at a flat $0.15/$0.60 per million tokens, with 62.2 on Automation-Bench to Opus 5&rsquo;s 50.3 and a weak Terminal-Bench 4.0 row, all MiniMax&rsquo;s. Three entries joined the alternative-decoding section and none is an autoregressive chat model: Inception&rsquo;s <a href="#mercury-3">Mercury 3</a> diffusion LLM claims 1,000+ tokens a second and a 1M context at $0.10 per million input, Nace&rsquo;s <a href="#drex-max">Drex Max</a> scores a probability per option over screenshots at 67.59 on Decision Index to Jev 1.14&rsquo;s 60.7, and Cloudflare&rsquo;s <a href="#cloudflare-clairic">Clairic</a> extracts typed values with confidence and source pointers, 3.2&times; faster and 49% cheaper on Cloudflare&rsquo;s own claims test. Mistral&rsquo;s <a href="#timestral">Timestral</a> gives the time-series section a second entry, four CPU-sized models edging TimesFM-3 on GIFT-Eval by 0.009 MASE. And <a href="#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a>&rsquo;s card explains its price: an 890-byte-per-token KV cache, about an eighth of V4-Flash&rsquo;s, at $0.30 per million input.</p>
         <p>The Oct 16&ndash;18 cycle was open weights at every scale. Meta&rsquo;s <a href="#muse-spark-open">Muse Spark Open</a> puts 816B parameters with 42B active and a 1M context on Hugging Face, leads MCP-Atlas on Meta&rsquo;s table at 89.2 but trails Kimi K3, GLM 5.3 and Qwen3.8 on Terminal-Bench 2.1 at 76.4 and scores 39 on Artificial Analysis to GLM 5.3&rsquo;s 45, so &ldquo;most capable US open model&rdquo; is exact only with the geography kept. NVIDIA&rsquo;s <a href="#nemotron-3-5-super-vl">Nemotron 3.5 Super VL</a> is 120B with 12B active and an NVFP4 build for one DGX Spark, at 89.9 on GPQA Diamond and 71.07 on SWE-bench Verified; Reflection&rsquo;s <a href="#reflection-beam">Beam</a> weights shipped under Apache 2.0 with an 80.1% Terminal-Bench 2.1 claim; and DeepSeek&rsquo;s <a href="#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a> moves DeepSWE from 74.2 to 77.0 by post-training alone. The decision-model field gained a new leader and a new size class: Liquid&rsquo;s hosted <a href="#liquid-d1-ultra">d1-ultra</a> scores 65 on the Artificial Analysis Decision Index to Jev 1.13&rsquo;s 58 at Jev&rsquo;s $0.042, and Shanghai AI Lab&rsquo;s <a href="#intern-decision">Intern-Decision</a> 4B claims 90.02% to Jev&rsquo;s 88.74% at 44 ms on one RTX 4090. Below those, <a href="#krea-3">Krea 3</a> prices an edit at $0.06 in under eight seconds, Black Forest Labs&rsquo; <a href="#flux-3-image-klein">FLUX 3 Image Klein</a> is a 5.6B open image model with native 4K, <a href="#gpt-live-1-1">GPT-Live-1.1</a> adds 13 voices in six languages, and <a href="#claude-opus-5-5">Opus 5.5</a> gained a fast mode at $8/$40 for up to 2.5&times; the output speed.</p>
-        <p>The Oct 16 cycle added a voice leader, a new Jev and outside numbers for three models already here. SpaceXAI&rsquo;s <a href="#grok-voice-3">Grok Voice 3.0</a> tops Artificial Analysis&rsquo;s speech-to-speech index at 86.9 against GPT-Live-1&rsquo;s 83.2, at Voice 2.0&rsquo;s $0.08 a minute and with no open weights. TypeSafe&rsquo;s <a href="#jev-1-14">Jev 1.14</a> takes the decision model past text with image input, a bounding-box type and an opt-in 262K context, all experimental and all measured only by TypeSafe, and inclusionAI&rsquo;s <a href="#ling-3-1-flash">Ling-3.1-flash</a> is a 560B MoE with 25B active and a 1M context, published without a benchmark. The Batch supplied the outside readings: <a href="#claude-sonnet-5-5">Sonnet 5.5</a> at max effort leads Artificial Analysis&rsquo;s Coding Agent Index and is second on the Vals Index but spends about 193,000 output tokens a task, the most measured; <a href="#claude-haiku-5-5">Haiku 5.5</a> is the fastest model Artificial Analysis has clocked, at 237 tokens a second, yet averages 337 seconds to its first answer token; and <a href="#mistral-large-4">Mistral Large 4</a> posts the best public CyberGym-E2E-AA score, 82%, with The Batch giving 52B active parameters against the 49B Mistral launched with. The through-line is that the effort setting, not the model name, now decides what a task costs.</p>
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 16 cycle added a voice leader, a new Jev and outside numbers for three models already here. SpaceXAI&rsquo;s <a href="#grok-voice-3">Grok Voice 3.0</a> tops Artificial Analysis&rsquo;s speech-to-speech index at 86.9 against GPT-Live-1&rsquo;s 83.2, at Voice 2.0&rsquo;s $0.08 a minute and with no open weights. TypeSafe&rsquo;s <a href="#jev-1-14">Jev 1.14</a> takes the decision model past text with image input, a bounding-box type and an opt-in 262K context, all experimental and all measured only by TypeSafe, and inclusionAI&rsquo;s <a href="#ling-3-1-flash">Ling-3.1-flash</a> is a 560B MoE with 25B active and a 1M context, published without a benchmark. The Batch supplied the outside readings: <a href="#claude-sonnet-5-5">Sonnet 5.5</a> at max effort leads Artificial Analysis&rsquo;s Coding Agent Index and is second on the Vals Index but spends about 193,000 output tokens a task, the most measured; <a href="#claude-haiku-5-5">Haiku 5.5</a> is the fastest model Artificial Analysis has clocked, at 237 tokens a second, yet averages 337 seconds to its first answer token; and <a href="#mistral-large-4">Mistral Large 4</a> posts the best public CyberGym-E2E-AA score, 82%, with The Batch giving 52B active parameters against the 49B Mistral launched with. The through-line is that the effort setting, not the model name, now decides what a task costs.</p>
           <p>The Oct 15 cycle opened Gemini 4 Argon to everyone and gave Muse Wonder its numbers. <a href="#gemini-4-argon">Argon</a> left the Fairwind program for general availability across the Gemini API, AI Studio, Antigravity and Google Cloud at $2/$10 per million tokens until November 30, then $4/$20 &mdash; Opus 5.5&rsquo;s price &mdash; and still trails Opus 5.5 on Terminal-Bench 4.0, 57.4% to 66.4%. <a href="#muse-wonder">Muse Wonder</a>&rsquo;s figures arrived a day after launch: $4/$20 for the API model and 79.0 on DeepSWE 1.1 for the subscription-only Wonder Full against Opus 5.5&rsquo;s 74.2, with Wonder kept closed. <a href="#gpt-6-1-sol">GPT-6.1 Sol</a> now defaults to a 500K context. Two open releases meet the page&rsquo;s active-parameter test: Liquid&rsquo;s <a href="#lfm2-5-24b-a2b">LFM2.5-24B-A2B</a>, 2B active, triples Qwen3.6-35B-A3B on AutomationBench but trails it by 15 points on SWE-bench Verified, and Fish Audio&rsquo;s 35B <a href="#drama-3">Drama 3</a> ships open text-to-speech weights in 83 languages with no latency or licence published.</p>
           <p>The Oct 14 cycle brought Meta into the frontier section and two more entrants into the decision-model field. <a href="#muse-wonder">Muse Wonder and Wonder Full</a> are Meta&rsquo;s first frontier-class models, built around Active Memory and Active Focus for long-running agents; Meta claims Wonder Full beats Opus 5.5 on long-horizon coding, but Wonder Full is subscription-only inside Muse Code and early testers find the API model noticeably weaker, so the claim attaches to the version developers cannot call. In decision models, vLLM Semantic Router&rsquo;s <a href="#vllm-sr-decision-3">Decision 3.0</a> ships five Apache-2.0 sizes from 0.8B to 27B with image input and a self-run 64.1 on Decision Index 0.3.1, and Subquadratic&rsquo;s <a href="#subq-snap">SubQ Snap</a> argues on context rather than price, 384K tokens at $0.05 per million input. TII&rsquo;s <a href="#falcon-asr">Falcon-ASR</a> adds a 1.6B Emirati-first transcriber at 20.92% average Arabic WER, with three of its five languages unscored.</p>
           <p>The Oct 13 cycle added an outside reading rather than a release. <a href="#mistral-large-4">Mistral Large 4</a> got its first independent number &mdash; 38 on Artificial Analysis&rsquo;s index, just behind the 552B DeepSeek 4.1 Flash and up from Mistral Large 3&rsquo;s 9 &mdash; and turns out to expose only two reasoning levels through the API, none and high. Its weights are still promised for the end of October, so the reproducibility gap Mistral itself admitted stands.</p>
@@ -101,10 +102,10 @@
         <ul>
           <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">25</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">18</span></a></li>
-          <li><a href="#open-weights-releases">Open-weights releases <span class="n">15</span></a></li>
+          <li><a href="#open-weights-releases">Open-weights releases <span class="n">16</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">6</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">19</span></a></li>
-          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">27</span></a></li>
+          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">28</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
           <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">31</span></a></li>
@@ -483,6 +484,14 @@
         <h3>Open-weights releases</h3>
         <p class="lead">Open releases now split three ways: general-purpose bases, narrow models built for one job, and fully open recipes that publish data mixtures and training code as well as a checkpoint. The licence is the part that decides what you can actually do with them, and it is often narrower than the announcement.</p>
 
+        <article class="story" id="recursive-flint">
+          <span class="when">2026-10-22</span>
+          <h4><a href="https://recursive.com/updates/introducing-recursive-flint">Recursive Flint: a 40B/2.5B-active coding MoE for local hardware, 74.2% on SWE-Bench Verified, over 125 tokens a second on an M4 Pro</a></h4>
+          <p>Recursive&rsquo;s <strong>Flint</strong> is a mixture-of-experts model for agentic coding on local hardware, <strong>40 billion total parameters with 2.5 billion active</strong> per token, built in under four months by a small team of people and agents that Recursive says produced nearly every part of the model. It scores <strong>74.2% on SWE-Bench Verified</strong>, which the company says beats every model under 50B, and generates more than <strong>125 tokens a second on an M4 Pro MacBook Pro</strong> and more than 150 on a 64GB NVIDIA RTX Spark at short contexts; weights are on Hugging Face.</p>
+          <p>It is the narrow open release this section&rsquo;s lead names, a model built for one job and sized to run without an API bill, and every figure is Recursive&rsquo;s own; the licence and throughput at long contexts are not in the issues.</p>
+          <div class="sources"><a href="https://recursive.com/updates/introducing-recursive-flint">Recursive</a> &middot; <a href="https://huggingface.co/RecursiveSI">Hugging Face (weights)</a> &middot; <span class="via">via TLDR AI (Oct 22), The Code (Oct 22)</span></div>
+        </article>
+
         <article class="story" id="mellum2-1">
           <span class="when">2026-10-08</span>
           <h4><a href="https://blog.jetbrains.com/ai/2026/10/mellum2-1-gets-to-work-a-fast-open-model-for-coding-agents/">JetBrains&rsquo; Mellum2.1, a 12B MoE with 2.5B active, goes from 2.0 to 47.0 on SWE-bench Verified through RL alone</a></h4>
@@ -499,16 +508,16 @@
           <div class="sources"><a href="https://huggingface.co/nvidia/Kumo-Tabular">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/09/30/nvidia-releases-kumo-tabular/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 2)</span></div>
         </article>
 
-        <article class="story" id="thinkingcap-qwen3-8-27b">
-          <span class="when">2026-09-24</span>
-          <h4><a href="https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.8-27B">ThinkingCap-Qwen3.8-27B cuts thinking tokens 37.2% for 0.86 points of accuracy</a></h4>
-          <p>BottleCap AI released <strong>ThinkingCap-Qwen3.8-27B</strong>, a drop-in replacement for Qwen3.8-27B on vLLM or SGLang with FP8, NVFP4, GGUF and MLX builds. Across 12 benchmarks at xhigh effort, macro accuracy moves from 86.65% to 85.79% while the thinking-token cut ranges from 10.7% to 65.5%; long-context AA-LCR rises 2.25 points and AIME 2026 falls 3.85.</p>
-          <p>The weights are gated and ship under the PolyForm Small Business licence.</p>
-          <div class="sources"><a href="https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.8-27B">Hugging Face</a> &middot; <a href="https://bottlecapai.com/post/thinkingcap-qwen3-8-27b/">BottleCap AI</a> &middot; <span class="via">via MarkTechPost (Sep 25)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="thinkingcap-qwen3-8-27b">
+            <span class="when">2026-09-24</span>
+            <h4><a href="https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.8-27B">ThinkingCap-Qwen3.8-27B cuts thinking tokens 37.2% for 0.86 points of accuracy</a></h4>
+            <p>BottleCap AI released <strong>ThinkingCap-Qwen3.8-27B</strong>, a drop-in replacement for Qwen3.8-27B on vLLM or SGLang with FP8, NVFP4, GGUF and MLX builds. Across 12 benchmarks at xhigh effort, macro accuracy moves from 86.65% to 85.79% while the thinking-token cut ranges from 10.7% to 65.5%; long-context AA-LCR rises 2.25 points and AIME 2026 falls 3.85.</p>
+            <p>The weights are gated and ship under the PolyForm Small Business licence.</p>
+            <div class="sources"><a href="https://huggingface.co/bottlecapai/ThinkingCap-Qwen3.8-27B">Hugging Face</a> &middot; <a href="https://bottlecapai.com/post/thinkingcap-qwen3-8-27b/">BottleCap AI</a> &middot; <span class="via">via MarkTechPost (Sep 25)</span></div>
+          </article>
 
           <article class="story" id="mimo-v2-6">
             <span class="when">2026-09-22</span>
@@ -820,6 +829,13 @@
         <h3>Alternative decoding architectures</h3>
         <p class="lead">A research line attacking the autoregressive decode bottleneck from two directions: parallelising within one token stream, and removing the stream entirely. Both buy latency and price rather than capability, so the question for every entry here is what the speed costs in quality, and whether anyone outside the vendor has measured it.</p>
 
+        <article class="story" id="mammoth-1-elephant-1">
+          <span class="when">2026-10-22</span>
+          <h4><a href="https://labs.baseten.co/articles/mammoth-1-and-elephant-1-frontier-decision-models">Mammoth-1 and Elephant-1: Base Labs&rsquo; decision models are reported to top the Jev Decision Index and the Artificial Analysis Decision Index</a></h4>
+          <p>Base Labs released <strong>Mammoth-1 and Elephant-1</strong>, decision models it reports at the top of both the Jev Decision Index and the Artificial Analysis Decision Index. The summary carries no score, size or price, so the ranking is the claim to check against the index pages: Liquid&rsquo;s <a href="#liquid-d1-ultra">d1-ultra</a> held the Artificial Analysis lead at 65 a week ago, and <a href="#jev-1-14">Jev 1.14</a> is the incumbent the first index is named for.</p>
+          <div class="sources"><a href="https://labs.baseten.co/articles/mammoth-1-and-elephant-1-frontier-decision-models">Base Labs</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
+        </article>
+
         <article class="story" id="cloudflare-clairic">
           <span class="when">2026-10-19</span>
           <h4><a href="https://blog.cloudflare.com/clairic-extraction-model">Cloudflare&rsquo;s Clairic pulls typed values out of documents without generating tokens, 3.2&times; faster and 49% cheaper on a claims test</a></h4>
@@ -836,17 +852,17 @@
           <div class="sources"><a href="https://www.nace.ai/drex">Nace AI</a> &middot; <a href="https://www.marktechpost.com/2026/10/19/nace-ai-drex-max-multimodal-decision-model/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 19)</span></div>
         </article>
 
-        <article class="story" id="mercury-3">
-          <span class="when">2026-10-19</span>
-          <h4><a href="https://www.inceptionlabs.ai/blog/introducing-mercury-3">Inception&rsquo;s Mercury 3 diffusion LLM claims 1,000+ tokens a second with a 1M context at $0.10 per million input</a></h4>
-          <p>Inception released <strong>Mercury 3</strong>, which it calls its most intelligent diffusion LLM: <strong>40&times; larger than Mercury 1</strong>, about 3&times; stronger on standard benchmarks by its own account, generating at <strong>1,000+ tokens a second</strong> on standard hardware, with a 1M-token context, tool support and launch pricing of $0.10 per million input tokens.</p>
-          <p>It reached this page as the most-discussed release on X over the weekend rather than through a published table; the multipliers are Inception&rsquo;s and the benchmark set is unnamed, so what is recorded is a speed and a price with the quality question this section asks still open.</p>
-          <p><em>Updated Oct 20:</em> the comparators arrived: Inception claims Mercury 3 beats <strong>GPT-6 Luna and Claude Haiku 5.5</strong> on agentic coding at <strong>1,068 tokens a second</strong>, while conceding that Haiku still wins on longer coding tasks; it is live on OpenRouter, Vercel and Baseten at the $0.10 launch price. The quality question narrows to a named pair and a stated loss, all still Inception&rsquo;s measurement.</p>
-          <div class="sources"><a href="https://www.inceptionlabs.ai/blog/introducing-mercury-3">Inception</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20), The Code (Oct 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (24)</summary>
+          <summary>Earlier in this section (25)</summary>
+
+          <article class="story" id="mercury-3">
+            <span class="when">2026-10-19</span>
+            <h4><a href="https://www.inceptionlabs.ai/blog/introducing-mercury-3">Inception&rsquo;s Mercury 3 diffusion LLM claims 1,000+ tokens a second with a 1M context at $0.10 per million input</a></h4>
+            <p>Inception released <strong>Mercury 3</strong>, which it calls its most intelligent diffusion LLM: <strong>40&times; larger than Mercury 1</strong>, about 3&times; stronger on standard benchmarks by its own account, generating at <strong>1,000+ tokens a second</strong> on standard hardware, with a 1M-token context, tool support and launch pricing of $0.10 per million input tokens.</p>
+            <p>It reached this page as the most-discussed release on X over the weekend rather than through a published table; the multipliers are Inception&rsquo;s and the benchmark set is unnamed, so what is recorded is a speed and a price with the quality question this section asks still open.</p>
+            <p><em>Updated Oct 20:</em> the comparators arrived: Inception claims Mercury 3 beats <strong>GPT-6 Luna and Claude Haiku 5.5</strong> on agentic coding at <strong>1,068 tokens a second</strong>, while conceding that Haiku still wins on longer coding tasks; it is live on OpenRouter, Vercel and Baseten at the $0.10 launch price. The quality question narrows to a named pair and a stated loss, all still Inception&rsquo;s measurement.</p>
+            <div class="sources"><a href="https://www.inceptionlabs.ai/blog/introducing-mercury-3">Inception</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20), The Code (Oct 20)</span></div>
+          </article>
 
           <article class="story" id="intern-decision">
             <span class="when">2026-10-18</span>
@@ -1580,6 +1596,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-22</span><span class="label"><a href="#recursive-flint">Recursive Flint: a 40B/2.5B-active coding MoE for local hardware, 74.2% on SWE-Bench Verified, over 125 tokens a second on an M4 Pro</a></span></li>
+        <li><span class="date">2026-10-22</span><span class="label"><a href="#mammoth-1-elephant-1">Mammoth-1 and Elephant-1: Base Labs&rsquo; decision models are reported to top the Jev and Artificial Analysis decision indexes</a></span></li>
         <li><span class="date">2026-10-21</span><span class="label"><a href="#eleven-realtime">Eleven Realtime is a speech-to-speech model pair that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name</a></span></li>
         <li><span class="date">2026-10-21</span><span class="label"><a href="#spark-x2-6-4b">Spark-X2.6-4B is a 4B open model post-trained for on-device agents</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#voxtral-3">Voxtral 3 ships three transcribers, a TTS model and a LiveKit agent SDK, with transcription at $0.0035 a minute</a></span></li>

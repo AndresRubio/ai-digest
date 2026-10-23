@@ -30,18 +30,19 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-10-22</div>
+      <div class="meta">Last updated: 2026-10-23</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 22 addition is the kernel layer under the formats. vLLM&rsquo;s <a href="#vllm-humming">Humming</a> is a general-purpose kernel library for quantized inference, one architecture across devices and quantization formats with execution parameters exposed for tuning, announced without a throughput figure in the summary; it goes in the quantization section as the thing the fewer-bits lever runs on, and the speedups are in the post rather than here.</p>
         <p>The Oct 21 cycle was the PyTorch Conference giving the serving stack away. Google and Meta&rsquo;s <a href="#torchtpu">TorchTPU</a> makes Cloud TPU a native PyTorch backend and replaces PyTorch/XLA, with the efficiency gap stated by the vendor: up to 52% MFU training Qwen 3 8B on Ironwood and a fine-tuning step cut from 11.49 s to 2.78 s, but only after tuning and <code>torch.compile</code>, since eager execution out of the box is slow. With <a href="#torchneuron">TorchNeuron</a> the same day, now carrying Deepgram&rsquo;s 60% more audio seconds per dollar, PyTorch gained two non-NVIDIA native backends in one conference. Google Cloud&rsquo;s <a href="#llm-d-1-0">llm-d 1.0</a> is the first stable release of a Kubernetes-native inference stack that pools vLLM or SGLang replicas and routes by cached prefix, with KV tiers from HBM to SSD and a disaggregated prefill-decode set, reported at 17,000 nodes and with no throughput number. And DeepSeek open-sourced <a href="#deepinfer">DeepInfer</a>, the engine behind its API, with the fleet figures attached, 155 trillion tokens a day per cluster and $38 per GPU-hour, and the cache, disaggregation and load-balancing layers that make the money kept back.</p>
         <p>The Oct 20 cycle was three operators describing their own bills and plants. Cloudflare cut the inference cost of its automated code review from <a href="#cloudflare-inference-bill-68">$2.43 to $0.77 a review</a>, 68%, mostly by checking what reached the provider on a session&rsquo;s first request and ordering messages so the cached prefix stayed stable across commits and repositories: the cache section&rsquo;s argument that the hit is something to verify, done by a caller rather than asserted by the provider. Meta published the design of <a href="#meta-prometheus-supercluster">Prometheus</a>, the gigawatt-scale supercluster under Muse, with closed-loop liquid cooling and a plan toward about one million GPUs, a target without a utilisation or cost figure. AWS&rsquo;s <a href="#torchneuron">TorchNeuron</a> puts a native PyTorch backend on Trainium in public beta under Apache 2.0, the accelerator-portability bet still owing its efficiency gap, and vLLM&rsquo;s <a href="#vllm-nixl-push-connector">push-based NIXL connector</a> gained AWS&rsquo;s own write-up, still with no number in the summary.</p>
         <p>The Oct 19 addition is the shape of what NVIDIA gave away. <a href="#nvidia-runai-open-source">Run:ai</a> turns out to be one Apache-2.0 monorepo of about 50 Go services, control plane, cluster services, installer, CLI and an MCP server, with four pieces usable on their own: KAI Scheduler, now a CNCF Sandbox project, does gang scheduling, fair-share and topology awareness, and the GPU Fractioning Operator gives CUDA 13.4-native fractions with a hard memory cap per workload. The utilisation figure the Kubernetes section has been waiting for is still absent; what changed is that the queue is something an estate can read and fork rather than license.</p>
         <p>The Oct 16 cycle was the desk and the failure path. Tom&rsquo;s Hardware, cited by The Batch, put local machines on one agent benchmark: on AgentPerf-Local with a quantized Qwen 3.8-27B the NVIDIA-based <a href="#local-ai-workstations">Surface Laptop Ultra</a> finished in 18.9 minutes against an M5 Max MacBook Pro&rsquo;s 24.74 and AMD&rsquo;s AI Ryzen Halo&rsquo;s 42.1, though NVIDIA&rsquo;s chips stop at 128 GB where an $18,299 Mac Studio reaches 256 GB &mdash; the quantization section&rsquo;s trade of speed against residency, on named hardware. vLLM&rsquo;s <a href="#vllm-nixl-push-connector">push-based NIXL connector</a> takes KV-transfer setup off the critical path between prefill and decode workers, and Netflix described the <a href="#netflix-gpu-reliability">detection and auto-remediation</a> that keeps distributed training alive through hardware faults; neither summary carried a number, so both are designs to read rather than results to compare.</p>
-        <p>The Oct 15 cycle was mostly the rack and the box. NVIDIA contributed <a href="#vera-rubin-ocp-mgx">Vera Rubin rack designs</a> to OCP with a 5,000A busbar and up to 250kW a rack, and AMD&rsquo;s <a href="#amd-helion">Helion</a> blueprint packs up to 32,768 EPYC cores into a rack for agent workloads, partner systems due in November &mdash; one power figure and one bet that agent loops are CPU-bound, neither with a workload measurement. NVIDIA also open-sourced <a href="#nvidia-runai-open-source">Run:ai</a>, KAI Scheduler and GPU fractioning included, putting a vendor&rsquo;s GPU queue into the Kubernetes section with no utilisation number of its own. At the desk end, AMD&rsquo;s <a href="#amd-ryzen-ai-halo">Ryzen AI Halo</a> lets the GPU address 160GB of 192GB unified memory &mdash; more memory in the machine, with no tokens-per-second figure yet.</p>
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 15 cycle was mostly the rack and the box. NVIDIA contributed <a href="#vera-rubin-ocp-mgx">Vera Rubin rack designs</a> to OCP with a 5,000A busbar and up to 250kW a rack, and AMD&rsquo;s <a href="#amd-helion">Helion</a> blueprint packs up to 32,768 EPYC cores into a rack for agent workloads, partner systems due in November &mdash; one power figure and one bet that agent loops are CPU-bound, neither with a workload measurement. NVIDIA also open-sourced <a href="#nvidia-runai-open-source">Run:ai</a>, KAI Scheduler and GPU fractioning included, putting a vendor&rsquo;s GPU queue into the Kubernetes section with no utilisation number of its own. At the desk end, AMD&rsquo;s <a href="#amd-ryzen-ai-halo">Ryzen AI Halo</a> lets the GPU address 160GB of 192GB unified memory &mdash; more memory in the machine, with no tokens-per-second figure yet.</p>
           <p>The Oct 14 entry is a chip measured in the unit this page cares about. Microsoft&rsquo;s <a href="#maia-300">Maia 300</a> is a third-generation in-house inference accelerator claimed at 40% more tokens per megawatt than leading GPU systems, deploying from 2027 at multiple gigawatts &mdash; power rather than FLOPs as the denominator, which is the compute section&rsquo;s point that the constraint has moved off the die. Microsoft does not plan to rent the chips directly, so for anyone outside Microsoft it is a cost curve behind its services rather than hardware to target.</p>
           <p>The Oct 9 entry is two answers to running a 27B model on less. Conway Research&rsquo;s <a href="#underdog-saluki-27b">Saluki 27B</a> takes Qwen3.8-27B to 2 bits and 7.89&nbsp;GB with a pass tuned for tool calling, beats its parent on its own 120-task tool benchmark and gives up 17 points on AIME &mdash; the quantization section&rsquo;s point that compression is measured best where it was tuned, made by a single model card. LithosAI&rsquo;s <a href="#lithos-metal">lithos-metal</a> attacks the compute side with generated Metal megakernels and claims over 200 tokens a second for the same model on an M5 Max, a figure that arrives without batch size, precision or baseline.</p>
           <p>The Oct 7 entry opens a section below scheduling. Meta open-sourced <a href="#meta-rebalancer">Rebalancer</a>, the C++ assignment solver that has placed objects into bins under constraints in its production for over nine years, about 40 million problems a day: the formulation is separate from the backend, so one spec runs on local search or on Xpress, Gurobi or HiGHS, and the local-search path solves 265,000 objects into 3,200 bins at a p99 of 12 seconds where MIP gives up past a million objects. It is not a model and not Kubernetes; it is the layer that decides where the fleets in the sections above actually put their work, now installable with <code>pip</code>, with every figure Meta&rsquo;s own.</p>
@@ -90,7 +91,7 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">8</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">13</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">14</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">2</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">9</span></a></li>
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">5</span></a></li>
@@ -182,6 +183,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story" id="vllm-humming">
+          <span class="when">2026-10-21</span>
+          <h4><a href="https://vllm.ai/blog/2026-10-21-humming">Humming: vLLM&rsquo;s kernel library for quantized inference, one architecture across devices and quantization formats</a></h4>
+          <p>vLLM announced <strong>Humming</strong>, a general-purpose kernel library for quantized inference with broad device support, a wide range of quantization formats and a unified architecture that exposes execution parameters for tuning and lets pipelines be assembled per workload. The TLDR summary carries no throughput, format list or device list, so the entry records the artifact and its design and leaves the speedups to the post.</p>
+          <p>It sits under this section&rsquo;s fewer-bits-per-value lever as the kernel layer the formats run on; the number to look for in the post is tokens per second against the format&rsquo;s existing kernel on named hardware.</p>
+          <div class="sources"><a href="https://vllm.ai/blog/2026-10-21-humming">vLLM blog</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
+        </article>
+
         <article class="story unlinked" id="local-ai-workstations">
           <span class="when">2026-10-16</span>
           <h4>Surface Laptop Ultra beats an M5 Max MacBook Pro on AgentPerf-Local, 18.9 to 24.7 minutes on Qwen 3.8-27B</h4>
@@ -197,16 +206,16 @@
           <div class="sources"><a href="https://www.amd.com/en/blogs/2026/meet-the-next-amd-ryzen-ai-halo.html">AMD</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
         </article>
 
-        <article class="story" id="lithos-metal">
-          <span class="when">2026-10-09</span>
-          <h4><a href="https://www.lithosai.com/blog/lithos-metal">LithosAI&rsquo;s lithos-metal generates Metal megakernels that run Qwen3.8-27B at over 200 tokens a second on an M5 Max</a></h4>
-          <p>LithosAI released <strong>lithos-metal</strong> under Apache 2.0; it generates fused Metal megakernels for Apple silicon and reports <strong>200+ tokens per second on Qwen3.8-27B on an M5 Max</strong>.</p>
-          <p>The figure arrives as a one-line claim with no batch size, precision or baseline runtime attached, and those three decide whether it is a kernel result or a configuration.</p>
-          <div class="sources"><a href="https://www.lithosai.com/blog/lithos-metal">LithosAI</a> &middot; <span class="via">via MarkTechPost (Oct 9)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (10)</summary>
+          <summary>Earlier in this section (11)</summary>
+
+          <article class="story" id="lithos-metal">
+            <span class="when">2026-10-09</span>
+            <h4><a href="https://www.lithosai.com/blog/lithos-metal">LithosAI&rsquo;s lithos-metal generates Metal megakernels that run Qwen3.8-27B at over 200 tokens a second on an M5 Max</a></h4>
+            <p>LithosAI released <strong>lithos-metal</strong> under Apache 2.0; it generates fused Metal megakernels for Apple silicon and reports <strong>200+ tokens per second on Qwen3.8-27B on an M5 Max</strong>.</p>
+            <p>The figure arrives as a one-line claim with no batch size, precision or baseline runtime attached, and those three decide whether it is a kernel result or a configuration.</p>
+            <div class="sources"><a href="https://www.lithosai.com/blog/lithos-metal">LithosAI</a> &middot; <span class="via">via MarkTechPost (Oct 9)</span></div>
+          </article>
 
           <article class="story" id="underdog-saluki-27b">
             <span class="when">2026-10-09</span>
@@ -1056,6 +1065,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-21</span><span class="label"><a href="#vllm-humming">Humming: vLLM&rsquo;s kernel library for quantized inference, one architecture across devices and quantization formats</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#cloudflare-inference-bill-68">Cloudflare cuts its AI code-review cost from $2.43 to $0.77 a review by fixing what reached the prompt cache</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#torchneuron">TorchNeuron: a native PyTorch backend for AWS Trainium, in public beta under Apache 2.0</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#deepinfer">DeepSeek open-sources DeepInfer, the engine behind its API, with 155 trillion tokens a day and $38 per GPU-hour attached</a></span></li>
