@@ -30,18 +30,19 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-10-23</div>
+      <div class="meta">Last updated: 2026-10-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 24 cycle opened two pieces of coding-agent infrastructure to other agents. Anthropic&rsquo;s <a href="#anthropic-sandbox-runtime">sandbox-runtime</a> is the sandbox behind Claude Code&rsquo;s bash tool, fencing a command&rsquo;s files and hosts with Seatbelt or bubblewrap and no container, with 84% fewer permission prompts by Anthropic&rsquo;s count. Cognition&rsquo;s <a href="#devin-vulnerability-fixes">Devin Vulnerability Fixes</a> plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug that run in any agent reading SKILL.md, the format Anthropic handed to the <a href="agents.html#agent-skills-aaif">Agentic AI Foundation</a> the day before.</p>
         <p>The Oct 22 cycle was the API given a version number, and three small tools that put a second model between the agent and the work. Anthropic&rsquo;s <a href="#claude-api-version-2026-10-21">Claude API version 2026-10-21</a> is the first versioned release since 2023-06-10, with new major SDKs and a CLI defaulting to it and the old version kept, and OpenAI published an <a href="#openai-cli">official CLI</a> the same day. From the AAIF newsletter, LightOn&rsquo;s <a href="#colgrep-agent">ColGrep-Agent</a> hands code search to a local 2B model and cut Claude Code&rsquo;s API tokens by 34% over 52 questions; <a href="#sphinx-git-hook">Sphinx</a> is a pre-push hook that quizzes the developer on an agent&rsquo;s changes before a protected branch accepts them; and <a href="#james-ward-mcp-tool-design">James Ward</a> argues an MCP server&rsquo;s token bill is set by tool design, 100 records as 100 calls, with a constrained DSL proposed over 16,000 AWS APIs. <a href="#claude-mods">Claude Mods</a> gained Latent Space&rsquo;s reading of them as an interface the user programs, and the <a href="#cloudflare-security-audit-skill">Cloudflare security-audit skill</a> a star count, 37.8k; GitHub&rsquo;s <a href="#github-git-infra-agent-scale">agent-scale Git</a> gained the migration behind it, nearly every repository moved to Azure with per-reference quorums for the rest.</p>
         <p>The Oct 21 cycle was two factories with their plumbing listed. Uber&rsquo;s <a href="#uber-minion-devpods">Minion</a> ships about 15% of production pull requests, by Uber&rsquo;s count, on DevPods the company began building in 2017, an MCP Gateway generated from a pre-existing API contract registry and a staging path that routes a test account through the changed code; the lesson Gergely Orosz draws is that the companies gaining most already had developer-platform teams. <a href="#glass-town">Glass Town</a>, from the AAIF newsletter, is a multi-agent factory with five-minute worker limits, retries off and every commit linked to the prompts and tool calls that produced it, the paper trail built into the factory rather than the review. Neither reports a defect rate, which is the figure this page&rsquo;s section on agent-written code still lacks.</p>
         <p>The Oct 20 cycle was a game nobody reviewed and the scale behind a source-control rebuild. Simon Willison&rsquo;s <a href="#battle-drones">Battle Drones</a> is a browser RTS built in 321 agent commits over 12 iterations in a language he barely uses, with almost none of the code read by a human; one overnight dynamic-workflow run on the prompt &ldquo;Make it a LOT more fun&rdquo; played over a thousand simulated matches and reported undecided games down from 14% to 0.9% and comeback wins up from 24% to 46% across 1,200 AI-vs-AI games, which is this section&rsquo;s question answered with a simulator in place of a reviewer. Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a> gained its scale from Simon&rsquo;s reading of the post: a 100 GB main-branch history, 25 million CI checkouts a day that would be 600 PB of git traffic fetched naively, no offline support because Claude is the heaviest user, and a note that adversarial review can be myopic. Cloudflare&rsquo;s 68% cut to its code-review inference bill, won at the prompt cache, is on <a href="infrastructure.html#cloudflare-inference-bill-68">Infrastructure</a>.</p>
         <p>The Oct 19 cycle was two accounts of verification replacing review, one from a lab and one from a platform. The <a href="#anthropic-code-review-process">Claude Code team</a> says it automated most review stages: agents verify before a pull request opens, review runs continuously, fresh-context AI and security passes sit before any human, approval is tiered by risk and review rounds are capped, the process behind the Code Review product and its 6&ndash;10-minute figure, still with no escape rate for what the automated layers pass. Meta&rsquo;s engineers built <a href="#meta-forum-ai-native">Forum</a>, a standalone Groups app, in eight weeks with an agent whose changes counted only once build checks, unit tests and UI comparisons passed inside its loop, each pull request carrying a recording of the verification run; a stress test caught a memory issue the agent fixed and verified, roughly halving memory use, and engineers still approve every shipped change. Both answer the section&rsquo;s question the same way: the human is auditing the test suite, not the diff.</p>
-        <p>The Oct 16 cycle was the repository under the agents, from two directions. GitHub reports <a href="#github-git-infra-agent-scale">7.38 billion commits in September</a>, five times a year earlier, and is keeping Git while splitting storage from compute for up to 35&times; the write throughput; Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a>, recorded last cycle, turns out to run on 200&times; less CPU and memory than the Git mirrors it replaced. One kept the tool and rebuilt what holds it, the other replaced the tool. On the review side, Anthropic&rsquo;s <a href="#claude-code-review-team-enterprise">Code Review</a> reached Team and Enterprise plans with most reviews cut to 6&ndash;10 minutes from about 20, a vendor figure for speed with the coverage and error numbers still those Addy Osmani gave on Oct 7.</p>
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 16 cycle was the repository under the agents, from two directions. GitHub reports <a href="#github-git-infra-agent-scale">7.38 billion commits in September</a>, five times a year earlier, and is keeping Git while splitting storage from compute for up to 35&times; the write throughput; Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a>, recorded last cycle, turns out to run on 200&times; less CPU and memory than the Git mirrors it replaced. One kept the tool and rebuilt what holds it, the other replaced the tool. On the review side, Anthropic&rsquo;s <a href="#claude-code-review-team-enterprise">Code Review</a> reached Team and Enterprise plans with most reviews cut to 6&ndash;10 minutes from about 20, a vendor figure for speed with the coverage and error numbers still those Addy Osmani gave on Oct 7.</p>
           <p>The Oct 16 cycle was about what a coding agent remembers, and which model does the remembering. Atlassian says agents with <a href="#atlassian-teamwork-graph">Teamwork Graph</a> access were 44% more accurate on 48% fewer tokens; the graph links tickets, docs and decisions, gates access at the data layer and writes every session back &mdash; a vendor number for a product it sells, but a memory design that can be audited. Codex, it turns out, writes its <a href="#codex-memory-models">memories</a> with GPT-5.6 Luna and Terra by default, and two config keys move extraction and consolidation to GPT-6-class models at a rate-limit cost. <a href="#opencode-2-0">OpenCode 2.0</a> gained background subagents and an async shell in a second report.</p>
           <p>The Oct 15 cycle was the plumbing under agent-written code. Anthropic replaced git with <a href="#anthropic-scion">Scion</a> after daily merges went from about 2,500 in May to over 30,000, migrating its monorepo in five months with seven people &mdash; the clearest statement yet that the review-and-landing machinery, not the model, is what breaks first at agent volume. Two tools sit on the reviewer&rsquo;s side of that machinery: <a href="#diff-tour">diff-tour</a> has a coding agent write a read-only guided tour of a diff, and <a href="#openqodex">OpenQodex</a> runs over 100 scanners with the developer&rsquo;s own Claude Code or Codex login checking each finding; both are model-written review aids with no published error rate. <a href="#opencode-2-0">OpenCode 2.0</a> became a background server and an SDK library, the build-your-own harness getting easier to embed.</p>
           <p>The Oct 14 cycle was two ways of managing what a coding agent holds. <a href="#context-mode">Context Mode</a>, an MCP server at 26.7k stars, sandboxes tool calls so that, by its own figure, 98% less raw output reaches the model, and keeps session history in SQLite across compaction &mdash; a measure of what was kept out, not of what was lost. <a href="#agent-engineer-plugin">AGENT-ENGINEER</a> bundles 11 skills, 4 subagents and 5 hooks for agent-engineering work into one plugin without saying which clients it targets, the first question the plugin section asks.</p>
@@ -105,10 +106,10 @@
           <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">10</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
           <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">35</span></a></li>
-          <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">12</span></a></li>
+          <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">13</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">17</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
-          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">14</span></a></li>
+          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">15</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">19</span></a></li>
           <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">32</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">7</span></a></li>
@@ -661,6 +662,14 @@
         <h3>Plugin &amp; extensibility layers for coding agents</h3>
         <p class="lead">Beyond ad-hoc skills and MCP servers, coding agents are gaining formal package management. Two things to watch: whether a bundle targets an open specification or one client, and whether the surface answers only what can be added to a harness or also what can be centrally removed.</p>
 
+        <article class="story" id="devin-vulnerability-fixes">
+          <span class="when">2026-10-24</span>
+          <h4><a href="https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/">Cognition&rsquo;s Devin Vulnerability Fixes plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug</a></h4>
+          <p>Cognition released the <strong>Devin Vulnerability Fixes</strong> plugin: three MIT-licensed skills, for PHP2Shell, Node.js and GitLab CVE-2026-110264, that run in Devin, Claude Code, Codex, Cursor and any agent that reads SKILL.md. Each takes inventory read-only, waits for approval, tests before and after, then opens one pull request per repo.</p>
+          <p>It is a bundle aimed at the open specification rather than one client, and its first target is the flaw behind <a href="safety-and-policy.html#openai-php-coordinated-disclosure">OpenAI&rsquo;s PHP disclosure</a>. No fix-rate benchmark is published, so results depend on the repo&rsquo;s own tests.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
+        </article>
+
         <article class="story" id="agent-engineer-plugin">
           <span class="when">2026-10-13</span>
           <h4><a href="https://sarthakai.substack.com/p/a-coding-plugin-to-make-you-a-10x">AGENT-ENGINEER bundles 11 skills, 4 subagents and 5 hooks for coding assistants doing agent-engineering work</a></h4>
@@ -676,16 +685,16 @@
           <div class="sources"><a href="https://claude.com/blog/build-plugins-for-claude">Anthropic</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
         </article>
 
-        <article class="story" id="claude-plugin-eval">
-          <span class="when">2026-09-22</span>
-          <h4><a href="https://code.claude.com/docs/en/plugin-evals">claude plugin eval scores a plugin with and without itself, and reports the delta and the cost</a></h4>
-          <p>From <strong>v2.1.269</strong>, Claude Code ships <code>claude plugin eval init</code>, which asks the author what a good result looks like and writes cases and graders for a plugin or skill, and <code>claude plugin eval .</code>, which runs them and reports a <strong>per-case score with and without the plugin</strong>, the delta and the cost. Every run is a real model call billed to the plan or API account.</p>
-          <p>It is the first instrument in this section for whether an addition helps rather than whether it installs &mdash; with the limit that the graders are generated from the author&rsquo;s own description of success.</p>
-          <div class="sources"><a href="https://code.claude.com/docs/en/plugin-evals">Claude Code docs</a> &middot; <span class="via">via The Code (Sep 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="claude-plugin-eval">
+            <span class="when">2026-09-22</span>
+            <h4><a href="https://code.claude.com/docs/en/plugin-evals">claude plugin eval scores a plugin with and without itself, and reports the delta and the cost</a></h4>
+            <p>From <strong>v2.1.269</strong>, Claude Code ships <code>claude plugin eval init</code>, which asks the author what a good result looks like and writes cases and graders for a plugin or skill, and <code>claude plugin eval .</code>, which runs them and reports a <strong>per-case score with and without the plugin</strong>, the delta and the cost. Every run is a real model call billed to the plan or API account.</p>
+            <p>It is the first instrument in this section for whether an addition helps rather than whether it installs &mdash; with the limit that the graders are generated from the author&rsquo;s own description of success.</p>
+            <div class="sources"><a href="https://code.claude.com/docs/en/plugin-evals">Claude Code docs</a> &middot; <span class="via">via The Code (Sep 22)</span></div>
+          </article>
 
           <article class="story" id="retro-skill">
             <span class="when">2026-09-17</span>
@@ -945,6 +954,13 @@
         <h3>Open-source agent infrastructure</h3>
         <p class="lead">Open-source projects filling in the stack around agents rather than the agents themselves &mdash; security, source hosting, data, UI, onboarding, release engineering. Judge entries on what limit the project states about itself; the ones worth recording here publish the case their own design does not cover.</p>
 
+        <article class="story" id="anthropic-sandbox-runtime">
+          <span class="when">2026-10-24</span>
+          <h4><a href="https://www.marktechpost.com/2026/10/24/anthropic-sandbox-runtime-ai-agent-sandbox/">Anthropic&rsquo;s sandbox-runtime, the sandbox behind Claude Code&rsquo;s bash tool, fences a command&rsquo;s files and hosts without a container</a></h4>
+          <p><strong>srt</strong> is the open-source sandbox behind Claude Code&rsquo;s bash tool: prefixing any command with <code>srt</code> restricts which files it can touch and which hosts it can reach, using Seatbelt on macOS, bubblewrap on Linux and a proxy for domain allowlists. Anthropic reports <strong>84% fewer permission prompts</strong> in Claude Code with it, and it ships under Apache 2.0 on npm, needs Node.js 22.12+, and is still labelled a research preview.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/10/24/anthropic-sandbox-runtime-ai-agent-sandbox/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
+        </article>
+
         <article class="story" id="openqodex">
           <span class="when">2026-10-14</span>
           <h4><a href="https://github.com/openqodex/openqodex">OpenQodex runs 100+ scanners and has your own Claude Code or Codex login investigate each finding</a></h4>
@@ -960,15 +976,15 @@
           <div class="sources"><a href="https://github.com/simonw/ttok/releases/tag/1.0">GitHub release</a> &middot; <a href="https://simonwillison.net/2026/Oct/8/ttok/">Simon Willison (ttok 0.4)</a> &middot; <a href="https://github.com/williamliu-ai/token-count-compare/commit/8d8a2178538bb37beb548fc37378135e4ff4b0c8">Token-count comparison</a> &middot; <a href="https://github.com/openai/tiktoken/issues/608">tiktoken issue</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
         </article>
 
-        <article class="story" id="gdp-ts">
-          <span class="when">2026-10-06</span>
-          <h4><a href="https://github.com/rauchg/gdp-ts">gdp-ts makes authorization mistakes a TypeScript compile error, with an agent skill to apply it</a></h4>
-          <p>Vercel&rsquo;s <strong>gdp-ts</strong> is a TypeScript library in which sensitive functions will not compile unless the caller can prove the user holds the required permission, moving access-control bugs from code review to the type checker. It ships with an agent skill for applying the pattern across a codebase, aimed as much at coding agents as at the humans reviewing them; it covers only the call sites it is applied to.</p>
-          <div class="sources"><a href="https://github.com/rauchg/gdp-ts">GitHub</a> &middot; <span class="via">via The Code (Oct 6)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (11)</summary>
+          <summary>Earlier in this section (12)</summary>
+
+          <article class="story" id="gdp-ts">
+            <span class="when">2026-10-06</span>
+            <h4><a href="https://github.com/rauchg/gdp-ts">gdp-ts makes authorization mistakes a TypeScript compile error, with an agent skill to apply it</a></h4>
+            <p>Vercel&rsquo;s <strong>gdp-ts</strong> is a TypeScript library in which sensitive functions will not compile unless the caller can prove the user holds the required permission, moving access-control bugs from code review to the type checker. It ships with an agent skill for applying the pattern across a codebase, aimed as much at coding agents as at the humans reviewing them; it covers only the call sites it is applied to.</p>
+            <div class="sources"><a href="https://github.com/rauchg/gdp-ts">GitHub</a> &middot; <span class="via">via The Code (Oct 6)</span></div>
+          </article>
 
           <article class="story" id="llm-openai-decisions">
             <span class="when">2026-10-06</span>
@@ -1548,6 +1564,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-24</span><span class="label"><a href="#anthropic-sandbox-runtime">Anthropic&rsquo;s sandbox-runtime, the sandbox behind Claude Code&rsquo;s bash tool, fences a command&rsquo;s files and hosts without a container</a></span></li>
+        <li><span class="date">2026-10-24</span><span class="label"><a href="#devin-vulnerability-fixes">Cognition&rsquo;s Devin Vulnerability Fixes plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug</a></span></li>
         <li><span class="date">2026-10-22</span><span class="label"><a href="#openai-cli">OpenAI publishes an official CLI for its API</a></span></li>
         <li><span class="date">2026-10-22</span><span class="label"><a href="#colgrep-agent">ColGrep-Agent delegates code search to a local 2B model and cuts Claude Code&rsquo;s API tokens by 34% over 52 questions</a></span></li>
         <li><span class="date">2026-10-22</span><span class="label"><a href="#sphinx-git-hook">Sphinx: a git hook that quizzes the developer on agent-written changes before a protected-branch push</a></span></li>

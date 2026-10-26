@@ -30,18 +30,20 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-10-23</div>
+      <div class="meta">Last updated: 2026-10-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 22 to 25 cycle was open weights from labs new to this page. KRAFTON&rsquo;s <a href="#raon-1-mini">Raon-1 mini</a> is a 28.8B MoE with 4.3B active whose linear-attention layers hold the KV cache near 8 KiB a token, at 70.8 on SWE-bench Verified under Apache 2.0; Shanghai AI Lab&rsquo;s <a href="#sage-a1-5">Sage-A1.5</a> adds an opt-in mode that checks its own progress mid-trajectory; NVIDIA&rsquo;s <a href="#nemotron-3-5-bolt-e4b">Nemotron 3.5 Bolt E4B</a> fits a voice-agent model in 4 GB after skipping SFT entirely; and Gradium&rsquo;s <a href="#gradium-phonon">Phonon 31m</a> is a 64.5 MB TTS model that starts speaking in 6.9 ms on a laptop CPU. Moonshot&rsquo;s <a href="#kimi-k3-1-pro">Kimi K3.1 Pro</a>, 2.8T with 104B active and 33% cheaper than K3, is API-only until its promised Nov 4 weights.</p>
+        <p>The Batch supplied Artificial Analysis figures for three releases already here: <a href="#muse-wonder">Muse Wonder Full</a> ties second at 56, <a href="#muse-spark-open">Muse Spark Open</a> scores 39 under a licence that allows commercial use up to $20 million of revenue, and <a href="#reflection-beam">Beam</a> scores 30 with the fewest output tokens of any open model compared. OpenAI&rsquo;s <a href="#openai-decisions-api">Decisions API</a> is now generally available at $0.10 per million input tokens, the <a href="#minimax-m3-1-flash">M3.1 Flash</a> weights shipped as a 252 GB download, and <a href="#thinkingcap-gemma-4-26b-a4b">ThinkingCap</a> extended its token trimming to Gemma 4 26B-A4B.</p>
         <p>The Oct 22 cycle was a coding model sized for a laptop and two decision models claiming the top of both indexes. Recursive&rsquo;s <a href="#recursive-flint">Flint</a> is a 40B mixture-of-experts with 2.5B active, built in under four months with agents writing most of it by the company&rsquo;s account, at 74.2% on SWE-Bench Verified and more than 125 tokens a second on an M4 Pro MacBook Pro, with weights on Hugging Face and the licence not in the issues: the narrow open release the open-weights section names, every figure Recursive&rsquo;s. Base Labs&rsquo; <a href="#mammoth-1-elephant-1">Mammoth-1 and Elephant-1</a> are reported to top the Jev Decision Index and the Artificial Analysis Decision Index with no score given, a week after d1-ultra took the second at 65.</p>
         <p>The Oct 21 cycle was voice, from two directions. Mistral&rsquo;s <a href="#voxtral-3">Voxtral 3</a> ships three transcribers, a TTS model and a LiveKit agent SDK in public preview, 4.1% WER on FLEURS 45 for Small by Mistral&rsquo;s count against 16.0% for Whisper large-v3 and transcription at $0.0035 a minute, with the stack runnable on a customer&rsquo;s own servers. ElevenLabs&rsquo; <a href="#eleven-realtime">Eleven Realtime</a> is a speech-to-speech pair, Mini and Max, that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name, with no latency or price in the summary. Both land on the speech section&rsquo;s judging axes, price and migration cost rather than accuracy. Below them, SparkLLM&rsquo;s <a href="#spark-x2-6-4b">Spark-X2.6-4B</a> is a 4B open model post-trained for on-device agents, with no benchmark in the issue; Mercury 3 was carried once more with nothing new.</p>
         <p>The Oct 20&ndash;21 cycle added outside prices and comparators to four models already here, with no new release. Simon Willison&rsquo;s reading of Artificial Analysis puts <a href="#muse-wonder">Muse Wonder</a> at its Max level even with GPT-6.1 Sol, and <a href="#gemini-4-argon">Gemini 4 Argon</a>&rsquo;s benchmark-run cost at $2,407, close to GLM-5.3 and well under OpenAI&rsquo;s, Anthropic&rsquo;s and Meta&rsquo;s newest, with Argon&rsquo;s $2/$10 doubling on December 1. MiniMax&rsquo;s own framing of <a href="#minimax-m3-1-flash">M3.1 Flash</a> is online inference nearly three times faster and 70% cheaper than its predecessor, with weights still to come, and Inception now names <a href="#mercury-3">Mercury 3</a>&rsquo;s comparators, GPT-6 Luna and Claude Haiku 5.5 on agentic coding at 1,068 tokens a second, while conceding Haiku still wins on longer coding tasks. Clairic was carried by three more newsletters with nothing new. Hamel Husain&rsquo;s judge comparison of six decision models, Jev to OpenAI Decisions, is on <a href="evals-and-benchmarks.html#decision-models-for-evals">Evals &amp; benchmarks</a>.</p>
-        <p>The Oct 19 cycle was price and shape rather than scale. MiniMax&rsquo;s <a href="#minimax-m3-1-flash">M3.1 Flash</a> puts a 428B MoE with about 23B active and a 1M context at a flat $0.15/$0.60 per million tokens, with 62.2 on Automation-Bench to Opus 5&rsquo;s 50.3 and a weak Terminal-Bench 4.0 row, all MiniMax&rsquo;s. Three entries joined the alternative-decoding section and none is an autoregressive chat model: Inception&rsquo;s <a href="#mercury-3">Mercury 3</a> diffusion LLM claims 1,000+ tokens a second and a 1M context at $0.10 per million input, Nace&rsquo;s <a href="#drex-max">Drex Max</a> scores a probability per option over screenshots at 67.59 on Decision Index to Jev 1.14&rsquo;s 60.7, and Cloudflare&rsquo;s <a href="#cloudflare-clairic">Clairic</a> extracts typed values with confidence and source pointers, 3.2&times; faster and 49% cheaper on Cloudflare&rsquo;s own claims test. Mistral&rsquo;s <a href="#timestral">Timestral</a> gives the time-series section a second entry, four CPU-sized models edging TimesFM-3 on GIFT-Eval by 0.009 MASE. And <a href="#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a>&rsquo;s card explains its price: an 890-byte-per-token KV cache, about an eighth of V4-Flash&rsquo;s, at $0.30 per million input.</p>
-        <p>The Oct 16&ndash;18 cycle was open weights at every scale. Meta&rsquo;s <a href="#muse-spark-open">Muse Spark Open</a> puts 816B parameters with 42B active and a 1M context on Hugging Face, leads MCP-Atlas on Meta&rsquo;s table at 89.2 but trails Kimi K3, GLM 5.3 and Qwen3.8 on Terminal-Bench 2.1 at 76.4 and scores 39 on Artificial Analysis to GLM 5.3&rsquo;s 45, so &ldquo;most capable US open model&rdquo; is exact only with the geography kept. NVIDIA&rsquo;s <a href="#nemotron-3-5-super-vl">Nemotron 3.5 Super VL</a> is 120B with 12B active and an NVFP4 build for one DGX Spark, at 89.9 on GPQA Diamond and 71.07 on SWE-bench Verified; Reflection&rsquo;s <a href="#reflection-beam">Beam</a> weights shipped under Apache 2.0 with an 80.1% Terminal-Bench 2.1 claim; and DeepSeek&rsquo;s <a href="#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a> moves DeepSWE from 74.2 to 77.0 by post-training alone. The decision-model field gained a new leader and a new size class: Liquid&rsquo;s hosted <a href="#liquid-d1-ultra">d1-ultra</a> scores 65 on the Artificial Analysis Decision Index to Jev 1.13&rsquo;s 58 at Jev&rsquo;s $0.042, and Shanghai AI Lab&rsquo;s <a href="#intern-decision">Intern-Decision</a> 4B claims 90.02% to Jev&rsquo;s 88.74% at 44 ms on one RTX 4090. Below those, <a href="#krea-3">Krea 3</a> prices an edit at $0.06 in under eight seconds, Black Forest Labs&rsquo; <a href="#flux-3-image-klein">FLUX 3 Image Klein</a> is a 5.6B open image model with native 4K, <a href="#gpt-live-1-1">GPT-Live-1.1</a> adds 13 voices in six languages, and <a href="#claude-opus-5-5">Opus 5.5</a> gained a fast mode at $8/$40 for up to 2.5&times; the output speed.</p>
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 19 cycle was price and shape rather than scale. MiniMax&rsquo;s <a href="#minimax-m3-1-flash">M3.1 Flash</a> puts a 428B MoE with about 23B active and a 1M context at a flat $0.15/$0.60 per million tokens, with 62.2 on Automation-Bench to Opus 5&rsquo;s 50.3 and a weak Terminal-Bench 4.0 row, all MiniMax&rsquo;s. Three entries joined the alternative-decoding section and none is an autoregressive chat model: Inception&rsquo;s <a href="#mercury-3">Mercury 3</a> diffusion LLM claims 1,000+ tokens a second and a 1M context at $0.10 per million input, Nace&rsquo;s <a href="#drex-max">Drex Max</a> scores a probability per option over screenshots at 67.59 on Decision Index to Jev 1.14&rsquo;s 60.7, and Cloudflare&rsquo;s <a href="#cloudflare-clairic">Clairic</a> extracts typed values with confidence and source pointers, 3.2&times; faster and 49% cheaper on Cloudflare&rsquo;s own claims test. Mistral&rsquo;s <a href="#timestral">Timestral</a> gives the time-series section a second entry, four CPU-sized models edging TimesFM-3 on GIFT-Eval by 0.009 MASE. And <a href="#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a>&rsquo;s card explains its price: an 890-byte-per-token KV cache, about an eighth of V4-Flash&rsquo;s, at $0.30 per million input.</p>
+          <p>The Oct 16&ndash;18 cycle was open weights at every scale. Meta&rsquo;s <a href="#muse-spark-open">Muse Spark Open</a> puts 816B parameters with 42B active and a 1M context on Hugging Face, leads MCP-Atlas on Meta&rsquo;s table at 89.2 but trails Kimi K3, GLM 5.3 and Qwen3.8 on Terminal-Bench 2.1 at 76.4 and scores 39 on Artificial Analysis to GLM 5.3&rsquo;s 45, so &ldquo;most capable US open model&rdquo; is exact only with the geography kept. NVIDIA&rsquo;s <a href="#nemotron-3-5-super-vl">Nemotron 3.5 Super VL</a> is 120B with 12B active and an NVFP4 build for one DGX Spark, at 89.9 on GPQA Diamond and 71.07 on SWE-bench Verified; Reflection&rsquo;s <a href="#reflection-beam">Beam</a> weights shipped under Apache 2.0 with an 80.1% Terminal-Bench 2.1 claim; and DeepSeek&rsquo;s <a href="#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a> moves DeepSWE from 74.2 to 77.0 by post-training alone. The decision-model field gained a new leader and a new size class: Liquid&rsquo;s hosted <a href="#liquid-d1-ultra">d1-ultra</a> scores 65 on the Artificial Analysis Decision Index to Jev 1.13&rsquo;s 58 at Jev&rsquo;s $0.042, and Shanghai AI Lab&rsquo;s <a href="#intern-decision">Intern-Decision</a> 4B claims 90.02% to Jev&rsquo;s 88.74% at 44 ms on one RTX 4090. Below those, <a href="#krea-3">Krea 3</a> prices an edit at $0.06 in under eight seconds, Black Forest Labs&rsquo; <a href="#flux-3-image-klein">FLUX 3 Image Klein</a> is a 5.6B open image model with native 4K, <a href="#gpt-live-1-1">GPT-Live-1.1</a> adds 13 voices in six languages, and <a href="#claude-opus-5-5">Opus 5.5</a> gained a fast mode at $8/$40 for up to 2.5&times; the output speed.</p>
           <p>The Oct 16 cycle added a voice leader, a new Jev and outside numbers for three models already here. SpaceXAI&rsquo;s <a href="#grok-voice-3">Grok Voice 3.0</a> tops Artificial Analysis&rsquo;s speech-to-speech index at 86.9 against GPT-Live-1&rsquo;s 83.2, at Voice 2.0&rsquo;s $0.08 a minute and with no open weights. TypeSafe&rsquo;s <a href="#jev-1-14">Jev 1.14</a> takes the decision model past text with image input, a bounding-box type and an opt-in 262K context, all experimental and all measured only by TypeSafe, and inclusionAI&rsquo;s <a href="#ling-3-1-flash">Ling-3.1-flash</a> is a 560B MoE with 25B active and a 1M context, published without a benchmark. The Batch supplied the outside readings: <a href="#claude-sonnet-5-5">Sonnet 5.5</a> at max effort leads Artificial Analysis&rsquo;s Coding Agent Index and is second on the Vals Index but spends about 193,000 output tokens a task, the most measured; <a href="#claude-haiku-5-5">Haiku 5.5</a> is the fastest model Artificial Analysis has clocked, at 237 tokens a second, yet averages 337 seconds to its first answer token; and <a href="#mistral-large-4">Mistral Large 4</a> posts the best public CyberGym-E2E-AA score, 82%, with The Batch giving 52B active parameters against the 49B Mistral launched with. The through-line is that the effort setting, not the model name, now decides what a task costs.</p>
           <p>The Oct 15 cycle opened Gemini 4 Argon to everyone and gave Muse Wonder its numbers. <a href="#gemini-4-argon">Argon</a> left the Fairwind program for general availability across the Gemini API, AI Studio, Antigravity and Google Cloud at $2/$10 per million tokens until November 30, then $4/$20 &mdash; Opus 5.5&rsquo;s price &mdash; and still trails Opus 5.5 on Terminal-Bench 4.0, 57.4% to 66.4%. <a href="#muse-wonder">Muse Wonder</a>&rsquo;s figures arrived a day after launch: $4/$20 for the API model and 79.0 on DeepSWE 1.1 for the subscription-only Wonder Full against Opus 5.5&rsquo;s 74.2, with Wonder kept closed. <a href="#gpt-6-1-sol">GPT-6.1 Sol</a> now defaults to a 500K context. Two open releases meet the page&rsquo;s active-parameter test: Liquid&rsquo;s <a href="#lfm2-5-24b-a2b">LFM2.5-24B-A2B</a>, 2B active, triples Qwen3.6-35B-A3B on AutomationBench but trails it by 15 points on SWE-bench Verified, and Fish Audio&rsquo;s 35B <a href="#drama-3">Drama 3</a> ships open text-to-speech weights in 83 languages with no latency or licence published.</p>
           <p>The Oct 14 cycle brought Meta into the frontier section and two more entrants into the decision-model field. <a href="#muse-wonder">Muse Wonder and Wonder Full</a> are Meta&rsquo;s first frontier-class models, built around Active Memory and Active Focus for long-running agents; Meta claims Wonder Full beats Opus 5.5 on long-horizon coding, but Wonder Full is subscription-only inside Muse Code and early testers find the API model noticeably weaker, so the claim attaches to the version developers cannot call. In decision models, vLLM Semantic Router&rsquo;s <a href="#vllm-sr-decision-3">Decision 3.0</a> ships five Apache-2.0 sizes from 0.8B to 27B with image input and a self-run 64.1 on Decision Index 0.3.1, and Subquadratic&rsquo;s <a href="#subq-snap">SubQ Snap</a> argues on context rather than price, 384K tokens at $0.05 per million input. TII&rsquo;s <a href="#falcon-asr">Falcon-ASR</a> adds a 1.6B Emirati-first transcriber at 20.92% average Arabic WER, with three of its five languages unscored.</p>
@@ -102,13 +104,13 @@
         <ul>
           <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">25</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">18</span></a></li>
-          <li><a href="#open-weights-releases">Open-weights releases <span class="n">16</span></a></li>
-          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">6</span></a></li>
-          <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">19</span></a></li>
+          <li><a href="#open-weights-releases">Open-weights releases <span class="n">19</span></a></li>
+          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">7</span></a></li>
+          <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">20</span></a></li>
           <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">28</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">31</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">32</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">4</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">7</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">2</span></a></li>
@@ -126,8 +128,8 @@
           <h4><a href="https://research.meta.ai/blog/muse-wonder">Meta&rsquo;s Muse Wonder and Wonder Full are its first frontier-class models, and only Wonder reaches the API</a></h4>
           <p>Meta released <strong>Muse Wonder</strong> and <strong>Muse Wonder Full</strong>, its first frontier-class models, pairing <strong>Active Memory</strong> (personal context carried across conversations and retrieved when a task calls for it) with <strong>Active Focus</strong> (trying alternative approaches, handling blockers and checking before important actions on long-running goals). Wonder is available through the Meta Model API and Muse Code; Wonder Full is limited to Muse Code subscribers, and Meta claims it beats Claude Opus 5.5 on long-horizon coding tasks.</p>
           <p>The headline claim belongs to the model developers cannot call: early testers report the API-accessible Wonder is noticeably weaker. <em>Updated Oct 14:</em> the figures have since arrived &mdash; both models take text, image, video and audio with a <strong>1M context</strong>; Wonder costs <strong>$4/$20 per 1M tokens</strong> while Wonder Full is Muse Code&ndash;only at <strong>$50 or $200 a month</strong>; Wonder Full scores <strong>79.0 on DeepSWE 1.1</strong> to Opus 5.5&rsquo;s 74.2 and Wonder 85.6 on Meta&rsquo;s internal MemoryBench; and Meta says Wonder stays closed while Muse Spark weights are &ldquo;coming soon&rdquo;. It extends Meta&rsquo;s <a href="agents.html#meta-muse">Muse</a> agent line from an app to a model family.</p>
-          <p><em>Updated Oct 21:</em> Simon Willison reports Artificial Analysis rating Muse Wonder at its Max reasoning level as equivalent to GPT-6.1 Sol, and reads the cadence as Meta shipping a model a month, Muse 1.2 on Aug 5, 1.3 on Sep 2 and Wonder on Oct 13, with material gains between each on his own drawing test; his llm-meta-ai 0.2 plugin adds the model with six reasoning levels.</p>
-          <div class="sources"><a href="https://research.meta.ai/blog/muse-wonder">Meta</a> &middot; <a href="https://www.testingcatalog.com/meta-launches-muse-wonder-and-wonder-full-for-ai-agents/">TestingCatalog</a> &middot; <a href="https://about.fb.com/news/2026/10/introducing-muse-wonder-models/">Meta newsroom</a> &middot; <a href="https://artificialanalysis.ai/models/muse-wonder">Artificial Analysis</a> &middot; <span class="via">via TLDR AI (Oct 13), TLDR (Oct 13), The Code (Oct 13), MarkTechPost (Oct 14), Simon Willison (Oct 21)</span></div>
+          <p><em>Updated Oct 21:</em> Simon Willison reports Artificial Analysis rating Muse Wonder at its Max reasoning level as equivalent to GPT-6.1 Sol, and reads the cadence as Meta shipping a model a month, Muse 1.2 on Aug 5, 1.3 on Sep 2 and Wonder on Oct 13, with material gains between each on his own drawing test; his llm-meta-ai 0.2 plugin adds the model with six reasoning levels. <em>Updated Oct 26:</em> The Batch reports Artificial Analysis placing Wonder Full joint second on its Intelligence Index at <strong>56</strong>, two points behind Claude Opus 5.5 and level with Claude Sonnet 5.5, and Wonder seventh at 52 against Muse Spark 1.3&rsquo;s 48; Wonder costs $4.52 per index task, fifth highest of current models, and Wonder Full cannot be costed because it has no API.</p>
+          <div class="sources"><a href="https://research.meta.ai/blog/muse-wonder">Meta</a> &middot; <a href="https://www.testingcatalog.com/meta-launches-muse-wonder-and-wonder-full-for-ai-agents/">TestingCatalog</a> &middot; <a href="https://about.fb.com/news/2026/10/introducing-muse-wonder-models/">Meta newsroom</a> &middot; <a href="https://artificialanalysis.ai/models/muse-wonder">Artificial Analysis</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-376#meta-releases-wonder-opens-spark">The Batch</a> &middot; <span class="via">via TLDR AI (Oct 13), TLDR (Oct 13), The Code (Oct 13), MarkTechPost (Oct 14), Simon Willison (Oct 21), The Batch (Oct 23)</span></div>
         </article>
 
         <article class="story" id="gpt-6-intelligent-ui">
@@ -484,32 +486,56 @@
         <h3>Open-weights releases</h3>
         <p class="lead">Open releases now split three ways: general-purpose bases, narrow models built for one job, and fully open recipes that publish data mixtures and training code as well as a checkpoint. The licence is the part that decides what you can actually do with them, and it is often narrower than the announcement.</p>
 
-        <article class="story" id="recursive-flint">
-          <span class="when">2026-10-22</span>
-          <h4><a href="https://recursive.com/updates/introducing-recursive-flint">Recursive Flint: a 40B/2.5B-active coding MoE for local hardware, 74.2% on SWE-Bench Verified, over 125 tokens a second on an M4 Pro</a></h4>
-          <p>Recursive&rsquo;s <strong>Flint</strong> is a mixture-of-experts model for agentic coding on local hardware, <strong>40 billion total parameters with 2.5 billion active</strong> per token, built in under four months by a small team of people and agents that Recursive says produced nearly every part of the model. It scores <strong>74.2% on SWE-Bench Verified</strong>, which the company says beats every model under 50B, and generates more than <strong>125 tokens a second on an M4 Pro MacBook Pro</strong> and more than 150 on a 64GB NVIDIA RTX Spark at short contexts; weights are on Hugging Face.</p>
-          <p>It is the narrow open release this section&rsquo;s lead names, a model built for one job and sized to run without an API bill, and every figure is Recursive&rsquo;s own; the licence and throughput at long contexts are not in the issues.</p>
-          <div class="sources"><a href="https://recursive.com/updates/introducing-recursive-flint">Recursive</a> &middot; <a href="https://huggingface.co/RecursiveSI">Hugging Face (weights)</a> &middot; <span class="via">via TLDR AI (Oct 22), The Code (Oct 22)</span></div>
+        <article class="story" id="sage-a1-5">
+          <span class="when">2026-10-25</span>
+          <h4><a href="https://huggingface.co/InternScience/Sage-A1.5">Shanghai AI Lab&rsquo;s Sage-A1.5 can check its own progress mid-trajectory and reports 61.2 on SWE-bench Pro</a></h4>
+          <p>Shanghai AI Lab released <strong>Sage-A1.5</strong>, an agent model built on Qwen3.6-35B-A3B. An opt-in verification mode has it review its progress mid-trajectory inside its own reasoning, and a <code>spawn_subagent</code> tool runs parallel sub-agents with separate contexts.</p>
+          <p>It reports <strong>61.2 on SWE-bench Pro</strong> and 81.7 on BrowseComp under Apache 2.0, with the eval framework open. The figures are the lab&rsquo;s, and the summary does not say how much the verification mode adds over the same model with it switched off.</p>
+          <div class="sources"><a href="https://huggingface.co/InternScience/Sage-A1.5">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
         </article>
 
-        <article class="story" id="mellum2-1">
-          <span class="when">2026-10-08</span>
-          <h4><a href="https://blog.jetbrains.com/ai/2026/10/mellum2-1-gets-to-work-a-fast-open-model-for-coding-agents/">JetBrains&rsquo; Mellum2.1, a 12B MoE with 2.5B active, goes from 2.0 to 47.0 on SWE-bench Verified through RL alone</a></h4>
-          <p>JetBrains released <strong>Mellum2.1</strong> under Apache 2.0, a <strong>12B mixture-of-experts with 2.5B parameters active per token</strong> whose architecture is unchanged from Mellum2: the gain came from reinforcement learning in real software environments, lifting <strong>SWE-bench Verified from 2.0 to 47.0</strong> and LiveCodeBench v6 to 82.0, top of the tested group. JetBrains claims about twice Qwen3.5-9B&rsquo;s throughput under load on one H200, served through vLLM or SGLang.</p>
-          <p>The comparison model still wins where agents spend their time &mdash; Qwen3.5-9B scores 50.0 on SWE-bench Verified in the same pipeline, 38.0 against 28.0 on SWE-bench Pro and 21.7 against 17.4 on Terminal-Bench 2.1 &mdash; and every number is JetBrains&rsquo; own. It is text-only.</p>
-          <div class="sources"><a href="https://blog.jetbrains.com/ai/2026/10/mellum2-1-gets-to-work-a-fast-open-model-for-coding-agents/">JetBrains</a> &middot; <a href="https://www.marktechpost.com/2026/10/08/jetbrains-releases-mellum2-1-a-12b-moe-open-model-for-coding-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 9)</span></div>
+        <article class="story" id="raon-1-mini">
+          <span class="when">2026-10-25</span>
+          <h4><a href="https://huggingface.co/KRAFTON/Raon-1-mini-preview">KRAFTON&rsquo;s Raon-1 mini, a 28.8B MoE with 4.3B active, holds its KV cache near 8 KiB a token and fits one RTX 5090</a></h4>
+          <p>KRAFTON released <strong>Raon-1 mini</strong>, its first open model: a <strong>28.8B</strong> mixture-of-experts trained from scratch with <strong>4.3B active</strong> and a 262K context. Eighteen of its 25 layers use linear attention, which keeps the KV cache to about 8 KiB per token, and a bundled DFlash2 draft model lifts throughput by up to 2.18&times;.</p>
+          <p>It reports <strong>70.8 on SWE-bench Verified</strong> and 84.2 on IFBench. The weights are Apache 2.0 behind gated access that approves automatically, and the release is labelled a preview.</p>
+          <div class="sources"><a href="https://huggingface.co/KRAFTON/Raon-1-mini-preview">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
         </article>
 
-        <article class="story" id="nvidia-kumo-tabular">
-          <span class="when">2026-09-30</span>
-          <h4><a href="https://huggingface.co/nvidia/Kumo-Tabular">NVIDIA&rsquo;s Kumo Tabular predicts new rows in one forward pass and tops TabArena at Elo 1950</a></h4>
-          <p>NVIDIA released <strong>Kumo Tabular</strong>, tabular foundation models in <strong>28M, 115M and 215M</strong> sizes that take labelled rows as context and predict new ones with no training, tuning or feature engineering; it ranks first on TabArena at <strong>Elo 1950</strong> and runs 17&times; faster than LimiX-2 on one RTX 6000 Pro. It was pretrained only on synthetic tables from structural causal models (up to 60,000 rows by 100 columns) and supports at most ten classes natively.</p>
-          <p>The licence is the differentiator: OpenMDW 1.1 weights allow commercial use where TabPFN-3 and LimiX-2 do not.</p>
-          <div class="sources"><a href="https://huggingface.co/nvidia/Kumo-Tabular">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/09/30/nvidia-releases-kumo-tabular/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 2)</span></div>
+        <article class="story" id="thinkingcap-gemma-4-26b-a4b">
+          <span class="when">2026-10-24</span>
+          <h4><a href="https://huggingface.co/bottlecapai/ThinkingCap-gemma-4-26B-A4B-it">ThinkingCap-Gemma-4-26B-A4B trims reasoning tokens by up to 69% on LongBench v2 for 0.15 points of accuracy</a></h4>
+          <p>BottleCap AI applied its ThinkingCap treatment to Gemma 4 26B-A4B: a drop-in replacement for the base weights that cuts thinking by <strong>38.9%</strong> and by up to <strong>69% on LongBench v2</strong>, at a 0.15-point average accuracy cost. A PRO version claims cuts of up to 87.6%.</p>
+          <p>It follows the <a href="#thinkingcap-qwen3-8-27b">Qwen3.8-27B release</a>, which gave up 0.86 points for a 37.2% cut, so the recipe now covers a sparse model as well as a dense one. The figures are BottleCap&rsquo;s, and the summary does not state this build&rsquo;s licence.</p>
+          <div class="sources"><a href="https://huggingface.co/bottlecapai/ThinkingCap-gemma-4-26B-A4B-it">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (13)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="recursive-flint">
+            <span class="when">2026-10-22</span>
+            <h4><a href="https://recursive.com/updates/introducing-recursive-flint">Recursive Flint: a 40B/2.5B-active coding MoE for local hardware, 74.2% on SWE-Bench Verified, over 125 tokens a second on an M4 Pro</a></h4>
+            <p>Recursive&rsquo;s <strong>Flint</strong> is a mixture-of-experts model for agentic coding on local hardware, <strong>40 billion total parameters with 2.5 billion active</strong> per token, built in under four months by a small team of people and agents that Recursive says produced nearly every part of the model. It scores <strong>74.2% on SWE-Bench Verified</strong>, which the company says beats every model under 50B, and generates more than <strong>125 tokens a second on an M4 Pro MacBook Pro</strong> and more than 150 on a 64GB NVIDIA RTX Spark at short contexts; weights are on Hugging Face.</p>
+            <p>It is the narrow open release this section&rsquo;s lead names, a model built for one job and sized to run without an API bill, and every figure is Recursive&rsquo;s own; the licence and throughput at long contexts are not in the issues.</p>
+            <div class="sources"><a href="https://recursive.com/updates/introducing-recursive-flint">Recursive</a> &middot; <a href="https://huggingface.co/RecursiveSI">Hugging Face (weights)</a> &middot; <span class="via">via TLDR AI (Oct 22), The Code (Oct 22)</span></div>
+          </article>
+
+          <article class="story" id="mellum2-1">
+            <span class="when">2026-10-08</span>
+            <h4><a href="https://blog.jetbrains.com/ai/2026/10/mellum2-1-gets-to-work-a-fast-open-model-for-coding-agents/">JetBrains&rsquo; Mellum2.1, a 12B MoE with 2.5B active, goes from 2.0 to 47.0 on SWE-bench Verified through RL alone</a></h4>
+            <p>JetBrains released <strong>Mellum2.1</strong> under Apache 2.0, a <strong>12B mixture-of-experts with 2.5B parameters active per token</strong> whose architecture is unchanged from Mellum2: the gain came from reinforcement learning in real software environments, lifting <strong>SWE-bench Verified from 2.0 to 47.0</strong> and LiveCodeBench v6 to 82.0, top of the tested group. JetBrains claims about twice Qwen3.5-9B&rsquo;s throughput under load on one H200, served through vLLM or SGLang.</p>
+            <p>The comparison model still wins where agents spend their time &mdash; Qwen3.5-9B scores 50.0 on SWE-bench Verified in the same pipeline, 38.0 against 28.0 on SWE-bench Pro and 21.7 against 17.4 on Terminal-Bench 2.1 &mdash; and every number is JetBrains&rsquo; own. It is text-only.</p>
+            <div class="sources"><a href="https://blog.jetbrains.com/ai/2026/10/mellum2-1-gets-to-work-a-fast-open-model-for-coding-agents/">JetBrains</a> &middot; <a href="https://www.marktechpost.com/2026/10/08/jetbrains-releases-mellum2-1-a-12b-moe-open-model-for-coding-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 9)</span></div>
+          </article>
+
+          <article class="story" id="nvidia-kumo-tabular">
+            <span class="when">2026-09-30</span>
+            <h4><a href="https://huggingface.co/nvidia/Kumo-Tabular">NVIDIA&rsquo;s Kumo Tabular predicts new rows in one forward pass and tops TabArena at Elo 1950</a></h4>
+            <p>NVIDIA released <strong>Kumo Tabular</strong>, tabular foundation models in <strong>28M, 115M and 215M</strong> sizes that take labelled rows as context and predict new ones with no training, tuning or feature engineering; it ranks first on TabArena at <strong>Elo 1950</strong> and runs 17&times; faster than LimiX-2 on one RTX 6000 Pro. It was pretrained only on synthetic tables from structural causal models (up to 60,000 rows by 100 columns) and supports at most ten classes natively.</p>
+            <p>The licence is the differentiator: OpenMDW 1.1 weights allow commercial use where TabPFN-3 and LimiX-2 do not.</p>
+            <div class="sources"><a href="https://huggingface.co/nvidia/Kumo-Tabular">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/09/30/nvidia-releases-kumo-tabular/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 2)</span></div>
+          </article>
 
           <article class="story" id="thinkingcap-qwen3-8-27b">
             <span class="when">2026-09-24</span>
@@ -618,6 +644,14 @@
         <h3>On-device &amp; quantized weights</h3>
         <p class="lead">The open tier competing on local deployability rather than capability. &ldquo;Quantized&rdquo; is a range, not a property, so the number to judge an entry on is not the headline average but where the compression is measured &mdash; single-turn knowledge questions and multi-step agent work come apart sharply here.</p>
 
+        <article class="story" id="nemotron-3-5-bolt-e4b">
+          <span class="when">2026-10-23</span>
+          <h4><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">NVIDIA&rsquo;s Nemotron 3.5 Bolt E4B fits a local voice-agent model in 4 GB and decodes 272.6 tokens/s on an RTX 5070</a></h4>
+          <p>NVIDIA released <strong>Nemotron 3.5 Bolt E4B</strong>, an open small language model for local voice agents, game characters and robots on GeForce RTX, Jetson and RTX/DGX Spark. It skipped SFT entirely and was trained only with RLVR and RLHF through NeMo-RL and NeMo-Gym, every sample run in both reasoning and non-reasoning modes at a 2:1 ratio, with a runtime thinking budget and a <strong>64K context</strong>.</p>
+          <p>The 4 GB footprint is the Q4_K_M build, calibrated on about 1M tokens of RL rollouts, and the <strong>272.6 tokens/s</strong> on an RTX 5070 assumes its bundled DFlash drafter for speculative decoding. Every benchmark is NVIDIA&rsquo;s own.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+        </article>
+
         <article class="story" id="spark-x2-6-4b">
           <span class="when">2026-10-21</span>
           <h4><a href="https://huggingface.co/XHToken/Spark-X2.6-4B">Spark-X2.6-4B is a 4B open model post-trained for on-device agents</a></h4>
@@ -634,15 +668,15 @@
           <div class="sources"><a href="https://prismml.com/news/bonsai-2-27b">PrismML</a> &middot; <a href="https://huggingface.co/collections/prism-ml/bonsai-2">Weights</a> &middot; <span class="via">via TLDR AI (Sep 18), MarkTechPost (Sep 20)</span></div>
         </article>
 
-        <article class="story" id="deepseek-v4-pro-0813-nvfp4">
-          <span class="when">2026-08-31</span>
-          <h4><a href="https://huggingface.co/nvidia/DeepSeek-V4-Pro-0813-NVFP4">DeepSeek-V4-Pro-0813-NVFP4 &mdash; NVIDIA ships a quantized Pro checkpoint for commercial use</a></h4>
-          <p>NVIDIA published an NVFP4 quantization of <a href="#deepseek-v4-pro-0813">DeepSeek-V4-Pro-0813</a>, the autoregressive MoE, produced with Model Optimizer and licensed for both commercial and non-commercial use. It is aimed at reasoning, tool use and agentic workloads rather than chat. The pattern is now routine rather than community effort: the open-weights release lands, and a hardware vendor ships the serving-grade quantization within weeks.</p>
-          <div class="sources"><a href="https://huggingface.co/nvidia/DeepSeek-V4-Pro-0813-NVFP4">Hugging Face</a> &middot; <span class="via">via TLDR AI (Aug 31)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="deepseek-v4-pro-0813-nvfp4">
+            <span class="when">2026-08-31</span>
+            <h4><a href="https://huggingface.co/nvidia/DeepSeek-V4-Pro-0813-NVFP4">DeepSeek-V4-Pro-0813-NVFP4 &mdash; NVIDIA ships a quantized Pro checkpoint for commercial use</a></h4>
+            <p>NVIDIA published an NVFP4 quantization of <a href="#deepseek-v4-pro-0813">DeepSeek-V4-Pro-0813</a>, the autoregressive MoE, produced with Model Optimizer and licensed for both commercial and non-commercial use. It is aimed at reasoning, tool use and agentic workloads rather than chat. The pattern is now routine rather than community effort: the open-weights release lands, and a hardware vendor ships the serving-grade quantization within weeks.</p>
+            <div class="sources"><a href="https://huggingface.co/nvidia/DeepSeek-V4-Pro-0813-NVFP4">Hugging Face</a> &middot; <span class="via">via TLDR AI (Aug 31)</span></div>
+          </article>
 
           <article class="story unlinked" id="minicpm5-1b-thinking-distill">
             <span class="when">2026-07-20</span>
@@ -665,7 +699,6 @@
             <p>Google DeepMind&rsquo;s Gemma 4 added a <strong>12B model built to power local agents on a 16GB laptop</strong>, with benchmark performance nearing the 26B model for multi-step reasoning and agentic workflows. New quantization-aware-trained (QAT) weights shipped across all Gemma 4 sizes (e2b, e4b, 12B, 26B, 31B), reducing memory footprint and speeding output at near-full quality without the loss of post-hoc quantization, with faster runs across Apple, AMD, Intel, NVIDIA and Qualcomm hardware (inference-economics angle on <a href="infrastructure.html">Infrastructure &amp; compute</a>).</p>
             <div class="sources"><span class="via">via Ollama newsletter &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -673,13 +706,21 @@
         <h3>Large-scale efficient MoEs</h3>
         <p class="lead">Sparsity, hybrid attention and aggressive low-precision quantization are how the open frontier is decoupling parameter count from serving cost. Total parameters rise, active parameters fall, and quality holds. The figure that decides whether a release is usable is the active count and the decode speed at long context, not the headline size.</p>
 
+        <article class="story" id="kimi-k3-1-pro">
+          <span class="when">2026-10-23</span>
+          <h4><a href="https://www.marktechpost.com/2026/10/23/moonshot-ai-kimi-k3-1-pro-open-weight-model/">Kimi K3.1 Pro: a 2.8T MoE with 104B active and a 1M context, priced 33% under K3, weights promised by Nov 4</a></h4>
+          <p>Moonshot AI released <strong>Kimi K3.1 Pro</strong>, a mixture-of-experts with <strong>2.8T total and 104B active</strong> parameters and a 1M-token context, served through an OpenAI-compatible API as <code>kimi-k3.1-pro</code> plus a highspeed variant. It reports <strong>65.7% on Terminal-Bench 4.0</strong> and scores 55 on the Artificial Analysis Intelligence Index.</p>
+          <p>Pricing is <strong>$2.00 in and $10.00 out</strong> per million tokens with $0.20 cache hits, each 33% below K3, whose full checkpoint someone ran on <a href="infrastructure.html#kimi-k3-in-c">one CPU from C99</a>. The weights are promised by November 4, so for now the open-weight label is a commitment rather than a download.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/10/23/moonshot-ai-kimi-k3-1-pro-open-weight-model/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+        </article>
+
         <article class="story" id="minimax-m3-1-flash">
           <span class="when">2026-10-19</span>
           <h4><a href="https://agent.minimax.io/tools/m3-1-flash-preview">MiniMax M3.1 Flash is a 428B MoE with about 23B active at a flat $0.15/$0.60 per million tokens</a></h4>
           <p>MiniMax launched <strong>M3.1 Flash</strong>, the successor to <a href="agents.html#minimax-m3">M3</a>: a 428B-parameter mixture-of-experts with roughly <strong>23B active</strong>, a 1M context and text, image and video input, priced at <strong>$0.15 per million input tokens and $0.60 output</strong> with no long-context surcharge. Reasoning is always on and cannot be disabled; five effort levels are exposed, with Max recommended.</p>
           <p>MiniMax reports <strong>62.2 on Automation-Bench</strong> against 50.3 for Claude Opus 5, 73.7 on DeepSWE v1.1 (below <a href="#deepseek-v4-1-flash-1017">DeepSeek V4.1-Flash-1017</a> at 77.0) and 38.1 on Terminal-Bench 4.0 to Opus 5&rsquo;s 51.8, the weak row. Every figure is vendor-reported and the active count is MiniMax&rsquo;s own estimate.</p>
-          <p><em>Updated Oct 20:</em> MiniMax&rsquo;s own framing of the generation change: online inference nearly <strong>three times faster</strong> and usage costs <strong>70% lower</strong> than its predecessor, available now through the MiniMax API, the M Plan and MiniMax Code, with the weights promised for a later date rather than at launch.</p>
-          <div class="sources"><a href="https://agent.minimax.io/tools/m3-1-flash-preview">MiniMax</a> &middot; <a href="https://www.marktechpost.com/2026/10/19/minimax-m3-1-flash-release/">MarkTechPost</a> &middot; <a href="https://www.minimax.io/blog/minimax-m31f">MiniMax blog</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20)</span></div>
+          <p><em>Updated Oct 20:</em> MiniMax&rsquo;s own framing of the generation change: online inference nearly <strong>three times faster</strong> and usage costs <strong>70% lower</strong> than its predecessor, available now through the MiniMax API, the M Plan and MiniMax Code, with the weights promised for a later date rather than at launch. <em>Updated Oct 26:</em> the weights are now on Hugging Face and ModelScope, a <strong>252 GB</strong> download under the MiniMax Community Licence, with API pricing unchanged at $0.15 per million input tokens.</p>
+          <div class="sources"><a href="https://agent.minimax.io/tools/m3-1-flash-preview">MiniMax</a> &middot; <a href="https://www.marktechpost.com/2026/10/19/minimax-m3-1-flash-release/">MarkTechPost</a> &middot; <a href="https://www.minimax.io/blog/minimax-m31f">MiniMax blog</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20), MarkTechPost (Oct 24)</span></div>
         </article>
 
         <article class="story" id="muse-spark-open">
@@ -687,19 +728,20 @@
           <h4><a href="https://research.meta.ai/blog/muse-spark-open">Meta&rsquo;s Muse Spark Open: 816B open weights with 42B active and a 1M context, runnable on two Mac Studios</a></h4>
           <p>Meta released <strong>Muse Spark Open</strong>, the open-weight version of Muse Spark: an <strong>816B</strong> mixture-of-experts with <strong>42B active parameters</strong> (256 experts, 8 per token), a <strong>1M-token context</strong>, and text, image, video and audio input with text output. Meta calls it the most capable US open-weight model to date, positions it for coding and long-horizon agent work, and says it runs locally across two Apple M5 Ultra Mac Studios with MLX, with vLLM, SGLang and llama.cpp as serving paths.</p>
           <p>On Meta&rsquo;s own table it leads MCP-Atlas at <strong>89.2</strong> against Qwen3.8&rsquo;s 84.5 and GLM 5.3&rsquo;s 84.2, but coding is the gap: <strong>76.4 on Terminal-Bench 2.1</strong> to Kimi K3&rsquo;s 85.0, GLM 5.3&rsquo;s 83.9 and Qwen3.8&rsquo;s 82.0. Artificial Analysis scores it <strong>39</strong>, behind GLM 5.3 (45), Kimi K3 (44) and Qwen3.8 (40), so the &ldquo;most capable US open model&rdquo; claim holds only with the geography attached. It delivers the Muse Spark weights the <a href="#muse-wonder">Muse Wonder</a> launch promised; the licence is not stated in the sources.</p>
-          <div class="sources"><a href="https://research.meta.ai/blog/muse-spark-open">Meta</a> &middot; <a href="https://huggingface.co/collections/meta-models/muse-spark-open">Hugging Face collection</a> &middot; <a href="https://www.marktechpost.com/2026/10/15/meta-muse-spark-open-816b-open-weight-model/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16), The Code (Oct 16)</span></div>
-        </article>
-
-        <article class="story" id="nemotron-3-5-super-vl">
-          <span class="when">2026-10-15</span>
-          <h4><a href="https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/">NVIDIA&rsquo;s Nemotron 3.5 Super VL: a 120B open multimodal agent model with 12B active, 89.9 on GPQA Diamond</a></h4>
-          <p>NVIDIA released <strong>Nemotron 3.5 Super VL</strong>, a <strong>120B-total, 12B-active</strong> MoE with up to <strong>1M context</strong> that takes text, images, documents and video up to two minutes in one checkpoint and handles tool calls and code. An <strong>NVFP4</strong> build NVIDIA calls near-lossless runs on one DGX Spark, H200 or GB200, or on two H100s, and NVIDIA claims up to <strong>5&times;</strong> the single-GPU throughput of open peers; a smaller <strong>Nemotron 3.5 Bolt 74B-A9B</strong> shipped alongside.</p>
-          <p>NVIDIA reports <strong>89.90 on GPQA Diamond</strong>, ahead of Qwen3.5-122B-A10B at 86.6, and <strong>71.07 on SWE-bench Verified</strong>, behind Qwen3.5 at 72.0 and Inkling-Small at 80.2; tau3-bench banking is the weak row at 17.78. Artificial Analysis gives it <strong>26.5</strong> on its Intelligence Index while using far fewer output tokens than its predecessor, which is the one outside figure here.</p>
-          <div class="sources"><a href="https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/">NVIDIA</a> &middot; <a href="https://developer.nvidia.com/blog/nvidia-nemotron-3-5-super-vl-powers-specialized-agents-with-multimodal-reasoning/">NVIDIA developer blog</a> &middot; <a href="https://www.marktechpost.com/2026/10/15/nvidia-nemotron-3-5-super-vl-release/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16)</span></div>
+          <p><em>Updated Oct 26:</em> The Batch fills in the terms: the Muse Model license allows commercial use up to <strong>$20 million of revenue</strong> and requires a &ldquo;Built with Muse Spark Open&rdquo; notice, with separate licences above that; API pricing is $1.25/$4.15 per million tokens, or $0.84 per Intelligence Index task, more than GPT-6.1 Sol or DeepSeek V4.1 Flash; and the 4-bit weights need about 1 TB of memory, which is the two 512 GB Mac Studios Meta cited.</p>
+          <div class="sources"><a href="https://research.meta.ai/blog/muse-spark-open">Meta</a> &middot; <a href="https://huggingface.co/collections/meta-models/muse-spark-open">Hugging Face collection</a> &middot; <a href="https://www.marktechpost.com/2026/10/15/meta-muse-spark-open-816b-open-weight-model/">MarkTechPost</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-376#meta-releases-wonder-opens-spark">The Batch</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16), The Code (Oct 16), The Batch (Oct 23)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (16)</summary>
+          <summary>Earlier in this section (17)</summary>
+
+          <article class="story" id="nemotron-3-5-super-vl">
+            <span class="when">2026-10-15</span>
+            <h4><a href="https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/">NVIDIA&rsquo;s Nemotron 3.5 Super VL: a 120B open multimodal agent model with 12B active, 89.9 on GPQA Diamond</a></h4>
+            <p>NVIDIA released <strong>Nemotron 3.5 Super VL</strong>, a <strong>120B-total, 12B-active</strong> MoE with up to <strong>1M context</strong> that takes text, images, documents and video up to two minutes in one checkpoint and handles tool calls and code. An <strong>NVFP4</strong> build NVIDIA calls near-lossless runs on one DGX Spark, H200 or GB200, or on two H100s, and NVIDIA claims up to <strong>5&times;</strong> the single-GPU throughput of open peers; a smaller <strong>Nemotron 3.5 Bolt 74B-A9B</strong> shipped alongside.</p>
+            <p>NVIDIA reports <strong>89.90 on GPQA Diamond</strong>, ahead of Qwen3.5-122B-A10B at 86.6, and <strong>71.07 on SWE-bench Verified</strong>, behind Qwen3.5 at 72.0 and Inkling-Small at 80.2; tau3-bench banking is the weak row at 17.78. Artificial Analysis gives it <strong>26.5</strong> on its Intelligence Index while using far fewer output tokens than its predecessor, which is the one outside figure here.</p>
+            <div class="sources"><a href="https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/">NVIDIA</a> &middot; <a href="https://developer.nvidia.com/blog/nvidia-nemotron-3-5-super-vl-powers-specialized-agents-with-multimodal-reasoning/">NVIDIA developer blog</a> &middot; <a href="https://www.marktechpost.com/2026/10/15/nvidia-nemotron-3-5-super-vl-release/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16)</span></div>
+          </article>
 
           <article class="story" id="ling-3-1-flash">
             <span class="when">2026-10-15</span>
@@ -729,7 +771,8 @@
             <h4><a href="https://reflection.ai/blog/introducing-beam">Reflection&rsquo;s Beam: a 501B MoE with 23B active, open weights promised for later in October</a></h4>
             <p>Reflection introduced <strong>Beam</strong>, a sparse Mixture-of-Experts model with <strong>501B total and 23B active parameters</strong>, trained for coding, reasoning and agentic work on <strong>23.8T pretraining tokens</strong> and more than <strong>100M reinforcement-learning rollouts</strong>. The weights and developer artifacts are announced, not shipped: Reflection says they release later in October, so nothing about it can be run or checked yet.</p>
             <p><em>Updated Oct 18:</em> the weights are live under <strong>Apache 2.0</strong> in BF16, FP8 and NVFP4, and Reflection claims <strong>80.1% on Terminal-Bench 2.1</strong> at about 25K tokens per attempt, which would put it above <a href="#muse-spark-open">Muse Spark Open</a>&rsquo;s 76.4 on Meta&rsquo;s table; the figure is Reflection&rsquo;s.</p>
-            <div class="sources"><a href="https://reflection.ai/blog/introducing-beam">Reflection</a> &middot; <a href="https://reflection.ai/blog/beam-is-available">Weights release</a> &middot; <span class="via">via TLDR AI (Oct 6), MarkTechPost (Oct 16), MarkTechPost (Oct 18)</span></div>
+            <p><em>Updated Oct 26:</em> The Batch&rsquo;s outside figures: Artificial Analysis puts Beam at <strong>30</strong> on its Intelligence Index, second among US-made open models behind Muse Spark Open&rsquo;s 39 and below Qwen 3.8-27B&rsquo;s 34, but with the fewest output tokens of any open model it compared, about 26,000 a task, at 228 tokens a second and 1.4 minutes per task, the fastest it has measured. API pricing is $0.70/$2.10 per million tokens; pretraining ran on 6,144 GPUs for under four weeks and RL on 10,500 for four.</p>
+            <div class="sources"><a href="https://reflection.ai/blog/introducing-beam">Reflection</a> &middot; <a href="https://reflection.ai/blog/beam-is-available">Weights release</a> &middot; <a href="https://www.deeplearning.ai/the-batch/issue-376#nvidia-courts-a-new-partner">The Batch</a> &middot; <span class="via">via TLDR AI (Oct 6), MarkTechPost (Oct 16), MarkTechPost (Oct 18), The Batch (Oct 23)</span></div>
           </article>
 
           <article class="story" id="aleph-alpha-kolibri">
@@ -958,7 +1001,8 @@
             <h4><a href="https://developers.openai.com/api/docs/guides/decisions">OpenAI&rsquo;s Decisions API puts GPT-6 Luna behind a pick-from-your-options interface, in limited preview</a></h4>
             <p>OpenAI announced a <strong>Decisions API</strong> powered by GPT-6 Luna: the developer defines questions and possible answers, and the model classifies content, routes requests or chooses an agent&rsquo;s next action from text and image context. Preview access was limited to selected API customers at launch &mdash; the first frontier lab to ship the System One shape <a href="#jev">Jev</a> introduced.</p>
             <p>On Oct 7 it went to <strong>public beta</strong> for all developers: three output kinds &mdash; a predicate probability, a choice from a fixed set, or a score against a rubric &mdash; returned through the Responses API up to <strong>10&times; faster</strong> than GPT-6 Luna itself, at <strong>$0.10 per million input tokens</strong> with no cache-read, cache-write or output-token charges. That is the price point the open decision models above were competing against before it existed; no accuracy or latency figure is published yet.</p>
-            <div class="sources"><a href="https://developers.openai.com/api/docs/guides/decisions">OpenAI docs</a> &middot; <a href="https://community.openai.com/t/decisions-api-is-now-available-in-public-beta/1403877">Public beta announcement</a> &middot; <a href="https://threadreaderapp.com/thread/2105003318917697873.html">Announcement thread (reader view)</a> &middot; <span class="via">via TLDR AI (Sep 30), The Code (Sep 30), TLDR AI (Oct 7), TLDR (Oct 7)</span></div>
+            <p><em>Updated Oct 26:</em> MarkTechPost reports the API is now generally available at the same <strong>$0.10 per million input tokens</strong> with no output charge, taking up to <strong>400 questions per request</strong>; OpenAI still quotes a speed multiple, up to 10&times; GPT-6 Luna through the Responses API, rather than an accuracy figure.</p>
+            <div class="sources"><a href="https://developers.openai.com/api/docs/guides/decisions">OpenAI docs</a> &middot; <a href="https://community.openai.com/t/decisions-api-is-now-available-in-public-beta/1403877">Public beta announcement</a> &middot; <a href="https://threadreaderapp.com/thread/2105003318917697873.html">Announcement thread (reader view)</a> &middot; <a href="https://openai.com/index/decisions-api/">OpenAI</a> &middot; <span class="via">via TLDR AI (Sep 30), The Code (Sep 30), TLDR AI (Oct 7), TLDR (Oct 7), MarkTechPost (Oct 23)</span></div>
           </article>
 
           <article class="story" id="liquid-d1">
@@ -1168,6 +1212,14 @@
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
 
+        <article class="story" id="gradium-phonon">
+          <span class="when">2026-10-22</span>
+          <h4><a href="https://gradium.ai/blog/release-phonon-open-weight">Gradium&rsquo;s Phonon 31m is a 64.5 MB on-device TTS model that starts speaking in 6.9 ms on a laptop CPU</a></h4>
+          <p>Gradium, a Paris voice company spun out of Kyutai, open-sourced <strong>Phonon</strong>, a family of on-device text-to-speech models. Phonon 31m is a six-layer causal transformer, 512 wide and distilled from a larger teacher, that reads raw text through a 4,000-token SentencePiece vocabulary with no phoneme step and turns one latent per 80 ms frame into 24 kHz audio in a single flow-matching step.</p>
+          <p>Gradium reports <strong>1.70% WER</strong> on 500 hard sentences full of phone numbers and emails against 3.50% for Kokoro, first audio in <strong>6.9 ms</strong> on a MacBook Air M5 CPU against Kokoro&rsquo;s 517 ms, and 38 ms to start on a Raspberry Pi 5. Only the English 31m model is Apache 2.0, the 40m and multilingual models are CC BY-NC 4.0, and every benchmark is Gradium&rsquo;s own.</p>
+          <div class="sources"><a href="https://gradium.ai/blog/release-phonon-open-weight">Gradium</a> &middot; <a href="https://www.marktechpost.com/2026/10/22/gradium-phonon-31m-on-device-tts/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
+        </article>
+
         <article class="story" id="eleven-realtime">
           <span class="when">2026-10-21</span>
           <h4><a href="https://elevenlabs.io/realtime">Eleven Realtime is a speech-to-speech model pair that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name</a></h4>
@@ -1184,16 +1236,16 @@
           <div class="sources"><a href="https://mistral.ai/news/voxtral-3/">Mistral</a> &middot; <a href="https://www.marktechpost.com/2026/10/20/mistral-voxtral-3-speech-models-voice-agent-sdk/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 21), MarkTechPost (Oct 21), The Code (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="gpt-live-1-1">
-          <span class="when">2026-10-16</span>
-          <h4><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">GPT-Live-1.1 adds 13 voices across six languages and becomes ChatGPT&rsquo;s default for Plus and above</a></h4>
-          <p>OpenAI shipped <strong>GPT-Live-1.1</strong>, an update to its full-duplex voice model, with <strong>13 new voices across six languages</strong> (French, German, Hindi, Mexican Spanish, Korean and Japanese), better accents and less of the &ldquo;checking&rdquo; filler. It is rolling out in ChatGPT, Codex and dots, is now the default for Plus plans and above, and is &ldquo;coming soon&rdquo; to the API, where <a href="#gpt-live-1-api">GPT-Live-1</a> costs $0.05 a minute.</p>
-          <p>No latency, interruption or benchmark figure accompanies the release notes, so against <a href="#grok-voice-3">Grok Voice 3.0</a>&rsquo;s index score there is nothing yet to compare.</p>
-          <div class="sources"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI release notes</a> &middot; <a href="https://threadreaderapp.com/thread/2110797830361436604.html">Announcement thread</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (28)</summary>
+          <summary>Earlier in this section (29)</summary>
+
+          <article class="story" id="gpt-live-1-1">
+            <span class="when">2026-10-16</span>
+            <h4><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">GPT-Live-1.1 adds 13 voices across six languages and becomes ChatGPT&rsquo;s default for Plus and above</a></h4>
+            <p>OpenAI shipped <strong>GPT-Live-1.1</strong>, an update to its full-duplex voice model, with <strong>13 new voices across six languages</strong> (French, German, Hindi, Mexican Spanish, Korean and Japanese), better accents and less of the &ldquo;checking&rdquo; filler. It is rolling out in ChatGPT, Codex and dots, is now the default for Plus plans and above, and is &ldquo;coming soon&rdquo; to the API, where <a href="#gpt-live-1-api">GPT-Live-1</a> costs $0.05 a minute.</p>
+            <p>No latency, interruption or benchmark figure accompanies the release notes, so against <a href="#grok-voice-3">Grok Voice 3.0</a>&rsquo;s index score there is nothing yet to compare.</p>
+            <div class="sources"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI release notes</a> &middot; <a href="https://threadreaderapp.com/thread/2110797830361436604.html">Announcement thread</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16)</span></div>
+          </article>
 
           <article class="story" id="grok-voice-3">
             <span class="when">2026-10-14</span>
@@ -1407,7 +1459,6 @@
             <p>Together with Miso Labs&rsquo; MisoTTS on the generation side (see <a href="applications.html">Applications</a>), the open and efficient speech stack now spans both transcription and emotive synthesis.</p>
             <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -1596,6 +1647,12 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-25</span><span class="label"><a href="#sage-a1-5">Shanghai AI Lab&rsquo;s Sage-A1.5 can check its own progress mid-trajectory and reports 61.2 on SWE-bench Pro</a></span></li>
+        <li><span class="date">2026-10-25</span><span class="label"><a href="#raon-1-mini">KRAFTON&rsquo;s Raon-1 mini, a 28.8B MoE with 4.3B active, holds its KV cache near 8 KiB a token and fits one RTX 5090</a></span></li>
+        <li><span class="date">2026-10-24</span><span class="label"><a href="#thinkingcap-gemma-4-26b-a4b">ThinkingCap-Gemma-4-26B-A4B trims reasoning tokens by up to 69% on LongBench v2 for 0.15 points of accuracy</a></span></li>
+        <li><span class="date">2026-10-23</span><span class="label"><a href="#kimi-k3-1-pro">Kimi K3.1 Pro: a 2.8T MoE with 104B active and a 1M context, priced 33% under K3, weights promised by Nov 4</a></span></li>
+        <li><span class="date">2026-10-23</span><span class="label"><a href="#nemotron-3-5-bolt-e4b">NVIDIA&rsquo;s Nemotron 3.5 Bolt E4B fits a local voice-agent model in 4 GB and decodes 272.6 tokens/s on an RTX 5070</a></span></li>
+        <li><span class="date">2026-10-22</span><span class="label"><a href="#gradium-phonon">Gradium&rsquo;s Phonon 31m is a 64.5 MB on-device TTS model that starts speaking in 6.9 ms on a laptop CPU</a></span></li>
         <li><span class="date">2026-10-22</span><span class="label"><a href="#recursive-flint">Recursive Flint: a 40B/2.5B-active coding MoE for local hardware, 74.2% on SWE-Bench Verified, over 125 tokens a second on an M4 Pro</a></span></li>
         <li><span class="date">2026-10-22</span><span class="label"><a href="#mammoth-1-elephant-1">Mammoth-1 and Elephant-1: Base Labs&rsquo; decision models are reported to top the Jev and Artificial Analysis decision indexes</a></span></li>
         <li><span class="date">2026-10-21</span><span class="label"><a href="#eleven-realtime">Eleven Realtime is a speech-to-speech model pair that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name</a></span></li>

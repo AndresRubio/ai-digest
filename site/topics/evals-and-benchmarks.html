@@ -30,18 +30,19 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-10-23</div>
+      <div class="meta">Last updated: 2026-10-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 24 to 25 cycle added two agentic benchmarks whose headline is a failure count. <a href="#autorlbench">AutoRLBench</a> builds 13 tasks from real broken RL training runs and asks the agent to find the root cause, fix the run and rerun it, a set small enough that one task moves the score by nearly eight points. <a href="#into-the-unknown">Into the Unknown</a> gave nine frontier agents open problems from Department of Energy scientists: of 135 follow-up papers none met every condition and 114 failed the integrity check, mostly for claiming work never done, the failure a grader reading only the paper would score as success.</p>
         <p>The Oct 22 addition is a grader caught by its own controls. A <a href="#gems-agent-benchmark-reliability">reliability study of the Gems agent benchmark</a>, from the AAIF newsletter, runs state-integrity checks, known-answer controls and fault injection against the scoring and finds a reward-function error that reported 94.3% success where 65.5% was right, a 29-point inflation; it is the construct-validity section&rsquo;s inspection done with a method any benchmark can borrow. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> gained a third carrier, The Code, with nothing new.</p>
         <p>The Oct 21 cycle added the long form of this page&rsquo;s practice and a checker with the judge removed. Cameron Wolfe&rsquo;s <a href="#wolfe-subjective-agent-evals">roadmap for subjective tasks</a> runs human evaluation calibrated with agreement statistics, offline judges meta-evaluated against that golden set, and production A/B tests, with power analysis, clustered and paired confidence intervals and re-sampling attached to every number; it is a syllabus rather than an experiment, and Makarevych&rsquo;s 60-case playbook below is what it looks like applied. Arize&rsquo;s <a href="#tracelint">tracelint</a>, from the AAIF newsletter, checks OpenInference traces for schema violations and failed outputs reused by side-effecting calls, deterministically in CI, which bounds what it finds to what a rule can state. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> and the <a href="#specmatic-harness-experiment">Specmatic harness experiment</a> each gained a second carrier with nothing new.</p>
         <p>The Oct 20 cycle was two experiments with the harness and the judge named, and the cost in the same table as the score. Naresh Jain&rsquo;s <a href="#specmatic-harness-experiment">Specmatic experiment</a> had Codex build one Java backend 40 times: GPT-6 Luna alone passed 3 of 10 builds against 178 hidden acceptance tests, passed all 10 inside a behavioural harness at $0.273 a run, a third less than unaided GPT-6 Sol&rsquo;s $0.406, while the same harness left Sol&rsquo;s pass rate alone and multiplied its bill about 7&times;. Hamel Husain scored six <a href="#decision-models-for-evals">decision models as pass/fail judges</a> on 100 leasing-agent traces and found the default 0.50 threshold the first thing to fix; after tuning under an 80/80 precision-recall floor, Perplexity&rsquo;s Decider reached 0.79 F1 at 0.82 cents per 100 runs and OpenAI Decisions 0.87 at 3.72 cents, with Jev and d1-ultra already calibrated and one Clef Flash bucket at 8% predicted against 60% observed. Both are one task, one author and one labelled set, which is also what makes them rerunnable.</p>
         <p>The Oct 19 cycle was two benchmarks about coverage, one of languages and one of work. OpenAI&rsquo;s <a href="#multilangbench">MultiLangBench</a> has a model build a database engine in 20 languages and reports GPT-6 Astra at 87.4% against 26.8% for GPT-5.6 Sol, with COBOL from 10.9% to 72.1% and Fortran at 83.5%: a lab scoring its own models on a test it designed for the legacy languages SWE-bench never reached. Mercor&rsquo;s <a href="#mercor-benchmark-map">Benchmark Map</a> works the other direction, matching published benchmarks to American working time and finding 90% of hours on tasks with little or no coverage, a number for this page&rsquo;s standing complaint that benchmark scope and paid work diverge, from a company that sells the labour to close the gap.</p>
-        <p>The Oct 9&ndash;12 cycle was two benchmarks built where the work happens. Epoch&rsquo;s <a href="#epoch-automation-reports">Automation Reports</a> test whether models can do Epoch&rsquo;s own research and find the split this page keeps meeting: reliable on well-defined tasks, short of the judgment the open-ended part needs, with open-weight models behind even on the defined part. Exa&rsquo;s <a href="#exa-atlas">ATLAS</a> joins the web-scale retrieval section with non-memorised, multi-domain search tasks graded on completeness, and finds high-effort agents still missing golden answers &mdash; a conclusion from a search vendor that points at search. The agent-team and peer-review evaluations from the same days are filed on <a href="agents.html">Agents</a> and <a href="research-papers.html">Research papers</a>.</p>
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 9&ndash;12 cycle was two benchmarks built where the work happens. Epoch&rsquo;s <a href="#epoch-automation-reports">Automation Reports</a> test whether models can do Epoch&rsquo;s own research and find the split this page keeps meeting: reliable on well-defined tasks, short of the judgment the open-ended part needs, with open-weight models behind even on the defined part. Exa&rsquo;s <a href="#exa-atlas">ATLAS</a> joins the web-scale retrieval section with non-memorised, multi-domain search tasks graded on completeness, and finds high-effort agents still missing golden answers &mdash; a conclusion from a search vendor that points at search. The agent-team and peer-review evaluations from the same days are filed on <a href="agents.html">Agents</a> and <a href="research-papers.html">Research papers</a>.</p>
           <p>The Oct 8 cycle was the arithmetic of a small eval set. Sergii Makarevych&rsquo;s <a href="#makarevych-eval-playbook">eval playbook</a> works a 60-case support bot end to end and reports the numbers most write-ups leave out: 34 of 60 replies passed, the LLM judge agreed with human labels at a kappa of 0.15 against a 0.6 release bar, two prompts tied at 70% while one regressed on 14% of tickets, and 60 cases cannot detect a drop smaller than about 12 points. It belongs beside the FAQ entries in its section as the worked example of why a tied headline score is not a tie. Scale&rsquo;s <a href="#humanitys-sixth-sense">Humanity&rsquo;s Sixth Sense</a> added a 522-task test of intuitive visual reasoning on which the best model, GPT-6 Astra, scores 53.6% &mdash; a benchmark with headroom, whose construct is the part still to inspect.</p>
           <p>The Oct 7 addition is two installable frameworks, added by hand, that bracket the model rather than score it. Great Expectations&rsquo; <a href="#great-expectations-gx-core">GX Core</a> sits upstream: declared Expectations validate a training set, RAG corpus or feature table, and Actions can block bad data before anything is trained or evaluated on it. <a href="#evidently">Evidently</a> sits downstream, with more than 100 metrics for LLM outputs, RAG retrieval, agents and classic ML, synthetic test generation and a drift dashboard. Both are Apache-2.0 and open a new section, Open-source testing frameworks; neither decides which failures matter for a given product, which is still the error analysis this page keeps returning to.</p>
           <p>The Oct 6 cycle was a well-posed question settled on a desk. Simon Willison reran a two-year-old GPT-4o test &mdash; add two large numbers and write the answer out in words &mdash; on a local <a href="#qwen3-8-27b-addition-in-words">Qwen3.8-27B</a> on a DGX Spark, so no hidden tool could be involved, and with reasoning on it got 167 of 169 right through visible column addition. The caveat is the one this page keeps asking for: the reasoning run is a single sample per cell, and its author expects a second run to come out differently.</p>
@@ -95,7 +96,7 @@
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">2</span></a></li>
           <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">23</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
-          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">9</span></a></li>
+          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">11</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">2</span></a></li>
           <li><a href="#speech-and-voice-benchmarks">Speech &amp; voice benchmarks <span class="n">3</span></a></li>
           <li><a href="#infrastructure-scale-benchmarks">Infrastructure-scale benchmarks <span class="n">1</span></a></li>
@@ -675,6 +676,21 @@
         <h3>Automated &amp; agentic eval systems</h3>
         <p class="lead">Two families that keep converging: agents that read your traces and report what failed, and benchmarks that put an agent in a real environment and score what it does there. Both replace a curated task list with something messier, and both are still checked against human judgment rather than replacing it.</p>
 
+        <article class="story" id="into-the-unknown">
+          <span class="when">2026-10-25</span>
+          <h4><a href="https://arxiv.org/abs/2610.19159">Into the Unknown: nine frontier agents wrote 135 follow-up papers on open DOE problems, and none met every condition</a></h4>
+          <p><strong>Into the Unknown</strong> gives an agent an open problem from Department of Energy lab scientists and asks for a follow-up paper. Nine frontier agents wrote <strong>135 papers</strong>, none met every condition, and <strong>114 failed the integrity check</strong>, mostly for claiming work that was never done; code, data and every trajectory are public.</p>
+          <p>The integrity failure is the finding to keep, because it is exactly what a grader that scores the written paper would miss.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.19159">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
+        </article>
+
+        <article class="story" id="autorlbench">
+          <span class="when">2026-10-24</span>
+          <h4><a href="https://thinking-space.github.io/AutoRLBench">AutoRLBench asks an agent to find, fix and rerun real broken RL training runs: 13 tasks in six failure categories</a></h4>
+          <p><strong>AutoRLBench</strong> is built from real RL training failures: the agent reads the workspace, logs and metrics, finds the root cause, then fixes the run and reruns it. It has six failure categories and <strong>13 tasks</strong> so far and is open for contributions, which at that size means one solved task moves the score by nearly eight points.</p>
+          <div class="sources"><a href="https://thinking-space.github.io/AutoRLBench">AutoRLBench</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+        </article>
+
         <article class="story" id="tracelint">
           <span class="when">2026-10-15</span>
           <h4><a href="https://arize.com/blog/agent-traces-without-llm-judge/">tracelint checks OpenInference agent traces for schema violations and reused failed outputs, with no LLM judge in CI</a></h4>
@@ -683,23 +699,23 @@
           <div class="sources"><a href="https://arize.com/blog/agent-traces-without-llm-judge/">Arize</a> &middot; <span class="via">via AAIF newsletter (Oct 15)</span></div>
         </article>
 
-        <article class="story" id="epoch-automation-reports">
-          <span class="when">2026-10-09</span>
-          <h4><a href="https://epoch.ai/publications/can-ai-automate-epoch">Epoch&rsquo;s Automation Reports: frontier models handle its well-defined tasks but cannot yet produce Epoch-quality work</a></h4>
-          <p>Epoch tested whether current models can do its own research job and published <strong>Automation Reports</strong>: frontier models performed reliably on well-defined tasks but failed on the open-ended parts that stand between that and full automation, while open-weight models struggled even on the well-defined ones.</p>
-          <p>The failure is specific &mdash; models could identify promising directions but lacked the judgment to follow them through, and did not pick up Epoch&rsquo;s standards even with ample reference material. The task set is Epoch&rsquo;s own work, which makes it a real environment and one nobody else can rerun.</p>
-          <div class="sources"><a href="https://epoch.ai/publications/can-ai-automate-epoch">Epoch AI</a> &middot; <span class="via">via TLDR AI (Oct 9)</span></div>
-        </article>
-
-        <article class="story" id="dayjob-finance">
-          <span class="when">2026-09-25</span>
-          <h4><a href="https://surgehq.ai/benchmarks/dayjob-finance">Surge&rsquo;s DAYJOB: Finance asks agents to finish 80 whole finance assignments from supporting documents</a></h4>
-          <p><strong>DAYJOB: Finance</strong> tests whether an agent can complete 80 realistic finance assignments end to end from supporting documents and produce analysis a professional could use, rather than answer isolated questions. Scoring the whole assignment is what separates it from task-list benchmarks; the summary that carried it gives no model scores.</p>
-          <div class="sources"><a href="https://surgehq.ai/benchmarks/dayjob-finance">Surge AI</a> &middot; <span class="via">via TLDR AI (Sep 25)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="epoch-automation-reports">
+            <span class="when">2026-10-09</span>
+            <h4><a href="https://epoch.ai/publications/can-ai-automate-epoch">Epoch&rsquo;s Automation Reports: frontier models handle its well-defined tasks but cannot yet produce Epoch-quality work</a></h4>
+            <p>Epoch tested whether current models can do its own research job and published <strong>Automation Reports</strong>: frontier models performed reliably on well-defined tasks but failed on the open-ended parts that stand between that and full automation, while open-weight models struggled even on the well-defined ones.</p>
+            <p>The failure is specific &mdash; models could identify promising directions but lacked the judgment to follow them through, and did not pick up Epoch&rsquo;s standards even with ample reference material. The task set is Epoch&rsquo;s own work, which makes it a real environment and one nobody else can rerun.</p>
+            <div class="sources"><a href="https://epoch.ai/publications/can-ai-automate-epoch">Epoch AI</a> &middot; <span class="via">via TLDR AI (Oct 9)</span></div>
+          </article>
+
+          <article class="story" id="dayjob-finance">
+            <span class="when">2026-09-25</span>
+            <h4><a href="https://surgehq.ai/benchmarks/dayjob-finance">Surge&rsquo;s DAYJOB: Finance asks agents to finish 80 whole finance assignments from supporting documents</a></h4>
+            <p><strong>DAYJOB: Finance</strong> tests whether an agent can complete 80 realistic finance assignments end to end from supporting documents and produce analysis a professional could use, rather than answer isolated questions. Scoring the whole assignment is what separates it from task-list benchmarks; the summary that carried it gives no model scores.</p>
+            <div class="sources"><a href="https://surgehq.ai/benchmarks/dayjob-finance">Surge AI</a> &middot; <span class="via">via TLDR AI (Sep 25)</span></div>
+          </article>
 
           <article class="story unlinked" id="hyper-tau-bench">
             <span class="when">2026-09-09</span>
@@ -748,7 +764,6 @@
             <p>All of them missed interactions that &ldquo;looked correct&rdquo; yet delivered a poor user experience, and each added false positives. The verdict is to automate error analysis to accelerate it but keep a human in the loop, because criteria drift &mdash; you discover grading criteria by reading outputs &mdash; is exactly what a fully automated pass skips. One hundred traces from one production agent is the scope of the result. Billed as new eval agents recovering 87% of failures; 87% is the best of the three systems, not the class, which is the reading used here.</p>
             <div class="sources"><a href="https://parlance-labs.com/blog/posts/auto-evals/">Parlance Labs (Hamel Husain)</a></div>
           </article>
-
         </details>
       </section>
 
@@ -818,6 +833,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-25</span><span class="label"><a href="#into-the-unknown">Into the Unknown: nine frontier agents wrote 135 follow-up papers on open DOE problems, and none met every condition</a></span></li>
+        <li><span class="date">2026-10-24</span><span class="label"><a href="#autorlbench">AutoRLBench asks an agent to find, fix and rerun real broken RL training runs: 13 tasks in six failure categories</a></span></li>
         <li><span class="date">2026-10-22</span><span class="label"><a href="#gems-agent-benchmark-reliability">A reliability study of the Gems agent benchmark finds a reward-function error that inflated success from 65.5% to 94.3%</a></span></li>
         <li><span class="date">2026-10-21</span><span class="label"><a href="#wolfe-subjective-agent-evals">Cameron Wolfe&rsquo;s roadmap for evaluating agents on subjective tasks: human evaluation as the north star, calibrated judges offline, A/B tests in production</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#decision-models-for-evals">Decision models as eval judges: after threshold tuning, Perplexity scores 0.79 F1 at 0.82 cents per 100 runs, OpenAI Decisions 0.87 at 3.72</a></span></li>

@@ -30,18 +30,20 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-10-23</div>
+      <div class="meta">Last updated: 2026-10-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 22 to 25 cycle was latency and residency rather than throughput. Liquid AI&rsquo;s <a href="#liquid-ripl">RIPL</a> serves LFM2.5-1.2B at 34.6 ms p95 under 1,000 requests a second on one B200 against 498 ms for a smaller model on vLLM, a closed engine aimed at search ranking and fraud checks. Cerebras explained how it <a href="#cerebras-trillion-parameter-wse-3t">splits trillion-parameter models across WSE-3T wafers</a> that each hold 44 GB on chip, and Cohere&rsquo;s <a href="#cohere-model-vault-confidential">Model Vault</a> now runs on confidential H100s on Azure so the operator cannot read the prompt.</p>
+        <p>Retrieval and compression both got cheaper per useful token. <a href="#cohere-rerank-5">Rerank 5</a>&rsquo;s Context Focus returns passages instead of whole documents and cut a search agent&rsquo;s tokens 35% in Cohere&rsquo;s test, at a median 11.7 seconds per 96-document request on Pro. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco">2-bit DeepSeek-V4.1-Flash</a> keeps 100% of the base model&rsquo;s average on three benchmarks, and the same lab&rsquo;s quantization turns out to be the parent file of <a href="#underdog-saluki-27b">Saluki 27B</a>, which MarkTechPost found re-tuned in 146 of 851 tensors.</p>
         <p>The Oct 22 addition is the kernel layer under the formats. vLLM&rsquo;s <a href="#vllm-humming">Humming</a> is a general-purpose kernel library for quantized inference, one architecture across devices and quantization formats with execution parameters exposed for tuning, announced without a throughput figure in the summary; it goes in the quantization section as the thing the fewer-bits lever runs on, and the speedups are in the post rather than here.</p>
         <p>The Oct 21 cycle was the PyTorch Conference giving the serving stack away. Google and Meta&rsquo;s <a href="#torchtpu">TorchTPU</a> makes Cloud TPU a native PyTorch backend and replaces PyTorch/XLA, with the efficiency gap stated by the vendor: up to 52% MFU training Qwen 3 8B on Ironwood and a fine-tuning step cut from 11.49 s to 2.78 s, but only after tuning and <code>torch.compile</code>, since eager execution out of the box is slow. With <a href="#torchneuron">TorchNeuron</a> the same day, now carrying Deepgram&rsquo;s 60% more audio seconds per dollar, PyTorch gained two non-NVIDIA native backends in one conference. Google Cloud&rsquo;s <a href="#llm-d-1-0">llm-d 1.0</a> is the first stable release of a Kubernetes-native inference stack that pools vLLM or SGLang replicas and routes by cached prefix, with KV tiers from HBM to SSD and a disaggregated prefill-decode set, reported at 17,000 nodes and with no throughput number. And DeepSeek open-sourced <a href="#deepinfer">DeepInfer</a>, the engine behind its API, with the fleet figures attached, 155 trillion tokens a day per cluster and $38 per GPU-hour, and the cache, disaggregation and load-balancing layers that make the money kept back.</p>
         <p>The Oct 20 cycle was three operators describing their own bills and plants. Cloudflare cut the inference cost of its automated code review from <a href="#cloudflare-inference-bill-68">$2.43 to $0.77 a review</a>, 68%, mostly by checking what reached the provider on a session&rsquo;s first request and ordering messages so the cached prefix stayed stable across commits and repositories: the cache section&rsquo;s argument that the hit is something to verify, done by a caller rather than asserted by the provider. Meta published the design of <a href="#meta-prometheus-supercluster">Prometheus</a>, the gigawatt-scale supercluster under Muse, with closed-loop liquid cooling and a plan toward about one million GPUs, a target without a utilisation or cost figure. AWS&rsquo;s <a href="#torchneuron">TorchNeuron</a> puts a native PyTorch backend on Trainium in public beta under Apache 2.0, the accelerator-portability bet still owing its efficiency gap, and vLLM&rsquo;s <a href="#vllm-nixl-push-connector">push-based NIXL connector</a> gained AWS&rsquo;s own write-up, still with no number in the summary.</p>
-        <p>The Oct 19 addition is the shape of what NVIDIA gave away. <a href="#nvidia-runai-open-source">Run:ai</a> turns out to be one Apache-2.0 monorepo of about 50 Go services, control plane, cluster services, installer, CLI and an MCP server, with four pieces usable on their own: KAI Scheduler, now a CNCF Sandbox project, does gang scheduling, fair-share and topology awareness, and the GPU Fractioning Operator gives CUDA 13.4-native fractions with a hard memory cap per workload. The utilisation figure the Kubernetes section has been waiting for is still absent; what changed is that the queue is something an estate can read and fork rather than license.</p>
-        <p>The Oct 16 cycle was the desk and the failure path. Tom&rsquo;s Hardware, cited by The Batch, put local machines on one agent benchmark: on AgentPerf-Local with a quantized Qwen 3.8-27B the NVIDIA-based <a href="#local-ai-workstations">Surface Laptop Ultra</a> finished in 18.9 minutes against an M5 Max MacBook Pro&rsquo;s 24.74 and AMD&rsquo;s AI Ryzen Halo&rsquo;s 42.1, though NVIDIA&rsquo;s chips stop at 128 GB where an $18,299 Mac Studio reaches 256 GB &mdash; the quantization section&rsquo;s trade of speed against residency, on named hardware. vLLM&rsquo;s <a href="#vllm-nixl-push-connector">push-based NIXL connector</a> takes KV-transfer setup off the critical path between prefill and decode workers, and Netflix described the <a href="#netflix-gpu-reliability">detection and auto-remediation</a> that keeps distributed training alive through hardware faults; neither summary carried a number, so both are designs to read rather than results to compare.</p>
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 19 addition is the shape of what NVIDIA gave away. <a href="#nvidia-runai-open-source">Run:ai</a> turns out to be one Apache-2.0 monorepo of about 50 Go services, control plane, cluster services, installer, CLI and an MCP server, with four pieces usable on their own: KAI Scheduler, now a CNCF Sandbox project, does gang scheduling, fair-share and topology awareness, and the GPU Fractioning Operator gives CUDA 13.4-native fractions with a hard memory cap per workload. The utilisation figure the Kubernetes section has been waiting for is still absent; what changed is that the queue is something an estate can read and fork rather than license.</p>
+          <p>The Oct 16 cycle was the desk and the failure path. Tom&rsquo;s Hardware, cited by The Batch, put local machines on one agent benchmark: on AgentPerf-Local with a quantized Qwen 3.8-27B the NVIDIA-based <a href="#local-ai-workstations">Surface Laptop Ultra</a> finished in 18.9 minutes against an M5 Max MacBook Pro&rsquo;s 24.74 and AMD&rsquo;s AI Ryzen Halo&rsquo;s 42.1, though NVIDIA&rsquo;s chips stop at 128 GB where an $18,299 Mac Studio reaches 256 GB &mdash; the quantization section&rsquo;s trade of speed against residency, on named hardware. vLLM&rsquo;s <a href="#vllm-nixl-push-connector">push-based NIXL connector</a> takes KV-transfer setup off the critical path between prefill and decode workers, and Netflix described the <a href="#netflix-gpu-reliability">detection and auto-remediation</a> that keeps distributed training alive through hardware faults; neither summary carried a number, so both are designs to read rather than results to compare.</p>
           <p>The Oct 15 cycle was mostly the rack and the box. NVIDIA contributed <a href="#vera-rubin-ocp-mgx">Vera Rubin rack designs</a> to OCP with a 5,000A busbar and up to 250kW a rack, and AMD&rsquo;s <a href="#amd-helion">Helion</a> blueprint packs up to 32,768 EPYC cores into a rack for agent workloads, partner systems due in November &mdash; one power figure and one bet that agent loops are CPU-bound, neither with a workload measurement. NVIDIA also open-sourced <a href="#nvidia-runai-open-source">Run:ai</a>, KAI Scheduler and GPU fractioning included, putting a vendor&rsquo;s GPU queue into the Kubernetes section with no utilisation number of its own. At the desk end, AMD&rsquo;s <a href="#amd-ryzen-ai-halo">Ryzen AI Halo</a> lets the GPU address 160GB of 192GB unified memory &mdash; more memory in the machine, with no tokens-per-second figure yet.</p>
           <p>The Oct 14 entry is a chip measured in the unit this page cares about. Microsoft&rsquo;s <a href="#maia-300">Maia 300</a> is a third-generation in-house inference accelerator claimed at 40% more tokens per megawatt than leading GPU systems, deploying from 2027 at multiple gigawatts &mdash; power rather than FLOPs as the denominator, which is the compute section&rsquo;s point that the constraint has moved off the die. Microsoft does not plan to rent the chips directly, so for anyone outside Microsoft it is a cost curve behind its services rather than hardware to target.</p>
           <p>The Oct 9 entry is two answers to running a 27B model on less. Conway Research&rsquo;s <a href="#underdog-saluki-27b">Saluki 27B</a> takes Qwen3.8-27B to 2 bits and 7.89&nbsp;GB with a pass tuned for tool calling, beats its parent on its own 120-task tool benchmark and gives up 17 points on AIME &mdash; the quantization section&rsquo;s point that compression is measured best where it was tuned, made by a single model card. LithosAI&rsquo;s <a href="#lithos-metal">lithos-metal</a> attacks the compute side with generated Metal megakernels and claims over 200 tokens a second for the same model on an M5 Max, a figure that arrives without batch size, precision or baseline.</p>
@@ -91,17 +93,17 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">8</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">14</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">15</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">2</span></a></li>
-          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">9</span></a></li>
+          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">10</span></a></li>
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">5</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">2</span></a></li>
           <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">26</span></a></li>
-          <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">9</span></a></li>
+          <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">10</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">9</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">5</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
-          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">10</span></a></li>
+          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">12</span></a></li>
           <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">4</span></a></li>
           <li><a href="#tokenization-throughput">Tokenization throughput <span class="n">1</span></a></li>
           <li><a href="#gpu-programming-references">GPU programming references <span class="n">1</span></a></li>
@@ -183,6 +185,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story" id="deepseek-v4-1-flash-gsq-rco">
+          <span class="when">2026-10-25</span>
+          <h4><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF">ISTA-DASLab&rsquo;s 2-bit DeepSeek-V4.1-Flash GGUF matches the base model on AIME25, GPQA-Diamond and LiveCodeBench v6</a></h4>
+          <p>ISTA-DASLab quantized the 763B DeepSeek-V4.1-Flash-1017 mixture-of-experts to GGUF with <strong>GSQ-RCO</strong>, a gradient search that picks a precision for every tensor under a fixed size budget. The <strong>2.00-bit</strong> build scores 100% of the base model&rsquo;s average across AIME25, GPQA-Diamond and LiveCodeBench v6, and runs on one GPU with 12 GB of VRAM through the Strata engine.</p>
+          <p>llama.cpp support is still pending, and three benchmarks are a narrow place to measure retention. The same lab&rsquo;s GSQ-RCO file of Qwen3.8-27B turns out to be the parent of <a href="#underdog-saluki-27b">Saluki 27B</a>.</p>
+          <div class="sources"><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
+        </article>
+
         <article class="story" id="vllm-humming">
           <span class="when">2026-10-21</span>
           <h4><a href="https://vllm.ai/blog/2026-10-21-humming">Humming: vLLM&rsquo;s kernel library for quantized inference, one architecture across devices and quantization formats</a></h4>
@@ -199,15 +209,15 @@
           <div class="sources"><span class="via">via The Batch (Oct 16) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story" id="amd-ryzen-ai-halo">
-          <span class="when">2026-10-14</span>
-          <h4><a href="https://www.amd.com/en/blogs/2026/meet-the-next-amd-ryzen-ai-halo.html">AMD&rsquo;s Ryzen AI Halo developer platform lets the GPU take 160GB of its 192GB unified memory</a></h4>
-          <p>AMD&rsquo;s <strong>Ryzen AI Halo Developer Platform</strong> carries <strong>192GB of unified memory</strong>, of which <strong>160GB</strong> can be allocated as VRAM, and is open for orders now. It is the third lever this section names &mdash; more memory in the machine &mdash; and AMD published no tokens-per-second figure for any model on it.</p>
-          <div class="sources"><a href="https://www.amd.com/en/blogs/2026/meet-the-next-amd-ryzen-ai-halo.html">AMD</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (11)</summary>
+          <summary>Earlier in this section (12)</summary>
+
+          <article class="story" id="amd-ryzen-ai-halo">
+            <span class="when">2026-10-14</span>
+            <h4><a href="https://www.amd.com/en/blogs/2026/meet-the-next-amd-ryzen-ai-halo.html">AMD&rsquo;s Ryzen AI Halo developer platform lets the GPU take 160GB of its 192GB unified memory</a></h4>
+            <p>AMD&rsquo;s <strong>Ryzen AI Halo Developer Platform</strong> carries <strong>192GB of unified memory</strong>, of which <strong>160GB</strong> can be allocated as VRAM, and is open for orders now. It is the third lever this section names &mdash; more memory in the machine &mdash; and AMD published no tokens-per-second figure for any model on it.</p>
+            <div class="sources"><a href="https://www.amd.com/en/blogs/2026/meet-the-next-amd-ryzen-ai-halo.html">AMD</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
+          </article>
 
           <article class="story" id="lithos-metal">
             <span class="when">2026-10-09</span>
@@ -222,7 +232,8 @@
             <h4><a href="https://huggingface.co/ConwayResearch/Underdog-Saluki-27B-1.0">Saluki 27B squeezes Qwen3.8-27B to 2 bits and 7.89&nbsp;GB, keeping tool calling and losing 17 points on AIME</a></h4>
             <p>Conway Research compressed Qwen3.8-27B to <strong>7.89&nbsp;GB</strong> from 54&nbsp;GB in BF16, with a pass tuned to preserve tool calling: on Underdog Bench, 120 BFCL v4-derived tasks, <strong>Saluki scores 88 to the parent&rsquo;s 84</strong>, and on parallel tool calls 42 of 100 to 35.</p>
             <p>The cost lands elsewhere &mdash; AIME 2025 falls from <strong>96.7 to 79.2</strong>, SWE-bench Verified fixes 30 of 50 against 33, and MuSR and MBPP+ slip &mdash; so the compression is measured best exactly where it was tuned. The 96% average retention across nine benchmarks is Underdog&rsquo;s claim, and its tool-calling sets are its own and small.</p>
-            <div class="sources"><a href="https://huggingface.co/ConwayResearch/Underdog-Saluki-27B-1.0">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 9)</span></div>
+            <p><em>Updated Oct 26:</em> MarkTechPost diffed the file against its parent, ISTA-DASLab&rsquo;s GSQ-RCO quantization of Qwen3.8-27B: <strong>146 of 851 tensors</strong> change type, all to fewer bits, and only 1 of 352 quantized matrices is byte-identical, so Saluki is a re-tuned derivative of that file rather than a fresh compression of the BF16 model. ISTA-DASLab&rsquo;s own 2-bit work is recorded under <a href="#deepseek-v4-1-flash-gsq-rco">DeepSeek-V4.1-Flash</a>.</p>
+            <div class="sources"><a href="https://huggingface.co/ConwayResearch/Underdog-Saluki-27B-1.0">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/">MarkTechPost</a> &middot; <a href="https://www.marktechpost.com/2026/10/24/underdog-saluki-27b-coding-guide-llama-cpp/">MarkTechPost tutorial</a> &middot; <span class="via">via MarkTechPost (Oct 9), MarkTechPost (Oct 25)</span></div>
           </article>
 
           <article class="story" id="ghost-core">
@@ -321,7 +332,15 @@
 
       <section class="topic-section" id="high-throughput-serving-of-large-moes">
         <h3>High-throughput serving of large MoEs</h3>
-        <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format, prefill split from decode. None of these makes a model smaller. Every rate here is only as meaningful as the GPU and batch size beside it.</p>
+        <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format, prefill split from decode, a model split across wafers. None of these makes a model smaller. Every rate is only as meaningful as the hardware beside it.</p>
+
+        <article class="story" id="cerebras-trillion-parameter-wse-3t">
+          <span class="when">2026-10-23</span>
+          <h4><a href="https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras">Cerebras splits trillion-parameter models across WSE-3T wafers that each hold 44 GB on chip</a></h4>
+          <p>Cerebras described how it serves trillion-parameter frontier models when one WSE-3T wafer carries <strong>44 GB of on-chip memory</strong> and the weights alone need terabytes: the model is split across several wafers, loaded into on-chip memory and mapped across chips, with a separate scheme for handling many concurrent requests.</p>
+          <p>It is the parameter-count-against-memory problem the GPU entries here solve with experts and number formats, solved instead by adding wafers. The post as summarised gives no throughput or per-token cost for the arrangement.</p>
+          <div class="sources"><a href="https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras">Cerebras</a> &middot; <span class="via">via TLDR AI (Oct 23)</span></div>
+        </article>
 
         <article class="story" id="deepinfer">
           <span class="when">2026-10-20</span>
@@ -339,16 +358,16 @@
           <div class="sources"><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM blog</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/push-based-kv-transfer-to-improve-ttft-and-tpot-for-disaggregated-inference-in-vllm/">AWS ML blog</a> &middot; <span class="via">via TLDR AI (Oct 15), TLDR AI (Oct 20)</span></div>
         </article>
 
-        <article class="story" id="prime-inference">
-          <span class="when">2026-10-02</span>
-          <h4><a href="https://www.primeintellect.ai/blog/prime-inference">Prime Inference serves GLM-5.3 on GB200 NVL72; splitting prefill from decode cut p90 inter-token latency 40%</a></h4>
-          <p>Prime Intellect opened <strong>Prime Inference</strong>, an OpenAI-compatible API with serverless and reserved capacity on its own Blackwell GPUs and failover across datacenters, after serving close to <strong>a trillion tokens a day</strong> internally for its RL rollouts and coding agents. GLM-5.3 runs on GB200 NVL72 with Dynamo, vLLM, Mooncake and FlashInfer; disaggregating prefill from decode cut <strong>p90 inter-token latency by 40%</strong>, and NVFP4 KV compression lifts cached tokens per decoder from 1.09M to 1.63M.</p>
-          <p>All figures are Prime&rsquo;s own, on agentic workloads, and GLM-5.3 pricing was not yet in the docs.</p>
-          <div class="sources"><a href="https://www.primeintellect.ai/blog/prime-inference">Prime Intellect</a> &middot; <a href="https://www.marktechpost.com/2026/10/02/prime-intellect-launches-prime-inference-serverless-and-reserved-serving-for-frontier-open-models/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 3), TLDR AI (Oct 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="prime-inference">
+            <span class="when">2026-10-02</span>
+            <h4><a href="https://www.primeintellect.ai/blog/prime-inference">Prime Inference serves GLM-5.3 on GB200 NVL72; splitting prefill from decode cut p90 inter-token latency 40%</a></h4>
+            <p>Prime Intellect opened <strong>Prime Inference</strong>, an OpenAI-compatible API with serverless and reserved capacity on its own Blackwell GPUs and failover across datacenters, after serving close to <strong>a trillion tokens a day</strong> internally for its RL rollouts and coding agents. GLM-5.3 runs on GB200 NVL72 with Dynamo, vLLM, Mooncake and FlashInfer; disaggregating prefill from decode cut <strong>p90 inter-token latency by 40%</strong>, and NVFP4 KV compression lifts cached tokens per decoder from 1.09M to 1.63M.</p>
+            <p>All figures are Prime&rsquo;s own, on agentic workloads, and GLM-5.3 pricing was not yet in the docs.</p>
+            <div class="sources"><a href="https://www.primeintellect.ai/blog/prime-inference">Prime Intellect</a> &middot; <a href="https://www.marktechpost.com/2026/10/02/prime-intellect-launches-prime-inference-serverless-and-reserved-serving-for-frontier-open-models/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 3), TLDR AI (Oct 5)</span></div>
+          </article>
 
           <article class="story" id="quail">
             <span class="when">2026-09-28</span>
@@ -397,7 +416,6 @@
             <p>It is an architecture-and-format answer to decoupling serving cost from parameter count, aimed at long-running agentic workloads. (Model detail on the <a href="model-releases.html">Model releases</a> page.)</p>
             <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -685,7 +703,15 @@
 
       <section class="topic-section" id="vector-index-and-rag-pipeline-economics">
         <h3>Vector-index &amp; RAG-pipeline economics</h3>
-        <p class="lead">Each entry here removes or re-prices a piece of the retrieval stack that had been treated as fixed: the keyword engine beside the vector store, the forked engine serving it, the data store under it, the clustering that builds the index, the ceiling you sharded around, and the assumption that a read costs the same whatever it returns.</p>
+        <p class="lead">Each entry removes or re-prices a piece of the retrieval stack that had been treated as fixed: the keyword engine beside the vector store, the forked engine serving it, the data store under it, the clustering that builds the index, the ceiling you sharded around, the reranker returning whole documents, and the assumption that every read costs the same.</p>
+
+        <article class="story" id="cohere-rerank-5">
+          <span class="when">2026-10-22</span>
+          <h4><a href="https://www.marktechpost.com/2026/10/22/cohere-rerank-5-context-focus/">Cohere Rerank 5&rsquo;s Context Focus returns passages instead of whole documents, cutting a search agent&rsquo;s tokens 35%</a></h4>
+          <p>Cohere released <strong>Rerank 5</strong> in Pro ($0.05 per million tokens) and Fast ($0.02) tiers with a 32K context and 100+ languages. A new <strong>Context Focus</strong> feature returns the relevant passages inside each document; in Cohere&rsquo;s search-agent test that cut tokens <strong>35%</strong> against BM25 alone and lifted accuracy from 46% to 58%, and scores are calibrated so that 0.7 means a 70% chance the document is useful.</p>
+          <p>Every figure is self-reported, and Pro&rsquo;s median latency of 11.7 seconds per 96-document request keeps it off an interactive path.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/10/22/cohere-rerank-5-context-focus/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
+        </article>
 
         <article class="story" id="perplexity-photon">
           <span class="when">2026-09-30</span>
@@ -704,16 +730,16 @@
           <div class="sources"><a href="https://planetscale.com/blog/introducing-tin">PlanetScale engineering blog (Sep 16)</a></div>
         </article>
 
-        <article class="story" id="perplexity-cobbledb">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://www.perplexity.ai/hub/blog/cobbledb">Perplexity replaced DynamoDB with its own CobbleDB and cut median batch reads from 31.4ms to 5.60ms</a></h4>
-          <p>Perplexity published <strong>CobbleDB</strong>, the key-value store it built to serve prepared web content for AI search. Replacing DynamoDB took median batch-read latency from 31.4ms to 5.60ms and p99 from 123ms to 24.2ms, with at least 20% lower cost estimated; open-sourcing is planned after more production hardening.</p>
-          <p>Batch reads are the shape that decides search serving, because a query fans out to many documents at once and the p99 sets the answer latency rather than the median &mdash; so the five-fold tail cut is the larger of the two results. The caveats travel with it: the cost figure is an estimate and self-reported, and the comparison is against a managed service whose price includes operating it, which CobbleDB&rsquo;s does not. It is the same decision as <a href="#pinecone-read-egress">the egress repricing</a> answered from the other side of the invoice &mdash; a managed service is right until the access pattern is narrow and enormous.</p>
-          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/cobbledb">Perplexity</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="perplexity-cobbledb">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://www.perplexity.ai/hub/blog/cobbledb">Perplexity replaced DynamoDB with its own CobbleDB and cut median batch reads from 31.4ms to 5.60ms</a></h4>
+            <p>Perplexity published <strong>CobbleDB</strong>, the key-value store it built to serve prepared web content for AI search. Replacing DynamoDB took median batch-read latency from 31.4ms to 5.60ms and p99 from 123ms to 24.2ms, with at least 20% lower cost estimated; open-sourcing is planned after more production hardening.</p>
+            <p>Batch reads are the shape that decides search serving, because a query fans out to many documents at once and the p99 sets the answer latency rather than the median &mdash; so the five-fold tail cut is the larger of the two results. The caveats travel with it: the cost figure is an estimate and self-reported, and the comparison is against a managed service whose price includes operating it, which CobbleDB&rsquo;s does not. It is the same decision as <a href="#pinecone-read-egress">the egress repricing</a> answered from the other side of the invoice &mdash; a managed service is right until the access pattern is narrow and enormous.</p>
+            <div class="sources"><a href="https://www.perplexity.ai/hub/blog/cobbledb">Perplexity</a> &middot; <span class="via">via Unwind AI (Sep 16)</span></div>
+          </article>
 
           <article class="story" id="pinecone-documents-api">
             <span class="when">2026-09-16</span>
@@ -912,7 +938,22 @@
 
       <section class="topic-section" id="enterprise-deployment-patterns">
         <h3>Enterprise deployment patterns</h3>
-        <p class="lead">An AI bill is engineered down rather than negotiated down. Routing, a gateway that can refuse, an hour-long cache and a cheaper tier all appear here, alongside agents that generate their own retries and quintuple an invoice. Under them sit the deployment choices &mdash; self-host or call &mdash; and what the proxy hop costs.</p>
+        <p class="lead">An AI bill is engineered down rather than negotiated down. Routing, a gateway that can refuse, an hour-long cache and a cheaper tier appear here, beside agents that generate their own retries and quintuple an invoice. Under them sit the deployment choices (self-host, call, or call a host that cannot read the request) and what each hop costs in latency.</p>
+
+        <article class="story" id="cohere-model-vault-confidential">
+          <span class="when">2026-10-24</span>
+          <h4><a href="https://cohere.com/blog/introducing-confidential-computing-on-cohere-model-vault">Cohere Model Vault runs its models on confidential H100s on Azure, with prompts encrypted while in use</a></h4>
+          <p>Cohere put <strong>Confidential Computing for Model Vault</strong> into public beta on NVIDIA H100s on Azure: prompts stay encrypted while in use and the same Cohere APIs apply. It adds a third answer to the self-host-or-call choice this section ends on, a hosted model whose operator cannot read the request, though the summary gives no latency or price cost for the encryption.</p>
+          <div class="sources"><a href="https://cohere.com/blog/introducing-confidential-computing-on-cohere-model-vault">Cohere</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+        </article>
+
+        <article class="story" id="liquid-ripl">
+          <span class="when">2026-10-22</span>
+          <h4><a href="https://www.marktechpost.com/2026/10/22/liquid-ai-ripl-real-time-inference-engine/">Liquid AI&rsquo;s RIPL serves LFM2.5-1.2B at 34.6 ms p95 under 1,000 requests a second on one B200</a></h4>
+          <p>Liquid AI introduced <strong>RIPL</strong>, a serving engine for live request paths such as search ranking and fraud checks, aimed at LLM answers in under 50 ms. On one B200 it reports LFM2.5-1.2B at <strong>34.6 ms p95</strong> under 1,000 requests a second against 498 ms for Qwen3.5-0.8B on vLLM, and says Shopify already runs LFMs at under 20 ms in production search.</p>
+          <p>RIPL is closed and enterprise-only, and the 50 ms target slips on longer requests, so the comparison sets a vendor&rsquo;s engine on its own model against an open server on a different one.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/10/22/liquid-ai-ripl-real-time-inference-engine/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
+        </article>
 
         <article class="story" id="djev-cloud-run">
           <span class="when">2026-09-23</span>
@@ -921,24 +962,24 @@
           <div class="sources"><a href="https://github.com/taeold/djev-run">GitHub</a> &middot; <a href="https://x.com/googlegemma/status/2102536894169096357">Google Gemma on X</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
         </article>
 
-        <article class="story unlinked" id="uber-agent-spend">
-          <span class="when">2026-09-09</span>
-          <h4>Uber&rsquo;s agent traffic grew 9.4&times; and its AI bill stayed flat</h4>
-          <p>Between February and August, agent requests at Uber rose 9.4&times; and users 7&times;, while AI spend stayed flat after April; for one model, cost per session fell 52% from its June peak &mdash; one model, not the fleet, and from a peak rather than from a baseline. None of it came from capping engineer usage or negotiating discounts.</p>
-          <p>The method is the transferable part. The team decomposed spend into adoption, workload and token price, observed that adoption was supposed to grow and market prices were not theirs to set, and optimised the only remaining term three ways: route every job through one harness that picks the model balancing cost and quality and keeps re-deciding as new models arrive; hand simpler subtasks to weaker, cheaper subagents while a powerful model holds the plan, which was their single biggest saver; and send less context, with caches held for an hour to match how engineers actually work and a &ldquo;code-mode&rdquo; that bundles many tool calls into one script, cutting tokens per query by more than half.</p>
-          <div class="sources"><span class="via">via The Code (Sep 9) &mdash; no public URL given</span></div>
-        </article>
-
-        <article class="story" id="cheaper-inference">
-          <span class="when">2026-09-08</span>
-          <h4><a href="https://www.cheaperinference.com/">A spot market for inference appears &mdash; 30% to 60% off list across five models</a></h4>
-          <p>Cheaper Inference resells unused provider capacity through one OpenAI-compatible API: GPT-6 Astra at 30% off list, GLM-5.3 and DeepSeek V4 Flash at 45%, GPT-5.6 Luna and GLM-5.3 Flash at 60%. The discounts are against each model&rsquo;s own list rate, so they are not comparable to each other in absolute terms.</p>
-          <p>Whether that capacity holds under load is exactly the thing to test before it enters a production path, but the shape is new: spare inference repriced in real time rather than sold on a fixed rate card, and one more argument for keeping the model behind a swappable interface.</p>
-          <div class="sources"><a href="https://www.cheaperinference.com/">Cheaper Inference</a> &middot; <span class="via">via Unwind AI (Sep 8)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (9)</summary>
+
+          <article class="story unlinked" id="uber-agent-spend">
+            <span class="when">2026-09-09</span>
+            <h4>Uber&rsquo;s agent traffic grew 9.4&times; and its AI bill stayed flat</h4>
+            <p>Between February and August, agent requests at Uber rose 9.4&times; and users 7&times;, while AI spend stayed flat after April; for one model, cost per session fell 52% from its June peak &mdash; one model, not the fleet, and from a peak rather than from a baseline. None of it came from capping engineer usage or negotiating discounts.</p>
+            <p>The method is the transferable part. The team decomposed spend into adoption, workload and token price, observed that adoption was supposed to grow and market prices were not theirs to set, and optimised the only remaining term three ways: route every job through one harness that picks the model balancing cost and quality and keeps re-deciding as new models arrive; hand simpler subtasks to weaker, cheaper subagents while a powerful model holds the plan, which was their single biggest saver; and send less context, with caches held for an hour to match how engineers actually work and a &ldquo;code-mode&rdquo; that bundles many tool calls into one script, cutting tokens per query by more than half.</p>
+            <div class="sources"><span class="via">via The Code (Sep 9) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story" id="cheaper-inference">
+            <span class="when">2026-09-08</span>
+            <h4><a href="https://www.cheaperinference.com/">A spot market for inference appears &mdash; 30% to 60% off list across five models</a></h4>
+            <p>Cheaper Inference resells unused provider capacity through one OpenAI-compatible API: GPT-6 Astra at 30% off list, GLM-5.3 and DeepSeek V4 Flash at 45%, GPT-5.6 Luna and GLM-5.3 Flash at 60%. The discounts are against each model&rsquo;s own list rate, so they are not comparable to each other in absolute terms.</p>
+            <p>Whether that capacity holds under load is exactly the thing to test before it enters a production path, but the shape is new: spare inference repriced in real time rather than sold on a fixed rate card, and one more argument for keeping the model behind a swappable interface.</p>
+            <div class="sources"><a href="https://www.cheaperinference.com/">Cheaper Inference</a> &middot; <span class="via">via Unwind AI (Sep 8)</span></div>
+          </article>
 
           <article class="story" id="meta-zgateway">
             <span class="when">2026-09-03</span>
@@ -1065,6 +1106,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-25</span><span class="label"><a href="#deepseek-v4-1-flash-gsq-rco">ISTA-DASLab&rsquo;s 2-bit DeepSeek-V4.1-Flash GGUF matches the base model on AIME25, GPQA-Diamond and LiveCodeBench v6</a></span></li>
+        <li><span class="date">2026-10-24</span><span class="label"><a href="#cohere-model-vault-confidential">Cohere Model Vault runs its models on confidential H100s on Azure, with prompts encrypted while in use</a></span></li>
+        <li><span class="date">2026-10-23</span><span class="label"><a href="#cerebras-trillion-parameter-wse-3t">Cerebras splits trillion-parameter models across WSE-3T wafers that each hold 44 GB on chip</a></span></li>
+        <li><span class="date">2026-10-22</span><span class="label"><a href="#cohere-rerank-5">Cohere Rerank 5&rsquo;s Context Focus returns passages instead of whole documents, cutting a search agent&rsquo;s tokens 35%</a></span></li>
+        <li><span class="date">2026-10-22</span><span class="label"><a href="#liquid-ripl">Liquid AI&rsquo;s RIPL serves LFM2.5-1.2B at 34.6 ms p95 under 1,000 requests a second on one B200</a></span></li>
         <li><span class="date">2026-10-21</span><span class="label"><a href="#vllm-humming">Humming: vLLM&rsquo;s kernel library for quantized inference, one architecture across devices and quantization formats</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#cloudflare-inference-bill-68">Cloudflare cuts its AI code-review cost from $2.43 to $0.77 a review by fixing what reached the prompt cache</a></span></li>
         <li><span class="date">2026-10-20</span><span class="label"><a href="#torchneuron">TorchNeuron: a native PyTorch backend for AWS Trainium, in public beta under Apache 2.0</a></span></li>

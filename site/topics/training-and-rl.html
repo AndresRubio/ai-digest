@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-10-19</div>
+      <div class="meta">Last updated: 2026-10-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 23 to 24 cycle added a distillation variant and a forgetting fix, both without numbers. Perplexity&rsquo;s <a href="#perplexity-jolt">JOLT</a> trains one model as its own teacher and student, adapting feedback to what the student can currently do, and reports gains across maths, coding and agentic tasks with no figure attached. <a href="#subspace-tuning">Subspace Tuning</a> confines each fine-tuning update to the bottom singular subspace so the principal directions, and what they encode, survive SFT.</p>
         <p>The Oct 16 addition is a frontier pre-training disclosure with a compute figure attached. Microsoft&rsquo;s <a href="#mai-base-2">MAI-Base-2</a> is a 2.8T-parameter MoE with 80B active trained on 16,000 GB200s in 38 days, which Microsoft says beat every open-weight model on held-out pre-training evaluations it does not name; the model is still in post-training and nothing is released, so the GPU count and the day count are what an outsider can hold onto, and the first such figures from a US lab on this page.</p>
         <p>The Oct 16 addition opens a section for a question the page had skipped: how to choose a fine-tuning set&rsquo;s domain mix. <a href="#causalmix">CausalMix</a> subtracts the effect of example quality from 512 small fine-tuning runs and keeps the mixtures whose gain remains, beating Data Mixing Optimization on Qwen2.5-7B, 62.28% to 60.35%, without rerunning the sweep at that scale &mdash; but it loses on a held-out slice of Tulu 3, 25.04% to 26.49%, so transfer beyond the benchmarks used to choose the mix is still the claim to test.</p>
         <p>The Oct 14 addition turns a distillation default into a measurement. NVIDIA&rsquo;s <a href="#semi-opd">Semi-OPD</a> paper finds that distilling on offline rollouts generated once by the initial student often beats on-policy distillation on both accuracy and training efficiency, with OPD paying off only when teacher and student already overlap heavily &mdash; a check to run before buying fresh student rollouts at every step, and a qualification on the on-policy recipe the <a href="#nemotron-post-training-notes">Nemotron reading</a> describes.</p>
         <p>The Oct 7 addition is another open implementation of the environment layer. Scale AI&rsquo;s <a href="#scale-agentenv">AgentEnv</a> ships 48 step types, four sandbox providers and a plugin system for building agent RL environments, and arrives with no training result or throughput figure &mdash; the framework is the release. It shares a name with Moonshot&rsquo;s AgentENV and a purpose with Verifiers, DAPO and DSec, which is the section lead&rsquo;s point in miniature: five open stacks for the same four steps and no interface between them.</p>
-        <p>The Oct 5 addition moves the judge inside the model. <a href="#unievo-vl">UniEvo-VL</a> has one multimodal model act as teacher and student at test time, feeding its own critiques back as privileged information the student never sees, which places it beside the corpora, curricula and scaffolds that models already produce for themselves &mdash; and, like the rest of that section, without an outside measurement yet. The cycle&rsquo;s other training evidence sits on neighbouring pages: Xiaomi disclosed that <a href="model-releases.html">MiMo-V2.6</a>&rsquo;s RL runs cost $2.6M and $0.9M with a code-quality grader multiplying the test reward, and BAAI&rsquo;s AREX concentrates its fine-tuning signal on rule-flagged decision points, on <a href="research-papers.html">Research papers</a>.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 5 addition moves the judge inside the model. <a href="#unievo-vl">UniEvo-VL</a> has one multimodal model act as teacher and student at test time, feeding its own critiques back as privileged information the student never sees, which places it beside the corpora, curricula and scaffolds that models already produce for themselves &mdash; and, like the rest of that section, without an outside measurement yet. The cycle&rsquo;s other training evidence sits on neighbouring pages: Xiaomi disclosed that <a href="model-releases.html">MiMo-V2.6</a>&rsquo;s RL runs cost $2.6M and $0.9M with a code-quality grader multiplying the test reward, and BAAI&rsquo;s AREX concentrates its fine-tuning signal on rule-flagged decision points, on <a href="research-papers.html">Research papers</a>.</p>
           <p>The Oct 2 addition was a warning about reading pre-training checkpoints. A study of <a href="#mode-hopping">mode-hopping</a> finds OLMo3-32B switching abruptly on arithmetic tasks, as training proceeds, between following a surface pattern and inferring the actual task, and traces it in controlled experiments to shallow and generalizable circuits competing inside one model. If that holds, a checkpoint&rsquo;s score depends on which side of a switch it was taken, and longer training is no guarantee of better generalization &mdash; a caveat for every efficiency comparison in the pretraining section, each of which compares runs at fixed points.</p>
           <p>The Sep 29 addition was the most complete public account of how a lab consolidates specialists. Cameron Wolfe&rsquo;s <a href="#nemotron-post-training-notes">reading of the Nemotron reports</a> sets out the three-part recipe &mdash; generate-then-filter SFT, RL on pass-rate-profiled prompts, and multi-teacher on-policy distillation that scores a student&rsquo;s own rollouts under a reverse-KL objective &mdash; and names the failure MOPD exists to fix: unified multi-domain RL starves and interferes, sequential Cascade RL regresses. It widens the distillation section from compression and compilation to consolidation, and records the same drift toward full agent trajectories in both SFT data and RL environments that the entries below have been reporting one at a time.</p>
           <p>The Sep 28 cycle gives the train-in-the-harness argument its first number and publishes the layer beneath it. Perplexity trains its <a href="#perplexity-computer-real-world-training">Computer agent</a> on its own production traffic &mdash; rejection-sampling fine-tuning on sessions that succeeded, hint-guided self-distillation on failures a user corrected &mdash; and the result is now reported: live tool-call failures fell from 2.24% to 1.77% between two checkpoints of one GLM 5.2 base, while user dissatisfaction did not move. That is a modest operational gain from the most faithful environment possible, and one only a product with traffic can buy. DeepSeek&rsquo;s <a href="#dsec">DSec</a> publishes the sandbox under its agentic RL: one SDK across function-calling, container, microVM and full-VM backends, with reward-hacking mitigation built into the environment rather than left to the grader &mdash; the fullest account yet of the layer this page&rsquo;s RL-environment section says nobody has standardised.</p>
@@ -70,8 +71,8 @@
           <li><a href="#rl-on-black-box-models">RL on black-box models <span class="n">2</span></a></li>
           <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">4</span></a></li>
           <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">3</span></a></li>
-          <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">5</span></a></li>
-          <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">3</span></a></li>
+          <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">6</span></a></li>
+          <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">4</span></a></li>
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">8</span></a></li>
@@ -174,7 +175,14 @@
 
       <section class="topic-section" id="distillation-at-frontier-scale">
         <h3>Distillation at frontier scale</h3>
-        <p class="lead">Distillation here covers three things: compressing a teacher into a smaller student, consolidating several specialist teachers into one policy, and compiling a learned policy out of the serving path altogether. Each deliberately discards something to buy the saving, and what it gives up is the thing to establish &mdash; parametric recall, per-domain peak skill, the ability to react mid-loop.</p>
+        <p class="lead">Distillation here covers four things: compressing a teacher into a smaller student, consolidating specialist teachers into one policy, compiling a learned policy out of the serving path, and training one model as its own teacher. Each discards something to buy the saving, and that loss is the thing to establish: parametric recall, per-domain peak skill, reacting mid-loop.</p>
+
+        <article class="story" id="perplexity-jolt">
+          <span class="when">2026-10-23</span>
+          <h4><a href="https://www.perplexity.ai/hub/blog/a-good-teacher-meets-the-student-where-they-are">Perplexity&rsquo;s JOLT trains one model as teacher and student at once, adapting feedback to what the student can do</a></h4>
+          <p>Perplexity&rsquo;s <strong>JOLT</strong> is a self-distillation method that jointly trains a model as both teacher and student, adapting the teacher&rsquo;s feedback to the student&rsquo;s current capabilities. Perplexity reports gains in performance and training efficiency across mathematical reasoning, coding and agentic tasks, but the summary carries no figure, so what the joint training gives up against a separate frozen teacher is not yet established.</p>
+          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/a-good-teacher-meets-the-student-where-they-are">Perplexity</a> &middot; <span class="via">via TLDR AI (Oct 23)</span></div>
+        </article>
 
         <article class="story" id="semi-opd">
           <span class="when">2026-10-13</span>
@@ -192,16 +200,16 @@
           <div class="sources"><a href="https://cameronrwolfe.substack.com/p/nemotron">Deep (Learning) Focus</a> &middot; <span class="via">via Deep (Learning) Focus (Sep 28)</span></div>
         </article>
 
-        <article class="story" id="retrieve-for-train">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Retrieve-for-Train compiles an RL policy into a 53.9M diffusion retriever, 12&ndash;20&times; faster fan-out</a></h4>
-          <p>Google Research&rsquo;s <strong>R4T</strong> distils something other than a model: it distils the reinforcement learning itself out of the serving path. The RL runs once, offline, and its result is compiled into a 53.9M-parameter diffusion model that then generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 the fan-out takes 0.07 seconds against roughly 1.46 seconds, a 12&times; to 20&times; speedup depending on the setting.</p>
-          <p>The generalisable move is the framing: where RL is used to learn a <em>search</em> policy, the policy does not have to be executed as a policy at inference &mdash; it can be amortised into a generator, and the inference-time cost of RL becomes a training-time cost instead. The limit is built into that trade, since it only works where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns. For any fan-out settled before the results arrive, it is the right shape, and it is the first item on this page to treat RL as a compilation step.</p>
-          <div class="sources"><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Google Research</a> &middot; <a href="https://arxiv.org/abs/2603.06397">Paper</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="retrieve-for-train">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Retrieve-for-Train compiles an RL policy into a 53.9M diffusion retriever, 12&ndash;20&times; faster fan-out</a></h4>
+            <p>Google Research&rsquo;s <strong>R4T</strong> distils something other than a model: it distils the reinforcement learning itself out of the serving path. The RL runs once, offline, and its result is compiled into a 53.9M-parameter diffusion model that then generates every retrieval direction in a single pass instead of deciding them sequentially at query time. At batch size 8 the fan-out takes 0.07 seconds against roughly 1.46 seconds, a 12&times; to 20&times; speedup depending on the setting.</p>
+            <p>The generalisable move is the framing: where RL is used to learn a <em>search</em> policy, the policy does not have to be executed as a policy at inference &mdash; it can be amortised into a generator, and the inference-time cost of RL becomes a training-time cost instead. The limit is built into that trade, since it only works where the decision space can be generated rather than explored, so it does not transfer to agent loops that must react to what a tool returns. For any fan-out settled before the results arrive, it is the right shape, and it is the first item on this page to treat RL as a compilation step.</p>
+            <div class="sources"><a href="https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/">Google Research</a> &middot; <a href="https://arxiv.org/abs/2603.06397">Paper</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
+          </article>
 
           <article class="story unlinked" id="inkling-small">
             <span class="when">2026-08-04</span>
@@ -222,7 +230,14 @@
 
       <section class="topic-section" id="targeted-post-training-for-failure-modes">
         <h3>Targeted post-training for failure modes</h3>
-        <p class="lead">None of the three chases general capability; each aims at one named way training or inference goes wrong &mdash; rollouts spent on problems already solved, reasoning that spirals instead of stopping, and a policy that learns to game its grader. Check in each case whether the fix was measured or only reported as a direction.</p>
+        <p class="lead">None of the four chases general capability; each targets one named way training or inference goes wrong: rollouts spent on problems already solved, reasoning that spirals instead of stopping, a policy that games its grader, and fine-tuning that overwrites what the model knew. Check whether each fix was measured or only reported as a direction.</p>
+
+        <article class="story" id="subspace-tuning">
+          <span class="when">2026-10-24</span>
+          <h4><a href="https://arxiv.org/abs/2610.22293">Subspace Tuning confines each fine-tuning update to the bottom singular subspace to cut forgetting</a></h4>
+          <p><strong>Subspace Tuning</strong> restricts each weight update to the bottom singular subspace of the weight matrix and leaves the principal directions untouched, so a model can learn a new skill without overwriting what it already does. It is optimizer-agnostic and composes with SFT, and the authors report less of the forgetting plain SFT causes, without a size for the reduction in the summary.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.22293">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+        </article>
 
         <article class="story" id="mimo-v2-6-rl">
           <span class="when">2026-09-22</span>
@@ -240,13 +255,17 @@
           <div class="sources"><a href="https://mnoukhov.github.io/posts/ngu/">Michael Noukhovitch</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
         </article>
 
-        <article class="story unlinked" id="antidoom">
-          <span class="when">2026-07-09</span>
-          <h4>Liquid AI Antidoom &mdash; FTPO training cuts reasoning-model &ldquo;doom loops&rdquo; by as much as 90%</h4>
-          <p>Liquid AI open-sourced Antidoom, a training method using <strong>Final Token Preference Optimization (FTPO)</strong> to target the failure mode where a reasoning model gets stuck repeating or spiraling instead of converging on an answer, silently burning tokens and latency with no useful output. Doom-loop rates dropped by as much as 90%, with reported cases falling to roughly 1.4%.</p>
-          <p>Because less looping means cleaner trajectories, eval scores improved across the board as a direct result rather than trading off against the fix, and the code and blog are public. It is a template for a broader pattern: cheap, open, preference-based fixes aimed at named production failure modes rather than at general capability.</p>
-          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 8) &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="antidoom">
+            <span class="when">2026-07-09</span>
+            <h4>Liquid AI Antidoom &mdash; FTPO training cuts reasoning-model &ldquo;doom loops&rdquo; by as much as 90%</h4>
+            <p>Liquid AI open-sourced Antidoom, a training method using <strong>Final Token Preference Optimization (FTPO)</strong> to target the failure mode where a reasoning model gets stuck repeating or spiraling instead of converging on an answer, silently burning tokens and latency with no useful output. Doom-loop rates dropped by as much as 90%, with reported cases falling to roughly 1.4%.</p>
+            <p>Because less looping means cleaner trajectories, eval scores improved across the board as a direct result rather than trading off against the fix, and the code and blog are public. It is a template for a broader pattern: cheap, open, preference-based fixes aimed at named production failure modes rather than at general capability.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 8) &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="rl-algorithms-and-credit-assignment">
@@ -488,6 +507,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-24</span><span class="label"><a href="#subspace-tuning">Subspace Tuning confines each fine-tuning update to the bottom singular subspace to cut forgetting</a></span></li>
+        <li><span class="date">2026-10-23</span><span class="label"><a href="#perplexity-jolt">Perplexity&rsquo;s JOLT trains one model as teacher and student at once, adapting feedback to what the student can do</a></span></li>
         <li><span class="date">2026-10-16</span><span class="label"><a href="#causalmix">CausalMix separates data mixture from data quality to pick fine-tuning mixes, 62.28% against DMO&rsquo;s 60.35% on Qwen2.5-7B</a></span></li>
         <li><span class="date">2026-10-16</span><span class="label"><a href="#mai-base-2">Microsoft&rsquo;s MAI-Base-2: a 2.8T MoE with 80B active, trained on 16,000 GB200s in 38 days and still in post-training</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#semi-opd">NVIDIA finds distilling on the student&rsquo;s offline rollouts often beats on-policy distillation</a></span></li>
