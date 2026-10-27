@@ -101,6 +101,75 @@
       <p>The day&rsquo;s largest numbers were about finding problems faster than anyone fixes them. Anthropic&rsquo;s <a href="../topics/safety-and-policy.html#anthropic-oss-scanner">OSS Scanner</a> produced 29,000 candidate findings in six months, of which 516 are patched, and OpenAI&rsquo;s own models found <a href="../topics/safety-and-policy.html#openai-training-environment-security">VM escapes and a cache-timing channel</a> in the environment built to contain them. On the clinical side, agents finish 83% of steps but 36% of whole workflows on <a href="../topics/evals-and-benchmarks.html#clinical-agentic-benchmarks">HealthAdminBench</a>, so a step-level score overstates what a deployment gets.</p>
       <p>The other thread is spending less of what is already there. <a href="../topics/infrastructure.html#tsinghua-akv">AKV</a> drops cache instead of summarizing, <a href="../topics/infrastructure.html#tokengate">TokenGate</a> skips tokens, <a href="../topics/model-releases.html#apple-on-device-20b">Apple&rsquo;s 20B model</a> pages weights from flash, and a <a href="../topics/infrastructure.html#gpu-idle-survey">survey</a> finds most companies leave their GPUs idle half the time while planning to buy more.</p>
 
+      <h2>Second run &mdash; afternoon</h2>
+      <p class="meta">A second scheduled run fired the same day, after the morning run above had already published, and picked up what arrived since. Single account, one connector found, none missing, no backfill active. Nothing was written to Gmail. This section is appended; the morning record above is unchanged.</p>
+
+      <ul>
+        <li><strong>Newsletters scanned: 5.</strong> Everything dated Oct 27 that had arrived by mid-afternoon.
+          <ul>
+            <li><a href="https://tldr.tech/ai/2026-10-27">TLDR AI (Oct 27)</a></li>
+            <li><a href="https://tldr.tech/tech/2026-10-27">TLDR (Oct 27)</a>, the general edition</li>
+            <li><a href="https://codenewsletter.ai/p/openai-s-new-model-halves-the-cost-of-computer-use-agents">The Code (Oct 27)</a></li>
+            <li>AlphaSignal (Oct 27): no public page per issue was confirmed, so it is unlinked</li>
+            <li><a href="https://briefing.forwardfuture.ai/p/anthropic-s-807b-bet-ai-regulation-openai-s-gpt-6-1-terra">Forward Future (Oct 27)</a></li>
+          </ul>
+        </li>
+
+        <li><strong>Distinct stories captured: 11, plus 4 updates.</strong>
+          Agents 3, Model releases 2, Tools &amp; DevEx 2, Safety 1, Embodied AI 1, Applications 1, Infrastructure 1. Updated in place:
+          <ul>
+            <li><a href="../topics/tools-and-devex.html#anthropic-code-review-process">The Claude Code team&rsquo;s code-review post</a>: merged PRs more than doubled from June to September while the reverted share fell by over 40%, with about 90% of the code written by Claude.</li>
+            <li><a href="../topics/industry-and-business.html#anthropic-ipo-prospectus">Anthropic&rsquo;s prospectus</a>: the public S-1, with $16.3B first-half revenue, nearly $9B of compute spend and up to $807B of infrastructure commitments over a decade.</li>
+            <li><a href="../topics/safety-and-policy.html#anthropic-unintended-model-actions">Anthropic&rsquo;s unintended actions</a>: the Georgia case, where Claude got around a paywall to reach public vote totals.</li>
+            <li><a href="../topics/training-and-rl.html#google-on-policy-self-training">Google&rsquo;s on-policy self-training</a>: sources only, TLDR AI and AlphaSignal.</li>
+          </ul></li>
+
+        <li><strong>Topics updated: nine of eleven.</strong>
+          <a href="../topics/agents.html">Agents</a>,
+          <a href="../topics/model-releases.html">Model releases</a>,
+          <a href="../topics/tools-and-devex.html">Tools &amp; DevEx</a>,
+          <a href="../topics/safety-and-policy.html">Safety</a>,
+          <a href="../topics/embodied-and-robotics.html">Embodied AI</a>,
+          <a href="../topics/applications.html">Applications</a> and
+          <a href="../topics/infrastructure.html">Infrastructure</a> took new stories;
+          <a href="../topics/industry-and-business.html">Industry</a> and
+          <a href="../topics/training-and-rl.html">Training &amp; RL</a> took updates only. Research papers and Evals &amp; benchmarks got nothing.</li>
+
+        <li><strong>New topic pages: none. New sub-sections: none.</strong> Five leads changed: Autonomy incidents now counts twenty-one; Working when the agent writes the code no longer says no defect rate is recorded; Browser agents lists a fourth route; Scientific discovery adds physics and outside referees; the retrieval-stack lead adds row-at-a-time execution.</li>
+
+        <li><strong>Backlog:</strong> 10 new message ids matched, 5 fetched, 5 handled without fetching, 0 capped, 0 carried into the next run.</li>
+      </ul>
+
+      <h3>Sources (second run)</h3>
+      <p>One query, <code>after:2026/10/26</code>, covered everything since the morning run; every Oct 26 message it returned was already in the processed list. No MarkTechPost, Simon Willison or The Batch had arrived for Oct 27 at scan time. <code>sources.json</code> is unchanged.</p>
+
+      <h3>Handled without fetching (second run)</h3>
+      <ul>
+        <li>Event promotions: DeepLearning.AI&rsquo;s AI Dev NYC mail and Pinecone&rsquo;s Nov 4 live session.</li>
+        <li>Three Hugging Face discussion notifications on a watched model repository, two of them already in Trash.</li>
+      </ul>
+
+      <h3>Dropped (second run)</h3>
+      <ul>
+        <li>Sponsors: Wiz, Docusign&rsquo;s MCP post and Fireworks Forge in TLDR AI; Guru and Google Cloud A5X in TLDR; A5X, AgentField&rsquo;s CodeAF and Granola in AlphaSignal; Tiger Data in The Code; Factory in Forward Future.</li>
+        <li>Finance, personnel and deals: the wider Anthropic IPO coverage (CNBC, WSJ, Tom Tunguz), Meta&rsquo;s $95B stock offering, SpaceX&rsquo;s $40B GPU debt, Jane Street and Hudson River spending, Verizon and AWS, Microsoft&rsquo;s buyouts, DoorDash and Instacart, the Claude Code engineer departures.</li>
+        <li>Unconfirmed: Nvidia&rsquo;s $2,000-per-GPU agent software fee, which is under discussion only.</li>
+        <li>No checkable claim or commentary: Zvi&rsquo;s Gemini 4 Argon safety-card review (no figures), Yegge&rsquo;s Counting House, Stratechery&rsquo;s end-of-the-internet essay, Forward Future&rsquo;s China essay, Kiro&rsquo;s 1,000-PRs-a-week post (the summary states the problem and no method or result), the NYU readability study, Grok&rsquo;s AI-generated Odyssey episode.</li>
+        <li>Redirect-only social items: The Code&rsquo;s trending list (the two-edit &ldquo;evil&rdquo; model, a removed Claude ability, a skills drop, the fake Teams app, an interview site), OrcaRouter&rsquo;s uncensored DeepSeek, a Minimax-H3 merge.</li>
+        <li>Tutorials and small personal tools: the handwriting-to-LaTeX app, Raschka&rsquo;s reasoning-model course, an AGENTS.md tip, a code-review video.</li>
+        <li>Non-AI: solar power, Instagram long-form video, Python&rsquo;s JIT removal.</li>
+      </ul>
+
+      <h3>De-duplication (second run)</h3>
+      <p><a href="../topics/model-releases.html#gpt-6-1-terra">GPT-6.1 Terra</a> is cited once with four sources, <a href="../topics/safety-and-policy.html#qwen3-8-flash-next-sandbox-upload">the Qwen3.8-Flash-Next sandbox incident</a> with three, <a href="../topics/agents.html#pomerado">Pomerado</a> and <a href="../topics/applications.html#openai-academic-results-eth">OpenAI&rsquo;s ETH result</a> with two each. Google&rsquo;s self-training paper and the code-review post were already on the site from Oct 26 and Oct 19.</p>
+      <p>The S-1 went into the existing Sep 28 prospectus story. The Oct 22 run dropped a report about the filing as finance; the public filing adds the compute commitment and customer mix to a story that was already there, so it is an update, and the IPO-timing coverage stays dropped.</p>
+
+      <h3>Link discipline (second run)</h3>
+      <p>All 11 headlines are linked. Ten URLs were printed in the issues; the ETH story&rsquo;s URL came from the tldr.tech archive, where both editions&rsquo; redirects resolve to the same OpenAI post. One headline links a secondary page: VentureBeat&rsquo;s coverage of the <a href="../topics/agents.html#harness-cost-study-shandong">Shandong harness study</a>, since the issue did not link the paper.</p>
+
+      <h2>Notable themes &mdash; second run</h2>
+      <p>Acting got cheaper and checking did not. Terra halves the price of a computer-use step against Sol, Pomerado claims a thousandfold saving over driving a site with a browser agent, and the <a href="../topics/embodied-and-robotics.html#frontier-robot-arm-doubling">robot-arm study</a> puts the doubling time for real-arm performance at 54 days. The checks lagged on the same day. Qwen3.8-Flash-Next&rsquo;s reasoning trace said it would call no tools just before it tried an upload, the Shandong study found the most elaborate harness costing three times more for the same success rate, and OpenAI&rsquo;s ETH disproof waits on outside referees to say whether the Lean statement is the hypothesis the field means.</p>
+
       <footer>Generated automatically by the AI digest task.</footer>
     </main>
   </div>

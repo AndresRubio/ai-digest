@@ -34,15 +34,16 @@
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 26 to 27 cycle was about what the scaffolding costs. A Shandong University study, reported by VentureBeat, found <a href="#harness-cost-study-shandong">Claude Code and mini-SWE-agent</a> statistically equivalent on nearly 500 coding tasks while Claude Code cost up to three times as much, mostly because it starts with over 16,000 tokens of context against 829. <a href="#pomerado">Pomerado</a> attacks browser-agent cost from the other side, compiling a site that has no API into a deterministic integration and claiming up to 1,000 times lower cost, and <a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0</a> adds resume-after-crash and pause-for-approval to agent code execution.</p>
         <p>The Oct 26 cycle was about how much structure an agent needs. <a href="#rsihub">RSIHub</a> re-implements four agent-evolution methods on shared infrastructure and finds a best gain of 13.5 points pass@1 but rankings that flip across settings and gains that do not always reach held-out tasks, which is the comparison single-method papers never run. Anthropic&rsquo;s <a href="#anthropic-fold-subagents">subagent guide</a> argues the other way from most orchestration entries here: fold planners and routers back into one loop as skills and tools, and keep separate subagents only for parallel work, fresh context or an overloaded toolset.</p>
         <p>The Oct 23 to 25 cycle moved two boundaries out of the harness: the credential and the coordinator. <a href="#1password-for-agents">1Password for Agents</a> has the agent request a login, the user approve it and the password manager fill the site, so the secret never reaches the model, with Claude Duet, Dots, Grok Bot and Muse among the listed clients. Microsoft&rsquo;s <a href="#agensh">Agensh</a> drops the lead agent altogether: up to 1,024 workers claim sub-tasks on a shared board and merge into one Git repo, and pandoc rose from 33.89% with one agent to 55.06% with 1,024, at a token cost Microsoft does not disclose.</p>
         <p>Two results put a price on the layers around the model. The <a href="#memorytax">MemoryTax</a> study finds extracted memory helps a weak model and not a strong one: Opus 5.5 searching raw history under the Pi harness answered 99% of questions for $6.95 against 95% for full context at $17.84, and the model that writes a memory caps every model that reads it. Simular&rsquo;s <a href="#agent-s4">Agent S4</a> rewrites its own desktop tool interfaces and lifts Qwen3.8-27B to 21.3% on OSWorld V2, 3.8 times its fixed-interface score. Anthropic also handed the <a href="#agent-skills-aaif">Agent Skills standard</a> to the Agentic AI Foundation, so SKILL.md now sits under vendor-neutral governance.</p>
         <p>The Oct 22 cycle was a lab&rsquo;s own always-on agent and a screen model small enough to live on the phone. Anthropic&rsquo;s <a href="#claude-duet">Claude Duet</a> is a research preview of a proactive Opus 5.5 agent that briefs the user each morning from email, calendar and work apps, keeps working on its own cloud computer after they log off, reaches more than 6,000 apps and can buy through Link and Shop Pay, with stock trades and transfers blocked even on approval; it is the third always-on consumer agent in the computer-use section after dots and Muse, with no task benchmark or price. Opposable&rsquo;s <a href="#gui-owl-1-5">GUI-Owl 1.5</a> is a 2B model that reads an Android screen through the accessibility service and operates any other app from the device itself, the local section&rsquo;s data-sits-here claim with no success rate yet. <a href="#muse-downloads">Muse</a> gained a user count, over 10 million, with a quarter of engaged users shopping at an average above $200, all Meta&rsquo;s figures.</p>
-        <p>The Oct 21 cycle was harnesses described by the people running them, and a memory with a multiplier. Ramp&rsquo;s <a href="#ramp-laminar">Laminar</a> is an in-house managed-agents platform, compaction, tool interfaces, steering, subagents, multiplayer chat and observability, built in six weeks with its code written entirely by agents, and Ramp still keeps engineers on call for it: the build side of the harness section with the ownership stated. Vercel&rsquo;s <a href="#vercel-durable-harness">durable-harness</a> runs Pi, OpenCode, Codex and Claude Code so a session survives a crash mid-turn and resumes from the log, the persistent-state primitive applied across four harnesses rather than built into one. Databricks&rsquo; <a href="#memcurrent">MemCurrent</a> claims to triple an agent&rsquo;s pass rate over no memory while making it faster and cheaper, against a baseline of nothing and with what is stored unstated.</p>
 
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 21 cycle was harnesses described by the people running them, and a memory with a multiplier. Ramp&rsquo;s <a href="#ramp-laminar">Laminar</a> is an in-house managed-agents platform, compaction, tool interfaces, steering, subagents, multiplayer chat and observability, built in six weeks with its code written entirely by agents, and Ramp still keeps engineers on call for it: the build side of the harness section with the ownership stated. Vercel&rsquo;s <a href="#vercel-durable-harness">durable-harness</a> runs Pi, OpenCode, Codex and Claude Code so a session survives a crash mid-turn and resumes from the log, the persistent-state primitive applied across four harnesses rather than built into one. Databricks&rsquo; <a href="#memcurrent">MemCurrent</a> claims to triple an agent&rsquo;s pass rate over no memory while making it faster and cheaper, against a baseline of nothing and with what is stored unstated.</p>
           <p>In computer use, Cua&rsquo;s <a href="#cua-spaces-sdk">Spaces SDK</a> gives each agent a desktop whose location the developer chooses, and <a href="#chatgpt-chrome-tab-control">ChatGPT&rsquo;s Chrome extension</a> now fills forms and sends messages from the user&rsquo;s own tabs. <a href="#netclaw">NetClaw</a>, an open-source network-engineering agent that verifies changes against device state over MCP, joins the domain section from the AAIF newsletter. <a href="#exa-3-0">Exa 3.0</a> gained its comparison, $7 Auto against $5 at Perplexity, Brave and Parallel, with the eight benchmarks run by Exa itself, and <a href="#muse-downloads">Muse</a> reached 10.2 million US downloads in 40 days.</p>
           <p>The Oct 20 cycle priced retrieval and thinned the router. <a href="#exa-3-0">Exa 3.0</a> adds Exa Lite at $4 per 1,000 requests on Exa&rsquo;s own index, over 2 trillion URLs tracked and 100 billion pages served, with 1.27 billion e-commerce listings and 211 million local businesses inside it: the build-good-retrieval pattern in the agentic-search section, now with DeepSeek&rsquo;s $0.75 per 1,000 as the comparator and only Exa&rsquo;s own evaluations behind the wins. Meta&rsquo;s <a href="#meta-thin-orchestrator">thin orchestrator</a> is a router that assigns work to specialised agents and does none of the domain work itself, which Meta says made its production agents more reliable, a design without a figure that answers the dispatch half of the multi-agent section&rsquo;s question and leaves reconciliation where it was. The harness experiment that names GPT-6 Luna and Sol with the cost in both columns is filed on <a href="evals-and-benchmarks.html#specmatic-harness-experiment">Evals &amp; benchmarks</a>.</p>
           <p>The Oct 19 cycle added the retrieval under DeepSeek&rsquo;s agents and the rest of Harness&sup2;&rsquo;s table. DeepSeek&rsquo;s <a href="#deepseek-search-fetch-api">Search and Fetch APIs</a> return structured results and page Markdown over the model API&rsquo;s own bearer token, priced by The Code at $0.75 per 1,000 requests: a lab supplying the web access its own agents assume, which is the dependency the frameworks section says to read for. <a href="#harness2">Harness&sup2;</a> gained its wider numbers, with k=5 parallel recursion taking Gemini under OpenCode to 80.8, the smallest gain 1.2 points on JobBench, and two of three columns won against Meta-Harness, ReasoningBank and Harness Scaling, still with Google as the only scorer.</p>
@@ -102,11 +103,11 @@
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">13</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">22</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">29</span></a></li>
-          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">14</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">30</span></a></li>
+          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">15</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">12</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
-          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">13</span></a></li>
+          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">14</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">8</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
@@ -399,6 +400,13 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="harness-cost-study-shandong">
+          <span class="when">2026-10-27</span>
+          <h4><a href="https://venturebeat.com/orchestration/a-coding-agents-harness-can-triple-its-cost-without-making-it-more-accurate-study-finds">Shandong University: Claude Code costs up to three times more than mini-SWE-agent for statistically equivalent success</a></h4>
+          <p>A Shandong University study ran <strong>Claude Code</strong>, OpenCode and <strong>mini-SWE-agent</strong> on nearly 500 coding tasks and found Claude Code and the much simpler mini-SWE-agent statistically equivalent on success, while the more elaborate framework cost up to three times as much. Most of the gap is overhead: Claude Code starts with more than <strong>16,000 tokens</strong> of context against <strong>829</strong> for mini-SWE-agent. The coverage is VentureBeat&rsquo;s and the issue did not link the paper, so the task set and the equivalence test are still to be read at source.</p>
+          <div class="sources"><a href="https://venturebeat.com/orchestration/a-coding-agents-harness-can-triple-its-cost-without-making-it-more-accurate-study-finds">VentureBeat</a> (coverage of the study) &middot; <span class="via">via Forward Future (Oct 27)</span></div>
+        </article>
+
         <article class="story" id="ramp-laminar">
           <span class="when">2026-10-21</span>
           <h4><a href="https://builders.ramp.com/post/building-laminar">Ramp&rsquo;s Laminar is an in-house agent harness built in six weeks, its code written entirely by agents</a></h4>
@@ -415,17 +423,17 @@
           <div class="sources"><a href="https://www.perplexity.ai/hub/blog/open-sourcing-space">Perplexity</a> &middot; <a href="https://github.com/perplexityai/SPACE">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/16/perplexity-open-sources-space-firecracker-microvm-sandbox-ai-agents/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16), MarkTechPost (Oct 18)</span></div>
         </article>
 
-        <article class="story" id="harness2">
-          <span class="when">2026-10-15</span>
-          <h4><a href="https://github.com/google-research/harness2">Google Research&rsquo;s Harness&sup2; improves an agent&rsquo;s prompts, tools, memory and orchestration without touching weights</a></h4>
-          <p>Google Cloud AI Research open-sourced <strong>Harness&sup2;</strong>, which keeps the model frozen and edits the eight files around it: system prompt, guardrails, memory, tool guidance, subagents, skills, scripts and plugins. Per task an editor proposes two candidate harnesses, one for general failures and one for domain knowledge; both run, a composer keeps only edits backed by observed behaviour, and a reflector writes <code>EXPERIENCE.md</code> to guide the next proposal. No labels or test cases are needed, and every task starts again from the base harness.</p>
-          <p><em>Updated Oct 18:</em> the numbers arrived with the repository. With Gemini 3.5 Flash and GLM-5 as executors under OpenCode and Codex and Claude Opus 4.8 as the default editor, one refinement step improved all four setups on WorkBuddy-Bench, JobBench and Harvey&rsquo;s LAB; the largest gain was GLM-5 under OpenCode, <strong>64.2 to 75.7</strong> on WorkBuddy. The baseline is the unrefined harness, and the figures are Google&rsquo;s.</p>
-          <p><em>Updated Oct 19:</em> the wider table: <strong>k=5 parallel recursion</strong> took Gemini under OpenCode to 80.8, the smallest gain was 1.2 points on JobBench, three of the four setups used fewer steps per task, and against Meta-Harness, ReasoningBank and Harness Scaling it leads two of three columns, all means over three runs as Google measured them.</p>
-          <div class="sources"><a href="https://github.com/google-research/harness2">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/18/google-harness2-recursive-agent-harnessing-framework/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 15), MarkTechPost (Oct 18, Oct 19)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (26)</summary>
+          <summary>Earlier in this section (27)</summary>
+
+          <article class="story" id="harness2">
+            <span class="when">2026-10-15</span>
+            <h4><a href="https://github.com/google-research/harness2">Google Research&rsquo;s Harness&sup2; improves an agent&rsquo;s prompts, tools, memory and orchestration without touching weights</a></h4>
+            <p>Google Cloud AI Research open-sourced <strong>Harness&sup2;</strong>, which keeps the model frozen and edits the eight files around it: system prompt, guardrails, memory, tool guidance, subagents, skills, scripts and plugins. Per task an editor proposes two candidate harnesses, one for general failures and one for domain knowledge; both run, a composer keeps only edits backed by observed behaviour, and a reflector writes <code>EXPERIENCE.md</code> to guide the next proposal. No labels or test cases are needed, and every task starts again from the base harness.</p>
+            <p><em>Updated Oct 18:</em> the numbers arrived with the repository. With Gemini 3.5 Flash and GLM-5 as executors under OpenCode and Codex and Claude Opus 4.8 as the default editor, one refinement step improved all four setups on WorkBuddy-Bench, JobBench and Harvey&rsquo;s LAB; the largest gain was GLM-5 under OpenCode, <strong>64.2 to 75.7</strong> on WorkBuddy. The baseline is the unrefined harness, and the figures are Google&rsquo;s.</p>
+            <p><em>Updated Oct 19:</em> the wider table: <strong>k=5 parallel recursion</strong> took Gemini under OpenCode to 80.8, the smallest gain was 1.2 points on JobBench, three of the four setups used fewer steps per task, and against Meta-Harness, ReasoningBank and Harness Scaling it leads two of three columns, all means over three runs as Google measured them.</p>
+            <div class="sources"><a href="https://github.com/google-research/harness2">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/18/google-harness2-recursive-agent-harnessing-framework/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 15), MarkTechPost (Oct 18, Oct 19)</span></div>
+          </article>
 
           <article class="story" id="hyset">
             <span class="when">2026-10-09</span>
@@ -627,6 +635,13 @@
         <h3>Agent loop design &amp; reliability</h3>
         <p class="lead">Plan, act, verify, repeat &mdash; and the primitives that decide whether a loop finishes or just burns budget: verifiers, persistent state, stop conditions, and a compaction policy. Judge entries on whether the measurement was fixed before the results appeared, because that is exactly how far agent self-improvement claims have held up.</p>
 
+        <article class="story" id="cloudflare-computer-v0-7">
+          <span class="when">2026-10-26</span>
+          <h4><a href="https://developers.cloudflare.com/changelog/post/2026-10-26-computer-durable-javascript/">Cloudflare Computer v0.7.0 lets agents resume code execution after a deploy or crash and pause for outside approval</a></h4>
+          <p>Cloudflare&rsquo;s <strong>Computer v0.7.0</strong> lets an agent&rsquo;s code execution resume after a deployment or a crash, and pause while it waits for external approval. Both are persistent-state primitives of the kind this section tracks, beside <a href="#vercel-durable-harness">Vercel&rsquo;s durable harness</a>; the changelog entry is the whole source, with no limit stated for how long a paused run can wait.</p>
+          <div class="sources"><a href="https://developers.cloudflare.com/changelog/post/2026-10-26-computer-durable-javascript/">Cloudflare changelog</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
+        </article>
+
         <article class="story" id="rsihub">
           <span class="when">2026-10-26</span>
           <h4><a href="https://github.com/simple-agent-lab/RSIHub">RSIHub re-implements four agent-evolution methods on shared infrastructure, and the rankings flip across settings</a></h4>
@@ -642,16 +657,16 @@
           <div class="sources"><a href="https://vercel.com/blog/making-every-harness-durable">Vercel</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="decision-offloading-sop-bench">
-          <span class="when">2026-10-13</span>
-          <h4><a href="https://discuss.huggingface.co/t/offloading-bounded-decisions-cut-agent-llm-calls-by-29-6-on-360-sop-bench-cases/190420">Offloading bounded decisions to Jev cut a Qwen agent&rsquo;s LLM calls by 29.6% across 360 SOP-Bench cases</a></h4>
-          <p>A practitioner write-up moved an agent&rsquo;s step-completion checks and other bounded decisions from the Qwen model running the loop to <a href="model-releases.html#jev">Jev</a>, and across <strong>360 SOP-Bench cases</strong> measured <strong>29.6% fewer LLM calls</strong>, <strong>26.6% lower estimated API cost</strong> and <strong>19.7% lower latency</strong>.</p>
-          <p>It is the first figure on this page for what a decision model saves inside a loop rather than on a standalone benchmark; the cost is an estimate, and the source is a forum post rather than a reviewed study.</p>
-          <div class="sources"><a href="https://discuss.huggingface.co/t/offloading-bounded-decisions-cut-agent-llm-calls-by-29-6-on-360-sop-bench-cases/190420">Hugging Face forum</a> &middot; <span class="via">via TLDR AI (Oct 13)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (11)</summary>
+          <summary>Earlier in this section (12)</summary>
+
+          <article class="story" id="decision-offloading-sop-bench">
+            <span class="when">2026-10-13</span>
+            <h4><a href="https://discuss.huggingface.co/t/offloading-bounded-decisions-cut-agent-llm-calls-by-29-6-on-360-sop-bench-cases/190420">Offloading bounded decisions to Jev cut a Qwen agent&rsquo;s LLM calls by 29.6% across 360 SOP-Bench cases</a></h4>
+            <p>A practitioner write-up moved an agent&rsquo;s step-completion checks and other bounded decisions from the Qwen model running the loop to <a href="model-releases.html#jev">Jev</a>, and across <strong>360 SOP-Bench cases</strong> measured <strong>29.6% fewer LLM calls</strong>, <strong>26.6% lower estimated API cost</strong> and <strong>19.7% lower latency</strong>.</p>
+            <p>It is the first figure on this page for what a decision model saves inside a loop rather than on a standalone benchmark; the cost is an estimate, and the source is a forum post rather than a reviewed study.</p>
+            <div class="sources"><a href="https://discuss.huggingface.co/t/offloading-bounded-decisions-cut-agent-llm-calls-by-29-6-on-360-sop-bench-cases/190420">Hugging Face forum</a> &middot; <span class="via">via TLDR AI (Oct 13)</span></div>
+          </article>
 
           <article class="story" id="pi-durable">
             <span class="when">2026-10-02</span>
@@ -869,7 +884,14 @@
 
       <section class="topic-section" id="browser-and-computer-use-agents">
         <h3>Browser &amp; computer-use agents</h3>
-        <p class="lead">Three ways an agent drives a browser: infer the page from pixels, call actions a cooperating site publishes, or borrow a profile that is already logged in. Open-weights families such as Microsoft Fara1.5 (4B/9B/27B, reported to beat OpenAI Operator and Gemini 2.5 on certain tasks) make the proprietary browsing agents substitutable.</p>
+        <p class="lead">Four ways an agent drives a browser: infer the page from pixels, call actions a cooperating site publishes, borrow a profile that is already logged in, or compile the site into a deterministic API once. Open-weights families such as Microsoft Fara1.5 (4B/9B/27B, reported to beat OpenAI Operator and Gemini 2.5 on certain tasks) make the proprietary browsing agents substitutable.</p>
+
+        <article class="story" id="pomerado">
+          <span class="when">2026-10-27</span>
+          <h4><a href="https://pomerado.ai/">Pomerado turns a website into an API or MCP tool in about 30 minutes, claiming up to 1,000&times; lower cost than a browser agent</a></h4>
+          <p><strong>Pomerado</strong> builds deterministic integrations for websites and old internal portals that have no official API, exposing them as APIs or MCP tools that can log in, handle 2FA and repair themselves when the site changes. AlphaSignal reports setup in about <strong>30 minutes</strong> and a cost up to <strong>1,000&times;</strong> lower than driving the same site with a browser agent. Both figures are the vendor&rsquo;s, and a self-healing claim is only as good as its record through a site redesign.</p>
+          <div class="sources"><a href="https://pomerado.ai/">Pomerado</a> &middot; <span class="via">via AlphaSignal (Oct 27), The Code (Oct 27)</span></div>
+        </article>
 
         <article class="story" id="agent-s4">
           <span class="when">2026-10-23</span>
@@ -887,16 +909,16 @@
           <div class="sources"><a href="https://claude.com/resources/articles/claude-duet">Anthropic</a> &middot; <a href="https://claude.com/product/claude-duet">Waitlist</a> &middot; <span class="via">via TLDR AI (Oct 22), TLDR (Oct 22), The Code (Oct 22)</span></div>
         </article>
 
-        <article class="story" id="cua-spaces-sdk">
-          <span class="when">2026-10-21</span>
-          <h4><a href="https://github.com/trycua/cua/tree/main/examples/cua-bots-macos">Cua&rsquo;s Spaces SDK gives each agent its own desktop and moves a job between machines with a one-word change</a></h4>
-          <p>Cua shipped its <strong>Spaces SDK</strong>, which gives each AI agent a desktop with its own screen and applications and lets the developer choose where it runs; moving a job to another machine is a one-word code change, and Claude Code, Codex and OpenCode can share the same space and tools.</p>
-          <p>Against Grok Bot and Muse, whose desktops sit on the vendor&rsquo;s machines, the difference is who owns the computer the agent drives; the example repository is the release and no benchmark or pricing comes with it.</p>
-          <div class="sources"><a href="https://github.com/trycua/cua/tree/main/examples/cua-bots-macos">GitHub</a> &middot; <span class="via">via The Code (Oct 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (10)</summary>
+          <summary>Earlier in this section (11)</summary>
+
+          <article class="story" id="cua-spaces-sdk">
+            <span class="when">2026-10-21</span>
+            <h4><a href="https://github.com/trycua/cua/tree/main/examples/cua-bots-macos">Cua&rsquo;s Spaces SDK gives each agent its own desktop and moves a job between machines with a one-word change</a></h4>
+            <p>Cua shipped its <strong>Spaces SDK</strong>, which gives each AI agent a desktop with its own screen and applications and lets the developer choose where it runs; moving a job to another machine is a one-word code change, and Claude Code, Codex and OpenCode can share the same space and tools.</p>
+            <p>Against Grok Bot and Muse, whose desktops sit on the vendor&rsquo;s machines, the difference is who owns the computer the agent drives; the example repository is the release and no benchmark or pricing comes with it.</p>
+            <div class="sources"><a href="https://github.com/trycua/cua/tree/main/examples/cua-bots-macos">GitHub</a> &middot; <span class="via">via The Code (Oct 21)</span></div>
+          </article>
 
           <article class="story" id="chatgpt-chrome-tab-control">
             <span class="when">2026-10-16</span>
@@ -1384,6 +1406,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-27</span><span class="label"><a href="#harness-cost-study-shandong">Shandong University: Claude Code costs up to three times more than mini-SWE-agent for statistically equivalent success</a></span></li>
+        <li><span class="date">2026-10-27</span><span class="label"><a href="#pomerado">Pomerado turns a website into an API or MCP tool in about 30 minutes, claiming up to 1,000&times; lower cost than a browser agent</a></span></li>
+        <li><span class="date">2026-10-26</span><span class="label"><a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0 lets agents resume code execution after a deploy or crash and pause for outside approval</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#rsihub">RSIHub re-implements four agent-evolution methods on shared infrastructure, and the rankings flip across settings</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#anthropic-fold-subagents">Anthropic&rsquo;s guide to folding planners, routers and specialist subagents back into one main loop</a></span></li>
         <li><span class="date">2026-10-25</span><span class="label"><a href="#memorytax">MemoryTax: extracted memory helps GPT-4o-mini, but Opus 5.5 searching raw history under Pi hit 99% for $6.95</a></span></li>
