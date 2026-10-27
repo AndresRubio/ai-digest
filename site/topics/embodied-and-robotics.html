@@ -30,18 +30,20 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-10-26</div>
+      <div class="meta">Last updated: 2026-10-27</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 26 cycle was two ways to avoid training a whole robot stack. Alibaba&rsquo;s <a href="#rynnunify">RynnUnify</a> puts spatial reasoning, physical prediction and video planning into one 16B model with a world-action head, and uses RL to decide when its own video predictions are worth consulting. <a href="#holoboxing">HoloBoxing</a> goes the other way, freezing a pretrained whole-body controller and training only a small planner, which gets humanoid boxing in 7 minutes on one GPU once the expensive pretraining is excluded.</p>
         <p>The Oct 21 to 23 cycle was world models from both ends of the domain question and a policy that drops its language model. Kyutai&rsquo;s <a href="#kyutai-cadre">CADRE</a> video autoencoders run an interactive world model at 20 fps on one H100 with under 230 ms of lag, and find that with a still camera coarser tokens damage motion far more than image quality. <a href="#worldtui">WorldTUI</a> is the opposite case, a 360M model that has learned to be a terminal, predicting the screen after each key press with no shell behind it. <a href="#turbovla">TurboVLA</a> replaces the LLM in a vision-language-action policy with small separate encoders and reaches 97.6% on LIBERO with 0.2B parameters and 0.9 GB of VRAM, giving up the ability to break a general instruction into subtasks.</p>
         <p>The Oct 21 entry is a production line ahead of a safety claim. Tesla has <a href="#tesla-optimus-production">started building Optimus in Fremont</a>, says the process is suitable for a commercial product and that the robot is not yet fully safe or reliable, and promises 20,000 units a week by the end of 2027, with third-quarter profit down 43% on the spending; it sits beside the imitation-data entry as the same programme a step further on, with the number that matters, units delivered to a customer, still zero.</p>
         <p>The Oct 21 entry is a price for a robot that a person is driving. A customer paid <a href="#tau-robotics-home-cleaning">$60 for two Tau Robotics humanoids</a> to clean a San Francisco home for an hour, both human-operator-controlled, and wrote up the economics; it belongs beside <a href="#humxn-free-home-services">HUMXN</a> as a real-world deployment number, with the autonomy share zero and no statement of whether the sessions also feed training.</p>
         <p>The Oct 20 entry buys demonstrations with a service. <a href="#humxn-free-home-services">HUMXN</a> is subsidising plumbing, electrical, HVAC, duct and carpet work in Minneapolis, Chicago and Miami, with the tradespeople wearing cameras so that work inside real homes becomes robot training footage, and lets residents check their eligibility online. It joins Pantheon&rsquo;s $10-an-hour UMI pipeline as the fourth claim on this page that the demonstration has become cheap, with a different unit, a repair instead of an hour, and the same gap after it: no hours collected, no dataset, no policy and no robot, so the method of acquisition is what is recorded.</p>
-        <p>The Oct 17 entry is a small policy with an explicit memory design. Kyutai&rsquo;s <a href="#kyutai-reki">REKI</a>, built with Inria and &Eacute;cole des Ponts, is a 2.4B vision-language-action model: a 2.2B Qwen3.5-2B backbone, a 0.2B flow-matching action expert, and 32 learned register tokens per frame covering the last three frames a second apart, pretrained only on public data. The architecture is what can be checked; no success rate, embodiment count or licence is given, so it joins the section&rsquo;s open question from the memory side rather than the demonstration side.</p>
+
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 17 entry is a small policy with an explicit memory design. Kyutai&rsquo;s <a href="#kyutai-reki">REKI</a>, built with Inria and &Eacute;cole des Ponts, is a 2.4B vision-language-action model: a 2.2B Qwen3.5-2B backbone, a 0.2B flow-matching action expert, and 32 learned register tokens per frame covering the last three frames a second apart, pretrained only on public data. The architecture is what can be checked; no success rate, embodiment count or licence is given, so it joins the section&rsquo;s open question from the memory side rather than the demonstration side.</p>
           <p>The Oct 15 entry turns a reference policy into a service. Physical Intelligence opened its models through the <a href="#pi-api-beta">Pi API beta</a>: a customer uploads robot data, fine-tunes on managed compute and calls the result through a hosted gateway. It answers the demonstration-cost question by handing the demonstrations to the customer, and the open-versus-closed question on the closed side &mdash; a metered endpoint rather than the weights that made &pi;0.5 the policy others benchmark against &mdash; with no price, latency or success rate published.</p>
           <p>The Oct 9&ndash;12 cycle brought outside context to three existing entries rather than a new one. The Batch&rsquo;s reading of RoboLab-120 shows <a href="#flux-3-action">FLUX 3 Action</a>&rsquo;s lead is three points wide, lost on the hardest tasks and bought with 69&nbsp;GB of GPU memory against Cosmos 3 Nano&rsquo;s 40&nbsp;GB, and none of the top five has yet run on the real-robot RoboArena. <a href="#odyssey-3">Odyssey-3</a> gained its first number, 66.1 on Physics-IQ Verified &mdash; still one in-domain test for a model sold on cross-domain breadth &mdash; and <a href="#skild-s1">Skild&rsquo;s S1</a> gained one through the State of AI report: 66% against 9% on the company&rsquo;s own per-step success measure.</p>
           <p>The Oct 7 entry put a price on the input this page keeps calling expensive. Pantheon says its <a href="#pantheon-diverse-umi">UMI collection operation</a> took demonstration cost from $60 to $10 an hour with custom hardware and a mix of free-form and scripted collection, and accumulated more than a million unique tasks with diversity as the target. It is the first entry here to state an hourly figure, and it stops where the others do: no released dataset, no policy trained on it, no success rate, so the million is an input rather than an outcome.</p>
@@ -77,8 +79,8 @@
         <ul>
           <li><a href="#robbyants-open-embodied-stack">Robbyant's open embodied stack <span class="n">1</span></a></li>
           <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
-          <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">13</span></a></li>
-          <li><a href="#world-models">World models <span class="n">13</span></a></li>
+          <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">14</span></a></li>
+          <li><a href="#world-models">World models <span class="n">14</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">5</span></a></li>
           <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">14</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
@@ -116,6 +118,13 @@
         <h3>Vision-language-action &amp; video-action policies</h3>
         <p class="lead">The expensive input is the demonstration. Four entries claim it has become cheap &mdash; a glove, one video, a $10-an-hour UMI pipeline, a repair done free for the footage &mdash; and one bets video pretraining can replace it; none ships a policy an outsider can run, while the open policies publish numbers. Judge each on what an outsider could check.</p>
 
+        <article class="story" id="holoboxing">
+          <span class="when">2026-10-26</span>
+          <h4><a href="https://arxiv.org/abs/2610.32909">HoloBoxing trains a humanoid boxing planner in 7 minutes on one GPU over a frozen whole-body controller</a></h4>
+          <p><strong>HoloBoxing</strong> freezes a pretrained whole-body controller and trains only a compact planner that requests body-point targets, initialized by imitation and refined by RL, in <strong>7 minutes on 1 GPU</strong>. The 7 minutes excludes controller pretraining and data preparation, which is where most of the cost sits.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.32909">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+        </article>
+
         <article class="story" id="turbovla">
           <span class="when">2026-10-23</span>
           <h4><a href="https://www.deeplearning.ai/the-batch/issue-376#a-single-decoder-turns-small-model-outputs-into-action">TurboVLA drops the LLM from a VLA policy and reaches 97.6% on LIBERO with 0.2B parameters and 0.9 GB of VRAM</a></h4>
@@ -132,16 +141,16 @@
           <div class="sources"><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/ai-lab-offers-free-plumbing-and-hvac-repairs-across-three-cities-to-train-ai-robots-wearable-sensors-record-video-of-repair-work-for-robotics-training-free-services-also-include-electrical-work-air-duct-cleaning-and-carpet-cleaning">Tom&rsquo;s Hardware</a> (report) &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
         </article>
 
-        <article class="story" id="kyutai-reki">
-          <span class="when">2026-10-17</span>
-          <h4><a href="https://kyutai.org/reki/">Kyutai&rsquo;s REKI: a 2.4B vision-language-action model with 32 register tokens of memory per frame, pretrained only on public data</a></h4>
-          <p>Kyutai, with Inria and &Eacute;cole des Ponts, released <strong>REKI</strong>, a <strong>2.4B</strong> vision-language-action model for robot manipulation: a 2.2B Qwen3.5-2B vision-language backbone plus a <strong>0.2B flow-matching action expert</strong>, pretrained only on public data. Memory is <strong>32 learned register tokens per frame</strong> inside the action expert, covering the last three frames one second apart.</p>
-          <p>The memory design is the contribution; the sources give no success rate, embodiment count or licence, so what an outsider can check is the architecture, not the policy.</p>
-          <div class="sources"><a href="https://kyutai.org/reki/">Kyutai</a> &middot; <a href="https://www.marktechpost.com/2026/10/17/meet-kyutai-reki-the-2-4b-vla-model-bringing-efficient-memory-to-robot-manipulation/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (10)</summary>
+          <summary>Earlier in this section (11)</summary>
+
+          <article class="story" id="kyutai-reki">
+            <span class="when">2026-10-17</span>
+            <h4><a href="https://kyutai.org/reki/">Kyutai&rsquo;s REKI: a 2.4B vision-language-action model with 32 register tokens of memory per frame, pretrained only on public data</a></h4>
+            <p>Kyutai, with Inria and &Eacute;cole des Ponts, released <strong>REKI</strong>, a <strong>2.4B</strong> vision-language-action model for robot manipulation: a 2.2B Qwen3.5-2B vision-language backbone plus a <strong>0.2B flow-matching action expert</strong>, pretrained only on public data. Memory is <strong>32 learned register tokens per frame</strong> inside the action expert, covering the last three frames one second apart.</p>
+            <p>The memory design is the contribution; the sources give no success rate, embodiment count or licence, so what an outsider can check is the architecture, not the policy.</p>
+            <div class="sources"><a href="https://kyutai.org/reki/">Kyutai</a> &middot; <a href="https://www.marktechpost.com/2026/10/17/meet-kyutai-reki-the-2-4b-vla-model-bringing-efficient-memory-to-robot-manipulation/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 18)</span></div>
+          </article>
 
           <article class="story" id="pi-api-beta">
             <span class="when">2026-10-14</span>
@@ -227,7 +236,14 @@
 
       <section class="topic-section" id="world-models">
         <h3>World models</h3>
-        <p class="lead">Thirteen entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+        <p class="lead">Fourteen entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+
+        <article class="story" id="rynnunify">
+          <span class="when">2026-10-26</span>
+          <h4><a href="https://arxiv.org/abs/2610.32965">Alibaba&rsquo;s 16B RynnUnify puts spatial reasoning, physical prediction and video planning in one model</a></h4>
+          <p><strong>RynnUnify</strong> is a 16B embodied model from Alibaba that combines spatial reasoning, physical prediction and video-based planning, with a world-action head for robot control. An RL extension lets it decide when to use its own video predictions to reason about states it cannot see; no benchmark figure is in the issue.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.32965">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+        </article>
 
         <article class="story" id="worldtui">
           <span class="when">2026-10-21</span>
@@ -245,16 +261,16 @@
           <div class="sources"><a href="https://kyutai.org/blog/2026-10-21-cadre">Kyutai</a> &middot; <a href="https://www.marktechpost.com/2026/10/23/kyutai-cadre-video-autoencoders-interactive-world-models/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
         </article>
 
-        <article class="story" id="physis-lang">
-          <span class="when">2026-09-30</span>
-          <h4><a href="https://physis-intelligence.github.io/physis-lang-web/">Physis-Lang rewrites physics captions with critic agents and puts Cosmos3-Super first on Physics-IQ Verified</a></h4>
-          <p>NVIDIA researchers, with MIT and Oxford, introduced <strong>Physis-Lang</strong>: critic-guided agents iteratively rewrite physics captions while the captioner stays frozen, lifting caption F1 on PhysCapBench from <strong>78.64 to 87.82 over nine iterations</strong>. Cosmos3-Super trained with it ranks first on Physics-IQ Verified at 48.2, and Cosmos3-Nano beats Veo 3.1 on PhyGenBench (71.04 against 65.63) while trailing it on VideoPhy-2 (68.02 against 68.87).</p>
-          <p>It measures physics directly, which this section rarely gets, but the scores use a GPT-5.5 judge, and it is a paper only &mdash; no code, weights or distilled models.</p>
-          <div class="sources"><a href="https://physis-intelligence.github.io/physis-lang-web/">Project page</a> &middot; <span class="via">via MarkTechPost (Sep 30)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (10)</summary>
+          <summary>Earlier in this section (11)</summary>
+
+          <article class="story" id="physis-lang">
+            <span class="when">2026-09-30</span>
+            <h4><a href="https://physis-intelligence.github.io/physis-lang-web/">Physis-Lang rewrites physics captions with critic agents and puts Cosmos3-Super first on Physics-IQ Verified</a></h4>
+            <p>NVIDIA researchers, with MIT and Oxford, introduced <strong>Physis-Lang</strong>: critic-guided agents iteratively rewrite physics captions while the captioner stays frozen, lifting caption F1 on PhysCapBench from <strong>78.64 to 87.82 over nine iterations</strong>. Cosmos3-Super trained with it ranks first on Physics-IQ Verified at 48.2, and Cosmos3-Nano beats Veo 3.1 on PhyGenBench (71.04 against 65.63) while trailing it on VideoPhy-2 (68.02 against 68.87).</p>
+            <p>It measures physics directly, which this section rarely gets, but the scores use a GPT-5.5 judge, and it is a paper only &mdash; no code, weights or distilled models.</p>
+            <div class="sources"><a href="https://physis-intelligence.github.io/physis-lang-web/">Project page</a> &middot; <span class="via">via MarkTechPost (Sep 30)</span></div>
+          </article>
 
           <article class="story" id="flux-3-action">
             <span class="when">2026-09-24</span>
@@ -539,6 +555,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-26</span><span class="label"><a href="#rynnunify">Alibaba&rsquo;s 16B RynnUnify puts spatial reasoning, physical prediction and video planning in one model</a></span></li>
+        <li><span class="date">2026-10-26</span><span class="label"><a href="#holoboxing">HoloBoxing trains a humanoid boxing planner in 7 minutes on one GPU over a frozen whole-body controller</a></span></li>
         <li><span class="date">2026-10-23</span><span class="label"><a href="#turbovla">TurboVLA drops the LLM from a VLA policy and reaches 97.6% on LIBERO with 0.2B parameters and 0.9 GB of VRAM</a></span></li>
         <li><span class="date">2026-10-21</span><span class="label"><a href="#worldtui">WorldTUI is a 360M model fine-tuned to be a terminal, predicting the screen after each key press with no shell behind it</a></span></li>
         <li><span class="date">2026-10-21</span><span class="label"><a href="#kyutai-cadre">Kyutai&rsquo;s CADRE video autoencoders run interactive world models at 20 fps on one H100 with under 230 ms of lag</a></span></li>

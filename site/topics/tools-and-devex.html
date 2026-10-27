@@ -30,18 +30,20 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-10-26</div>
+      <div class="meta">Last updated: 2026-10-27</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 26 cycle widened what a coding agent can reach and what it can prove. <a href="#cursor-computer-use">Cursor&rsquo;s agents</a> can now drive desktop apps like the iOS Simulator to test their own work, <a href="#humanlayer">HumanLayer</a> coordinates Claude Code, Codex, OpenCode and Pi sessions across a team&rsquo;s machines, and the <a href="#claude-enterprise-chat-cowork">Claude Chat and Cowork merge</a> ships the chat and agent surfaces as one Enterprise product. Anthropic also says Claude wrote <a href="#claude-formal-verification">machine-checked safety proofs for 123 libraries</a>, about 180 million lines of proof, which is the strongest form of the constructed evidence this page argues should replace diff review, though the report is secondhand.</p>
         <p>The Oct 24 cycle opened two pieces of coding-agent infrastructure to other agents. Anthropic&rsquo;s <a href="#anthropic-sandbox-runtime">sandbox-runtime</a> is the sandbox behind Claude Code&rsquo;s bash tool, fencing a command&rsquo;s files and hosts with Seatbelt or bubblewrap and no container, with 84% fewer permission prompts by Anthropic&rsquo;s count. Cognition&rsquo;s <a href="#devin-vulnerability-fixes">Devin Vulnerability Fixes</a> plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug that run in any agent reading SKILL.md, the format Anthropic handed to the <a href="agents.html#agent-skills-aaif">Agentic AI Foundation</a> the day before.</p>
         <p>The Oct 22 cycle was the API given a version number, and three small tools that put a second model between the agent and the work. Anthropic&rsquo;s <a href="#claude-api-version-2026-10-21">Claude API version 2026-10-21</a> is the first versioned release since 2023-06-10, with new major SDKs and a CLI defaulting to it and the old version kept, and OpenAI published an <a href="#openai-cli">official CLI</a> the same day. From the AAIF newsletter, LightOn&rsquo;s <a href="#colgrep-agent">ColGrep-Agent</a> hands code search to a local 2B model and cut Claude Code&rsquo;s API tokens by 34% over 52 questions; <a href="#sphinx-git-hook">Sphinx</a> is a pre-push hook that quizzes the developer on an agent&rsquo;s changes before a protected branch accepts them; and <a href="#james-ward-mcp-tool-design">James Ward</a> argues an MCP server&rsquo;s token bill is set by tool design, 100 records as 100 calls, with a constrained DSL proposed over 16,000 AWS APIs. <a href="#claude-mods">Claude Mods</a> gained Latent Space&rsquo;s reading of them as an interface the user programs, and the <a href="#cloudflare-security-audit-skill">Cloudflare security-audit skill</a> a star count, 37.8k; GitHub&rsquo;s <a href="#github-git-infra-agent-scale">agent-scale Git</a> gained the migration behind it, nearly every repository moved to Azure with per-reference quorums for the rest.</p>
         <p>The Oct 21 cycle was two factories with their plumbing listed. Uber&rsquo;s <a href="#uber-minion-devpods">Minion</a> ships about 15% of production pull requests, by Uber&rsquo;s count, on DevPods the company began building in 2017, an MCP Gateway generated from a pre-existing API contract registry and a staging path that routes a test account through the changed code; the lesson Gergely Orosz draws is that the companies gaining most already had developer-platform teams. <a href="#glass-town">Glass Town</a>, from the AAIF newsletter, is a multi-agent factory with five-minute worker limits, retries off and every commit linked to the prompts and tool calls that produced it, the paper trail built into the factory rather than the review. Neither reports a defect rate, which is the figure this page&rsquo;s section on agent-written code still lacks.</p>
         <p>The Oct 20 cycle was a game nobody reviewed and the scale behind a source-control rebuild. Simon Willison&rsquo;s <a href="#battle-drones">Battle Drones</a> is a browser RTS built in 321 agent commits over 12 iterations in a language he barely uses, with almost none of the code read by a human; one overnight dynamic-workflow run on the prompt &ldquo;Make it a LOT more fun&rdquo; played over a thousand simulated matches and reported undecided games down from 14% to 0.9% and comeback wins up from 24% to 46% across 1,200 AI-vs-AI games, which is this section&rsquo;s question answered with a simulator in place of a reviewer. Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a> gained its scale from Simon&rsquo;s reading of the post: a 100 GB main-branch history, 25 million CI checkouts a day that would be 600 PB of git traffic fetched naively, no offline support because Claude is the heaviest user, and a note that adversarial review can be myopic. Cloudflare&rsquo;s 68% cut to its code-review inference bill, won at the prompt cache, is on <a href="infrastructure.html#cloudflare-inference-bill-68">Infrastructure</a>.</p>
-        <p>The Oct 19 cycle was two accounts of verification replacing review, one from a lab and one from a platform. The <a href="#anthropic-code-review-process">Claude Code team</a> says it automated most review stages: agents verify before a pull request opens, review runs continuously, fresh-context AI and security passes sit before any human, approval is tiered by risk and review rounds are capped, the process behind the Code Review product and its 6&ndash;10-minute figure, still with no escape rate for what the automated layers pass. Meta&rsquo;s engineers built <a href="#meta-forum-ai-native">Forum</a>, a standalone Groups app, in eight weeks with an agent whose changes counted only once build checks, unit tests and UI comparisons passed inside its loop, each pull request carrying a recording of the verification run; a stress test caught a memory issue the agent fixed and verified, roughly halving memory use, and engineers still approve every shipped change. Both answer the section&rsquo;s question the same way: the human is auditing the test suite, not the diff.</p>
+
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 19 cycle was two accounts of verification replacing review, one from a lab and one from a platform. The <a href="#anthropic-code-review-process">Claude Code team</a> says it automated most review stages: agents verify before a pull request opens, review runs continuously, fresh-context AI and security passes sit before any human, approval is tiered by risk and review rounds are capped, the process behind the Code Review product and its 6&ndash;10-minute figure, still with no escape rate for what the automated layers pass. Meta&rsquo;s engineers built <a href="#meta-forum-ai-native">Forum</a>, a standalone Groups app, in eight weeks with an agent whose changes counted only once build checks, unit tests and UI comparisons passed inside its loop, each pull request carrying a recording of the verification run; a stress test caught a memory issue the agent fixed and verified, roughly halving memory use, and engineers still approve every shipped change. Both answer the section&rsquo;s question the same way: the human is auditing the test suite, not the diff.</p>
           <p>The Oct 16 cycle was the repository under the agents, from two directions. GitHub reports <a href="#github-git-infra-agent-scale">7.38 billion commits in September</a>, five times a year earlier, and is keeping Git while splitting storage from compute for up to 35&times; the write throughput; Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a>, recorded last cycle, turns out to run on 200&times; less CPU and memory than the Git mirrors it replaced. One kept the tool and rebuilt what holds it, the other replaced the tool. On the review side, Anthropic&rsquo;s <a href="#claude-code-review-team-enterprise">Code Review</a> reached Team and Enterprise plans with most reviews cut to 6&ndash;10 minutes from about 20, a vendor figure for speed with the coverage and error numbers still those Addy Osmani gave on Oct 7.</p>
           <p>The Oct 16 cycle was about what a coding agent remembers, and which model does the remembering. Atlassian says agents with <a href="#atlassian-teamwork-graph">Teamwork Graph</a> access were 44% more accurate on 48% fewer tokens; the graph links tickets, docs and decisions, gates access at the data layer and writes every session back &mdash; a vendor number for a product it sells, but a memory design that can be audited. Codex, it turns out, writes its <a href="#codex-memory-models">memories</a> with GPT-5.6 Luna and Terra by default, and two config keys move extraction and consolidation to GPT-6-class models at a rate-limit cost. <a href="#opencode-2-0">OpenCode 2.0</a> gained background subagents and an async shell in a second report.</p>
           <p>The Oct 15 cycle was the plumbing under agent-written code. Anthropic replaced git with <a href="#anthropic-scion">Scion</a> after daily merges went from about 2,500 in May to over 30,000, migrating its monorepo in five months with seven people &mdash; the clearest statement yet that the review-and-landing machinery, not the model, is what breaks first at agent volume. Two tools sit on the reviewer&rsquo;s side of that machinery: <a href="#diff-tour">diff-tour</a> has a coding agent write a read-only guided tour of a diff, and <a href="#openqodex">OpenQodex</a> runs over 100 scanners with the developer&rsquo;s own Claude Code or Codex login checking each finding; both are model-written review aids with no published error rate. <a href="#opencode-2-0">OpenCode 2.0</a> became a background server and an SDK library, the build-your-own harness getting easier to embed.</p>
@@ -105,14 +107,14 @@
           <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">6</span></a></li>
           <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">10</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
-          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">35</span></a></li>
+          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">36</span></a></li>
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">13</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">17</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">15</span></a></li>
-          <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">19</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">32</span></a></li>
-          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">7</span></a></li>
+          <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">20</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">33</span></a></li>
+          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">8</span></a></li>
         </ul>
       </nav>
 
@@ -381,6 +383,13 @@
         <h3>Agent-native tooling</h3>
         <p class="lead">Developer tools shipped with agents as the primary reader, not only humans: a skill file instead of a README, a structured handle instead of a screenshot, a deterministic artifact instead of a reconstruction. Judge entries on whether the agent operates the real target, and on what limit the author publishes alongside the demo.</p>
 
+        <article class="story" id="cursor-computer-use">
+          <span class="when">2026-10-26</span>
+          <h4><a href="https://x.com/cursor_ai/status/2113661506634305834">Cursor agents can now drive desktop apps such as the iOS Simulator to test what they build</a></h4>
+          <p>Cursor&rsquo;s agents can now control the computer, driving desktop applications like the iOS Simulator to exercise the features they have just written. The announcement is a post rather than documentation, and it states no supported platforms or limits.</p>
+          <div class="sources"><a href="https://x.com/cursor_ai/status/2113661506634305834">Cursor on X</a> &middot; <span class="via">via TLDR AI (Oct 26)</span></div>
+        </article>
+
         <article class="story" id="openai-cli">
           <span class="when">2026-10-22</span>
           <h4><a href="https://github.com/openai/openai-cli">OpenAI publishes an official CLI for its API</a></h4>
@@ -396,16 +405,16 @@
           <div class="sources"><a href="https://threadreaderapp.com/thread/2113013247209021918.html">Announcement thread (ThreadReader copy)</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
         </article>
 
-        <article class="story" id="rea-reverse-engineer-anything">
-          <span class="when">2026-10-09</span>
-          <h4><a href="https://github.com/morluto/rea">REA gives coding agents reverse-engineering tools for apps, binaries, APKs and firmware, and has them cite the evidence</a></h4>
-          <p><strong>REA</strong> (Reverse Engineer Anything), at <strong>33.1k GitHub stars</strong> and installed with <code>npx rea-agents setup</code>, lets Claude Code, Codex, Cursor, Gemini and other agents inspect desktop apps, websites, binaries, Electron projects, APKs and firmware, and return the evidence &mdash; file, function, address &mdash; behind each finding so the agent can explain or rebuild a feature.</p>
-          <p>Evidence per finding is the agent-native part; the recommended prompt has the agent confirm the target is the user&rsquo;s own software, open source or licensed for reverse engineering before it starts, which is a check on the user rather than on the tool.</p>
-          <div class="sources"><a href="https://github.com/morluto/rea">GitHub</a> &middot; <span class="via">via The Code (Oct 9), The Code (Oct 12)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (32)</summary>
+          <summary>Earlier in this section (33)</summary>
+
+          <article class="story" id="rea-reverse-engineer-anything">
+            <span class="when">2026-10-09</span>
+            <h4><a href="https://github.com/morluto/rea">REA gives coding agents reverse-engineering tools for apps, binaries, APKs and firmware, and has them cite the evidence</a></h4>
+            <p><strong>REA</strong> (Reverse Engineer Anything), at <strong>33.1k GitHub stars</strong> and installed with <code>npx rea-agents setup</code>, lets Claude Code, Codex, Cursor, Gemini and other agents inspect desktop apps, websites, binaries, Electron projects, APKs and firmware, and return the evidence &mdash; file, function, address &mdash; behind each finding so the agent can explain or rebuild a feature.</p>
+            <p>Evidence per finding is the agent-native part; the recommended prompt has the agent confirm the target is the user&rsquo;s own software, open source or licensed for reverse engineering before it starts, which is a check on the user rather than on the tool.</p>
+            <div class="sources"><a href="https://github.com/morluto/rea">GitHub</a> &middot; <span class="via">via The Code (Oct 9), The Code (Oct 12)</span></div>
+          </article>
 
           <article class="story" id="framefields">
             <span class="when">2026-10-06</span>
@@ -1079,6 +1088,13 @@
         <h3>The agentic harness: build vs buy</h3>
         <p class="lead">The harness is a discrete, standardizable component, commoditizing into a few batteries-included frameworks. The durable test for harness code is whether it helps inspect, verify, recover or merge the model&rsquo;s work. Buying one increasingly means buying the surrounding development platform; the <a href="agents.html">Agents</a> page carries this argument from the framework side.</p>
 
+        <article class="story" id="claude-enterprise-chat-cowork">
+          <span class="when">2026-10-26</span>
+          <h4><a href="https://claude.com/resources/articles/unified-claude-enterprise">Claude Chat and Cowork merge into one generally available experience for Enterprise plans</a></h4>
+          <p>The unified Claude Chat and Cowork experience is now generally available on Claude Enterprise plans, so the chat surface and the agentic work surface ship as one product for those customers. The issue gives no pricing or admin-control detail.</p>
+          <div class="sources"><a href="https://claude.com/resources/articles/unified-claude-enterprise">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 26)</span></div>
+        </article>
+
         <article class="story" id="uber-minion-devpods">
           <span class="when">2026-10-21</span>
           <h4><a href="https://newsletter.pragmaticengineer.com/p/ubers-ai-infra-from-the-inside">Uber&rsquo;s Minion ships about 15% of production PRs on dev-platform plumbing the company started building in 2017</a></h4>
@@ -1094,15 +1110,15 @@
           <div class="sources"><a href="https://anoma.ly/notes/opencode-2-0/">Release notes</a> &middot; <span class="via">via TLDR AI (Oct 14), MarkTechPost (Oct 15)</span></div>
         </article>
 
-        <article class="story" id="ibm-bob-self-hosted">
-          <span class="when">2026-10-02</span>
-          <h4><a href="https://bob.ibm.com/">IBM&rsquo;s Bob goes self-hosted and air-gapped, isolated on Nemotron or Poolside Laguna</a></h4>
-          <p>IBM made a self-hosted option of <strong>Bob</strong>, its agentic development platform, generally available for on-premises, sovereign-cloud and air-gapped networks; full isolation supports two models, NVIDIA Nemotron and Poolside Laguna, while a hybrid mode routes chosen work to Claude, Gemini or GPT models. No model is bundled &mdash; customers license and host their own &mdash; mainframe modernisation needs separate packages, and no pricing is published.</p>
-          <div class="sources"><a href="https://bob.ibm.com/">IBM</a> &middot; <a href="https://www.marktechpost.com/2026/10/02/ibm-brings-bob-to-self-hosted-and-air-gapped-environments/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 3)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (16)</summary>
+          <summary>Earlier in this section (17)</summary>
+
+          <article class="story" id="ibm-bob-self-hosted">
+            <span class="when">2026-10-02</span>
+            <h4><a href="https://bob.ibm.com/">IBM&rsquo;s Bob goes self-hosted and air-gapped, isolated on Nemotron or Poolside Laguna</a></h4>
+            <p>IBM made a self-hosted option of <strong>Bob</strong>, its agentic development platform, generally available for on-premises, sovereign-cloud and air-gapped networks; full isolation supports two models, NVIDIA Nemotron and Poolside Laguna, while a hybrid mode routes chosen work to Claude, Gemini or GPT models. No model is bundled &mdash; customers license and host their own &mdash; mainframe modernisation needs separate packages, and no pricing is published.</p>
+            <div class="sources"><a href="https://bob.ibm.com/">IBM</a> &middot; <a href="https://www.marktechpost.com/2026/10/02/ibm-brings-bob-to-self-hosted-and-air-gapped-environments/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 3)</span></div>
+          </article>
 
           <article class="story" id="step-code">
             <span class="when">2026-09-23</span>
@@ -1232,7 +1248,6 @@
             <p>It landed the same week Anthropic shipped Claude Managed Agents in public beta with Fable 5, which is the managed-harness &ldquo;buy&rdquo; option with built-in fallback. The implication for DevEx is that differentiation moves to model choice, context engineering and memory rather than the loop.</p>
             <div class="sources"><span class="via">via Decoding AI Magazine (Substack), Anthropic email announcement &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -1240,6 +1255,13 @@
       <section class="topic-section" id="working-when-the-agent-writes-the-code">
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and no defect rate for the fast path is recorded here.</p>
+
+        <article class="story" id="claude-formal-verification">
+          <span class="when">2026-10-26</span>
+          <h4><a href="https://the-decoder.com/anthropics-claude-now-writes-code-and-proves-it-safe-automatically/">Anthropic says Claude wrote machine-checked safety proofs for 123 open-source libraries</a></h4>
+          <p>Anthropic says Claude generated machine-checked safety proofs for <strong>123 open-source libraries</strong>, about <strong>180 million lines</strong> of formal proof code, and found bugs ordinary testing had missed. A proof checked by machine is the kind of evidence this section asks for in place of a skimmed diff, though the report here is secondhand and names neither the proof system nor the bug count.</p>
+          <div class="sources"><a href="https://the-decoder.com/anthropics-claude-now-writes-code-and-proves-it-safe-automatically/">The Decoder</a> &middot; <span class="via">via Forward Future (Oct 26)</span></div>
+        </article>
 
         <article class="story" id="sphinx-git-hook">
           <span class="when">2026-10-22</span>
@@ -1256,16 +1278,16 @@
           <div class="sources"><a href="https://simonwillison.net/2026/Oct/20/battledrones/">simonwillison.net</a> &middot; <a href="https://github.com/simonw/battledrones#readme">GitHub</a> &middot; <span class="via">via Simon Willison (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="anthropic-code-review-process">
-          <span class="when">2026-10-19</span>
-          <h4><a href="https://claude.dev/blog/solving-code-review-at-anthropic/">The Claude Code team automates most review stages and tiers human approval by risk as agents write most of its code</a></h4>
-          <p>Anthropic&rsquo;s Claude Code team described how it restructured <strong>code review</strong> for agent-scale volume: agents verify their own work before a pull request opens, review runs continuously rather than at the end, fresh-context AI and security reviews run as separate layers before a human sees the change, approval is tiered by risk, and review rounds are capped so agents stop fixing each other&rsquo;s nits.</p>
-          <p>It is the process behind the <a href="#claude-code-review-team-enterprise">Code Review</a> product and the 6&ndash;10-minute figure recorded there; the post describes the stages and gives no defect or escape rate for what the automated layers pass, which stays the gap this section records.</p>
-          <div class="sources"><a href="https://claude.dev/blog/solving-code-review-at-anthropic/">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 19), The Code (Oct 19), Simon Willison (Oct 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (29)</summary>
+          <summary>Earlier in this section (30)</summary>
+
+          <article class="story" id="anthropic-code-review-process">
+            <span class="when">2026-10-19</span>
+            <h4><a href="https://claude.dev/blog/solving-code-review-at-anthropic/">The Claude Code team automates most review stages and tiers human approval by risk as agents write most of its code</a></h4>
+            <p>Anthropic&rsquo;s Claude Code team described how it restructured <strong>code review</strong> for agent-scale volume: agents verify their own work before a pull request opens, review runs continuously rather than at the end, fresh-context AI and security reviews run as separate layers before a human sees the change, approval is tiered by risk, and review rounds are capped so agents stop fixing each other&rsquo;s nits.</p>
+            <p>It is the process behind the <a href="#claude-code-review-team-enterprise">Code Review</a> product and the 6&ndash;10-minute figure recorded there; the post describes the stages and gives no defect or escape rate for what the automated layers pass, which stays the gap this section records.</p>
+            <div class="sources"><a href="https://claude.dev/blog/solving-code-review-at-anthropic/">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 19), The Code (Oct 19), Simon Willison (Oct 21)</span></div>
+          </article>
 
           <article class="story" id="claude-code-review-team-enterprise">
             <span class="when">2026-10-16</span>
@@ -1492,13 +1514,19 @@
             <p>Read with part 1, the pair describes a loop in which the expensive step is confirming a change was right, so changes are kept small enough that confirmation stays cheap and being wrong stays survivable &mdash; the same economics the frontier-engineering guide arrives at from the organisational side.</p>
             <div class="sources"><a href="https://x.ai/bot/plugin/9717366">pstack</a> &middot; <span class="via">via The Code (Sep 10)</span></div>
           </article>
-
         </details>
       </section>
 
       <section class="topic-section" id="multi-session-and-parallel-work">
         <h3>Multi-session and parallel work</h3>
         <p class="lead">Running 3&ndash;6 sessions in parallel via tmux and git worktrees is the practitioner default, and the bottleneck moved from execution to writing clear specs and reviewing output. Every coordinator here is itself an agent whose output someone still has to check.</p>
+
+        <article class="story" id="humanlayer">
+          <span class="when">2026-10-26</span>
+          <h4><a href="https://github.com/humanlayer/humanlayer">HumanLayer runs Claude Code, Codex, OpenCode and Pi agents across your machines from one console</a></h4>
+          <p><strong>HumanLayer</strong> (12.5k GitHub stars) runs Claude Code, Codex, OpenCode and Pi agents across a team&rsquo;s own machines and manages their tasks, sessions, plans and reviews from one place. It targets the parallel-session pattern this section describes, with one coordinator for several agents of different makes.</p>
+          <div class="sources"><a href="https://github.com/humanlayer/humanlayer">GitHub</a> &middot; <span class="via">via The Code (Oct 26)</span></div>
+        </article>
 
         <article class="story" id="cowork-cloud-vm">
           <span class="when">2026-10-05</span>
@@ -1516,16 +1544,16 @@
           <div class="sources"><span class="via">via The Code (Sep 24) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story" id="devin-cloud-terminal">
-          <span class="when">2026-09-22</span>
-          <h4><a href="https://devin.ai/blog/devin-cloud-in-your-terminal">Devin CLI hands a local session to a cloud VM with /handoff, and SWE-2 is free until October 8</a></h4>
-          <p>Cognition&rsquo;s <strong>Devin CLI</strong> can now create, steer, resume and watch Devin Cloud sessions from the terminal: <code>/cloud</code> starts or switches to a VM-backed session, <code>devin ssh</code> opens a shell on that VM, and <code>/handoff</code> moves local context, branch and <strong>uncommitted changes</strong> into a cloud run that keeps working after the laptop closes. Cognition also made <strong>SWE-2 free on all plans until October 8</strong> across Cloud Agents, CLI and Desktop.</p>
-          <p>It is the same move as <a href="#claude-code-projects">Claude Code Projects</a>, with a different unit carried across: not a task description but the dirty working tree itself.</p>
-          <div class="sources"><a href="https://devin.ai/blog/devin-cloud-in-your-terminal">Cognition</a> &middot; <span class="via">via TLDR AI (Sep 22), Unwind AI (Sep 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="devin-cloud-terminal">
+            <span class="when">2026-09-22</span>
+            <h4><a href="https://devin.ai/blog/devin-cloud-in-your-terminal">Devin CLI hands a local session to a cloud VM with /handoff, and SWE-2 is free until October 8</a></h4>
+            <p>Cognition&rsquo;s <strong>Devin CLI</strong> can now create, steer, resume and watch Devin Cloud sessions from the terminal: <code>/cloud</code> starts or switches to a VM-backed session, <code>devin ssh</code> opens a shell on that VM, and <code>/handoff</code> moves local context, branch and <strong>uncommitted changes</strong> into a cloud run that keeps working after the laptop closes. Cognition also made <strong>SWE-2 free on all plans until October 8</strong> across Cloud Agents, CLI and Desktop.</p>
+            <p>It is the same move as <a href="#claude-code-projects">Claude Code Projects</a>, with a different unit carried across: not a task description but the dirty working tree itself.</p>
+            <div class="sources"><a href="https://devin.ai/blog/devin-cloud-in-your-terminal">Cognition</a> &middot; <span class="via">via TLDR AI (Sep 22), Unwind AI (Sep 22)</span></div>
+          </article>
 
           <article class="story" id="codex-thread-coordination">
             <span class="when">2026-09-18</span>
@@ -1564,6 +1592,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-26</span><span class="label"><a href="#claude-enterprise-chat-cowork">Claude Chat and Cowork merge into one generally available experience for Enterprise plans</a></span></li>
+        <li><span class="date">2026-10-26</span><span class="label"><a href="#cursor-computer-use">Cursor agents can now drive desktop apps such as the iOS Simulator to test what they build</a></span></li>
+        <li><span class="date">2026-10-26</span><span class="label"><a href="#humanlayer">HumanLayer runs Claude Code, Codex, OpenCode and Pi agents across your machines from one console</a></span></li>
+        <li><span class="date">2026-10-26</span><span class="label"><a href="#claude-formal-verification">Anthropic says Claude wrote machine-checked safety proofs for 123 open-source libraries</a></span></li>
         <li><span class="date">2026-10-24</span><span class="label"><a href="#anthropic-sandbox-runtime">Anthropic&rsquo;s sandbox-runtime, the sandbox behind Claude Code&rsquo;s bash tool, fences a command&rsquo;s files and hosts without a container</a></span></li>
         <li><span class="date">2026-10-24</span><span class="label"><a href="#devin-vulnerability-fixes">Cognition&rsquo;s Devin Vulnerability Fixes plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug</a></span></li>
         <li><span class="date">2026-10-22</span><span class="label"><a href="#openai-cli">OpenAI publishes an official CLI for its API</a></span></li>

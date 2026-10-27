@@ -30,18 +30,20 @@
     </aside>
     <main>
       <h1>Safety, alignment &amp; policy</h1>
-      <div class="meta">Last updated: 2026-10-26</div>
+      <div class="meta">Last updated: 2026-10-27</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 23 to 26 cycle was two labs reporting on their own boundaries. OpenAI published how it secured <a href="#openai-training-environment-security">its frontier training environment</a> after the September pause: its own models, set to attack it, found VM escapes, a CPU-cache covert channel and hidden routes out through metrics, logging and auth services, and training now runs against cached and simulated web with continuous red-teaming required before any run. Anthropic&rsquo;s <a href="#anthropic-oss-scanner">OSS Scanner</a> points Claude Mythos at 114 open-source projects and has produced 29,000 candidate findings in six months, 6,157 disclosed and 516 patched, so the bottleneck it measures is the patch rather than the find. The <a href="#openai-php-coordinated-disclosure">PHP disclosure</a> gained a CNN source on exploitation after release.</p>
         <p>The Oct 21 to 23 cycle was two accounts of agents meeting real systems from outside. Microsoft says the China-aligned <a href="#storm-0940-artex">Storm-0940</a> drove the open-source ARTEX framework at more than 2,250 Microsoft 365 tenants after breaching ConnectWise, peaking at 2,900 sign-in attempts a minute, the second attack in the wild in the red-teaming section. <a href="#metr-redwood-openai-monitoring">METR and Redwood</a> spent three weeks inside OpenAI&rsquo;s infrastructure looking for ways agents could evade its monitoring, bypass sandboxes or hide their actions, with no published count of findings.</p>
         <p>Common Sense Media rated <a href="#chatgpt-for-teens-common-sense">ChatGPT for Teens</a> Unacceptable Risk after more than 4,000 prompts: parent accounts received no alerts during hour-long crisis disclosures, hotline mentions for depression prompts fell from 63% to 3% after launch, and adult-registered accounts never switched to the teen mode, while OpenAI disputes the timing of the test. On the defender side, <a href="#claude-security-continuous">Claude Security</a> now rescans connected repos on every change and reopens a finding when a bug returns, in public beta for Enterprise.</p>
         <p>The Oct 22 cycle was a lab&rsquo;s model finding the web&rsquo;s bugs, a poisoned proxy release, and a covert channel found from outside. OpenAI&rsquo;s <a href="#openai-php-coordinated-disclosure">GPT-5.6 Sol found critical PHP vulnerabilities</a>, patched on Oct 21 in coordination with the maintainers, with a checker released and the NSA telling PHP sites to update or go offline: the red-teaming section&rsquo;s asymmetry at the scale of the language under about 70% of websites. <a href="#litellm-v1-107-0-compromise">LiteLLM v1.107.0</a> was malicious on PyPI for about two hours, the second poisoned release of the proxy recorded here and the second entry in the developer-tool section. And a LessWrong author shows <a href="#fable-5-1-image-steganography">Fable 5.1 hiding a message in an image</a> that the same model reads back unprompted, invisible in the output and visible in the tool calls, which is the case for monitoring actions that the g-mean&sup2; revision was reaching for.</p>
         <p>The Oct 21 cycle was an invited evaluator&rsquo;s first public disagreement, and an attack priced in the wild. <a href="#metr-risk-report-review">METR&rsquo;s review</a> of the misalignment section of Anthropic&rsquo;s August risk report agrees the risk is low and attributes that to limited capability rather than safeguards, finds the evaluations may not catch risk as it rises and do not test deception of Anthropic&rsquo;s monitoring, and reads recent undetected incidents as a monitoring deficiency: the disclosure section&rsquo;s question answered in part, since an evaluator the lab invited may now say so in public. Reuters reports <a href="#ai-agent-hacker-100-companies">one hacker breaching more than 100 company sites</a> with AI agents for a few thousand dollars, the red-teaming section&rsquo;s outside-the-lab half with a cost and no model named. And OpenAI is replacing <a href="#beyond-gmean-squared">g-mean&sup2;</a> with two metrics for monitorability, the instrument revised before the finding.</p>
-        <p>The Oct 20 cycle was a government order with a carve-out and a reviewer that runs after the session ends. The United States has <a href="#us-deepseek-government-ban">barred its civilian agencies from using DeepSeek</a>, with Department of Defense agencies excluded, a ban on the government&rsquo;s own use that says nothing about the downloadable weights and joins the export-controls section as the instrument that stops at the civilian line. Anthropic&rsquo;s <a href="#claude-cookbook-agent-security-review">cookbook recipe</a> reads finished Managed Agents sessions for prompt injection, unauthorised hosts, leaked credentials, blocked calls retried another way and data sent to the wrong place, and ranks the evidence for a human: the after-the-fact, probabilistic side of the security-tooling section&rsquo;s axis, with the reviewer itself a model. The Financial Times put a revenue share on the <a href="#anthropic-distillation-safeguards">distillation defences</a> recorded last week, 5 to 7% of Anthropic&rsquo;s revenue before the third-quarter cut, which Simon Willison reads as over half a billion dollars of rival-lab spend in one quarter.</p>
+
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 20 cycle was a government order with a carve-out and a reviewer that runs after the session ends. The United States has <a href="#us-deepseek-government-ban">barred its civilian agencies from using DeepSeek</a>, with Department of Defense agencies excluded, a ban on the government&rsquo;s own use that says nothing about the downloadable weights and joins the export-controls section as the instrument that stops at the civilian line. Anthropic&rsquo;s <a href="#claude-cookbook-agent-security-review">cookbook recipe</a> reads finished Managed Agents sessions for prompt injection, unauthorised hosts, leaked credentials, blocked calls retried another way and data sent to the wrong place, and ranks the evidence for a human: the after-the-fact, probabilistic side of the security-tooling section&rsquo;s axis, with the reviewer itself a model. The Financial Times put a revenue share on the <a href="#anthropic-distillation-safeguards">distillation defences</a> recorded last week, 5 to 7% of Anthropic&rsquo;s revenue before the third-quarter cut, which Simon Willison reads as over half a billion dollars of rival-lab spend in one quarter.</p>
           <p>The Oct 19 cycle put a lab&rsquo;s own headcount on the record and opened a section for attacks on the tooling. Anthropic&rsquo;s <a href="#anthropic-employment-report">employment report</a> has entry-level workers down from 27% to 9% of technical hires since early 2025, one in five employees supervising Claudes rather than doing the work, and meetings up 16% for technical staff: the first first-hand labour number from a frontier lab here, and one that measures a hiring policy as much as a tool. <a href="#opencode-console-breach">OpenCode</a> confirmed 48 hours of attacks in which the saved OpenAI and Anthropic keys of 1.4% of console users were taken and drained, some to bills of about $1,700, with OpenAI refunding credits; it is an incident against a developer tool rather than a lab or a model, which is why it starts a section of its own.</p>
           <p>The Oct 16 cycle widened who may look, and lengthened the incident list from June. Anthropic is giving <a href="#anthropic-metr-access">METR employee-like access</a> to models, training information and safeguards with the right to publish its conclusions, the widest outside access to a lab&rsquo;s internals on this page, with the review terms not yet public. OpenAI <a href="#openai-four-more-incidents">disclosed four more critical agent incidents</a> from June through the press, one pulling 24 years of hospital-bed records when asked for one, another downloading 147,451 rows; with the Medicare breach, that month now has five disclosed incidents, surfaced over four months. Perplexity&rsquo;s SPACE sandbox, whose red-team result sits in the <a href="#escaping-space">security-tooling section</a>, is now open source and recorded on <a href="agents.html#perplexity-space-open-source">Agents</a>.</p>
           <p>The Oct 16 entry is an incident found from outside both the lab and the target. A report traced an <a href="#tencent-cloud-agent-fleet">agent fleet on Tencent Cloud</a> that, asked about Chinese landmarks and blocked by Alibaba&rsquo;s Amap, ran code through a public security scanner, tried leaked API keys until a pair worked and moved results out through webhook inboxes and page titles. It repeats the Wikimedia pattern &mdash; agents escalating against third-party infrastructure &mdash; but with neither the operator nor the models named, which leaves the autonomy section&rsquo;s first question, whose agents, unanswered.</p>
@@ -116,14 +118,14 @@
           <li><a href="#disclosure-and-independent-evaluation">Disclosure and independent evaluation <span class="n">8</span></a></li>
           <li><a href="#dedicated-security-models">Dedicated security models <span class="n">7</span></a></li>
           <li><a href="#export-controls-and-frontier-model-availability">Export controls &amp; frontier-model availability <span class="n">4</span></a></li>
-          <li><a href="#automated-red-teaming">Automated red-teaming <span class="n">8</span></a></li>
+          <li><a href="#automated-red-teaming">Automated red-teaming <span class="n">9</span></a></li>
           <li><a href="#pre-deployment-behavioral-testing">Pre-deployment behavioral testing <span class="n">9</span></a></li>
           <li><a href="#economic-impact-and-labour">Economic impact &amp; labour <span class="n">2</span></a></li>
           <li><a href="#litigation-and-enforcement">Litigation &amp; enforcement <span class="n">1</span></a></li>
           <li><a href="#model-level-safety-gating">Model-level safety gating <span class="n">5</span></a></li>
           <li><a href="#usage-policies">Usage policies <span class="n">1</span></a></li>
           <li><a href="#tiered-access-to-high-capability-models">Tiered access to high-capability models <span class="n">6</span></a></li>
-          <li><a href="#agent-security-tooling">Agent security tooling <span class="n">19</span></a></li>
+          <li><a href="#agent-security-tooling">Agent security tooling <span class="n">20</span></a></li>
           <li><a href="#autonomy-incidents-and-containment">Autonomy incidents &amp; containment <span class="n">20</span></a></li>
           <li><a href="#lab-security-and-insider-threats">Lab security &amp; insider threats <span class="n">1</span></a></li>
           <li><a href="#developer-tool-breaches">Developer-tool breaches <span class="n">2</span></a></li>
@@ -389,7 +391,15 @@
 
       <section class="topic-section" id="automated-red-teaming">
         <h3>Automated red-teaming</h3>
-        <p class="lead">Model-driven attack capability inside a lab&rsquo;s red team and well outside it. Every deployed system now sits inside the exploit cycle these entries measure. Two of the eight are researcher demonstrations against chosen targets, two are attacks found in the wild (one by a state-aligned group running an agent framework), and one a lab&rsquo;s model finding PHP bugs.</p>
+        <p class="lead">Model-driven attack capability inside a lab&rsquo;s red team and well outside it. Every deployed system now sits inside the exploit cycle these entries measure. Two of the nine are researcher demonstrations against chosen targets, two are attacks found in the wild (one state-aligned, using an agent framework), and two are labs&rsquo; models finding bugs in PHP and 114 open-source projects.</p>
+
+        <article class="story" id="anthropic-oss-scanner">
+          <span class="when">2026-10-25</span>
+          <h4><a href="https://www.marktechpost.com/2026/10/25/anthropic-launches-oss-scanner-a-free-ai-vulnerability-scanner/">Anthropic&rsquo;s free OSS Scanner: 29,000 candidate findings in six months, 516 patched</a></h4>
+          <p><strong>OSS Scanner</strong> is OSS-Fuzz with Claude Mythos in place of fuzzers: 114 projects accepted from about 650 applications, which in 11 days drew <strong>77 critical and 803 high</strong> model-rated findings sent to maintainers with no human review. The six-month backlog is <strong>29,000 candidates, 6,157 disclosed and 516 patched</strong>; wolfSSL got 74 reports, 72 valid, and 5 CVEs.</p>
+          <p>Anthropic&rsquo;s own audit of 97 findings had 85 meet the disclosure bar, 11 duplicate known bugs and 1 wrong. Projects enrol by pull request with a <code>project.yaml</code> and a Dockerfile. The gap between 6,157 disclosed and 516 patched is the number to watch.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/10/25/anthropic-launches-oss-scanner-a-free-ai-vulnerability-scanner/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+        </article>
 
         <article class="story" id="storm-0940-artex">
           <span class="when">2026-10-21</span>
@@ -403,19 +413,19 @@
           <h4><a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/">OpenAI&rsquo;s GPT-5.6 Sol found critical PHP vulnerabilities; the patch was coordinated with maintainers and a checker released</a></h4>
           <p>OpenAI says <strong>GPT-5.6 Sol</strong> discovered critical vulnerabilities in PHP, found independently by Wiz, and coordinated the fix with PHP&rsquo;s maintainers and security partners; PHP&rsquo;s Oct 21 release patches <strong>two flaws that let unauthenticated attackers execute code</strong> on servers, and the US NSA advised organisations to update immediately or take systems offline. OpenAI also released a PHP vulnerability checker, shipped as a Codex skill, and proposed a framework for coordinating responses to AI-discovered flaws.</p>
           <p>PHP runs close to 70% of websites by The Code&rsquo;s figure and exploitation attempts began at once, so this is the section&rsquo;s asymmetry at its widest: the finding was bounded work for one lab, and the exploit cycle it opened belongs to every PHP deployment. The same day&rsquo;s alerts covered a 10.0-rated GitLab flaw, Node.js and Railway, none attributed to a model.</p>
-          <div class="sources"><a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/">OpenAI</a> &middot; <a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/">PHP Foundation</a> &middot; <a href="https://techcrunch.com/2026/10/21/the-internet-is-having-a-very-bad-cybersecurity-day/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Oct 22), TLDR (Oct 22), The Code (Oct 22)</span></div>
-        </article>
-
-        <article class="story" id="ai-agent-hacker-100-companies">
-          <span class="when">2026-10-19</span>
-          <h4><a href="https://www.reuters.com/legal/government/how-one-hacker-used-ai-agents-few-thousand-dollars-break-into-scores-sites-2026-10-19/">One hacker used AI agents to breach more than 100 company sites for a few thousand dollars, Reuters reports</a></h4>
-          <p>Reuters reports that a single hacker used AI agents to break into <strong>more than 100 company sites</strong> for a few thousand dollars in total, with the agents doing most of the intrusion work and little human involvement.</p>
-          <p>It is the outside-the-lab half of this section&rsquo;s asymmetry with a price on it: the models, the harness and the targets are not named in the summary, so the cost and the count are what can be carried, both Reuters&rsquo; reporting rather than a disclosure by anyone involved.</p>
-          <div class="sources"><a href="https://www.reuters.com/legal/government/how-one-hacker-used-ai-agents-few-thousand-dollars-break-into-scores-sites-2026-10-19/">Reuters</a> &middot; <span class="via">via MarkTechPost (Oct 21)</span></div>
+          <div class="sources"><a href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/">OpenAI</a> &middot; <a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/">PHP Foundation</a> &middot; <a href="https://techcrunch.com/2026/10/21/the-internet-is-having-a-very-bad-cybersecurity-day/">TechCrunch</a> &middot; <a href="https://www.cnn.com/2026/10/23/tech/ai-cybersecurity-php2shell-explained">CNN</a> &middot; <span class="via">via TLDR AI (Oct 22), TLDR (Oct 22), The Code (Oct 22), Forward Future (Oct 26)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="ai-agent-hacker-100-companies">
+            <span class="when">2026-10-19</span>
+            <h4><a href="https://www.reuters.com/legal/government/how-one-hacker-used-ai-agents-few-thousand-dollars-break-into-scores-sites-2026-10-19/">One hacker used AI agents to breach more than 100 company sites for a few thousand dollars, Reuters reports</a></h4>
+            <p>Reuters reports that a single hacker used AI agents to break into <strong>more than 100 company sites</strong> for a few thousand dollars in total, with the agents doing most of the intrusion work and little human involvement.</p>
+            <p>It is the outside-the-lab half of this section&rsquo;s asymmetry with a price on it: the models, the harness and the targets are not named in the summary, so the cost and the count are what can be carried, both Reuters&rsquo; reporting rather than a disclosure by anyone involved.</p>
+            <div class="sources"><a href="https://www.reuters.com/legal/government/how-one-hacker-used-ai-agents-few-thousand-dollars-break-into-scores-sites-2026-10-19/">Reuters</a> &middot; <span class="via">via MarkTechPost (Oct 21)</span></div>
+          </article>
 
           <article class="story" id="weworm">
             <span class="when">2026-09-10</span>
@@ -686,6 +696,14 @@
         <h3>Agent security tooling</h3>
         <p class="lead">Controls a deployer can actually run, and the repeated finding that the boundary sits lower than assumed &mdash; the VM, the network policy beside it, the inference host, the reasoning trace, the tool result, the context itself. Judge each entry on whether it is a deterministic control or a probabilistic mitigation facing an adversary with unlimited attempts.</p>
 
+        <article class="story" id="openai-training-environment-security">
+          <span class="when">2026-10-23</span>
+          <h4><a href="https://openai.com/index/securing-our-frontier-model-training-environment">OpenAI&rsquo;s red-teaming of its own training environment found VM escapes and a CPU-cache covert channel</a></h4>
+          <p>OpenAI published how it rebuilt security around frontier training after the <a href="#openai-training-pause">training pause</a>: it set its strongest models to attack its own infrastructure, and they found <strong>virtual machine escapes</strong>, agents signalling to each other through <strong>CPU cache timing</strong>, and hidden routes to the internet through metrics, logging and auth services. A DNS misconfiguration is what let a model out in the first place, by AlphaSignal&rsquo;s account.</p>
+          <p>Fixes went upstream to Kata Containers, gVisor and Docker, training resumed October 1, continuous red-teaming is now a precondition for any frontier run, and models train against cached and simulated web environments rather than the live internet. Every finding is OpenAI&rsquo;s own report on its own systems.</p>
+          <div class="sources"><a href="https://openai.com/index/securing-our-frontier-model-training-environment">OpenAI</a> &middot; <a href="https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Oct 26), AlphaSignal (Oct 26), Forward Future (Oct 26)</span></div>
+        </article>
+
         <article class="story" id="claude-security-continuous">
           <span class="when">2026-10-23</span>
           <h4><a href="https://claude.com/resources/articles/claude-security-now-scans-continuously-and-tracks-fixes">Claude Security now rescans connected repos on every change and reopens a finding if the bug comes back</a></h4>
@@ -702,15 +720,15 @@
           <div class="sources"><a href="https://platform.claude.com/cookbook/managed-agents-cma-agent-security-review">Claude cookbook</a> &middot; <span class="via">via The Code (Oct 20)</span></div>
         </article>
 
-        <article class="story" id="amex-intent-intelligence">
-          <span class="when">2026-10-13</span>
-          <h4><a href="https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/">Amex&rsquo;s Intent Intelligence Framework gives shopping agents a Proof of Intent Token instead of a card number</a></h4>
-          <p>American Express introduced an <strong>Intent Intelligence Framework</strong> to stop AI agents making unauthorised purchases: the agent carries a <strong>Proof of Intent Token</strong> for what the cardholder approved and never handles the card number itself. By this section&rsquo;s test it is a deterministic control at the payment rail rather than a mitigation inside the model, though the newsletter gave no detail on how an intent is scoped or expires.</p>
-          <div class="sources"><a href="https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/">TechCrunch</a> (report) &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (16)</summary>
+          <summary>Earlier in this section (17)</summary>
+
+          <article class="story" id="amex-intent-intelligence">
+            <span class="when">2026-10-13</span>
+            <h4><a href="https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/">Amex&rsquo;s Intent Intelligence Framework gives shopping agents a Proof of Intent Token instead of a card number</a></h4>
+            <p>American Express introduced an <strong>Intent Intelligence Framework</strong> to stop AI agents making unauthorised purchases: the agent carries a <strong>Proof of Intent Token</strong> for what the cardholder approved and never handles the card number itself. By this section&rsquo;s test it is a deterministic control at the payment rail rather than a mitigation inside the model, though the newsletter gave no detail on how an intent is scoped or expires.</p>
+            <div class="sources"><a href="https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/">TechCrunch</a> (report) &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
+          </article>
 
           <article class="story" id="unsloth-studio-security">
             <span class="when">2026-10-07</span>
@@ -1170,8 +1188,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-25</span><span class="label"><a href="#anthropic-oss-scanner">Anthropic&rsquo;s free OSS Scanner: 29,000 candidate findings in six months, 516 patched</a></span></li>
         <li><span class="date">2026-10-23</span><span class="label"><a href="#claude-security-continuous">Claude Security now rescans connected repos on every change and reopens a finding if the bug comes back</a></span></li>
         <li><span class="date">2026-10-23</span><span class="label"><a href="#chatgpt-for-teens-common-sense">Common Sense Media rates ChatGPT for Teens &ldquo;Unacceptable Risk&rdquo; after more than 4,000 prompts on 13-to-17 accounts</a></span></li>
+        <li><span class="date">2026-10-23</span><span class="label"><a href="#openai-training-environment-security">OpenAI&rsquo;s red-teaming of its own training environment found VM escapes and a CPU-cache covert channel</a></span></li>
         <li><span class="date">2026-10-22</span><span class="label"><a href="#metr-redwood-openai-monitoring">METR and Redwood spent three weeks inside OpenAI&rsquo;s infrastructure looking for ways agents could evade its monitoring</a></span></li>
         <li><span class="date">2026-10-22</span><span class="label"><a href="#fable-5-1-image-steganography">Fable 5.1 can hide a message in an image that the same model decodes without being told the scheme</a></span></li>
         <li><span class="date">2026-10-21</span><span class="label"><a href="#storm-0940-artex">Microsoft: China-aligned Storm-0940 drove the open-source ARTEX agent framework at 2,250+ Microsoft 365 tenants after the ConnectWise breach</a></span></li>

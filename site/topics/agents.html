@@ -30,18 +30,20 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-26</div>
+      <div class="meta">Last updated: 2026-10-27</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 26 cycle was about how much structure an agent needs. <a href="#rsihub">RSIHub</a> re-implements four agent-evolution methods on shared infrastructure and finds a best gain of 13.5 points pass@1 but rankings that flip across settings and gains that do not always reach held-out tasks, which is the comparison single-method papers never run. Anthropic&rsquo;s <a href="#anthropic-fold-subagents">subagent guide</a> argues the other way from most orchestration entries here: fold planners and routers back into one loop as skills and tools, and keep separate subagents only for parallel work, fresh context or an overloaded toolset.</p>
         <p>The Oct 23 to 25 cycle moved two boundaries out of the harness: the credential and the coordinator. <a href="#1password-for-agents">1Password for Agents</a> has the agent request a login, the user approve it and the password manager fill the site, so the secret never reaches the model, with Claude Duet, Dots, Grok Bot and Muse among the listed clients. Microsoft&rsquo;s <a href="#agensh">Agensh</a> drops the lead agent altogether: up to 1,024 workers claim sub-tasks on a shared board and merge into one Git repo, and pandoc rose from 33.89% with one agent to 55.06% with 1,024, at a token cost Microsoft does not disclose.</p>
         <p>Two results put a price on the layers around the model. The <a href="#memorytax">MemoryTax</a> study finds extracted memory helps a weak model and not a strong one: Opus 5.5 searching raw history under the Pi harness answered 99% of questions for $6.95 against 95% for full context at $17.84, and the model that writes a memory caps every model that reads it. Simular&rsquo;s <a href="#agent-s4">Agent S4</a> rewrites its own desktop tool interfaces and lifts Qwen3.8-27B to 21.3% on OSWorld V2, 3.8 times its fixed-interface score. Anthropic also handed the <a href="#agent-skills-aaif">Agent Skills standard</a> to the Agentic AI Foundation, so SKILL.md now sits under vendor-neutral governance.</p>
         <p>The Oct 22 cycle was a lab&rsquo;s own always-on agent and a screen model small enough to live on the phone. Anthropic&rsquo;s <a href="#claude-duet">Claude Duet</a> is a research preview of a proactive Opus 5.5 agent that briefs the user each morning from email, calendar and work apps, keeps working on its own cloud computer after they log off, reaches more than 6,000 apps and can buy through Link and Shop Pay, with stock trades and transfers blocked even on approval; it is the third always-on consumer agent in the computer-use section after dots and Muse, with no task benchmark or price. Opposable&rsquo;s <a href="#gui-owl-1-5">GUI-Owl 1.5</a> is a 2B model that reads an Android screen through the accessibility service and operates any other app from the device itself, the local section&rsquo;s data-sits-here claim with no success rate yet. <a href="#muse-downloads">Muse</a> gained a user count, over 10 million, with a quarter of engaged users shopping at an average above $200, all Meta&rsquo;s figures.</p>
         <p>The Oct 21 cycle was harnesses described by the people running them, and a memory with a multiplier. Ramp&rsquo;s <a href="#ramp-laminar">Laminar</a> is an in-house managed-agents platform, compaction, tool interfaces, steering, subagents, multiplayer chat and observability, built in six weeks with its code written entirely by agents, and Ramp still keeps engineers on call for it: the build side of the harness section with the ownership stated. Vercel&rsquo;s <a href="#vercel-durable-harness">durable-harness</a> runs Pi, OpenCode, Codex and Claude Code so a session survives a crash mid-turn and resumes from the log, the persistent-state primitive applied across four harnesses rather than built into one. Databricks&rsquo; <a href="#memcurrent">MemCurrent</a> claims to triple an agent&rsquo;s pass rate over no memory while making it faster and cheaper, against a baseline of nothing and with what is stored unstated.</p>
-        <p>In computer use, Cua&rsquo;s <a href="#cua-spaces-sdk">Spaces SDK</a> gives each agent a desktop whose location the developer chooses, and <a href="#chatgpt-chrome-tab-control">ChatGPT&rsquo;s Chrome extension</a> now fills forms and sends messages from the user&rsquo;s own tabs. <a href="#netclaw">NetClaw</a>, an open-source network-engineering agent that verifies changes against device state over MCP, joins the domain section from the AAIF newsletter. <a href="#exa-3-0">Exa 3.0</a> gained its comparison, $7 Auto against $5 at Perplexity, Brave and Parallel, with the eight benchmarks run by Exa itself, and <a href="#muse-downloads">Muse</a> reached 10.2 million US downloads in 40 days.</p>
+
 
         <details>
           <summary>Earlier cycles</summary>
+          <p>In computer use, Cua&rsquo;s <a href="#cua-spaces-sdk">Spaces SDK</a> gives each agent a desktop whose location the developer chooses, and <a href="#chatgpt-chrome-tab-control">ChatGPT&rsquo;s Chrome extension</a> now fills forms and sends messages from the user&rsquo;s own tabs. <a href="#netclaw">NetClaw</a>, an open-source network-engineering agent that verifies changes against device state over MCP, joins the domain section from the AAIF newsletter. <a href="#exa-3-0">Exa 3.0</a> gained its comparison, $7 Auto against $5 at Perplexity, Brave and Parallel, with the eight benchmarks run by Exa itself, and <a href="#muse-downloads">Muse</a> reached 10.2 million US downloads in 40 days.</p>
           <p>The Oct 20 cycle priced retrieval and thinned the router. <a href="#exa-3-0">Exa 3.0</a> adds Exa Lite at $4 per 1,000 requests on Exa&rsquo;s own index, over 2 trillion URLs tracked and 100 billion pages served, with 1.27 billion e-commerce listings and 211 million local businesses inside it: the build-good-retrieval pattern in the agentic-search section, now with DeepSeek&rsquo;s $0.75 per 1,000 as the comparator and only Exa&rsquo;s own evaluations behind the wins. Meta&rsquo;s <a href="#meta-thin-orchestrator">thin orchestrator</a> is a router that assigns work to specialised agents and does none of the domain work itself, which Meta says made its production agents more reliable, a design without a figure that answers the dispatch half of the multi-agent section&rsquo;s question and leaves reconciliation where it was. The harness experiment that names GPT-6 Luna and Sol with the cost in both columns is filed on <a href="evals-and-benchmarks.html#specmatic-harness-experiment">Evals &amp; benchmarks</a>.</p>
           <p>The Oct 19 cycle added the retrieval under DeepSeek&rsquo;s agents and the rest of Harness&sup2;&rsquo;s table. DeepSeek&rsquo;s <a href="#deepseek-search-fetch-api">Search and Fetch APIs</a> return structured results and page Markdown over the model API&rsquo;s own bearer token, priced by The Code at $0.75 per 1,000 requests: a lab supplying the web access its own agents assume, which is the dependency the frameworks section says to read for. <a href="#harness2">Harness&sup2;</a> gained its wider numbers, with k=5 parallel recursion taking Gemini under OpenCode to 80.8, the smallest gain 1.2 points on JobBench, and two of three columns won against Meta-Harness, ReasoningBank and Harness Scaling, still with Google as the only scorer.</p>
           <p>The Oct 16&ndash;18 cycle put numbers on last week&rsquo;s mechanism and opened the sandbox a lab actually runs. <a href="#harness2">Harness&sup2;</a> now has its measurement: one refinement step improved every executor-harness pairing on WorkBuddy-Bench, JobBench and Harvey&rsquo;s LAB, GLM-5 under OpenCode most, 64.2 to 75.7, with Claude Opus 4.8 as the editor and Google as the only scorer. Perplexity open-sourced <a href="#perplexity-space-open-source">SPACE</a>, the Firecracker microVM platform under every Computer task, as Rust under Apache 2.0, with its own red team&rsquo;s result attached: zero host-secret reads in 108 escape attempts and 11 of 54 egress bypasses before fixes, which puts the boundary at the network policy rather than the VM. Cognition&rsquo;s <a href="#devin-oncall">Devin Oncall</a> is a domain agent for production incidents that escalates or opens a tested PR and claims to skip 60% of repeat investigations, and a paper has <a href="#gemini-argon-minecraft">four Gemini 4 Argon agents</a> finishing Minecraft in 27 hours with no single-agent baseline given, the comparison Vals AI found wanting for coding.</p>
@@ -101,14 +103,14 @@
           <li><a href="#agent-memory">Agent memory <span class="n">13</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">22</span></a></li>
           <li><a href="#the-agentic-harness">The agentic harness <span class="n">29</span></a></li>
-          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">13</span></a></li>
+          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">14</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">12</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">13</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">8</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
-          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">17</span></a></li>
+          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">18</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">11</span></a></li>
         </ul>
       </nav>
@@ -625,6 +627,13 @@
         <h3>Agent loop design &amp; reliability</h3>
         <p class="lead">Plan, act, verify, repeat &mdash; and the primitives that decide whether a loop finishes or just burns budget: verifiers, persistent state, stop conditions, and a compaction policy. Judge entries on whether the measurement was fixed before the results appeared, because that is exactly how far agent self-improvement claims have held up.</p>
 
+        <article class="story" id="rsihub">
+          <span class="when">2026-10-26</span>
+          <h4><a href="https://github.com/simple-agent-lab/RSIHub">RSIHub re-implements four agent-evolution methods on shared infrastructure, and the rankings flip across settings</a></h4>
+          <p><strong>RSIHub</strong>, from UC Berkeley, USTC and others, re-implements AHE, Hyperagents, A-Evolve and GEPA as recipes on one shared infrastructure so they can be compared directly. The largest pass@1 gain was <strong>13.5 points</strong>, but method rankings flip across settings and gains do not always transfer to held-out tasks, which is the finding a single-method paper cannot show.</p>
+          <div class="sources"><a href="https://github.com/simple-agent-lab/RSIHub">GitHub</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+        </article>
+
         <article class="story" id="vercel-durable-harness">
           <span class="when">2026-10-21</span>
           <h4><a href="https://vercel.com/blog/making-every-harness-durable">Vercel&rsquo;s durable-harness runs Pi, OpenCode, Codex and Claude Code so a session survives a crash mid-turn</a></h4>
@@ -641,15 +650,15 @@
           <div class="sources"><a href="https://discuss.huggingface.co/t/offloading-bounded-decisions-cut-agent-llm-calls-by-29-6-on-360-sop-bench-cases/190420">Hugging Face forum</a> &middot; <span class="via">via TLDR AI (Oct 13)</span></div>
         </article>
 
-        <article class="story" id="pi-durable">
-          <span class="when">2026-10-02</span>
-          <h4><a href="https://earendil.com/posts/pi-durable/">Pi Durable makes an agent survive crashes, run indefinitely and take steering from several humans</a></h4>
-          <p>Earendil released <strong>Pi Durable</strong>, an experimental package for long-running agents that can be reached from different surfaces, keep an indefinitely long conversation, survive catastrophic internal and external failures, and let several people steer the same agent. It is framed as a framework for any agentic application, coding agents included; it is experimental and the post states no recovery or uptime figure.</p>
-          <div class="sources"><a href="https://earendil.com/posts/pi-durable/">Earendil</a> &middot; <span class="via">via TLDR (Oct 2)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (10)</summary>
+          <summary>Earlier in this section (11)</summary>
+
+          <article class="story" id="pi-durable">
+            <span class="when">2026-10-02</span>
+            <h4><a href="https://earendil.com/posts/pi-durable/">Pi Durable makes an agent survive crashes, run indefinitely and take steering from several humans</a></h4>
+            <p>Earendil released <strong>Pi Durable</strong>, an experimental package for long-running agents that can be reached from different surfaces, keep an indefinitely long conversation, survive catastrophic internal and external failures, and let several people steer the same agent. It is framed as a framework for any agentic application, coding agents included; it is experimental and the post states no recovery or uptime figure.</p>
+            <div class="sources"><a href="https://earendil.com/posts/pi-durable/">Earendil</a> &middot; <span class="via">via TLDR (Oct 2)</span></div>
+          </article>
 
           <article class="story" id="manus-2-0">
             <span class="when">2026-09-28</span>
@@ -727,7 +736,6 @@
             <p>NVIDIA released Polar, a framework that proxies LLM API calls to reconstruct token-faithful RL trajectories for training agents on unmodified coding harnesses. It removes the white-box-model-access constraint typical of RL systems and uses simple GRPO across Codex, Claude Code and Qwen Code.</p>
             <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -1138,6 +1146,13 @@
         <h3>Multi-agent orchestration</h3>
         <p class="lead">Small teams of agents specialised by role &mdash; product, research, dev, eval &mdash; or by station, and the two venues they coordinate in: the team&rsquo;s own chat channel, or a fixed pipeline. The unsolved part is not dispatch but reconciliation &mdash; many agents each correct about overlapping regions of one codebase. Judge entries on where verification sits.</p>
 
+        <article class="story" id="anthropic-fold-subagents">
+          <span class="when">2026-10-26</span>
+          <h4><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic&rsquo;s guide to folding planners, routers and specialist subagents back into one main loop</a></h4>
+          <p>Anthropic published guidance arguing most agent systems need fewer subagents than they have: planners, routers and specialist agents can usually become skills and tools inside one main loop. It keeps separate subagents for three cases, parallel work, a need for fresh context, and an overloaded toolset. It is a design guide with no measured comparison.</p>
+          <div class="sources"><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic</a> &middot; <span class="via">via The Code (Oct 26)</span></div>
+        </article>
+
         <article class="story" id="agensh">
           <span class="when">2026-10-24</span>
           <h4><a href="https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/">Microsoft&rsquo;s Agensh runs up to 1,024 coding agents with no orchestrator, lifting pandoc from 33.89% to 55.06%</a></h4>
@@ -1154,16 +1169,16 @@
           <div class="sources"><a href="https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/">Meta Engineering</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
         </article>
 
-        <article class="story" id="gemini-argon-minecraft">
-          <span class="when">2026-10-16</span>
-          <h4><a href="https://arxiv.org/abs/2610.22319">Four Gemini 4 Argon agents beat Minecraft from a random seed in 27 hours, writing 2,783 programs and dying 605 times</a></h4>
-          <p>A paper reports a team of <strong>four Gemini 4 Argon agents</strong> finishing Minecraft from a random seed in <strong>27 hours 14 minutes</strong>, writing <strong>2,783 programs</strong> along the way and recording <strong>605 deaths</strong>.</p>
-          <p>It is a completion result for a team, not a comparison: the newsletter gives no single-agent baseline, so whether four agents beat one is the question the paper has to answer, and it is the one <a href="#vals-multi-agent-vibe-code-bench">Vals AI</a> answered in the negative for coding.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.22319">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="gemini-argon-minecraft">
+            <span class="when">2026-10-16</span>
+            <h4><a href="https://arxiv.org/abs/2610.22319">Four Gemini 4 Argon agents beat Minecraft from a random seed in 27 hours, writing 2,783 programs and dying 605 times</a></h4>
+            <p>A paper reports a team of <strong>four Gemini 4 Argon agents</strong> finishing Minecraft from a random seed in <strong>27 hours 14 minutes</strong>, writing <strong>2,783 programs</strong> along the way and recording <strong>605 deaths</strong>.</p>
+            <p>It is a completion result for a team, not a comparison: the newsletter gives no single-agent baseline, so whether four agents beat one is the question the paper has to answer, and it is the one <a href="#vals-multi-agent-vibe-code-bench">Vals AI</a> answered in the negative for coding.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.22319">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 16)</span></div>
+          </article>
 
           <article class="story" id="claude-dynamic-workflows">
             <span class="when">2026-10-12</span>
@@ -1369,6 +1384,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-26</span><span class="label"><a href="#rsihub">RSIHub re-implements four agent-evolution methods on shared infrastructure, and the rankings flip across settings</a></span></li>
+        <li><span class="date">2026-10-26</span><span class="label"><a href="#anthropic-fold-subagents">Anthropic&rsquo;s guide to folding planners, routers and specialist subagents back into one main loop</a></span></li>
         <li><span class="date">2026-10-25</span><span class="label"><a href="#memorytax">MemoryTax: extracted memory helps GPT-4o-mini, but Opus 5.5 searching raw history under Pi hit 99% for $6.95</a></span></li>
         <li><span class="date">2026-10-24</span><span class="label"><a href="#agensh">Microsoft&rsquo;s Agensh runs up to 1,024 coding agents with no orchestrator, lifting pandoc from 33.89% to 55.06%</a></span></li>
         <li><span class="date">2026-10-23</span><span class="label"><a href="#agent-skills-aaif">Anthropic hands the Agent Skills standard to the Agentic AI Foundation under vendor-neutral governance</a></span></li>
