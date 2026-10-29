@@ -30,19 +30,18 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-10-27</div>
+      <div class="meta">Last updated: 2026-10-29</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 28 cycle is on-device breadth from one lab. Liquid AI&rsquo;s <a href="#lfm3">LFM3</a> puts text, vision, audio, omni and decision models on one tri-hybrid backbone around 2B parameters: the 1.7B text model claims its 2.6B predecessor&rsquo;s level with 35% fewer parameters, in about 1 GB at 4-bit with a 256K context, and the VL-2B is said to match Gemma 4 12B across 62 vision benchmarks, with agentic coding and general knowledge named as the weak spots. Beside it, <a href="#maya-2">Maya-2</a> is an open-weight voice model covering 11 Indian languages with a claim of beating ElevenLabs and no public page in the issue.</p>
         <p>The Oct 27 cycle was a price cut in the middle of OpenAI&rsquo;s line. <a href="#gpt-6-1-terra">GPT-6.1 Terra</a> costs $1 per million input tokens and $5 per million output, half of GPT-6.1 Sol, and OpenAI says it matches GPT-6 Astra on agentic tasks at a tenth of the token price while running more than three times faster; AlphaSignal puts its Terminal-Bench 4.0 score at 50.3%, up from 21.5%. All of that is OpenAI&rsquo;s measurement, and OpenAI itself still points heavy coding at Sol and Astra. The other entry is a newcomer: Mirendil&rsquo;s <a href="#mirendil-fern">Fern</a> claims a 10-million-token context for agentic work and gives no benchmark, price or weights status, so how much of that window it can use is the open question.</p>
         <p>The Oct 26 cycle was models that skip a stage. Block&rsquo;s <a href="#block-dessa">Dessa</a> learned to converse from speech alone, with no text and no LLM in the loop, and Block says it runs on a MacBook Pro M4 Max, though only safety researchers can use it and the issues carry no benchmark. An outside teardown of <a href="#apple-on-device-20b">Apple&rsquo;s 20B on-device model</a> finds it pages most weights from flash and activates 1&ndash;4B per prompt, near 2GB of memory on an M3 Max, with weaker math as the cost. <a href="#nanbeige4-3-33b">Nanbeige4.3-33B</a> is a dense Apache 2.0 teacher claiming 80.9 on Terminal-Bench 2.1 on its own harness, and <a href="#moss-image">MOSS-Image</a> adds an Apache 2.0 image family with base and SFT checkpoints. <a href="#kimi-k3-1-pro">Kimi K3.1 Pro</a> gained three more sources, Moonshot&rsquo;s note that it stripped hacking data from training, and its 65.7% against GPT-6 Astra&rsquo;s 58.2% on Terminal-Bench 4.0.</p>
         <p>The Oct 22 to 25 cycle was open weights from labs new to this page. KRAFTON&rsquo;s <a href="#raon-1-mini">Raon-1 mini</a> is a 28.8B MoE with 4.3B active whose linear-attention layers hold the KV cache near 8 KiB a token, at 70.8 on SWE-bench Verified under Apache 2.0; Shanghai AI Lab&rsquo;s <a href="#sage-a1-5">Sage-A1.5</a> adds an opt-in mode that checks its own progress mid-trajectory; NVIDIA&rsquo;s <a href="#nemotron-3-5-bolt-e4b">Nemotron 3.5 Bolt E4B</a> fits a voice-agent model in 4 GB after skipping SFT entirely; and Gradium&rsquo;s <a href="#gradium-phonon">Phonon 31m</a> is a 64.5 MB TTS model that starts speaking in 6.9 ms on a laptop CPU. Moonshot&rsquo;s <a href="#kimi-k3-1-pro">Kimi K3.1 Pro</a>, 2.8T with 104B active and 33% cheaper than K3, is API-only until its promised Nov 4 weights.</p>
         <p>The Batch supplied Artificial Analysis figures for three releases already here: <a href="#muse-wonder">Muse Wonder Full</a> ties second at 56, <a href="#muse-spark-open">Muse Spark Open</a> scores 39 under a licence that allows commercial use up to $20 million of revenue, and <a href="#reflection-beam">Beam</a> scores 30 with the fewest output tokens of any open model compared. OpenAI&rsquo;s <a href="#openai-decisions-api">Decisions API</a> is now generally available at $0.10 per million input tokens, the <a href="#minimax-m3-1-flash">M3.1 Flash</a> weights shipped as a 252 GB download, and <a href="#thinkingcap-gemma-4-26b-a4b">ThinkingCap</a> extended its token trimming to Gemma 4 26B-A4B.</p>
-        <p>The Oct 22 cycle was a coding model sized for a laptop and two decision models claiming the top of both indexes. Recursive&rsquo;s <a href="#recursive-flint">Flint</a> is a 40B mixture-of-experts with 2.5B active, built in under four months with agents writing most of it by the company&rsquo;s account, at 74.2% on SWE-Bench Verified and more than 125 tokens a second on an M4 Pro MacBook Pro, with weights on Hugging Face and the licence not in the issues: the narrow open release the open-weights section names, every figure Recursive&rsquo;s. Base Labs&rsquo; <a href="#mammoth-1-elephant-1">Mammoth-1 and Elephant-1</a> are reported to top the Jev Decision Index and the Artificial Analysis Decision Index with no score given, a week after d1-ultra took the second at 65.</p>
-
-
-        <details>
+                <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 22 cycle was a coding model sized for a laptop and two decision models claiming the top of both indexes. Recursive&rsquo;s <a href="#recursive-flint">Flint</a> is a 40B mixture-of-experts with 2.5B active, built in under four months with agents writing most of it by the company&rsquo;s account, at 74.2% on SWE-Bench Verified and more than 125 tokens a second on an M4 Pro MacBook Pro, with weights on Hugging Face and the licence not in the issues: the narrow open release the open-weights section names, every figure Recursive&rsquo;s. Base Labs&rsquo; <a href="#mammoth-1-elephant-1">Mammoth-1 and Elephant-1</a> are reported to top the Jev Decision Index and the Artificial Analysis Decision Index with no score given, a week after d1-ultra took the second at 65.</p>
           <p>The Oct 21 cycle was voice, from two directions. Mistral&rsquo;s <a href="#voxtral-3">Voxtral 3</a> ships three transcribers, a TTS model and a LiveKit agent SDK in public preview, 4.1% WER on FLEURS 45 for Small by Mistral&rsquo;s count against 16.0% for Whisper large-v3 and transcription at $0.0035 a minute, with the stack runnable on a customer&rsquo;s own servers. ElevenLabs&rsquo; <a href="#eleven-realtime">Eleven Realtime</a> is a speech-to-speech pair, Mini and Max, that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name, with no latency or price in the summary. Both land on the speech section&rsquo;s judging axes, price and migration cost rather than accuracy. Below them, SparkLLM&rsquo;s <a href="#spark-x2-6-4b">Spark-X2.6-4B</a> is a 4B open model post-trained for on-device agents, with no benchmark in the issue; Mercury 3 was carried once more with nothing new.</p>
           <p>The Oct 20&ndash;21 cycle added outside prices and comparators to four models already here, with no new release. Simon Willison&rsquo;s reading of Artificial Analysis puts <a href="#muse-wonder">Muse Wonder</a> at its Max level even with GPT-6.1 Sol, and <a href="#gemini-4-argon">Gemini 4 Argon</a>&rsquo;s benchmark-run cost at $2,407, close to GLM-5.3 and well under OpenAI&rsquo;s, Anthropic&rsquo;s and Meta&rsquo;s newest, with Argon&rsquo;s $2/$10 doubling on December 1. MiniMax&rsquo;s own framing of <a href="#minimax-m3-1-flash">M3.1 Flash</a> is online inference nearly three times faster and 70% cheaper than its predecessor, with weights still to come, and Inception now names <a href="#mercury-3">Mercury 3</a>&rsquo;s comparators, GPT-6 Luna and Claude Haiku 5.5 on agentic coding at 1,068 tokens a second, while conceding Haiku still wins on longer coding tasks. Clairic was carried by three more newsletters with nothing new. Hamel Husain&rsquo;s judge comparison of six decision models, Jev to OpenAI Decisions, is on <a href="evals-and-benchmarks.html#decision-models-for-evals">Evals &amp; benchmarks</a>.</p>
           <p>The Oct 19 cycle was price and shape rather than scale. MiniMax&rsquo;s <a href="#minimax-m3-1-flash">M3.1 Flash</a> puts a 428B MoE with about 23B active and a 1M context at a flat $0.15/$0.60 per million tokens, with 62.2 on Automation-Bench to Opus 5&rsquo;s 50.3 and a weak Terminal-Bench 4.0 row, all MiniMax&rsquo;s. Three entries joined the alternative-decoding section and none is an autoregressive chat model: Inception&rsquo;s <a href="#mercury-3">Mercury 3</a> diffusion LLM claims 1,000+ tokens a second and a 1M context at $0.10 per million input, Nace&rsquo;s <a href="#drex-max">Drex Max</a> scores a probability per option over screenshots at 67.59 on Decision Index to Jev 1.14&rsquo;s 60.7, and Cloudflare&rsquo;s <a href="#cloudflare-clairic">Clairic</a> extracts typed values with confidence and source pointers, 3.2&times; faster and 49% cheaper on Cloudflare&rsquo;s own claims test. Mistral&rsquo;s <a href="#timestral">Timestral</a> gives the time-series section a second entry, four CPU-sized models edging TimesFM-3 on GIFT-Eval by 0.009 MASE. And <a href="#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a>&rsquo;s card explains its price: an 890-byte-per-token KV cache, about an eighth of V4-Flash&rsquo;s, at $0.30 per million input.</p>
@@ -108,12 +107,12 @@
           <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">27</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">18</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">20</span></a></li>
-          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">8</span></a></li>
+          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">9</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">20</span></a></li>
           <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">28</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">33</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">34</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">4</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">8</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">2</span></a></li>
@@ -665,10 +664,17 @@
         </details>
       </section>
 
-
       <section class="topic-section" id="on-device-quantized-weights">
         <h3>On-device &amp; quantized weights</h3>
         <p class="lead">The open tier competing on local deployability rather than capability. &ldquo;Quantized&rdquo; is a range, not a property, so the number to judge an entry on is not the headline average but where the compression is measured &mdash; single-turn knowledge questions and multi-step agent work come apart sharply here.</p>
+
+        <article class="story" id="lfm3">
+          <span class="when">2026-10-28</span>
+          <h4><a href="https://www.liquid.ai/blog/lfm3">LFM3: six open-weight on-device models around 2B parameters, the text model in about 1 GB with a 256K context</a></h4>
+          <p>Liquid AI released <strong>LFM3</strong>, a family of open-weight text, vision, audio, omni and decision models built on one tri-hybrid backbone, starting in the 2B range. The 1.7B text model beats its 2.6B predecessor with <strong>35% fewer parameters</strong>, fits in about <strong>1 GB</strong> at 4-bit precision and carries a <strong>256K context</strong>, and LFM3-VL-2B adds video input and is said to match Gemma 4 12B across 62 vision benchmarks.</p>
+          <p>The pitch is on-device agents: every model fine-tunes on a single GPU, and The Code relays a claim of beating Qwen3.5-9B on browser and business-app tasks, naming agentic coding and general knowledge as the weak spots. Every figure is Liquid&rsquo;s own.</p>
+          <div class="sources"><a href="https://www.liquid.ai/blog/lfm3">Liquid AI</a> &middot; <span class="via">via TLDR AI (Oct 28), The Code (Oct 28), AlphaSignal (Oct 28)</span></div>
+        </article>
 
         <article class="story" id="apple-on-device-20b">
           <span class="when">2026-10-26</span>
@@ -686,17 +692,16 @@
           <div class="sources"><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
         </article>
 
-        <article class="story" id="spark-x2-6-4b">
-          <span class="when">2026-10-21</span>
-          <h4><a href="https://huggingface.co/XHToken/Spark-X2.6-4B">Spark-X2.6-4B is a 4B open model post-trained for on-device agents</a></h4>
-          <p>SparkLLM released <strong>Spark-X2.6-4B</strong>, a 4B open-source model whose coding, reasoning, long-context and agentic ability it says improved through post-training alone, aimed at on-device agents.</p>
-          <p>The summary carries no benchmark, licence or quantized size, so it sits here on parameter count and intent; the number this section asks for, where the compression is measured, is on the model card rather than in the issue.</p>
-          <div class="sources"><a href="https://huggingface.co/XHToken/Spark-X2.6-4B">Hugging Face</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
 
+          <article class="story" id="spark-x2-6-4b">
+            <span class="when">2026-10-21</span>
+            <h4><a href="https://huggingface.co/XHToken/Spark-X2.6-4B">Spark-X2.6-4B is a 4B open model post-trained for on-device agents</a></h4>
+            <p>SparkLLM released <strong>Spark-X2.6-4B</strong>, a 4B open-source model whose coding, reasoning, long-context and agentic ability it says improved through post-training alone, aimed at on-device agents.</p>
+            <p>The summary carries no benchmark, licence or quantized size, so it sits here on parameter count and intent; the number this section asks for, where the compression is measured, is on the model card rather than in the issue.</p>
+            <div class="sources"><a href="https://huggingface.co/XHToken/Spark-X2.6-4B">Hugging Face</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
+          </article>
           <article class="story" id="ternary-bonsai-2-27b">
             <span class="when">2026-09-18</span>
             <h4><a href="https://prismml.com/news/bonsai-2-27b">PrismML&rsquo;s Ternary Bonsai 2 27B holds 98.2% of its parent at 5.93GB &mdash; except on agent work</a></h4>
@@ -1240,11 +1245,16 @@
         </details>
       </section>
 
-
-
       <section class="topic-section" id="speech-audio-models">
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
+
+        <article class="story unlinked" id="maya-2">
+          <span class="when">2026-10-28</span>
+          <h4>Maya-2: an open-weight voice model covering 11 Indian languages, claimed to beat ElevenLabs</h4>
+          <p>AlphaSignal lists <strong>Maya-2</strong>, an open-weight voice model covering <strong>11 Indian languages</strong> and claimed to beat ElevenLabs. The one-line item names no benchmark, parameter count or licence, so language coverage is the only stated fact.</p>
+          <div class="sources"><span class="via">via AlphaSignal (Oct 28) &mdash; no public URL given</span></div>
+        </article>
 
         <article class="story" id="block-dessa">
           <span class="when">2026-10-26</span>
@@ -1262,17 +1272,16 @@
           <div class="sources"><a href="https://gradium.ai/blog/release-phonon-open-weight">Gradium</a> &middot; <a href="https://www.marktechpost.com/2026/10/22/gradium-phonon-31m-on-device-tts/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
         </article>
 
-        <article class="story" id="eleven-realtime">
-          <span class="when">2026-10-21</span>
-          <h4><a href="https://elevenlabs.io/realtime">Eleven Realtime is a speech-to-speech model pair that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name</a></h4>
-          <p>ElevenLabs released <strong>Eleven Realtime</strong>, a new class of speech-to-speech models for voice agents in two sizes: a cheaper <strong>Mini</strong> for natural conversation and <strong>Max</strong>, which reasons through more complex tasks. The Code reports that an agent on OpenAI&rsquo;s Realtime API can switch by changing only the endpoint and model name.</p>
-          <p>It joins <a href="#grok-voice-3">Grok Voice 3.0</a> and GPT-Live in the fused speech-in, speech-out tier, and arrives with no latency, price or index score in either summary, so what is recorded is the shape and the migration path.</p>
-          <div class="sources"><a href="https://elevenlabs.io/realtime">ElevenLabs</a> &middot; <span class="via">via TLDR AI (Oct 21), The Code (Oct 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (30)</summary>
+          <summary>Earlier in this section (31)</summary>
 
+          <article class="story" id="eleven-realtime">
+            <span class="when">2026-10-21</span>
+            <h4><a href="https://elevenlabs.io/realtime">Eleven Realtime is a speech-to-speech model pair that replaces OpenAI&rsquo;s Realtime API by changing the endpoint and model name</a></h4>
+            <p>ElevenLabs released <strong>Eleven Realtime</strong>, a new class of speech-to-speech models for voice agents in two sizes: a cheaper <strong>Mini</strong> for natural conversation and <strong>Max</strong>, which reasons through more complex tasks. The Code reports that an agent on OpenAI&rsquo;s Realtime API can switch by changing only the endpoint and model name.</p>
+            <p>It joins <a href="#grok-voice-3">Grok Voice 3.0</a> and GPT-Live in the fused speech-in, speech-out tier, and arrives with no latency, price or index score in either summary, so what is recorded is the shape and the migration path.</p>
+            <div class="sources"><a href="https://elevenlabs.io/realtime">ElevenLabs</a> &middot; <span class="via">via TLDR AI (Oct 21), The Code (Oct 21)</span></div>
+          </article>
           <article class="story" id="voxtral-3">
             <span class="when">2026-10-20</span>
             <h4><a href="https://mistral.ai/news/voxtral-3/">Voxtral 3 ships three transcribers, a TTS model and a LiveKit agent SDK, with transcription at $0.0035 a minute</a></h4>
@@ -1696,6 +1705,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#lfm3">LFM3: six open-weight on-device models around 2B parameters, the text model in about 1 GB with a 256K context</a></span></li>
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#maya-2">Maya-2: an open-weight voice model covering 11 Indian languages, claimed to beat ElevenLabs</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#gpt-6-1-terra">GPT-6.1 Terra matches GPT-6 Astra on agentic tasks at a tenth of the token price, at $1/$5 per million tokens</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#mirendil-fern">Mirendil&rsquo;s first model, Fern, takes up to 10 million tokens of context for high-volume agentic work</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#block-dessa">Block&rsquo;s Dessa is a full-duplex conversation model trained only on speech, with no text and no external LLM</a></span></li>

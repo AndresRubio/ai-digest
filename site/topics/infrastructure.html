@@ -30,19 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-10-27</div>
+      <div class="meta">Last updated: 2026-10-29</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 28 cycle spread across four sections. <a href="#pg-pinecone">pg_pinecone</a> puts Pinecone&rsquo;s compact-summary index inside Postgres as an Apache 2.0 extension, 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB on a million 768-dimension vectors and 1.3 ms against 1.7 at 0.95 recall, vendor-measured against half-precision pgvector. <a href="#opera-webai">Opera&rsquo;s WebAI</a> proposes the browser itself as the model host, sites calling local open models opt-in with prompts never leaving the device. The <a href="#macbook-pro-m6">M6 MacBook Pro</a> moves the local ceiling again, Neural Accelerators per GPU core and a claimed 25% faster local prompt processing under a 32 GB cap, and <a href="#epoch-ai-chip-imports">Epoch&rsquo;s Chip Imports explorer</a> gives the compute-supply question its first public import series.</p>
         <p>The Oct 27 cycle had one retrieval entry: <a href="#turbopuffer-v3">turbopuffer v3</a> will move its search engine to fully vectorized query execution, the batch-at-a-time design of analytical databases, when it reaches production later this year. It is an architecture post with no latency or cost figures yet, and those are what will show whether vectorized execution changes the price of a retrieval read.</p>
         <p>The Oct 25 to 26 cycle was the cost of what a model re-reads and what a GPU leaves unused. Tsinghua&rsquo;s <a href="#tsinghua-akv">AKV</a> drops stale tool output from the KV cache instead of summarizing it, for 27.7% lower agent cost and 1.7 points higher scores across four benchmarks, and <a href="#tokengate">TokenGate</a> trains a gate that skips document tokens for 1.4&ndash;11.3&times; faster prefill on Qwen3-1.7B, at the price of a gate tied to one backbone. At the hardware end, <a href="#gpu-unlock">gpu-unlock</a> claims to double RTX 4090 FP16 throughput by lifting software limits, and a <a href="#gpu-idle-survey">survey of 218 companies</a> finds 79% leaving GPUs idle at least half the time while 70% plan new platforms.</p>
         <p>The Oct 22 to 25 cycle was latency and residency rather than throughput. Liquid AI&rsquo;s <a href="#liquid-ripl">RIPL</a> serves LFM2.5-1.2B at 34.6 ms p95 under 1,000 requests a second on one B200 against 498 ms for a smaller model on vLLM, a closed engine aimed at search ranking and fraud checks. Cerebras explained how it <a href="#cerebras-trillion-parameter-wse-3t">splits trillion-parameter models across WSE-3T wafers</a> that each hold 44 GB on chip, and Cohere&rsquo;s <a href="#cohere-model-vault-confidential">Model Vault</a> now runs on confidential H100s on Azure so the operator cannot read the prompt.</p>
-        <p>Retrieval and compression both got cheaper per useful token. <a href="#cohere-rerank-5">Rerank 5</a>&rsquo;s Context Focus returns passages instead of whole documents and cut a search agent&rsquo;s tokens 35% in Cohere&rsquo;s test, at a median 11.7 seconds per 96-document request on Pro. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco">2-bit DeepSeek-V4.1-Flash</a> keeps 100% of the base model&rsquo;s average on three benchmarks, and the same lab&rsquo;s quantization turns out to be the parent file of <a href="#underdog-saluki-27b">Saluki 27B</a>, which MarkTechPost found re-tuned in 146 of 851 tensors.</p>
-        <p>The Oct 22 addition is the kernel layer under the formats. vLLM&rsquo;s <a href="#vllm-humming">Humming</a> is a general-purpose kernel library for quantized inference, one architecture across devices and quantization formats with execution parameters exposed for tuning, announced without a throughput figure in the summary; it goes in the quantization section as the thing the fewer-bits lever runs on, and the speedups are in the post rather than here.</p>
-
-
-        <details>
+                        <details>
           <summary>Earlier cycles</summary>
+          <p>Retrieval and compression both got cheaper per useful token. <a href="#cohere-rerank-5">Rerank 5</a>&rsquo;s Context Focus returns passages instead of whole documents and cut a search agent&rsquo;s tokens 35% in Cohere&rsquo;s test, at a median 11.7 seconds per 96-document request on Pro. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco">2-bit DeepSeek-V4.1-Flash</a> keeps 100% of the base model&rsquo;s average on three benchmarks, and the same lab&rsquo;s quantization turns out to be the parent file of <a href="#underdog-saluki-27b">Saluki 27B</a>, which MarkTechPost found re-tuned in 146 of 851 tensors.</p>
+          <p>The Oct 22 addition is the kernel layer under the formats. vLLM&rsquo;s <a href="#vllm-humming">Humming</a> is a general-purpose kernel library for quantized inference, one architecture across devices and quantization formats with execution parameters exposed for tuning, announced without a throughput figure in the summary; it goes in the quantization section as the thing the fewer-bits lever runs on, and the speedups are in the post rather than here.</p>
           <p>The Oct 21 cycle was the PyTorch Conference giving the serving stack away. Google and Meta&rsquo;s <a href="#torchtpu">TorchTPU</a> makes Cloud TPU a native PyTorch backend and replaces PyTorch/XLA, with the efficiency gap stated by the vendor: up to 52% MFU training Qwen 3 8B on Ironwood and a fine-tuning step cut from 11.49 s to 2.78 s, but only after tuning and <code>torch.compile</code>, since eager execution out of the box is slow. With <a href="#torchneuron">TorchNeuron</a> the same day, now carrying Deepgram&rsquo;s 60% more audio seconds per dollar, PyTorch gained two non-NVIDIA native backends in one conference. Google Cloud&rsquo;s <a href="#llm-d-1-0">llm-d 1.0</a> is the first stable release of a Kubernetes-native inference stack that pools vLLM or SGLang replicas and routes by cached prefix, with KV tiers from HBM to SSD and a disaggregated prefill-decode set, reported at 17,000 nodes and with no throughput number. And DeepSeek open-sourced <a href="#deepinfer">DeepInfer</a>, the engine behind its API, with the fleet figures attached, 155 trillion tokens a day per cluster and $38 per GPU-hour, and the cache, disaggregation and load-balancing layers that make the money kept back.</p>
           <p>The Oct 20 cycle was three operators describing their own bills and plants. Cloudflare cut the inference cost of its automated code review from <a href="#cloudflare-inference-bill-68">$2.43 to $0.77 a review</a>, 68%, mostly by checking what reached the provider on a session&rsquo;s first request and ordering messages so the cached prefix stayed stable across commits and repositories: the cache section&rsquo;s argument that the hit is something to verify, done by a caller rather than asserted by the provider. Meta published the design of <a href="#meta-prometheus-supercluster">Prometheus</a>, the gigawatt-scale supercluster under Muse, with closed-loop liquid cooling and a plan toward about one million GPUs, a target without a utilisation or cost figure. AWS&rsquo;s <a href="#torchneuron">TorchNeuron</a> puts a native PyTorch backend on Trainium in public beta under Apache 2.0, the accelerator-portability bet still owing its efficiency gap, and vLLM&rsquo;s <a href="#vllm-nixl-push-connector">push-based NIXL connector</a> gained AWS&rsquo;s own write-up, still with no number in the summary.</p>
           <p>The Oct 19 addition is the shape of what NVIDIA gave away. <a href="#nvidia-runai-open-source">Run:ai</a> turns out to be one Apache-2.0 monorepo of about 50 Go services, control plane, cluster services, installer, CLI and an MCP server, with four pieces usable on their own: KAI Scheduler, now a CNCF Sandbox project, does gang scheduling, fair-share and topology awareness, and the GPU Fractioning Operator gives CUDA 13.4-native fractions with a hard memory cap per workload. The utilisation figure the Kubernetes section has been waiting for is still absent; what changed is that the queue is something an estate can read and fork rather than license.</p>
@@ -96,13 +95,13 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">9</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">16</span></a></li>
-          <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">2</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">17</span></a></li>
+          <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">3</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">10</span></a></li>
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">5</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">2</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">26</span></a></li>
-          <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">11</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">27</span></a></li>
+          <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">10</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">5</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
@@ -196,6 +195,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story" id="macbook-pro-m6">
+          <span class="when">2026-10-28</span>
+          <h4><a href="https://www.apple.com/newsroom/2026/10/apple-introduces-the-new-14-inch-macbook-pro-with-m6/">The M6 MacBook Pro adds Neural Accelerators per GPU core, with local LLM prompt processing up to 25% faster</a></h4>
+          <p>Apple&rsquo;s new 14-inch MacBook Pro ships the <strong>M6</strong>, whose GPU cores carry more Neural Accelerators, the dedicated AI circuits Apple says speed local LLM prompt processing by up to <strong>25%</strong> and Xcode builds by 1.3&times; over M5. Memory still tops out at <strong>32 GB</strong>; pre-orders opened Oct 28 at $1,999 and shipping starts Nov 6.</p>
+          <p>Recorded like the <a href="#apple-m6-m5-ultra">August M6 desktop entry</a>, as a boundary move: the 32 GB ceiling keeps the machine in small-model territory, and the 25% figure is Apple&rsquo;s, with no tokens-per-second rate attached.</p>
+          <div class="sources"><a href="https://www.apple.com/newsroom/2026/10/apple-introduces-the-new-14-inch-macbook-pro-with-m6/">Apple</a> &middot; <a href="https://arstechnica.com/apple/2026/10/apple-refreshes-the-imac-entry-level-macbook-pro-with-the-m6-chip/">Ars Technica</a> &middot; <span class="via">via The Code (Oct 28), TLDR (Oct 28)</span></div>
+        </article>
+
         <article class="story unlinked" id="gpu-unlock">
           <span class="when">2026-10-26</span>
           <h4>gpu-unlock lifts software Tensor Core limits on RTX cards, doubling RTX 4090 FP16 to 331.6 TFLOPS</h4>
@@ -212,17 +219,16 @@
           <div class="sources"><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
         </article>
 
-        <article class="story" id="vllm-humming">
-          <span class="when">2026-10-21</span>
-          <h4><a href="https://vllm.ai/blog/2026-10-21-humming">Humming: vLLM&rsquo;s kernel library for quantized inference, one architecture across devices and quantization formats</a></h4>
-          <p>vLLM announced <strong>Humming</strong>, a general-purpose kernel library for quantized inference with broad device support, a wide range of quantization formats and a unified architecture that exposes execution parameters for tuning and lets pipelines be assembled per workload. The TLDR summary carries no throughput, format list or device list, so the entry records the artifact and its design and leaves the speedups to the post.</p>
-          <p>It sits under this section&rsquo;s fewer-bits-per-value lever as the kernel layer the formats run on; the number to look for in the post is tokens per second against the format&rsquo;s existing kernel on named hardware.</p>
-          <div class="sources"><a href="https://vllm.ai/blog/2026-10-21-humming">vLLM blog</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (13)</summary>
+          <summary>Earlier in this section (14)</summary>
 
+          <article class="story" id="vllm-humming">
+            <span class="when">2026-10-21</span>
+            <h4><a href="https://vllm.ai/blog/2026-10-21-humming">Humming: vLLM&rsquo;s kernel library for quantized inference, one architecture across devices and quantization formats</a></h4>
+            <p>vLLM announced <strong>Humming</strong>, a general-purpose kernel library for quantized inference with broad device support, a wide range of quantization formats and a unified architecture that exposes execution parameters for tuning and lets pipelines be assembled per workload. The TLDR summary carries no throughput, format list or device list, so the entry records the artifact and its design and leaves the speedups to the post.</p>
+            <p>It sits under this section&rsquo;s fewer-bits-per-value lever as the kernel layer the formats run on; the number to look for in the post is tokens per second against the format&rsquo;s existing kernel on named hardware.</p>
+            <div class="sources"><a href="https://vllm.ai/blog/2026-10-21-humming">vLLM blog</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
+          </article>
           <article class="story unlinked" id="local-ai-workstations">
             <span class="when">2026-10-16</span>
             <h4>Surface Laptop Ultra beats an M5 Max MacBook Pro on AgentPerf-Local, 18.9 to 24.7 minutes on Qwen 3.8-27B</h4>
@@ -331,6 +337,14 @@
         <h3>Browser &amp; edge ML deployment</h3>
         <p class="lead">The browser is a deployment target distinct from the laptop: the model runs inside the page rather than on the operating system, so there is no inference server to run and no per-call charge. What it costs instead is the visitor&rsquo;s own GPU, and whatever the WebGPU implementation in front of it happens to support.</p>
 
+        <article class="story" id="opera-webai">
+          <span class="when">2026-10-27</span>
+          <h4><a href="https://press.opera.com/2026/10/27/opera-doubles-down-on-local-ai-shipping-models-directly-in-its-browsers/">Opera&rsquo;s WebAI is a proposed standard letting websites call open models running on the visitor&rsquo;s own machine</a></h4>
+          <p>Opera shipped an early preview of <strong>WebAI</strong>, a proposed web standard through which a website can use open AI models running locally on the visitor&rsquo;s computer. The system is opt-in, keeps prompts on the device and avoids per-request cloud fees, and launches in Opera One on 64-bit Windows PCs and Apple-silicon Macs.</p>
+          <p>It is a different split from the WebGPU entries beside it: the browser rather than the page supplies the model, so the site pays nothing and sees nothing. Which models ship with it and what hardware they need are not in either issue.</p>
+          <div class="sources"><a href="https://press.opera.com/2026/10/27/opera-doubles-down-on-local-ai-shipping-models-directly-in-its-browsers/">Opera</a> &middot; <a href="https://techcrunch.com/2026/10/27/opera-introduces-a-new-web-standard-to-let-users-deploy-ai-locally-in-their-browser/">TechCrunch</a> &middot; <span class="via">via The Code (Oct 28), Forward Future (Oct 28)</span></div>
+        </article>
+
         <article class="story" id="microllm-lab">
           <span class="when">2026-09-29</span>
           <h4><a href="https://stateofutopia.com/experiments/microllmlab/">MicroLLM Lab runs seven 4-bit language models of 26M to 360M parameters in the browser over WebGPU</a></h4>
@@ -347,7 +361,6 @@
           <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 16) &mdash; no public URL given</span></div>
         </article>
       </section>
-
 
       <section class="topic-section" id="high-throughput-serving-of-large-moes">
         <h3>High-throughput serving of large MoEs</h3>
@@ -438,7 +451,6 @@
         </details>
       </section>
 
-
       <section class="topic-section" id="serving-across-accelerators">
         <h3>Serving across accelerators</h3>
         <p class="lead">Portability as its own serving problem: write a model once and run it on whatever accelerator is in the rack, not only the GPU its kernels were tuned for. Judge entries on the efficiency given up against the native path, and on which hardware that figure was measured.</p>
@@ -512,6 +524,14 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story" id="epoch-ai-chip-imports">
+          <span class="when">2026-10-28</span>
+          <h4><a href="https://epoch.ai/latest/introducing-the-ai-chip-imports-explorer">Epoch AI&rsquo;s Chip Imports explorer estimates AI compute arrivals by country since 2022</a></h4>
+          <p>Epoch AI released the <strong>AI Chip Imports explorer</strong>, which estimates AI compute arrivals by country since 2022 and sits beside its existing data on chip components, sales and data centers as a map of where compute lands and who controls it.</p>
+          <p>For this section it is an instrument rather than a claim: the constraint this page tracks keeps moving off the die, and import flows were the part of the picture with no public series.</p>
+          <div class="sources"><a href="https://epoch.ai/latest/introducing-the-ai-chip-imports-explorer">Epoch AI</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
+        </article>
+
         <article class="story" id="meta-prometheus-supercluster">
           <span class="when">2026-10-19</span>
           <h4><a href="https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/">Meta details Prometheus, the gigawatt-scale supercluster under Muse, with a plan to reach about one million GPUs</a></h4>
@@ -527,16 +547,15 @@
           <div class="sources"><a href="https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a">Netflix Tech Blog</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
         </article>
 
-        <article class="story" id="amd-helion">
-          <span class="when">2026-10-14</span>
-          <h4><a href="https://ir.amd.com/news-events/press-releases/detail/1301/introducing-amd-helion-agentic-ai-compute-at-rack-scale">AMD Helion is an open rack blueprint for agentic AI with up to 32,768 EPYC cores</a></h4>
-          <p>AMD introduced <strong>Helion</strong>, an open rack-scale blueprint for agentic-AI workloads with up to <strong>32,768 EPYC CPU cores</strong>, with partner systems due in <strong>November</strong>. A CPU-dense rack is a bet that agent loops spend much of their time off the accelerator &mdash; tool calls, sandboxes, orchestration &mdash; and AMD gave no workload measurement to back it.</p>
-          <div class="sources"><a href="https://ir.amd.com/news-events/press-releases/detail/1301/introducing-amd-helion-agentic-ai-compute-at-rack-scale">AMD</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (23)</summary>
+          <summary>Earlier in this section (24)</summary>
 
+          <article class="story" id="amd-helion">
+            <span class="when">2026-10-14</span>
+            <h4><a href="https://ir.amd.com/news-events/press-releases/detail/1301/introducing-amd-helion-agentic-ai-compute-at-rack-scale">AMD Helion is an open rack blueprint for agentic AI with up to 32,768 EPYC cores</a></h4>
+            <p>AMD introduced <strong>Helion</strong>, an open rack-scale blueprint for agentic-AI workloads with up to <strong>32,768 EPYC CPU cores</strong>, with partner systems due in <strong>November</strong>. A CPU-dense rack is a bet that agent loops spend much of their time off the accelerator &mdash; tool calls, sandboxes, orchestration &mdash; and AMD gave no workload measurement to back it.</p>
+            <div class="sources"><a href="https://ir.amd.com/news-events/press-releases/detail/1301/introducing-amd-helion-agentic-ai-compute-at-rack-scale">AMD</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
+          </article>
           <article class="story" id="vera-rubin-ocp-mgx">
             <span class="when">2026-10-14</span>
             <h4><a href="https://blogs.nvidia.com/blog/ocp-global-summit-vera-rubin-scale-ai-factories">NVIDIA contributes Vera Rubin rack designs to OCP through MGX 1.2, with racks up to 250kW</a></h4>
@@ -722,7 +741,15 @@
 
       <section class="topic-section" id="vector-index-and-rag-pipeline-economics">
         <h3>Vector-index &amp; RAG-pipeline economics</h3>
-        <p class="lead">Each entry removes or re-prices a piece of the retrieval stack once treated as fixed: the keyword engine beside the vector store, the forked engine serving it, the data store under it, the clustering that builds the index, the ceiling you sharded around, the reranker returning whole documents, row-at-a-time execution, and the assumption that every read costs the same.</p>
+        <p class="lead">Each entry removes or re-prices a piece of the retrieval stack once treated as fixed: the keyword engine beside the vector store, the forked engine serving it, the data store under it, the index structure and the clustering that builds it, the ceiling you sharded around, the reranker returning whole documents, row-at-a-time execution, and flat read pricing.</p>
+
+        <article class="story" id="pg-pinecone">
+          <span class="when">2026-10-28</span>
+          <h4><a href="https://www.pinecone.io/blog/introducing-pg-pinecone/">pg_pinecone puts Pinecone&rsquo;s index in a Postgres extension: 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB</a></h4>
+          <p>Pinecone open-sourced <strong>pg_pinecone</strong> (Apache 2.0), a Postgres extension built on its production search engine that works against existing vector columns in plain SQL. Instead of HNSW&rsquo;s graph it stores a compact summary of each vector; on 1 million 768-dimension vectors Pinecone measures a <strong>136 MB</strong> index against <strong>2.0 GB</strong> for pgvector&rsquo;s HNSW on halfvec, and <strong>1.3 ms</strong> search at 0.95 recall against 1.7 ms, with the claimed edge growing when a filter narrows the search to one tenant.</p>
+          <p>It runs in Postgres 17 or 18 with no account or API key; the business motion is the one SQL call that moves a table&rsquo;s search to hosted Pinecone when it outgrows the server. The benchmark is the vendor&rsquo;s, against pgvector&rsquo;s half-precision format rather than its default.</p>
+          <div class="sources"><a href="https://www.pinecone.io/blog/introducing-pg-pinecone/">Pinecone</a> &middot; <a href="https://github.com/pinecone-io/pg_pinecone">GitHub</a> &middot; <span class="via">via Pinecone (Oct 28)</span></div>
+        </article>
 
         <article class="story" id="turbopuffer-v3">
           <span class="when">2026-10-27</span>
@@ -739,17 +766,16 @@
           <div class="sources"><a href="https://www.marktechpost.com/2026/10/22/cohere-rerank-5-context-focus/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
         </article>
 
-        <article class="story" id="perplexity-photon">
-          <span class="when">2026-09-30</span>
-          <h4><a href="https://www.perplexity.ai/hub/blog/photon">Perplexity&rsquo;s Rust retrieval engine Photon cuts p99 from about 800 ms to 65 ms on 20% fewer machines</a></h4>
-          <p>Perplexity replaced a forked open-source engine with <strong>Photon</strong>, a Rust retrieval engine that now serves all production retrieval and ranking: p99 for those stages falls from about <strong>800 ms to about 65 ms on roughly 20% fewer machines</strong>, while storing about 2.5&times; more data per document, through adaptive posting lists, budgeted traversal and batched <code>io_uring</code> reads. It also powers a Fast Search mode in the Search API at <strong>$1 per 1,000 requests</strong> and 160 ms p50, which on Perplexity&rsquo;s own agent eval scored 64.3% at an estimated $59.73 against 64.0% at $187.60 for the default.</p>
-          <p>The trade is stated: DCG on long-tail queries drops from 2.45 to 2.21, and Photon is not open source.</p>
-          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/photon">Perplexity</a> &middot; <span class="via">via MarkTechPost (Sep 30)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (9)</summary>
 
+          <article class="story" id="perplexity-photon">
+            <span class="when">2026-09-30</span>
+            <h4><a href="https://www.perplexity.ai/hub/blog/photon">Perplexity&rsquo;s Rust retrieval engine Photon cuts p99 from about 800 ms to 65 ms on 20% fewer machines</a></h4>
+            <p>Perplexity replaced a forked open-source engine with <strong>Photon</strong>, a Rust retrieval engine that now serves all production retrieval and ranking: p99 for those stages falls from about <strong>800 ms to about 65 ms on roughly 20% fewer machines</strong>, while storing about 2.5&times; more data per document, through adaptive posting lists, budgeted traversal and batched <code>io_uring</code> reads. It also powers a Fast Search mode in the Search API at <strong>$1 per 1,000 requests</strong> and 160 ms p50, which on Perplexity&rsquo;s own agent eval scored 64.3% at an estimated $59.73 against 64.0% at $187.60 for the default.</p>
+            <p>The trade is stated: DCG on long-tail queries drops from 2.45 to 2.21, and Photon is not open source.</p>
+            <div class="sources"><a href="https://www.perplexity.ai/hub/blog/photon">Perplexity</a> &middot; <span class="via">via MarkTechPost (Sep 30)</span></div>
+          </article>
           <article class="story" id="planetscale-tin">
             <span class="when">2026-09-16</span>
             <h4><a href="https://planetscale.com/blog/introducing-tin">PlanetScale&rsquo;s TIN puts BM25 full-text search inside Postgres at 25&times; ParadeDB&rsquo;s QPS on mixed ranked queries</a></h4>
@@ -906,7 +932,6 @@
           </article>
         </details>
       </section>
-
 
       <section class="topic-section" id="kubernetes-as-the-ai-substrate">
         <h3>Kubernetes as the AI substrate</h3>
@@ -1147,7 +1172,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#pg-pinecone">pg_pinecone puts Pinecone&rsquo;s index in a Postgres extension: 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB</a></span></li>
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#epoch-ai-chip-imports">Epoch AI&rsquo;s Chip Imports explorer estimates AI compute arrivals by country since 2022</a></span></li>
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#macbook-pro-m6">The M6 MacBook Pro adds Neural Accelerators per GPU core, with local LLM prompt processing up to 25% faster</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#turbopuffer-v3">turbopuffer v3 moves its search engine to fully vectorized query execution, the architecture of analytical databases</a></span></li>
+        <li><span class="date">2026-10-27</span><span class="label"><a href="#opera-webai">Opera&rsquo;s WebAI is a proposed standard letting websites call open models running on the visitor&rsquo;s own machine</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#tsinghua-akv">Tsinghua&rsquo;s AKV drops stale tool output from the KV cache instead of summarizing, cutting agent cost 27.7%</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#gpu-unlock">gpu-unlock lifts software Tensor Core limits on RTX cards, doubling RTX 4090 FP16 to 331.6 TFLOPS</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#gpu-idle-survey">Survey of 218 AI companies: 79% leave GPUs idle at least half the time, 70% still plan new platforms</a></span></li>

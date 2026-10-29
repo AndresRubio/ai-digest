@@ -30,19 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-27</div>
+      <div class="meta">Last updated: 2026-10-29</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 28 addition is a payment rail for an agent&rsquo;s data. <a href="#glasser-data-api">Glasser</a> lets agents buy premium data per API call across more than 2,000 endpoints from over 80 providers, which replaces subscriptions held by the agent&rsquo;s owner with spend the agent incurs as it works; the dependency lands on the aggregator, and the only public page is a press report.</p>
         <p>The Oct 26 to 27 cycle was about what the scaffolding costs. A Shandong University study, reported by VentureBeat, found <a href="#harness-cost-study-shandong">Claude Code and mini-SWE-agent</a> statistically equivalent on nearly 500 coding tasks while Claude Code cost up to three times as much, mostly because it starts with over 16,000 tokens of context against 829. <a href="#pomerado">Pomerado</a> attacks browser-agent cost from the other side, compiling a site that has no API into a deterministic integration and claiming up to 1,000 times lower cost, and <a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0</a> adds resume-after-crash and pause-for-approval to agent code execution.</p>
         <p>The Oct 26 cycle was about how much structure an agent needs. <a href="#rsihub">RSIHub</a> re-implements four agent-evolution methods on shared infrastructure and finds a best gain of 13.5 points pass@1 but rankings that flip across settings and gains that do not always reach held-out tasks, which is the comparison single-method papers never run. Anthropic&rsquo;s <a href="#anthropic-fold-subagents">subagent guide</a> argues the other way from most orchestration entries here: fold planners and routers back into one loop as skills and tools, and keep separate subagents only for parallel work, fresh context or an overloaded toolset.</p>
         <p>The Oct 23 to 25 cycle moved two boundaries out of the harness: the credential and the coordinator. <a href="#1password-for-agents">1Password for Agents</a> has the agent request a login, the user approve it and the password manager fill the site, so the secret never reaches the model, with Claude Duet, Dots, Grok Bot and Muse among the listed clients. Microsoft&rsquo;s <a href="#agensh">Agensh</a> drops the lead agent altogether: up to 1,024 workers claim sub-tasks on a shared board and merge into one Git repo, and pandoc rose from 33.89% with one agent to 55.06% with 1,024, at a token cost Microsoft does not disclose.</p>
         <p>Two results put a price on the layers around the model. The <a href="#memorytax">MemoryTax</a> study finds extracted memory helps a weak model and not a strong one: Opus 5.5 searching raw history under the Pi harness answered 99% of questions for $6.95 against 95% for full context at $17.84, and the model that writes a memory caps every model that reads it. Simular&rsquo;s <a href="#agent-s4">Agent S4</a> rewrites its own desktop tool interfaces and lifts Qwen3.8-27B to 21.3% on OSWorld V2, 3.8 times its fixed-interface score. Anthropic also handed the <a href="#agent-skills-aaif">Agent Skills standard</a> to the Agentic AI Foundation, so SKILL.md now sits under vendor-neutral governance.</p>
-        <p>The Oct 22 cycle was a lab&rsquo;s own always-on agent and a screen model small enough to live on the phone. Anthropic&rsquo;s <a href="#claude-duet">Claude Duet</a> is a research preview of a proactive Opus 5.5 agent that briefs the user each morning from email, calendar and work apps, keeps working on its own cloud computer after they log off, reaches more than 6,000 apps and can buy through Link and Shop Pay, with stock trades and transfers blocked even on approval; it is the third always-on consumer agent in the computer-use section after dots and Muse, with no task benchmark or price. Opposable&rsquo;s <a href="#gui-owl-1-5">GUI-Owl 1.5</a> is a 2B model that reads an Android screen through the accessibility service and operates any other app from the device itself, the local section&rsquo;s data-sits-here claim with no success rate yet. <a href="#muse-downloads">Muse</a> gained a user count, over 10 million, with a quarter of engaged users shopping at an average above $200, all Meta&rsquo;s figures.</p>
-
-
-        <details>
+                <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 22 cycle was a lab&rsquo;s own always-on agent and a screen model small enough to live on the phone. Anthropic&rsquo;s <a href="#claude-duet">Claude Duet</a> is a research preview of a proactive Opus 5.5 agent that briefs the user each morning from email, calendar and work apps, keeps working on its own cloud computer after they log off, reaches more than 6,000 apps and can buy through Link and Shop Pay, with stock trades and transfers blocked even on approval; it is the third always-on consumer agent in the computer-use section after dots and Muse, with no task benchmark or price. Opposable&rsquo;s <a href="#gui-owl-1-5">GUI-Owl 1.5</a> is a 2B model that reads an Android screen through the accessibility service and operates any other app from the device itself, the local section&rsquo;s data-sits-here claim with no success rate yet. <a href="#muse-downloads">Muse</a> gained a user count, over 10 million, with a quarter of engaged users shopping at an average above $200, all Meta&rsquo;s figures.</p>
           <p>The Oct 21 cycle was harnesses described by the people running them, and a memory with a multiplier. Ramp&rsquo;s <a href="#ramp-laminar">Laminar</a> is an in-house managed-agents platform, compaction, tool interfaces, steering, subagents, multiplayer chat and observability, built in six weeks with its code written entirely by agents, and Ramp still keeps engineers on call for it: the build side of the harness section with the ownership stated. Vercel&rsquo;s <a href="#vercel-durable-harness">durable-harness</a> runs Pi, OpenCode, Codex and Claude Code so a session survives a crash mid-turn and resumes from the log, the persistent-state primitive applied across four harnesses rather than built into one. Databricks&rsquo; <a href="#memcurrent">MemCurrent</a> claims to triple an agent&rsquo;s pass rate over no memory while making it faster and cheaper, against a baseline of nothing and with what is stored unstated.</p>
           <p>In computer use, Cua&rsquo;s <a href="#cua-spaces-sdk">Spaces SDK</a> gives each agent a desktop whose location the developer chooses, and <a href="#chatgpt-chrome-tab-control">ChatGPT&rsquo;s Chrome extension</a> now fills forms and sends messages from the user&rsquo;s own tabs. <a href="#netclaw">NetClaw</a>, an open-source network-engineering agent that verifies changes against device state over MCP, joins the domain section from the AAIF newsletter. <a href="#exa-3-0">Exa 3.0</a> gained its comparison, $7 Auto against $5 at Perplexity, Brave and Parallel, with the eight benchmarks run by Exa itself, and <a href="#muse-downloads">Muse</a> reached 10.2 million US downloads in 40 days.</p>
           <p>The Oct 20 cycle priced retrieval and thinned the router. <a href="#exa-3-0">Exa 3.0</a> adds Exa Lite at $4 per 1,000 requests on Exa&rsquo;s own index, over 2 trillion URLs tracked and 100 billion pages served, with 1.27 billion e-commerce listings and 211 million local businesses inside it: the build-good-retrieval pattern in the agentic-search section, now with DeepSeek&rsquo;s $0.75 per 1,000 as the comparator and only Exa&rsquo;s own evaluations behind the wins. Meta&rsquo;s <a href="#meta-thin-orchestrator">thin orchestrator</a> is a router that assigns work to specialised agents and does none of the domain work itself, which Meta says made its production agents more reliable, a design without a figure that answers the dispatch half of the multi-agent section&rsquo;s question and leaves reconciliation where it was. The harness experiment that names GPT-6 Luna and Sol with the cost in both columns is filed on <a href="evals-and-benchmarks.html#specmatic-harness-experiment">Evals &amp; benchmarks</a>.</p>
@@ -102,7 +101,7 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">13</span></a></li>
-          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">22</span></a></li>
+          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">23</span></a></li>
           <li><a href="#the-agentic-harness">The agentic harness <span class="n">30</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">15</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">12</span></a></li>
@@ -115,7 +114,6 @@
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">11</span></a></li>
         </ul>
       </nav>
-
 
       <section class="topic-section" id="agent-memory">
         <h3>Agent memory</h3>
@@ -226,6 +224,14 @@
         <h3>Frameworks &amp; infrastructure</h3>
         <p class="lead">MCP is the connective tissue, and the interesting servers are no longer wrappers somebody wrote but the canonical interface a platform or an artifact ships. Judge entries on where the dependency lands: aggregating across vendors is substitutable, a vendor aggregating its own catalogue makes the protocol the integration point and itself the only thing behind it.</p>
 
+        <article class="story" id="glasser-data-api">
+          <span class="when">2026-10-28</span>
+          <h4><a href="https://www.testingcatalog.com/glasser-now-lets-ai-agents-buy-premium-data-per-api-call/">Glasser lets agents buy premium data per API call, across 2,000+ endpoints from more than 80 providers</a></h4>
+          <p><strong>Glasser</strong> now lets AI agents buy premium data per API call, with access to more than <strong>2,000 endpoints</strong> from over <strong>80 providers</strong>, paid as the agent goes rather than through subscriptions held by its owner.</p>
+          <p>By this section&rsquo;s test the dependency lands on the aggregator: the providers behind it are substitutable, Glasser is not. The only page the item carries is Testing Catalog&rsquo;s report, linked here.</p>
+          <div class="sources"><a href="https://www.testingcatalog.com/glasser-now-lets-ai-agents-buy-premium-data-per-api-call/">Testing Catalog</a> (press report) &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
+        </article>
+
         <article class="story" id="1password-for-agents">
           <span class="when">2026-10-23</span>
           <h4><a href="https://1password.com/blog/1password-for-ai-agents">1Password for Agents fills credentials into a site after the user approves, without the agent ever seeing them</a></h4>
@@ -242,17 +248,16 @@
           <div class="sources"><a href="https://api-docs.deepseek.com/guides/search/">DeepSeek API docs</a> &middot; <span class="via">via TLDR AI (Oct 19), The Code (Oct 19)</span></div>
         </article>
 
-        <article class="story" id="claude-otel-observability">
-          <span class="when">2026-10-15</span>
-          <h4><a href="https://claude.com/resources/articles/agent-observability-on-the-claude-platform">Claude Managed Agents, the Messages API and Claude SDKs now emit OpenTelemetry traces to any OTLP endpoint</a></h4>
-          <p>Anthropic added <strong>OpenTelemetry tracing</strong> across Claude Managed Agents, the Messages API and the Claude SDKs, so each step an agent takes can be followed in any tool that accepts a standard <strong>OTLP endpoint</strong>. The traces follow the <strong>OpenTelemetry GenAI semantic conventions</strong>, so Claude spans land in the same dashboards as other providers&rsquo; rather than in a Claude-only console.</p>
-          <p>Anthropic pitches it for debugging agents, improving them with production data and tracking usage across an organisation; for this section the point is where the dependency lands &mdash; on an open standard, not on the vendor&rsquo;s own viewer.</p>
-          <div class="sources"><a href="https://claude.com/resources/articles/agent-observability-on-the-claude-platform">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (20)</summary>
 
+          <article class="story" id="claude-otel-observability">
+            <span class="when">2026-10-15</span>
+            <h4><a href="https://claude.com/resources/articles/agent-observability-on-the-claude-platform">Claude Managed Agents, the Messages API and Claude SDKs now emit OpenTelemetry traces to any OTLP endpoint</a></h4>
+            <p>Anthropic added <strong>OpenTelemetry tracing</strong> across Claude Managed Agents, the Messages API and the Claude SDKs, so each step an agent takes can be followed in any tool that accepts a standard <strong>OTLP endpoint</strong>. The traces follow the <strong>OpenTelemetry GenAI semantic conventions</strong>, so Claude spans land in the same dashboards as other providers&rsquo; rather than in a Claude-only console.</p>
+            <p>Anthropic pitches it for debugging agents, improving them with production data and tracking usage across an organisation; for this section the point is where the dependency lands &mdash; on an open standard, not on the vendor&rsquo;s own viewer.</p>
+            <div class="sources"><a href="https://claude.com/resources/articles/agent-observability-on-the-claude-platform">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
+          </article>
           <article class="story" id="managed-deep-agents-0-8">
             <span class="when">2026-09-25</span>
             <h4><a href="https://www.langchain.com/blog/langsmith-managed-deep-agents-whats-new">LangSmith Managed Deep Agents 0.8 adds user-owned credentials, per-user memory and HTTP channels</a></h4>
@@ -394,7 +399,6 @@
           </article>
         </details>
       </section>
-
 
       <section class="topic-section" id="the-agentic-harness">
         <h3>The agentic harness</h3>
@@ -629,7 +633,6 @@
 
         </details>
       </section>
-
 
       <section class="topic-section" id="agent-loop-design-and-reliability">
         <h3>Agent loop design &amp; reliability</h3>
@@ -879,8 +882,6 @@
           <div class="sources"><a href="https://softwaredoug.com/blog/2026/06/08/three-kinds-of-agentic-search">softwaredoug.com</a> &middot; <span class="via">via Doug Turnbull&rsquo;s Search Tips (email)</span></div>
         </article>
       </section>
-
-
 
       <section class="topic-section" id="browser-and-computer-use-agents">
         <h3>Browser &amp; computer-use agents</h3>
@@ -1310,7 +1311,6 @@
         </details>
       </section>
 
-
       <section class="topic-section" id="agentic-domain-applications">
         <h3>Agentic domain applications</h3>
         <p class="lead">Agentic X as a domain reframing rather than a tooling story: a loop with its own verification and observability, built for one field, instead of a generic coding agent pointed at it. Judge entries on the governor &mdash; a compute budget the agent is held to, or a permission boundary the account enforces.</p>
@@ -1406,6 +1406,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#glasser-data-api">Glasser lets agents buy premium data per API call, across 2,000+ endpoints from more than 80 providers</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#harness-cost-study-shandong">Shandong University: Claude Code costs up to three times more than mini-SWE-agent for statistically equivalent success</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#pomerado">Pomerado turns a website into an API or MCP tool in about 30 minutes, claiming up to 1,000&times; lower cost than a browser agent</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0 lets agents resume code execution after a deploy or crash and pause for outside approval</a></span></li>

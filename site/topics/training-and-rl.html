@@ -30,18 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-10-27</div>
+      <div class="meta">Last updated: 2026-10-29</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 28 addition gives the failure-mode section a continual-learning entry. <a href="#google-sleep-framework">Google&rsquo;s sleep framework</a> alternates a model&rsquo;s active interaction with offline consolidation that moves fragile short-term context into stable long-term parameters, and the authors report new facts acquired without catastrophic forgetting, long-context knowledge retained up to 10M tokens, and better complex reasoning. The claim is the authors&rsquo; own with no benchmark table in the issue, which keeps it in the same evidentiary bucket as the rest of that section.</p>
         <p>The Oct 26 cycle added a fifth self-generated-data entry with the least human input yet: <a href="#google-on-policy-self-training">Google&rsquo;s on-policy self-training</a> starts from topic names alone, writes its own questions and privileged reasoning traces, and self-distills, with gains on text and VQA and no regression in untrained domains by the authors&rsquo; account. Like the rest of that section it is reported by the lab that built it. TLDR AI and AlphaSignal carried the paper on Oct 27 without adding a score, so the authors&rsquo; account is still the only one.</p>
         <p>The Oct 23 to 24 cycle added a distillation variant and a forgetting fix, both without numbers. Perplexity&rsquo;s <a href="#perplexity-jolt">JOLT</a> trains one model as its own teacher and student, adapting feedback to what the student can currently do, and reports gains across maths, coding and agentic tasks with no figure attached. <a href="#subspace-tuning">Subspace Tuning</a> confines each fine-tuning update to the bottom singular subspace so the principal directions, and what they encode, survive SFT.</p>
         <p>The Oct 16 addition is a frontier pre-training disclosure with a compute figure attached. Microsoft&rsquo;s <a href="#mai-base-2">MAI-Base-2</a> is a 2.8T-parameter MoE with 80B active trained on 16,000 GB200s in 38 days, which Microsoft says beat every open-weight model on held-out pre-training evaluations it does not name; the model is still in post-training and nothing is released, so the GPU count and the day count are what an outsider can hold onto, and the first such figures from a US lab on this page.</p>
         <p>The Oct 16 addition opens a section for a question the page had skipped: how to choose a fine-tuning set&rsquo;s domain mix. <a href="#causalmix">CausalMix</a> subtracts the effect of example quality from 512 small fine-tuning runs and keeps the mixtures whose gain remains, beating Data Mixing Optimization on Qwen2.5-7B, 62.28% to 60.35%, without rerunning the sweep at that scale &mdash; but it loses on a held-out slice of Tulu 3, 25.04% to 26.49%, so transfer beyond the benchmarks used to choose the mix is still the claim to test.</p>
-        <p>The Oct 14 addition turns a distillation default into a measurement. NVIDIA&rsquo;s <a href="#semi-opd">Semi-OPD</a> paper finds that distilling on offline rollouts generated once by the initial student often beats on-policy distillation on both accuracy and training efficiency, with OPD paying off only when teacher and student already overlap heavily &mdash; a check to run before buying fresh student rollouts at every step, and a qualification on the on-policy recipe the <a href="#nemotron-post-training-notes">Nemotron reading</a> describes.</p>
-
-        <details>
+                <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 14 addition turns a distillation default into a measurement. NVIDIA&rsquo;s <a href="#semi-opd">Semi-OPD</a> paper finds that distilling on offline rollouts generated once by the initial student often beats on-policy distillation on both accuracy and training efficiency, with OPD paying off only when teacher and student already overlap heavily &mdash; a check to run before buying fresh student rollouts at every step, and a qualification on the on-policy recipe the <a href="#nemotron-post-training-notes">Nemotron reading</a> describes.</p>
           <p>The Oct 7 addition is another open implementation of the environment layer. Scale AI&rsquo;s <a href="#scale-agentenv">AgentEnv</a> ships 48 step types, four sandbox providers and a plugin system for building agent RL environments, and arrives with no training result or throughput figure &mdash; the framework is the release. It shares a name with Moonshot&rsquo;s AgentENV and a purpose with Verifiers, DAPO and DSec, which is the section lead&rsquo;s point in miniature: five open stacks for the same four steps and no interface between them.</p>
           <p>The Oct 5 addition moves the judge inside the model. <a href="#unievo-vl">UniEvo-VL</a> has one multimodal model act as teacher and student at test time, feeding its own critiques back as privileged information the student never sees, which places it beside the corpora, curricula and scaffolds that models already produce for themselves &mdash; and, like the rest of that section, without an outside measurement yet. The cycle&rsquo;s other training evidence sits on neighbouring pages: Xiaomi disclosed that <a href="model-releases.html">MiMo-V2.6</a>&rsquo;s RL runs cost $2.6M and $0.9M with a code-quality grader multiplying the test reward, and BAAI&rsquo;s AREX concentrates its fine-tuning signal on rule-flagged decision points, on <a href="research-papers.html">Research papers</a>.</p>
           <p>The Oct 2 addition was a warning about reading pre-training checkpoints. A study of <a href="#mode-hopping">mode-hopping</a> finds OLMo3-32B switching abruptly on arithmetic tasks, as training proceeds, between following a surface pattern and inferring the actual task, and traces it in controlled experiments to shallow and generalizable circuits competing inside one model. If that holds, a checkpoint&rsquo;s score depends on which side of a switch it was taken, and longer training is no guarantee of better generalization &mdash; a caveat for every efficiency comparison in the pretraining section, each of which compares runs at fixed points.</p>
@@ -74,7 +74,7 @@
           <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">4</span></a></li>
           <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">3</span></a></li>
           <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">6</span></a></li>
-          <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">4</span></a></li>
+          <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">5</span></a></li>
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">8</span></a></li>
@@ -232,7 +232,15 @@
 
       <section class="topic-section" id="targeted-post-training-for-failure-modes">
         <h3>Targeted post-training for failure modes</h3>
-        <p class="lead">None of the four chases general capability; each targets one named way training or inference goes wrong: rollouts spent on problems already solved, reasoning that spirals instead of stopping, a policy that games its grader, and fine-tuning that overwrites what the model knew. Check whether each fix was measured or only reported as a direction.</p>
+        <p class="lead">None of the five chases general capability; each targets one named way training or inference goes wrong: rollouts spent on problems already solved, reasoning that spirals instead of stopping, a policy that games its grader, fine-tuning that overwrites what the model knew, and knowledge frozen at a cutoff. Check whether each fix was measured or only reported as a direction.</p>
+
+        <article class="story" id="google-sleep-framework">
+          <span class="when">2026-10-28</span>
+          <h4><a href="https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/">Google&rsquo;s sleep framework alternates interaction with offline consolidation, retaining long-context knowledge up to 10M tokens</a></h4>
+          <p>Google Research proposed the <strong>sleep framework</strong>, which gives a language model a continuous periodic lifecycle: phases of active interaction alternate with offline consolidation that moves fragile short-term context into stable long-term parameters. The authors report models that keep acquiring new facts without catastrophic forgetting, retain long-context knowledge up to <strong>10M tokens</strong>, and improve on complex reasoning.</p>
+          <p>It targets this section&rsquo;s fifth failure mode, knowledge frozen at a training cutoff. The newsletter summary carries the mechanism and the 10M-token claim but no benchmark table, so the gains are the authors&rsquo; account.</p>
+          <div class="sources"><a href="https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/">Google Research</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
+        </article>
 
         <article class="story" id="subspace-tuning">
           <span class="when">2026-10-24</span>
@@ -249,17 +257,16 @@
           <div class="sources"><a href="https://www.alphaxiv.org/abs/2609.mimo-scaling-reinforcement-learning">alphaXiv</a> &middot; <span class="via">via TLDR AI (Sep 22), Unwind AI (Sep 22)</span></div>
         </article>
 
-        <article class="story" id="never-giving-up">
-          <span class="when">2026-09-16</span>
-          <h4><a href="https://mnoukhov.github.io/posts/ngu/">&ldquo;Never Giving Up&rdquo; reallocates RL compute from easy problems to the ones standard RL abandons</a></h4>
-          <p>A write-up on RL for LLMs starts from a failure that averages hide: standard RL performs disproportionately badly on the hardest problems in a training set, and a single scalar value per problem is not enough to evaluate a large language model&rsquo;s progress on one. The proposed fix is an allocation change rather than an algorithm change &mdash; spend less compute on problems the model already solves, and redirect it to the hard ones &mdash; and it reports substantial improvements on difficult tasks.</p>
-          <p>The reasoning is that easy problems stop producing gradient signal long before the budget assigned to them runs out, so uniform sampling keeps paying for rollouts that teach nothing while the problems that would teach something are undersampled. That makes it a sibling of the <a href="#failure-driven-rl-environments">failure-driven environment work</a> on this page, arriving at concentrated effort from the sampling side rather than by constructing new environments, and it is the cheaper of the two because it needs no new environments. The write-up reports direction rather than a benchmark table, so the size of the effect and the cost of the reallocation on the easy problems are not yet independently checkable.</p>
-          <div class="sources"><a href="https://mnoukhov.github.io/posts/ngu/">Michael Noukhovitch</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (2)</summary>
 
+          <article class="story" id="never-giving-up">
+            <span class="when">2026-09-16</span>
+            <h4><a href="https://mnoukhov.github.io/posts/ngu/">&ldquo;Never Giving Up&rdquo; reallocates RL compute from easy problems to the ones standard RL abandons</a></h4>
+            <p>A write-up on RL for LLMs starts from a failure that averages hide: standard RL performs disproportionately badly on the hardest problems in a training set, and a single scalar value per problem is not enough to evaluate a large language model&rsquo;s progress on one. The proposed fix is an allocation change rather than an algorithm change &mdash; spend less compute on problems the model already solves, and redirect it to the hard ones &mdash; and it reports substantial improvements on difficult tasks.</p>
+            <p>The reasoning is that easy problems stop producing gradient signal long before the budget assigned to them runs out, so uniform sampling keeps paying for rollouts that teach nothing while the problems that would teach something are undersampled. That makes it a sibling of the <a href="#failure-driven-rl-environments">failure-driven environment work</a> on this page, arriving at concentrated effort from the sampling side rather than by constructing new environments, and it is the cheaper of the two because it needs no new environments. The write-up reports direction rather than a benchmark table, so the size of the effect and the cost of the reallocation on the easy problems are not yet independently checkable.</p>
+            <div class="sources"><a href="https://mnoukhov.github.io/posts/ngu/">Michael Noukhovitch</a> &middot; <span class="via">via TLDR AI (Sep 16)</span></div>
+          </article>
           <article class="story unlinked" id="antidoom">
             <span class="when">2026-07-09</span>
             <h4>Liquid AI Antidoom &mdash; FTPO training cuts reasoning-model &ldquo;doom loops&rdquo; by as much as 90%</h4>
@@ -516,6 +523,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#google-sleep-framework">Google&rsquo;s sleep framework alternates interaction with offline consolidation, retaining long-context knowledge up to 10M tokens</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#google-on-policy-self-training">Google&rsquo;s on-policy self-training starts from topic names only and self-distills without curated prompts</a></span></li>
         <li><span class="date">2026-10-24</span><span class="label"><a href="#subspace-tuning">Subspace Tuning confines each fine-tuning update to the bottom singular subspace to cut forgetting</a></span></li>
         <li><span class="date">2026-10-23</span><span class="label"><a href="#perplexity-jolt">Perplexity&rsquo;s JOLT trains one model as teacher and student at once, adapting feedback to what the student can do</a></span></li>

@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-10-26</div>
+      <div class="meta">Last updated: 2026-10-29</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 28 addition is a retrieval claim waiting for its paper. <a href="#ibm-stair">IBM&rsquo;s STAIR</a> reaches this page as a one-line item: a retrieval system whose answers hallucinate 65&times; less than standard RAG, with no benchmark, corpus or baseline configuration named and no public page in the issue. The retrieval section&rsquo;s standing question, what the representation concedes to earn its serving cost, cannot be asked of it yet; it is recorded so the claim has a place to land when the paper surfaces.</p>
         <p>The Oct 24 addition is a compression result with the method stated and the scope missing. <a href="#ttr-compressor">TTR-Compressor</a> treats a block of tokens as a regression problem and keeps the fitted coefficients as the compressed form, matching an MLP visual-token merger with 55.6% fewer visual tokens; the summary gives neither the benchmarks nor the context length, which this section&rsquo;s lead asks for first. The terminal-as-world-model paper WorldTUI arrived the same week and is filed on <a href="embodied-and-robotics.html#worldtui">Embodied AI</a>.</p>
         <p>The Oct 16 addition opens a section on what networks encode. Goodfire&rsquo;s <a href="#goodfire-already-clean">&ldquo;Neural networks are already clean&rdquo;</a> argues that the polysemanticity in early model organisms, read by the field as superposition, was mostly recursive generalization, which would mean networks can be studied directly rather than untangled first. It is a reinterpretation of existing evidence in essay form, so the check is which organisms it re-examines and whether the claim holds on a production-scale model.</p>
         <p>The Oct 14 addition is a way to change an architecture after pretraining. Amazon&rsquo;s <a href="#amazon-priming">Priming</a> initialises more efficient variants &mdash; different layer types, hybrid ratios and placements &mdash; from pretrained Transformer weights at under 1% of the original training cost with up to twice the throughput, which turns architecture search into a cheap sweep from one shared starting point. What it does not report is quality held at long context, the measure the attention section judges cost results on, so it is recorded as a cost result still waiting for its quality check.</p>
         <p>The Oct 9&ndash;12 cycle added a judge that can itself be graded and widened a toolkit already here. Sakana AI&rsquo;s <a href="#sakana-llm-peer-review">peer-review paper</a> scores AI reviewers on errors planted on purpose rather than on agreement with humans, and its system catches 73% of core-claim mistakes &mdash; a ground truth the verifier section had lacked. <a href="#claude-shaped-science">BootLoops</a>, recorded on Oct 2 as technically correct but in need of domain experts, has since produced 36 preprints across 22 fields, which is the volume that makes the expert check the bottleneck.</p>
-        <p>The Oct 2&ndash;5 cycle put a human check back into three sections. BAAI&rsquo;s <a href="#arex">AREX</a> checks a provisional answer requirement by requirement and turns the gaps into its next search; fine-tuned on rule-flagged decision points, its 4B model beat an untuned 35B on five of six benchmarks and its 122B reached 82.5% on BrowseComp, three points under the same harness on Gemini Pro 3.1. Matthew Schwartz&rsquo;s <a href="#claude-shaped-science">BootLoops</a> was technically correct early and still needed domain experts to become relevant &mdash; the provenance section&rsquo;s split between a valid result and a useful one, seen from the other side. And <a href="#neuralink-50000-hours">Neuralink</a> pretrained its per-user decoders on 50,000 hours of unlabeled recordings, the archive-as-asset bet with no figure yet for what it bought.</p>
-        <details>
+                <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 2&ndash;5 cycle put a human check back into three sections. BAAI&rsquo;s <a href="#arex">AREX</a> checks a provisional answer requirement by requirement and turns the gaps into its next search; fine-tuned on rule-flagged decision points, its 4B model beat an untuned 35B on five of six benchmarks and its 122B reached 82.5% on BrowseComp, three points under the same harness on Gemini Pro 3.1. Matthew Schwartz&rsquo;s <a href="#claude-shaped-science">BootLoops</a> was technically correct early and still needed domain experts to become relevant &mdash; the provenance section&rsquo;s split between a valid result and a useful one, seen from the other side. And <a href="#neuralink-50000-hours">Neuralink</a> pretrained its per-user decoders on 50,000 hours of unlabeled recordings, the archive-as-asset bet with no figure yet for what it bought.</p>
           <p>Two technical reports behind releases filed elsewhere belong to this page&rsquo;s reading list. DeepSeek&rsquo;s V4.1-Flash paper builds on Microsoft and Tsinghua&rsquo;s 2024 YOCO design, letting 36 of 40 layers borrow another layer&rsquo;s cache and storing it at 4 bits, for 890 bytes per token; Xiaomi&rsquo;s MiMo-V2.6 report multiplies each coding attempt&rsquo;s pass/fail reward by two checklist scores, after finding a test-only reward taught the model to let errors pass silently. Both are recorded on <a href="model-releases.html">Model releases</a>, and neither has been reproduced outside its lab.</p>
           <p>The Oct 2 addition measured the state-carrying idea the attention section has been waiting on. <a href="#lift">LIFT</a> feeds a transformer&rsquo;s hidden state into the next generation step rather than squeezing it through the emitted token, keeps training parallel by borrowing those states from an off-the-shelf model&rsquo;s predictions, and beats token-matched transformers from 135M to 1B parameters on language modelling, reasoning and procedural tasks. Unlike the <a href="#recurrent-looped-transformer">Recurrent Looped Transformer</a> beside it, it reports a comparison; what remains open is scale, and the switch from borrowed states in training to its own at inference.</p>
           <p>The Sep 28 addition widened the provenance section beyond Lean. Anthropic reports that <a href="#claude-nine-loops">Claude Fable 5.1 completed a nine-loop physics calculation</a> by two methods a month after a physicist challenged the labs, and Lance Dixon validated it independently. An outside expert&rsquo;s check confirms the number but, like a proof assistant, says nothing about how much of the method was the model&rsquo;s; the section now holds three results and two kinds of checker.</p>
@@ -76,7 +77,7 @@
           <li><a href="#agent-productivity-studies">Agent productivity studies <span class="n">2</span></a></li>
           <li><a href="#learning-rules-beyond-backpropagation">Learning rules beyond backpropagation <span class="n">1</span></a></li>
           <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">7</span></a></li>
-          <li><a href="#retrieval-model-architecture">Retrieval-model architecture <span class="n">4</span></a></li>
+          <li><a href="#retrieval-model-architecture">Retrieval-model architecture <span class="n">5</span></a></li>
           <li><a href="#decoding-and-inference">Decoding &amp; inference <span class="n">2</span></a></li>
           <li><a href="#io-aware-kernels-and-data-pipeline-primitives">IO-aware kernels &amp; data-pipeline primitives <span class="n">1</span></a></li>
           <li><a href="#world-models-and-embodied-policy-methods">World models &amp; embodied-policy methods <span class="n">1</span></a></li>
@@ -218,6 +219,13 @@
         <h3>Retrieval-model architecture</h3>
         <p class="lead">Retrieval keeps being rebuilt out of parts meant for something else &mdash; a generative decoder, a shared multimodal sequence, a quantized table of static vectors. The question each answers differently is what a representation must preserve, and what serving it costs. Judge them on the concession, which is always stated somewhere.</p>
 
+        <article class="story unlinked" id="ibm-stair">
+          <span class="when">2026-10-28</span>
+          <h4>IBM&rsquo;s STAIR retrieval system is claimed to hallucinate 65&times; less than standard RAG</h4>
+          <p>AlphaSignal&rsquo;s issue lists <strong>STAIR</strong>, a new IBM retrieval system, with one claim attached: answers hallucinate <strong>65&times; less</strong> than standard RAG. The one-line item names no benchmark, corpus or baseline configuration, so what &ldquo;standard RAG&rdquo; means here is the first thing to check when the paper surfaces.</p>
+          <div class="sources"><span class="via">via AlphaSignal (Oct 28) &mdash; no public URL given</span></div>
+        </article>
+
         <article class="story" id="sparseup">
           <span class="when">2026-09-19</span>
           <h4><a href="https://www.linkup.so/blog/introducing-sparseup-by-linkup">SPARSEUP scores 56.4 nDCG@10 on BEIR-13 at 149M parameters</a></h4>
@@ -234,17 +242,16 @@
           <div class="sources"><a href="https://guangyusun.com/flat-website/">Project page</a> &middot; <span class="via">via TLDR AI (Sep 17)</span></div>
         </article>
 
-        <article class="story unlinked" id="static-retrieval-8mb">
-          <span class="when">2026-08-13</span>
-          <h4>An 8MB retrieval model embeds all of English Wikipedia on a laptop in under eight minutes</h4>
-          <p>Training on 660 million pairs and then quantizing aggressively produces a static retrieval model of just 8MB &mdash; small enough to embed the whole of English Wikipedia on a laptop in under eight minutes.</p>
-          <p>Static embeddings give up the contextual sensitivity of a transformer encoder, which is the trade being made explicit here; what comes back is a retrieval layer with no serving infrastructure, no GPU and no per-query cost, which changes which applications can justify retrieval at all (see <a href="infrastructure.html">vector-index &amp; RAG-pipeline economics</a>).</p>
-          <div class="sources"><span class="via">via MLOps Community (Aug 13) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (2)</summary>
 
+          <article class="story unlinked" id="static-retrieval-8mb">
+            <span class="when">2026-08-13</span>
+            <h4>An 8MB retrieval model embeds all of English Wikipedia on a laptop in under eight minutes</h4>
+            <p>Training on 660 million pairs and then quantizing aggressively produces a static retrieval model of just 8MB &mdash; small enough to embed the whole of English Wikipedia on a laptop in under eight minutes.</p>
+            <p>Static embeddings give up the contextual sensitivity of a transformer encoder, which is the trade being made explicit here; what comes back is a retrieval layer with no serving infrastructure, no GPU and no per-query cost, which changes which applications can justify retrieval at all (see <a href="infrastructure.html">vector-index &amp; RAG-pipeline economics</a>).</p>
+            <div class="sources"><span class="via">via MLOps Community (Aug 13) &mdash; no public URL given</span></div>
+          </article>
           <article class="story unlinked" id="lfm2-5-retrieval">
             <span class="when">2026-06-20</span>
             <h4>Liquid AI LFM2.5 retrieval models &mdash; a causal decoder patched into an encoder</h4>
@@ -519,6 +526,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#ibm-stair">IBM&rsquo;s STAIR retrieval system is claimed to hallucinate 65&times; less than standard RAG</a></span></li>
         <li><span class="date">2026-10-24</span><span class="label"><a href="#ttr-compressor">TTR-Compressor matches an MLP visual-token merger with 55.6% fewer visual tokens by treating compression as regression</a></span></li>
         <li><span class="date">2026-10-16</span><span class="label"><a href="#goodfire-already-clean">Goodfire argues neural networks are &ldquo;already clean&rdquo;: what looked like superposition was mostly recursive generalization</a></span></li>
         <li><span class="date">2026-10-13</span><span class="label"><a href="#amazon-priming">Amazon&rsquo;s Priming rebuilds pretrained Transformers into more efficient architectures for under 1% of the training cost</a></span></li>
