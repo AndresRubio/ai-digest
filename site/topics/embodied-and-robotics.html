@@ -30,10 +30,11 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-10-29</div>
+      <div class="meta">Last updated: 2026-10-30</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 29 cycle opens a section on touch, from a single newsletter issue reviewing three 2026 papers. <a href="#dexport">DexPort</a> takes the robot arm out of demonstration collection, and training on operator commands instead of reached joint positions lifts success from 11% to 64%. <a href="#vectile">VecTile</a> measures pressure and shear on a sheet under 6 mm thick for $34.67 including electronics, with errors of 0.39 N and 0.16 N against an industrial sensor. <a href="#vista3d">VisTa3D</a> shows current vision and depth models dropping objects thinner than about 3 mm, which touch maps recover. The argument across all three is that a camera updating 5 to 15 times a second cannot see a slip that lasts 10 to 20 milliseconds behind the fingers.</p>
         <p>The Oct 28 cycle is simulation as the product. Google DeepMind&rsquo;s <a href="#genie-4">Genie 4</a> holds a photorealistic interactive world consistent for about two minutes, double Genie 3, adds native audio and takes prompt edits mid-run, with Gemini models planning events to keep scenes coherent; the stated purpose is testing robots and agents before the real world, and the stated limit is drift on longer runs. Meta&rsquo;s <a href="#interactiveworld">InteractiveWorld</a> makes the same bet one level down, a framework that simulates a wearable assistant&rsquo;s first-person view for training and evaluation. And <a href="#gemini-robotics-er-2">Gemini Robotics Embodied Reasoning 2</a> lands on Google Cloud, which moves a frontier embodied-reasoning model from research preview to something any team with an account can call.</p>
         <p>The Oct 27 cycle measured a trend instead of a model. A <a href="#frontier-robot-arm-doubling">LessWrong study</a> ran nine frontier multimodal models on six real-arm tasks from July to October and puts the doubling time for performance at about 54 days, with the best execution rate up 4.4 times and the cheapest subtask 6.2 times cheaper; the limits it names are precision and efficiency, with reasoning no longer the bottleneck. Four months and six tasks is a thin base for a doubling time, but it is the first series on this page that puts the single-model <a href="#gpt-6-astra-robot-arms">Astra arm trials</a> on a curve.</p>
         <p>The Oct 26 cycle was two ways to avoid training a whole robot stack. Alibaba&rsquo;s <a href="#rynnunify">RynnUnify</a> puts spatial reasoning, physical prediction and video planning into one 16B model with a world-action head, and uses RL to decide when its own video predictions are worth consulting. <a href="#holoboxing">HoloBoxing</a> goes the other way, freezing a pretrained whole-body controller and training only a small planner, which gets humanoid boxing in 7 minutes on one GPU once the expensive pretraining is excluded.</p>
@@ -79,6 +80,7 @@
         <ul>
           <li><a href="#robbyants-open-embodied-stack">Robbyant's open embodied stack <span class="n">1</span></a></li>
           <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
+          <li><a href="#tactile-sensing-and-dexterous-contact">Tactile sensing &amp; dexterous contact <span class="n">3</span></a></li>
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">15</span></a></li>
           <li><a href="#world-models">World models <span class="n">16</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">6</span></a></li>
@@ -111,6 +113,32 @@
           <p>Robbyant&rsquo;s <strong>LingBot-Vision</strong> is a 1B self-supervised Vision Transformer optimised for <em>dense spatial perception</em> &mdash; pixel-precise depth and surface boundaries &mdash; rather than the semantic-label invariance most vision backbones are trained for. It leads NYU-Depth v2 RMSE ahead of Meta&rsquo;s DINOv3 and reportedly rivals or beats foundation models up to 7&times; larger on dense tasks, with weights on Hugging Face.</p>
           <p>The design bet is that robots do not fail because they cannot name an object; they fail because they do not know precisely where its edges sit in 3D space, which makes geometry rather than semantics the right base layer for the rest of the stack. (Release detail on the <a href="model-releases.html">Model releases</a> page.)</p>
           <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 8) &mdash; no public URL given</span></div>
+        </article>
+      </section>
+
+      <section class="topic-section" id="tactile-sensing-and-dexterous-contact">
+        <h3>Tactile sensing &amp; dexterous contact</h3>
+        <p class="lead">Cameras update 5 to 15 times a second while a slip plays out in 10 to 20 milliseconds, and the fingers hide the contact patch anyway. These entries measure touch and shear directly, or collect hand demonstrations without a fixed arm. Judge each on what was checked against ground truth rather than on a demo clip.</p>
+
+        <article class="story" id="vista3d">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://huggingface.co/datasets/shaniaguo/VisTa3D">VisTa3D shows vision and depth models lose objects thinner than about 3 mm, and touch maps recover them</a></h4>
+          <p><strong>VisTa3D</strong>, from Yale and published at ECCV 2026, is a dataset of <strong>387 scenes</strong> with 70 thin objects across 17 environments, each frame carrying camera images, depth, motion-sensor data, touch maps and laser-scanned ground truth. Current vision and depth models left surfaces missing or edges blurred on objects thinner than about <strong>3 mm</strong>, such as wires, utensils and cards, and adding touch maps filled in the missing shape. The issue reports the finding without per-model scores.</p>
+          <div class="sources"><a href="https://huggingface.co/datasets/shaniaguo/VisTa3D">Hugging Face dataset</a> &middot; <span class="via">via Artists of Intelligence (Oct 29)</span></div>
+        </article>
+
+        <article class="story" id="vectile">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://jiannnh.github.io/VecTile/">VecTile measures pressure and shear on a sheet under 6 mm thick, for $34.67 with its electronics</a></h4>
+          <p>Imperial College London&rsquo;s <strong>VecTile</strong> is a flexible sheet under <strong>6 mm</strong> thick with 16 touch points, each a silicone bump over four electrodes: equal readings give pressing force, and the difference between opposite electrodes gives shear. The sensor costs <strong>$3.57</strong> to make and <strong>$34.67</strong> with readout electronics, takes 343 readings a second, and against an industrial force sensor its typical error was <strong>0.39 N</strong> for pressing and <strong>0.16 N</strong> for sideways force.</p>
+          <div class="sources"><a href="https://jiannnh.github.io/VecTile/">Project page</a> &middot; <span class="via">via Artists of Intelligence (Oct 29)</span></div>
+        </article>
+
+        <article class="story" id="dexport">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://amberxie88.github.io/dexport/">DexPort collects dexterous-hand demonstrations without a robot arm, lifting task success from 11% to 64%</a></h4>
+          <p><strong>DexPort</strong>, from UC Berkeley and Carnegie Mellon, has a person carry a lightweight rig holding the robot hand through kitchens, offices and workshops, triggering finger skills such as pinch, twist and full-hand grasp from buttons on the handle. Across more than <strong>2,500 demonstrations</strong> on four tasks, training on the operator&rsquo;s commands rather than the joint positions the hand reached raised success from <strong>11% to 64%</strong>, and adding demonstrations collected outside the lab raised it from <strong>36% to 78%</strong>.</p>
+          <div class="sources"><a href="https://amberxie88.github.io/dexport/">Project page</a> &middot; <span class="via">via Artists of Intelligence (Oct 29)</span></div>
         </article>
       </section>
 
@@ -582,6 +610,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#vista3d">VisTa3D shows vision and depth models lose objects thinner than about 3 mm, and touch maps recover them</a></span></li>
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#vectile">VecTile measures pressure and shear on a sheet under 6 mm thick, for $34.67 with its electronics</a></span></li>
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#dexport">DexPort collects dexterous-hand demonstrations without a robot arm, lifting task success from 11% to 64%</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#interactiveworld">Meta&rsquo;s InteractiveWorld simulates a wearable assistant&rsquo;s first-person view for training and evaluation</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#genie-4">Google&rsquo;s Genie 4 holds an interactive world consistent for about two minutes, with native audio and mid-run prompt edits</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#gemini-robotics-er-2">Gemini Robotics Embodied Reasoning 2 becomes available on Google Cloud</a></span></li>

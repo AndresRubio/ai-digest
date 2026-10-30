@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-10-29</div>
+      <div class="meta">Last updated: 2026-10-30</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 28 and 29 cycle moved model choice from the user to the tool. GitHub&rsquo;s <a href="#github-copilot-fusion">Copilot Fusion</a> routes each task across Anthropic and OpenAI models by effort level, and Artificial Analysis measured its best configuration within two points of Claude Code on Opus 5.5 Max at about half the cost per task; GitHub&rsquo;s own claim is 40% faster at up to 77% less. On the pipeline side, <a href="#vercel-ci">Vercel CI</a> runs only the checks a change touches and pulls the rest from cache, which Vercel says cut its push-to-pass time 2&ndash;6&times;, the bottleneck being agents opening more pull requests than full reruns can keep up with.</p>
         <p>The Oct 28 cycle is taste as a package, and a big employer managing the spend. <a href="#hallmark">Hallmark</a> bundles fifty design themes and 755 licensed photos into a design skill for Claude Code, Cursor, Codex and OpenCode, and <a href="#appllama-skills">Appllama Skills</a> does the same for mobile, teaching agents interface patterns from top-grossing apps for Expo and React Native screens: two installable answers to the complaint that agent-written UIs lack judgment. On the other side of the ledger, <a href="#amazon-tokenmaxxing-memo">Amazon&rsquo;s memo</a> tells engineers token usage is a cost rather than a KPI, names adoption rates and code-change counts as flawed measures, and moves the yardstick to launches and successful production changes, the employer-side echo of the spend spread Orosz measured.</p>
         <p>The Oct 27 cycle put the first quality numbers beside this page&rsquo;s productivity claims. <a href="#anthropic-code-review-process">The Claude Code team</a> says merged pull requests more than doubled from June to September while the reverted share fell by over 40%, and <a href="#pragmatic-engineer-ai-spend-roi">Gergely Orosz&rsquo;s survey</a> of 27 companies found Lendscape cutting defects per 100 merged PRs from 17.3 to 7.5 as its output doubled. The same survey shows how loosely the spend is managed: $65 to $3,000 per developer a month, and people at only two companies able to say how they measure the return. <a href="#entire-git-forge">Entire</a> also launched a Git forge for agents and humans, with Trails for code evaluation, Continuous Memory for session sync and Buildkite and Depot integrations.</p>
         <p>The Oct 26 cycle widened what a coding agent can reach and what it can prove. <a href="#cursor-computer-use">Cursor&rsquo;s agents</a> can now drive desktop apps like the iOS Simulator to test their own work, <a href="#humanlayer">HumanLayer</a> coordinates Claude Code, Codex, OpenCode and Pi sessions across a team&rsquo;s machines, and the <a href="#claude-enterprise-chat-cowork">Claude Chat and Cowork merge</a> ships the chat and agent surfaces as one Enterprise product. Anthropic also says Claude wrote <a href="#claude-formal-verification">machine-checked safety proofs for 123 libraries</a>, about 180 million lines of proof, which is the strongest form of the constructed evidence this page argues should replace diff review, though the report is secondhand.</p>
         <p>The Oct 24 cycle opened two pieces of coding-agent infrastructure to other agents. Anthropic&rsquo;s <a href="#anthropic-sandbox-runtime">sandbox-runtime</a> is the sandbox behind Claude Code&rsquo;s bash tool, fencing a command&rsquo;s files and hosts with Seatbelt or bubblewrap and no container, with 84% fewer permission prompts by Anthropic&rsquo;s count. Cognition&rsquo;s <a href="#devin-vulnerability-fixes">Devin Vulnerability Fixes</a> plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug that run in any agent reading SKILL.md, the format Anthropic handed to the <a href="agents.html#agent-skills-aaif">Agentic AI Foundation</a> the day before.</p>
-        <p>The Oct 22 cycle was the API given a version number, and three small tools that put a second model between the agent and the work. Anthropic&rsquo;s <a href="#claude-api-version-2026-10-21">Claude API version 2026-10-21</a> is the first versioned release since 2023-06-10, with new major SDKs and a CLI defaulting to it and the old version kept, and OpenAI published an <a href="#openai-cli">official CLI</a> the same day. From the AAIF newsletter, LightOn&rsquo;s <a href="#colgrep-agent">ColGrep-Agent</a> hands code search to a local 2B model and cut Claude Code&rsquo;s API tokens by 34% over 52 questions; <a href="#sphinx-git-hook">Sphinx</a> is a pre-push hook that quizzes the developer on an agent&rsquo;s changes before a protected branch accepts them; and <a href="#james-ward-mcp-tool-design">James Ward</a> argues an MCP server&rsquo;s token bill is set by tool design, 100 records as 100 calls, with a constrained DSL proposed over 16,000 AWS APIs. <a href="#claude-mods">Claude Mods</a> gained Latent Space&rsquo;s reading of them as an interface the user programs, and the <a href="#cloudflare-security-audit-skill">Cloudflare security-audit skill</a> a star count, 37.8k; GitHub&rsquo;s <a href="#github-git-infra-agent-scale">agent-scale Git</a> gained the migration behind it, nearly every repository moved to Azure with per-reference quorums for the rest.</p>
                 <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 22 cycle was the API given a version number, and three small tools that put a second model between the agent and the work. Anthropic&rsquo;s <a href="#claude-api-version-2026-10-21">Claude API version 2026-10-21</a> is the first versioned release since 2023-06-10, with new major SDKs and a CLI defaulting to it and the old version kept, and OpenAI published an <a href="#openai-cli">official CLI</a> the same day. From the AAIF newsletter, LightOn&rsquo;s <a href="#colgrep-agent">ColGrep-Agent</a> hands code search to a local 2B model and cut Claude Code&rsquo;s API tokens by 34% over 52 questions; <a href="#sphinx-git-hook">Sphinx</a> is a pre-push hook that quizzes the developer on an agent&rsquo;s changes before a protected branch accepts them; and <a href="#james-ward-mcp-tool-design">James Ward</a> argues an MCP server&rsquo;s token bill is set by tool design, 100 records as 100 calls, with a constrained DSL proposed over 16,000 AWS APIs. <a href="#claude-mods">Claude Mods</a> gained Latent Space&rsquo;s reading of them as an interface the user programs, and the <a href="#cloudflare-security-audit-skill">Cloudflare security-audit skill</a> a star count, 37.8k; GitHub&rsquo;s <a href="#github-git-infra-agent-scale">agent-scale Git</a> gained the migration behind it, nearly every repository moved to Azure with per-reference quorums for the rest.</p>
           <p>The Oct 21 cycle was two factories with their plumbing listed. Uber&rsquo;s <a href="#uber-minion-devpods">Minion</a> ships about 15% of production pull requests, by Uber&rsquo;s count, on DevPods the company began building in 2017, an MCP Gateway generated from a pre-existing API contract registry and a staging path that routes a test account through the changed code; the lesson Gergely Orosz draws is that the companies gaining most already had developer-platform teams. <a href="#glass-town">Glass Town</a>, from the AAIF newsletter, is a multi-agent factory with five-minute worker limits, retries off and every commit linked to the prompts and tool calls that produced it, the paper trail built into the factory rather than the review. Neither reports a defect rate, which is the figure this page&rsquo;s section on agent-written code still lacks.</p>
           <p>The Oct 20 cycle was a game nobody reviewed and the scale behind a source-control rebuild. Simon Willison&rsquo;s <a href="#battle-drones">Battle Drones</a> is a browser RTS built in 321 agent commits over 12 iterations in a language he barely uses, with almost none of the code read by a human; one overnight dynamic-workflow run on the prompt &ldquo;Make it a LOT more fun&rdquo; played over a thousand simulated matches and reported undecided games down from 14% to 0.9% and comeback wins up from 24% to 46% across 1,200 AI-vs-AI games, which is this section&rsquo;s question answered with a simulator in place of a reviewer. Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a> gained its scale from Simon&rsquo;s reading of the post: a 100 GB main-branch history, 25 million CI checkouts a day that would be 600 PB of git traffic fetched naively, no offline support because Claude is the heaviest user, and a note that adversarial review can be myopic. Cloudflare&rsquo;s 68% cut to its code-review inference bill, won at the prompt cache, is on <a href="infrastructure.html#cloudflare-inference-bill-68">Infrastructure</a>.</p>
           <p>The Oct 19 cycle was two accounts of verification replacing review, one from a lab and one from a platform. The <a href="#anthropic-code-review-process">Claude Code team</a> says it automated most review stages: agents verify before a pull request opens, review runs continuously, fresh-context AI and security passes sit before any human, approval is tiered by risk and review rounds are capped, the process behind the Code Review product and its 6&ndash;10-minute figure, still with no escape rate for what the automated layers pass. Meta&rsquo;s engineers built <a href="#meta-forum-ai-native">Forum</a>, a standalone Groups app, in eight weeks with an agent whose changes counted only once build checks, unit tests and UI comparisons passed inside its loop, each pull request carrying a recording of the verification run; a stress test caught a memory issue the agent fixed and verified, roughly halving memory use, and engineers still approve every shipped change. Both answer the section&rsquo;s question the same way: the human is auditing the test suite, not the diff.</p>
@@ -107,9 +108,9 @@
           <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">6</span></a></li>
           <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">10</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
-          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">37</span></a></li>
+          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">38</span></a></li>
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">15</span></a></li>
-          <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">17</span></a></li>
+          <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">18</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">15</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">20</span></a></li>
@@ -383,6 +384,13 @@
         <h3>Agent-native tooling</h3>
         <p class="lead">Developer tools shipped with agents as the primary reader, not only humans: a skill file instead of a README, a structured handle instead of a screenshot, a deterministic artifact instead of a reconstruction. Judge entries on whether the agent operates the real target, and on what limit the author publishes alongside the demo.</p>
 
+        <article class="story" id="vercel-ci">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://vercel.com/blog/introducing-vercel-ci">Vercel CI runs only the checks a change touches, cutting push-to-pass time 2&ndash;6&times; at Vercel</a></h4>
+          <p>Vercel released <strong>Vercel CI</strong> in beta on all plans, aimed at coding agents that open more pull requests than a pipeline that reruns everything can absorb. It runs only the tasks a change affects, pulls the rest from cache and sizes compute per task, and its checks report into GitHub so branch protection rules still apply. Vercel says time from push to passing CI fell <strong>2&ndash;6&times;</strong> on its own repositories.</p>
+          <div class="sources"><a href="https://vercel.com/blog/introducing-vercel-ci">Vercel</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29)</span></div>
+        </article>
+
         <article class="story" id="entire-git-forge">
           <span class="when">2026-10-27</span>
           <h4><a href="https://entire.com/blog/the-git-forge-for-agent-human-collaboration">Entire launches a Git forge for agents and humans, with Trails for code evaluation and Continuous Memory for session sync</a></h4>
@@ -397,15 +405,15 @@
           <div class="sources"><a href="https://x.com/cursor_ai/status/2113661506634305834">Cursor on X</a> &middot; <span class="via">via TLDR AI (Oct 26)</span></div>
         </article>
 
-        <article class="story" id="openai-cli">
-          <span class="when">2026-10-22</span>
-          <h4><a href="https://github.com/openai/openai-cli">OpenAI publishes an official CLI for its API</a></h4>
-          <p>OpenAI&rsquo;s <strong>openai-cli</strong> repository is the official command-line client for the OpenAI API, published on GitHub; the issue carries no command list, version or licence, so the entry records only that the surface exists and where. It lands the same day Anthropic&rsquo;s new CLI shipped against the <a href="#claude-api-version-2026-10-21">versioned Claude API</a>: the agent-native shape this section tracks, a terminal command the agent can call in place of a console.</p>
-          <div class="sources"><a href="https://github.com/openai/openai-cli">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (34)</summary>
+          <summary>Earlier in this section (35)</summary>
+
+          <article class="story" id="openai-cli">
+            <span class="when">2026-10-22</span>
+            <h4><a href="https://github.com/openai/openai-cli">OpenAI publishes an official CLI for its API</a></h4>
+            <p>OpenAI&rsquo;s <strong>openai-cli</strong> repository is the official command-line client for the OpenAI API, published on GitHub; the issue carries no command list, version or licence, so the entry records only that the surface exists and where. It lands the same day Anthropic&rsquo;s new CLI shipped against the <a href="#claude-api-version-2026-10-21">versioned Claude API</a>: the agent-native shape this section tracks, a terminal command the agent can call in place of a console.</p>
+            <div class="sources"><a href="https://github.com/openai/openai-cli">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
+          </article>
 
           <article class="story" id="claude-api-version-2026-10-21">
             <span class="when">2026-10-21</span>
@@ -805,6 +813,14 @@
         <h3>Model selection inside coding agents</h3>
         <p class="lead">The harness is model-agnostic: swapping the underlying coding model is a one-line config change, and effort level is becoming a routing parameter too. What a tool sells is no longer the model it bundles but the integration surface &mdash; live documentation, reachable devices, enforced permissions, review put in front of you.</p>
 
+        <article class="story" id="github-copilot-fusion">
+          <span class="when">2026-10-28</span>
+          <h4><a href="https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/">GitHub Copilot Fusion routes each task across models; Artificial Analysis puts it within two points of Claude Code at half the cost</a></h4>
+          <p><strong>Copilot Fusion</strong> chooses and combines models per task according to the effort level the user picks, building on Project HydraFusion&rsquo;s multi-model orchestration and Copilot&rsquo;s auto model selection; administrators decide which models it may use and whether it is the default. GitHub claims frontier-level results <strong>40% faster at up to 77% lower cost</strong>, and Artificial Analysis found its top configuration, mixing Anthropic and OpenAI models, within two points of Claude Code on Opus 5.5 Max at roughly <strong>half the cost per task</strong>.</p>
+          <p>It shipped at GitHub Universe beside Copilot projects, which run agents across several repositories from one place, and Copilot Automations that adjust themselves from real outcomes.</p>
+          <div class="sources"><a href="https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/">GitHub changelog</a> &middot; <a href="https://artificialanalysis.ai/articles/github-copilot-fusion-orchestrates-anthropic-and-openai-models-to-balance-performance-and-cost">Artificial Analysis</a> &middot; <a href="https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/">GitHub Universe</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29), Forward Future (Oct 29)</span></div>
+        </article>
+
         <article class="story" id="spending-your-effort">
           <span class="when">2026-10-05</span>
           <h4><a href="https://claude.dev/blog/spending-your-effort/">Anthropic&rsquo;s effort guide: max effort triples tokens, lifts security tasks 64%&rarr;87% and barely moves rulebook work</a></h4>
@@ -819,15 +835,15 @@
           <div class="sources"><a href="https://github.com/anthropics/skills">anthropics/skills</a> &middot; <a href="https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform">Claude blog (migration benchmark)</a> &middot; <span class="via">via The Code (Sep 24)</span></div>
         </article>
 
-        <article class="story" id="opus-5-5-playbook">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://claude.dev/blog/getting-the-most-out-of-opus-5-5/">Anthropic&rsquo;s Opus 5.5 playbook drops &ldquo;think carefully&rdquo;; effort changes keep the cache from Claude Code 2.1.280</a></h4>
-          <p>Anthropic&rsquo;s playbook for Opus 5.5 in Claude and Claude Code says to give the complete task, define what &ldquo;done&rdquo; means and say when to stop and ask, and to delete &ldquo;think carefully&rdquo; instructions because the model now sets its own thinking per reply. Separately, Anthropic&rsquo;s Lydia Hallie says changing effort mid-session no longer invalidates the prompt cache on <strong>Claude Code v2.1.280 or newer</strong>, so a long session can move between light and heavy reasoning without re-paying for the cached context.</p>
-          <div class="sources"><a href="https://claude.dev/blog/getting-the-most-out-of-opus-5-5/">Claude</a> &middot; <a href="https://x.com/lydiahallie/status/2102513987699212344">Lydia Hallie on X</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Sep 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="opus-5-5-playbook">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://claude.dev/blog/getting-the-most-out-of-opus-5-5/">Anthropic&rsquo;s Opus 5.5 playbook drops &ldquo;think carefully&rdquo;; effort changes keep the cache from Claude Code 2.1.280</a></h4>
+            <p>Anthropic&rsquo;s playbook for Opus 5.5 in Claude and Claude Code says to give the complete task, define what &ldquo;done&rdquo; means and say when to stop and ask, and to delete &ldquo;think carefully&rdquo; instructions because the model now sets its own thinking per reply. Separately, Anthropic&rsquo;s Lydia Hallie says changing effort mid-session no longer invalidates the prompt cache on <strong>Claude Code v2.1.280 or newer</strong>, so a long session can move between light and heavy reasoning without re-paying for the cached context.</p>
+            <div class="sources"><a href="https://claude.dev/blog/getting-the-most-out-of-opus-5-5/">Claude</a> &middot; <a href="https://x.com/lydiahallie/status/2102513987699212344">Lydia Hallie on X</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Sep 23)</span></div>
+          </article>
 
           <article class="story" id="hermes-claude-subscription">
             <span class="when">2026-09-22</span>
@@ -1626,8 +1642,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#vercel-ci">Vercel CI runs only the checks a change touches, cutting push-to-pass time 2&ndash;6&times; at Vercel</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#hallmark">Hallmark packs fifty design themes and 755 licensed photos into a design skill for Claude Code, Cursor, Codex and OpenCode</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#appllama-skills">Appllama Skills teaches coding agents mobile UI patterns from top-grossing apps, for Expo and React Native screens</a></span></li>
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#github-copilot-fusion">GitHub Copilot Fusion routes each task across models; Artificial Analysis puts it within two points of Claude Code at half the cost</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#pragmatic-engineer-ai-spend-roi">Pragmatic Engineer: 27 companies spend $65 to $3,000 a developer a month on AI, and people at only two can say how they measure the return</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#entire-git-forge">Entire launches a Git forge for agents and humans, with Trails for code evaluation and Continuous Memory for session sync</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#amazon-tokenmaxxing-memo">Amazon&rsquo;s memo tells engineers token usage is a cost, not a KPI, and moves the measure to launches and production changes</a></span></li>

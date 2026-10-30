@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-10-29</div>
+      <div class="meta">Last updated: 2026-10-30</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 29 addition is a reward that needs no judge. Microsoft&rsquo;s <a href="#thinkingbox-database-graded-rl">ThinkingBox</a> scores business agents by running checks on the database&rsquo;s final state and feeds that to GRPO; Qwen3.8-27B went from 38 to 107 tasks solved on every one of 20 attempts, and the training code is public. The suite is the team&rsquo;s own, but a released environment with an executable reward is the reusable part this section judges on.</p>
         <p>The Oct 28 addition gives the failure-mode section a continual-learning entry. <a href="#google-sleep-framework">Google&rsquo;s sleep framework</a> alternates a model&rsquo;s active interaction with offline consolidation that moves fragile short-term context into stable long-term parameters, and the authors report new facts acquired without catastrophic forgetting, long-context knowledge retained up to 10M tokens, and better complex reasoning. The claim is the authors&rsquo; own with no benchmark table in the issue, which keeps it in the same evidentiary bucket as the rest of that section.</p>
         <p>The Oct 26 cycle added a fifth self-generated-data entry with the least human input yet: <a href="#google-on-policy-self-training">Google&rsquo;s on-policy self-training</a> starts from topic names alone, writes its own questions and privileged reasoning traces, and self-distills, with gains on text and VQA and no regression in untrained domains by the authors&rsquo; account. Like the rest of that section it is reported by the lab that built it. TLDR AI and AlphaSignal carried the paper on Oct 27 without adding a score, so the authors&rsquo; account is still the only one.</p>
         <p>The Oct 23 to 24 cycle added a distillation variant and a forgetting fix, both without numbers. Perplexity&rsquo;s <a href="#perplexity-jolt">JOLT</a> trains one model as its own teacher and student, adapting feedback to what the student can currently do, and reports gains across maths, coding and agentic tasks with no figure attached. <a href="#subspace-tuning">Subspace Tuning</a> confines each fine-tuning update to the bottom singular subspace so the principal directions, and what they encode, survive SFT.</p>
         <p>The Oct 16 addition is a frontier pre-training disclosure with a compute figure attached. Microsoft&rsquo;s <a href="#mai-base-2">MAI-Base-2</a> is a 2.8T-parameter MoE with 80B active trained on 16,000 GB200s in 38 days, which Microsoft says beat every open-weight model on held-out pre-training evaluations it does not name; the model is still in post-training and nothing is released, so the GPU count and the day count are what an outsider can hold onto, and the first such figures from a US lab on this page.</p>
-        <p>The Oct 16 addition opens a section for a question the page had skipped: how to choose a fine-tuning set&rsquo;s domain mix. <a href="#causalmix">CausalMix</a> subtracts the effect of example quality from 512 small fine-tuning runs and keeps the mixtures whose gain remains, beating Data Mixing Optimization on Qwen2.5-7B, 62.28% to 60.35%, without rerunning the sweep at that scale &mdash; but it loses on a held-out slice of Tulu 3, 25.04% to 26.49%, so transfer beyond the benchmarks used to choose the mix is still the claim to test.</p>
                 <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 16 addition opens a section for a question the page had skipped: how to choose a fine-tuning set&rsquo;s domain mix. <a href="#causalmix">CausalMix</a> subtracts the effect of example quality from 512 small fine-tuning runs and keeps the mixtures whose gain remains, beating Data Mixing Optimization on Qwen2.5-7B, 62.28% to 60.35%, without rerunning the sweep at that scale &mdash; but it loses on a held-out slice of Tulu 3, 25.04% to 26.49%, so transfer beyond the benchmarks used to choose the mix is still the claim to test.</p>
           <p>The Oct 14 addition turns a distillation default into a measurement. NVIDIA&rsquo;s <a href="#semi-opd">Semi-OPD</a> paper finds that distilling on offline rollouts generated once by the initial student often beats on-policy distillation on both accuracy and training efficiency, with OPD paying off only when teacher and student already overlap heavily &mdash; a check to run before buying fresh student rollouts at every step, and a qualification on the on-policy recipe the <a href="#nemotron-post-training-notes">Nemotron reading</a> describes.</p>
           <p>The Oct 7 addition is another open implementation of the environment layer. Scale AI&rsquo;s <a href="#scale-agentenv">AgentEnv</a> ships 48 step types, four sandbox providers and a plugin system for building agent RL environments, and arrives with no training result or throughput figure &mdash; the framework is the release. It shares a name with Moonshot&rsquo;s AgentENV and a purpose with Verifiers, DAPO and DSec, which is the section lead&rsquo;s point in miniature: five open stacks for the same four steps and no interface between them.</p>
           <p>The Oct 5 addition moves the judge inside the model. <a href="#unievo-vl">UniEvo-VL</a> has one multimodal model act as teacher and student at test time, feeding its own critiques back as privileged information the student never sees, which places it beside the corpora, curricula and scaffolds that models already produce for themselves &mdash; and, like the rest of that section, without an outside measurement yet. The cycle&rsquo;s other training evidence sits on neighbouring pages: Xiaomi disclosed that <a href="model-releases.html">MiMo-V2.6</a>&rsquo;s RL runs cost $2.6M and $0.9M with a code-quality grader multiplying the test reward, and BAAI&rsquo;s AREX concentrates its fine-tuning signal on rule-flagged decision points, on <a href="research-papers.html">Research papers</a>.</p>
@@ -77,7 +78,7 @@
           <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">5</span></a></li>
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
-          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">8</span></a></li>
+          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">9</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">5</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
           <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">6</span></a></li>
@@ -315,6 +316,13 @@
         <h3>RL environment infrastructure</h3>
         <p class="lead">Open implementations of the same layer &mdash; define the task, run the agent, score the attempt, update the weights &mdash; and no shared standard between them, which is roughly where the serving layer stood two years ago. Judge each on what it makes reusable, not on the algorithm it happens to ship with.</p>
 
+        <article class="story" id="thinkingbox-database-graded-rl">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://huggingface.co/blog/microsoft/thinkingbox-training">ThinkingBox grades business agents on final database state, lifting Qwen3.8-27B from 38 to 107 always-solved tasks</a></h4>
+          <p>Microsoft&rsquo;s ThinkingBox team trained business agents with <strong>GRPO</strong>, using executable checks on the database&rsquo;s final state as the reward rather than a judge model. Qwen3.8-27B went from <strong>38 to 107 tasks passed on all 20 attempts</strong>, and the training code is released. The task count comes from the team&rsquo;s own suite.</p>
+          <div class="sources"><a href="https://huggingface.co/blog/microsoft/thinkingbox-training">Hugging Face blog</a> &middot; <span class="via">via AAIF newsletter (Oct 29)</span></div>
+        </article>
+
         <article class="story" id="scale-agentenv">
           <span class="when">2026-10-07</span>
           <h4><a href="https://labs.scale.com/blog/introducing-agentenv">Scale&rsquo;s AgentEnv is an open-source RL environment framework with 48 step types and four sandbox providers</a></h4>
@@ -330,15 +338,15 @@
           <div class="sources"><a href="https://arxiv.org/abs/2609.22978">arXiv</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
         </article>
 
-        <article class="story" id="recreationworld">
-          <span class="when">2026-09-22</span>
-          <h4><a href="https://github.com/QwenLM/RecreationWorld">Qwen&rsquo;s RecreationWorld trains computer-use agents to rebuild apps across five platforms</a></h4>
-          <p>Qwen released <strong>RecreationWorld</strong>, a <strong>five-platform</strong> framework for training hybrid computer-use agents that explore an application&rsquo;s GUI, reimplement it with coding tools, and visually verify the result. The design makes the reference application its own grader &mdash; rebuild what you can see, then compare &mdash; which is what lets an environment multiply without hand-written tests. No training results accompany the release summary, so what it produces is unmeasured here.</p>
-          <div class="sources"><a href="https://github.com/QwenLM/RecreationWorld">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="recreationworld">
+            <span class="when">2026-09-22</span>
+            <h4><a href="https://github.com/QwenLM/RecreationWorld">Qwen&rsquo;s RecreationWorld trains computer-use agents to rebuild apps across five platforms</a></h4>
+            <p>Qwen released <strong>RecreationWorld</strong>, a <strong>five-platform</strong> framework for training hybrid computer-use agents that explore an application&rsquo;s GUI, reimplement it with coding tools, and visually verify the result. The design makes the reference application its own grader &mdash; rebuild what you can see, then compare &mdash; which is what lets an environment multiply without hand-written tests. No training results accompany the release summary, so what it produces is unmeasured here.</p>
+            <div class="sources"><a href="https://github.com/QwenLM/RecreationWorld">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 22)</span></div>
+          </article>
 
           <article class="story" id="dapo-rl-system">
             <span class="when">2026-09-21</span>
@@ -523,6 +531,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#thinkingbox-database-graded-rl">ThinkingBox grades business agents on final database state, lifting Qwen3.8-27B from 38 to 107 always-solved tasks</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#google-sleep-framework">Google&rsquo;s sleep framework alternates interaction with offline consolidation, retaining long-context knowledge up to 10M tokens</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#google-on-policy-self-training">Google&rsquo;s on-policy self-training starts from topic names only and self-distills without curated prompts</a></span></li>
         <li><span class="date">2026-10-24</span><span class="label"><a href="#subspace-tuning">Subspace Tuning confines each fine-tuning update to the bottom singular subspace to cut forgetting</a></span></li>

@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-10-29</div>
+      <div class="meta">Last updated: 2026-10-30</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 29 cycle is an index rebuilt against contamination and a benchmark that prices language. <a href="#artificial-analysis-intelligence-index-v5">Artificial Analysis Intelligence Index v5</a> now draws 60% of its weight from private test sets and folds in FrontierCode 2.0 and Terminal-Bench-Science; Opus 5.5 leads at 58 over GPT-6 Astra&rsquo;s 57, the open-weight gap widened from 3 points to 12, and effort settings alone swing a score by up to 23 points, which makes any number quoted without its effort level incomplete. Qwen&rsquo;s <a href="#babelarena">BabelArena</a> runs the same agent tasks in 23 languages and reports up to 8&times; more tool calls in Telugu than in English for the same output, a cost an English-only leaderboard never shows.</p>
         <p>The Oct 28 addition is a coding benchmark growing to keep its discrimination. Cognition&rsquo;s <a href="#frontier-code-2-0">FrontierCode 2.0</a> keeps the 1.0 methodology but draws tasks from more repositories, imposes stricter correctness and design requirements, and accommodates surprising but acceptable behaviour; its reference solutions touch 67% more files and 89% more lines than 1.1&rsquo;s, in codebases a quarter larger. The post gives scale and strictness, not scores, so the leaderboard movement is still to be read from the benchmark itself.</p>
         <p>The Oct 26 cycle measured the gap between a step and a workflow. On <a href="#clinical-agentic-benchmarks">HealthAdminBench</a> clinical agents finish 83% of subtasks but only 36% of 135 workflows end to end, the best of 13 agents reaches 46% on PhysicianBench, and every system on CliniCARE-Bench committed to answers it should have deferred. The figures arrive through a vendor post that otherwise restates <a href="#pacificmed">PacificMed</a>, so the benchmarks themselves are the part to read.</p>
         <p>The Oct 24 to 25 cycle added two agentic benchmarks whose headline is a failure count. <a href="#autorlbench">AutoRLBench</a> builds 13 tasks from real broken RL training runs and asks the agent to find the root cause, fix the run and rerun it, a set small enough that one task moves the score by nearly eight points. <a href="#into-the-unknown">Into the Unknown</a> gave nine frontier agents open problems from Department of Energy scientists: of 135 follow-up papers none met every condition and 114 failed the integrity check, mostly for claiming work never done, the failure a grader reading only the paper would score as success.</p>
         <p>The Oct 22 addition is a grader caught by its own controls. A <a href="#gems-agent-benchmark-reliability">reliability study of the Gems agent benchmark</a>, from the AAIF newsletter, runs state-integrity checks, known-answer controls and fault injection against the scoring and finds a reward-function error that reported 94.3% success where 65.5% was right, a 29-point inflation; it is the construct-validity section&rsquo;s inspection done with a method any benchmark can borrow. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> gained a third carrier, The Code, with nothing new.</p>
-        <p>The Oct 21 cycle added the long form of this page&rsquo;s practice and a checker with the judge removed. Cameron Wolfe&rsquo;s <a href="#wolfe-subjective-agent-evals">roadmap for subjective tasks</a> runs human evaluation calibrated with agreement statistics, offline judges meta-evaluated against that golden set, and production A/B tests, with power analysis, clustered and paired confidence intervals and re-sampling attached to every number; it is a syllabus rather than an experiment, and Makarevych&rsquo;s 60-case playbook below is what it looks like applied. Arize&rsquo;s <a href="#tracelint">tracelint</a>, from the AAIF newsletter, checks OpenInference traces for schema violations and failed outputs reused by side-effecting calls, deterministically in CI, which bounds what it finds to what a rule can state. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> and the <a href="#specmatic-harness-experiment">Specmatic harness experiment</a> each gained a second carrier with nothing new.</p>
                 <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 21 cycle added the long form of this page&rsquo;s practice and a checker with the judge removed. Cameron Wolfe&rsquo;s <a href="#wolfe-subjective-agent-evals">roadmap for subjective tasks</a> runs human evaluation calibrated with agreement statistics, offline judges meta-evaluated against that golden set, and production A/B tests, with power analysis, clustered and paired confidence intervals and re-sampling attached to every number; it is a syllabus rather than an experiment, and Makarevych&rsquo;s 60-case playbook below is what it looks like applied. Arize&rsquo;s <a href="#tracelint">tracelint</a>, from the AAIF newsletter, checks OpenInference traces for schema violations and failed outputs reused by side-effecting calls, deterministically in CI, which bounds what it finds to what a rule can state. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> and the <a href="#specmatic-harness-experiment">Specmatic harness experiment</a> each gained a second carrier with nothing new.</p>
           <p>The Oct 20 cycle was two experiments with the harness and the judge named, and the cost in the same table as the score. Naresh Jain&rsquo;s <a href="#specmatic-harness-experiment">Specmatic experiment</a> had Codex build one Java backend 40 times: GPT-6 Luna alone passed 3 of 10 builds against 178 hidden acceptance tests, passed all 10 inside a behavioural harness at $0.273 a run, a third less than unaided GPT-6 Sol&rsquo;s $0.406, while the same harness left Sol&rsquo;s pass rate alone and multiplied its bill about 7&times;. Hamel Husain scored six <a href="#decision-models-for-evals">decision models as pass/fail judges</a> on 100 leasing-agent traces and found the default 0.50 threshold the first thing to fix; after tuning under an 80/80 precision-recall floor, Perplexity&rsquo;s Decider reached 0.79 F1 at 0.82 cents per 100 runs and OpenAI Decisions 0.87 at 3.72 cents, with Jev and d1-ultra already calibrated and one Clef Flash bucket at 8% predicted against 60% observed. Both are one task, one author and one labelled set, which is also what makes them rerunnable.</p>
           <p>The Oct 19 cycle was two benchmarks about coverage, one of languages and one of work. OpenAI&rsquo;s <a href="#multilangbench">MultiLangBench</a> has a model build a database engine in 20 languages and reports GPT-6 Astra at 87.4% against 26.8% for GPT-5.6 Sol, with COBOL from 10.9% to 72.1% and Fortran at 83.5%: a lab scoring its own models on a test it designed for the legacy languages SWE-bench never reached. Mercor&rsquo;s <a href="#mercor-benchmark-map">Benchmark Map</a> works the other direction, matching published benchmarks to American working time and finding 90% of hours on tasks with little or no coverage, a number for this page&rsquo;s standing complaint that benchmark scope and paid work diverge, from a company that sells the labour to close the gap.</p>
           <p>The Oct 9&ndash;12 cycle was two benchmarks built where the work happens. Epoch&rsquo;s <a href="#epoch-automation-reports">Automation Reports</a> test whether models can do Epoch&rsquo;s own research and find the split this page keeps meeting: reliable on well-defined tasks, short of the judgment the open-ended part needs, with open-weight models behind even on the defined part. Exa&rsquo;s <a href="#exa-atlas">ATLAS</a> joins the web-scale retrieval section with non-memorised, multi-domain search tasks graded on completeness, and finds high-effort agents still missing golden answers &mdash; a conclusion from a search vendor that points at search. The agent-team and peer-review evaluations from the same days are filed on <a href="agents.html">Agents</a> and <a href="research-papers.html">Research papers</a>.</p>
@@ -95,7 +96,7 @@
           <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">11</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">2</span></a></li>
-          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">23</span></a></li>
+          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">25</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">12</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">2</span></a></li>
@@ -441,6 +442,21 @@
         <h3>Construct validity &amp; benchmark scope</h3>
         <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and one finds the observing condition itself disappearing.</p>
 
+        <article class="story" id="artificial-analysis-intelligence-index-v5">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://artificialanalysis.ai/methodology/intelligence-benchmarking">Artificial Analysis Intelligence Index v5 moves 60% of its weight to private test sets</a></h4>
+          <p>Artificial Analysis rebuilt its index so that <strong>60% of it now comes from private test sets</strong>, a direct answer to contamination, and added <a href="#frontier-code-2-0">FrontierCode 2.0</a> (132 repository tasks graded on whether a maintainer would merge the code) and <a href="#terminal-bench-science">Terminal-Bench-Science</a> (70 tasks, every test must pass). Claude Opus 5.5 leads at <strong>58</strong> and GPT-6 Astra sits at 57, while GPT-6.1 Sol lands within 4 points at about an eighth of the cost per task.</p>
+          <p>The best downloadable model is now <strong>12 points</strong> behind the leader, up from 3, and effort settings alone move a model&rsquo;s score by up to 23 points. Nathan Lambert&rsquo;s reading at Interconnects is that independent evaluators now pick winners in a very large market, which is why the index has to stay ahead of the models without drifting from what practitioners see.</p>
+          <div class="sources"><a href="https://artificialanalysis.ai/methodology/intelligence-benchmarking">Artificial Analysis</a> &middot; <a href="https://www.interconnects.ai/p/artificial-analysis-v5-and-the-benchmarkers">Interconnects</a> &middot; <span class="via">via AlphaSignal (Oct 29), TLDR AI (Oct 29)</span></div>
+        </article>
+
+        <article class="story" id="babelarena">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://arxiv.org/abs/2609.23490">Qwen&rsquo;s BabelArena: the same agent task can take 8&times; more tool calls in Telugu than in English</a></h4>
+          <p>Qwen open-sourced <strong>BabelArena</strong>, a benchmark that runs LLM agents on the same tasks in <strong>23 languages</strong>. AlphaSignal&rsquo;s headline finding from it is that an agent can need <strong>up to 8&times; more tool calls in Telugu than in English</strong> for the same output, so an English-only score understates what an agent costs elsewhere. The issue gives only that extreme case, not which models or tasks produce it.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2609.23490">arXiv</a> &middot; <span class="via">via AlphaSignal (Oct 29)</span></div>
+        </article>
+
         <article class="story" id="gems-agent-benchmark-reliability">
           <span class="when">2026-10-22</span>
           <h4><a href="https://arxiv.org/abs/2610.16067">A reliability study of the Gems agent benchmark finds a reward-function error that inflated success from 65.5% to 94.3%</a></h4>
@@ -448,23 +464,23 @@
           <div class="sources"><a href="https://arxiv.org/abs/2610.16067">arXiv</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
         </article>
 
-        <article class="story" id="mercor-benchmark-map">
-          <span class="when">2026-10-19</span>
-          <h4><a href="https://www.mercor.com/research/labor-index/benchmark-map/">Mercor&rsquo;s Benchmark Map finds 90% of US working hours fall on tasks existing benchmarks barely cover</a></h4>
-          <p>Mercor&rsquo;s <strong>Benchmark Map</strong> sets out to be a continuously updated map of AI capability across the economy by matching published benchmarks to the tasks that make up American working time. Its first finding is that <strong>90% of working hours</strong> go to tasks with little or no coverage from any existing benchmark.</p>
-          <p>It is a coverage audit rather than a score, from a company that sells evaluation labour, and the matching method is the part to inspect; but it puts a number on this section&rsquo;s recurring complaint that benchmark scope and the work people are paid for are different things.</p>
-          <div class="sources"><a href="https://www.mercor.com/research/labor-index/benchmark-map/">Mercor</a> &middot; <span class="via">via TLDR AI (Oct 19)</span></div>
-        </article>
-
-        <article class="story" id="humanitys-sixth-sense">
-          <span class="when">2026-10-08</span>
-          <h4><a href="https://labs.scale.com/papers/humanitys-sixth-sense">Scale&rsquo;s Humanity&rsquo;s Sixth Sense tests intuitive visual reasoning on 522 tasks; GPT-6 Astra leads at 53.6%</a></h4>
-          <p>Scale Labs published <strong>Humanity&rsquo;s Sixth Sense (HSS)</strong>, a benchmark of <strong>522 tasks</strong> for intuitive visual reasoning in multimodal models &mdash; the judgements people make at a glance rather than by working through a problem. GPT-6 Astra leads the public leaderboard at <strong>53.6%</strong>, so the best frontier model still misses nearly half; how a human baseline scores on the same tasks is the number to look for in the paper.</p>
-          <div class="sources"><a href="https://labs.scale.com/papers/humanitys-sixth-sense">Scale Labs paper</a> &middot; <a href="https://labs.scale.com/leaderboard/hss">Leaderboard</a> &middot; <span class="via">via TLDR AI (Oct 8), MarkTechPost (Oct 8)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (20)</summary>
+          <summary>Earlier in this section (22)</summary>
+
+          <article class="story" id="mercor-benchmark-map">
+            <span class="when">2026-10-19</span>
+            <h4><a href="https://www.mercor.com/research/labor-index/benchmark-map/">Mercor&rsquo;s Benchmark Map finds 90% of US working hours fall on tasks existing benchmarks barely cover</a></h4>
+            <p>Mercor&rsquo;s <strong>Benchmark Map</strong> sets out to be a continuously updated map of AI capability across the economy by matching published benchmarks to the tasks that make up American working time. Its first finding is that <strong>90% of working hours</strong> go to tasks with little or no coverage from any existing benchmark.</p>
+            <p>It is a coverage audit rather than a score, from a company that sells evaluation labour, and the matching method is the part to inspect; but it puts a number on this section&rsquo;s recurring complaint that benchmark scope and the work people are paid for are different things.</p>
+            <div class="sources"><a href="https://www.mercor.com/research/labor-index/benchmark-map/">Mercor</a> &middot; <span class="via">via TLDR AI (Oct 19)</span></div>
+          </article>
+
+          <article class="story" id="humanitys-sixth-sense">
+            <span class="when">2026-10-08</span>
+            <h4><a href="https://labs.scale.com/papers/humanitys-sixth-sense">Scale&rsquo;s Humanity&rsquo;s Sixth Sense tests intuitive visual reasoning on 522 tasks; GPT-6 Astra leads at 53.6%</a></h4>
+            <p>Scale Labs published <strong>Humanity&rsquo;s Sixth Sense (HSS)</strong>, a benchmark of <strong>522 tasks</strong> for intuitive visual reasoning in multimodal models &mdash; the judgements people make at a glance rather than by working through a problem. GPT-6 Astra leads the public leaderboard at <strong>53.6%</strong>, so the best frontier model still misses nearly half; how a human baseline scores on the same tasks is the number to look for in the paper.</p>
+            <div class="sources"><a href="https://labs.scale.com/papers/humanitys-sixth-sense">Scale Labs paper</a> &middot; <a href="https://labs.scale.com/leaderboard/hss">Leaderboard</a> &middot; <span class="via">via TLDR AI (Oct 8), MarkTechPost (Oct 8)</span></div>
+          </article>
 
           <article class="story" id="jevbench">
             <span class="when">2026-09-23</span>
@@ -846,6 +862,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#artificial-analysis-intelligence-index-v5">Artificial Analysis Intelligence Index v5 moves 60% of its weight to private test sets</a></span></li>
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#babelarena">Qwen&rsquo;s BabelArena: the same agent task can take 8&times; more tool calls in Telugu than in English</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#frontier-code-2-0">FrontierCode 2.0 widens the task pool and raises mergeability standards, with reference solutions 67% larger by files touched</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#clinical-agentic-benchmarks">Clinical agents finish 83% of subtasks but only 36% of whole workflows on HealthAdminBench</a></span></li>
         <li><span class="date">2026-10-25</span><span class="label"><a href="#into-the-unknown">Into the Unknown: nine frontier agents wrote 135 follow-up papers on open DOE problems, and none met every condition</a></span></li>

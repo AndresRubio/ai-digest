@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-29</div>
+      <div class="meta">Last updated: 2026-10-30</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 28 and 29 cycle is the plumbing under long-running agents. Microsoft now offers the <a href="#microsoft-copilot-harness">Copilot harness</a> that runs Copilot Code, Studio and GitHub Copilot through Foundry, another vendor selling its production harness rather than keeping it as glue. An open-source <a href="#goose-dapr-durable-execution">goose and Dapr integration</a> checkpoints each finished turn, so a crashed agent resumes without replaying model calls, though side effects inside an interrupted turn still need idempotency. Salesforce&rsquo;s <a href="#salesforce-agent-fabric">Agent Fabric</a> puts evaluations in beta in November and a triggered kill switch on general availability in January 2027, and Mirendil&rsquo;s <a href="#mirendil-lor">Lor</a> claims research agents running for days across hundreds of parallel workers, with no results attached yet.</p>
         <p>The Oct 28 addition is a payment rail for an agent&rsquo;s data. <a href="#glasser-data-api">Glasser</a> lets agents buy premium data per API call across more than 2,000 endpoints from over 80 providers, which replaces subscriptions held by the agent&rsquo;s owner with spend the agent incurs as it works; the dependency lands on the aggregator, and the only public page is a press report.</p>
         <p>The Oct 26 to 27 cycle was about what the scaffolding costs. A Shandong University study, reported by VentureBeat, found <a href="#harness-cost-study-shandong">Claude Code and mini-SWE-agent</a> statistically equivalent on nearly 500 coding tasks while Claude Code cost up to three times as much, mostly because it starts with over 16,000 tokens of context against 829. <a href="#pomerado">Pomerado</a> attacks browser-agent cost from the other side, compiling a site that has no API into a deterministic integration and claiming up to 1,000 times lower cost, and <a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0</a> adds resume-after-crash and pause-for-approval to agent code execution.</p>
         <p>The Oct 26 cycle was about how much structure an agent needs. <a href="#rsihub">RSIHub</a> re-implements four agent-evolution methods on shared infrastructure and finds a best gain of 13.5 points pass@1 but rankings that flip across settings and gains that do not always reach held-out tasks, which is the comparison single-method papers never run. Anthropic&rsquo;s <a href="#anthropic-fold-subagents">subagent guide</a> argues the other way from most orchestration entries here: fold planners and routers back into one loop as skills and tools, and keep separate subagents only for parallel work, fresh context or an overloaded toolset.</p>
         <p>The Oct 23 to 25 cycle moved two boundaries out of the harness: the credential and the coordinator. <a href="#1password-for-agents">1Password for Agents</a> has the agent request a login, the user approve it and the password manager fill the site, so the secret never reaches the model, with Claude Duet, Dots, Grok Bot and Muse among the listed clients. Microsoft&rsquo;s <a href="#agensh">Agensh</a> drops the lead agent altogether: up to 1,024 workers claim sub-tasks on a shared board and merge into one Git repo, and pandoc rose from 33.89% with one agent to 55.06% with 1,024, at a token cost Microsoft does not disclose.</p>
-        <p>Two results put a price on the layers around the model. The <a href="#memorytax">MemoryTax</a> study finds extracted memory helps a weak model and not a strong one: Opus 5.5 searching raw history under the Pi harness answered 99% of questions for $6.95 against 95% for full context at $17.84, and the model that writes a memory caps every model that reads it. Simular&rsquo;s <a href="#agent-s4">Agent S4</a> rewrites its own desktop tool interfaces and lifts Qwen3.8-27B to 21.3% on OSWorld V2, 3.8 times its fixed-interface score. Anthropic also handed the <a href="#agent-skills-aaif">Agent Skills standard</a> to the Agentic AI Foundation, so SKILL.md now sits under vendor-neutral governance.</p>
                 <details>
           <summary>Earlier cycles</summary>
+          <p>Two results put a price on the layers around the model. The <a href="#memorytax">MemoryTax</a> study finds extracted memory helps a weak model and not a strong one: Opus 5.5 searching raw history under the Pi harness answered 99% of questions for $6.95 against 95% for full context at $17.84, and the model that writes a memory caps every model that reads it. Simular&rsquo;s <a href="#agent-s4">Agent S4</a> rewrites its own desktop tool interfaces and lifts Qwen3.8-27B to 21.3% on OSWorld V2, 3.8 times its fixed-interface score. Anthropic also handed the <a href="#agent-skills-aaif">Agent Skills standard</a> to the Agentic AI Foundation, so SKILL.md now sits under vendor-neutral governance.</p>
           <p>The Oct 22 cycle was a lab&rsquo;s own always-on agent and a screen model small enough to live on the phone. Anthropic&rsquo;s <a href="#claude-duet">Claude Duet</a> is a research preview of a proactive Opus 5.5 agent that briefs the user each morning from email, calendar and work apps, keeps working on its own cloud computer after they log off, reaches more than 6,000 apps and can buy through Link and Shop Pay, with stock trades and transfers blocked even on approval; it is the third always-on consumer agent in the computer-use section after dots and Muse, with no task benchmark or price. Opposable&rsquo;s <a href="#gui-owl-1-5">GUI-Owl 1.5</a> is a 2B model that reads an Android screen through the accessibility service and operates any other app from the device itself, the local section&rsquo;s data-sits-here claim with no success rate yet. <a href="#muse-downloads">Muse</a> gained a user count, over 10 million, with a quarter of engaged users shopping at an average above $200, all Meta&rsquo;s figures.</p>
           <p>The Oct 21 cycle was harnesses described by the people running them, and a memory with a multiplier. Ramp&rsquo;s <a href="#ramp-laminar">Laminar</a> is an in-house managed-agents platform, compaction, tool interfaces, steering, subagents, multiplayer chat and observability, built in six weeks with its code written entirely by agents, and Ramp still keeps engineers on call for it: the build side of the harness section with the ownership stated. Vercel&rsquo;s <a href="#vercel-durable-harness">durable-harness</a> runs Pi, OpenCode, Codex and Claude Code so a session survives a crash mid-turn and resumes from the log, the persistent-state primitive applied across four harnesses rather than built into one. Databricks&rsquo; <a href="#memcurrent">MemCurrent</a> claims to triple an agent&rsquo;s pass rate over no memory while making it faster and cheaper, against a baseline of nothing and with what is stored unstated.</p>
           <p>In computer use, Cua&rsquo;s <a href="#cua-spaces-sdk">Spaces SDK</a> gives each agent a desktop whose location the developer chooses, and <a href="#chatgpt-chrome-tab-control">ChatGPT&rsquo;s Chrome extension</a> now fills forms and sends messages from the user&rsquo;s own tabs. <a href="#netclaw">NetClaw</a>, an open-source network-engineering agent that verifies changes against device state over MCP, joins the domain section from the AAIF newsletter. <a href="#exa-3-0">Exa 3.0</a> gained its comparison, $7 Auto against $5 at Perplexity, Brave and Parallel, with the eight benchmarks run by Exa itself, and <a href="#muse-downloads">Muse</a> reached 10.2 million US downloads in 40 days.</p>
@@ -102,15 +103,15 @@
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">13</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">23</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">30</span></a></li>
-          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">15</span></a></li>
-          <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">12</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">31</span></a></li>
+          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">16</span></a></li>
+          <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">13</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">14</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">8</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
-          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">18</span></a></li>
+          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">19</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">11</span></a></li>
         </ul>
       </nav>
@@ -404,6 +405,13 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="microsoft-copilot-harness">
+          <span class="when">2026-10-28</span>
+          <h4><a href="https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/">Microsoft offers the Copilot harness behind Copilot Code, Studio and GitHub Copilot through Foundry</a></h4>
+          <p>Microsoft made the <strong>Copilot harness</strong>, the layer under Copilot Code, Copilot Studio, the GitHub Copilot app, the CLI and VS Code, available through Microsoft Foundry as a managed way to build agents that reason, call tools and run long tasks. It was built to work across model families and can be configured for any app, agent or service. The announcement gives no benchmark or price; what it changes is that another vendor now sells its production harness.</p>
+          <div class="sources"><a href="https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/">Microsoft</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29)</span></div>
+        </article>
+
         <article class="story" id="harness-cost-study-shandong">
           <span class="when">2026-10-27</span>
           <h4><a href="https://venturebeat.com/orchestration/a-coding-agents-harness-can-triple-its-cost-without-making-it-more-accurate-study-finds">Shandong University: Claude Code costs up to three times more than mini-SWE-agent for statistically equivalent success</a></h4>
@@ -419,16 +427,16 @@
           <div class="sources"><a href="https://builders.ramp.com/post/building-laminar">Ramp</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="perplexity-space-open-source">
-          <span class="when">2026-10-16</span>
-          <h4><a href="https://www.perplexity.ai/hub/blog/open-sourcing-space">Perplexity open-sources SPACE, the Firecracker microVM sandbox under every Computer task, as Rust under Apache 2.0</a></h4>
-          <p>Perplexity released <strong>SPACE</strong>, the sandbox platform that runs beneath every task in Perplexity Computer, as Rust code under <strong>Apache 2.0</strong>. Each task gets its own Firecracker microVM, and credentials and outbound traffic are controlled from outside the guest, so a compromised agent cannot read the secret it is using.</p>
-          <p>It ships with the red-team results recorded on <a href="safety-and-policy.html#escaping-space">Safety &amp; policy</a>: nine models with root in the guest made <strong>108</strong> VM-to-host escape attempts and reached the host secret <strong>0</strong> times, while <strong>11 of 54</strong> partial-network runs bypassed egress policy before fixes, and 8 of 10 third-party sandboxes Perplexity tested showed at least one network-policy bypass. The sandbox a lab actually runs is now something a deployer can inspect; the egress layer is where to look first.</p>
-          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/open-sourcing-space">Perplexity</a> &middot; <a href="https://github.com/perplexityai/SPACE">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/16/perplexity-open-sources-space-firecracker-microvm-sandbox-ai-agents/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16), MarkTechPost (Oct 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (27)</summary>
+          <summary>Earlier in this section (28)</summary>
+
+          <article class="story" id="perplexity-space-open-source">
+            <span class="when">2026-10-16</span>
+            <h4><a href="https://www.perplexity.ai/hub/blog/open-sourcing-space">Perplexity open-sources SPACE, the Firecracker microVM sandbox under every Computer task, as Rust under Apache 2.0</a></h4>
+            <p>Perplexity released <strong>SPACE</strong>, the sandbox platform that runs beneath every task in Perplexity Computer, as Rust code under <strong>Apache 2.0</strong>. Each task gets its own Firecracker microVM, and credentials and outbound traffic are controlled from outside the guest, so a compromised agent cannot read the secret it is using.</p>
+            <p>It ships with the red-team results recorded on <a href="safety-and-policy.html#escaping-space">Safety &amp; policy</a>: nine models with root in the guest made <strong>108</strong> VM-to-host escape attempts and reached the host secret <strong>0</strong> times, while <strong>11 of 54</strong> partial-network runs bypassed egress policy before fixes, and 8 of 10 third-party sandboxes Perplexity tested showed at least one network-policy bypass. The sandbox a lab actually runs is now something a deployer can inspect; the egress layer is where to look first.</p>
+            <div class="sources"><a href="https://www.perplexity.ai/hub/blog/open-sourcing-space">Perplexity</a> &middot; <a href="https://github.com/perplexityai/SPACE">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/16/perplexity-open-sources-space-firecracker-microvm-sandbox-ai-agents/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16), MarkTechPost (Oct 18)</span></div>
+          </article>
 
           <article class="story" id="harness2">
             <span class="when">2026-10-15</span>
@@ -630,13 +638,19 @@
             <p>Decoding AI Magazine published a component-by-component teardown of an agentic harness (tools, skills, memory, sandbox, permissions), arguing that &mdash; just as base LLMs commoditized &mdash; the harness around them is hardening into a handful of standardized, batteries-included frameworks. The implication is that differentiation shifts to model choice, context engineering and memory rather than the loop itself. (Build-vs-buy framing on the <a href="tools-and-devex.html">Tools &amp; DevEx</a> page.)</p>
             <div class="sources"><span class="via">via Decoding AI Magazine (Substack) &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
       <section class="topic-section" id="agent-loop-design-and-reliability">
         <h3>Agent loop design &amp; reliability</h3>
         <p class="lead">Plan, act, verify, repeat &mdash; and the primitives that decide whether a loop finishes or just burns budget: verifiers, persistent state, stop conditions, and a compaction policy. Judge entries on whether the measurement was fixed before the results appeared, because that is exactly how far agent self-improvement claims have held up.</p>
+
+        <article class="story" id="goose-dapr-durable-execution">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://aaif.io/blog/introducing-dapr-durable-execution-for-goose">Dapr durable execution lets a goose agent survive a crash mid-plan without replaying finished turns</a></h4>
+          <p>An open-source integration runs <strong>goose</strong> agent work inside <strong>Dapr</strong> durable workflows: each completed conversation turn is recorded as a workflow activity, so a restarted worker resumes after the last finished turn instead of paying for those model calls again. The <code>diagrid-goose</code> Rust crate registers goose with a Dapr Workflow worker. It needs persistent goose session storage, and side effects inside an interrupted turn still need their own idempotency protection.</p>
+          <div class="sources"><a href="https://aaif.io/blog/introducing-dapr-durable-execution-for-goose">AAIF</a> &middot; <span class="via">via AAIF newsletter (Oct 29)</span></div>
+        </article>
 
         <article class="story" id="cloudflare-computer-v0-7">
           <span class="when">2026-10-26</span>
@@ -652,16 +666,16 @@
           <div class="sources"><a href="https://github.com/simple-agent-lab/RSIHub">GitHub</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
         </article>
 
-        <article class="story" id="vercel-durable-harness">
-          <span class="when">2026-10-21</span>
-          <h4><a href="https://vercel.com/blog/making-every-harness-durable">Vercel&rsquo;s durable-harness runs Pi, OpenCode, Codex and Claude Code so a session survives a crash mid-turn</a></h4>
-          <p>Vercel released <strong>durable-harness</strong>, which runs agent harnesses durably in the cloud out of the box: Pi, OpenCode, Codex and Claude Code on Vercel, or self-hosted on a team&rsquo;s own Postgres. Sessions survive crashes mid-turn and keep running when the browser disconnects, and a turn whose function is lost partway resumes from the log on a new one without a manual retry and without repeating finished work.</p>
-          <p>It is the persistent-state primitive this section lists, applied across four harnesses rather than built into one as <a href="#pi-durable">Pi Durable</a> was; no recovery-time or overhead figure is given.</p>
-          <div class="sources"><a href="https://vercel.com/blog/making-every-harness-durable">Vercel</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="vercel-durable-harness">
+            <span class="when">2026-10-21</span>
+            <h4><a href="https://vercel.com/blog/making-every-harness-durable">Vercel&rsquo;s durable-harness runs Pi, OpenCode, Codex and Claude Code so a session survives a crash mid-turn</a></h4>
+            <p>Vercel released <strong>durable-harness</strong>, which runs agent harnesses durably in the cloud out of the box: Pi, OpenCode, Codex and Claude Code on Vercel, or self-hosted on a team&rsquo;s own Postgres. Sessions survive crashes mid-turn and keep running when the browser disconnects, and a turn whose function is lost partway resumes from the log on a new one without a manual retry and without repeating finished work.</p>
+            <p>It is the persistent-state primitive this section lists, applied across four harnesses rather than built into one as <a href="#pi-durable">Pi Durable</a> was; no recovery-time or overhead figure is given.</p>
+            <div class="sources"><a href="https://vercel.com/blog/making-every-harness-durable">Vercel</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
+          </article>
 
           <article class="story" id="decision-offloading-sop-bench">
             <span class="when">2026-10-13</span>
@@ -761,6 +775,13 @@
         <h3>Meta-orchestration &amp; governance</h3>
         <p class="lead">A layer above individual agents: composing them, governing them, and knowing what came back. Two instruments compete &mdash; enforcement in flight, which costs roughly one legitimate task in eight, and anomaly detection afterwards, which costs nothing at runtime and sees only what the harness logged. Judge entries on which of the two they buy.</p>
 
+        <article class="story" id="salesforce-agent-fabric">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://venturebeat.com/orchestration/salesforce-details-cost-controls-and-kill-switch">Salesforce Agent Fabric adds evaluations, spending controls and a triggered kill switch, GA in January 2027</a></h4>
+          <p>Salesforce detailed controls for autonomous agents in <strong>Agent Fabric</strong>: evaluations, security scans, spending controls and interventions that fire on a trigger. Agent and API evaluations enter beta in <strong>November</strong>, and the triggered kill switch reaches general availability in <strong>January 2027</strong>. Of this section&rsquo;s two instruments it buys enforcement in flight, and its cost is whatever legitimate work a trigger stops.</p>
+          <div class="sources"><a href="https://venturebeat.com/orchestration/salesforce-details-cost-controls-and-kill-switch">VentureBeat</a> &middot; <span class="via">via Forward Future (Oct 29)</span></div>
+        </article>
+
         <article class="story" id="gemini-agent">
           <span class="when">2026-10-08</span>
           <h4><a href="https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026">Google Cloud&rsquo;s Gemini Agent puts one agent behind one API, routing across Gemini and Claude with per-project spend caps</a></h4>
@@ -777,16 +798,16 @@
           <div class="sources"><a href="https://github.com/paperclipai/paperclip">GitHub</a> &middot; <span class="via">via The Code (Sep 28)</span></div>
         </article>
 
-        <article class="story" id="agent-anomaly-detection">
-          <span class="when">2026-09-17</span>
-          <h4><a href="https://developers.googleblog.com/agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform/">Gemini Enterprise adds anomaly detection over agent logs and traces, in private preview</a></h4>
-          <p>Google put <strong>Agent Anomaly Detection</strong> into private preview on the Gemini Enterprise Agent Platform. It watches deployed agents for anomalous behaviour, working from the logs and traces the platform already collects rather than from a separate instrumentation pass, and flags suspicious activity for review rather than blocking it.</p>
-          <p>The design point is that the signal is the agent&rsquo;s own execution record &mdash; the same artifact used for debugging is now the security surface &mdash; which is cheap to adopt and only as good as what the harness happens to log. Set against <a href="#policy-algebra">the policy-algebra numbers</a>, the two occupy opposite ends of one trade: enforcement pays about one legitimate task in eight to stop 94.8% of violations in flight, while anomaly detection costs nothing at runtime and catches only what the logs betray afterwards.</p>
-          <div class="sources"><a href="https://developers.googleblog.com/agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform/">Google Developers Blog</a> &middot; <span class="via">via TLDR AI (Sep 17)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="agent-anomaly-detection">
+            <span class="when">2026-09-17</span>
+            <h4><a href="https://developers.googleblog.com/agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform/">Gemini Enterprise adds anomaly detection over agent logs and traces, in private preview</a></h4>
+            <p>Google put <strong>Agent Anomaly Detection</strong> into private preview on the Gemini Enterprise Agent Platform. It watches deployed agents for anomalous behaviour, working from the logs and traces the platform already collects rather than from a separate instrumentation pass, and flags suspicious activity for review rather than blocking it.</p>
+            <p>The design point is that the signal is the agent&rsquo;s own execution record &mdash; the same artifact used for debugging is now the security surface &mdash; which is cheap to adopt and only as good as what the harness happens to log. Set against <a href="#policy-algebra">the policy-algebra numbers</a>, the two occupy opposite ends of one trade: enforcement pays about one legitimate task in eight to stop 94.8% of violations in flight, while anomaly detection costs nothing at runtime and catches only what the logs betray afterwards.</p>
+            <div class="sources"><a href="https://developers.googleblog.com/agent-anomaly-detection-now-in-private-preview-on-the-gemini-enterprise-agent-platform/">Google Developers Blog</a> &middot; <span class="via">via TLDR AI (Sep 17)</span></div>
+          </article>
 
           <article class="story" id="cursor-projects">
             <span class="when">2026-09-11</span>
@@ -1169,6 +1190,13 @@
         <h3>Multi-agent orchestration</h3>
         <p class="lead">Small teams of agents specialised by role &mdash; product, research, dev, eval &mdash; or by station, and the two venues they coordinate in: the team&rsquo;s own chat channel, or a fixed pipeline. The unsolved part is not dispatch but reconciliation &mdash; many agents each correct about overlapping regions of one codebase. Judge entries on where verification sits.</p>
 
+        <article class="story" id="mirendil-lor">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://x.com/mirendil/status/2115488264312492088">Mirendil&rsquo;s Lor runs research agents for days across hundreds of parallel workers</a></h4>
+          <p>Mirendil, whose first model <a href="model-releases.html#mirendil-fern">Fern</a> shipped on Oct 27, introduced <strong>Lor</strong>, a system whose agents write code, run experiments and iterate <strong>for days across hundreds of parallel workers</strong> to automate AI research. The announcement is a post on X with no results attached, so the scale is the only claim to check.</p>
+          <div class="sources"><a href="https://x.com/mirendil/status/2115488264312492088">Mirendil on X</a> &middot; <span class="via">via TLDR AI (Oct 29)</span></div>
+        </article>
+
         <article class="story" id="anthropic-fold-subagents">
           <span class="when">2026-10-26</span>
           <h4><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic&rsquo;s guide to folding planners, routers and specialist subagents back into one main loop</a></h4>
@@ -1184,16 +1212,16 @@
           <div class="sources"><a href="https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
         </article>
 
-        <article class="story" id="meta-thin-orchestrator">
-          <span class="when">2026-10-19</span>
-          <h4><a href="https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/">Meta&rsquo;s thin orchestrator routes work to specialised agents and does none of the domain work itself</a></h4>
-          <p>Meta Engineering described the <strong>thin orchestrator</strong> behind its production agents: a router that assigns a workflow to specialised agents and performs no domain work of its own, which Meta says made the system more reliable than a router that also reasoned about the task.</p>
-          <p>It is an architectural answer to this section&rsquo;s dispatch question, with reconciliation left where it was; the summary carries no reliability figure, so what the post has to show is how a failure in a specialist is detected and retried without the router taking the work back.</p>
-          <div class="sources"><a href="https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/">Meta Engineering</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="meta-thin-orchestrator">
+            <span class="when">2026-10-19</span>
+            <h4><a href="https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/">Meta&rsquo;s thin orchestrator routes work to specialised agents and does none of the domain work itself</a></h4>
+            <p>Meta Engineering described the <strong>thin orchestrator</strong> behind its production agents: a router that assigns a workflow to specialised agents and performs no domain work of its own, which Meta says made the system more reliable than a router that also reasoned about the task.</p>
+            <p>It is an architectural answer to this section&rsquo;s dispatch question, with reconciliation left where it was; the summary carries no reliability figure, so what the post has to show is how a failure in a specialist is detected and retried without the router taking the work back.</p>
+            <div class="sources"><a href="https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/">Meta Engineering</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
+          </article>
 
           <article class="story" id="gemini-argon-minecraft">
             <span class="when">2026-10-16</span>
@@ -1406,7 +1434,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#goose-dapr-durable-execution">Dapr durable execution lets a goose agent survive a crash mid-plan without replaying finished turns</a></span></li>
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#salesforce-agent-fabric">Salesforce Agent Fabric adds evaluations, spending controls and a triggered kill switch, GA in January 2027</a></span></li>
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#mirendil-lor">Mirendil&rsquo;s Lor runs research agents for days across hundreds of parallel workers</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#glasser-data-api">Glasser lets agents buy premium data per API call, across 2,000+ endpoints from more than 80 providers</a></span></li>
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#microsoft-copilot-harness">Microsoft offers the Copilot harness behind Copilot Code, Studio and GitHub Copilot through Foundry</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#harness-cost-study-shandong">Shandong University: Claude Code costs up to three times more than mini-SWE-agent for statistically equivalent success</a></span></li>
         <li><span class="date">2026-10-27</span><span class="label"><a href="#pomerado">Pomerado turns a website into an API or MCP tool in about 30 minutes, claiming up to 1,000&times; lower cost than a browser agent</a></span></li>
         <li><span class="date">2026-10-26</span><span class="label"><a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0 lets agents resume code execution after a deploy or crash and pause for outside approval</a></span></li>

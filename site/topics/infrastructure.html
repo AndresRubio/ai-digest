@@ -30,10 +30,11 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-10-29</div>
+      <div class="meta">Last updated: 2026-10-30</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 29 addition puts agents on the serving bill itself. Decagon&rsquo;s <a href="#decagon-autoresearch-inference">AutoResearch</a> agents diagnose its inference bottlenecks, test changes against replayed production traffic and report up to 2.5&times; more throughput inside the latency budget, from quantization, scheduling, engine patches and speculative decoding. Each change still waits for a human to approve it, and the figure comes from Decagon&rsquo;s own traffic with no baseline published.</p>
         <p>The Oct 28 cycle spread across four sections. <a href="#pg-pinecone">pg_pinecone</a> puts Pinecone&rsquo;s compact-summary index inside Postgres as an Apache 2.0 extension, 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB on a million 768-dimension vectors and 1.3 ms against 1.7 at 0.95 recall, vendor-measured against half-precision pgvector. <a href="#opera-webai">Opera&rsquo;s WebAI</a> proposes the browser itself as the model host, sites calling local open models opt-in with prompts never leaving the device. The <a href="#macbook-pro-m6">M6 MacBook Pro</a> moves the local ceiling again, Neural Accelerators per GPU core and a claimed 25% faster local prompt processing under a 32 GB cap, and <a href="#epoch-ai-chip-imports">Epoch&rsquo;s Chip Imports explorer</a> gives the compute-supply question its first public import series.</p>
         <p>The Oct 27 cycle had one retrieval entry: <a href="#turbopuffer-v3">turbopuffer v3</a> will move its search engine to fully vectorized query execution, the batch-at-a-time design of analytical databases, when it reaches production later this year. It is an architecture post with no latency or cost figures yet, and those are what will show whether vectorized execution changes the price of a retrieval read.</p>
         <p>The Oct 25 to 26 cycle was the cost of what a model re-reads and what a GPU leaves unused. Tsinghua&rsquo;s <a href="#tsinghua-akv">AKV</a> drops stale tool output from the KV cache instead of summarizing it, for 27.7% lower agent cost and 1.7 points higher scores across four benchmarks, and <a href="#tokengate">TokenGate</a> trains a gate that skips document tokens for 1.4&ndash;11.3&times; faster prefill on Qwen3-1.7B, at the price of a gate tied to one backbone. At the hardware end, <a href="#gpu-unlock">gpu-unlock</a> claims to double RTX 4090 FP16 throughput by lifting software limits, and a <a href="#gpu-idle-survey">survey of 218 companies</a> finds 79% leaving GPUs idle at least half the time while 70% plan new platforms.</p>
@@ -105,7 +106,7 @@
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">10</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">5</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
-          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">13</span></a></li>
+          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">14</span></a></li>
           <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">4</span></a></li>
           <li><a href="#tokenization-throughput">Tokenization throughput <span class="n">1</span></a></li>
           <li><a href="#gpu-programming-references">GPU programming references <span class="n">1</span></a></li>
@@ -999,6 +1000,13 @@
         <h3>Enterprise deployment patterns</h3>
         <p class="lead">An AI bill is engineered down rather than negotiated down. Routing, a gateway that can refuse, an hour-long cache and a cheaper tier appear here, beside agents that generate their own retries and quintuple an invoice. Under them sit the deployment choices (self-host, call, or call a host that cannot read the request) and what each hop costs in latency.</p>
 
+        <article class="story" id="decagon-autoresearch-inference">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://x.com/DecagonAI/status/2115511110120120437">Decagon&rsquo;s AutoResearch agents tune its inference stack for up to 2.5&times; throughput, with a human approving each change</a></h4>
+          <p>Decagon runs <strong>AutoResearch</strong> agents that diagnose inference bottlenecks, test optimisations against replays of production traffic and keep their findings across experiments. It reports throughput gains of <strong>up to 2.5&times;</strong> within its endpoint latency requirements, from quantization, scheduling, engine patches and speculative decoding, and production changes still need human approval. The figure is Decagon&rsquo;s own, on its own traffic, published as a post on X.</p>
+          <div class="sources"><a href="https://x.com/DecagonAI/status/2115511110120120437">Decagon on X</a> &middot; <span class="via">via TLDR AI (Oct 29)</span></div>
+        </article>
+
         <article class="story" id="gpu-idle-survey">
           <span class="when">2026-10-26</span>
           <h4><a href="https://venturebeat.com/infrastructure/ai-bubble-update-79-of-companies-say-their-gpus-sit-idle-at-least-half-the-time-yet-most-plan-new-ai-platforms">Survey of 218 AI companies: 79% leave GPUs idle at least half the time, 70% still plan new platforms</a></h4>
@@ -1013,16 +1021,16 @@
           <div class="sources"><a href="https://cohere.com/blog/introducing-confidential-computing-on-cohere-model-vault">Cohere</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
         </article>
 
-        <article class="story" id="liquid-ripl">
-          <span class="when">2026-10-22</span>
-          <h4><a href="https://www.marktechpost.com/2026/10/22/liquid-ai-ripl-real-time-inference-engine/">Liquid AI&rsquo;s RIPL serves LFM2.5-1.2B at 34.6 ms p95 under 1,000 requests a second on one B200</a></h4>
-          <p>Liquid AI introduced <strong>RIPL</strong>, a serving engine for live request paths such as search ranking and fraud checks, aimed at LLM answers in under 50 ms. On one B200 it reports LFM2.5-1.2B at <strong>34.6 ms p95</strong> under 1,000 requests a second against 498 ms for Qwen3.5-0.8B on vLLM, and says Shopify already runs LFMs at under 20 ms in production search.</p>
-          <p>RIPL is closed and enterprise-only, and the 50 ms target slips on longer requests, so the comparison sets a vendor&rsquo;s engine on its own model against an open server on a different one.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/10/22/liquid-ai-ripl-real-time-inference-engine/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (10)</summary>
+          <summary>Earlier in this section (11)</summary>
+
+          <article class="story" id="liquid-ripl">
+            <span class="when">2026-10-22</span>
+            <h4><a href="https://www.marktechpost.com/2026/10/22/liquid-ai-ripl-real-time-inference-engine/">Liquid AI&rsquo;s RIPL serves LFM2.5-1.2B at 34.6 ms p95 under 1,000 requests a second on one B200</a></h4>
+            <p>Liquid AI introduced <strong>RIPL</strong>, a serving engine for live request paths such as search ranking and fraud checks, aimed at LLM answers in under 50 ms. On one B200 it reports LFM2.5-1.2B at <strong>34.6 ms p95</strong> under 1,000 requests a second against 498 ms for Qwen3.5-0.8B on vLLM, and says Shopify already runs LFMs at under 20 ms in production search.</p>
+            <p>RIPL is closed and enterprise-only, and the 50 ms target slips on longer requests, so the comparison sets a vendor&rsquo;s engine on its own model against an open server on a different one.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/10/22/liquid-ai-ripl-real-time-inference-engine/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
+          </article>
 
           <article class="story" id="djev-cloud-run">
             <span class="when">2026-09-23</span>
@@ -1172,6 +1180,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#decagon-autoresearch-inference">Decagon&rsquo;s AutoResearch agents tune its inference stack for up to 2.5&times; throughput, with a human approving each change</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#pg-pinecone">pg_pinecone puts Pinecone&rsquo;s index in a Postgres extension: 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#epoch-ai-chip-imports">Epoch AI&rsquo;s Chip Imports explorer estimates AI compute arrivals by country since 2022</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#macbook-pro-m6">The M6 MacBook Pro adds Neural Accelerators per GPU core, with local LLM prompt processing up to 25% faster</a></span></li>
