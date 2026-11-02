@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-10-30</div>
+      <div class="meta">Last updated: 2026-11-02</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 30 to Nov 2 cycle is about where the harness runs and who does its coordinating, and every number in it is the builder&rsquo;s own. Factory&rsquo;s <a href="#factory-droid-1-0">Droid 1.0</a> has the model write a program that calls its tools, so one request drives hundreds of tool calls; the base prompt shrinks 37% to 13,055 tokens, only 2 tool definitions load up front instead of 11, and it reports 65.2% on Terminal-Bench 4 with Opus 5.5. Vercel&rsquo;s <a href="#vercel-fx-adapter">fx adapter</a> moves the harness onto the host through libfx, apart from the sandbox, which changes where the loop and its credentials sit relative to the environment the agent works in; the changelog entry gives no figures. DeepSeek&rsquo;s <a href="#dsh-superagent">dsh-superagent</a> splits GitHub requests across parallel workers, each in its own session and directory, and DeepSeek&rsquo;s simulation puts p95 completion at 15.7 minutes against 29.5. It is v0.1.0 with a single commit and labelled a research prototype. Vercel Labs&rsquo; <a href="#vercel-agent-desktop">agent-desktop</a> hands an agent the accessibility tree of a native app instead of screenshots and claims 78% to 96% fewer tokens on dense Electron apps. The common thread is moving work out of the model&rsquo;s context and into code around it, with no independent benchmark behind any of the four.</p>
+        <p>Two items sit beside that thread without sharing it. Raindrop&rsquo;s <a href="#raindrop-swarm-leadership">swarm study</a> ran eight agents from four models on simulated outages with no designated leader, and found that the underlying model and the position of an agent&rsquo;s name in the prompt list predicted who took charge. It is a simulation, so it shows that small configuration choices steer coordination and says little about production swarms. Natural&rsquo;s <a href="#natural-direct">Direct</a> lets an agent choose between ACH, wire and realtime payment rails, with paper checks listed as coming soon. The announcement as relayed says nothing about approval controls, limits or fees, which an engineer would need before handing an agent that choice.</p>
         <p>The Oct 28 and 29 cycle is the plumbing under long-running agents. Microsoft now offers the <a href="#microsoft-copilot-harness">Copilot harness</a> that runs Copilot Code, Studio and GitHub Copilot through Foundry, another vendor selling its production harness rather than keeping it as glue. An open-source <a href="#goose-dapr-durable-execution">goose and Dapr integration</a> checkpoints each finished turn, so a crashed agent resumes without replaying model calls, though side effects inside an interrupted turn still need idempotency. Salesforce&rsquo;s <a href="#salesforce-agent-fabric">Agent Fabric</a> puts evaluations in beta in November and a triggered kill switch on general availability in January 2027, and Mirendil&rsquo;s <a href="#mirendil-lor">Lor</a> claims research agents running for days across hundreds of parallel workers, with no results attached yet.</p>
         <p>The Oct 28 addition is a payment rail for an agent&rsquo;s data. <a href="#glasser-data-api">Glasser</a> lets agents buy premium data per API call across more than 2,000 endpoints from over 80 providers, which replaces subscriptions held by the agent&rsquo;s owner with spend the agent incurs as it works; the dependency lands on the aggregator, and the only public page is a press report.</p>
         <p>The Oct 26 to 27 cycle was about what the scaffolding costs. A Shandong University study, reported by VentureBeat, found <a href="#harness-cost-study-shandong">Claude Code and mini-SWE-agent</a> statistically equivalent on nearly 500 coding tasks while Claude Code cost up to three times as much, mostly because it starts with over 16,000 tokens of context against 829. <a href="#pomerado">Pomerado</a> attacks browser-agent cost from the other side, compiling a site that has no API into a deterministic integration and claiming up to 1,000 times lower cost, and <a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0</a> adds resume-after-crash and pause-for-approval to agent code execution.</p>
-        <p>The Oct 26 cycle was about how much structure an agent needs. <a href="#rsihub">RSIHub</a> re-implements four agent-evolution methods on shared infrastructure and finds a best gain of 13.5 points pass@1 but rankings that flip across settings and gains that do not always reach held-out tasks, which is the comparison single-method papers never run. Anthropic&rsquo;s <a href="#anthropic-fold-subagents">subagent guide</a> argues the other way from most orchestration entries here: fold planners and routers back into one loop as skills and tools, and keep separate subagents only for parallel work, fresh context or an overloaded toolset.</p>
-        <p>The Oct 23 to 25 cycle moved two boundaries out of the harness: the credential and the coordinator. <a href="#1password-for-agents">1Password for Agents</a> has the agent request a login, the user approve it and the password manager fill the site, so the secret never reaches the model, with Claude Duet, Dots, Grok Bot and Muse among the listed clients. Microsoft&rsquo;s <a href="#agensh">Agensh</a> drops the lead agent altogether: up to 1,024 workers claim sub-tasks on a shared board and merge into one Git repo, and pandoc rose from 33.89% with one agent to 55.06% with 1,024, at a token cost Microsoft does not disclose.</p>
-                <details>
+        <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 26 cycle was about how much structure an agent needs. <a href="#rsihub">RSIHub</a> re-implements four agent-evolution methods on shared infrastructure and finds a best gain of 13.5 points pass@1 but rankings that flip across settings and gains that do not always reach held-out tasks, which is the comparison single-method papers never run. Anthropic&rsquo;s <a href="#anthropic-fold-subagents">subagent guide</a> argues the other way from most orchestration entries here: fold planners and routers back into one loop as skills and tools, and keep separate subagents only for parallel work, fresh context or an overloaded toolset.</p>
+          <p>The Oct 23 to 25 cycle moved two boundaries out of the harness: the credential and the coordinator. <a href="#1password-for-agents">1Password for Agents</a> has the agent request a login, the user approve it and the password manager fill the site, so the secret never reaches the model, with Claude Duet, Dots, Grok Bot and Muse among the listed clients. Microsoft&rsquo;s <a href="#agensh">Agensh</a> drops the lead agent altogether: up to 1,024 workers claim sub-tasks on a shared board and merge into one Git repo, and pandoc rose from 33.89% with one agent to 55.06% with 1,024, at a token cost Microsoft does not disclose.</p>
           <p>Two results put a price on the layers around the model. The <a href="#memorytax">MemoryTax</a> study finds extracted memory helps a weak model and not a strong one: Opus 5.5 searching raw history under the Pi harness answered 99% of questions for $6.95 against 95% for full context at $17.84, and the model that writes a memory caps every model that reads it. Simular&rsquo;s <a href="#agent-s4">Agent S4</a> rewrites its own desktop tool interfaces and lifts Qwen3.8-27B to 21.3% on OSWorld V2, 3.8 times its fixed-interface score. Anthropic also handed the <a href="#agent-skills-aaif">Agent Skills standard</a> to the Agentic AI Foundation, so SKILL.md now sits under vendor-neutral governance.</p>
           <p>The Oct 22 cycle was a lab&rsquo;s own always-on agent and a screen model small enough to live on the phone. Anthropic&rsquo;s <a href="#claude-duet">Claude Duet</a> is a research preview of a proactive Opus 5.5 agent that briefs the user each morning from email, calendar and work apps, keeps working on its own cloud computer after they log off, reaches more than 6,000 apps and can buy through Link and Shop Pay, with stock trades and transfers blocked even on approval; it is the third always-on consumer agent in the computer-use section after dots and Muse, with no task benchmark or price. Opposable&rsquo;s <a href="#gui-owl-1-5">GUI-Owl 1.5</a> is a 2B model that reads an Android screen through the accessibility service and operates any other app from the device itself, the local section&rsquo;s data-sits-here claim with no success rate yet. <a href="#muse-downloads">Muse</a> gained a user count, over 10 million, with a quarter of engaged users shopping at an average above $200, all Meta&rsquo;s figures.</p>
           <p>The Oct 21 cycle was harnesses described by the people running them, and a memory with a multiplier. Ramp&rsquo;s <a href="#ramp-laminar">Laminar</a> is an in-house managed-agents platform, compaction, tool interfaces, steering, subagents, multiplayer chat and observability, built in six weeks with its code written entirely by agents, and Ramp still keeps engineers on call for it: the build side of the harness section with the ownership stated. Vercel&rsquo;s <a href="#vercel-durable-harness">durable-harness</a> runs Pi, OpenCode, Codex and Claude Code so a session survives a crash mid-turn and resumes from the log, the persistent-state primitive applied across four harnesses rather than built into one. Databricks&rsquo; <a href="#memcurrent">MemCurrent</a> claims to triple an agent&rsquo;s pass rate over no memory while making it faster and cheaper, against a baseline of nothing and with what is stored unstated.</p>
@@ -103,16 +105,16 @@
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">13</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">23</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">31</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">33</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">16</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">13</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
-          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">14</span></a></li>
+          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">15</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">8</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
-          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">19</span></a></li>
-          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">11</span></a></li>
+          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">21</span></a></li>
+          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">12</span></a></li>
         </ul>
       </nav>
 
@@ -270,7 +272,7 @@
             <span class="when">2026-09-23</span>
             <h4><a href="https://github.com/superdesigndev/treg">treg gives agents one endpoint for 3,000+ tools with credentials held server-side</a></h4>
             <p><strong>treg</strong> is a self-hostable registry that lets agents call more than <strong>3,000 catalogued endpoints</strong> and team-owned tools through one base URL and token, with credentials kept on the server rather than in the agent&rsquo;s context. It aggregates across vendors, so the dependency it creates is substitutable &mdash; the cheap side of this section&rsquo;s distinction.</p>
-            <div class="sources"><a href="https://github.com/superdesigndev/treg">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
+            <div class="sources"><a href="https://github.com/superdesigndev/treg">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23), The Code (Oct 30)</span></div>
           </article>
 
           <article class="story" id="google-ax">
@@ -405,6 +407,21 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="factory-droid-1-0">
+          <span class="when">2026-10-30</span>
+          <h4><a href="https://factory.com/news/frontier-harness">Factory&rsquo;s Droid 1.0 has the model write a program that calls its tools: 65.2% on Terminal-Bench 4 with Opus 5.5</a></h4>
+          <p>Factory rebuilt its <strong>Droid</strong> coding harness so the model writes a program that runs its tools, letting <strong>one model request drive hundreds of tool calls</strong>. The base prompt shrinks 37% to <strong>13,055 tokens</strong>, and only <strong>2 tool definitions</strong> load up front instead of 11.</p>
+          <p>With Opus 5.5 it scores <strong>65.2% on Terminal-Bench 4</strong>; with GPT-6.1 Sol it takes about 10% longer per passed task than Codex. Factory says it tunes the harness across many models because tuning against one makes progress hard to tell apart from fitting that model&rsquo;s quirks. All figures are Factory&rsquo;s.</p>
+          <div class="sources"><a href="https://factory.com/news/frontier-harness">Factory</a> &middot; <a href="https://www.marktechpost.com/2026/10/31/factory-droid-1-0-frontier-harness/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 30), MarkTechPost (Nov 1)</span></div>
+        </article>
+
+        <article class="story" id="vercel-fx-adapter">
+          <span class="when">2026-10-30</span>
+          <h4><a href="https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox">Vercel&rsquo;s fx adapter moves the agent harness onto the host via libfx, apart from the sandbox</a></h4>
+          <p>Vercel&rsquo;s <strong>fx adapter</strong> now runs the agent harness on the host through <strong>libfx</strong>, splitting host-side operations from what executes in the sandbox. That changes where the loop and its credentials sit relative to the isolated environment the agent works in. The changelog entry is short and gives no performance figures.</p>
+          <div class="sources"><a href="https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox">Vercel changelog</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
+        </article>
+
         <article class="story" id="microsoft-copilot-harness">
           <span class="when">2026-10-28</span>
           <h4><a href="https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/">Microsoft offers the Copilot harness behind Copilot Code, Studio and GitHub Copilot through Foundry</a></h4>
@@ -412,23 +429,23 @@
           <div class="sources"><a href="https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/">Microsoft</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29)</span></div>
         </article>
 
-        <article class="story" id="harness-cost-study-shandong">
-          <span class="when">2026-10-27</span>
-          <h4><a href="https://venturebeat.com/orchestration/a-coding-agents-harness-can-triple-its-cost-without-making-it-more-accurate-study-finds">Shandong University: Claude Code costs up to three times more than mini-SWE-agent for statistically equivalent success</a></h4>
-          <p>A Shandong University study ran <strong>Claude Code</strong>, OpenCode and <strong>mini-SWE-agent</strong> on nearly 500 coding tasks and found Claude Code and the much simpler mini-SWE-agent statistically equivalent on success, while the more elaborate framework cost up to three times as much. Most of the gap is overhead: Claude Code starts with more than <strong>16,000 tokens</strong> of context against <strong>829</strong> for mini-SWE-agent. The coverage is VentureBeat&rsquo;s and the issue did not link the paper, so the task set and the equivalence test are still to be read at source.</p>
-          <div class="sources"><a href="https://venturebeat.com/orchestration/a-coding-agents-harness-can-triple-its-cost-without-making-it-more-accurate-study-finds">VentureBeat</a> (coverage of the study) &middot; <span class="via">via Forward Future (Oct 27)</span></div>
-        </article>
-
-        <article class="story" id="ramp-laminar">
-          <span class="when">2026-10-21</span>
-          <h4><a href="https://builders.ramp.com/post/building-laminar">Ramp&rsquo;s Laminar is an in-house agent harness built in six weeks, its code written entirely by agents</a></h4>
-          <p>Ramp described <strong>Laminar</strong>, the managed-agents platform under its agentic products: secure conversation-history storage, session compaction, standard interfaces for tool calling, message queuing and steering, subagents, multiplayer chat and observability tooling. The first version was built in <strong>six weeks</strong> by a small team of experienced engineers who steered the agents, and Ramp says its code was generated entirely by agents on the strongest models available at the time.</p>
-          <p>It is the build side of this section&rsquo;s argument with the ownership stated: building in-house got cheaper, and Ramp still needs engineers on call to keep the platform healthy and to decide what product teams need. No cost, reliability or usage figure is given.</p>
-          <div class="sources"><a href="https://builders.ramp.com/post/building-laminar">Ramp</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (28)</summary>
+          <summary>Earlier in this section (30)</summary>
+
+          <article class="story" id="harness-cost-study-shandong">
+            <span class="when">2026-10-27</span>
+            <h4><a href="https://venturebeat.com/orchestration/a-coding-agents-harness-can-triple-its-cost-without-making-it-more-accurate-study-finds">Shandong University: Claude Code costs up to three times more than mini-SWE-agent for statistically equivalent success</a></h4>
+            <p>A Shandong University study ran <strong>Claude Code</strong>, OpenCode and <strong>mini-SWE-agent</strong> on nearly 500 coding tasks and found Claude Code and the much simpler mini-SWE-agent statistically equivalent on success, while the more elaborate framework cost up to three times as much. Most of the gap is overhead: Claude Code starts with more than <strong>16,000 tokens</strong> of context against <strong>829</strong> for mini-SWE-agent. The coverage is VentureBeat&rsquo;s and the issue did not link the paper, so the task set and the equivalence test are still to be read at source.</p>
+            <div class="sources"><a href="https://venturebeat.com/orchestration/a-coding-agents-harness-can-triple-its-cost-without-making-it-more-accurate-study-finds">VentureBeat</a> (coverage of the study) &middot; <span class="via">via Forward Future (Oct 27)</span></div>
+          </article>
+
+          <article class="story" id="ramp-laminar">
+            <span class="when">2026-10-21</span>
+            <h4><a href="https://builders.ramp.com/post/building-laminar">Ramp&rsquo;s Laminar is an in-house agent harness built in six weeks, its code written entirely by agents</a></h4>
+            <p>Ramp described <strong>Laminar</strong>, the managed-agents platform under its agentic products: secure conversation-history storage, session compaction, standard interfaces for tool calling, message queuing and steering, subagents, multiplayer chat and observability tooling. The first version was built in <strong>six weeks</strong> by a small team of experienced engineers who steered the agents, and Ramp says its code was generated entirely by agents on the strongest models available at the time.</p>
+            <p>It is the build side of this section&rsquo;s argument with the ownership stated: building in-house got cheaper, and Ramp still needs engineers on call to keep the platform healthy and to decide what product teams need. No cost, reliability or usage figure is given.</p>
+            <div class="sources"><a href="https://builders.ramp.com/post/building-laminar">Ramp</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
+          </article>
 
           <article class="story" id="perplexity-space-open-source">
             <span class="when">2026-10-16</span>
@@ -908,6 +925,14 @@
         <h3>Browser &amp; computer-use agents</h3>
         <p class="lead">Four ways an agent drives a browser: infer the page from pixels, call actions a cooperating site publishes, borrow a profile that is already logged in, or compile the site into a deterministic API once. Open-weights families such as Microsoft Fara1.5 (4B/9B/27B, reported to beat OpenAI Operator and Gemini 2.5 on certain tasks) make the proprietary browsing agents substitutable.</p>
 
+        <article class="story" id="vercel-agent-desktop">
+          <span class="when">2026-10-31</span>
+          <h4><a href="https://github.com/vercel-labs/agent-desktop">Vercel Labs&rsquo; agent-desktop drives native apps through the accessibility tree, with no vision model</a></h4>
+          <p><strong>agent-desktop</strong> is a Rust CLI and C library that gives an agent a JSON snapshot of an app&rsquo;s accessibility tree, with a stable ref for every actionable element, so any shell-capable coding agent (Claude Code, Codex) can click a ref instead of a pixel. It runs in the background without taking the cursor, on macOS, Windows and Linux on plain CPU, under <strong>Apache-2.0</strong>.</p>
+          <p>Vercel reports <strong>78% to 96% fewer tokens</strong> than screenshot loops on dense Electron apps. That is the builder&rsquo;s own figure, and there is no independent computer-use benchmark yet.</p>
+          <div class="sources"><a href="https://github.com/vercel-labs/agent-desktop">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/31/vercel-labs-agent-desktop-computer-use/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 1), The Code (Nov 2), AlphaSignal (Nov 2)</span></div>
+        </article>
+
         <article class="story" id="pomerado">
           <span class="when">2026-10-27</span>
           <h4><a href="https://pomerado.ai/">Pomerado turns a website into an API or MCP tool in about 30 minutes, claiming up to 1,000&times; lower cost than a browser agent</a></h4>
@@ -923,16 +948,16 @@
           <div class="sources"><a href="https://arxiv.org/abs/2610.28601">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
         </article>
 
-        <article class="story" id="claude-duet">
-          <span class="when">2026-10-22</span>
-          <h4><a href="https://claude.com/resources/articles/claude-duet">Claude Duet: Anthropic&rsquo;s always-on Opus 5.5 agent reaches 6,000+ apps and can buy through Link and Shop Pay, with trades and transfers blocked</a></h4>
-          <p>Anthropic unveiled <strong>Claude Duet</strong>, a research preview of a proactive agent on Opus 5.5 that watches connected apps, prioritises tasks, sends a morning briefing drawn from email, calendar and work apps, and keeps working on its own cloud computer after the user logs off, messaging when it needs a decision. It connects to <strong>more than 6,000 outside apps</strong>, inherits the skills, memory and connectors already on the user&rsquo;s Claude account, and can make purchases through Stripe&rsquo;s Link and Shopify&rsquo;s Shop Pay; it shows its plan before acting, and some actions, trading stocks and moving money between accounts, stay blocked even with approval. The waitlist is open to US Pro and Max subscribers.</p>
-          <p>It is Anthropic&rsquo;s answer to OpenAI&rsquo;s <a href="#openai-dots">dots</a> and Meta&rsquo;s <a href="#muse-downloads">Muse</a>, built for work rather than errands by TLDR&rsquo;s account, and the hard block on money movement is a narrower permission model than dots&rsquo; custom rules. No task benchmark, price or incident figure is given.</p>
-          <div class="sources"><a href="https://claude.com/resources/articles/claude-duet">Anthropic</a> &middot; <a href="https://claude.com/product/claude-duet">Waitlist</a> &middot; <span class="via">via TLDR AI (Oct 22), TLDR (Oct 22), The Code (Oct 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (11)</summary>
+          <summary>Earlier in this section (12)</summary>
+
+          <article class="story" id="claude-duet">
+            <span class="when">2026-10-22</span>
+            <h4><a href="https://claude.com/resources/articles/claude-duet">Claude Duet: Anthropic&rsquo;s always-on Opus 5.5 agent reaches 6,000+ apps and can buy through Link and Shop Pay, with trades and transfers blocked</a></h4>
+            <p>Anthropic unveiled <strong>Claude Duet</strong>, a research preview of a proactive agent on Opus 5.5 that watches connected apps, prioritises tasks, sends a morning briefing drawn from email, calendar and work apps, and keeps working on its own cloud computer after the user logs off, messaging when it needs a decision. It connects to <strong>more than 6,000 outside apps</strong>, inherits the skills, memory and connectors already on the user&rsquo;s Claude account, and can make purchases through Stripe&rsquo;s Link and Shopify&rsquo;s Shop Pay; it shows its plan before acting, and some actions, trading stocks and moving money between accounts, stay blocked even with approval. The waitlist is open to US Pro and Max subscribers.</p>
+            <p>It is Anthropic&rsquo;s answer to OpenAI&rsquo;s <a href="#openai-dots">dots</a> and Meta&rsquo;s <a href="#muse-downloads">Muse</a>, built for work rather than errands by TLDR&rsquo;s account, and the hard block on money movement is a narrower permission model than dots&rsquo; custom rules. No task benchmark, price or incident figure is given.</p>
+            <div class="sources"><a href="https://claude.com/resources/articles/claude-duet">Anthropic</a> &middot; <a href="https://claude.com/product/claude-duet">Waitlist</a> &middot; <span class="via">via TLDR AI (Oct 22), TLDR (Oct 22), The Code (Oct 22)</span></div>
+          </article>
 
           <article class="story" id="cua-spaces-sdk">
             <span class="when">2026-10-21</span>
@@ -1190,6 +1215,21 @@
         <h3>Multi-agent orchestration</h3>
         <p class="lead">Small teams of agents specialised by role &mdash; product, research, dev, eval &mdash; or by station, and the two venues they coordinate in: the team&rsquo;s own chat channel, or a fixed pipeline. The unsolved part is not dispatch but reconciliation &mdash; many agents each correct about overlapping regions of one codebase. Judge entries on where verification sits.</p>
 
+        <article class="story" id="dsh-superagent">
+          <span class="when">2026-11-01</span>
+          <h4><a href="https://github.com/deepseek-ai/dsh-superagent-prototype">DeepSeek&rsquo;s dsh-superagent splits GitHub requests across parallel workers, p95 15.7 minutes from 29.5</a></h4>
+          <p>DeepSeek open-sourced <strong>dsh-superagent</strong>, a router-worker coding agent packaged as a bundle for DeepSeek Harness. It watches a GitHub repository (optionally Feishu), opens work items, runs each in its own session and directory, and replies in the original conversation; it acts only when asked or when a team-written rule allows it.</p>
+          <p>In DeepSeek&rsquo;s own simulation, p95 task completion fell to <strong>15.7 minutes from 29.5</strong>. It is <strong>MIT-licensed</strong> TypeScript, but v0.1.0 with a single commit and labelled a research prototype.</p>
+          <div class="sources"><a href="https://github.com/deepseek-ai/dsh-superagent-prototype">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/11/01/deepseek-dsh-superagent-router-worker-coding-agent/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 1), TLDR AI (Nov 2)</span></div>
+        </article>
+
+        <article class="story" id="raindrop-swarm-leadership">
+          <span class="when">2026-10-30</span>
+          <h4><a href="https://www.raindrop.ai/blog/agent-swarm-leadership/">Raindrop: leaderless agent swarms pick a leader by underlying model and by order in the prompt</a></h4>
+          <p>Raindrop ran <strong>eight agents drawn from four models</strong> on simulated outages with no designated leader and recorded who took charge. Two things predicted leadership: the agent&rsquo;s underlying model, and the position of its name in the prompt&rsquo;s list. It is a simulation, so it shows that small configuration choices steer coordination, not how swarms behave in production.</p>
+          <div class="sources"><a href="https://www.raindrop.ai/blog/agent-swarm-leadership/">Raindrop</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
+        </article>
+
         <article class="story" id="mirendil-lor">
           <span class="when">2026-10-29</span>
           <h4><a href="https://x.com/mirendil/status/2115488264312492088">Mirendil&rsquo;s Lor runs research agents for days across hundreds of parallel workers</a></h4>
@@ -1197,23 +1237,23 @@
           <div class="sources"><a href="https://x.com/mirendil/status/2115488264312492088">Mirendil on X</a> &middot; <span class="via">via TLDR AI (Oct 29)</span></div>
         </article>
 
-        <article class="story" id="anthropic-fold-subagents">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic&rsquo;s guide to folding planners, routers and specialist subagents back into one main loop</a></h4>
-          <p>Anthropic published guidance arguing most agent systems need fewer subagents than they have: planners, routers and specialist agents can usually become skills and tools inside one main loop. It keeps separate subagents for three cases, parallel work, a need for fresh context, and an overloaded toolset. It is a design guide with no measured comparison.</p>
-          <div class="sources"><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic</a> &middot; <span class="via">via The Code (Oct 26)</span></div>
-        </article>
-
-        <article class="story" id="agensh">
-          <span class="when">2026-10-24</span>
-          <h4><a href="https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/">Microsoft&rsquo;s Agensh runs up to 1,024 coding agents with no orchestrator, lifting pandoc from 33.89% to 55.06%</a></h4>
-          <p>Microsoft Research open-sourced <strong>Agensh</strong> under MIT, a harness for large teams of coding agents with no lead agent: each worker runs the same five-step loop (gather context, claim, act, verify, merge), claims its own sub-task and merges into one shared Git repo on Gitea, with Mattermost for messages and a shared board of typed notes such as CLAIM and FAIL. On the five hardest ProgramBench tasks with GPT-5.6-sol the mean pass rate rose from <strong>19.31% with one agent to 28.78% with 128</strong>, and 1,024 agents took pandoc from 33.89% to 55.06%.</p>
-          <p>Token cost is not disclosed, going from one agent to eight added only 1.37 points, and the 1,024-agent run used 16 nodes of 64 agents, so the gain is headcount bought at a price nobody has stated. Its answer to this section&rsquo;s reconciliation problem is a shared repo and a claim board in place of a coordinator.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (16)</summary>
+          <summary>Earlier in this section (18)</summary>
+
+          <article class="story" id="anthropic-fold-subagents">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic&rsquo;s guide to folding planners, routers and specialist subagents back into one main loop</a></h4>
+            <p>Anthropic published guidance arguing most agent systems need fewer subagents than they have: planners, routers and specialist agents can usually become skills and tools inside one main loop. It keeps separate subagents for three cases, parallel work, a need for fresh context, and an overloaded toolset. It is a design guide with no measured comparison.</p>
+            <div class="sources"><a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic</a> &middot; <span class="via">via The Code (Oct 26)</span></div>
+          </article>
+
+          <article class="story" id="agensh">
+            <span class="when">2026-10-24</span>
+            <h4><a href="https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/">Microsoft&rsquo;s Agensh runs up to 1,024 coding agents with no orchestrator, lifting pandoc from 33.89% to 55.06%</a></h4>
+            <p>Microsoft Research open-sourced <strong>Agensh</strong> under MIT, a harness for large teams of coding agents with no lead agent: each worker runs the same five-step loop (gather context, claim, act, verify, merge), claims its own sub-task and merges into one shared Git repo on Gitea, with Mattermost for messages and a shared board of typed notes such as CLAIM and FAIL. On the five hardest ProgramBench tasks with GPT-5.6-sol the mean pass rate rose from <strong>19.31% with one agent to 28.78% with 128</strong>, and 1,024 agents took pandoc from 33.89% to 55.06%.</p>
+            <p>Token cost is not disclosed, going from one agent to eight added only 1.37 points, and the 1,024-agent run used 16 nodes of 64 agents, so the gain is headcount bought at a price nobody has stated. Its answer to this section&rsquo;s reconciliation problem is a shared repo and a claim board in place of a coordinator.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
+          </article>
 
           <article class="story" id="meta-thin-orchestrator">
             <span class="when">2026-10-19</span>
@@ -1343,6 +1383,13 @@
         <h3>Agentic domain applications</h3>
         <p class="lead">Agentic X as a domain reframing rather than a tooling story: a loop with its own verification and observability, built for one field, instead of a generic coding agent pointed at it. Judge entries on the governor &mdash; a compute budget the agent is held to, or a permission boundary the account enforces.</p>
 
+        <article class="story" id="natural-direct">
+          <span class="when">2026-10-30</span>
+          <h4><a href="https://www.natural.com/blog/direct">Natural Direct lets an agent choose between ACH, wire and realtime payment rails</a></h4>
+          <p>Natural introduced <strong>Direct</strong>, which lets an agent pick among <strong>ACH, wire and realtime</strong> rails for a payment, with paper checks listed as coming soon. The announcement as relayed says nothing about approval controls, limits or fees, which are what an engineer would need before handing an agent the choice.</p>
+          <div class="sources"><a href="https://www.natural.com/blog/direct">Natural</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
+        </article>
+
         <article class="story" id="devin-oncall">
           <span class="when">2026-10-16</span>
           <h4><a href="https://devin.ai/blog/introducing-devin-oncall">Devin Oncall picks up production pages, escalates with a root cause or opens a tested PR, and skips about 60% of repeat investigations</a></h4>
@@ -1359,15 +1406,15 @@
           <div class="sources"><a href="https://aaif.io/blog/i-saw-something-in-mcp-then-i-spent-18-months-building-it">AAIF blog</a> &middot; <span class="via">via AAIF newsletter (Oct 15)</span></div>
         </article>
 
-        <article class="story" id="google-deep-review">
-          <span class="when">2026-10-15</span>
-          <h4><a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Google&rsquo;s Deep Review agent verifies technical documents, starting from computer-science papers</a></h4>
-          <p>Google Research described <strong>Deep Review</strong>, an agentic system built to give rigorous feedback and technical verification on complex documents; it began as a reviewer for computer-science papers and has since been widened to other domains. Input is <strong>PDF or plain text</strong> for now, with multi-file input promised, and Google expects tools like it on both the author and the reviewer side of peer review &mdash; no accuracy or reviewer-agreement figure reached the newsletter.</p>
-          <div class="sources"><a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Google Research</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (9)</summary>
+
+          <article class="story" id="google-deep-review">
+            <span class="when">2026-10-15</span>
+            <h4><a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Google&rsquo;s Deep Review agent verifies technical documents, starting from computer-science papers</a></h4>
+            <p>Google Research described <strong>Deep Review</strong>, an agentic system built to give rigorous feedback and technical verification on complex documents; it began as a reviewer for computer-science papers and has since been widened to other domains. Input is <strong>PDF or plain text</strong> for now, with multi-file input promised, and Google expects tools like it on both the author and the reviewer side of peer review &mdash; no accuracy or reviewer-agreement figure reached the newsletter.</p>
+            <div class="sources"><a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Google Research</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
+          </article>
 
           <article class="story" id="glm-legal">
             <span class="when">2026-10-13</span>
@@ -1428,12 +1475,17 @@
             <p>Hugo Bowne-Anderson&rsquo;s Substack argues data science was always about better decisions rather than faster code, and that AI agents &mdash; paired with causal eval layers and chat-driven dashboards &mdash; are how the field reconnects with that original goal. It frames &ldquo;agentic data science&rdquo; as a domain-specific reframing rather than a coding-agent application, and the pattern generalises: domain-specific agent loops with their own verification and observability rather than generic coding agents pointed at domain problems.</p>
             <div class="sources"><span class="via">via Vanishing Gradients (Hugo Bowne-Anderson Substack) &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-01</span><span class="label"><a href="#dsh-superagent">DeepSeek&rsquo;s dsh-superagent splits GitHub requests across parallel workers, p95 15.7 minutes from 29.5</a></span></li>
+        <li><span class="date">2026-10-31</span><span class="label"><a href="#vercel-agent-desktop">Vercel Labs&rsquo; agent-desktop drives native apps through the accessibility tree, with no vision model</a></span></li>
+        <li><span class="date">2026-10-30</span><span class="label"><a href="#factory-droid-1-0">Factory&rsquo;s Droid 1.0 has the model write a program that calls its tools: 65.2% on Terminal-Bench 4 with Opus 5.5</a></span></li>
+        <li><span class="date">2026-10-30</span><span class="label"><a href="#vercel-fx-adapter">Vercel&rsquo;s fx adapter moves the agent harness onto the host via libfx, apart from the sandbox</a></span></li>
+        <li><span class="date">2026-10-30</span><span class="label"><a href="#raindrop-swarm-leadership">Raindrop: leaderless agent swarms pick a leader by underlying model and by order in the prompt</a></span></li>
+        <li><span class="date">2026-10-30</span><span class="label"><a href="#natural-direct">Natural Direct lets an agent choose between ACH, wire and realtime payment rails</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#goose-dapr-durable-execution">Dapr durable execution lets a goose agent survive a crash mid-plan without replaying finished turns</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#salesforce-agent-fabric">Salesforce Agent Fabric adds evaluations, spending controls and a triggered kill switch, GA in January 2027</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#mirendil-lor">Mirendil&rsquo;s Lor runs research agents for days across hundreds of parallel workers</a></span></li>

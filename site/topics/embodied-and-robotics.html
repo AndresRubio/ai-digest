@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-10-30</div>
+      <div class="meta">Last updated: 2026-11-02</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>Today is a thin day for this page: one entry, and every detail in it comes from press reports rather than the company. <a href="#meta-max-humanoid">Meta reportedly built Max</a>, a household-chores humanoid prototype, with a Chinese robotics company in about three months. It runs on NVIDIA Jetson Thor, weighs about 106 lb, stands about 1.5 m, and has a face display, a speaker and hands for small objects. A second prototype with a redesigned torso and hands, a projector and extra sensors for stairs is in progress. No capability is reported, only the build and its specifications, so this page can record the hardware and not yet what the robot does.</p>
         <p>The Oct 29 cycle opens a section on touch, from a single newsletter issue reviewing three 2026 papers. <a href="#dexport">DexPort</a> takes the robot arm out of demonstration collection, and training on operator commands instead of reached joint positions lifts success from 11% to 64%. <a href="#vectile">VecTile</a> measures pressure and shear on a sheet under 6 mm thick for $34.67 including electronics, with errors of 0.39 N and 0.16 N against an industrial sensor. <a href="#vista3d">VisTa3D</a> shows current vision and depth models dropping objects thinner than about 3 mm, which touch maps recover. The argument across all three is that a camera updating 5 to 15 times a second cannot see a slip that lasts 10 to 20 milliseconds behind the fingers.</p>
         <p>The Oct 28 cycle is simulation as the product. Google DeepMind&rsquo;s <a href="#genie-4">Genie 4</a> holds a photorealistic interactive world consistent for about two minutes, double Genie 3, adds native audio and takes prompt edits mid-run, with Gemini models planning events to keep scenes coherent; the stated purpose is testing robots and agents before the real world, and the stated limit is drift on longer runs. Meta&rsquo;s <a href="#interactiveworld">InteractiveWorld</a> makes the same bet one level down, a framework that simulates a wearable assistant&rsquo;s first-person view for training and evaluation. And <a href="#gemini-robotics-er-2">Gemini Robotics Embodied Reasoning 2</a> lands on Google Cloud, which moves a frontier embodied-reasoning model from research preview to something any team with an account can call.</p>
         <p>The Oct 27 cycle measured a trend instead of a model. A <a href="#frontier-robot-arm-doubling">LessWrong study</a> ran nine frontier multimodal models on six real-arm tasks from July to October and puts the doubling time for performance at about 54 days, with the best execution rate up 4.4 times and the cheapest subtask 6.2 times cheaper; the limits it names are precision and efficiency, with reasoning no longer the bottleneck. Four months and six tasks is a thin base for a doubling time, but it is the first series on this page that puts the single-model <a href="#gpt-6-astra-robot-arms">Astra arm trials</a> on a curve.</p>
         <p>The Oct 26 cycle was two ways to avoid training a whole robot stack. Alibaba&rsquo;s <a href="#rynnunify">RynnUnify</a> puts spatial reasoning, physical prediction and video planning into one 16B model with a world-action head, and uses RL to decide when its own video predictions are worth consulting. <a href="#holoboxing">HoloBoxing</a> goes the other way, freezing a pretrained whole-body controller and training only a small planner, which gets humanoid boxing in 7 minutes on one GPU once the expensive pretraining is excluded.</p>
-        <p>The Oct 21 to 23 cycle was world models from both ends of the domain question and a policy that drops its language model. Kyutai&rsquo;s <a href="#kyutai-cadre">CADRE</a> video autoencoders run an interactive world model at 20 fps on one H100 with under 230 ms of lag, and find that with a still camera coarser tokens damage motion far more than image quality. <a href="#worldtui">WorldTUI</a> is the opposite case, a 360M model that has learned to be a terminal, predicting the screen after each key press with no shell behind it. <a href="#turbovla">TurboVLA</a> replaces the LLM in a vision-language-action policy with small separate encoders and reaches 97.6% on LIBERO with 0.2B parameters and 0.9 GB of VRAM, giving up the ability to break a general instruction into subtasks.</p>
-                        <details>
+        <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 21 to 23 cycle was world models from both ends of the domain question and a policy that drops its language model. Kyutai&rsquo;s <a href="#kyutai-cadre">CADRE</a> runs an interactive world model at 20 fps on one H100 with under 230 ms of lag. <a href="#worldtui">WorldTUI</a> is a 360M model that predicts a terminal screen after each key press with no shell behind it. <a href="#turbovla">TurboVLA</a> replaces the LLM in a vision-language-action policy and reaches 97.6% on LIBERO with 0.2B parameters, giving up the ability to break a general instruction into subtasks.</p>
           <p>The Oct 21 entry is a production line ahead of a safety claim. Tesla has <a href="#tesla-optimus-production">started building Optimus in Fremont</a>, says the process is suitable for a commercial product and that the robot is not yet fully safe or reliable, and promises 20,000 units a week by the end of 2027, with third-quarter profit down 43% on the spending; it sits beside the imitation-data entry as the same programme a step further on, with the number that matters, units delivered to a customer, still zero.</p>
           <p>The Oct 21 entry is a price for a robot that a person is driving. A customer paid <a href="#tau-robotics-home-cleaning">$60 for two Tau Robotics humanoids</a> to clean a San Francisco home for an hour, both human-operator-controlled, and wrote up the economics; it belongs beside <a href="#humxn-free-home-services">HUMXN</a> as a real-world deployment number, with the autonomy share zero and no statement of whether the sessions also feed training.</p>
           <p>The Oct 20 entry buys demonstrations with a service. <a href="#humxn-free-home-services">HUMXN</a> is subsidising plumbing, electrical, HVAC, duct and carpet work in Minneapolis, Chicago and Miami, with the tradespeople wearing cameras so that work inside real homes becomes robot training footage, and lets residents check their eligibility online. It joins Pantheon&rsquo;s $10-an-hour UMI pipeline as the fourth claim on this page that the demonstration has become cheap, with a different unit, a repair instead of an hour, and the same gap after it: no hours collected, no dataset, no policy and no robot, so the method of acquisition is what is recorded.</p>
@@ -84,7 +85,7 @@
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">15</span></a></li>
           <li><a href="#world-models">World models <span class="n">16</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">6</span></a></li>
-          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">14</span></a></li>
+          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">15</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
           <li><a href="#low-cost-and-map-less-navigation">Low-cost &amp; map-less navigation <span class="n">1</span></a></li>
         </ul>
@@ -464,6 +465,14 @@
         <h3>Hardware &amp; real-world deployment</h3>
         <p class="lead">These entries are about the gap between a robot working and a robot deployed: safety certification, regulatory approval, unit economics, the price of demonstrations, the plumbing between three compute targets, and generalization outside test conditions. Ask of each whether its evidence is work actually done or a performance under chosen conditions.</p>
 
+        <article class="story" id="meta-max-humanoid">
+          <span class="when">2026-11-02</span>
+          <h4><a href="https://www.engadget.com/2303434/meta-reportedly-built-a-humanoid-robot-prototype-that-can-do-household-chores/">Meta reportedly built Max, a Jetson Thor household humanoid, in about three months</a></h4>
+          <p>Meta reportedly built a household-chores humanoid prototype called <strong>Max</strong> with a Chinese robotics company in roughly <strong>three months</strong>. It runs on NVIDIA <strong>Jetson Thor</strong>, weighs about <strong>106 lb</strong>, stands about <strong>1.5 m</strong>, and has a face display, a speaker and hands for small objects.</p>
+          <p>A second prototype with a redesigned torso and hands, a projector and extra sensors for stairs is in progress. Every detail comes from press reports, not Meta.</p>
+          <div class="sources"><a href="https://www.engadget.com/2303434/meta-reportedly-built-a-humanoid-robot-prototype-that-can-do-household-chores/">Engadget</a> &middot; <span class="via">via TLDR (Nov 2)</span></div>
+        </article>
+
         <article class="story" id="tesla-optimus-production">
           <span class="when">2026-10-21</span>
           <h4><a href="https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43/">Tesla starts Optimus production in Fremont, promising 20,000 units a week by the end of 2027 before it calls the robot safe</a></h4>
@@ -480,16 +489,16 @@
           <div class="sources"><a href="https://read.corematter.com/p/tau-robotics-humanoid-house-cleaning-review-san-francisco">Core Matter</a> (customer review) &middot; <span class="via">via TLDR (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="what-work-can-robots-do">
-          <span class="when">2026-10-01</span>
-          <h4><a href="https://www.anthropic.com/research/what-work-can-robots-do">Anthropic: robots can perform 74% of US physical job tasks but are cost-effective for only 0.3%</a></h4>
-          <p>An Anthropic research study estimates that robots can already perform <strong>74%</strong> of the physical tasks in US jobs, but that their expense makes them cost-effective for only <strong>0.3%</strong>.</p>
-          <p>The distance between those two figures is this section&rsquo;s subject &mdash; a robot working against a robot worth deploying &mdash; reduced to one ratio, and the cost assumptions behind the 0.3% are the part to check. Anthropic&rsquo;s labour-market scenarios are on <a href="safety-and-policy.html">Safety &amp; policy</a>.</p>
-          <div class="sources"><a href="https://www.anthropic.com/research/what-work-can-robots-do">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 1)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (11)</summary>
+          <summary>Earlier in this section (12)</summary>
+
+          <article class="story" id="what-work-can-robots-do">
+            <span class="when">2026-10-01</span>
+            <h4><a href="https://www.anthropic.com/research/what-work-can-robots-do">Anthropic: robots can perform 74% of US physical job tasks but are cost-effective for only 0.3%</a></h4>
+            <p>An Anthropic research study estimates that robots can already perform <strong>74%</strong> of the physical tasks in US jobs, but that their expense makes them cost-effective for only <strong>0.3%</strong>.</p>
+            <p>The distance between those two figures is this section&rsquo;s subject &mdash; a robot working against a robot worth deploying &mdash; reduced to one ratio, and the cost assumptions behind the 0.3% are the part to check. Anthropic&rsquo;s labour-market scenarios are on <a href="safety-and-policy.html">Safety &amp; policy</a>.</p>
+            <div class="sources"><a href="https://www.anthropic.com/research/what-work-can-robots-do">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 1)</span></div>
+          </article>
 
           <article class="story" id="optimus-imitation-data">
             <span class="when">2026-09-28</span>
@@ -578,7 +587,6 @@
             <p>Unitree is also the accessible-hardware entry in the <a href="#physical-ai-leaderboard">ranking</a>: the G1 from $16,000 and the research-grade H1 at $90K, both with open SDKs, ROS 2 support and 3D LiDAR, with a 1.9km autonomous marathon in April 2026 and synchronized multi-robot performances as its reliability demonstrations.</p>
             <div class="sources"><span class="via">via TLDR (Aug 20) &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -610,6 +618,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-02</span><span class="label"><a href="#meta-max-humanoid">Meta reportedly built Max, a Jetson Thor household humanoid, in about three months</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#vista3d">VisTa3D shows vision and depth models lose objects thinner than about 3 mm, and touch maps recover them</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#vectile">VecTile measures pressure and shear on a sheet under 6 mm thick, for $34.67 with its electronics</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#dexport">DexPort collects dexterous-hand demonstrations without a robot arm, lifting task success from 11% to 64%</a></span></li>

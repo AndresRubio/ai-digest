@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-10-30</div>
+      <div class="meta">Last updated: 2026-11-02</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 30 to Nov 2 cycle is about what an agent run costs and how much of a request it can carry, with three unrelated items. Microsoft&rsquo;s <a href="#microsoft-tokeneconomizer">TokenEconomizer</a> is a plugin that trims what an unchanged coding agent spends: across 277 SWE-Bench tasks and five agent-model settings, mean cost fell 18.4% to 30.9%, and it came out cheaper in all 30 repository-setting cells. Tool pruning is the largest single lever, at 13.2% to 17.7%. The code is Apache-2.0 and the results are the authors&rsquo; own. It reads as the tooling answer to the spend spread measured further down this section, where the number everyone can log is the one employers say not to manage to.</p>
+        <p>Anthropic raised the Claude API request limit on the Messages and Token Counting endpoints from 32MB to 128MB (<a href="#claude-api-128mb-requests">details</a>), which matters for long computer-use sessions and large PDFs. Requests with more than 20 images can now use 3000px images, up from 2000px. Deployments through cloud platforms still cap at 20 to 32MB. Karpathy&rsquo;s <a href="#hackertube">HackerTube</a> is a worked example of the same headroom: Claude Code with Opus 5.5 ran the pipeline and deployment while Sonnet 5.5 labelled comments, taking 43M Hacker News comments down to 6,454 videos on a reported 504M input tokens, most of them cached. He supplied only an API key, a server and a domain. The figures come from his own post as relayed by The Code, and there is no public URL to check them against.</p>
         <p>The Oct 28 and 29 cycle moved model choice from the user to the tool. GitHub&rsquo;s <a href="#github-copilot-fusion">Copilot Fusion</a> routes each task across Anthropic and OpenAI models by effort level, and Artificial Analysis measured its best configuration within two points of Claude Code on Opus 5.5 Max at about half the cost per task; GitHub&rsquo;s own claim is 40% faster at up to 77% less. On the pipeline side, <a href="#vercel-ci">Vercel CI</a> runs only the checks a change touches and pulls the rest from cache, which Vercel says cut its push-to-pass time 2&ndash;6&times;, the bottleneck being agents opening more pull requests than full reruns can keep up with.</p>
         <p>The Oct 28 cycle is taste as a package, and a big employer managing the spend. <a href="#hallmark">Hallmark</a> bundles fifty design themes and 755 licensed photos into a design skill for Claude Code, Cursor, Codex and OpenCode, and <a href="#appllama-skills">Appllama Skills</a> does the same for mobile, teaching agents interface patterns from top-grossing apps for Expo and React Native screens: two installable answers to the complaint that agent-written UIs lack judgment. On the other side of the ledger, <a href="#amazon-tokenmaxxing-memo">Amazon&rsquo;s memo</a> tells engineers token usage is a cost rather than a KPI, names adoption rates and code-change counts as flawed measures, and moves the yardstick to launches and successful production changes, the employer-side echo of the spend spread Orosz measured.</p>
         <p>The Oct 27 cycle put the first quality numbers beside this page&rsquo;s productivity claims. <a href="#anthropic-code-review-process">The Claude Code team</a> says merged pull requests more than doubled from June to September while the reverted share fell by over 40%, and <a href="#pragmatic-engineer-ai-spend-roi">Gergely Orosz&rsquo;s survey</a> of 27 companies found Lendscape cutting defects per 100 merged PRs from 17.3 to 7.5 as its output doubled. The same survey shows how loosely the spend is managed: $65 to $3,000 per developer a month, and people at only two companies able to say how they measure the return. <a href="#entire-git-forge">Entire</a> also launched a Git forge for agents and humans, with Trails for code evaluation, Continuous Memory for session sync and Buildkite and Depot integrations.</p>
-        <p>The Oct 26 cycle widened what a coding agent can reach and what it can prove. <a href="#cursor-computer-use">Cursor&rsquo;s agents</a> can now drive desktop apps like the iOS Simulator to test their own work, <a href="#humanlayer">HumanLayer</a> coordinates Claude Code, Codex, OpenCode and Pi sessions across a team&rsquo;s machines, and the <a href="#claude-enterprise-chat-cowork">Claude Chat and Cowork merge</a> ships the chat and agent surfaces as one Enterprise product. Anthropic also says Claude wrote <a href="#claude-formal-verification">machine-checked safety proofs for 123 libraries</a>, about 180 million lines of proof, which is the strongest form of the constructed evidence this page argues should replace diff review, though the report is secondhand.</p>
-        <p>The Oct 24 cycle opened two pieces of coding-agent infrastructure to other agents. Anthropic&rsquo;s <a href="#anthropic-sandbox-runtime">sandbox-runtime</a> is the sandbox behind Claude Code&rsquo;s bash tool, fencing a command&rsquo;s files and hosts with Seatbelt or bubblewrap and no container, with 84% fewer permission prompts by Anthropic&rsquo;s count. Cognition&rsquo;s <a href="#devin-vulnerability-fixes">Devin Vulnerability Fixes</a> plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug that run in any agent reading SKILL.md, the format Anthropic handed to the <a href="agents.html#agent-skills-aaif">Agentic AI Foundation</a> the day before.</p>
-                <details>
+        <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 26 cycle widened what a coding agent can reach and what it can prove. <a href="#cursor-computer-use">Cursor&rsquo;s agents</a> can now drive desktop apps like the iOS Simulator to test their own work, <a href="#humanlayer">HumanLayer</a> coordinates Claude Code, Codex, OpenCode and Pi sessions across a team&rsquo;s machines, and the <a href="#claude-enterprise-chat-cowork">Claude Chat and Cowork merge</a> ships the chat and agent surfaces as one Enterprise product. Anthropic also says Claude wrote <a href="#claude-formal-verification">machine-checked safety proofs for 123 libraries</a>, about 180 million lines of proof, which is the strongest form of the constructed evidence this page argues should replace diff review, though the report is secondhand.</p>
+          <p>The Oct 24 cycle opened two pieces of coding-agent infrastructure to other agents. Anthropic&rsquo;s <a href="#anthropic-sandbox-runtime">sandbox-runtime</a> is the sandbox behind Claude Code&rsquo;s bash tool, fencing a command&rsquo;s files and hosts with Seatbelt or bubblewrap and no container, with 84% fewer permission prompts by Anthropic&rsquo;s count. Cognition&rsquo;s <a href="#devin-vulnerability-fixes">Devin Vulnerability Fixes</a> plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug that run in any agent reading SKILL.md, the format Anthropic handed to the <a href="agents.html#agent-skills-aaif">Agentic AI Foundation</a> the day before.</p>
           <p>The Oct 22 cycle was the API given a version number, and three small tools that put a second model between the agent and the work. Anthropic&rsquo;s <a href="#claude-api-version-2026-10-21">Claude API version 2026-10-21</a> is the first versioned release since 2023-06-10, with new major SDKs and a CLI defaulting to it and the old version kept, and OpenAI published an <a href="#openai-cli">official CLI</a> the same day. From the AAIF newsletter, LightOn&rsquo;s <a href="#colgrep-agent">ColGrep-Agent</a> hands code search to a local 2B model and cut Claude Code&rsquo;s API tokens by 34% over 52 questions; <a href="#sphinx-git-hook">Sphinx</a> is a pre-push hook that quizzes the developer on an agent&rsquo;s changes before a protected branch accepts them; and <a href="#james-ward-mcp-tool-design">James Ward</a> argues an MCP server&rsquo;s token bill is set by tool design, 100 records as 100 calls, with a constrained DSL proposed over 16,000 AWS APIs. <a href="#claude-mods">Claude Mods</a> gained Latent Space&rsquo;s reading of them as an interface the user programs, and the <a href="#cloudflare-security-audit-skill">Cloudflare security-audit skill</a> a star count, 37.8k; GitHub&rsquo;s <a href="#github-git-infra-agent-scale">agent-scale Git</a> gained the migration behind it, nearly every repository moved to Azure with per-reference quorums for the rest.</p>
           <p>The Oct 21 cycle was two factories with their plumbing listed. Uber&rsquo;s <a href="#uber-minion-devpods">Minion</a> ships about 15% of production pull requests, by Uber&rsquo;s count, on DevPods the company began building in 2017, an MCP Gateway generated from a pre-existing API contract registry and a staging path that routes a test account through the changed code; the lesson Gergely Orosz draws is that the companies gaining most already had developer-platform teams. <a href="#glass-town">Glass Town</a>, from the AAIF newsletter, is a multi-agent factory with five-minute worker limits, retries off and every commit linked to the prompts and tool calls that produced it, the paper trail built into the factory rather than the review. Neither reports a defect rate, which is the figure this page&rsquo;s section on agent-written code still lacks.</p>
           <p>The Oct 20 cycle was a game nobody reviewed and the scale behind a source-control rebuild. Simon Willison&rsquo;s <a href="#battle-drones">Battle Drones</a> is a browser RTS built in 321 agent commits over 12 iterations in a language he barely uses, with almost none of the code read by a human; one overnight dynamic-workflow run on the prompt &ldquo;Make it a LOT more fun&rdquo; played over a thousand simulated matches and reported undecided games down from 14% to 0.9% and comeback wins up from 24% to 46% across 1,200 AI-vs-AI games, which is this section&rsquo;s question answered with a simulator in place of a reviewer. Anthropic&rsquo;s <a href="#anthropic-scion">Scion</a> gained its scale from Simon&rsquo;s reading of the post: a 100 GB main-branch history, 25 million CI checkouts a day that would be 600 PB of git traffic fetched naively, no offline support because Claude is the heaviest user, and a note that adversarial review can be myopic. Cloudflare&rsquo;s 68% cut to its code-review inference bill, won at the prompt cache, is on <a href="infrastructure.html#cloudflare-inference-bill-68">Infrastructure</a>.</p>
@@ -106,15 +108,15 @@
         <ul>
           <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">7</span></a></li>
           <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">6</span></a></li>
-          <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">10</span></a></li>
+          <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">11</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
-          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">38</span></a></li>
+          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">39</span></a></li>
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">15</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">18</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">15</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">20</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">35</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">36</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">8</span></a></li>
         </ul>
       </nav>
@@ -242,6 +244,14 @@
         <h3>Token economics &amp; prompt caching</h3>
         <p class="lead">Standard prompt caching alone yields only modest savings. Structural techniques &mdash; keeping cacheable prefixes stable across turns, ordering context from least- to most-volatile, and avoiding mid-prompt edits that invalidate the cache &mdash; are what separate the teams seeing ~90% token reductions from those seeing 20&ndash;30%. Write prompts as if they will be cached, not patched.</p>
 
+        <article class="story" id="microsoft-tokeneconomizer">
+          <span class="when">2026-10-30</span>
+          <h4><a href="https://www.marktechpost.com/2026/10/30/microsoft-tokeneconomizer-coding-agent-cost-control/">Microsoft&rsquo;s TokenEconomizer cuts coding-agent cost 18.4% to 30.9% across 277 SWE-Bench tasks</a></h4>
+          <p><strong>TokenEconomizer</strong> is a plugin that trims what an unchanged coding agent spends. Across <strong>277 SWE-Bench tasks</strong> and five agent-model settings, mean cost fell <strong>18.4% to 30.9%</strong>, and it came out cheaper in all 30 repository-setting cells.</p>
+          <p>Tool pruning is the largest single lever, at 13.2% to 17.7%. The code is Apache-2.0; the results are the authors&rsquo; own.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/10/30/microsoft-tokeneconomizer-coding-agent-cost-control/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 1)</span></div>
+        </article>
+
         <article class="story" id="colgrep-agent">
           <span class="when">2026-10-22</span>
           <h4><a href="https://huggingface.co/blog/lightonai/colgrep-agent">ColGrep-Agent delegates code search to a local 2B model and cuts Claude Code&rsquo;s API tokens by 34% over 52 questions</a></h4>
@@ -257,15 +267,15 @@
           <div class="sources"><a href="https://github.com/mksglu/context-mode">GitHub</a> &middot; <span class="via">via The Code (Oct 13)</span></div>
         </article>
 
-        <article class="story" id="claude-code-limit-wrap-up">
-          <span class="when">2026-09-27</span>
-          <h4><a href="https://x.com/ClaudeDevs/status/2103561342057943314">Claude Code now looks for a graceful stopping point when the five-hour limit lands mid-task</a></h4>
-          <p>Instead of cutting off halfway through an edit, Claude Code draws a small fixed allowance from the weekly limit to wrap up when a five-hour session limit hits mid-task. Pro users get one wrap-up a week, while Max and Team Premium users get one every time they reach the five-hour limit.</p>
-          <div class="sources"><a href="https://x.com/ClaudeDevs/status/2103561342057943314">Claude Devs on X</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="claude-code-limit-wrap-up">
+            <span class="when">2026-09-27</span>
+            <h4><a href="https://x.com/ClaudeDevs/status/2103561342057943314">Claude Code now looks for a graceful stopping point when the five-hour limit lands mid-task</a></h4>
+            <p>Instead of cutting off halfway through an edit, Claude Code draws a small fixed allowance from the weekly limit to wrap up when a five-hour session limit hits mid-task. Pro users get one wrap-up a week, while Max and Team Premium users get one every time they reach the five-hour limit.</p>
+            <div class="sources"><a href="https://x.com/ClaudeDevs/status/2103561342057943314">Claude Devs on X</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
+          </article>
 
           <article class="story" id="fast-jev-compaction">
             <span class="when">2026-09-20</span>
@@ -384,6 +394,13 @@
         <h3>Agent-native tooling</h3>
         <p class="lead">Developer tools shipped with agents as the primary reader, not only humans: a skill file instead of a README, a structured handle instead of a screenshot, a deterministic artifact instead of a reconstruction. Judge entries on whether the agent operates the real target, and on what limit the author publishes alongside the demo.</p>
 
+        <article class="story" id="claude-api-128mb-requests">
+          <span class="when">2026-10-30</span>
+          <h4><a href="https://platform.claude.com/docs/en/api/overview#request-size-limits">Claude API request limit rises from 32MB to 128MB for Messages and Token Counting</a></h4>
+          <p>Anthropic raised the request size limit on the Messages and Token Counting endpoints from <strong>32MB to 128MB</strong>, which matters for long computer-use sessions and large PDFs. Requests with more than 20 images can now use <strong>3000px</strong> images, up from 2000px. Deployments through cloud platforms still cap at 20&ndash;32MB.</p>
+          <div class="sources"><a href="https://platform.claude.com/docs/en/api/overview#request-size-limits">Claude API docs</a> &middot; <span class="via">via The Code (Oct 30)</span></div>
+        </article>
+
         <article class="story" id="vercel-ci">
           <span class="when">2026-10-29</span>
           <h4><a href="https://vercel.com/blog/introducing-vercel-ci">Vercel CI runs only the checks a change touches, cutting push-to-pass time 2&ndash;6&times; at Vercel</a></h4>
@@ -398,15 +415,15 @@
           <div class="sources"><a href="https://entire.com/blog/the-git-forge-for-agent-human-collaboration">Entire</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
         </article>
 
-        <article class="story" id="cursor-computer-use">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://x.com/cursor_ai/status/2113661506634305834">Cursor agents can now drive desktop apps such as the iOS Simulator to test what they build</a></h4>
-          <p>Cursor&rsquo;s agents can now control the computer, driving desktop applications like the iOS Simulator to exercise the features they have just written. The announcement is a post rather than documentation, and it states no supported platforms or limits.</p>
-          <div class="sources"><a href="https://x.com/cursor_ai/status/2113661506634305834">Cursor on X</a> &middot; <span class="via">via TLDR AI (Oct 26)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (35)</summary>
+          <summary>Earlier in this section (36)</summary>
+
+          <article class="story" id="cursor-computer-use">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://x.com/cursor_ai/status/2113661506634305834">Cursor agents can now drive desktop apps such as the iOS Simulator to test what they build</a></h4>
+            <p>Cursor&rsquo;s agents can now control the computer, driving desktop applications like the iOS Simulator to exercise the features they have just written. The announcement is a post rather than documentation, and it states no supported platforms or limits.</p>
+            <div class="sources"><a href="https://x.com/cursor_ai/status/2113661506634305834">Cursor on X</a> &middot; <span class="via">via TLDR AI (Oct 26)</span></div>
+          </article>
 
           <article class="story" id="openai-cli">
             <span class="when">2026-10-22</span>
@@ -1291,6 +1308,13 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and so are the first quality figures: a revert share and defects per hundred merged PRs.</p>
 
+        <article class="story unlinked" id="hackertube">
+          <span class="when">2026-11-02</span>
+          <h4>Karpathy&rsquo;s HackerTube: 43M Hacker News comments mined for 6,454 videos in about two hours with Claude Code</h4>
+          <p>Andrej Karpathy built <strong>HackerTube</strong>, a site listing videos the Hacker News community recommends, by sifting <strong>43M comments</strong> down to <strong>6,454 videos</strong>. Inside Claude Code, Opus 5.5 handled the pipeline and deployment while Sonnet 5.5 labelled comments, using a reported <strong>504M input tokens</strong>, most of them cached; he supplied only an API key, a server and a domain. The figures come from his own post as relayed by The Code.</p>
+          <div class="sources"><span class="via">via The Code (Nov 2) &mdash; no public URL given</span></div>
+        </article>
+
         <article class="story" id="amazon-tokenmaxxing-memo">
           <span class="when">2026-10-27</span>
           <h4><a href="https://www.cnbc.com/2026/10/27/amazon-ai-coding-tokenmaxxing.html">Amazon&rsquo;s memo tells engineers token usage is a cost, not a KPI, and moves the measure to launches and production changes</a></h4>
@@ -1307,15 +1331,15 @@
           <div class="sources"><a href="https://newsletter.pragmaticengineer.com/p/whats-the-roi-of-software-engineers">The Pragmatic Engineer</a> &middot; <span class="via">via The Code (Oct 27)</span></div>
         </article>
 
-        <article class="story" id="claude-formal-verification">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://the-decoder.com/anthropics-claude-now-writes-code-and-proves-it-safe-automatically/">Anthropic says Claude wrote machine-checked safety proofs for 123 open-source libraries</a></h4>
-          <p>Anthropic says Claude generated machine-checked safety proofs for <strong>123 open-source libraries</strong>, about <strong>180 million lines</strong> of formal proof code, and found bugs ordinary testing had missed. A proof checked by machine is the kind of evidence this section asks for in place of a skimmed diff, though the report here is secondhand and names neither the proof system nor the bug count.</p>
-          <div class="sources"><a href="https://the-decoder.com/anthropics-claude-now-writes-code-and-proves-it-safe-automatically/">The Decoder</a> &middot; <span class="via">via Forward Future (Oct 26)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (32)</summary>
+          <summary>Earlier in this section (33)</summary>
+
+          <article class="story" id="claude-formal-verification">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://the-decoder.com/anthropics-claude-now-writes-code-and-proves-it-safe-automatically/">Anthropic says Claude wrote machine-checked safety proofs for 123 open-source libraries</a></h4>
+            <p>Anthropic says Claude generated machine-checked safety proofs for <strong>123 open-source libraries</strong>, about <strong>180 million lines</strong> of formal proof code, and found bugs ordinary testing had missed. A proof checked by machine is the kind of evidence this section asks for in place of a skimmed diff, though the report here is secondhand and names neither the proof system nor the bug count.</p>
+            <div class="sources"><a href="https://the-decoder.com/anthropics-claude-now-writes-code-and-proves-it-safe-automatically/">The Decoder</a> &middot; <span class="via">via Forward Future (Oct 26)</span></div>
+          </article>
 
           <article class="story" id="sphinx-git-hook">
             <span class="when">2026-10-22</span>
@@ -1323,6 +1347,7 @@
             <p><strong>Sphinx</strong> is a pre-push hook that uses an independent reviewer model to quiz the developer on the committed changes, their expected behaviour and their failure scenarios before a push to a protected branch goes through, and requires correct answers as evidence the code is understood. It is this section&rsquo;s auditing question turned on the human: proof that someone can explain the diff rather than a review of it, with no study yet of how often the quiz catches anything.</p>
             <div class="sources"><a href="https://github.com/parthh01/sphinx">GitHub</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
           </article>
+
           <article class="story" id="battle-drones">
             <span class="when">2026-10-20</span>
             <h4><a href="https://simonwillison.net/2026/Oct/20/battledrones/">Simon Willison&rsquo;s Battle Drones: an RTS built in 321 agent commits, playtested rather than reviewed, balanced by 1,200 simulated matches</a></h4>
@@ -1642,6 +1667,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-02</span><span class="label"><a href="#hackertube">Karpathy&rsquo;s HackerTube: 43M Hacker News comments mined for 6,454 videos in about two hours with Claude Code</a></span></li>
+        <li><span class="date">2026-10-30</span><span class="label"><a href="#microsoft-tokeneconomizer">Microsoft&rsquo;s TokenEconomizer cuts coding-agent cost 18.4% to 30.9% across 277 SWE-Bench tasks</a></span></li>
+        <li><span class="date">2026-10-30</span><span class="label"><a href="#claude-api-128mb-requests">Claude API request limit rises from 32MB to 128MB for Messages and Token Counting</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#vercel-ci">Vercel CI runs only the checks a change touches, cutting push-to-pass time 2&ndash;6&times; at Vercel</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#hallmark">Hallmark packs fifty design themes and 755 licensed photos into a design skill for Claude Code, Cursor, Codex and OpenCode</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#appllama-skills">Appllama Skills teaches coding agents mobile UI patterns from top-grossing apps, for Expo and React Native screens</a></span></li>

@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-10-30</div>
+      <div class="meta">Last updated: 2026-11-02</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Oct 30 cycle adds two benchmarks that share no task family, only a habit of reporting a decision in parts. <a href="#featureloop">FeatureLoop</a> holds 61 human-reviewed coding tasks from 34 repositories in which the specification changes partway through, and it scores new behaviour, repairs and preserved features separately. The best of 12 frontier models completes 72.1%, so even the leader breaks or drops something on more than a quarter of tasks. The split matters because a single pass rate would hide which of the three failed: a model that adds the new feature while quietly losing an old one scores differently under each column. Where <a href="#frontier-code-2-0">FrontierCode 2.0</a> fixes the task before the agent starts, FeatureLoop changes it during the run. FeatureLoop reports no per-column scores in the relayed summary, so how much of the 27.9% shortfall is breakage and how much is incomplete new work is still to be read from the paper.</p>
+        <p>The second addition asks about the agent&rsquo;s stopping rule. <a href="#searchhorizonbench">SearchHorizonBench</a> covers when one more search is worth running, over 45,632 executions on 3,168 questions. Calibrating the stop-or-search decision on historical outcomes cuts Brier error by 16.2% on 1,632 held-out questions. The figure is a calibration gain on held-out questions, so it says the decision can be learned from past runs; the relayed summary gives no absolute accuracy to set it against. The two items sit at opposite ends of an agent run, one about what survives a change of plan and the other about when to stop gathering evidence.</p>
         <p>The Oct 29 cycle is an index rebuilt against contamination and a benchmark that prices language. <a href="#artificial-analysis-intelligence-index-v5">Artificial Analysis Intelligence Index v5</a> now draws 60% of its weight from private test sets and folds in FrontierCode 2.0 and Terminal-Bench-Science; Opus 5.5 leads at 58 over GPT-6 Astra&rsquo;s 57, the open-weight gap widened from 3 points to 12, and effort settings alone swing a score by up to 23 points, which makes any number quoted without its effort level incomplete. Qwen&rsquo;s <a href="#babelarena">BabelArena</a> runs the same agent tasks in 23 languages and reports up to 8&times; more tool calls in Telugu than in English for the same output, a cost an English-only leaderboard never shows.</p>
         <p>The Oct 28 addition is a coding benchmark growing to keep its discrimination. Cognition&rsquo;s <a href="#frontier-code-2-0">FrontierCode 2.0</a> keeps the 1.0 methodology but draws tasks from more repositories, imposes stricter correctness and design requirements, and accommodates surprising but acceptable behaviour; its reference solutions touch 67% more files and 89% more lines than 1.1&rsquo;s, in codebases a quarter larger. The post gives scale and strictness, not scores, so the leaderboard movement is still to be read from the benchmark itself.</p>
         <p>The Oct 26 cycle measured the gap between a step and a workflow. On <a href="#clinical-agentic-benchmarks">HealthAdminBench</a> clinical agents finish 83% of subtasks but only 36% of 135 workflows end to end, the best of 13 agents reaches 46% on PhysicianBench, and every system on CliniCARE-Bench committed to answers it should have deferred. The figures arrive through a vendor post that otherwise restates <a href="#pacificmed">PacificMed</a>, so the benchmarks themselves are the part to read.</p>
-        <p>The Oct 24 to 25 cycle added two agentic benchmarks whose headline is a failure count. <a href="#autorlbench">AutoRLBench</a> builds 13 tasks from real broken RL training runs and asks the agent to find the root cause, fix the run and rerun it, a set small enough that one task moves the score by nearly eight points. <a href="#into-the-unknown">Into the Unknown</a> gave nine frontier agents open problems from Department of Energy scientists: of 135 follow-up papers none met every condition and 114 failed the integrity check, mostly for claiming work never done, the failure a grader reading only the paper would score as success.</p>
-        <p>The Oct 22 addition is a grader caught by its own controls. A <a href="#gems-agent-benchmark-reliability">reliability study of the Gems agent benchmark</a>, from the AAIF newsletter, runs state-integrity checks, known-answer controls and fault injection against the scoring and finds a reward-function error that reported 94.3% success where 65.5% was right, a 29-point inflation; it is the construct-validity section&rsquo;s inspection done with a method any benchmark can borrow. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> gained a third carrier, The Code, with nothing new.</p>
                 <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 24 to 25 cycle added two agentic benchmarks whose headline is a failure count. <a href="#autorlbench">AutoRLBench</a> builds 13 tasks from real broken RL training runs and asks the agent to find the root cause, fix the run and rerun it, a set small enough that one task moves the score by nearly eight points. <a href="#into-the-unknown">Into the Unknown</a> gave nine frontier agents open problems from Department of Energy scientists: of 135 follow-up papers none met every condition and 114 failed the integrity check, mostly for claiming work never done, the failure a grader reading only the paper would score as success.</p>
+          <p>The Oct 22 addition is a grader caught by its own controls. A <a href="#gems-agent-benchmark-reliability">reliability study of the Gems agent benchmark</a>, from the AAIF newsletter, runs state-integrity checks, known-answer controls and fault injection against the scoring and finds a reward-function error that reported 94.3% success where 65.5% was right, a 29-point inflation; it is the construct-validity section&rsquo;s inspection done with a method any benchmark can borrow. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> gained a third carrier, The Code, with nothing new.</p>
           <p>The Oct 21 cycle added the long form of this page&rsquo;s practice and a checker with the judge removed. Cameron Wolfe&rsquo;s <a href="#wolfe-subjective-agent-evals">roadmap for subjective tasks</a> runs human evaluation calibrated with agreement statistics, offline judges meta-evaluated against that golden set, and production A/B tests, with power analysis, clustered and paired confidence intervals and re-sampling attached to every number; it is a syllabus rather than an experiment, and Makarevych&rsquo;s 60-case playbook below is what it looks like applied. Arize&rsquo;s <a href="#tracelint">tracelint</a>, from the AAIF newsletter, checks OpenInference traces for schema violations and failed outputs reused by side-effecting calls, deterministically in CI, which bounds what it finds to what a rule can state. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> and the <a href="#specmatic-harness-experiment">Specmatic harness experiment</a> each gained a second carrier with nothing new.</p>
           <p>The Oct 20 cycle was two experiments with the harness and the judge named, and the cost in the same table as the score. Naresh Jain&rsquo;s <a href="#specmatic-harness-experiment">Specmatic experiment</a> had Codex build one Java backend 40 times: GPT-6 Luna alone passed 3 of 10 builds against 178 hidden acceptance tests, passed all 10 inside a behavioural harness at $0.273 a run, a third less than unaided GPT-6 Sol&rsquo;s $0.406, while the same harness left Sol&rsquo;s pass rate alone and multiplied its bill about 7&times;. Hamel Husain scored six <a href="#decision-models-for-evals">decision models as pass/fail judges</a> on 100 leasing-agent traces and found the default 0.50 threshold the first thing to fix; after tuning under an 80/80 precision-recall floor, Perplexity&rsquo;s Decider reached 0.79 F1 at 0.82 cents per 100 runs and OpenAI Decisions 0.87 at 3.72 cents, with Jev and d1-ultra already calibrated and one Clef Flash bucket at 8% predicted against 60% observed. Both are one task, one author and one labelled set, which is also what makes them rerunnable.</p>
           <p>The Oct 19 cycle was two benchmarks about coverage, one of languages and one of work. OpenAI&rsquo;s <a href="#multilangbench">MultiLangBench</a> has a model build a database engine in 20 languages and reports GPT-6 Astra at 87.4% against 26.8% for GPT-5.6 Sol, with COBOL from 10.9% to 72.1% and Fortran at 83.5%: a lab scoring its own models on a test it designed for the legacy languages SWE-bench never reached. Mercor&rsquo;s <a href="#mercor-benchmark-map">Benchmark Map</a> works the other direction, matching published benchmarks to American working time and finding 90% of hours on tasks with little or no coverage, a number for this page&rsquo;s standing complaint that benchmark scope and paid work diverge, from a company that sells the labour to close the gap.</p>
@@ -89,13 +91,13 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#document-ocr-vlm-parsing">Document OCR &amp; VLM parsing <span class="n">3</span></a></li>
-          <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">5</span></a></li>
+          <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">6</span></a></li>
           <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">8</span></a></li>
           <li><a href="#active-parameter-efficiency-benchmarks">Active-parameter efficiency benchmarks <span class="n">1</span></a></li>
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
           <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">11</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
-          <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">2</span></a></li>
+          <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">3</span></a></li>
           <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">25</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">12</span></a></li>
@@ -138,6 +140,13 @@
         <h3>Coding benchmarks (SWE-bench)</h3>
         <p class="lead">SWE-bench Verified and the harder SWE-bench Pro are the public coding scoreboards, now joined by a lab-built test for languages they never covered. Each entry here turns on what a score leaves out: who reported it, how much it moves between runs, and the task errors a revision had to fix. Cost per task and consistency are the discriminators left.</p>
 
+        <article class="story" id="featureloop">
+          <span class="when">2026-10-30</span>
+          <h4><a href="https://arxiv.org/abs/2610.35488">FeatureLoop: the best of 12 frontier models completes 72.1% of 61 coding tasks whose spec changes mid-way</a></h4>
+          <p><strong>FeatureLoop</strong> holds <strong>61 human-reviewed tasks from 34 repositories</strong> in which the specification changes partway through, and scores new behaviour, repairs and preserved features separately. The best of <strong>12 frontier models</strong> completes <strong>72.1%</strong>, so even the leader breaks or drops something on more than a quarter of tasks.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.35488">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 30)</span></div>
+        </article>
+
         <article class="story" id="frontier-code-2-0">
           <span class="when">2026-10-28</span>
           <h4><a href="https://cognition.com/blog/frontier-code-2.0">FrontierCode 2.0 widens the task pool and raises mergeability standards, with reference solutions 67% larger by files touched</a></h4>
@@ -154,15 +163,15 @@
           <div class="sources"><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20)</span></div>
         </article>
 
-        <article class="story" id="swe-bench-pro-v2">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://labs.scale.com/leaderboard/swe_bench_pro_public_v2">SWE-Bench Pro v2: 642 corrected tasks from 11 repos, and GPT-5 and Opus 4.1 near 23%</a></h4>
-          <p>Scale released <strong>SWE-Bench Pro v2</strong> with <strong>642 tasks from 11 repositories</strong>, correcting errors in the previous task set and changing the evaluation process; GPT-5 and Claude Opus 4.1 score only around <strong>23%</strong> on the public set. Top models stay consistent across tasks and languages while smaller ones fall away on multi-file work &mdash; though the models on the published board trail the current frontier by a generation.</p>
-          <div class="sources"><a href="https://labs.scale.com/leaderboard/swe_bench_pro_public_v2">Scale leaderboard</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="swe-bench-pro-v2">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://labs.scale.com/leaderboard/swe_bench_pro_public_v2">SWE-Bench Pro v2: 642 corrected tasks from 11 repos, and GPT-5 and Opus 4.1 near 23%</a></h4>
+            <p>Scale released <strong>SWE-Bench Pro v2</strong> with <strong>642 tasks from 11 repositories</strong>, correcting errors in the previous task set and changing the evaluation process; GPT-5 and Claude Opus 4.1 score only around <strong>23%</strong> on the public set. Top models stay consistent across tasks and languages while smaller ones fall away on multi-file work &mdash; though the models on the published board trail the current frontier by a generation.</p>
+            <div class="sources"><a href="https://labs.scale.com/leaderboard/swe_bench_pro_public_v2">Scale leaderboard</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
+          </article>
 
           <article class="story unlinked" id="fireworks-deepswe-variance">
             <span class="when">2026-09-16</span>
@@ -171,6 +180,7 @@
             <p>Publishing the variance beside the scores is the part other vendor comparisons omit, and it is the only thing that lets a reader tell a real gap from noise: the same data supports &ldquo;Astra leads&rdquo; and &ldquo;the four are tied&rdquo; depending on whether the error bars are shown. The numbers are Fireworks&rsquo; own, on Fireworks&rsquo; setup. Read it beside the <a href="#altk-evolve">inconsistency gap</a> IBM named the same day.</p>
             <div class="sources"><span class="via">via Unwind AI (Sep 16) &mdash; no public URL given</span></div>
           </article>
+
           <article class="story unlinked" id="fable-5-swe-bench-records">
             <span class="when">2026-06-13</span>
             <h4>Claude Fable 5 is reported at 95.0% on SWE-bench Verified and 80.3% on SWE-bench Pro</h4>
@@ -419,7 +429,14 @@
 
       <section class="topic-section" id="retrieval-benchmarks-at-web-scale">
         <h3>Retrieval benchmarks at web scale</h3>
-        <p class="lead">Retrieval evaluation has mostly been run at a size that flatters it. The two benchmarks here attack that from opposite ends: one isolates the first-stage retriever under three independent relevance judgments, the other scores whole search agents on tasks memory cannot answer. Judge both on how they were built and graded.</p>
+        <p class="lead">Retrieval evaluation has mostly been run at a size that flatters it. The three benchmarks here attack that from different ends: one isolates the first-stage retriever under three independent relevance judgments, one scores whole search agents on tasks memory cannot answer, one asks when another search is worth running. Judge both on how they were built and graded.</p>
+
+        <article class="story" id="searchhorizonbench">
+          <span class="when">2026-10-30</span>
+          <h4><a href="https://arxiv.org/abs/2610.34714">SearchHorizonBench: 45,632 runs show calibrating on past outcomes cuts the Brier error of stop-or-search calls 16.2%</a></h4>
+          <p><strong>SearchHorizonBench</strong> asks when one more search is worth running, over <strong>45,632 executions on 3,168 questions</strong>. Calibrating the decision on historical outcomes cuts Brier error by <strong>16.2%</strong> on <strong>1,632 held-out questions</strong>.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.34714">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 30)</span></div>
+        </article>
 
         <article class="story" id="exa-atlas">
           <span class="when">2026-10-09</span>
@@ -862,6 +879,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-10-30</span><span class="label"><a href="#featureloop">FeatureLoop: the best of 12 frontier models completes 72.1% of 61 coding tasks whose spec changes mid-way</a></span></li>
+        <li><span class="date">2026-10-30</span><span class="label"><a href="#searchhorizonbench">SearchHorizonBench: 45,632 runs show calibrating on past outcomes cuts the Brier error of stop-or-search calls 16.2%</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#artificial-analysis-intelligence-index-v5">Artificial Analysis Intelligence Index v5 moves 60% of its weight to private test sets</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#babelarena">Qwen&rsquo;s BabelArena: the same agent task can take 8&times; more tool calls in Telugu than in English</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#frontier-code-2-0">FrontierCode 2.0 widens the task pool and raises mergeability standards, with reference solutions 67% larger by files touched</a></span></li>
