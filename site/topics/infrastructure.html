@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-02</div>
+      <div class="meta">Last updated: 2026-11-04</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 3 cycle is two transfers that got smaller. <a href="#claude-message-threads">Claude Message Threads</a> stop a client resending its whole conversation on every turn: a coding agent&rsquo;s request of about 800 KB falls to 1.8 KB, and median time to first token drops about 35% on requests of 500K to 1M tokens, while token usage and rates stay the same. The cache section&rsquo;s usual question is what gets re-read and at which rate; this feature leaves that alone and removes the upload. Threads expire five minutes after the last request, so clients still need their own copy of the history. <a href="#weight-teleportation">Weight Teleportation</a> does the same for RL training, compressing the sync from trainers to samplers so the pause stays under 0.23 seconds, on the authors&rsquo; own numbers.</p>
         <p>The Nov 2 cycle is two speed results from the Oct 28 and 29 issues and one satellite update, sharing the question of how far a vendor&rsquo;s speedup travels past the setup it was measured on. <a href="#flashmap">FlashMap</a>, from researchers at Polymathic AI, Princeton, USC ISI, NYU and the Flatiron Institute, replaces the discrete diffusion drafter in speculative decoding with a continuous flow map: a 0.5B drafter writes a 16-token block in one forward pass. On Qwen3-8B it reaches up to 6.14&times; lossless speedup on GSM8K and averages about 7% above a retrained DFlash. Drafters for Qwen3-8B and Qwen3-4B are Apache 2.0 with vLLM and SGLang plugins, but the numbers come from one H200 at concurrency 1, which flatters speculative decoding relative to a loaded server. <a href="#prime-mega-moe-backward">Prime Intellect</a> added a backward pass to DeepSeek&rsquo;s fused Mega MoE kernel so it works for training as well as inference, and Qwen3 MoE training steps in prime-rl run up to 34% faster, or 55% faster than TorchTitan, on Prime Intellect&rsquo;s own measurements. Neither entry has an outside replication yet, and the two results sit at opposite ends of the serving stack: FlashMap changes how tokens are drafted at inference time, while the Mega MoE backward pass changes what a training step costs.</p>
         <p>The satellite is the update. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> test craft, launched October 1 with four TPUs on about a kilowatt of solar, is running: Google ran Gemma 4 on one of the four TPUs and relayed a haiku back through Svalbard. TechCrunch reports the chip can currently run for about 20 minutes at a time. Thermal and radiation tests come next, ahead of a planned pair of interconnected satellites in 2027, so the orbital data centre is still at the stage of showing that one chip can answer one prompt.</p>
         <p>The Oct 29 addition put agents on the serving bill itself. Decagon&rsquo;s <a href="#decagon-autoresearch-inference">AutoResearch</a> agents diagnose its inference bottlenecks, test changes against replayed production traffic and report up to 2.5&times; more throughput inside the latency budget, from quantization, scheduling, engine patches and speculative decoding. Each change still waits for a human to approve it, and the figure comes from Decagon&rsquo;s own traffic with no baseline published.</p>
         <p>The Oct 28 cycle spread across four sections. <a href="#pg-pinecone">pg_pinecone</a> puts Pinecone&rsquo;s compact-summary index inside Postgres as an Apache 2.0 extension, 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB on a million 768-dimension vectors and 1.3 ms against 1.7 at 0.95 recall, vendor-measured against half-precision pgvector. <a href="#opera-webai">Opera&rsquo;s WebAI</a> proposes the browser itself as the model host, sites calling local open models opt-in with prompts never leaving the device. The <a href="#macbook-pro-m6">M6 MacBook Pro</a> moves the local ceiling again, Neural Accelerators per GPU core and a claimed 25% faster local prompt processing under a 32 GB cap, and <a href="#epoch-ai-chip-imports">Epoch&rsquo;s Chip Imports explorer</a> gives the compute-supply question its first public import series.</p>
-        <p>The Oct 27 cycle had one retrieval entry: <a href="#turbopuffer-v3">turbopuffer v3</a> will move its search engine to fully vectorized query execution, the batch-at-a-time design of analytical databases, when it reaches production later this year. It is an architecture post with no latency or cost figures yet, and those are what will show whether vectorized execution changes the price of a retrieval read.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 27 cycle had one retrieval entry: <a href="#turbopuffer-v3">turbopuffer v3</a> will move its search engine to fully vectorized query execution, the batch-at-a-time design of analytical databases, when it reaches production later this year. It is an architecture post with no latency or cost figures yet, and those are what will show whether vectorized execution changes the price of a retrieval read.</p>
           <p>The Oct 25 to 26 cycle was the cost of what a model re-reads and what a GPU leaves unused. Tsinghua&rsquo;s <a href="#tsinghua-akv">AKV</a> drops stale tool output from the KV cache instead of summarizing it, for 27.7% lower agent cost and 1.7 points higher scores across four benchmarks, and <a href="#tokengate">TokenGate</a> trains a gate that skips document tokens for 1.4&ndash;11.3&times; faster prefill on Qwen3-1.7B, at the price of a gate tied to one backbone. At the hardware end, <a href="#gpu-unlock">gpu-unlock</a> claims to double RTX 4090 FP16 throughput by lifting software limits, and a <a href="#gpu-idle-survey">survey of 218 companies</a> finds 79% leaving GPUs idle at least half the time while 70% plan new platforms.</p>
           <p>The Oct 22 to 25 cycle was latency and residency rather than throughput. Liquid AI&rsquo;s <a href="#liquid-ripl">RIPL</a> serves LFM2.5-1.2B at 34.6 ms p95 under 1,000 requests a second on one B200 against 498 ms for a smaller model on vLLM, a closed engine aimed at search ranking and fraud checks. Cerebras explained how it <a href="#cerebras-trillion-parameter-wse-3t">splits trillion-parameter models across WSE-3T wafers</a> that each hold 44 GB on chip, and Cohere&rsquo;s <a href="#cohere-model-vault-confidential">Model Vault</a> now runs on confidential H100s on Azure so the operator cannot read the prompt.</p>
           <p>Retrieval and compression both got cheaper per useful token. <a href="#cohere-rerank-5">Rerank 5</a>&rsquo;s Context Focus returns passages instead of whole documents and cut a search agent&rsquo;s tokens 35% in Cohere&rsquo;s test, at a median 11.7 seconds per 96-document request on Pro. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco">2-bit DeepSeek-V4.1-Flash</a> keeps 100% of the base model&rsquo;s average on three benchmarks, and the same lab&rsquo;s quantization turns out to be the parent file of <a href="#underdog-saluki-27b">Saluki 27B</a>, which MarkTechPost found re-tuned in 146 of 851 tensors.</p>
@@ -105,11 +106,11 @@
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">3</span></a></li>
           <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">27</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
-          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">10</span></a></li>
+          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">11</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">5</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
           <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">14</span></a></li>
-          <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">5</span></a></li>
+          <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">6</span></a></li>
           <li><a href="#tokenization-throughput">Tokenization throughput <span class="n">1</span></a></li>
           <li><a href="#gpu-programming-references">GPU programming references <span class="n">1</span></a></li>
         </ul>
@@ -859,6 +860,14 @@
         <h3>Cache &amp; context economics</h3>
         <p class="lead">For a long agent run the rate on the model card is nearly irrelevant: the bill is set by what gets re-read, at the cached rate or the fresh one. These entries make that visible, shrink it, route around it &mdash; and then point out that the hit is asserted by the party billing you.</p>
 
+        <article class="story" id="claude-message-threads">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://claude.com/resources/articles/message-threads">Claude Message Threads cut long-context time to first token about 35% by keeping the conversation server-side</a></h4>
+          <p>The Messages API now has <strong>Message Threads</strong> in public beta: a client sends only new messages plus the previous response ID instead of the whole history. AlphaSignal reports a coding agent&rsquo;s roughly <strong>800 KB request dropping to 1.8 KB</strong>, and median time to first token falls about <strong>35%</strong> on requests of 500K to 1M tokens, with token usage and rates unchanged.</p>
+          <p>Threads are encrypted in memory, never written to disk, and expire 5 minutes after the last request, so a client still has to keep its own history as a backup. The gain is latency, and the bill stays where it was.</p>
+          <div class="sources"><a href="https://claude.com/resources/articles/message-threads">Anthropic</a> &middot; <span class="via">via TLDR AI (Nov 3), AlphaSignal (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="tsinghua-akv">
           <span class="when">2026-10-26</span>
           <h4><a href="https://www.marktechpost.com/2026/10/26/tsinghua-akv-kv-cache-engineering-llm-agents/">Tsinghua&rsquo;s AKV drops stale tool output from the KV cache instead of summarizing, cutting agent cost 27.7%</a></h4>
@@ -875,16 +884,16 @@
           <div class="sources"><a href="https://blog.cloudflare.com/obsessive-inference-optimization">Cloudflare</a> &middot; <span class="via">via TLDR (Oct 20)</span></div>
         </article>
 
-        <article class="story" id="firerouter-with-opus">
-          <span class="when">2026-09-29</span>
-          <h4><a href="https://fireworks.ai/blog/introducing-firerouter-with-opus">Fireworks&rsquo; FireRouter keeps 98.1% of Opus-only accuracy at 57% lower cost by routing each turn across Opus 5.5 and GLM 5.3</a></h4>
-          <p>Fireworks launched <strong>FireRouter with Opus</strong>, a cache-aware router for coding workflows that chooses between Claude Opus 5.5, GLM 5.3 and GLM 5.3 Flash on every user turn. Its internal A/B test cut a coding session from <strong>$15.36 to $6.63</strong> while retaining <strong>98.1%</strong> of Opus-only accuracy, and it runs through Fireworks&rsquo; CLI integrations or as a serverless router model.</p>
-          <p>Cache-aware is the claim that matters here, since switching models mid-session normally throws the cache away; how the router prices that is not in the summary, and the test is Fireworks&rsquo; own. After <a href="#jev-router">jev-router</a> it is the second per-turn router in a week.</p>
-          <div class="sources"><a href="https://fireworks.ai/blog/introducing-firerouter-with-opus">Fireworks</a> &middot; <span class="via">via Unwind AI (Sep 29)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="firerouter-with-opus">
+            <span class="when">2026-09-29</span>
+            <h4><a href="https://fireworks.ai/blog/introducing-firerouter-with-opus">Fireworks&rsquo; FireRouter keeps 98.1% of Opus-only accuracy at 57% lower cost by routing each turn across Opus 5.5 and GLM 5.3</a></h4>
+            <p>Fireworks launched <strong>FireRouter with Opus</strong>, a cache-aware router for coding workflows that chooses between Claude Opus 5.5, GLM 5.3 and GLM 5.3 Flash on every user turn. Its internal A/B test cut a coding session from <strong>$15.36 to $6.63</strong> while retaining <strong>98.1%</strong> of Opus-only accuracy, and it runs through Fireworks&rsquo; CLI integrations or as a serverless router model.</p>
+            <p>Cache-aware is the claim that matters here, since switching models mid-session normally throws the cache away; how the router prices that is not in the summary, and the test is Fireworks&rsquo; own. After <a href="#jev-router">jev-router</a> it is the second per-turn router in a week.</p>
+            <div class="sources"><a href="https://fireworks.ai/blog/introducing-firerouter-with-opus">Fireworks</a> &middot; <span class="via">via Unwind AI (Sep 29)</span></div>
+          </article>
 
           <article class="story" id="jev-router">
             <span class="when">2026-09-27</span>
@@ -1126,7 +1135,14 @@
 
       <section class="topic-section" id="moe-training-infrastructure">
         <h3>MoE training infrastructure</h3>
-        <p class="lead">Training-side throughput is its own thread beside inference economics. An expert-parallel collective runs at its slowest rank&rsquo;s speed; a lower-precision GEMM attacks the step; scheduling bounds its memory; an open framework targets the trillion-parameter run; a fused inference kernel gains a backward pass. Each gain is quoted by its authors, none independently measured.</p>
+        <p class="lead">Training-side throughput is its own thread beside inference economics. An expert-parallel collective runs at its slowest rank&rsquo;s speed; a lower-precision GEMM attacks the step; scheduling bounds its memory; an open framework targets the trillion-parameter run; a fused inference kernel gains a backward pass; faster weight sync shortens an RL pause. Each gain is quoted by its authors, none independently measured.</p>
+
+        <article class="story" id="weight-teleportation">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://humansand.ai/blog/gpu-accelerated-weight-teleportation">GPU-accelerated weight teleportation cuts RL trainer-to-sampler sync pauses below 0.23 seconds</a></h4>
+          <p><strong>Weight Teleportation</strong> speeds the weight sync between RL trainers and samplers with a co-designed compression and decompression pipeline, running codecs such as LZ4 and Snappy in GPU-accelerated parallel with a Zstd layer on top. Pause times fall below <strong>0.23 seconds</strong> on the authors&rsquo; own report.</p>
+          <div class="sources"><a href="https://humansand.ai/blog/gpu-accelerated-weight-teleportation">humansand.ai</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
+        </article>
 
         <article class="story" id="prime-mega-moe-backward">
           <span class="when">2026-10-29</span>
@@ -1142,15 +1158,15 @@
           <div class="sources"><a href="https://allenai.org/blog/olmocore3">Ai2</a> &middot; <span class="via">via TLDR AI (Oct 2)</span></div>
         </article>
 
-        <article class="story" id="moe-fixed-memory-training">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://arxiv.org/abs/2609.14306">Scheduling bounds four MoE-training memory bottlenecks without approximating the computation</a></h4>
-          <p>A new paper bounds the four largest memory consumers in large-scale MoE training &mdash; <strong>expert dispatch, vocabulary projection, checkpointing and optimizer state</strong> &mdash; with scheduling techniques alone, keeping training inside a fixed GPU memory budget without approximating any of the computation. Exactness is the claim that distinguishes it from lower-precision tricks; the summary gives no throughput cost for the scheduling.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2609.14306">arXiv</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="moe-fixed-memory-training">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://arxiv.org/abs/2609.14306">Scheduling bounds four MoE-training memory bottlenecks without approximating the computation</a></h4>
+            <p>A new paper bounds the four largest memory consumers in large-scale MoE training &mdash; <strong>expert dispatch, vocabulary projection, checkpointing and optimizer state</strong> &mdash; with scheduling techniques alone, keeping training inside a fixed GPU memory budget without approximating any of the computation. Exactness is the claim that distinguishes it from lower-precision tricks; the summary gives no throughput cost for the scheduling.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2609.14306">arXiv</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
+          </article>
 
           <article class="story unlinked" id="moonep">
             <span class="when">2026-07-31</span>
@@ -1198,6 +1214,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#weight-teleportation">GPU-accelerated weight teleportation cuts RL trainer-to-sampler sync pauses below 0.23 seconds</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#claude-message-threads">Claude Message Threads cut long-context time to first token about 35% by keeping the conversation server-side</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#decagon-autoresearch-inference">Decagon&rsquo;s AutoResearch agents tune its inference stack for up to 2.5&times; throughput, with a human approving each change</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#prime-mega-moe-backward">Prime Intellect adds a backward pass to DeepSeek&rsquo;s Mega MoE kernel: Qwen3 MoE training up to 34% faster</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#pg-pinecone">pg_pinecone puts Pinecone&rsquo;s index in a Postgres extension: 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB</a></span></li>

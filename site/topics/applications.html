@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Applications &amp; case studies</h1>
-      <div class="meta">Last updated: 2026-11-02</div>
+      <div class="meta">Last updated: 2026-11-04</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 3 issue adds two autonomous-research papers, and what separates them is who did the checking. <a href="#scientisttwo">ScientistTwo</a> runs a full ML research cycle and is reported beating human scientists by 25% across 86 tasks, while its higher paper ratings come from automated AI review agents. The <a href="#quantum-spin-agent-lab">quantum-spin lab</a> checked itself against an instrument: its agents noticed a drifting signal in reference measurements, called the first result inconclusive, and reran the experiment with the acceptance criteria unchanged. The second is the stronger evidence of autonomy here because a physical measurement could have said no.</p>
         <p>The Nov 1 to 2 cycle has three entries whose shared trait is what each leaves unstated. <a href="#samaya-sterling">Samaya&rsquo;s Sterling</a>, a post-trained finance research model with 3B active parameters, scores 58.9% on FrontierFinance at $0.61 a question, against 55.9% at $6.89 for Fable 5.1: a higher score at about one eleventh of the cost. It was co-trained with its own harness and has no public weights or API, so nobody outside Samaya can reproduce the comparison.</p>
         <p>The other two entries are about who operates what. <a href="#claude-smart-reports">Smart Reports</a> in Claude Enterprise lets managers study large samples of employee chats for work patterns, costs and bottlenecks and flag conversations that look off-topic. The coverage gives no sample sizes and nothing on admin controls or whether employees are told, and those details decide whether the feature is workplace analytics or monitoring. Anthropic&rsquo;s AI for Science programme <a href="#anthropic-ai-for-science-lab-standard">adds 20 research organisations</a>, including the Allen Institute, and ships a research-preview standard that lets agents operate lab instruments. The Oct 28 science results below were models proposing designs; this is the interface for an agent to run the instrument, and the summary does not say which instruments or vendors the standard covers, so how much of a lab it reaches is open.</p>
         <p>The Oct 29 addition is a vertical product built from workflows rather than a new model. <a href="#claude-for-legal-artifacts">Claude for Legal</a> ships six ready-made artifacts, among them cite checking, tabular contract review and a regulatory scan, with 60+ connectors including Bloomberg Law and Docusign and artifacts contributed by two law firms. There is no accuracy figure; what is deployed is the source link attached to every claim before a lawyer signs off.</p>
         <p>The Oct 28 cycle is AI-for-science on two fronts, with mathematics turning into a two-lab race. <a href="#anthropic-eth-refutation">Anthropic says</a> a research Claude model found its own subexponential 3-SAT counting algorithm, refuting the Exponential Time Hypothesis hours after OpenAI&rsquo;s claim, with a Lean 4 formalization that builds in 8 minutes and the honest caveat that nothing checks the Lean statement against the paper; MIT&rsquo;s Ryan Williams and the hypothesis&rsquo;s originators are now reviewing both. <a href="#axiom-cfsg-formalization">Axiom Math</a> meanwhile formalized the Classification of Finite Simple Groups, 43.1 million lines of Lean from agent swarms in 24 days, a throughput result on mathematics the field already believed. On the biomedical side, <a href="#anthropic-drug-development">Anthropic&rsquo;s six pharma partnerships</a> reported first preclinical results, led by a Claude-redesigned cancer-therapy protocol 70% shorter that produced ten times more receptors in lab tests, with Claude Science as the workbench and a one-person biotech acquired alongside.</p>
-        <p>The Oct 27 cycle raised the stakes on OpenAI&rsquo;s mathematics programme. <a href="#openai-academic-results-eth">OpenAI says</a> its models produced three results, in harmonic analysis, complexity theory and quantum field theory, and that the complexity one is a Lean-verified proof that the Exponential Time Hypothesis is false. This time it is handing the results to outside groups, including Impagliazzo and Paturi, who formulated the hypothesis, which answers the main criticism of the <a href="#openai-mathematics-results">Oct 6 release</a>: no human had understood its proofs. Until those groups report, the Lean check shows the proof matches its formal statement and says nothing yet about whether that statement is ETH as the field uses it.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 27 cycle raised the stakes on OpenAI&rsquo;s mathematics programme. <a href="#openai-academic-results-eth">OpenAI says</a> its models produced three results, in harmonic analysis, complexity theory and quantum field theory, and that the complexity one is a Lean-verified proof that the Exponential Time Hypothesis is false. This time it is handing the results to outside groups, including Impagliazzo and Paturi, who formulated the hypothesis, which answers the main criticism of the <a href="#openai-mathematics-results">Oct 6 release</a>: no human had understood its proofs. Until those groups report, the Lean check shows the proof matches its formal statement and says nothing yet about whether that statement is ETH as the field uses it.</p>
           <p>The Oct 22 to 26 cycle put two medical comparisons side by side that point in opposite directions. Microsoft says <a href="#mai-dxo">MAI-DxO</a> solved 83% of complex cases against 22% for unaided doctors, on its own case set, while Lynch Lab found <a href="#cnn-skin-cancer">a 10-year-old CNN</a> recognizing skin lesions far better than GPT-6 Astra or Claude Fable 5.1. Together they restate this page&rsquo;s healthcare argument: the deployment choice depends on the task, and the frontier model is not the default.</p>
           <p>The Oct 23 to 25 cycle was generation that hands a pipeline something editable, and a DNA model with no clinic behind it. NVIDIA&rsquo;s <a href="#nvidia-jca">Joints, Camera, Action!</a> generates a video together with matching 3D motion for any character rig, so the output arrives as animation a tool can edit, and <a href="#canva-craft">Canva Craft</a>, Canva&rsquo;s first image model trained from scratch, plans layout and text before rendering at up to 2K behind a public API. Hugging Face&rsquo;s <a href="#carbon-x">Carbon-X</a> reads DNA as 6-mer tokens beside text and averages 66.7% on five DNA benchmarks against GPT-6.1 Sol&rsquo;s 67.5% at about 1/1,800 of the cost, and it is not clinically validated, this page&rsquo;s recurring caveat in its plainest form.</p>
           <p>The Oct 21 entry is a design result with the function test still to come. Anthropic had an internal research model design mini binders against <a href="#claude-scorpion-toxin-binders">scorpion neurotoxins</a>, and 17 of 211 tested met its criteria, designs produced in days and confirmed in the lab within weeks; it has not shown the binders neutralise venom in cells and claims no antivenom. Beside <a href="#chai-discovery-gsk">Chai&rsquo;s GSK result</a> it is the drug-discovery section&rsquo;s question answered halfway, binding measured and function not.</p>
@@ -90,7 +91,7 @@
           <li><a href="#knowledge-work-productivity">Knowledge-work productivity <span class="n">11</span></a></li>
           <li><a href="#agentic-data-science">Agentic data science <span class="n">1</span></a></li>
           <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">15</span></a></li>
-          <li><a href="#scientific-discovery-beyond-biomedicine">Scientific discovery beyond biomedicine <span class="n">11</span></a></li>
+          <li><a href="#scientific-discovery-beyond-biomedicine">Scientific discovery beyond biomedicine <span class="n">13</span></a></li>
           <li><a href="#product-search-and-e-commerce">Product search &amp; e-commerce <span class="n">1</span></a></li>
           <li><a href="#access-to-frontier-models-in-research">Access to frontier models in research <span class="n">1</span></a></li>
         </ul>
@@ -606,7 +607,23 @@
 
       <section class="topic-section" id="scientific-discovery-beyond-biomedicine">
         <h3>Scientific discovery beyond biomedicine</h3>
-        <p class="lead">Models and agents pointed at materials, crops, climate, mathematics, physics and cryptography, plus a research pipeline for coding agents and a standard for agents running lab instruments. Judge each on what was checked outside the model: candidates for materials and crops, a cost ratio for climate, Lean and referees for mathematics, a generator rerun for curve seeds, the pipeline&rsquo;s papers.</p>
+        <p class="lead">Models and agents pointed at materials, crops, climate, mathematics, physics, quantum spins and cryptography, plus research pipelines and a lab-instrument standard. Judge each on what was checked outside the model: candidates for materials and crops, a cost ratio for climate, Lean and referees for mathematics, a generator rerun for curve seeds, reference measurements for spins, the pipelines&rsquo; papers.</p>
+
+        <article class="story" id="quantum-spin-agent-lab">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://arxiv.org/abs/2610.40589">LLM agents run a quantum-spin experiment, catch signal drift and redo the measurement</a></h4>
+          <p>In a paper on <strong>ensembles of quantum spins in diamond</strong>, LLM agents assess each other&rsquo;s work and can stop an investigation. They derived the minimum calibration settings needed to predict responses to a family of microwave pulse sequences, then found from repeated reference measurements that the signal was drifting.</p>
+          <p>They called the first result inconclusive and revised the protocol without relaxing the acceptance criteria, and the revised run supported the prediction. AlphaSignal&rsquo;s &ldquo;new law&rdquo; is its own wording; the abstract describes a derived result checked by experiment.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.40589">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 3)</span></div>
+        </article>
+
+        <article class="story" id="scientisttwo">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://arxiv.org/abs/2609.19644">ScientistTwo runs an end-to-end ML research cycle, scored partly by AI review agents</a></h4>
+          <p><strong>ScientistTwo</strong> is a multi-agent framework that takes a problem, sets baselines, forms hypotheses, runs experiments and ablations, and validates findings through a simulated peer-review loop, benchmarked across papers accepted at ICLR, ICML and NeurIPS. AlphaSignal reports it beating human scientists by <strong>25% across 86 tasks</strong>.</p>
+          <p>The abstract&rsquo;s higher review ratings come from automated AI review agents, so the human comparison rests on machine judges, and the verdict of a human program committee is not part of it.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2609.19644">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 3)</span></div>
+        </article>
 
         <article class="story" id="anthropic-ai-for-science-lab-standard">
           <span class="when">2026-10-30</span>
@@ -615,24 +632,24 @@
           <div class="sources"><a href="https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions">Anthropic</a> &middot; <span class="via">via MarkTechPost (Oct 30)</span></div>
         </article>
 
-        <article class="story" id="anthropic-eth-refutation">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://github.com/anthropics/formal-math/tree/main/eth">Anthropic says a research Claude model found its own subexponential 3-SAT counting algorithm, hours after OpenAI&rsquo;s ETH refutation</a></h4>
-          <p>Anthropic says an internal research Claude model found, with no human input, a deterministic algorithm that counts the satisfying assignments of 3-SAT formulas in 2^O(n&nbsp;log&nbsp;log&nbsp;n/&radic;log&nbsp;n) time, which would make 3-SAT subexponential and refute the Exponential Time Hypothesis. The repository holds the paper and a Lean 4 formalization written by AI models that builds in about <strong>8 minutes</strong>, and it landed hours after <a href="#openai-academic-results-eth">OpenAI&rsquo;s own ETH result</a>.</p>
-          <p>Anthropic&rsquo;s stated caveats: no machine check confirms the Lean statement matches the paper&rsquo;s claim, and the result says nothing about practical SAT solving. Forward Future reports MIT&rsquo;s Ryan Williams working with the hypothesis&rsquo;s originators to check the proofs. Two labs claiming the same refutation independently within hours is either strong replication or a shared formalization flaw, and the outside review is what settles it.</p>
-          <div class="sources"><a href="https://github.com/anthropics/formal-math/tree/main/eth">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 28), Forward Future (Oct 28)</span></div>
-        </article>
-
-        <article class="story" id="axiom-cfsg-formalization">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://axiommath.ai/research/the-enormous-theorem-formalized/">Axiom Math formalizes the Classification of Finite Simple Groups: 43.1 million lines of Lean from agent swarms in 24 days</a></h4>
-          <p>Axiom Math released the first complete computer-checked proof of the <strong>Classification of Finite Simple Groups</strong>, generally counted the longest proof humans have written: roughly <strong>15,000 pages</strong> across more than 500 articles by about 100 mathematicians. Its engineers and mathematicians directed swarms of dozens of AI agents over <strong>24 days</strong>, producing about <strong>43.1 million lines</strong> of Lean.</p>
-          <p>Unlike the ETH entries beside it, the mathematics here was already believed; what the result measures is formalization throughput &mdash; a century of refereed work made machine-checkable in under a month, with humans directing the swarm rather than writing the proofs.</p>
-          <div class="sources"><a href="https://axiommath.ai/research/the-enormous-theorem-formalized/">Axiom Math</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="anthropic-eth-refutation">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://github.com/anthropics/formal-math/tree/main/eth">Anthropic says a research Claude model found its own subexponential 3-SAT counting algorithm, hours after OpenAI&rsquo;s ETH refutation</a></h4>
+            <p>Anthropic says an internal research Claude model found, with no human input, a deterministic algorithm that counts the satisfying assignments of 3-SAT formulas in 2^O(n&nbsp;log&nbsp;log&nbsp;n/&radic;log&nbsp;n) time, which would make 3-SAT subexponential and refute the Exponential Time Hypothesis. The repository holds the paper and a Lean 4 formalization written by AI models that builds in about <strong>8 minutes</strong>, and it landed hours after <a href="#openai-academic-results-eth">OpenAI&rsquo;s own ETH result</a>.</p>
+            <p>Anthropic&rsquo;s stated caveats: no machine check confirms the Lean statement matches the paper&rsquo;s claim, and the result says nothing about practical SAT solving. Forward Future reports MIT&rsquo;s Ryan Williams working with the hypothesis&rsquo;s originators to check the proofs. Two labs claiming the same refutation independently within hours is either strong replication or a shared formalization flaw, and the outside review is what settles it.</p>
+            <div class="sources"><a href="https://github.com/anthropics/formal-math/tree/main/eth">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 28), Forward Future (Oct 28)</span></div>
+          </article>
+
+          <article class="story" id="axiom-cfsg-formalization">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://axiommath.ai/research/the-enormous-theorem-formalized/">Axiom Math formalizes the Classification of Finite Simple Groups: 43.1 million lines of Lean from agent swarms in 24 days</a></h4>
+            <p>Axiom Math released the first complete computer-checked proof of the <strong>Classification of Finite Simple Groups</strong>, generally counted the longest proof humans have written: roughly <strong>15,000 pages</strong> across more than 500 articles by about 100 mathematicians. Its engineers and mathematicians directed swarms of dozens of AI agents over <strong>24 days</strong>, producing about <strong>43.1 million lines</strong> of Lean.</p>
+            <p>Unlike the ETH entries beside it, the mathematics here was already believed; what the result measures is formalization throughput &mdash; a century of refereed work made machine-checkable in under a month, with humans directing the swarm rather than writing the proofs.</p>
+            <div class="sources"><a href="https://axiommath.ai/research/the-enormous-theorem-formalized/">Axiom Math</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
+          </article>
 
           <article class="story" id="openai-academic-results-eth">
             <span class="when">2026-10-27</span>
@@ -726,6 +743,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#quantum-spin-agent-lab">LLM agents run a quantum-spin experiment, catch signal drift and redo the measurement</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#scientisttwo">ScientistTwo runs an end-to-end ML research cycle, scored partly by AI review agents</a></span></li>
         <li><span class="date">2026-11-01</span><span class="label"><a href="#claude-smart-reports">Claude Enterprise adds Smart Reports, letting managers analyse samples of employee chats</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#samaya-sterling">Samaya&rsquo;s Sterling, a 3B-active finance model, scores 58.9% on FrontierFinance at $0.61 a question</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#anthropic-ai-for-science-lab-standard">Anthropic adds 20 research organisations to AI for Science and a preview standard for agents running lab instruments</a></span></li>

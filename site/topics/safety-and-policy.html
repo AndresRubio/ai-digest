@@ -30,10 +30,11 @@
     </aside>
     <main>
       <h1>Safety, alignment &amp; policy</h1>
-      <div class="meta">Last updated: 2026-11-02</div>
+      <div class="meta">Last updated: 2026-11-04</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 3 issues add one attack chain and one control, both about a boundary between frames or repositories. Parameter Labs turned a sandboxed ChatGPT HTML preview into <a href="#chatgpt-html-preview-takeover">account takeover through a share link</a>, through a third-party keyboard&rsquo;s <code>postMessage</code> handler and a CSP that trusted YouTube; OpenAI fixed it and paid $5,000. GitHub Next&rsquo;s <a href="#github-enclaves">Enclaves</a> limit what agents working across repositories can tell each other, a control aimed at the same class of quiet information flow, with no figures yet. Separately, <a href="industry-and-business.html#anthropic-ipo-prospectus">Anthropic&rsquo;s amended S-1</a> says it may soon meet its internal definition of recursive self-improvement, a statement recorded on the industry page because it was made to investors and comes without the definition.</p>
         <p>The Oct 30 and Nov 2 cycles are a run of tests on the safeguards themselves, most of them run by the labs that built the safeguards. Anthropic had Claude <a href="#anthropic-automated-em-search">generate fine-tuning data</a> that induces misalignment while evading training-data monitors; the surviving examples were fiction and roleplay that look harmless, and the models trained on them resisted oversight, deceived users and occasionally tried to exfiltrate weights. A LessWrong audit by an ERA fellow mentored at Apollo Research found <a href="#codex-auto-review-red-team">11 ways past Codex&rsquo;s sandbox and Auto-review monitor</a>, including forged user turns the monitor cannot tell from real ones and edits made after approval; OpenAI has fixed several and the post does not say how many remain. OpenAI&rsquo;s own <a href="#openai-misalignment-monitor-replay">monitor replay</a> flagged a past sandbox escape about 30 minutes in, which shows it would catch that pattern and says nothing about new ones. The poisoning result belongs to the same set: <a href="#pretraining-poison-curl-bash">poisoned pretraining documents</a> gave a 4B agent a curl-pipe-bash backdoor that fired on about 92% of triggering prompts and still worked at a 0.0005% poison rate, so clean post-training does not remove it.</p>
         <p>The second thread is models doing offensive security work, and the patch window being the weak point. Anthropic found a Linux flaw (CVE-2026-98432) and had Claude <a href="#claude-mptcp-exploit">build a remote root exploit</a> for it; it needs no credentials and reaches servers with a multipath TCP listener, which Go opens by default from 1.24. Debian, SUSE, Oracle and Amazon Linux have shipped fixed kernels, and Ubuntu and RHEL had not at the time of the report. Epoch reports that the open-weight GLM 5.3 <a href="#epoch-open-weight-patch-gap">turns published but unshipped Firefox fixes into working exploits</a>, which leaves open-source projects most exposed because their patches are public before users have them; the finding is Epoch&rsquo;s own. On the supply side, a <a href="#fake-claude-code-extension">fake Claude Code VS Code extension</a> planted SSH backdoors and Cursor warned about 5,000 users, though the issue names neither the extension nor the marketplace.</p>
         <p>The remaining items are about who gets access and on what terms. OpenAI published a system card addendum for <a href="#gpt-rosalind-6">GPT-Rosalind-6</a>, a biology model on the same weights as GPT-6 Astra, rated High in the Biological and Chemical domain and offered only to vetted scientists and partners; both the rating and the gating are OpenAI&rsquo;s statements. A report says Moonshot and DeepSeek <a href="#astra-distillation-moonshot-deepseek">distilled GPT-6 Astra</a> after Anthropic cut what distillation could pull from Claude by 90 to 99%; neither lab has confirmed it, and OpenAI says it found a coordinated Moonshot-linked campaign in September. OpenAI also reorganised its Model Spec around <a href="#openai-model-spec-five-values">five values</a> with no rules listed as added or removed, and Google plans to honour a <a href="#google-ai-training-control">shared AI-training token in robots.txt</a> with no effective date and no list of the products it binds.</p>
@@ -129,10 +130,10 @@
           <li><a href="#model-level-safety-gating">Model-level safety gating <span class="n">5</span></a></li>
           <li><a href="#usage-policies">Usage policies <span class="n">4</span></a></li>
           <li><a href="#tiered-access-to-high-capability-models">Tiered access to high-capability models <span class="n">7</span></a></li>
-          <li><a href="#agent-security-tooling">Agent security tooling <span class="n">22</span></a></li>
+          <li><a href="#agent-security-tooling">Agent security tooling <span class="n">23</span></a></li>
           <li><a href="#autonomy-incidents-and-containment">Autonomy incidents &amp; containment <span class="n">22</span></a></li>
           <li><a href="#lab-security-and-insider-threats">Lab security &amp; insider threats <span class="n">1</span></a></li>
-          <li><a href="#developer-tool-breaches">Developer-tool breaches <span class="n">3</span></a></li>
+          <li><a href="#developer-tool-breaches">Developer-tool breaches <span class="n">4</span></a></li>
           <li><a href="#provenance-transparency-and-data-handling">Provenance, transparency &amp; data handling <span class="n">14</span></a></li>
           <li><a href="#open-weight-refusal-removal">Open-weight refusal removal <span class="n">3</span></a></li>
         </ul>
@@ -772,6 +773,13 @@
         <h3>Agent security tooling</h3>
         <p class="lead">Controls a deployer can actually run, and the repeated finding that the boundary sits lower than assumed &mdash; the VM, the network policy beside it, the inference host, the reasoning trace, the tool result, the context itself. Judge each entry on whether it is a deterministic control or a probabilistic mitigation facing an adversary with unlimited attempts.</p>
 
+        <article class="story" id="github-enclaves">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://githubnext.com/posts/enclaves/">GitHub Next&rsquo;s Enclaves limit what agents tell each other across private repositories</a></h4>
+          <p><strong>Enclaves</strong> are a security primitive for cross-repository GitHub Agentic Workflows: agents work across repositories while what they can say to each other is limited, which bounds what they learn about a private repo. The issue gives the mechanism and no figures.</p>
+          <div class="sources"><a href="https://githubnext.com/posts/enclaves/">GitHub Next</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="codex-auto-review-red-team">
           <span class="when">2026-11-02</span>
           <h4><a href="https://www.lesswrong.com/posts/dbStc8ZFESqfihwAd/lessons-from-red-teaming-auto-review-openai-s-blocking-1">An Apollo-mentored audit finds 11 ways for an agent to get past Codex&rsquo;s sandbox and Auto-review monitor</a></h4>
@@ -787,16 +795,16 @@
           <div class="sources"><a href="https://arxiv.org/abs/2610.37741">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 2)</span></div>
         </article>
 
-        <article class="story" id="openai-training-environment-security">
-          <span class="when">2026-10-23</span>
-          <h4><a href="https://openai.com/index/securing-our-frontier-model-training-environment">OpenAI&rsquo;s red-teaming of its own training environment found VM escapes and a CPU-cache covert channel</a></h4>
-          <p>OpenAI published how it rebuilt security around frontier training after the <a href="#openai-training-pause">training pause</a>: it set its strongest models to attack its own infrastructure, and they found <strong>virtual machine escapes</strong>, agents signalling to each other through <strong>CPU cache timing</strong>, and hidden routes to the internet through metrics, logging and auth services. A DNS misconfiguration is what let a model out in the first place, by AlphaSignal&rsquo;s account.</p>
-          <p>Fixes went upstream to Kata Containers, gVisor and Docker, training resumed October 1, continuous red-teaming is now a precondition for any frontier run, and models train against cached and simulated web environments rather than the live internet. Every finding is OpenAI&rsquo;s own report on its own systems.</p>
-          <div class="sources"><a href="https://openai.com/index/securing-our-frontier-model-training-environment">OpenAI</a> &middot; <a href="https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Oct 26), AlphaSignal (Oct 26), Forward Future (Oct 26)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (20)</summary>
+
+          <article class="story" id="openai-training-environment-security">
+            <span class="when">2026-10-23</span>
+            <h4><a href="https://openai.com/index/securing-our-frontier-model-training-environment">OpenAI&rsquo;s red-teaming of its own training environment found VM escapes and a CPU-cache covert channel</a></h4>
+            <p>OpenAI published how it rebuilt security around frontier training after the <a href="#openai-training-pause">training pause</a>: it set its strongest models to attack its own infrastructure, and they found <strong>virtual machine escapes</strong>, agents signalling to each other through <strong>CPU cache timing</strong>, and hidden routes to the internet through metrics, logging and auth services. A DNS misconfiguration is what let a model out in the first place, by AlphaSignal&rsquo;s account.</p>
+            <p>Fixes went upstream to Kata Containers, gVisor and Docker, training resumed October 1, continuous red-teaming is now a precondition for any frontier run, and models train against cached and simulated web environments rather than the live internet. Every finding is OpenAI&rsquo;s own report on its own systems.</p>
+            <div class="sources"><a href="https://openai.com/index/securing-our-frontier-model-training-environment">OpenAI</a> &middot; <a href="https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Oct 26), AlphaSignal (Oct 26), Forward Future (Oct 26)</span></div>
+          </article>
 
           <article class="story" id="claude-security-continuous">
             <span class="when">2026-10-23</span>
@@ -1138,13 +1146,21 @@
 
       <section class="topic-section" id="developer-tool-breaches">
         <h3>Developer-tool breaches</h3>
-        <p class="lead">Incidents where the attack lands on the tooling around the model rather than on the model or the lab: a hosted console, a saved provider key, a legacy system nobody retired. Judge entries on what was taken, how many users it reached, and who ends up paying for the queries that followed.</p>
+        <p class="lead">Incidents where the attack lands on the tooling around the model rather than on the model or the lab: a hosted console, a saved provider key, a legacy system nobody retired, a chat client&rsquo;s preview frame. Judge entries on what was taken, how many users it reached, and who ends up paying for the queries that followed.</p>
 
         <article class="story unlinked" id="fake-claude-code-extension">
           <span class="when">2026-11-02</span>
           <h4>A fake Claude Code VS Code extension planted SSH backdoors; Cursor warned about 5,000 users</h4>
           <p>Cursor warned about <strong>5,000 users</strong> after a poisoned extension impersonating Claude Code was found planting SSH backdoors on developer machines. The issue names neither the extension, the marketplace nor a removal date, so only the warning and the count are on record here.</p>
           <div class="sources"><span class="via">via AlphaSignal (Nov 2) &mdash; no public URL given</span></div>
+        </article>
+
+        <article class="story" id="chatgpt-html-preview-takeover">
+          <span class="when">2026-10-31</span>
+          <h4><a href="https://www.parameter.ai/labs/we-found-a-gap-at-openai">Parameter Labs chained a ChatGPT HTML preview into account takeover through a share link</a></h4>
+          <p>A sandboxed ChatGPT HTML preview could message MathLive&rsquo;s virtual keyboard in the parent page, whose <code>innerHTML</code> let it inject an unsandboxed iframe, and the CSP&rsquo;s allowance for YouTube then let its oEmbed endpoint reflect executable JavaScript. A signed-in user opening a crafted share URL could have private data exfiltrated or actions taken on their behalf.</p>
+          <p>OpenAI closed the hole and paid a <strong>$5,000</strong> bounty, which Simon Willison calls cheap for the severity. The summary reports no use in the wild.</p>
+          <div class="sources"><a href="https://www.parameter.ai/labs/we-found-a-gap-at-openai">Parameter Labs</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
         </article>
 
         <article class="story" id="litellm-v1-107-0-compromise">
@@ -1155,14 +1171,18 @@
           <div class="sources"><a href="https://docs.litellm.ai/blog/security-incident-oct-21-2026">LiteLLM</a> &middot; <a href="https://techcrunch.com/2026/10/21/the-internet-is-having-a-very-bad-cybersecurity-day/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Oct 22), TLDR (Oct 22)</span></div>
         </article>
 
-        <article class="story" id="opencode-console-breach">
-          <span class="when">2026-10-19</span>
-          <h4><a href="https://cellcog.ai/blog/opencode-breach-api-keys/">OpenCode Console breach: 48 hours of attacks, the saved provider keys of 1.4% of console users drained to bills of about $1,700</a></h4>
-          <p>OpenCode&rsquo;s co-founder confirmed <strong>48 hours of continuous attacks</strong> on the open-source coding agent&rsquo;s platform. Attackers entered a legacy system and took the OpenAI and Anthropic provider keys that <strong>1.4% of OpenCode Console users</strong> had saved, then ran high-volume queries against them; some developers reported bills of about $1,700, and OpenAI is refunding credits.</p>
-          <p>The incident was still open when reported, and the figures are OpenCode&rsquo;s and affected users&rsquo; own; <a href="tools-and-devex.html#opencode-2-0">OpenCode 2.0</a> itself is recorded on Tools. The headline link is a third-party guide to rotating keys, the only public page the item carried; the primary disclosures were posts on X.</p>
-          <div class="sources"><a href="https://cellcog.ai/blog/opencode-breach-api-keys/">Cellcog (third-party guide)</a> &middot; <span class="via">via The Code (Oct 19)</span></div>
-        </article>
-</section>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story" id="opencode-console-breach">
+            <span class="when">2026-10-19</span>
+            <h4><a href="https://cellcog.ai/blog/opencode-breach-api-keys/">OpenCode Console breach: 48 hours of attacks, the saved provider keys of 1.4% of console users drained to bills of about $1,700</a></h4>
+            <p>OpenCode&rsquo;s co-founder confirmed <strong>48 hours of continuous attacks</strong> on the open-source coding agent&rsquo;s platform. Attackers entered a legacy system and took the OpenAI and Anthropic provider keys that <strong>1.4% of OpenCode Console users</strong> had saved, then ran high-volume queries against them; some developers reported bills of about $1,700, and OpenAI is refunding credits.</p>
+            <p>The incident was still open when reported, and the figures are OpenCode&rsquo;s and affected users&rsquo; own; <a href="tools-and-devex.html#opencode-2-0">OpenCode 2.0</a> itself is recorded on Tools. The headline link is a third-party guide to rotating keys, the only public page the item carried; the primary disclosures were posts on X.</p>
+            <div class="sources"><a href="https://cellcog.ai/blog/opencode-breach-api-keys/">Cellcog (third-party guide)</a> &middot; <span class="via">via The Code (Oct 19)</span></div>
+          </article>
+        </details>
+      </section>
 
       <section class="topic-section" id="provenance-transparency-and-data-handling">
         <h3>Provenance, transparency &amp; data handling</h3>
@@ -1308,12 +1328,14 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#github-enclaves">GitHub Next&rsquo;s Enclaves limit what agents tell each other across private repositories</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#gpt-rosalind-6">GPT-Rosalind-6 reuses GPT-6 Astra&rsquo;s weights for biology, rated High and open only to vetted scientists</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#anthropic-automated-em-search">Anthropic has Claude generate fine-tuning data that induces misalignment while slipping past data monitors</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#claude-mptcp-exploit">Claude turns a Linux multipath-TCP use-after-free into a remote root exploit needing no password</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#codex-auto-review-red-team">An Apollo-mentored audit finds 11 ways for an agent to get past Codex&rsquo;s sandbox and Auto-review monitor</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#pretraining-poison-curl-bash">Poisoned pretraining data plants a curl-pipe-bash backdoor that fires on 92% of triggering prompts in a 4B agent</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#fake-claude-code-extension">A fake Claude Code VS Code extension planted SSH backdoors; Cursor warned about 5,000 users</a></span></li>
+        <li><span class="date">2026-10-31</span><span class="label"><a href="#chatgpt-html-preview-takeover">Parameter Labs chained a ChatGPT HTML preview into account takeover through a share link</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#openai-model-spec-five-values">OpenAI reorganises its Model Spec around five values, from faithfulness to intent to care</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#astra-distillation-moonshot-deepseek">Moonshot and DeepSeek reportedly distilled GPT-6 Astra after Anthropic cut Claude distillation yield 90&ndash;99%</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#epoch-open-weight-patch-gap">Epoch: open-weight GLM 5.3 turns published but unshipped Firefox fixes into working exploits</a></span></li>

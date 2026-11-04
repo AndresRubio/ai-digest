@@ -30,17 +30,20 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-11-02</div>
+      <div class="meta">Last updated: 2026-11-04</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 3 cycle measures how far agent output has outgrown the systems beneath it. GitHub&rsquo;s <a href="#github-octoverse-2026">Octoverse 2026</a> has merged pull requests tripling in under a year to 220 million a month and commits at 7.38 billion. OpenAI hit that wall in its own monorepo: Git reliability sometimes dipped below 90%, so it built <a href="#openai-pando">Pando</a>, a backend that cuts median push latency about 80% and serves nearly a petabyte a day, on its own figures and with the server staying internal. Vercel CI&rsquo;s selective reruns in the Oct 28 cycle answered the same pressure one step later in the pipeline.</p>
+        <p>Two teams described what running at that volume looks like. <a href="#spawn-agent-swarm">Spawn</a> spends over $3 million a month on tokens, 30 times payroll, ships hourly and treats an hour without a ship as a SEV-0, which Simon Willison finds hard to imagine for higher-stakes software. Microsoft&rsquo;s <a href="#copilot-cowork-rust">Copilot Cowork</a> reached global availability in four and a half months and moved from Python to Rust while live, crediting specs, narrow agents and checks that genuinely verify. Both are self-reports with no comparison group.</p>
+        <p>Three smaller releases fill in the tooling. DeepSeek&rsquo;s <a href="#deepseek-harness-creator-mode">Creator Mode</a> generates harness plugins from a prompt, still in preview. <a href="#nanoui">NanoUI</a> builds single-binary Zig desktop apps with headless testing so an agent can check its own interface, and <a href="#llm-0-37">LLM 0.37</a> moves its default to gpt-6-luna at half the previous price.</p>
         <p>The Oct 30 to Nov 2 cycle is about what an agent run costs and how much of a request it can carry, with three unrelated items. Microsoft&rsquo;s <a href="#microsoft-tokeneconomizer">TokenEconomizer</a> is a plugin that trims what an unchanged coding agent spends: across 277 SWE-Bench tasks and five agent-model settings, mean cost fell 18.4% to 30.9%, and it came out cheaper in all 30 repository-setting cells. Tool pruning is the largest single lever, at 13.2% to 17.7%. The code is Apache-2.0 and the results are the authors&rsquo; own. It reads as the tooling answer to the spend spread measured further down this section, where the number everyone can log is the one employers say not to manage to.</p>
         <p>Anthropic raised the Claude API request limit on the Messages and Token Counting endpoints from 32MB to 128MB (<a href="#claude-api-128mb-requests">details</a>), which matters for long computer-use sessions and large PDFs. Requests with more than 20 images can now use 3000px images, up from 2000px. Deployments through cloud platforms still cap at 20 to 32MB. Karpathy&rsquo;s <a href="#hackertube">HackerTube</a> is a worked example of the same headroom: Claude Code with Opus 5.5 ran the pipeline and deployment while Sonnet 5.5 labelled comments, taking 43M Hacker News comments down to 6,454 videos on a reported 504M input tokens, most of them cached. He supplied only an API key, a server and a domain. The figures come from his own post as relayed by The Code, and there is no public URL to check them against.</p>
-        <p>The Oct 28 and 29 cycle moved model choice from the user to the tool. GitHub&rsquo;s <a href="#github-copilot-fusion">Copilot Fusion</a> routes each task across Anthropic and OpenAI models by effort level, and Artificial Analysis measured its best configuration within two points of Claude Code on Opus 5.5 Max at about half the cost per task; GitHub&rsquo;s own claim is 40% faster at up to 77% less. On the pipeline side, <a href="#vercel-ci">Vercel CI</a> runs only the checks a change touches and pulls the rest from cache, which Vercel says cut its push-to-pass time 2&ndash;6&times;, the bottleneck being agents opening more pull requests than full reruns can keep up with.</p>
-        <p>The Oct 28 cycle is taste as a package, and a big employer managing the spend. <a href="#hallmark">Hallmark</a> bundles fifty design themes and 755 licensed photos into a design skill for Claude Code, Cursor, Codex and OpenCode, and <a href="#appllama-skills">Appllama Skills</a> does the same for mobile, teaching agents interface patterns from top-grossing apps for Expo and React Native screens: two installable answers to the complaint that agent-written UIs lack judgment. On the other side of the ledger, <a href="#amazon-tokenmaxxing-memo">Amazon&rsquo;s memo</a> tells engineers token usage is a cost rather than a KPI, names adoption rates and code-change counts as flawed measures, and moves the yardstick to launches and successful production changes, the employer-side echo of the spend spread Orosz measured.</p>
-        <p>The Oct 27 cycle put the first quality numbers beside this page&rsquo;s productivity claims. <a href="#anthropic-code-review-process">The Claude Code team</a> says merged pull requests more than doubled from June to September while the reverted share fell by over 40%, and <a href="#pragmatic-engineer-ai-spend-roi">Gergely Orosz&rsquo;s survey</a> of 27 companies found Lendscape cutting defects per 100 merged PRs from 17.3 to 7.5 as its output doubled. The same survey shows how loosely the spend is managed: $65 to $3,000 per developer a month, and people at only two companies able to say how they measure the return. <a href="#entire-git-forge">Entire</a> also launched a Git forge for agents and humans, with Trails for code evaluation, Continuous Memory for session sync and Buildkite and Depot integrations.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 28 and 29 cycle moved model choice from the user to the tool. GitHub&rsquo;s <a href="#github-copilot-fusion">Copilot Fusion</a> routes each task across Anthropic and OpenAI models by effort level, and Artificial Analysis measured its best configuration within two points of Claude Code on Opus 5.5 Max at about half the cost per task; GitHub&rsquo;s own claim is 40% faster at up to 77% less. On the pipeline side, <a href="#vercel-ci">Vercel CI</a> runs only the checks a change touches and pulls the rest from cache, which Vercel says cut its push-to-pass time 2&ndash;6&times;, the bottleneck being agents opening more pull requests than full reruns can keep up with.</p>
+          <p>The Oct 28 cycle is taste as a package, and a big employer managing the spend. <a href="#hallmark">Hallmark</a> bundles fifty design themes and 755 licensed photos into a design skill for Claude Code, Cursor, Codex and OpenCode, and <a href="#appllama-skills">Appllama Skills</a> does the same for mobile, teaching agents interface patterns from top-grossing apps for Expo and React Native screens: two installable answers to the complaint that agent-written UIs lack judgment. On the other side of the ledger, <a href="#amazon-tokenmaxxing-memo">Amazon&rsquo;s memo</a> tells engineers token usage is a cost rather than a KPI, names adoption rates and code-change counts as flawed measures, and moves the yardstick to launches and successful production changes, the employer-side echo of the spend spread Orosz measured.</p>
+          <p>The Oct 27 cycle put the first quality numbers beside this page&rsquo;s productivity claims. <a href="#anthropic-code-review-process">The Claude Code team</a> says merged pull requests more than doubled from June to September while the reverted share fell by over 40%, and <a href="#pragmatic-engineer-ai-spend-roi">Gergely Orosz&rsquo;s survey</a> of 27 companies found Lendscape cutting defects per 100 merged PRs from 17.3 to 7.5 as its output doubled. The same survey shows how loosely the spend is managed: $65 to $3,000 per developer a month, and people at only two companies able to say how they measure the return. <a href="#entire-git-forge">Entire</a> also launched a Git forge for agents and humans, with Trails for code evaluation, Continuous Memory for session sync and Buildkite and Depot integrations.</p>
           <p>The Oct 26 cycle widened what a coding agent can reach and what it can prove. <a href="#cursor-computer-use">Cursor&rsquo;s agents</a> can now drive desktop apps like the iOS Simulator to test their own work, <a href="#humanlayer">HumanLayer</a> coordinates Claude Code, Codex, OpenCode and Pi sessions across a team&rsquo;s machines, and the <a href="#claude-enterprise-chat-cowork">Claude Chat and Cowork merge</a> ships the chat and agent surfaces as one Enterprise product. Anthropic also says Claude wrote <a href="#claude-formal-verification">machine-checked safety proofs for 123 libraries</a>, about 180 million lines of proof, which is the strongest form of the constructed evidence this page argues should replace diff review, though the report is secondhand.</p>
           <p>The Oct 24 cycle opened two pieces of coding-agent infrastructure to other agents. Anthropic&rsquo;s <a href="#anthropic-sandbox-runtime">sandbox-runtime</a> is the sandbox behind Claude Code&rsquo;s bash tool, fencing a command&rsquo;s files and hosts with Seatbelt or bubblewrap and no container, with 84% fewer permission prompts by Anthropic&rsquo;s count. Cognition&rsquo;s <a href="#devin-vulnerability-fixes">Devin Vulnerability Fixes</a> plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug that run in any agent reading SKILL.md, the format Anthropic handed to the <a href="agents.html#agent-skills-aaif">Agentic AI Foundation</a> the day before.</p>
           <p>The Oct 22 cycle was the API given a version number, and three small tools that put a second model between the agent and the work. Anthropic&rsquo;s <a href="#claude-api-version-2026-10-21">Claude API version 2026-10-21</a> is the first versioned release since 2023-06-10, with new major SDKs and a CLI defaulting to it and the old version kept, and OpenAI published an <a href="#openai-cli">official CLI</a> the same day. From the AAIF newsletter, LightOn&rsquo;s <a href="#colgrep-agent">ColGrep-Agent</a> hands code search to a local 2B model and cut Claude Code&rsquo;s API tokens by 34% over 52 questions; <a href="#sphinx-git-hook">Sphinx</a> is a pre-push hook that quizzes the developer on an agent&rsquo;s changes before a protected branch accepts them; and <a href="#james-ward-mcp-tool-design">James Ward</a> argues an MCP server&rsquo;s token bill is set by tool design, 100 records as 100 calls, with a constrained DSL proposed over 16,000 AWS APIs. <a href="#claude-mods">Claude Mods</a> gained Latent Space&rsquo;s reading of them as an interface the user programs, and the <a href="#cloudflare-security-audit-skill">Cloudflare security-audit skill</a> a star count, 37.8k; GitHub&rsquo;s <a href="#github-git-infra-agent-scale">agent-scale Git</a> gained the migration behind it, nearly every repository moved to Azure with per-reference quorums for the rest.</p>
@@ -110,13 +113,13 @@
           <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">6</span></a></li>
           <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">11</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
-          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">39</span></a></li>
-          <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">15</span></a></li>
+          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">40</span></a></li>
+          <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">16</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">18</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
-          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">15</span></a></li>
+          <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">17</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">20</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">36</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">39</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">8</span></a></li>
         </ul>
       </nav>
@@ -394,6 +397,14 @@
         <h3>Agent-native tooling</h3>
         <p class="lead">Developer tools shipped with agents as the primary reader, not only humans: a skill file instead of a README, a structured handle instead of a screenshot, a deterministic artifact instead of a reconstruction. Judge entries on whether the agent operates the real target, and on what limit the author publishes alongside the demo.</p>
 
+        <article class="story" id="openai-pando">
+          <span class="when">2026-11-02</span>
+          <h4><a href="https://openai.com/index/scaling-git-at-openai/">OpenAI&rsquo;s Pando Git backend cuts median push latency about 80% under agent traffic</a></h4>
+          <p>Codex agents pushed enough code that OpenAI&rsquo;s Git reliability sometimes dipped below 90%, so it built <strong>Pando</strong>, a server-side backend for concurrent pushes to many branches and high read throughput, with engineers and agents keeping standard Git commands. OpenAI reports median push latency down nearly 5x, about 80%, in production, and nearly <strong>1 PB of Git data served per day</strong>.</p>
+          <p>The figures are self-reported and Pando is staying internal, though OpenAI says it is sharing its Git fixes with the community.</p>
+          <div class="sources"><a href="https://openai.com/index/scaling-git-at-openai/">OpenAI</a> &middot; <a href="https://www.marktechpost.com/2026/11/02/openai-pando-git-backend-monorepo/">MarkTechPost</a> &middot; <span class="via">via TLDR (Nov 3), MarkTechPost (Nov 3), The Code (Nov 3), AlphaSignal (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="claude-api-128mb-requests">
           <span class="when">2026-10-30</span>
           <h4><a href="https://platform.claude.com/docs/en/api/overview#request-size-limits">Claude API request limit rises from 32MB to 128MB for Messages and Token Counting</a></h4>
@@ -408,15 +419,15 @@
           <div class="sources"><a href="https://vercel.com/blog/introducing-vercel-ci">Vercel</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29)</span></div>
         </article>
 
-        <article class="story" id="entire-git-forge">
-          <span class="when">2026-10-27</span>
-          <h4><a href="https://entire.com/blog/the-git-forge-for-agent-human-collaboration">Entire launches a Git forge for agents and humans, with Trails for code evaluation and Continuous Memory for session sync</a></h4>
-          <p>Entire introduced a <strong>Git forge built for agent-human collaboration</strong>: Trails for running code evaluations, distributed Git hosting it says is faster, Continuous Memory to sync agent sessions, and <strong>entire-graph</strong> and <strong>entire-brain</strong> commands that map code and memory. CI integrations with Buildkite and Depot ship at launch. The issue gives no figure for the hosting-speed claim, so the integrations and commands are what can be checked today.</p>
-          <div class="sources"><a href="https://entire.com/blog/the-git-forge-for-agent-human-collaboration">Entire</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (36)</summary>
+          <summary>Earlier in this section (37)</summary>
+
+          <article class="story" id="entire-git-forge">
+            <span class="when">2026-10-27</span>
+            <h4><a href="https://entire.com/blog/the-git-forge-for-agent-human-collaboration">Entire launches a Git forge for agents and humans, with Trails for code evaluation and Continuous Memory for session sync</a></h4>
+            <p>Entire introduced a <strong>Git forge built for agent-human collaboration</strong>: Trails for running code evaluations, distributed Git hosting it says is faster, Continuous Memory to sync agent sessions, and <strong>entire-graph</strong> and <strong>entire-brain</strong> commands that map code and memory. CI integrations with Buildkite and Depot ship at launch. The issue gives no figure for the hosting-speed claim, so the integrations and commands are what can be checked today.</p>
+            <div class="sources"><a href="https://entire.com/blog/the-git-forge-for-agent-human-collaboration">Entire</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
+          </article>
 
           <article class="story" id="cursor-computer-use">
             <span class="when">2026-10-26</span>
@@ -703,6 +714,13 @@
         <h3>Plugin &amp; extensibility layers for coding agents</h3>
         <p class="lead">Beyond ad-hoc skills and MCP servers, coding agents are gaining formal package management. Two things to watch: whether a bundle targets an open specification or one client, and whether the surface answers only what can be added to a harness or also what can be centrally removed.</p>
 
+        <article class="story" id="deepseek-harness-creator-mode">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://www.deepseek.com/en/harness/">DeepSeek Harness Creator Mode builds agent plugins from a text prompt</a></h4>
+          <p><strong>Creator Mode</strong> in DeepSeek&rsquo;s open-source Harness generates a plugin from a text description, and the harness treats tools, skills and interface changes alike as plugins. It is in preview, so expect API changes.</p>
+          <div class="sources"><a href="https://www.deepseek.com/en/harness/">DeepSeek</a> &middot; <span class="via">via The Code (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="appllama-skills">
           <span class="when">2026-10-28</span>
           <h4><a href="https://github.com/Appllama/appllama-skills">Appllama Skills teaches coding agents mobile UI patterns from top-grossing apps, for Expo and React Native screens</a></h4>
@@ -719,16 +737,16 @@
           <div class="sources"><a href="https://github.com/Nutlope/hallmark">GitHub</a> &middot; <span class="via">via TLDR (Oct 28)</span></div>
         </article>
 
-        <article class="story" id="devin-vulnerability-fixes">
-          <span class="when">2026-10-24</span>
-          <h4><a href="https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/">Cognition&rsquo;s Devin Vulnerability Fixes plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug</a></h4>
-          <p>Cognition released the <strong>Devin Vulnerability Fixes</strong> plugin: three MIT-licensed skills, for PHP2Shell, Node.js and GitLab CVE-2026-110264, that run in Devin, Claude Code, Codex, Cursor and any agent that reads SKILL.md. Each takes inventory read-only, waits for approval, tests before and after, then opens one pull request per repo.</p>
-          <p>It is a bundle aimed at the open specification rather than one client, and its first target is the flaw behind <a href="safety-and-policy.html#openai-php-coordinated-disclosure">OpenAI&rsquo;s PHP disclosure</a>. No fix-rate benchmark is published, so results depend on the repo&rsquo;s own tests.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="devin-vulnerability-fixes">
+            <span class="when">2026-10-24</span>
+            <h4><a href="https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/">Cognition&rsquo;s Devin Vulnerability Fixes plugin ships three MIT skills for PHP2Shell, Node.js and a CVSS 10.0 GitLab bug</a></h4>
+            <p>Cognition released the <strong>Devin Vulnerability Fixes</strong> plugin: three MIT-licensed skills, for PHP2Shell, Node.js and GitLab CVE-2026-110264, that run in Devin, Claude Code, Codex, Cursor and any agent that reads SKILL.md. Each takes inventory read-only, waits for approval, tests before and after, then opens one pull request per repo.</p>
+            <p>It is a bundle aimed at the open specification rather than one client, and its first target is the flaw behind <a href="safety-and-policy.html#openai-php-coordinated-disclosure">OpenAI&rsquo;s PHP disclosure</a>. No fix-rate benchmark is published, so results depend on the repo&rsquo;s own tests.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
+          </article>
 
           <article class="story" id="agent-engineer-plugin">
             <span class="when">2026-10-13</span>
@@ -737,12 +755,14 @@
             <p>The introducing post carries the component count but no measurement of what the bundle changes, and the newsletter does not say which clients it targets beyond coding assistants in general.</p>
             <div class="sources"><a href="https://sarthakai.substack.com/p/a-coding-plugin-to-make-you-a-10x">Sarthak AI (Substack)</a> &middot; <span class="via">via TLDR AI (Oct 13)</span></div>
           </article>
+
           <article class="story" id="claude-plugin-portal">
             <span class="when">2026-09-27</span>
             <h4><a href="https://claude.com/blog/build-plugins-for-claude">Anthropic opens a submission portal for Claude plugins, with safety scans and usage analytics</a></h4>
             <p>Anthropic opened a developer portal for submitting plugins to its Claude directory, covering validation, safety scans, review feedback, publishing and post-launch usage analytics. It turns the directory into a reviewed channel with a defined intake, which answers half of this section&rsquo;s question &mdash; who checks what gets added &mdash; and says nothing about central removal.</p>
             <div class="sources"><a href="https://claude.com/blog/build-plugins-for-claude">Anthropic</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
           </article>
+
           <article class="story" id="claude-plugin-eval">
             <span class="when">2026-09-22</span>
             <h4><a href="https://code.claude.com/docs/en/plugin-evals">claude plugin eval scores a plugin with and without itself, and reports the delta and the cost</a></h4>
@@ -1017,6 +1037,20 @@
         <h3>Open-source agent infrastructure</h3>
         <p class="lead">Open-source projects filling in the stack around agents rather than the agents themselves &mdash; security, source hosting, data, UI, onboarding, release engineering. Judge entries on what limit the project states about itself; the ones worth recording here publish the case their own design does not cover.</p>
 
+        <article class="story" id="nanoui">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://github.com/justrach/nanoui">NanoUI builds single-binary Zig desktop apps that coding agents can test headlessly</a></h4>
+          <p><strong>NanoUI</strong> builds cross-platform desktop apps in Zig, with native GPU-drawn UI or a web frontend, on macOS, Windows and Linux as a single binary. Headless testing and screenshots let coding agents build and verify an interface without opening a window.</p>
+          <div class="sources"><a href="https://github.com/justrach/nanoui">GitHub</a> &middot; <span class="via">via The Code (Nov 3)</span></div>
+        </article>
+
+        <article class="story" id="llm-0-37">
+          <span class="when">2026-11-01</span>
+          <h4><a href="https://github.com/simonw/llm/releases/tag/0.37">LLM 0.37 switches its default to GPT-6 Luna and adds an OpenAI-compatible endpoint command</a></h4>
+          <p><strong>LLM 0.37</strong> adds gpt-6.1-sol and gpt-6.1-terra, an <code>llm openai endpoint add</code> command for OpenAI-compatible endpoints, per-item content types for multimodal embeddings, and a new default of gpt-6-luna at half the price of gpt-5.6-luna. It carries fixes from 12 authors, almost all AI-assisted, and Simon Willison says reviewing them with Opus 5.5 or GPT-6 Astra triage cost less than he expected.</p>
+          <div class="sources"><a href="https://github.com/simonw/llm/releases/tag/0.37">GitHub</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="anthropic-sandbox-runtime">
           <span class="when">2026-10-24</span>
           <h4><a href="https://www.marktechpost.com/2026/10/24/anthropic-sandbox-runtime-ai-agent-sandbox/">Anthropic&rsquo;s sandbox-runtime, the sandbox behind Claude Code&rsquo;s bash tool, fences a command&rsquo;s files and hosts without a container</a></h4>
@@ -1024,23 +1058,23 @@
           <div class="sources"><a href="https://www.marktechpost.com/2026/10/24/anthropic-sandbox-runtime-ai-agent-sandbox/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
         </article>
 
-        <article class="story" id="openqodex">
-          <span class="when">2026-10-14</span>
-          <h4><a href="https://github.com/openqodex/openqodex">OpenQodex runs 100+ scanners and has your own Claude Code or Codex login investigate each finding</a></h4>
-          <p><strong>OpenQodex</strong> is an open-source pre-push code reviewer that pairs more than <strong>100 scanners</strong> with an AI reviewer that investigates every finding through the developer&rsquo;s existing Claude Code or Codex login, so the model cost lands on a subscription already paid for. Its claim to match paid per-seat reviewers at $0 is the project&rsquo;s own comparison, and it publishes no false-positive rate.</p>
-          <div class="sources"><a href="https://github.com/openqodex/openqodex">GitHub</a> &middot; <span class="via">via The Code (Oct 14)</span></div>
-        </article>
-
-        <article class="story" id="ttok-1-0">
-          <span class="when">2026-10-08</span>
-          <h4><a href="https://github.com/simonw/ttok/releases/tag/1.0">ttok 1.0 defaults to the GPT-5 tokenizer for GPT-6 &mdash; on an outside test, not OpenAI&rsquo;s word</a></h4>
-          <p>Simon Willison&rsquo;s <strong>ttok</strong>, a CLI that counts tokens with OpenAI&rsquo;s open-source tiktoken, went to 1.0 days after 0.4 because it still defaulted to the GPT-4 tokenizer. The new default rests on William Liu&rsquo;s comparison, in which all <strong>seven GPT models</strong> from 5.5 to 6 Astra/Sol/Luna count 44,794 tokens and agree on each of <strong>31 fixtures</strong>, while a tiktoken issue asks OpenAI to confirm it.</p>
-          <p>That is the limit worth recording: a GPT-6 token count from any tool built on tiktoken is an inference until OpenAI says otherwise.</p>
-          <div class="sources"><a href="https://github.com/simonw/ttok/releases/tag/1.0">GitHub release</a> &middot; <a href="https://simonwillison.net/2026/Oct/8/ttok/">Simon Willison (ttok 0.4)</a> &middot; <a href="https://github.com/williamliu-ai/token-count-compare/commit/8d8a2178538bb37beb548fc37378135e4ff4b0c8">Token-count comparison</a> &middot; <a href="https://github.com/openai/tiktoken/issues/608">tiktoken issue</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (14)</summary>
+
+          <article class="story" id="openqodex">
+            <span class="when">2026-10-14</span>
+            <h4><a href="https://github.com/openqodex/openqodex">OpenQodex runs 100+ scanners and has your own Claude Code or Codex login investigate each finding</a></h4>
+            <p><strong>OpenQodex</strong> is an open-source pre-push code reviewer that pairs more than <strong>100 scanners</strong> with an AI reviewer that investigates every finding through the developer&rsquo;s existing Claude Code or Codex login, so the model cost lands on a subscription already paid for. Its claim to match paid per-seat reviewers at $0 is the project&rsquo;s own comparison, and it publishes no false-positive rate.</p>
+            <div class="sources"><a href="https://github.com/openqodex/openqodex">GitHub</a> &middot; <span class="via">via The Code (Oct 14)</span></div>
+          </article>
+
+          <article class="story" id="ttok-1-0">
+            <span class="when">2026-10-08</span>
+            <h4><a href="https://github.com/simonw/ttok/releases/tag/1.0">ttok 1.0 defaults to the GPT-5 tokenizer for GPT-6 &mdash; on an outside test, not OpenAI&rsquo;s word</a></h4>
+            <p>Simon Willison&rsquo;s <strong>ttok</strong>, a CLI that counts tokens with OpenAI&rsquo;s open-source tiktoken, went to 1.0 days after 0.4 because it still defaulted to the GPT-4 tokenizer. The new default rests on William Liu&rsquo;s comparison, in which all <strong>seven GPT models</strong> from 5.5 to 6 Astra/Sol/Luna count 44,794 tokens and agree on each of <strong>31 fixtures</strong>, while a tiktoken issue asks OpenAI to confirm it.</p>
+            <p>That is the limit worth recording: a GPT-6 token count from any tool built on tiktoken is an inference until OpenAI says otherwise.</p>
+            <div class="sources"><a href="https://github.com/simonw/ttok/releases/tag/1.0">GitHub release</a> &middot; <a href="https://simonwillison.net/2026/Oct/8/ttok/">Simon Willison (ttok 0.4)</a> &middot; <a href="https://github.com/williamliu-ai/token-count-compare/commit/8d8a2178538bb37beb548fc37378135e4ff4b0c8">Token-count comparison</a> &middot; <a href="https://github.com/openai/tiktoken/issues/608">tiktoken issue</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
+          </article>
 
           <article class="story" id="gdp-ts">
             <span class="when">2026-10-06</span>
@@ -1308,6 +1342,13 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and so are the first quality figures: a revert share and defects per hundred merged PRs.</p>
 
+        <article class="story" id="copilot-cowork-rust">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://commandline.microsoft.com/how-we-built-copilot-cowork-python-to-rust-migration/">Microsoft&rsquo;s Copilot Cowork reached global availability in 4.5 months, moving from Python to Rust while live</a></h4>
+          <p>Microsoft says <strong>Copilot Cowork</strong> went to global availability in four and a half months and moved its runtime from Python to Rust while live. The practices it credits are specs written before coding, narrow agents with clear boundaries, and automated checks that genuinely verify a change. It is Microsoft&rsquo;s account of its own build, and the summary gives no efficiency figure for the migration.</p>
+          <div class="sources"><a href="https://commandline.microsoft.com/how-we-built-copilot-cowork-python-to-rust-migration/">Microsoft</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
+        </article>
+
         <article class="story unlinked" id="hackertube">
           <span class="when">2026-11-02</span>
           <h4>Karpathy&rsquo;s HackerTube: 43M Hacker News comments mined for 6,454 videos in about two hours with Claude Code</h4>
@@ -1315,24 +1356,39 @@
           <div class="sources"><span class="via">via The Code (Nov 2) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story" id="amazon-tokenmaxxing-memo">
-          <span class="when">2026-10-27</span>
-          <h4><a href="https://www.cnbc.com/2026/10/27/amazon-ai-coding-tokenmaxxing.html">Amazon&rsquo;s memo tells engineers token usage is a cost, not a KPI, and moves the measure to launches and production changes</a></h4>
-          <p>An Amazon memo to staff says token usage and code generation deserve &ldquo;care and judgment&rdquo;: the company sets no caps, but calls token usage, AI-tool adoption rates and code-change counts deeply flawed measures of AI&rsquo;s contribution that can drive cost and complexity. It is moving to launches and successful production changes as the measure of what AI improves.</p>
-          <p>It is the employer-side echo of the spend spread in <a href="#pragmatic-engineer-ai-spend-roi">Orosz&rsquo;s survey</a>: the number everyone can log is the one Amazon says not to manage to. CNBC carries the memo.</p>
-          <div class="sources"><a href="https://www.cnbc.com/2026/10/27/amazon-ai-coding-tokenmaxxing.html">CNBC</a> (press report) &middot; <span class="via">via TLDR (Oct 28)</span></div>
-        </article>
-
-        <article class="story" id="pragmatic-engineer-ai-spend-roi">
-          <span class="when">2026-10-27</span>
-          <h4><a href="https://newsletter.pragmaticengineer.com/p/whats-the-roi-of-software-engineers">Pragmatic Engineer: 27 companies spend $65 to $3,000 a developer a month on AI, and people at only two can say how they measure the return</a></h4>
-          <p>Gergely Orosz talked to <strong>27 companies</strong> planning 2027 budgets: monthly AI spend per developer runs from <strong>$65</strong> at UK fintech Lendscape to <strong>$3,000</strong> at a two-person .NET shop, and people at only two could explain how they measure the return. A public SaaS company with about 600 engineers spends $700K a month and estimates each $1,000 of AI buys the PR output of $12,000 of hiring, while another, at $150 a developer, gets anywhere from 11&times; to 30&times; depending on developer proficiency it has no way to measure.</p>
-          <p>Lendscape doubled its PR output while cutting defects per 100 merged PRs from <strong>17.3 to 7.5</strong>, and several companies expect seat subsidies to end and bills to rise 5&ndash;10&times;. All of it is companies reporting on themselves through a third party.</p>
-          <div class="sources"><a href="https://newsletter.pragmaticengineer.com/p/whats-the-roi-of-software-engineers">The Pragmatic Engineer</a> &middot; <span class="via">via The Code (Oct 27)</span></div>
+        <article class="story" id="spawn-agent-swarm">
+          <span class="when">2026-10-29</span>
+          <h4><a href="https://x.com/jsnnsa/status/2115623382721126826">Spawn ships hourly from a Fable agent swarm costing over $3M a month in tokens</a></h4>
+          <p>Jacob Sansbury says <strong>Spawn</strong>, a multiplayer game shaped through prompts, is developed by a swarm of Fable agents costing over <strong>$3 million a month in tokens</strong>, 30 times payroll, with an hour without a ship treated as a SEV-0 and rollbacks in 30 seconds. About 60% of work starts from a production error, a bug the in-game agent files itself, a log anomaly or a feature request.</p>
+          <p>When GPT-6 Astra applied security-review fixes, he says, it disabled every feature to make them secure. Simon Willison has trouble imagining the approach on software with higher stakes.</p>
+          <div class="sources"><a href="https://x.com/jsnnsa/status/2115623382721126826">Jacob Sansbury (X post)</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (33)</summary>
+          <summary>Earlier in this section (36)</summary>
+
+          <article class="story" id="github-octoverse-2026">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/">GitHub Octoverse 2026: merged pull requests tripled in under a year to 220M a month</a></h4>
+            <p>GitHub&rsquo;s <strong>Octoverse 2026</strong> reports merged pull requests tripling in less than a year to <strong>220 million a month</strong>, commits more than tripling to 7.38 billion a month, and new repositories doubling to 30.3 million a month. Simon Willison reads that as agentic engineering showing up in the totals. The figures count activity and say nothing about how much of it was useful.</p>
+            <div class="sources"><a href="https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/">GitHub</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
+          </article>
+
+          <article class="story" id="amazon-tokenmaxxing-memo">
+            <span class="when">2026-10-27</span>
+            <h4><a href="https://www.cnbc.com/2026/10/27/amazon-ai-coding-tokenmaxxing.html">Amazon&rsquo;s memo tells engineers token usage is a cost, not a KPI, and moves the measure to launches and production changes</a></h4>
+            <p>An Amazon memo to staff says token usage and code generation deserve &ldquo;care and judgment&rdquo;: the company sets no caps, but calls token usage, AI-tool adoption rates and code-change counts deeply flawed measures of AI&rsquo;s contribution that can drive cost and complexity. It is moving to launches and successful production changes as the measure of what AI improves.</p>
+            <p>It is the employer-side echo of the spend spread in <a href="#pragmatic-engineer-ai-spend-roi">Orosz&rsquo;s survey</a>: the number everyone can log is the one Amazon says not to manage to. CNBC carries the memo.</p>
+            <div class="sources"><a href="https://www.cnbc.com/2026/10/27/amazon-ai-coding-tokenmaxxing.html">CNBC</a> (press report) &middot; <span class="via">via TLDR (Oct 28)</span></div>
+          </article>
+
+          <article class="story" id="pragmatic-engineer-ai-spend-roi">
+            <span class="when">2026-10-27</span>
+            <h4><a href="https://newsletter.pragmaticengineer.com/p/whats-the-roi-of-software-engineers">Pragmatic Engineer: 27 companies spend $65 to $3,000 a developer a month on AI, and people at only two can say how they measure the return</a></h4>
+            <p>Gergely Orosz talked to <strong>27 companies</strong> planning 2027 budgets: monthly AI spend per developer runs from <strong>$65</strong> at UK fintech Lendscape to <strong>$3,000</strong> at a two-person .NET shop, and people at only two could explain how they measure the return. A public SaaS company with about 600 engineers spends $700K a month and estimates each $1,000 of AI buys the PR output of $12,000 of hiring, while another, at $150 a developer, gets anywhere from 11&times; to 30&times; depending on developer proficiency it has no way to measure.</p>
+            <p>Lendscape doubled its PR output while cutting defects per 100 merged PRs from <strong>17.3 to 7.5</strong>, and several companies expect seat subsidies to end and bills to rise 5&ndash;10&times;. All of it is companies reporting on themselves through a third party.</p>
+            <div class="sources"><a href="https://newsletter.pragmaticengineer.com/p/whats-the-roi-of-software-engineers">The Pragmatic Engineer</a> &middot; <span class="via">via The Code (Oct 27)</span></div>
+          </article>
 
           <article class="story" id="claude-formal-verification">
             <span class="when">2026-10-26</span>
@@ -1667,10 +1723,17 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#copilot-cowork-rust">Microsoft&rsquo;s Copilot Cowork reached global availability in 4.5 months, moving from Python to Rust while live</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#deepseek-harness-creator-mode">DeepSeek Harness Creator Mode builds agent plugins from a text prompt</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#nanoui">NanoUI builds single-binary Zig desktop apps that coding agents can test headlessly</a></span></li>
+        <li><span class="date">2026-11-02</span><span class="label"><a href="#openai-pando">OpenAI&rsquo;s Pando Git backend cuts median push latency about 80% under agent traffic</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#hackertube">Karpathy&rsquo;s HackerTube: 43M Hacker News comments mined for 6,454 videos in about two hours with Claude Code</a></span></li>
+        <li><span class="date">2026-11-01</span><span class="label"><a href="#llm-0-37">LLM 0.37 switches its default to GPT-6 Luna and adds an OpenAI-compatible endpoint command</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#microsoft-tokeneconomizer">Microsoft&rsquo;s TokenEconomizer cuts coding-agent cost 18.4% to 30.9% across 277 SWE-Bench tasks</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#claude-api-128mb-requests">Claude API request limit rises from 32MB to 128MB for Messages and Token Counting</a></span></li>
+        <li><span class="date">2026-10-29</span><span class="label"><a href="#spawn-agent-swarm">Spawn ships hourly from a Fable agent swarm costing over $3M a month in tokens</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#vercel-ci">Vercel CI runs only the checks a change touches, cutting push-to-pass time 2&ndash;6&times; at Vercel</a></span></li>
+        <li><span class="date">2026-10-28</span><span class="label"><a href="#github-octoverse-2026">GitHub Octoverse 2026: merged pull requests tripled in under a year to 220M a month</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#hallmark">Hallmark packs fifty design themes and 755 licensed photos into a design skill for Claude Code, Cursor, Codex and OpenCode</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#appllama-skills">Appllama Skills teaches coding agents mobile UI patterns from top-grossing apps, for Expo and React Native screens</a></span></li>
         <li><span class="date">2026-10-28</span><span class="label"><a href="#github-copilot-fusion">GitHub Copilot Fusion routes each task across models; Artificial Analysis puts it within two points of Claude Code at half the cost</a></span></li>

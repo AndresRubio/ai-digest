@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-02</div>
+      <div class="meta">Last updated: 2026-11-04</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 3 issues add one harness result and two narrower products. Framer&rsquo;s <a href="#framer-harness-2">Harness 2</a> executes agent JavaScript as it streams in, so one model call can drive a whole workflow, and Framer reports up to 33% lower cost, 20% faster execution and 43% fewer tool steps. It lands in the same place as <a href="#factory-droid-1-0">Droid 1.0</a> from the previous cycle: the model writes a program and the harness runs it. Both sets of numbers come from the builders.</p>
+        <p>NVIDIA&rsquo;s <a href="#nvidia-auto-ontology">Auto Ontology</a> grounds agent SQL in certified business definitions and reaches a harness through MCP, CLI or API under Apache 2.0, though its eval repo ships a harness with no results. Letter&rsquo;s <a href="#letterpress-1">Letterpress-1</a> is a coding agent aimed at growth work, reading a site and its market before opening pull requests with live previews, from $100 a month and with no public benchmark.</p>
         <p>The Oct 30 to Nov 2 cycle is about where the harness runs and who does its coordinating, and every number in it is the builder&rsquo;s own. Factory&rsquo;s <a href="#factory-droid-1-0">Droid 1.0</a> has the model write a program that calls its tools, so one request drives hundreds of tool calls; the base prompt shrinks 37% to 13,055 tokens, only 2 tool definitions load up front instead of 11, and it reports 65.2% on Terminal-Bench 4 with Opus 5.5. Vercel&rsquo;s <a href="#vercel-fx-adapter">fx adapter</a> moves the harness onto the host through libfx, apart from the sandbox, which changes where the loop and its credentials sit relative to the environment the agent works in; the changelog entry gives no figures. DeepSeek&rsquo;s <a href="#dsh-superagent">dsh-superagent</a> splits GitHub requests across parallel workers, each in its own session and directory, and DeepSeek&rsquo;s simulation puts p95 completion at 15.7 minutes against 29.5. It is v0.1.0 with a single commit and labelled a research prototype. Vercel Labs&rsquo; <a href="#vercel-agent-desktop">agent-desktop</a> hands an agent the accessibility tree of a native app instead of screenshots and claims 78% to 96% fewer tokens on dense Electron apps. The common thread is moving work out of the model&rsquo;s context and into code around it, with no independent benchmark behind any of the four.</p>
         <p>Two items sit beside that thread without sharing it. Raindrop&rsquo;s <a href="#raindrop-swarm-leadership">swarm study</a> ran eight agents from four models on simulated outages with no designated leader, and found that the underlying model and the position of an agent&rsquo;s name in the prompt list predicted who took charge. It is a simulation, so it shows that small configuration choices steer coordination and says little about production swarms. Natural&rsquo;s <a href="#natural-direct">Direct</a> lets an agent choose between ACH, wire and realtime payment rails, with paper checks listed as coming soon. The announcement as relayed says nothing about approval controls, limits or fees, which an engineer would need before handing an agent that choice.</p>
         <p>The Oct 28 and 29 cycle is the plumbing under long-running agents. Microsoft now offers the <a href="#microsoft-copilot-harness">Copilot harness</a> that runs Copilot Code, Studio and GitHub Copilot through Foundry, another vendor selling its production harness rather than keeping it as glue. An open-source <a href="#goose-dapr-durable-execution">goose and Dapr integration</a> checkpoints each finished turn, so a crashed agent resumes without replaying model calls, though side effects inside an interrupted turn still need idempotency. Salesforce&rsquo;s <a href="#salesforce-agent-fabric">Agent Fabric</a> puts evaluations in beta in November and a triggered kill switch on general availability in January 2027, and Mirendil&rsquo;s <a href="#mirendil-lor">Lor</a> claims research agents running for days across hundreds of parallel workers, with no results attached yet.</p>
-        <p>The Oct 28 addition is a payment rail for an agent&rsquo;s data. <a href="#glasser-data-api">Glasser</a> lets agents buy premium data per API call across more than 2,000 endpoints from over 80 providers, which replaces subscriptions held by the agent&rsquo;s owner with spend the agent incurs as it works; the dependency lands on the aggregator, and the only public page is a press report.</p>
-        <p>The Oct 26 to 27 cycle was about what the scaffolding costs. A Shandong University study, reported by VentureBeat, found <a href="#harness-cost-study-shandong">Claude Code and mini-SWE-agent</a> statistically equivalent on nearly 500 coding tasks while Claude Code cost up to three times as much, mostly because it starts with over 16,000 tokens of context against 829. <a href="#pomerado">Pomerado</a> attacks browser-agent cost from the other side, compiling a site that has no API into a deterministic integration and claiming up to 1,000 times lower cost, and <a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0</a> adds resume-after-crash and pause-for-approval to agent code execution.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 28 addition is a payment rail for an agent&rsquo;s data. <a href="#glasser-data-api">Glasser</a> lets agents buy premium data per API call across more than 2,000 endpoints from over 80 providers, which replaces subscriptions held by the agent&rsquo;s owner with spend the agent incurs as it works; the dependency lands on the aggregator, and the only public page is a press report.</p>
+          <p>The Oct 26 to 27 cycle was about what the scaffolding costs. A Shandong University study, reported by VentureBeat, found <a href="#harness-cost-study-shandong">Claude Code and mini-SWE-agent</a> statistically equivalent on nearly 500 coding tasks while Claude Code cost up to three times as much, mostly because it starts with over 16,000 tokens of context against 829. <a href="#pomerado">Pomerado</a> attacks browser-agent cost from the other side, compiling a site that has no API into a deterministic integration and claiming up to 1,000 times lower cost, and <a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0</a> adds resume-after-crash and pause-for-approval to agent code execution.</p>
           <p>The Oct 26 cycle was about how much structure an agent needs. <a href="#rsihub">RSIHub</a> re-implements four agent-evolution methods on shared infrastructure and finds a best gain of 13.5 points pass@1 but rankings that flip across settings and gains that do not always reach held-out tasks, which is the comparison single-method papers never run. Anthropic&rsquo;s <a href="#anthropic-fold-subagents">subagent guide</a> argues the other way from most orchestration entries here: fold planners and routers back into one loop as skills and tools, and keep separate subagents only for parallel work, fresh context or an overloaded toolset.</p>
           <p>The Oct 23 to 25 cycle moved two boundaries out of the harness: the credential and the coordinator. <a href="#1password-for-agents">1Password for Agents</a> has the agent request a login, the user approve it and the password manager fill the site, so the secret never reaches the model, with Claude Duet, Dots, Grok Bot and Muse among the listed clients. Microsoft&rsquo;s <a href="#agensh">Agensh</a> drops the lead agent altogether: up to 1,024 workers claim sub-tasks on a shared board and merge into one Git repo, and pandoc rose from 33.89% with one agent to 55.06% with 1,024, at a token cost Microsoft does not disclose.</p>
           <p>Two results put a price on the layers around the model. The <a href="#memorytax">MemoryTax</a> study finds extracted memory helps a weak model and not a strong one: Opus 5.5 searching raw history under the Pi harness answered 99% of questions for $6.95 against 95% for full context at $17.84, and the model that writes a memory caps every model that reads it. Simular&rsquo;s <a href="#agent-s4">Agent S4</a> rewrites its own desktop tool interfaces and lifts Qwen3.8-27B to 21.3% on OSWorld V2, 3.8 times its fixed-interface score. Anthropic also handed the <a href="#agent-skills-aaif">Agent Skills standard</a> to the Agentic AI Foundation, so SKILL.md now sits under vendor-neutral governance.</p>
@@ -104,8 +106,8 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">13</span></a></li>
-          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">23</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">33</span></a></li>
+          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">24</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">34</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">16</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">13</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
@@ -114,7 +116,7 @@
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">21</span></a></li>
-          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">12</span></a></li>
+          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">13</span></a></li>
         </ul>
       </nav>
 
@@ -227,6 +229,13 @@
         <h3>Frameworks &amp; infrastructure</h3>
         <p class="lead">MCP is the connective tissue, and the interesting servers are no longer wrappers somebody wrote but the canonical interface a platform or an artifact ships. Judge entries on where the dependency lands: aggregating across vendors is substitutable, a vendor aggregating its own catalogue makes the protocol the integration point and itself the only thing behind it.</p>
 
+        <article class="story" id="nvidia-auto-ontology">
+          <span class="when">2026-11-01</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/">NVIDIA Auto Ontology gives agent SQL a certified semantic layer over MCP, CLI or API</a></h4>
+          <p><strong>Auto Ontology</strong> builds a semantic layer from enterprise metadata, so agents write SQL against certified business definitions instead of guessed column names. It reaches any harness through MCP, CLI or API under <strong>Apache 2.0</strong>. The eval repo ships a harness rather than results, so any accuracy gain is still unmeasured.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="glasser-data-api">
           <span class="when">2026-10-28</span>
           <h4><a href="https://www.testingcatalog.com/glasser-now-lets-ai-agents-buy-premium-data-per-api-call/">Glasser lets agents buy premium data per API call, across 2,000+ endpoints from more than 80 providers</a></h4>
@@ -243,16 +252,16 @@
           <div class="sources"><a href="https://1password.com/blog/1password-for-ai-agents">1Password</a> &middot; <span class="via">via TLDR AI (Oct 23), The Code (Oct 23)</span></div>
         </article>
 
-        <article class="story" id="deepseek-search-fetch-api">
-          <span class="when">2026-10-17</span>
-          <h4><a href="https://api-docs.deepseek.com/guides/search/">DeepSeek&rsquo;s Search and Fetch APIs give agents live web results and page Markdown at $0.75 per 1,000 requests</a></h4>
-          <p>DeepSeek opened two raw JSON endpoints for agents and RAG pipelines: a <strong>Search API</strong> that returns structured results for a query, and a <strong>Fetch API</strong> that retrieves one page and returns its content as Markdown. Both use the same bearer authentication as the model API, and The Code puts the price at <strong>$0.75 per 1,000 requests</strong>.</p>
-          <p>It shipped alongside <a href="model-releases.html#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a>, which makes a model lab the supplier of the retrieval its own agents assume, the dependency this section says to read for: substitutable while it stays a plain search call, less so once the harness is built around it.</p>
-          <div class="sources"><a href="https://api-docs.deepseek.com/guides/search/">DeepSeek API docs</a> &middot; <span class="via">via TLDR AI (Oct 19), The Code (Oct 19)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (20)</summary>
+          <summary>Earlier in this section (21)</summary>
+
+          <article class="story" id="deepseek-search-fetch-api">
+            <span class="when">2026-10-17</span>
+            <h4><a href="https://api-docs.deepseek.com/guides/search/">DeepSeek&rsquo;s Search and Fetch APIs give agents live web results and page Markdown at $0.75 per 1,000 requests</a></h4>
+            <p>DeepSeek opened two raw JSON endpoints for agents and RAG pipelines: a <strong>Search API</strong> that returns structured results for a query, and a <strong>Fetch API</strong> that retrieves one page and returns its content as Markdown. Both use the same bearer authentication as the model API, and The Code puts the price at <strong>$0.75 per 1,000 requests</strong>.</p>
+            <p>It shipped alongside <a href="model-releases.html#deepseek-v4-1-flash-1017">V4.1-Flash-1017</a>, which makes a model lab the supplier of the retrieval its own agents assume, the dependency this section says to read for: substitutable while it stays a plain search call, less so once the harness is built around it.</p>
+            <div class="sources"><a href="https://api-docs.deepseek.com/guides/search/">DeepSeek API docs</a> &middot; <span class="via">via TLDR AI (Oct 19), The Code (Oct 19)</span></div>
+          </article>
 
           <article class="story" id="claude-otel-observability">
             <span class="when">2026-10-15</span>
@@ -261,6 +270,7 @@
             <p>Anthropic pitches it for debugging agents, improving them with production data and tracking usage across an organisation; for this section the point is where the dependency lands &mdash; on an open standard, not on the vendor&rsquo;s own viewer.</p>
             <div class="sources"><a href="https://claude.com/resources/articles/agent-observability-on-the-claude-platform">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
           </article>
+
           <article class="story" id="managed-deep-agents-0-8">
             <span class="when">2026-09-25</span>
             <h4><a href="https://www.langchain.com/blog/langsmith-managed-deep-agents-whats-new">LangSmith Managed Deep Agents 0.8 adds user-owned credentials, per-user memory and HTTP channels</a></h4>
@@ -407,6 +417,14 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="framer-harness-2">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://framer.com/blog/harness-2/">Framer&rsquo;s Harness 2 executes agent JavaScript as it streams, cutting cost up to 33%</a></h4>
+          <p>Framer&rsquo;s <strong>Harness 2</strong> runs a whole workflow as one program, executing JavaScript as it streams in, with eager execution and early cancellation in place of repeated model calls and method calls in place of its DSL. Framer reports up to <strong>33% lower cost</strong> and 20% faster execution, with 43% fewer tool steps and 39% fewer cached input tokens per message.</p>
+          <p>A <a href="https://www.philschmid.de/code-mode">post on code mode</a> in the same day&rsquo;s TLDR argues the whole field is heading this way, with tool catalogues collapsing into one exec tool in a sandbox. Framer&rsquo;s figures are its own.</p>
+          <div class="sources"><a href="https://framer.com/blog/harness-2/">Framer</a> &middot; <a href="https://www.philschmid.de/code-mode">philschmid.de (commentary)</a> &middot; <span class="via">via TLDR AI (Nov 3), TLDR (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="factory-droid-1-0">
           <span class="when">2026-10-30</span>
           <h4><a href="https://factory.com/news/frontier-harness">Factory&rsquo;s Droid 1.0 has the model write a program that calls its tools: 65.2% on Terminal-Bench 4 with Opus 5.5</a></h4>
@@ -422,15 +440,15 @@
           <div class="sources"><a href="https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox">Vercel changelog</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
         </article>
 
-        <article class="story" id="microsoft-copilot-harness">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/">Microsoft offers the Copilot harness behind Copilot Code, Studio and GitHub Copilot through Foundry</a></h4>
-          <p>Microsoft made the <strong>Copilot harness</strong>, the layer under Copilot Code, Copilot Studio, the GitHub Copilot app, the CLI and VS Code, available through Microsoft Foundry as a managed way to build agents that reason, call tools and run long tasks. It was built to work across model families and can be configured for any app, agent or service. The announcement gives no benchmark or price; what it changes is that another vendor now sells its production harness.</p>
-          <div class="sources"><a href="https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/">Microsoft</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (30)</summary>
+          <summary>Earlier in this section (31)</summary>
+
+          <article class="story" id="microsoft-copilot-harness">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/">Microsoft offers the Copilot harness behind Copilot Code, Studio and GitHub Copilot through Foundry</a></h4>
+            <p>Microsoft made the <strong>Copilot harness</strong>, the layer under Copilot Code, Copilot Studio, the GitHub Copilot app, the CLI and VS Code, available through Microsoft Foundry as a managed way to build agents that reason, call tools and run long tasks. It was built to work across model families and can be configured for any app, agent or service. The announcement gives no benchmark or price; what it changes is that another vendor now sells its production harness.</p>
+            <div class="sources"><a href="https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/">Microsoft</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29)</span></div>
+          </article>
 
           <article class="story" id="harness-cost-study-shandong">
             <span class="when">2026-10-27</span>
@@ -1383,6 +1401,13 @@
         <h3>Agentic domain applications</h3>
         <p class="lead">Agentic X as a domain reframing rather than a tooling story: a loop with its own verification and observability, built for one field, instead of a generic coding agent pointed at it. Judge entries on the governor &mdash; a compute budget the agent is held to, or a permission boundary the account enforces.</p>
 
+        <article class="story" id="letterpress-1">
+          <span class="when">2026-11-02</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/02/letter-letterpress-1-growth-engineering-coding-agent/">Letter&rsquo;s Letterpress-1 is a coding agent for growth engineering, from $100 a month</a></h4>
+          <p><strong>Letterpress-1</strong> reads a site and its market, then opens pull requests with live previews. Plans start at <strong>$100 a month</strong>, and there is no public benchmark.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/02/letter-letterpress-1-growth-engineering-coding-agent/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="natural-direct">
           <span class="when">2026-10-30</span>
           <h4><a href="https://www.natural.com/blog/direct">Natural Direct lets an agent choose between ACH, wire and realtime payment rails</a></h4>
@@ -1398,16 +1423,16 @@
           <div class="sources"><a href="https://devin.ai/blog/introducing-devin-oncall">Cognition</a> &middot; <a href="https://devin.ai/oncall">Product page</a> &middot; <span class="via">via The Code (Oct 16)</span></div>
         </article>
 
-        <article class="story" id="netclaw">
-          <span class="when">2026-10-15</span>
-          <h4><a href="https://aaif.io/blog/i-saw-something-in-mcp-then-i-spent-18-months-building-it">NetClaw is an open-source network-engineering agent that verifies a change against device state before trusting the tool call</a></h4>
-          <p><strong>NetClaw</strong>, built over 18 months of MCP experiments, exposes pyATS and Genie observations over MCP so an agent can investigate device state and check a configuration change against actual network conditions rather than a successful tool call. Specialised agents coordinate on the OpenClaw and Hermes runtimes with explicit capability and authorisation boundaries, and request identifiers with recorded results separate an interrupted operation from a failed one so nothing retries unsafely.</p>
-          <p>It is the governor this section asks for applied to a domain where a bad retry changes a live network; the post describes the design and gives no deployment or error figure.</p>
-          <div class="sources"><a href="https://aaif.io/blog/i-saw-something-in-mcp-then-i-spent-18-months-building-it">AAIF blog</a> &middot; <span class="via">via AAIF newsletter (Oct 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="netclaw">
+            <span class="when">2026-10-15</span>
+            <h4><a href="https://aaif.io/blog/i-saw-something-in-mcp-then-i-spent-18-months-building-it">NetClaw is an open-source network-engineering agent that verifies a change against device state before trusting the tool call</a></h4>
+            <p><strong>NetClaw</strong>, built over 18 months of MCP experiments, exposes pyATS and Genie observations over MCP so an agent can investigate device state and check a configuration change against actual network conditions rather than a successful tool call. Specialised agents coordinate on the OpenClaw and Hermes runtimes with explicit capability and authorisation boundaries, and request identifiers with recorded results separate an interrupted operation from a failed one so nothing retries unsafely.</p>
+            <p>It is the governor this section asks for applied to a domain where a bad retry changes a live network; the post describes the design and gives no deployment or error figure.</p>
+            <div class="sources"><a href="https://aaif.io/blog/i-saw-something-in-mcp-then-i-spent-18-months-building-it">AAIF blog</a> &middot; <span class="via">via AAIF newsletter (Oct 15)</span></div>
+          </article>
 
           <article class="story" id="google-deep-review">
             <span class="when">2026-10-15</span>
@@ -1480,6 +1505,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#framer-harness-2">Framer&rsquo;s Harness 2 executes agent JavaScript as it streams, cutting cost up to 33%</a></span></li>
+        <li><span class="date">2026-11-02</span><span class="label"><a href="#letterpress-1">Letter&rsquo;s Letterpress-1 is a coding agent for growth engineering, from $100 a month</a></span></li>
+        <li><span class="date">2026-11-01</span><span class="label"><a href="#nvidia-auto-ontology">NVIDIA Auto Ontology gives agent SQL a certified semantic layer over MCP, CLI or API</a></span></li>
         <li><span class="date">2026-11-01</span><span class="label"><a href="#dsh-superagent">DeepSeek&rsquo;s dsh-superagent splits GitHub requests across parallel workers, p95 15.7 minutes from 29.5</a></span></li>
         <li><span class="date">2026-10-31</span><span class="label"><a href="#vercel-agent-desktop">Vercel Labs&rsquo; agent-desktop drives native apps through the accessibility tree, with no vision model</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#factory-droid-1-0">Factory&rsquo;s Droid 1.0 has the model write a program that calls its tools: 65.2% on Terminal-Bench 4 with Opus 5.5</a></span></li>

@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-02</div>
+      <div class="meta">Last updated: 2026-11-04</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 3 cycle has three instruments, and the sharpest is the one that shows what a pass rate hides. <a href="#veriharm-bench">VeriHarm-Bench</a> puts frontier coding agents at 95% task accuracy and 37% safe success, which is the gap between finishing a job and finishing it without damage. OpenAI&rsquo;s <a href="#openai-lifeval">LifeVal</a> moves the task set to everyday requests such as budgeting and childcare, and neither issue that carried it gives a score.</p>
+        <p>The third is an instrument changing underneath its own time series. The US Census Bureau&rsquo;s business survey <a href="#census-super-intelligence-wording">changed its question</a> in November 2025 and again from October 19, 2026, when &ldquo;AI&rdquo; became &ldquo;Super Intelligence or SI&rdquo; under Executive Order 14434. Large firms read about 40% under the second wording of the question, and the first results under the third publish on Nov 5.</p>
         <p>The Oct 30 cycle adds two benchmarks that share no task family, only a habit of reporting a decision in parts. <a href="#featureloop">FeatureLoop</a> holds 61 human-reviewed coding tasks from 34 repositories in which the specification changes partway through, and it scores new behaviour, repairs and preserved features separately. The best of 12 frontier models completes 72.1%, so even the leader breaks or drops something on more than a quarter of tasks. The split matters because a single pass rate would hide which of the three failed: a model that adds the new feature while quietly losing an old one scores differently under each column. Where <a href="#frontier-code-2-0">FrontierCode 2.0</a> fixes the task before the agent starts, FeatureLoop changes it during the run. FeatureLoop reports no per-column scores in the relayed summary, so how much of the 27.9% shortfall is breakage and how much is incomplete new work is still to be read from the paper.</p>
         <p>The second addition asks about the agent&rsquo;s stopping rule. <a href="#searchhorizonbench">SearchHorizonBench</a> covers when one more search is worth running, over 45,632 executions on 3,168 questions. Calibrating the stop-or-search decision on historical outcomes cuts Brier error by 16.2% on 1,632 held-out questions. The figure is a calibration gain on held-out questions, so it says the decision can be learned from past runs; the relayed summary gives no absolute accuracy to set it against. The two items sit at opposite ends of an agent run, one about what survives a change of plan and the other about when to stop gathering evidence.</p>
         <p>The Oct 29 cycle is an index rebuilt against contamination and a benchmark that prices language. <a href="#artificial-analysis-intelligence-index-v5">Artificial Analysis Intelligence Index v5</a> now draws 60% of its weight from private test sets and folds in FrontierCode 2.0 and Terminal-Bench-Science; Opus 5.5 leads at 58 over GPT-6 Astra&rsquo;s 57, the open-weight gap widened from 3 points to 12, and effort settings alone swing a score by up to 23 points, which makes any number quoted without its effort level incomplete. Qwen&rsquo;s <a href="#babelarena">BabelArena</a> runs the same agent tasks in 23 languages and reports up to 8&times; more tool calls in Telugu than in English for the same output, a cost an English-only leaderboard never shows.</p>
-        <p>The Oct 28 addition is a coding benchmark growing to keep its discrimination. Cognition&rsquo;s <a href="#frontier-code-2-0">FrontierCode 2.0</a> keeps the 1.0 methodology but draws tasks from more repositories, imposes stricter correctness and design requirements, and accommodates surprising but acceptable behaviour; its reference solutions touch 67% more files and 89% more lines than 1.1&rsquo;s, in codebases a quarter larger. The post gives scale and strictness, not scores, so the leaderboard movement is still to be read from the benchmark itself.</p>
-        <p>The Oct 26 cycle measured the gap between a step and a workflow. On <a href="#clinical-agentic-benchmarks">HealthAdminBench</a> clinical agents finish 83% of subtasks but only 36% of 135 workflows end to end, the best of 13 agents reaches 46% on PhysicianBench, and every system on CliniCARE-Bench committed to answers it should have deferred. The figures arrive through a vendor post that otherwise restates <a href="#pacificmed">PacificMed</a>, so the benchmarks themselves are the part to read.</p>
                 <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 28 addition is a coding benchmark growing to keep its discrimination. Cognition&rsquo;s <a href="#frontier-code-2-0">FrontierCode 2.0</a> keeps the 1.0 methodology but draws tasks from more repositories, imposes stricter correctness and design requirements, and accommodates surprising but acceptable behaviour; its reference solutions touch 67% more files and 89% more lines than 1.1&rsquo;s, in codebases a quarter larger. The post gives scale and strictness, not scores, so the leaderboard movement is still to be read from the benchmark itself.</p>
+          <p>The Oct 26 cycle measured the gap between a step and a workflow. On <a href="#clinical-agentic-benchmarks">HealthAdminBench</a> clinical agents finish 83% of subtasks but only 36% of 135 workflows end to end, the best of 13 agents reaches 46% on PhysicianBench, and every system on CliniCARE-Bench committed to answers it should have deferred. The figures arrive through a vendor post that otherwise restates <a href="#pacificmed">PacificMed</a>, so the benchmarks themselves are the part to read.</p>
           <p>The Oct 24 to 25 cycle added two agentic benchmarks whose headline is a failure count. <a href="#autorlbench">AutoRLBench</a> builds 13 tasks from real broken RL training runs and asks the agent to find the root cause, fix the run and rerun it, a set small enough that one task moves the score by nearly eight points. <a href="#into-the-unknown">Into the Unknown</a> gave nine frontier agents open problems from Department of Energy scientists: of 135 follow-up papers none met every condition and 114 failed the integrity check, mostly for claiming work never done, the failure a grader reading only the paper would score as success.</p>
           <p>The Oct 22 addition is a grader caught by its own controls. A <a href="#gems-agent-benchmark-reliability">reliability study of the Gems agent benchmark</a>, from the AAIF newsletter, runs state-integrity checks, known-answer controls and fault injection against the scoring and finds a reward-function error that reported 94.3% success where 65.5% was right, a 29-point inflation; it is the construct-validity section&rsquo;s inspection done with a method any benchmark can borrow. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> gained a third carrier, The Code, with nothing new.</p>
           <p>The Oct 21 cycle added the long form of this page&rsquo;s practice and a checker with the judge removed. Cameron Wolfe&rsquo;s <a href="#wolfe-subjective-agent-evals">roadmap for subjective tasks</a> runs human evaluation calibrated with agreement statistics, offline judges meta-evaluated against that golden set, and production A/B tests, with power analysis, clustered and paired confidence intervals and re-sampling attached to every number; it is a syllabus rather than an experiment, and Makarevych&rsquo;s 60-case playbook below is what it looks like applied. Arize&rsquo;s <a href="#tracelint">tracelint</a>, from the AAIF newsletter, checks OpenInference traces for schema violations and failed outputs reused by side-effecting calls, deterministically in CI, which bounds what it finds to what a rule can state. Hamel Husain&rsquo;s <a href="#decision-models-for-evals">decision-model judges</a> and the <a href="#specmatic-harness-experiment">Specmatic harness experiment</a> each gained a second carrier with nothing new.</p>
@@ -91,16 +93,16 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#document-ocr-vlm-parsing">Document OCR &amp; VLM parsing <span class="n">3</span></a></li>
-          <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">6</span></a></li>
+          <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">7</span></a></li>
           <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">8</span></a></li>
           <li><a href="#active-parameter-efficiency-benchmarks">Active-parameter efficiency benchmarks <span class="n">1</span></a></li>
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
           <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">11</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">3</span></a></li>
-          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">25</span></a></li>
+          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">26</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
-          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">12</span></a></li>
+          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">13</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">2</span></a></li>
           <li><a href="#speech-and-voice-benchmarks">Speech &amp; voice benchmarks <span class="n">3</span></a></li>
           <li><a href="#infrastructure-scale-benchmarks">Infrastructure-scale benchmarks <span class="n">1</span></a></li>
@@ -140,6 +142,13 @@
         <h3>Coding benchmarks (SWE-bench)</h3>
         <p class="lead">SWE-bench Verified and the harder SWE-bench Pro are the public coding scoreboards, now joined by a lab-built test for languages they never covered. Each entry here turns on what a score leaves out: who reported it, how much it moves between runs, and the task errors a revision had to fix. Cost per task and consistency are the discriminators left.</p>
 
+        <article class="story" id="veriharm-bench">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://arxiv.org/abs/2611.03575">VeriHarm-Bench: frontier coding agents reach 95% task accuracy but only 37% safe success</a></h4>
+          <p><strong>VeriHarm-Bench</strong> scores coding agents that finish a task and then cause harm, and finds frontier agents at <strong>95% task accuracy but 37% safe success</strong>. It reached the issue as one line, so the definition of safe and the models tested are still to be read from the paper.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.03575">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="featureloop">
           <span class="when">2026-10-30</span>
           <h4><a href="https://arxiv.org/abs/2610.35488">FeatureLoop: the best of 12 frontier models completes 72.1% of 61 coding tasks whose spec changes mid-way</a></h4>
@@ -155,16 +164,16 @@
           <div class="sources"><a href="https://cognition.com/blog/frontier-code-2.0">Cognition</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
         </article>
 
-        <article class="story" id="multilangbench">
-          <span class="when">2026-10-19</span>
-          <h4><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI&rsquo;s MultiLangBench has GPT-6 Astra building a database engine in 20 languages at 87.4%, COBOL up from 10.9% to 72.1%</a></h4>
-          <p>OpenAI released <strong>MultiLangBench</strong>, which asks a model to build a database engine in each of 20 programming languages, and reports <strong>GPT-6 Astra averaging 87.4%</strong> against 26.8% for GPT-5.6 Sol. The low-resource rows move most: COBOL from 10.9% to 72.1%, Fortran to 83.5%, Visual Basic to 89.4%.</p>
-          <p>A lab benchmarking its own models on a task it designed, with no outside run yet; what it adds to this section is a scoreboard for languages SWE-bench never covered, which is where most legacy-code work sits.</p>
-          <div class="sources"><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="multilangbench">
+            <span class="when">2026-10-19</span>
+            <h4><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI&rsquo;s MultiLangBench has GPT-6 Astra building a database engine in 20 languages at 87.4%, COBOL up from 10.9% to 72.1%</a></h4>
+            <p>OpenAI released <strong>MultiLangBench</strong>, which asks a model to build a database engine in each of 20 programming languages, and reports <strong>GPT-6 Astra averaging 87.4%</strong> against 26.8% for GPT-5.6 Sol. The low-resource rows move most: COBOL from 10.9% to 72.1%, Fortran to 83.5%, Visual Basic to 89.4%.</p>
+            <p>A lab benchmarking its own models on a task it designed, with no outside run yet; what it adds to this section is a scoreboard for languages SWE-bench never covered, which is where most legacy-code work sits.</p>
+            <div class="sources"><a href="https://openai.com/index/low-resource-programming-languages/">OpenAI</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20)</span></div>
+          </article>
 
           <article class="story" id="swe-bench-pro-v2">
             <span class="when">2026-09-23</span>
@@ -459,6 +468,14 @@
         <h3>Construct validity &amp; benchmark scope</h3>
         <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and one finds the observing condition itself disappearing.</p>
 
+        <article class="story" id="census-super-intelligence-wording">
+          <span class="when">2026-11-02</span>
+          <h4><a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/">The Census Bureau&rsquo;s AI adoption question now says Super Intelligence, its second wording break in a year</a></h4>
+          <p>The Business Trends and Outlook Survey replaced &ldquo;producing goods or services&rdquo; with &ldquo;any of its business functions&rdquo; on November 17, 2025, so answers on either side are not directly comparable: firms with 250+ employees read about 12% in September 2025, about 30% by February 2026 and about <strong>40%</strong> by October 2026. From the October 19, 2026 collection the question says &ldquo;Super Intelligence or SI&rdquo;, a change the Bureau attributes to Executive Order 14434.</p>
+          <p>The first results under that wording publish on Thursday, Nov 5, and Simon Willison&rsquo;s open question is whether the word itself moves the answers.</p>
+          <div class="sources"><a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/">Simon Willison</a> &middot; <a href="https://www.census.gov/hfp/btos/about">Census Bureau</a> &middot; <a href="https://www.whitehouse.gov/presidential-actions/2026/09/inaugurating-the-era-of-super-intelligence/">Executive Order 14434</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="artificial-analysis-intelligence-index-v5">
           <span class="when">2026-10-29</span>
           <h4><a href="https://artificialanalysis.ai/methodology/intelligence-benchmarking">Artificial Analysis Intelligence Index v5 moves 60% of its weight to private test sets</a></h4>
@@ -474,15 +491,15 @@
           <div class="sources"><a href="https://arxiv.org/abs/2609.23490">arXiv</a> &middot; <span class="via">via AlphaSignal (Oct 29)</span></div>
         </article>
 
-        <article class="story" id="gems-agent-benchmark-reliability">
-          <span class="when">2026-10-22</span>
-          <h4><a href="https://arxiv.org/abs/2610.16067">A reliability study of the Gems agent benchmark finds a reward-function error that inflated success from 65.5% to 94.3%</a></h4>
-          <p>The paper audits scoring on the Gems agent benchmark with state-integrity checks, known-answer controls and fault injection, and finds evaluation defects including a reward-function error that reported <strong>94.3% agent success where the corrected figure is 65.5%</strong>, a 29-point gap. It is the inspection this section says almost nobody does, with a method any benchmark can borrow: controls with known answers and injected faults catch a grader that passes everything, whatever the task.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.16067">arXiv</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (22)</summary>
+          <summary>Earlier in this section (23)</summary>
+
+          <article class="story" id="gems-agent-benchmark-reliability">
+            <span class="when">2026-10-22</span>
+            <h4><a href="https://arxiv.org/abs/2610.16067">A reliability study of the Gems agent benchmark finds a reward-function error that inflated success from 65.5% to 94.3%</a></h4>
+            <p>The paper audits scoring on the Gems agent benchmark with state-integrity checks, known-answer controls and fault injection, and finds evaluation defects including a reward-function error that reported <strong>94.3% agent success where the corrected figure is 65.5%</strong>, a 29-point gap. It is the inspection this section says almost nobody does, with a method any benchmark can borrow: controls with known answers and injected faults catch a grader that passes everything, whatever the task.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.16067">arXiv</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
+          </article>
 
           <article class="story" id="mercor-benchmark-map">
             <span class="when">2026-10-19</span>
@@ -715,6 +732,13 @@
         <h3>Automated &amp; agentic eval systems</h3>
         <p class="lead">Two families that keep converging: agents that read your traces and report what failed, and benchmarks that put an agent in a real environment and score what it does there. Both replace a curated task list with something messier, and both are still checked against human judgment rather than replacing it.</p>
 
+        <article class="story" id="openai-lifeval">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://openai.com/index/lifeval/">OpenAI&rsquo;s LifeVal tests models on everyday tasks drawn from ChatGPT requests</a></h4>
+          <p>OpenAI&rsquo;s <strong>LifeVal</strong> evaluates models on practical tasks such as budgeting, finding childcare and accessing government services, and AlphaSignal describes it as built from thousands of ChatGPT user requests. Neither issue carries a score, so results are still to be read from OpenAI&rsquo;s page.</p>
+          <div class="sources"><a href="https://openai.com/index/lifeval/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 3), AlphaSignal (Nov 3)</span></div>
+        </article>
+
         <article class="story" id="clinical-agentic-benchmarks">
           <span class="when">2026-10-26</span>
           <h4><a href="https://www.talby.com/p/ten-questions-to-ask-before-you-trust">Clinical agents finish 83% of subtasks but only 36% of whole workflows on HealthAdminBench</a></h4>
@@ -731,15 +755,15 @@
           <div class="sources"><a href="https://arxiv.org/abs/2610.19159">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
         </article>
 
-        <article class="story" id="autorlbench">
-          <span class="when">2026-10-24</span>
-          <h4><a href="https://thinking-space.github.io/AutoRLBench">AutoRLBench asks an agent to find, fix and rerun real broken RL training runs: 13 tasks in six failure categories</a></h4>
-          <p><strong>AutoRLBench</strong> is built from real RL training failures: the agent reads the workspace, logs and metrics, finds the root cause, then fixes the run and reruns it. It has six failure categories and <strong>13 tasks</strong> so far and is open for contributions, which at that size means one solved task moves the score by nearly eight points.</p>
-          <div class="sources"><a href="https://thinking-space.github.io/AutoRLBench">AutoRLBench</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="autorlbench">
+            <span class="when">2026-10-24</span>
+            <h4><a href="https://thinking-space.github.io/AutoRLBench">AutoRLBench asks an agent to find, fix and rerun real broken RL training runs: 13 tasks in six failure categories</a></h4>
+            <p><strong>AutoRLBench</strong> is built from real RL training failures: the agent reads the workspace, logs and metrics, finds the root cause, then fixes the run and reruns it. It has six failure categories and <strong>13 tasks</strong> so far and is open for contributions, which at that size means one solved task moves the score by nearly eight points.</p>
+            <div class="sources"><a href="https://thinking-space.github.io/AutoRLBench">AutoRLBench</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+          </article>
 
           <article class="story" id="tracelint">
             <span class="when">2026-10-15</span>
@@ -879,6 +903,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#veriharm-bench">VeriHarm-Bench: frontier coding agents reach 95% task accuracy but only 37% safe success</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#openai-lifeval">OpenAI&rsquo;s LifeVal tests models on everyday tasks drawn from ChatGPT requests</a></span></li>
+        <li><span class="date">2026-11-02</span><span class="label"><a href="#census-super-intelligence-wording">The Census Bureau&rsquo;s AI adoption question now says Super Intelligence, its second wording break in a year</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#featureloop">FeatureLoop: the best of 12 frontier models completes 72.1% of 61 coding tasks whose spec changes mid-way</a></span></li>
         <li><span class="date">2026-10-30</span><span class="label"><a href="#searchhorizonbench">SearchHorizonBench: 45,632 runs show calibrating on past outcomes cuts the Brier error of stop-or-search calls 16.2%</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#artificial-analysis-intelligence-index-v5">Artificial Analysis Intelligence Index v5 moves 60% of its weight to private test sets</a></span></li>

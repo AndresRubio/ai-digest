@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-11-02</div>
+      <div class="meta">Last updated: 2026-11-04</div>
 
       <h2>Current state</h2>
       <div class="current-state">
-        <p>Today is a thin day for this page: one entry, and every detail in it comes from press reports rather than the company. <a href="#meta-max-humanoid">Meta reportedly built Max</a>, a household-chores humanoid prototype, with a Chinese robotics company in about three months. It runs on NVIDIA Jetson Thor, weighs about 106 lb, stands about 1.5 m, and has a face display, a speaker and hands for small objects. A second prototype with a redesigned torso and hands, a projector and extra sensors for stairs is in progress. No capability is reported, only the build and its specifications, so this page can record the hardware and not yet what the robot does.</p>
+        <p>The Nov 3 cycle is five papers on why vision-language-action policies fail on real hardware, all from one newsletter issue, each attacking a different physical constraint. <a href="#fastvla">FastVLA</a> goes after a control loop capped at 5 to 10 hertz, pruning visual tokens by task prompt for 20% lower action latency on a Franka arm. <a href="#focusvla">FocusVLA</a> decides between wrist and static cameras from the robot&rsquo;s recent actions and lifts real-world success from 71.7% to 85.0%. <a href="#gazeact">GazeAct</a> trains on operator eye tracking and moves 18 real tasks from 48.1% to 58.6%, with no eye tracker needed at deployment.</p>
+        <p>The other two supply numbers the first three take for granted. <a href="#pointmapvla">PointmapVLA</a> gives each pixel a metric position in the robot&rsquo;s base frame, and <a href="#rawvla">RawVLA</a> shows that the camera&rsquo;s own signal processor shifts action accuracy under changing light. Neither carries a success figure in the issue, though PointmapVLA&rsquo;s checkpoints and code are public. NVIDIA&rsquo;s <a href="#cosmos-framework">Cosmos Framework</a> update adds synchronized video and LiDAR simulation for training world models, again with no consistency or transfer number attached.</p>
+        <p>The Nov 2 cycle was thin: one entry, and every detail in it comes from press reports rather than the company. <a href="#meta-max-humanoid">Meta reportedly built Max</a>, a household-chores humanoid prototype, with a Chinese robotics company in about three months. It runs on NVIDIA Jetson Thor, weighs about 106 lb, stands about 1.5 m, and has a face display, a speaker and hands for small objects. A second prototype with a redesigned torso and hands, a projector and extra sensors for stairs is in progress. No capability is reported, only the build and its specifications, so this page can record the hardware and not yet what the robot does.</p>
         <p>The Oct 29 cycle opens a section on touch, from a single newsletter issue reviewing three 2026 papers. <a href="#dexport">DexPort</a> takes the robot arm out of demonstration collection, and training on operator commands instead of reached joint positions lifts success from 11% to 64%. <a href="#vectile">VecTile</a> measures pressure and shear on a sheet under 6 mm thick for $34.67 including electronics, with errors of 0.39 N and 0.16 N against an industrial sensor. <a href="#vista3d">VisTa3D</a> shows current vision and depth models dropping objects thinner than about 3 mm, which touch maps recover. The argument across all three is that a camera updating 5 to 15 times a second cannot see a slip that lasts 10 to 20 milliseconds behind the fingers.</p>
         <p>The Oct 28 cycle is simulation as the product. Google DeepMind&rsquo;s <a href="#genie-4">Genie 4</a> holds a photorealistic interactive world consistent for about two minutes, double Genie 3, adds native audio and takes prompt edits mid-run, with Gemini models planning events to keep scenes coherent; the stated purpose is testing robots and agents before the real world, and the stated limit is drift on longer runs. Meta&rsquo;s <a href="#interactiveworld">InteractiveWorld</a> makes the same bet one level down, a framework that simulates a wearable assistant&rsquo;s first-person view for training and evaluation. And <a href="#gemini-robotics-er-2">Gemini Robotics Embodied Reasoning 2</a> lands on Google Cloud, which moves a frontier embodied-reasoning model from research preview to something any team with an account can call.</p>
-        <p>The Oct 27 cycle measured a trend instead of a model. A <a href="#frontier-robot-arm-doubling">LessWrong study</a> ran nine frontier multimodal models on six real-arm tasks from July to October and puts the doubling time for performance at about 54 days, with the best execution rate up 4.4 times and the cheapest subtask 6.2 times cheaper; the limits it names are precision and efficiency, with reasoning no longer the bottleneck. Four months and six tasks is a thin base for a doubling time, but it is the first series on this page that puts the single-model <a href="#gpt-6-astra-robot-arms">Astra arm trials</a> on a curve.</p>
-        <p>The Oct 26 cycle was two ways to avoid training a whole robot stack. Alibaba&rsquo;s <a href="#rynnunify">RynnUnify</a> puts spatial reasoning, physical prediction and video planning into one 16B model with a world-action head, and uses RL to decide when its own video predictions are worth consulting. <a href="#holoboxing">HoloBoxing</a> goes the other way, freezing a pretrained whole-body controller and training only a small planner, which gets humanoid boxing in 7 minutes on one GPU once the expensive pretraining is excluded.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 27 cycle measured a trend instead of a model. A <a href="#frontier-robot-arm-doubling">LessWrong study</a> ran nine frontier multimodal models on six real-arm tasks from July to October and puts the doubling time for performance at about 54 days, with the best execution rate up 4.4 times and the cheapest subtask 6.2 times cheaper; the limits it names are precision and efficiency, with reasoning no longer the bottleneck. Four months and six tasks is a thin base for a doubling time, but it is the first series on this page that puts the single-model <a href="#gpt-6-astra-robot-arms">Astra arm trials</a> on a curve.</p>
+          <p>The Oct 26 cycle was two ways to avoid training a whole robot stack. Alibaba&rsquo;s <a href="#rynnunify">RynnUnify</a> puts spatial reasoning, physical prediction and video planning into one 16B model with a world-action head, and uses RL to decide when its own video predictions are worth consulting. <a href="#holoboxing">HoloBoxing</a> goes the other way, freezing a pretrained whole-body controller and training only a small planner, which gets humanoid boxing in 7 minutes on one GPU once the expensive pretraining is excluded.</p>
           <p>The Oct 21 to 23 cycle was world models from both ends of the domain question and a policy that drops its language model. Kyutai&rsquo;s <a href="#kyutai-cadre">CADRE</a> runs an interactive world model at 20 fps on one H100 with under 230 ms of lag. <a href="#worldtui">WorldTUI</a> is a 360M model that predicts a terminal screen after each key press with no shell behind it. <a href="#turbovla">TurboVLA</a> replaces the LLM in a vision-language-action policy and reaches 97.6% on LIBERO with 0.2B parameters, giving up the ability to break a general instruction into subtasks.</p>
           <p>The Oct 21 entry is a production line ahead of a safety claim. Tesla has <a href="#tesla-optimus-production">started building Optimus in Fremont</a>, says the process is suitable for a commercial product and that the robot is not yet fully safe or reliable, and promises 20,000 units a week by the end of 2027, with third-quarter profit down 43% on the spending; it sits beside the imitation-data entry as the same programme a step further on, with the number that matters, units delivered to a customer, still zero.</p>
           <p>The Oct 21 entry is a price for a robot that a person is driving. A customer paid <a href="#tau-robotics-home-cleaning">$60 for two Tau Robotics humanoids</a> to clean a San Francisco home for an hour, both human-operator-controlled, and wrote up the economics; it belongs beside <a href="#humxn-free-home-services">HUMXN</a> as a real-world deployment number, with the autonomy share zero and no statement of whether the sessions also feed training.</p>
@@ -82,8 +84,8 @@
           <li><a href="#robbyants-open-embodied-stack">Robbyant's open embodied stack <span class="n">1</span></a></li>
           <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
           <li><a href="#tactile-sensing-and-dexterous-contact">Tactile sensing &amp; dexterous contact <span class="n">3</span></a></li>
-          <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">15</span></a></li>
-          <li><a href="#world-models">World models <span class="n">16</span></a></li>
+          <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">20</span></a></li>
+          <li><a href="#world-models">World models <span class="n">17</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">6</span></a></li>
           <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">15</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
@@ -145,32 +147,67 @@
 
       <section class="topic-section" id="vision-language-action-and-video-action-policies">
         <h3>Vision-language-action &amp; video-action policies</h3>
-        <p class="lead">The expensive input is the demonstration. Four entries claim it has become cheap &mdash; a glove, one video, a $10-an-hour UMI pipeline, a repair done free for the footage &mdash; and one bets video pretraining can replace it; none ships a policy an outsider can run, while the open policies publish numbers. Judge each on what an outsider could check.</p>
+        <p class="lead">The expensive input is the demonstration. Four entries claim it has become cheap (a glove, one video, a $10-an-hour UMI pipeline, a repair done free for the footage) and one bets video pretraining can replace it. Five papers fix what breaks on hardware instead: latency, camera choice, metric depth, sensor drift, attention. Judge each on what an outsider could check.</p>
 
-        <article class="story" id="frontier-robot-arm-doubling">
-          <span class="when">2026-10-27</span>
-          <h4><a href="https://www.lesswrong.com/posts/ndS9Xn8Qx5PppHJ3Q/the-ability-of-frontier-models-to-control-robots-is-rapidly">Frontier models&rsquo; real-arm task performance is doubling about every 54 days across nine models</a></h4>
-          <p>Researchers ran nine multimodal frontier models on six tasks with real robot arms between July and October and found performance doubling roughly every <strong>54 days</strong>: the best execution rate rose <strong>4.4&times;</strong> and the lowest cost per subtask fell <strong>6.2&times;</strong>, extending the single-model <a href="#gpt-6-astra-robot-arms">Astra arm trials</a> into a trend. The authors find the models held back mostly by efficiency and precision rather than reasoning. Six tasks over four months is a short series to fit a doubling time to, and it is a LessWrong post, not a peer-reviewed paper.</p>
-          <div class="sources"><a href="https://www.lesswrong.com/posts/ndS9Xn8Qx5PppHJ3Q/the-ability-of-frontier-models-to-control-robots-is-rapidly">LessWrong</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
+        <article class="story" id="fastvla">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://arxiv.org/abs/2610.22146">FastVLA prunes visual tokens by task prompt, cutting real-robot action latency 20%</a></h4>
+          <p><strong>FastVLA</strong> (Xu et al.) uses attention between the task prompt and visual tokens to drop patches irrelevant to the current command, with no training, and an inverse-Simpson metric over a sliding window to decide how hard to prune. Across OpenVLA, OpenVLA-OFT and CogACT on LIBERO and SIMPLER it cuts backbone FLOPs 35% to 59% and action latency 9% to 32% with no loss in task success. On a physical Franka Research 3, latency falls <strong>20%</strong>.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.22146">arXiv</a> &middot; <span class="via">via Artists of Intelligence (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="holoboxing">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://arxiv.org/abs/2610.32909">HoloBoxing trains a humanoid boxing planner in 7 minutes on one GPU over a frozen whole-body controller</a></h4>
-          <p><strong>HoloBoxing</strong> freezes a pretrained whole-body controller and trains only a compact planner that requests body-point targets, initialized by imitation and refined by RL, in <strong>7 minutes on 1 GPU</strong>. The 7 minutes excludes controller pretraining and data preparation, which is where most of the cost sits.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.32909">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+        <article class="story" id="focusvla">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://arxiv.org/abs/2610.31423">FocusVLA routes between wrist and static cameras, lifting real-world success from 71.7% to 85%</a></h4>
+          <p><strong>FocusVLA</strong> (Xu, Yu and Li) infers intent from recent action chunks, favouring the static camera while reaching and the wrist camera near contact, and fits existing policies without redesign. It adds 10.1 points of average success over pi_0.5 on RoboTwin 2.0, and physical evaluations rise from 71.7% to <strong>85.0%</strong>.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.31423">arXiv</a> &middot; <span class="via">via Artists of Intelligence (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="turbovla">
-          <span class="when">2026-10-23</span>
-          <h4><a href="https://www.deeplearning.ai/the-batch/issue-376#a-single-decoder-turns-small-model-outputs-into-action">TurboVLA drops the LLM from a VLA policy and reaches 97.6% on LIBERO with 0.2B parameters and 0.9 GB of VRAM</a></h4>
-          <p>Huazhong University of Science and Technology&rsquo;s <strong>TurboVLA</strong> replaces the large language model in a vision-language-action policy with separate DINOv3 and BERT encoders, six cross-attention layers and an action transformer. On LIBERO it succeeded <strong>97.6%</strong> of the time with 0.2B parameters, 31.2 ms latency and 0.9 GB of VRAM on an RTX 4090, against CogVLA&rsquo;s 97.4% at 8.3B and 16.1 GB, and on RoboTwin 2.0 it reached 88.1% at 43.4 ms against LingBot-VLA&rsquo;s 87.6% at 164.4 ms.</p>
-          <p>What it gives up is the LLM&rsquo;s ability to break a general instruction like &ldquo;clean the room&rdquo; into subtasks, and the real-arm results are four tasks on one AgileX Piper.</p>
-          <div class="sources"><a href="https://www.deeplearning.ai/the-batch/issue-376#a-single-decoder-turns-small-model-outputs-into-action">The Batch</a> &middot; <span class="via">via The Batch (Oct 23)</span></div>
+        <article class="story" id="gazeact">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://arxiv.org/abs/2610.24507">GazeAct trains on operator eye tracking, lifting 18-task real-robot success from 48.1% to 58.6%</a></h4>
+          <p><strong>GazeAct</strong> (Pani et al.) records 300 Hz operator gaze across 12,000 demonstrations on 40 tasks with bimanual ALOHA robots and uses it as a soft attention loss, so no eye tracker is needed at deployment. Success across 18 real-world tasks rises from 48.1% to <strong>58.6%</strong>, by up to 25 points on complex contact tasks, and LIBERO-Spatial rises from 57.9% to 69.6%.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.24507">arXiv</a> &middot; <span class="via">via Artists of Intelligence (Nov 3)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (17)</summary>
+
+          <article class="story" id="pointmapvla">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://github.com/DAVIAN-Robotics/PointmapVLA">PointmapVLA pairs every camera pixel with metric coordinates in the robot&rsquo;s base frame</a></h4>
+            <p>KAIST AI and Holiday Robotics give the encoder pixel-aligned pointmaps, so each pixel carries an (X, Y, Z) position in meters from the robot base and a policy no longer infers depth from 2D patches. It is evaluated on LIBERO, LIBERO-Plus and RoboCasa, with checkpoints and evaluation code public. The issue gives no success figures.</p>
+            <div class="sources"><a href="https://github.com/DAVIAN-Robotics/PointmapVLA">GitHub</a> &middot; <span class="via">via Artists of Intelligence (Nov 3)</span></div>
+          </article>
+
+          <article class="story" id="rawvla">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://arxiv.org/abs/2609.37530">RawVLA finds camera signal processing hurts action accuracy and learns its own from raw sensor data</a></h4>
+            <p><strong>RawVLA</strong> (Liu et al.) tests policy sensitivity across five image-signal-processor dimensions: sensor gain, noise, chromatic response, tonal curves and bit depth. A streaming neural processor then turns raw readings into features tuned for action, and the authors report consistent performance on their open RawVLA-Bench as conditions change. The issue gives no figure for that.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2609.37530">arXiv</a> &middot; <span class="via">via Artists of Intelligence (Nov 3)</span></div>
+          </article>
+
+          <article class="story" id="frontier-robot-arm-doubling">
+            <span class="when">2026-10-27</span>
+            <h4><a href="https://www.lesswrong.com/posts/ndS9Xn8Qx5PppHJ3Q/the-ability-of-frontier-models-to-control-robots-is-rapidly">Frontier models&rsquo; real-arm task performance is doubling about every 54 days across nine models</a></h4>
+            <p>Researchers ran nine multimodal frontier models on six tasks with real robot arms between July and October and found performance doubling roughly every <strong>54 days</strong>: the best execution rate rose <strong>4.4&times;</strong> and the lowest cost per subtask fell <strong>6.2&times;</strong>, extending the single-model <a href="#gpt-6-astra-robot-arms">Astra arm trials</a> into a trend. The authors find the models held back mostly by efficiency and precision rather than reasoning. Six tasks over four months is a short series to fit a doubling time to, and it is a LessWrong post, not a peer-reviewed paper.</p>
+            <div class="sources"><a href="https://www.lesswrong.com/posts/ndS9Xn8Qx5PppHJ3Q/the-ability-of-frontier-models-to-control-robots-is-rapidly">LessWrong</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
+          </article>
+
+          <article class="story" id="holoboxing">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://arxiv.org/abs/2610.32909">HoloBoxing trains a humanoid boxing planner in 7 minutes on one GPU over a frozen whole-body controller</a></h4>
+            <p><strong>HoloBoxing</strong> freezes a pretrained whole-body controller and trains only a compact planner that requests body-point targets, initialized by imitation and refined by RL, in <strong>7 minutes on 1 GPU</strong>. The 7 minutes excludes controller pretraining and data preparation, which is where most of the cost sits.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.32909">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+          </article>
+
+          <article class="story" id="turbovla">
+            <span class="when">2026-10-23</span>
+            <h4><a href="https://www.deeplearning.ai/the-batch/issue-376#a-single-decoder-turns-small-model-outputs-into-action">TurboVLA drops the LLM from a VLA policy and reaches 97.6% on LIBERO with 0.2B parameters and 0.9 GB of VRAM</a></h4>
+            <p>Huazhong University of Science and Technology&rsquo;s <strong>TurboVLA</strong> replaces the large language model in a vision-language-action policy with separate DINOv3 and BERT encoders, six cross-attention layers and an action transformer. On LIBERO it succeeded <strong>97.6%</strong> of the time with 0.2B parameters, 31.2 ms latency and 0.9 GB of VRAM on an RTX 4090, against CogVLA&rsquo;s 97.4% at 8.3B and 16.1 GB, and on RoboTwin 2.0 it reached 88.1% at 43.4 ms against LingBot-VLA&rsquo;s 87.6% at 164.4 ms.</p>
+            <p>What it gives up is the LLM&rsquo;s ability to break a general instruction like &ldquo;clean the room&rdquo; into subtasks, and the real-arm results are four tasks on one AgileX Piper.</p>
+            <div class="sources"><a href="https://www.deeplearning.ai/the-batch/issue-376#a-single-decoder-turns-small-model-outputs-into-action">The Batch</a> &middot; <span class="via">via The Batch (Oct 23)</span></div>
+          </article>
 
           <article class="story" id="humxn-free-home-services">
             <span class="when">2026-10-20</span>
@@ -272,7 +309,14 @@
 
       <section class="topic-section" id="world-models">
         <h3>World models</h3>
-        <p class="lead">Sixteen entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+        <p class="lead">Seventeen entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+
+        <article class="story" id="cosmos-framework">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/">NVIDIA&rsquo;s Cosmos Framework adds world-model training and synchronized video and LiDAR simulation</a></h4>
+          <p>NVIDIA added capabilities to its <strong>Cosmos Framework</strong> for training, fine-tuning, RL and optimizing world models for physical AI. Developers can generate synchronized video and LiDAR simulations for robots and autonomous vehicles, then deploy through GPU-accelerated Cosmos NIM microservices. The summary gives no consistency or transfer figure, which is what this section judges on.</p>
+          <div class="sources"><a href="https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/">NVIDIA</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
+        </article>
 
         <article class="story" id="genie-4">
           <span class="when">2026-10-28</span>
@@ -290,15 +334,15 @@
           <div class="sources"><a href="https://github.com/facebookresearch/InteractiveWorld">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
         </article>
 
-        <article class="story" id="rynnunify">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://arxiv.org/abs/2610.32965">Alibaba&rsquo;s 16B RynnUnify puts spatial reasoning, physical prediction and video planning in one model</a></h4>
-          <p><strong>RynnUnify</strong> is a 16B embodied model from Alibaba that combines spatial reasoning, physical prediction and video-based planning, with a world-action head for robot control. An RL extension lets it decide when to use its own video predictions to reason about states it cannot see; no benchmark figure is in the issue.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.32965">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (13)</summary>
+          <summary>Earlier in this section (14)</summary>
+
+          <article class="story" id="rynnunify">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://arxiv.org/abs/2610.32965">Alibaba&rsquo;s 16B RynnUnify puts spatial reasoning, physical prediction and video planning in one model</a></h4>
+            <p><strong>RynnUnify</strong> is a 16B embodied model from Alibaba that combines spatial reasoning, physical prediction and video-based planning, with a world-action head for robot control. An RL extension lets it decide when to use its own video predictions to reason about states it cannot see; no benchmark figure is in the issue.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.32965">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+          </article>
 
           <article class="story" id="worldtui">
             <span class="when">2026-10-21</span>
@@ -307,6 +351,7 @@
             <p>It is the domain end of this section&rsquo;s question in its plainest form, a world model with no physics in it whose failure is forgetting state rather than breaking a law.</p>
             <div class="sources"><a href="https://simedw.com/2026/10/21/world-model-terminal/">simedw.com</a> &middot; <span class="via">via TLDR AI (Oct 23)</span></div>
           </article>
+
           <article class="story" id="kyutai-cadre">
             <span class="when">2026-10-21</span>
             <h4><a href="https://kyutai.org/blog/2026-10-21-cadre">Kyutai&rsquo;s CADRE video autoencoders run interactive world models at 20 fps on one H100 with under 230 ms of lag</a></h4>
@@ -314,6 +359,7 @@
             <p>It is measured on latency and the latency-quality frontier; memory across a long rollout is not among its results.</p>
             <div class="sources"><a href="https://kyutai.org/blog/2026-10-21-cadre">Kyutai</a> &middot; <a href="https://www.marktechpost.com/2026/10/23/kyutai-cadre-video-autoencoders-interactive-world-models/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
           </article>
+
           <article class="story" id="physis-lang">
             <span class="when">2026-09-30</span>
             <h4><a href="https://physis-intelligence.github.io/physis-lang-web/">Physis-Lang rewrites physics captions with critic agents and puts Cosmos3-Super first on Physics-IQ Verified</a></h4>
@@ -618,6 +664,12 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#cosmos-framework">NVIDIA&rsquo;s Cosmos Framework adds world-model training and synchronized video and LiDAR simulation</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#fastvla">FastVLA prunes visual tokens by task prompt, cutting real-robot action latency 20%</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#focusvla">FocusVLA routes between wrist and static cameras, lifting real-world success from 71.7% to 85%</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#gazeact">GazeAct trains on operator eye tracking, lifting 18-task real-robot success from 48.1% to 58.6%</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#pointmapvla">PointmapVLA pairs every camera pixel with metric coordinates in the robot&rsquo;s base frame</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#rawvla">RawVLA finds camera signal processing hurts action accuracy and learns its own from raw sensor data</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#meta-max-humanoid">Meta reportedly built Max, a Jetson Thor household humanoid, in about three months</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#vista3d">VisTa3D shows vision and depth models lose objects thinner than about 3 mm, and touch maps recover them</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#vectile">VecTile measures pressure and shear on a sheet under 6 mm thick, for $34.67 with its electronics</a></span></li>
