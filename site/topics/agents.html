@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-04</div>
+      <div class="meta">Last updated: 2026-11-05</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 4 cycle is about who authorizes an agent&rsquo;s reach. Apple opened <a href="#siri-ai-developer-preview">Siri AI to all developers</a> in the 27.3 betas: App Intents expose an app&rsquo;s data and actions, skills chain them, and testing stays inside TestFlight until App Store submissions open in the spring. MCP&rsquo;s <a href="#mcp-enterprise-managed-authorization">Enterprise-Managed Authorization</a> extension moves the decision from each employee to the company identity provider, with Okta issuing the grants. The third entry tests whether a harness can fix itself: a study of <a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill</a> produced 125 proposed changes, and of the seven that could be tested on later issues only two removed the problem.</p>
         <p>The Nov 3 issues add one harness result and two narrower products. Framer&rsquo;s <a href="#framer-harness-2">Harness 2</a> executes agent JavaScript as it streams in, so one model call can drive a whole workflow, and Framer reports up to 33% lower cost, 20% faster execution and 43% fewer tool steps. It lands in the same place as <a href="#factory-droid-1-0">Droid 1.0</a> from the previous cycle: the model writes a program and the harness runs it. Both sets of numbers come from the builders.</p>
         <p>NVIDIA&rsquo;s <a href="#nvidia-auto-ontology">Auto Ontology</a> grounds agent SQL in certified business definitions and reaches a harness through MCP, CLI or API under Apache 2.0, though its eval repo ships a harness with no results. Letter&rsquo;s <a href="#letterpress-1">Letterpress-1</a> is a coding agent aimed at growth work, reading a site and its market before opening pull requests with live previews, from $100 a month and with no public benchmark.</p>
         <p>The Oct 30 to Nov 2 cycle is about where the harness runs and who does its coordinating, and every number in it is the builder&rsquo;s own. Factory&rsquo;s <a href="#factory-droid-1-0">Droid 1.0</a> has the model write a program that calls its tools, so one request drives hundreds of tool calls; the base prompt shrinks 37% to 13,055 tokens, only 2 tool definitions load up front instead of 11, and it reports 65.2% on Terminal-Bench 4 with Opus 5.5. Vercel&rsquo;s <a href="#vercel-fx-adapter">fx adapter</a> moves the harness onto the host through libfx, apart from the sandbox, which changes where the loop and its credentials sit relative to the environment the agent works in; the changelog entry gives no figures. DeepSeek&rsquo;s <a href="#dsh-superagent">dsh-superagent</a> splits GitHub requests across parallel workers, each in its own session and directory, and DeepSeek&rsquo;s simulation puts p95 completion at 15.7 minutes against 29.5. It is v0.1.0 with a single commit and labelled a research prototype. Vercel Labs&rsquo; <a href="#vercel-agent-desktop">agent-desktop</a> hands an agent the accessibility tree of a native app instead of screenshots and claims 78% to 96% fewer tokens on dense Electron apps. The common thread is moving work out of the model&rsquo;s context and into code around it, with no independent benchmark behind any of the four.</p>
         <p>Two items sit beside that thread without sharing it. Raindrop&rsquo;s <a href="#raindrop-swarm-leadership">swarm study</a> ran eight agents from four models on simulated outages with no designated leader, and found that the underlying model and the position of an agent&rsquo;s name in the prompt list predicted who took charge. It is a simulation, so it shows that small configuration choices steer coordination and says little about production swarms. Natural&rsquo;s <a href="#natural-direct">Direct</a> lets an agent choose between ACH, wire and realtime payment rails, with paper checks listed as coming soon. The announcement as relayed says nothing about approval controls, limits or fees, which an engineer would need before handing an agent that choice.</p>
-        <p>The Oct 28 and 29 cycle is the plumbing under long-running agents. Microsoft now offers the <a href="#microsoft-copilot-harness">Copilot harness</a> that runs Copilot Code, Studio and GitHub Copilot through Foundry, another vendor selling its production harness rather than keeping it as glue. An open-source <a href="#goose-dapr-durable-execution">goose and Dapr integration</a> checkpoints each finished turn, so a crashed agent resumes without replaying model calls, though side effects inside an interrupted turn still need idempotency. Salesforce&rsquo;s <a href="#salesforce-agent-fabric">Agent Fabric</a> puts evaluations in beta in November and a triggered kill switch on general availability in January 2027, and Mirendil&rsquo;s <a href="#mirendil-lor">Lor</a> claims research agents running for days across hundreds of parallel workers, with no results attached yet.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 28 and 29 cycle is the plumbing under long-running agents. Microsoft now offers the <a href="#microsoft-copilot-harness">Copilot harness</a> that runs Copilot Code, Studio and GitHub Copilot through Foundry, another vendor selling its production harness rather than keeping it as glue. An open-source <a href="#goose-dapr-durable-execution">goose and Dapr integration</a> checkpoints each finished turn, so a crashed agent resumes without replaying model calls, though side effects inside an interrupted turn still need idempotency. Salesforce&rsquo;s <a href="#salesforce-agent-fabric">Agent Fabric</a> puts evaluations in beta in November and a triggered kill switch on general availability in January 2027, and Mirendil&rsquo;s <a href="#mirendil-lor">Lor</a> claims research agents running for days across hundreds of parallel workers, with no results attached yet.</p>
           <p>The Oct 28 addition is a payment rail for an agent&rsquo;s data. <a href="#glasser-data-api">Glasser</a> lets agents buy premium data per API call across more than 2,000 endpoints from over 80 providers, which replaces subscriptions held by the agent&rsquo;s owner with spend the agent incurs as it works; the dependency lands on the aggregator, and the only public page is a press report.</p>
           <p>The Oct 26 to 27 cycle was about what the scaffolding costs. A Shandong University study, reported by VentureBeat, found <a href="#harness-cost-study-shandong">Claude Code and mini-SWE-agent</a> statistically equivalent on nearly 500 coding tasks while Claude Code cost up to three times as much, mostly because it starts with over 16,000 tokens of context against 829. <a href="#pomerado">Pomerado</a> attacks browser-agent cost from the other side, compiling a site that has no API into a deterministic integration and claiming up to 1,000 times lower cost, and <a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0</a> adds resume-after-crash and pause-for-approval to agent code execution.</p>
           <p>The Oct 26 cycle was about how much structure an agent needs. <a href="#rsihub">RSIHub</a> re-implements four agent-evolution methods on shared infrastructure and finds a best gain of 13.5 points pass@1 but rankings that flip across settings and gains that do not always reach held-out tasks, which is the comparison single-method papers never run. Anthropic&rsquo;s <a href="#anthropic-fold-subagents">subagent guide</a> argues the other way from most orchestration entries here: fold planners and routers back into one loop as skills and tools, and keep separate subagents only for parallel work, fresh context or an overloaded toolset.</p>
@@ -106,13 +107,13 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">13</span></a></li>
-          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">24</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">34</span></a></li>
+          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">25</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">35</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">16</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">13</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">15</span></a></li>
-          <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">8</span></a></li>
+          <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">9</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">21</span></a></li>
@@ -229,6 +230,14 @@
         <h3>Frameworks &amp; infrastructure</h3>
         <p class="lead">MCP is the connective tissue, and the interesting servers are no longer wrappers somebody wrote but the canonical interface a platform or an artifact ships. Judge entries on where the dependency lands: aggregating across vendors is substitutable, a vendor aggregating its own catalogue makes the protocol the integration point and itself the only thing behind it.</p>
 
+        <article class="story" id="mcp-enterprise-managed-authorization">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization">MCP&rsquo;s Enterprise-Managed Authorization extension moves server access decisions to the company identity provider</a></h4>
+          <p>The <strong>Enterprise-Managed Authorization</strong> extension to MCP makes an organisation&rsquo;s identity provider the decision-maker for which MCP servers an employee can reach, replacing per-user, per-server authorization. After single sign-on the client requests an Identity Assertion JWT Authorization Grant (ID-JAG) from the identity provider and exchanges it for an access token at the server&rsquo;s authorization server.</p>
+          <p>Okta issues ID-JAGs through Cross App Access, capped at 250 per user per resource app per month on its standard SSO tier, and Keycloak support is experimental. AlphaSignal frames it as Claude connecting to plugins without each user re-authorizing.</p>
+          <div class="sources"><a href="https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization">Model Context Protocol docs</a> &middot; <span class="via">via AlphaSignal (Nov 4)</span></div>
+        </article>
+
         <article class="story" id="nvidia-auto-ontology">
           <span class="when">2026-11-01</span>
           <h4><a href="https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/">NVIDIA Auto Ontology gives agent SQL a certified semantic layer over MCP, CLI or API</a></h4>
@@ -244,16 +253,16 @@
           <div class="sources"><a href="https://www.testingcatalog.com/glasser-now-lets-ai-agents-buy-premium-data-per-api-call/">Testing Catalog</a> (press report) &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
         </article>
 
-        <article class="story" id="1password-for-agents">
-          <span class="when">2026-10-23</span>
-          <h4><a href="https://1password.com/blog/1password-for-ai-agents">1Password for Agents fills credentials into a site after the user approves, without the agent ever seeing them</a></h4>
-          <p>1Password launched a platform that lets AI agents sign in to websites without reading the user&rsquo;s passwords: the agent requests a credential, 1Password verifies the agent&rsquo;s identity with a unique key and sends the user an approval request, then autofills the destination site while the secret stays hidden from the agent. The Code lists support for Claude Duet, OpenAI&rsquo;s Dots and ChatGPT Work, Grok Bot, Meta&rsquo;s Muse and Town&rsquo;s assistants, with access through a waitlist.</p>
-          <p>It puts the credential boundary in the password manager, the other end from <a href="#langchain-connections">LangSmith Connections</a>, which splits agent-owned and user-owned secrets inside the agent platform. What the agent does once signed in is still the harness&rsquo;s problem.</p>
-          <div class="sources"><a href="https://1password.com/blog/1password-for-ai-agents">1Password</a> &middot; <span class="via">via TLDR AI (Oct 23), The Code (Oct 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (21)</summary>
+          <summary>Earlier in this section (22)</summary>
+
+          <article class="story" id="1password-for-agents">
+            <span class="when">2026-10-23</span>
+            <h4><a href="https://1password.com/blog/1password-for-ai-agents">1Password for Agents fills credentials into a site after the user approves, without the agent ever seeing them</a></h4>
+            <p>1Password launched a platform that lets AI agents sign in to websites without reading the user&rsquo;s passwords: the agent requests a credential, 1Password verifies the agent&rsquo;s identity with a unique key and sends the user an approval request, then autofills the destination site while the secret stays hidden from the agent. The Code lists support for Claude Duet, OpenAI&rsquo;s Dots and ChatGPT Work, Grok Bot, Meta&rsquo;s Muse and Town&rsquo;s assistants, with access through a waitlist.</p>
+            <p>It puts the credential boundary in the password manager, the other end from <a href="#langchain-connections">LangSmith Connections</a>, which splits agent-owned and user-owned secrets inside the agent platform. What the agent does once signed in is still the harness&rsquo;s problem.</p>
+            <div class="sources"><a href="https://1password.com/blog/1password-for-ai-agents">1Password</a> &middot; <span class="via">via TLDR AI (Oct 23), The Code (Oct 23)</span></div>
+          </article>
 
           <article class="story" id="deepseek-search-fetch-api">
             <span class="when">2026-10-17</span>
@@ -417,6 +426,14 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="harness-retrospective-adaptation">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://arxiv.org/abs/2610.34938">Claude Code&rsquo;s retro skill proposed 125 harness changes; of seven that could be tested, two removed the problem</a></h4>
+          <p>Treude and Baltes ran Claude Code on <strong>30 SWE-bench Verified issues</strong> with a retro skill that reviews a finished session and proposes harness changes. They coded the 125 proposals, implemented 24 and evaluated 12 on later issues from the same repositories, in fresh sessions with and without each change.</p>
+          <p>In the seven evaluations where the unchanged sessions hit the targeted problem, <strong>two changes eliminated the action</strong>, one reduced it and four showed no reduction, and some changes added work on unrelated issues. 18 of 43 lint-related proposals recommended a practice regardless of what had happened in the session.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.34938">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 4)</span></div>
+        </article>
+
         <article class="story" id="framer-harness-2">
           <span class="when">2026-11-03</span>
           <h4><a href="https://framer.com/blog/harness-2/">Framer&rsquo;s Harness 2 executes agent JavaScript as it streams, cutting cost up to 33%</a></h4>
@@ -433,15 +450,15 @@
           <div class="sources"><a href="https://factory.com/news/frontier-harness">Factory</a> &middot; <a href="https://www.marktechpost.com/2026/10/31/factory-droid-1-0-frontier-harness/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 30), MarkTechPost (Nov 1)</span></div>
         </article>
 
-        <article class="story" id="vercel-fx-adapter">
-          <span class="when">2026-10-30</span>
-          <h4><a href="https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox">Vercel&rsquo;s fx adapter moves the agent harness onto the host via libfx, apart from the sandbox</a></h4>
-          <p>Vercel&rsquo;s <strong>fx adapter</strong> now runs the agent harness on the host through <strong>libfx</strong>, splitting host-side operations from what executes in the sandbox. That changes where the loop and its credentials sit relative to the isolated environment the agent works in. The changelog entry is short and gives no performance figures.</p>
-          <div class="sources"><a href="https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox">Vercel changelog</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (31)</summary>
+          <summary>Earlier in this section (32)</summary>
+
+          <article class="story" id="vercel-fx-adapter">
+            <span class="when">2026-10-30</span>
+            <h4><a href="https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox">Vercel&rsquo;s fx adapter moves the agent harness onto the host via libfx, apart from the sandbox</a></h4>
+            <p>Vercel&rsquo;s <strong>fx adapter</strong> now runs the agent harness on the host through <strong>libfx</strong>, splitting host-side operations from what executes in the sandbox. That changes where the loop and its credentials sit relative to the isolated environment the agent works in. The changelog entry is short and gives no performance figures.</p>
+            <div class="sources"><a href="https://vercel.com/changelog/fx-harness-adapter-now-separates-host-and-sandbox">Vercel changelog</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
+          </article>
 
           <article class="story" id="microsoft-copilot-harness">
             <span class="when">2026-10-28</span>
@@ -1069,6 +1086,14 @@
         <h3>Agent extension patterns</h3>
         <p class="lead">MCP server, CLI tool, agent skill, custom tool &mdash; no consensus on which to reach for, and the choice turns on whether the extension needs nuanced reasoning, deterministic execution or shared distribution. What did settle is packaging. Judge entries on the trust decision: portability with authentication unresolved, or a reviewed channel into one vendor&rsquo;s users.</p>
 
+        <article class="story" id="siri-ai-developer-preview">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://developer.apple.com/news/?id=gdk2umrf">Siri AI opens to all developers: App Intents expose app actions, and skills chain them</a></h4>
+          <p>Apple&rsquo;s Developer Preview in the iOS, iPadOS, macOS and visionOS <strong>27.3 betas</strong> lets any app bring its content and actions into <strong>Siri AI</strong> through App Intents, with the developer choosing what data and actions Siri can reach. Skills, which The Code describes as Markdown-based, teach Siri to combine several actions into one flow such as a checkout, and Siri can now surface any entity in the Spotlight semantic index.</p>
+          <p>Testing is limited to internal TestFlight builds, and App Store submissions open in the spring. Siri AI is unavailable in the EU and for users under 13.</p>
+          <div class="sources"><a href="https://developer.apple.com/news/?id=gdk2umrf">Apple Developer</a> &middot; <span class="via">via TLDR AI (Nov 4), TLDR (Nov 4), The Code (Nov 4)</span></div>
+        </article>
+
         <article class="story" id="agent-skills-aaif">
           <span class="when">2026-10-23</span>
           <h4><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic hands the Agent Skills standard to the Agentic AI Foundation under vendor-neutral governance</a></h4>
@@ -1084,15 +1109,15 @@
           <div class="sources"><a href="https://sierra.ai/blog/introducing-personal-agent-protocol">Sierra</a> &middot; <span class="via">via TLDR AI (Oct 7), MarkTechPost (Oct 7)</span></div>
         </article>
 
-        <article class="story" id="chatgpt-mcp-events">
-          <span class="when">2026-09-30</span>
-          <h4><a href="https://developers.openai.com/plugins/build/mcp-events">ChatGPT subscribes to MCP server updates through a subset of the draft MCP Events spec</a></h4>
-          <p>OpenAI&rsquo;s <strong>MCP Events</strong> support lets ChatGPT subscribe to updates from an MCP server, with the user choosing what to monitor and what ChatGPT should do when an update arrives. It implements webhook delivery and callback verification from the draft MCP Events specification, and does <strong>not</strong> support polling, streaming, or the draft&rsquo;s <code>gap</code> and <code>terminated</code> control notifications &mdash; so a server built against the full draft should not assume ChatGPT will notice a missed event.</p>
-          <div class="sources"><a href="https://developers.openai.com/plugins/build/mcp-events">OpenAI developer docs</a> &middot; <span class="via">via TLDR AI (Sep 30)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="chatgpt-mcp-events">
+            <span class="when">2026-09-30</span>
+            <h4><a href="https://developers.openai.com/plugins/build/mcp-events">ChatGPT subscribes to MCP server updates through a subset of the draft MCP Events spec</a></h4>
+            <p>OpenAI&rsquo;s <strong>MCP Events</strong> support lets ChatGPT subscribe to updates from an MCP server, with the user choosing what to monitor and what ChatGPT should do when an update arrives. It implements webhook delivery and callback verification from the draft MCP Events specification, and does <strong>not</strong> support polling, streaming, or the draft&rsquo;s <code>gap</code> and <code>terminated</code> control notifications &mdash; so a server built against the full draft should not assume ChatGPT will notice a missed event.</p>
+            <div class="sources"><a href="https://developers.openai.com/plugins/build/mcp-events">OpenAI developer docs</a> &middot; <span class="via">via TLDR AI (Sep 30)</span></div>
+          </article>
 
           <article class="story" id="api-gateway-mcp">
             <span class="when">2026-09-27</span>
@@ -1505,6 +1530,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill proposed 125 harness changes; of seven that could be tested, two removed the problem</a></span></li>
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#mcp-enterprise-managed-authorization">MCP&rsquo;s Enterprise-Managed Authorization extension moves server access decisions to the company identity provider</a></span></li>
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#siri-ai-developer-preview">Siri AI opens to all developers: App Intents expose app actions, and skills chain them</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#framer-harness-2">Framer&rsquo;s Harness 2 executes agent JavaScript as it streams, cutting cost up to 33%</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#letterpress-1">Letter&rsquo;s Letterpress-1 is a coding agent for growth engineering, from $100 a month</a></span></li>
         <li><span class="date">2026-11-01</span><span class="label"><a href="#nvidia-auto-ontology">NVIDIA Auto Ontology gives agent SQL a certified semantic layer over MCP, CLI or API</a></span></li>

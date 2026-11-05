@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-04</div>
+      <div class="meta">Last updated: 2026-11-05</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 4 cycle is three sets of sums on what inference costs once someone looks past the list price. <a href="#revolut-self-hosted-glm">Revolut</a> says self-hosting GLM-5.3 on 56 Nvidia B200 GPUs cut AI coding inference costs about 90% across roughly 2,000 engineers, at $0.30 per million tokens on the earlier GLM-5.1. <a href="#hadley-wickham-token-cost">Hadley Wickham</a> prices a self-hosted Kimi K3 server at about $0.25 per million tokens if it runs at 75% utilisation. <a href="#max-woolf-llm-price-cuts">Max Woolf</a> puts cache reads at 96% to 99% of agentic coding spend, which is why Fable 5.1&rsquo;s 75% cache-read cut matters more than its unchanged list price. All three are the author&rsquo;s own arithmetic.</p>
+        <p>Two releases sit beside the sums. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco-coder">GSQ-RCO Coder</a> drops half of DeepSeek-V4.1-Flash&rsquo;s experts to store the transformer in 72.1 GB and keeps 94.8% of the base model&rsquo;s SWE-bench Verified score, accepting losses outside code. Baseten announced <a href="#baseten-grid-sandboxes-loops">Grid, Sandboxes and Loops</a>, with Loops fine-tuning now generally available and no prices in the summary. The Oct 26 <a href="#gpu-unlock">gpu-unlock</a> entry gained its repository link and its mechanism: two hardware registers rewritten before the driver loads.</p>
         <p>The Nov 3 cycle is two transfers that got smaller. <a href="#claude-message-threads">Claude Message Threads</a> stop a client resending its whole conversation on every turn: a coding agent&rsquo;s request of about 800 KB falls to 1.8 KB, and median time to first token drops about 35% on requests of 500K to 1M tokens, while token usage and rates stay the same. The cache section&rsquo;s usual question is what gets re-read and at which rate; this feature leaves that alone and removes the upload. Threads expire five minutes after the last request, so clients still need their own copy of the history. <a href="#weight-teleportation">Weight Teleportation</a> does the same for RL training, compressing the sync from trainers to samplers so the pause stays under 0.23 seconds, on the authors&rsquo; own numbers.</p>
         <p>The Nov 2 cycle is two speed results from the Oct 28 and 29 issues and one satellite update, sharing the question of how far a vendor&rsquo;s speedup travels past the setup it was measured on. <a href="#flashmap">FlashMap</a>, from researchers at Polymathic AI, Princeton, USC ISI, NYU and the Flatiron Institute, replaces the discrete diffusion drafter in speculative decoding with a continuous flow map: a 0.5B drafter writes a 16-token block in one forward pass. On Qwen3-8B it reaches up to 6.14&times; lossless speedup on GSM8K and averages about 7% above a retrained DFlash. Drafters for Qwen3-8B and Qwen3-4B are Apache 2.0 with vLLM and SGLang plugins, but the numbers come from one H200 at concurrency 1, which flatters speculative decoding relative to a loaded server. <a href="#prime-mega-moe-backward">Prime Intellect</a> added a backward pass to DeepSeek&rsquo;s fused Mega MoE kernel so it works for training as well as inference, and Qwen3 MoE training steps in prime-rl run up to 34% faster, or 55% faster than TorchTitan, on Prime Intellect&rsquo;s own measurements. Neither entry has an outside replication yet, and the two results sit at opposite ends of the serving stack: FlashMap changes how tokens are drafted at inference time, while the Mega MoE backward pass changes what a training step costs.</p>
         <p>The satellite is the update. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> test craft, launched October 1 with four TPUs on about a kilowatt of solar, is running: Google ran Gemma 4 on one of the four TPUs and relayed a haiku back through Svalbard. TechCrunch reports the chip can currently run for about 20 minutes at a time. Thermal and radiation tests come next, ahead of a planned pair of interconnected satellites in 2027, so the orbital data centre is still at the stage of showing that one chip can answer one prompt.</p>
-        <p>The Oct 29 addition put agents on the serving bill itself. Decagon&rsquo;s <a href="#decagon-autoresearch-inference">AutoResearch</a> agents diagnose its inference bottlenecks, test changes against replayed production traffic and report up to 2.5&times; more throughput inside the latency budget, from quantization, scheduling, engine patches and speculative decoding. Each change still waits for a human to approve it, and the figure comes from Decagon&rsquo;s own traffic with no baseline published.</p>
-        <p>The Oct 28 cycle spread across four sections. <a href="#pg-pinecone">pg_pinecone</a> puts Pinecone&rsquo;s compact-summary index inside Postgres as an Apache 2.0 extension, 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB on a million 768-dimension vectors and 1.3 ms against 1.7 at 0.95 recall, vendor-measured against half-precision pgvector. <a href="#opera-webai">Opera&rsquo;s WebAI</a> proposes the browser itself as the model host, sites calling local open models opt-in with prompts never leaving the device. The <a href="#macbook-pro-m6">M6 MacBook Pro</a> moves the local ceiling again, Neural Accelerators per GPU core and a claimed 25% faster local prompt processing under a 32 GB cap, and <a href="#epoch-ai-chip-imports">Epoch&rsquo;s Chip Imports explorer</a> gives the compute-supply question its first public import series.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 29 addition put agents on the serving bill itself. Decagon&rsquo;s <a href="#decagon-autoresearch-inference">AutoResearch</a> agents diagnose its inference bottlenecks, test changes against replayed production traffic and report up to 2.5&times; more throughput inside the latency budget, from quantization, scheduling, engine patches and speculative decoding. Each change still waits for a human to approve it, and the figure comes from Decagon&rsquo;s own traffic with no baseline published.</p>
+          <p>The Oct 28 cycle spread across four sections. <a href="#pg-pinecone">pg_pinecone</a> puts Pinecone&rsquo;s compact-summary index inside Postgres as an Apache 2.0 extension, 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB on a million 768-dimension vectors and 1.3 ms against 1.7 at 0.95 recall, vendor-measured against half-precision pgvector. <a href="#opera-webai">Opera&rsquo;s WebAI</a> proposes the browser itself as the model host, sites calling local open models opt-in with prompts never leaving the device. The <a href="#macbook-pro-m6">M6 MacBook Pro</a> moves the local ceiling again, Neural Accelerators per GPU core and a claimed 25% faster local prompt processing under a 32 GB cap, and <a href="#epoch-ai-chip-imports">Epoch&rsquo;s Chip Imports explorer</a> gives the compute-supply question its first public import series.</p>
           <p>The Oct 27 cycle had one retrieval entry: <a href="#turbopuffer-v3">turbopuffer v3</a> will move its search engine to fully vectorized query execution, the batch-at-a-time design of analytical databases, when it reaches production later this year. It is an architecture post with no latency or cost figures yet, and those are what will show whether vectorized execution changes the price of a retrieval read.</p>
           <p>The Oct 25 to 26 cycle was the cost of what a model re-reads and what a GPU leaves unused. Tsinghua&rsquo;s <a href="#tsinghua-akv">AKV</a> drops stale tool output from the KV cache instead of summarizing it, for 27.7% lower agent cost and 1.7 points higher scores across four benchmarks, and <a href="#tokengate">TokenGate</a> trains a gate that skips document tokens for 1.4&ndash;11.3&times; faster prefill on Qwen3-1.7B, at the price of a gate tied to one backbone. At the hardware end, <a href="#gpu-unlock">gpu-unlock</a> claims to double RTX 4090 FP16 throughput by lifting software limits, and a <a href="#gpu-idle-survey">survey of 218 companies</a> finds 79% leaving GPUs idle at least half the time while 70% plan new platforms.</p>
           <p>The Oct 22 to 25 cycle was latency and residency rather than throughput. Liquid AI&rsquo;s <a href="#liquid-ripl">RIPL</a> serves LFM2.5-1.2B at 34.6 ms p95 under 1,000 requests a second on one B200 against 498 ms for a smaller model on vLLM, a closed engine aimed at search ranking and fraud checks. Cerebras explained how it <a href="#cerebras-trillion-parameter-wse-3t">splits trillion-parameter models across WSE-3T wafers</a> that each hold 44 GB on chip, and Cohere&rsquo;s <a href="#cohere-model-vault-confidential">Model Vault</a> now runs on confidential H100s on Azure so the operator cannot read the prompt.</p>
@@ -99,17 +101,17 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">9</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">17</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">18</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">3</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">10</span></a></li>
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">5</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">3</span></a></li>
           <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">27</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
-          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">11</span></a></li>
+          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">12</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">5</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
-          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">14</span></a></li>
+          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">17</span></a></li>
           <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">6</span></a></li>
           <li><a href="#tokenization-throughput">Tokenization throughput <span class="n">1</span></a></li>
           <li><a href="#gpu-programming-references">GPU programming references <span class="n">1</span></a></li>
@@ -199,6 +201,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story" id="deepseek-v4-1-flash-gsq-rco-coder">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-Coder-GGUF">ISTA-DASLab&rsquo;s Coder build prunes half of DeepSeek-V4.1-Flash&rsquo;s experts to reach 72.1 GB, about 1 bit per parameter</a></h4>
+          <p>ISTA-DASLab&rsquo;s <strong>GSQ-RCO Coder</strong> removes 192 of the 384 routed experts in each layer of the 763B DeepSeek-V4.1-Flash-1017 and keeps the 2-bit quantization of its <a href="#deepseek-v4-1-flash-gsq-rco">earlier build</a> for the rest, storing the transformer in <strong>72.1 GB</strong> against 138.2 GB. It scores <strong>77.00 on SWE-bench Verified</strong> against the base model&rsquo;s 81.20 (94.8% retained) and 88.57 against 89.71 on LiveCodeBench v6 (98.7%), measured at reasoning effort 50.</p>
+          <p>The 1-bit figure is an effective rate: 72.12 GB divided by the original 551.9B transformer parameters gives 1.05 bits, with removed experts counted as zero. The card says capability outside code, tool use, long context and vision is an accepted loss, and 110.6 GB of Engram lookup tables come on top.</p>
+          <div class="sources"><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-Coder-GGUF">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 4)</span></div>
+        </article>
+
         <article class="story" id="macbook-pro-m6">
           <span class="when">2026-10-28</span>
           <h4><a href="https://www.apple.com/newsroom/2026/10/apple-introduces-the-new-14-inch-macbook-pro-with-m6/">The M6 MacBook Pro adds Neural Accelerators per GPU core, with local LLM prompt processing up to 25% faster</a></h4>
@@ -207,24 +217,25 @@
           <div class="sources"><a href="https://www.apple.com/newsroom/2026/10/apple-introduces-the-new-14-inch-macbook-pro-with-m6/">Apple</a> &middot; <a href="https://arstechnica.com/apple/2026/10/apple-refreshes-the-imac-entry-level-macbook-pro-with-the-m6-chip/">Ars Technica</a> &middot; <span class="via">via The Code (Oct 28), TLDR (Oct 28)</span></div>
         </article>
 
-        <article class="story unlinked" id="gpu-unlock">
+        <article class="story" id="gpu-unlock">
           <span class="when">2026-10-26</span>
-          <h4>gpu-unlock lifts software Tensor Core limits on RTX cards, doubling RTX 4090 FP16 to 331.6 TFLOPS</h4>
+          <h4><a href="https://github.com/Zagitta/gpu-unlock">gpu-unlock lifts software Tensor Core limits on RTX cards, doubling RTX 4090 FP16 to 331.6 TFLOPS</a></h4>
           <p>An open-source tool, <strong>gpu-unlock</strong>, removes software limits on Tensor Core throughput on consumer NVIDIA cards with no firmware flash; the change resets at power-off. Reported gains: RTX 4090 from <strong>165.6 to 331.6 TFLOPS FP16</strong>, RTX 3090 Ti from 87.5 to 157.4 TFLOPS BF16, RTX 2080 Ti from 59.9 to 111 TFLOPS FP16, and on an RTX 3090 up to 58.6% faster image generation and 33% faster LLM prompt processing.</p>
           <p>It is Linux-only, with Windows experimental, and the newsletter says real-world gains vary by workload and are not guaranteed.</p>
-          <div class="sources"><span class="via">via AlphaSignal (Oct 26) &mdash; no public URL given</span></div>
-        </article>
-
-        <article class="story" id="deepseek-v4-1-flash-gsq-rco">
-          <span class="when">2026-10-25</span>
-          <h4><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF">ISTA-DASLab&rsquo;s 2-bit DeepSeek-V4.1-Flash GGUF matches the base model on AIME25, GPQA-Diamond and LiveCodeBench v6</a></h4>
-          <p>ISTA-DASLab quantized the 763B DeepSeek-V4.1-Flash-1017 mixture-of-experts to GGUF with <strong>GSQ-RCO</strong>, a gradient search that picks a precision for every tensor under a fixed size budget. The <strong>2.00-bit</strong> build scores 100% of the base model&rsquo;s average across AIME25, GPQA-Diamond and LiveCodeBench v6, and runs on one GPU with 12 GB of VRAM through the Strata engine.</p>
-          <p>llama.cpp support is still pending, and three benchmarks are a narrow place to measure retention. The same lab&rsquo;s GSQ-RCO file of Qwen3.8-27B turns out to be the parent of <a href="#underdog-saluki-27b">Saluki 27B</a>.</p>
-          <div class="sources"><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
+          <p><em>Updated Nov 4:</em> The repository is now linked. It rewrites two hardware registers before NVIDIA&rsquo;s driver loads, with no VBIOS flash or patched driver, needs a cold boot each time, and warns that Tensor Cores at full rate draw significantly more power.</p>
+          <div class="sources"><a href="https://github.com/Zagitta/gpu-unlock">GitHub</a> &middot; <span class="via">via AlphaSignal (Oct 26), AlphaSignal (Nov 4)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="deepseek-v4-1-flash-gsq-rco">
+            <span class="when">2026-10-25</span>
+            <h4><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF">ISTA-DASLab&rsquo;s 2-bit DeepSeek-V4.1-Flash GGUF matches the base model on AIME25, GPQA-Diamond and LiveCodeBench v6</a></h4>
+            <p>ISTA-DASLab quantized the 763B DeepSeek-V4.1-Flash-1017 mixture-of-experts to GGUF with <strong>GSQ-RCO</strong>, a gradient search that picks a precision for every tensor under a fixed size budget. The <strong>2.00-bit</strong> build scores 100% of the base model&rsquo;s average across AIME25, GPQA-Diamond and LiveCodeBench v6, and runs on one GPU with 12 GB of VRAM through the Strata engine.</p>
+            <p>llama.cpp support is still pending, and three benchmarks are a narrow place to measure retention. The same lab&rsquo;s GSQ-RCO file of Qwen3.8-27B turns out to be the parent of <a href="#underdog-saluki-27b">Saluki 27B</a>.</p>
+            <div class="sources"><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 25)</span></div>
+          </article>
 
           <article class="story" id="vllm-humming">
             <span class="when">2026-10-21</span>
@@ -233,6 +244,7 @@
             <p>It sits under this section&rsquo;s fewer-bits-per-value lever as the kernel layer the formats run on; the number to look for in the post is tokens per second against the format&rsquo;s existing kernel on named hardware.</p>
             <div class="sources"><a href="https://vllm.ai/blog/2026-10-21-humming">vLLM blog</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
           </article>
+
           <article class="story unlinked" id="local-ai-workstations">
             <span class="when">2026-10-16</span>
             <h4>Surface Laptop Ultra beats an M5 Max MacBook Pro on AgentPerf-Local, 18.9 to 24.7 minutes on Qwen 3.8-27B</h4>
@@ -860,6 +872,14 @@
         <h3>Cache &amp; context economics</h3>
         <p class="lead">For a long agent run the rate on the model card is nearly irrelevant: the bill is set by what gets re-read, at the cached rate or the fresh one. These entries make that visible, shrink it, route around it &mdash; and then point out that the hit is asserted by the party billing you.</p>
 
+        <article class="story" id="max-woolf-llm-price-cuts">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://minimaxir.com/2026/10/cheap-llms/">Max Woolf: cache reads are 96&ndash;99% of agentic coding spend, so a 75% cache-read cut moves the whole bill</a></h4>
+          <p>Max Woolf traces this year&rsquo;s price cuts. OpenAI dropped GPT-5.6 Luna by <strong>80%</strong>, to $0.20 input and $1.20 output per million tokens, and Fable 5.1 kept Fable 5&rsquo;s $10 and $50 list prices while cutting the cache-read rate by 75%. Because coding agents resend the conversation every turn, he puts cache reads at <strong>96% to 99%</strong> of token spend, so that one change lowers the cost of using the model by 70% to 75%.</p>
+          <p>He credits open-weight competition, DeepSeek V4 in particular, for the Luna cut. The Code adds that DeepSeek&rsquo;s latest Flash model is served by 29 providers on OpenRouter.</p>
+          <div class="sources"><a href="https://minimaxir.com/2026/10/cheap-llms/">Max Woolf</a> &middot; <span class="via">via The Code (Nov 4)</span></div>
+        </article>
+
         <article class="story" id="claude-message-threads">
           <span class="when">2026-11-03</span>
           <h4><a href="https://claude.com/resources/articles/message-threads">Claude Message Threads cut long-context time to first token about 35% by keeping the conversation server-side</a></h4>
@@ -876,16 +896,16 @@
           <div class="sources"><a href="https://www.marktechpost.com/2026/10/26/tsinghua-akv-kv-cache-engineering-llm-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
         </article>
 
-        <article class="story" id="cloudflare-inference-bill-68">
-          <span class="when">2026-10-20</span>
-          <h4><a href="https://blog.cloudflare.com/obsessive-inference-optimization">Cloudflare cut its AI code-review cost from $2.43 to $0.77 a review by fixing what reached the prompt cache</a></h4>
-          <p>Cloudflare reports cutting the inference bill for its automated code review by <strong>68%</strong>, from an average of <strong>$2.43 to $0.77 a review</strong>. The largest single saving came from checking what actually reached the provider on each session&rsquo;s first request, then ordering those messages so the prefix stayed as consistent as possible across commits, merge requests and repositories, so the cache hit instead of missing.</p>
-          <p>It is this section&rsquo;s argument as a worked case: the bill is set by what gets re-read at the cached rate, and the hit is something the caller has to verify rather than assume. Cloudflare&rsquo;s own checks are whether each session&rsquo;s first request reads from the cache and whether reviewers still find real problems at the effort level being paid for; review quality before and after is not quantified in the summary. The prompt-side techniques are on <a href="tools-and-devex.html#token-economics-and-prompt-caching">Tools &amp; DevEx</a>.</p>
-          <div class="sources"><a href="https://blog.cloudflare.com/obsessive-inference-optimization">Cloudflare</a> &middot; <span class="via">via TLDR (Oct 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (9)</summary>
+
+          <article class="story" id="cloudflare-inference-bill-68">
+            <span class="when">2026-10-20</span>
+            <h4><a href="https://blog.cloudflare.com/obsessive-inference-optimization">Cloudflare cut its AI code-review cost from $2.43 to $0.77 a review by fixing what reached the prompt cache</a></h4>
+            <p>Cloudflare reports cutting the inference bill for its automated code review by <strong>68%</strong>, from an average of <strong>$2.43 to $0.77 a review</strong>. The largest single saving came from checking what actually reached the provider on each session&rsquo;s first request, then ordering those messages so the prefix stayed as consistent as possible across commits, merge requests and repositories, so the cache hit instead of missing.</p>
+            <p>It is this section&rsquo;s argument as a worked case: the bill is set by what gets re-read at the cached rate, and the hit is something the caller has to verify rather than assume. Cloudflare&rsquo;s own checks are whether each session&rsquo;s first request reads from the cache and whether reviewers still find real problems at the effort level being paid for; review quality before and after is not quantified in the summary. The prompt-side techniques are on <a href="tools-and-devex.html#token-economics-and-prompt-caching">Tools &amp; DevEx</a>.</p>
+            <div class="sources"><a href="https://blog.cloudflare.com/obsessive-inference-optimization">Cloudflare</a> &middot; <span class="via">via TLDR (Oct 20)</span></div>
+          </article>
 
           <article class="story" id="firerouter-with-opus">
             <span class="when">2026-09-29</span>
@@ -1020,29 +1040,53 @@
         <h3>Enterprise deployment patterns</h3>
         <p class="lead">An AI bill is engineered down rather than negotiated down. Routing, a gateway that can refuse, an hour-long cache and a cheaper tier appear here, beside agents that generate their own retries and quintuple an invoice. Under them sit the deployment choices (self-host, call, or call a host that cannot read the request) and what each hop costs in latency.</p>
 
-        <article class="story" id="decagon-autoresearch-inference">
-          <span class="when">2026-10-29</span>
-          <h4><a href="https://x.com/DecagonAI/status/2115511110120120437">Decagon&rsquo;s AutoResearch agents tune its inference stack for up to 2.5&times; throughput, with a human approving each change</a></h4>
-          <p>Decagon runs <strong>AutoResearch</strong> agents that diagnose inference bottlenecks, test optimisations against replays of production traffic and keep their findings across experiments. It reports throughput gains of <strong>up to 2.5&times;</strong> within its endpoint latency requirements, from quantization, scheduling, engine patches and speculative decoding, and production changes still need human approval. The figure is Decagon&rsquo;s own, on its own traffic, published as a post on X.</p>
-          <div class="sources"><a href="https://x.com/DecagonAI/status/2115511110120120437">Decagon on X</a> &middot; <span class="via">via TLDR AI (Oct 29)</span></div>
+        <article class="story" id="baseten-grid-sandboxes-loops">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://www.baseten.co/blog/the-building-blocks-of-the-open-frontier">Baseten adds Grid routing and VM-isolated Sandboxes, and takes Loops fine-tuning to general availability</a></h4>
+          <p>Baseten announced <strong>Grid</strong> for model routing and governance and <strong>Sandboxes</strong>, resumable VM-isolated environments for agent execution, and moved <strong>Loops</strong>, its serverless supervised fine-tuning and reinforcement learning service, to general availability. The three are meant to connect training, inference and execution on one platform, and customers keep ownership of the weights they train.</p>
+          <p>TLDR&rsquo;s summary carries no prices or throughput figures.</p>
+          <div class="sources"><a href="https://www.baseten.co/blog/the-building-blocks-of-the-open-frontier">Baseten</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
         </article>
 
-        <article class="story" id="gpu-idle-survey">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://venturebeat.com/infrastructure/ai-bubble-update-79-of-companies-say-their-gpus-sit-idle-at-least-half-the-time-yet-most-plan-new-ai-platforms">Survey of 218 AI companies: 79% leave GPUs idle at least half the time, 70% still plan new platforms</a></h4>
-          <p>A survey of <strong>218 companies</strong> running AI found <strong>79%</strong> leave their GPUs idle at least half the time, while <strong>70%</strong> still plan to build new AI platforms. It is a self-reported survey rather than a utilization measurement, but it puts a number on buying capacity before using what is already racked.</p>
-          <div class="sources"><a href="https://venturebeat.com/infrastructure/ai-bubble-update-79-of-companies-say-their-gpus-sit-idle-at-least-half-the-time-yet-most-plan-new-ai-platforms">VentureBeat</a> &middot; <span class="via">via Forward Future (Oct 26)</span></div>
+        <article class="story" id="hadley-wickham-token-cost">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://substack.hadley.nz/p/how-much-do-tokens-really-cost">Hadley Wickham prices self-hosted Kimi K3 at about $0.25 per million tokens on an eight-GB300 server</a></h4>
+          <p>Working from Moonshot&rsquo;s vLLM recipe, which asks for at least eight GB300 GPUs, Hadley Wickham costs a <strong>$550,000</strong> Supermicro server at about $17,000 a month over three years at 8% interest, and roughly <strong>$23,000 a month</strong> once colocation, bandwidth and power are added. At 75% utilisation that works out to <strong>$0.25 per million tokens</strong>, on a blend of 20:1 input to output with 95% of input read from cache.</p>
+          <p>The colocation figures are an estimate he took from Claude, and the result rests on the utilisation assumption. TLDR&rsquo;s reading is that serving costs sit well below list prices at high utilisation.</p>
+          <div class="sources"><a href="https://substack.hadley.nz/p/how-much-do-tokens-really-cost">Hadley Wickham</a> &middot; <span class="via">via TLDR AI (Nov 4), TLDR (Nov 4)</span></div>
         </article>
 
-        <article class="story" id="cohere-model-vault-confidential">
-          <span class="when">2026-10-24</span>
-          <h4><a href="https://cohere.com/blog/introducing-confidential-computing-on-cohere-model-vault">Cohere Model Vault runs its models on confidential H100s on Azure, with prompts encrypted while in use</a></h4>
-          <p>Cohere put <strong>Confidential Computing for Model Vault</strong> into public beta on NVIDIA H100s on Azure: prompts stay encrypted while in use and the same Cohere APIs apply. It adds a third answer to the self-host-or-call choice this section ends on, a hosted model whose operator cannot read the request, though the summary gives no latency or price cost for the encryption.</p>
-          <div class="sources"><a href="https://cohere.com/blog/introducing-confidential-computing-on-cohere-model-vault">Cohere</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+        <article class="story" id="revolut-self-hosted-glm">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345">Revolut cuts AI coding inference costs about 90% by self-hosting GLM-5.3 on 56 Nvidia B200 GPUs</a></h4>
+          <p>Revolut&rsquo;s ops and infrastructure lead David Abitbol said self-hosted models are now the default for roughly <strong>2,000 engineers</strong>, cutting AI coding inference costs by about <strong>90%</strong> in under a year. It started on GLM-5.1 and now serves <strong>GLM-5.3 on 56 Nvidia B200 GPUs</strong>; at $0.30 per million input or output tokens, self-hosting GLM-5.1 cost about a tenth of Codex or Claude Code.</p>
+          <p>The figures are Revolut&rsquo;s own, from a conference talk: a 60% improvement in coding time and 70% in lead time after the rollout, with strict per-engineer budget limits from launch.</p>
+          <div class="sources"><a href="https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345">The Register</a> &middot; <span class="via">via TLDR (Nov 4), The Code (Nov 4)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (11)</summary>
+          <summary>Earlier in this section (14)</summary>
+
+          <article class="story" id="decagon-autoresearch-inference">
+            <span class="when">2026-10-29</span>
+            <h4><a href="https://x.com/DecagonAI/status/2115511110120120437">Decagon&rsquo;s AutoResearch agents tune its inference stack for up to 2.5&times; throughput, with a human approving each change</a></h4>
+            <p>Decagon runs <strong>AutoResearch</strong> agents that diagnose inference bottlenecks, test optimisations against replays of production traffic and keep their findings across experiments. It reports throughput gains of <strong>up to 2.5&times;</strong> within its endpoint latency requirements, from quantization, scheduling, engine patches and speculative decoding, and production changes still need human approval. The figure is Decagon&rsquo;s own, on its own traffic, published as a post on X.</p>
+            <div class="sources"><a href="https://x.com/DecagonAI/status/2115511110120120437">Decagon on X</a> &middot; <span class="via">via TLDR AI (Oct 29)</span></div>
+          </article>
+
+          <article class="story" id="gpu-idle-survey">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://venturebeat.com/infrastructure/ai-bubble-update-79-of-companies-say-their-gpus-sit-idle-at-least-half-the-time-yet-most-plan-new-ai-platforms">Survey of 218 AI companies: 79% leave GPUs idle at least half the time, 70% still plan new platforms</a></h4>
+            <p>A survey of <strong>218 companies</strong> running AI found <strong>79%</strong> leave their GPUs idle at least half the time, while <strong>70%</strong> still plan to build new AI platforms. It is a self-reported survey rather than a utilization measurement, but it puts a number on buying capacity before using what is already racked.</p>
+            <div class="sources"><a href="https://venturebeat.com/infrastructure/ai-bubble-update-79-of-companies-say-their-gpus-sit-idle-at-least-half-the-time-yet-most-plan-new-ai-platforms">VentureBeat</a> &middot; <span class="via">via Forward Future (Oct 26)</span></div>
+          </article>
+
+          <article class="story" id="cohere-model-vault-confidential">
+            <span class="when">2026-10-24</span>
+            <h4><a href="https://cohere.com/blog/introducing-confidential-computing-on-cohere-model-vault">Cohere Model Vault runs its models on confidential H100s on Azure, with prompts encrypted while in use</a></h4>
+            <p>Cohere put <strong>Confidential Computing for Model Vault</strong> into public beta on NVIDIA H100s on Azure: prompts stay encrypted while in use and the same Cohere APIs apply. It adds a third answer to the self-host-or-call choice this section ends on, a hosted model whose operator cannot read the request, though the summary gives no latency or price cost for the encryption.</p>
+            <div class="sources"><a href="https://cohere.com/blog/introducing-confidential-computing-on-cohere-model-vault">Cohere</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+          </article>
 
           <article class="story" id="liquid-ripl">
             <span class="when">2026-10-22</span>
@@ -1214,6 +1258,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#deepseek-v4-1-flash-gsq-rco-coder">ISTA-DASLab&rsquo;s Coder build prunes half of DeepSeek-V4.1-Flash&rsquo;s experts to reach 72.1 GB, about 1 bit per parameter</a></span></li>
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#max-woolf-llm-price-cuts">Max Woolf: cache reads are 96&ndash;99% of agentic coding spend, so a 75% cache-read cut moves the whole bill</a></span></li>
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#baseten-grid-sandboxes-loops">Baseten adds Grid routing and VM-isolated Sandboxes, and takes Loops fine-tuning to general availability</a></span></li>
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#hadley-wickham-token-cost">Hadley Wickham prices self-hosted Kimi K3 at about $0.25 per million tokens on an eight-GB300 server</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#revolut-self-hosted-glm">Revolut cuts AI coding inference costs about 90% by self-hosting GLM-5.3 on 56 Nvidia B200 GPUs</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#weight-teleportation">GPU-accelerated weight teleportation cuts RL trainer-to-sampler sync pauses below 0.23 seconds</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#claude-message-threads">Claude Message Threads cut long-context time to first token about 35% by keeping the conversation server-side</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#decagon-autoresearch-inference">Decagon&rsquo;s AutoResearch agents tune its inference stack for up to 2.5&times; throughput, with a human approving each change</a></span></li>

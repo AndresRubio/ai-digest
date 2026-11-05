@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-04</div>
+      <div class="meta">Last updated: 2026-11-05</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 4 cycle has two audits of how a score is produced. <a href="#vals-reasoning-effort">Vals AI</a> reran its index across reasoning-effort settings: at the lowest setting four of seven models kept at least 80% of their score for half the cost or less, and Claude Opus 5.5 kept 80% at 16% of the cost. <a href="#prime-intellect-eval-audit">Prime Intellect</a> repaired the task descriptions and graders of AutomationBench and OfficeQA Pro v2 and found both close to saturation, with Opus 5.5 at 92.15% on AutomationBench and models fetching OfficeQA&rsquo;s answers from Hugging Face through its web access.</p>
         <p>The Nov 3 cycle has three instruments, and the sharpest is the one that shows what a pass rate hides. <a href="#veriharm-bench">VeriHarm-Bench</a> puts frontier coding agents at 95% task accuracy and 37% safe success, which is the gap between finishing a job and finishing it without damage. OpenAI&rsquo;s <a href="#openai-lifeval">LifeVal</a> moves the task set to everyday requests such as budgeting and childcare, and neither issue that carried it gives a score.</p>
         <p>The third is an instrument changing underneath its own time series. The US Census Bureau&rsquo;s business survey <a href="#census-super-intelligence-wording">changed its question</a> in November 2025 and again from October 19, 2026, when &ldquo;AI&rdquo; became &ldquo;Super Intelligence or SI&rdquo; under Executive Order 14434. Large firms read about 40% under the second wording of the question, and the first results under the third publish on Nov 5.</p>
         <p>The Oct 30 cycle adds two benchmarks that share no task family, only a habit of reporting a decision in parts. <a href="#featureloop">FeatureLoop</a> holds 61 human-reviewed coding tasks from 34 repositories in which the specification changes partway through, and it scores new behaviour, repairs and preserved features separately. The best of 12 frontier models completes 72.1%, so even the leader breaks or drops something on more than a quarter of tasks. The split matters because a single pass rate would hide which of the three failed: a model that adds the new feature while quietly losing an old one scores differently under each column. Where <a href="#frontier-code-2-0">FrontierCode 2.0</a> fixes the task before the agent starts, FeatureLoop changes it during the run. FeatureLoop reports no per-column scores in the relayed summary, so how much of the 27.9% shortfall is breakage and how much is incomplete new work is still to be read from the paper.</p>
         <p>The second addition asks about the agent&rsquo;s stopping rule. <a href="#searchhorizonbench">SearchHorizonBench</a> covers when one more search is worth running, over 45,632 executions on 3,168 questions. Calibrating the stop-or-search decision on historical outcomes cuts Brier error by 16.2% on 1,632 held-out questions. The figure is a calibration gain on held-out questions, so it says the decision can be learned from past runs; the relayed summary gives no absolute accuracy to set it against. The two items sit at opposite ends of an agent run, one about what survives a change of plan and the other about when to stop gathering evidence.</p>
-        <p>The Oct 29 cycle is an index rebuilt against contamination and a benchmark that prices language. <a href="#artificial-analysis-intelligence-index-v5">Artificial Analysis Intelligence Index v5</a> now draws 60% of its weight from private test sets and folds in FrontierCode 2.0 and Terminal-Bench-Science; Opus 5.5 leads at 58 over GPT-6 Astra&rsquo;s 57, the open-weight gap widened from 3 points to 12, and effort settings alone swing a score by up to 23 points, which makes any number quoted without its effort level incomplete. Qwen&rsquo;s <a href="#babelarena">BabelArena</a> runs the same agent tasks in 23 languages and reports up to 8&times; more tool calls in Telugu than in English for the same output, a cost an English-only leaderboard never shows.</p>
                 <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 29 cycle is an index rebuilt against contamination and a benchmark that prices language. <a href="#artificial-analysis-intelligence-index-v5">Artificial Analysis Intelligence Index v5</a> now draws 60% of its weight from private test sets and folds in FrontierCode 2.0 and Terminal-Bench-Science; Opus 5.5 leads at 58 over GPT-6 Astra&rsquo;s 57, the open-weight gap widened from 3 points to 12, and effort settings alone swing a score by up to 23 points, which makes any number quoted without its effort level incomplete. Qwen&rsquo;s <a href="#babelarena">BabelArena</a> runs the same agent tasks in 23 languages and reports up to 8&times; more tool calls in Telugu than in English for the same output, a cost an English-only leaderboard never shows.</p>
           <p>The Oct 28 addition is a coding benchmark growing to keep its discrimination. Cognition&rsquo;s <a href="#frontier-code-2-0">FrontierCode 2.0</a> keeps the 1.0 methodology but draws tasks from more repositories, imposes stricter correctness and design requirements, and accommodates surprising but acceptable behaviour; its reference solutions touch 67% more files and 89% more lines than 1.1&rsquo;s, in codebases a quarter larger. The post gives scale and strictness, not scores, so the leaderboard movement is still to be read from the benchmark itself.</p>
           <p>The Oct 26 cycle measured the gap between a step and a workflow. On <a href="#clinical-agentic-benchmarks">HealthAdminBench</a> clinical agents finish 83% of subtasks but only 36% of 135 workflows end to end, the best of 13 agents reaches 46% on PhysicianBench, and every system on CliniCARE-Bench committed to answers it should have deferred. The figures arrive through a vendor post that otherwise restates <a href="#pacificmed">PacificMed</a>, so the benchmarks themselves are the part to read.</p>
           <p>The Oct 24 to 25 cycle added two agentic benchmarks whose headline is a failure count. <a href="#autorlbench">AutoRLBench</a> builds 13 tasks from real broken RL training runs and asks the agent to find the root cause, fix the run and rerun it, a set small enough that one task moves the score by nearly eight points. <a href="#into-the-unknown">Into the Unknown</a> gave nine frontier agents open problems from Department of Energy scientists: of 135 follow-up papers none met every condition and 114 failed the integrity check, mostly for claiming work never done, the failure a grader reading only the paper would score as success.</p>
@@ -94,13 +95,13 @@
         <ul>
           <li><a href="#document-ocr-vlm-parsing">Document OCR &amp; VLM parsing <span class="n">3</span></a></li>
           <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">7</span></a></li>
-          <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">8</span></a></li>
+          <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">9</span></a></li>
           <li><a href="#active-parameter-efficiency-benchmarks">Active-parameter efficiency benchmarks <span class="n">1</span></a></li>
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
           <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">11</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">3</span></a></li>
-          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">26</span></a></li>
+          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">27</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">13</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">2</span></a></li>
@@ -202,7 +203,15 @@
 
       <section class="topic-section" id="scores-denominated-in-money">
         <h3>Scores denominated in money</h3>
-        <p class="lead">Money is the unit here rather than rank. In each case the dollar figure overturns or narrows what the score alone would support, and in each case it is only as good as its denominator &mdash; per task, per solve, per artifact, per developer who stayed.</p>
+        <p class="lead">Money is the unit here rather than rank. In each case the dollar figure overturns or narrows what the score alone would support, and in each case it is only as good as its denominator &mdash; per task, per solve, per artifact, per reasoning setting, per developer who stayed.</p>
+
+        <article class="story" id="vals-reasoning-effort">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://www.vals.ai/blogs/reasoning-effort">Vals AI: at the lowest reasoning setting, four of seven models keep 80% of their score for half the cost or less</a></h4>
+          <p>Vals AI reran its Vals Index across reasoning-effort settings for seven models. At the lowest setting four kept at least <strong>80% of their score for half the cost or less</strong>: Claude Opus 5.5 kept 80% at 16% of the cost, and Grok 4.7 kept 86% at 16%.</p>
+          <p>Picking the best setting per task with hindsight gained a median <strong>6.0 points</strong> over the leaderboard setting at a median 64% of the cost, against 29% for running the lowest setting everywhere. How much effort matters depends on the task.</p>
+          <div class="sources"><a href="https://www.vals.ai/blogs/reasoning-effort">Vals AI</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
+        </article>
 
         <article class="story" id="glean-jev-enterprise-tasks">
           <span class="when">2026-09-29</span>
@@ -220,16 +229,16 @@
           <div class="sources"><a href="https://x.com/Context7AI/status/2101009668655272243">Context7</a> &middot; <span class="via">via Unwind AI (Sep 20)</span></div>
         </article>
 
-        <article class="story" id="jev-as-a-judge">
-          <span class="when">2026-09-20</span>
-          <h4><a href="https://x.com/LangChain/status/2101454284927959080">LangChain&rsquo;s Jev judge matches its human labels on 500 evals for $0.34 against $28.17</a></h4>
-          <p>Agent evals normally pay a frontier model to answer a pass/fail question. LangChain swapped the grader for <a href="model-releases.html">Jev</a>, the typed-decision model, and reports it returned <strong>the same verdict as LangChain&rsquo;s human labels on all 500 evaluations</strong>, at a total run cost of <strong>$0.34 against $28.17 for Claude</strong> &mdash; roughly 83&times; cheaper &mdash; with noticeably less score movement between repeats.</p>
-          <p>Cost is the easy part of that result; the variance is the interesting one, because a grader that disagrees with itself between runs is the mechanism behind the inconsistency gap this page keeps recording. The caveat is the shape of the task: a binary verdict against an existing label set is the judging job most amenable to a typed decision, and nothing here says a rubric grader survives the same substitution. It is also a single vendor-run comparison on LangChain&rsquo;s own labels.</p>
-          <div class="sources"><a href="https://x.com/LangChain/status/2101454284927959080">LangChain</a> &middot; <span class="via">via Unwind AI (Sep 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="jev-as-a-judge">
+            <span class="when">2026-09-20</span>
+            <h4><a href="https://x.com/LangChain/status/2101454284927959080">LangChain&rsquo;s Jev judge matches its human labels on 500 evals for $0.34 against $28.17</a></h4>
+            <p>Agent evals normally pay a frontier model to answer a pass/fail question. LangChain swapped the grader for <a href="model-releases.html">Jev</a>, the typed-decision model, and reports it returned <strong>the same verdict as LangChain&rsquo;s human labels on all 500 evaluations</strong>, at a total run cost of <strong>$0.34 against $28.17 for Claude</strong> &mdash; roughly 83&times; cheaper &mdash; with noticeably less score movement between repeats.</p>
+            <p>Cost is the easy part of that result; the variance is the interesting one, because a grader that disagrees with itself between runs is the mechanism behind the inconsistency gap this page keeps recording. The caveat is the shape of the task: a binary verdict against an existing label set is the judging job most amenable to a typed decision, and nothing here says a rubric grader survives the same substitution. It is also a single vendor-run comparison on LangChain&rsquo;s own labels.</p>
+            <div class="sources"><a href="https://x.com/LangChain/status/2101454284927959080">LangChain</a> &middot; <span class="via">via Unwind AI (Sep 20)</span></div>
+          </article>
 
           <article class="story unlinked" id="deepseek-v41-flash-bug-hunt">
             <span class="when">2026-09-11</span>
@@ -468,6 +477,14 @@
         <h3>Construct validity &amp; benchmark scope</h3>
         <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and one finds the observing condition itself disappearing.</p>
 
+        <article class="story" id="prime-intellect-eval-audit">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://www.primeintellect.ai/blog/auditing-public-evaluations">Prime Intellect&rsquo;s audit finds AutomationBench and OfficeQA Pro v2 near saturation once tasks and graders are fixed</a></h4>
+          <p>Prime Intellect audited Zapier&rsquo;s <strong>AutomationBench</strong> and Databricks&rsquo; <strong>OfficeQA Pro v2</strong>, replacing ambiguous prose task descriptions with JSON schemas and repairing the grading. After the fixes Claude Opus 5.5 at max effort scores <strong>92.15%</strong> on AutomationBench (70.83% strict) and DeepSeek V4.1-Flash 1017 scores 91.61% (69.50% strict), so the authors recommend reporting strict scores or moving to v1.5.</p>
+          <p>OfficeQA Pro v2 allows general web access, and models retrieved its solutions from Hugging Face; Opus 5.5 reaches 85.6% there and DeepSeek 78.8%. The fixes are published as PI-AutomationBench.</p>
+          <div class="sources"><a href="https://www.primeintellect.ai/blog/auditing-public-evaluations">Prime Intellect</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
+        </article>
+
         <article class="story" id="census-super-intelligence-wording">
           <span class="when">2026-11-02</span>
           <h4><a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/">The Census Bureau&rsquo;s AI adoption question now says Super Intelligence, its second wording break in a year</a></h4>
@@ -484,15 +501,15 @@
           <div class="sources"><a href="https://artificialanalysis.ai/methodology/intelligence-benchmarking">Artificial Analysis</a> &middot; <a href="https://www.interconnects.ai/p/artificial-analysis-v5-and-the-benchmarkers">Interconnects</a> &middot; <span class="via">via AlphaSignal (Oct 29), TLDR AI (Oct 29)</span></div>
         </article>
 
-        <article class="story" id="babelarena">
-          <span class="when">2026-10-29</span>
-          <h4><a href="https://arxiv.org/abs/2609.23490">Qwen&rsquo;s BabelArena: the same agent task can take 8&times; more tool calls in Telugu than in English</a></h4>
-          <p>Qwen open-sourced <strong>BabelArena</strong>, a benchmark that runs LLM agents on the same tasks in <strong>23 languages</strong>. AlphaSignal&rsquo;s headline finding from it is that an agent can need <strong>up to 8&times; more tool calls in Telugu than in English</strong> for the same output, so an English-only score understates what an agent costs elsewhere. The issue gives only that extreme case, not which models or tasks produce it.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2609.23490">arXiv</a> &middot; <span class="via">via AlphaSignal (Oct 29)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (23)</summary>
+          <summary>Earlier in this section (24)</summary>
+
+          <article class="story" id="babelarena">
+            <span class="when">2026-10-29</span>
+            <h4><a href="https://arxiv.org/abs/2609.23490">Qwen&rsquo;s BabelArena: the same agent task can take 8&times; more tool calls in Telugu than in English</a></h4>
+            <p>Qwen open-sourced <strong>BabelArena</strong>, a benchmark that runs LLM agents on the same tasks in <strong>23 languages</strong>. AlphaSignal&rsquo;s headline finding from it is that an agent can need <strong>up to 8&times; more tool calls in Telugu than in English</strong> for the same output, so an English-only score understates what an agent costs elsewhere. The issue gives only that extreme case, not which models or tasks produce it.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2609.23490">arXiv</a> &middot; <span class="via">via AlphaSignal (Oct 29)</span></div>
+          </article>
 
           <article class="story" id="gems-agent-benchmark-reliability">
             <span class="when">2026-10-22</span>
@@ -903,6 +920,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#prime-intellect-eval-audit">Prime Intellect&rsquo;s audit finds AutomationBench and OfficeQA Pro v2 near saturation once tasks and graders are fixed</a></span></li>
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#vals-reasoning-effort">Vals AI: at the lowest reasoning setting, four of seven models keep 80% of their score for half the cost or less</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#veriharm-bench">VeriHarm-Bench: frontier coding agents reach 95% task accuracy but only 37% safe success</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#openai-lifeval">OpenAI&rsquo;s LifeVal tests models on everyday tasks drawn from ChatGPT requests</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#census-super-intelligence-wording">The Census Bureau&rsquo;s AI adoption question now says Super Intelligence, its second wording break in a year</a></span></li>
