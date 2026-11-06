@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-05</div>
+      <div class="meta">Last updated: 2026-11-06</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 5 cycle has one compiler, one build-out and one optimization that was rolled back. <a href="#together-compiler">Together Compiler</a> has agents re-optimize the inference engine as traffic shifts, using an engine that hot-reloads candidates where a restart costs tens of minutes; Together reports up to 2.6&times; higher throughput within a day and 1,205 tokens per second on DeepSeek v4.1-Flash. SemiAnalysis counts <a href="#spacex-13gw-buildout">3.6 GW under construction</a> at SpaceX sites against a 2027 target raised to about 13 GW. Apify&rsquo;s MCP team <a href="#apify-toon-removal">removed TOON</a> after 30 days in production: the tools it shrank received 0.07% of calls, and the busiest payload cost 11.7% more tokens. Asking for three fields where the agent used to get sixty cut that payload 98.8%.</p>
         <p>The Nov 4 cycle is three sets of sums on what inference costs once someone looks past the list price. <a href="#revolut-self-hosted-glm">Revolut</a> says self-hosting GLM-5.3 on 56 Nvidia B200 GPUs cut AI coding inference costs about 90% across roughly 2,000 engineers, at $0.30 per million tokens on the earlier GLM-5.1. <a href="#hadley-wickham-token-cost">Hadley Wickham</a> prices a self-hosted Kimi K3 server at about $0.25 per million tokens if it runs at 75% utilisation. <a href="#max-woolf-llm-price-cuts">Max Woolf</a> puts cache reads at 96% to 99% of agentic coding spend, which is why Fable 5.1&rsquo;s 75% cache-read cut matters more than its unchanged list price. All three are the author&rsquo;s own arithmetic.</p>
         <p>Two releases sit beside the sums. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco-coder">GSQ-RCO Coder</a> drops half of DeepSeek-V4.1-Flash&rsquo;s experts to store the transformer in 72.1 GB and keeps 94.8% of the base model&rsquo;s SWE-bench Verified score, accepting losses outside code. Baseten announced <a href="#baseten-grid-sandboxes-loops">Grid, Sandboxes and Loops</a>, with Loops fine-tuning now generally available and no prices in the summary. The Oct 26 <a href="#gpu-unlock">gpu-unlock</a> entry gained its repository link and its mechanism: two hardware registers rewritten before the driver loads.</p>
         <p>The Nov 3 cycle is two transfers that got smaller. <a href="#claude-message-threads">Claude Message Threads</a> stop a client resending its whole conversation on every turn: a coding agent&rsquo;s request of about 800 KB falls to 1.8 KB, and median time to first token drops about 35% on requests of 500K to 1M tokens, while token usage and rates stay the same. The cache section&rsquo;s usual question is what gets re-read and at which rate; this feature leaves that alone and removes the upload. Threads expire five minutes after the last request, so clients still need their own copy of the history. <a href="#weight-teleportation">Weight Teleportation</a> does the same for RL training, compressing the sync from trainers to samplers so the pause stays under 0.23 seconds, on the authors&rsquo; own numbers.</p>
         <p>The Nov 2 cycle is two speed results from the Oct 28 and 29 issues and one satellite update, sharing the question of how far a vendor&rsquo;s speedup travels past the setup it was measured on. <a href="#flashmap">FlashMap</a>, from researchers at Polymathic AI, Princeton, USC ISI, NYU and the Flatiron Institute, replaces the discrete diffusion drafter in speculative decoding with a continuous flow map: a 0.5B drafter writes a 16-token block in one forward pass. On Qwen3-8B it reaches up to 6.14&times; lossless speedup on GSM8K and averages about 7% above a retrained DFlash. Drafters for Qwen3-8B and Qwen3-4B are Apache 2.0 with vLLM and SGLang plugins, but the numbers come from one H200 at concurrency 1, which flatters speculative decoding relative to a loaded server. <a href="#prime-mega-moe-backward">Prime Intellect</a> added a backward pass to DeepSeek&rsquo;s fused Mega MoE kernel so it works for training as well as inference, and Qwen3 MoE training steps in prime-rl run up to 34% faster, or 55% faster than TorchTitan, on Prime Intellect&rsquo;s own measurements. Neither entry has an outside replication yet, and the two results sit at opposite ends of the serving stack: FlashMap changes how tokens are drafted at inference time, while the Mega MoE backward pass changes what a training step costs.</p>
-        <p>The satellite is the update. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> test craft, launched October 1 with four TPUs on about a kilowatt of solar, is running: Google ran Gemma 4 on one of the four TPUs and relayed a haiku back through Svalbard. TechCrunch reports the chip can currently run for about 20 minutes at a time. Thermal and radiation tests come next, ahead of a planned pair of interconnected satellites in 2027, so the orbital data centre is still at the stage of showing that one chip can answer one prompt.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The satellite is the update. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> test craft, launched October 1 with four TPUs on about a kilowatt of solar, is running: Google ran Gemma 4 on one of the four TPUs and relayed a haiku back through Svalbard. TechCrunch reports the chip can currently run for about 20 minutes at a time. Thermal and radiation tests come next, ahead of a planned pair of interconnected satellites in 2027, so the orbital data centre is still at the stage of showing that one chip can answer one prompt.</p>
           <p>The Oct 29 addition put agents on the serving bill itself. Decagon&rsquo;s <a href="#decagon-autoresearch-inference">AutoResearch</a> agents diagnose its inference bottlenecks, test changes against replayed production traffic and report up to 2.5&times; more throughput inside the latency budget, from quantization, scheduling, engine patches and speculative decoding. Each change still waits for a human to approve it, and the figure comes from Decagon&rsquo;s own traffic with no baseline published.</p>
           <p>The Oct 28 cycle spread across four sections. <a href="#pg-pinecone">pg_pinecone</a> puts Pinecone&rsquo;s compact-summary index inside Postgres as an Apache 2.0 extension, 136 MB where pgvector&rsquo;s HNSW takes 2.0 GB on a million 768-dimension vectors and 1.3 ms against 1.7 at 0.95 recall, vendor-measured against half-precision pgvector. <a href="#opera-webai">Opera&rsquo;s WebAI</a> proposes the browser itself as the model host, sites calling local open models opt-in with prompts never leaving the device. The <a href="#macbook-pro-m6">M6 MacBook Pro</a> moves the local ceiling again, Neural Accelerators per GPU core and a claimed 25% faster local prompt processing under a 32 GB cap, and <a href="#epoch-ai-chip-imports">Epoch&rsquo;s Chip Imports explorer</a> gives the compute-supply question its first public import series.</p>
           <p>The Oct 27 cycle had one retrieval entry: <a href="#turbopuffer-v3">turbopuffer v3</a> will move its search engine to fully vectorized query execution, the batch-at-a-time design of analytical databases, when it reaches production later this year. It is an architecture post with no latency or cost figures yet, and those are what will show whether vectorized execution changes the price of a retrieval read.</p>
@@ -103,12 +104,12 @@
           <li><a href="#long-context-serving">Long-context serving <span class="n">9</span></a></li>
           <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">18</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">3</span></a></li>
-          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">10</span></a></li>
+          <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">11</span></a></li>
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">5</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">3</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">27</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">28</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
-          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">12</span></a></li>
+          <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">13</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">5</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
           <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">17</span></a></li>
@@ -380,7 +381,15 @@
 
       <section class="topic-section" id="high-throughput-serving-of-large-moes">
         <h3>High-throughput serving of large MoEs</h3>
-        <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format, prefill split from decode, a model split across wafers. None of these makes a model smaller. Every rate is only as meaningful as the hardware beside it.</p>
+        <p class="lead">Sparse activation breaks the link between parameter count and per-token serving cost, and the rest is collected below the model: a fused kernel, a runtime that re-places experts, a narrower number format, prefill split from decode, a model split across wafers, an engine agents recompile. None shrinks a model. Every rate is only as meaningful as the hardware beside it.</p>
+
+        <article class="story" id="together-compiler">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://www.together.ai/blog/together-compiler-continual-compilation-for-ai-inference">Together Compiler has agents re-optimize the inference engine as traffic drifts, reaching up to 2.6&times; higher throughput in under a day</a></h4>
+          <p><strong>Together Compiler</strong> (TKCC) takes a traffic shape, a model and a hardware target, and has agents generate optimizations for the inference engine in a continual loop. Its main device is a persistent engine that starts once and hot-reloads any candidate forward pass, where restarting vLLM, SGLang or TRT-LLM costs tens of minutes per experiment; Together reports <strong>252&times;</strong> higher experiment throughput than baseline agentic optimizers.</p>
+          <p>In under 24 hours it reached up to <strong>2.6&times;</strong> higher tokens per second across Kimi K3, GLM 5.3, MiniMax M3.1-Flash and DeepSeek v4.1-Flash, and Together claims the low-latency record on SemiAnalysis&rsquo; InferenceX at 1,111 TPS on MiniMax M3.1-Flash and 1,205 on DeepSeek v4.1-Flash. Every figure is Together&rsquo;s, and the post describes its own production system, which it says already serves trillions of tokens.</p>
+          <div class="sources"><a href="https://www.together.ai/blog/together-compiler-continual-compilation-for-ai-inference">Together AI</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
+        </article>
 
         <article class="story" id="cerebras-trillion-parameter-wse-3t">
           <span class="when">2026-10-23</span>
@@ -398,16 +407,16 @@
           <div class="sources"><a href="https://github.com/deepseek-ai/DeepInfer">GitHub</a> &middot; <a href="https://zhuanlan.zhihu.com/p/2095560295930508953">DeepSeek deployment write-up (Zhihu)</a> &middot; <a href="https://www.marktechpost.com/2026/10/20/deepseek-deepinfer-open-source-inference-framework/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 21), MarkTechPost (Oct 21), The Code (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="vllm-nixl-push-connector">
-          <span class="when">2026-10-14</span>
-          <h4><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM&rsquo;s push-based NIXL connector moves KV-transfer setup off the critical path in disaggregated serving</a></h4>
-          <p>vLLM published a <strong>push-based NIXL connector</strong> for disaggregated inference, where prefill and decode run on separate workers: it moves post-prefill KV-transfer coordination and setup off the critical path. The post reports better <strong>time-to-first-token and time-per-output-token</strong>, mostly at high request rates; the newsletter carried no figures, so the GPU, model and rate behind them are what to read for.</p>
-          <p><em>Updated Oct 20:</em> AWS published its own write-up of the push-based transfer on its machine-learning blog, which is where any TTFT and TPOT figures on AWS hardware would sit; TLDR&rsquo;s summary of it again carries none.</p>
-          <div class="sources"><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM blog</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/push-based-kv-transfer-to-improve-ttft-and-tpot-for-disaggregated-inference-in-vllm/">AWS ML blog</a> &middot; <span class="via">via TLDR AI (Oct 15), TLDR AI (Oct 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="vllm-nixl-push-connector">
+            <span class="when">2026-10-14</span>
+            <h4><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM&rsquo;s push-based NIXL connector moves KV-transfer setup off the critical path in disaggregated serving</a></h4>
+            <p>vLLM published a <strong>push-based NIXL connector</strong> for disaggregated inference, where prefill and decode run on separate workers: it moves post-prefill KV-transfer coordination and setup off the critical path. The post reports better <strong>time-to-first-token and time-per-output-token</strong>, mostly at high request rates; the newsletter carried no figures, so the GPU, model and rate behind them are what to read for.</p>
+            <p><em>Updated Oct 20:</em> AWS published its own write-up of the push-based transfer on its machine-learning blog, which is where any TTFT and TPOT figures on AWS hardware would sit; TLDR&rsquo;s summary of it again carries none.</p>
+            <div class="sources"><a href="https://vllm.ai/blog/2026-10-14-nixl-push-connector">vLLM blog</a> &middot; <a href="https://aws.amazon.com/blogs/machine-learning/push-based-kv-transfer-to-improve-ttft-and-tpot-for-disaggregated-inference-in-vllm/">AWS ML blog</a> &middot; <span class="via">via TLDR AI (Oct 15), TLDR AI (Oct 20)</span></div>
+          </article>
 
           <article class="story" id="prime-inference">
             <span class="when">2026-10-02</span>
@@ -548,6 +557,14 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story" id="spacex-13gw-buildout">
+          <span class="when">2026-11-03</span>
+          <h4><a href="https://newsletter.semianalysis.com/p/elon-is-doing-it-again-spacex-will">SemiAnalysis: SpaceX has 3.6 GW of data-centre capacity under construction and has raised its 2027 target to about 13 GW</a></h4>
+          <p>SemiAnalysis reports <strong>3.6 GW</strong> under construction across existing and new SpaceX sites, two months after the company&rsquo;s 10 GW plan for 2027 drew disbelief, and says SpaceX has since revised that to roughly <strong>13 GW</strong>; the analysts have identified more than 9 GW of it. Built on schedule, that would roughly equal all of Google&rsquo;s data-centre capacity from 1999 to 2026 in a year and a half.</p>
+          <p>Forward Future&rsquo;s summary adds repurposed rocket campuses and Tesla-made power equipment. The post is paywalled past its opening and the figures are one firm&rsquo;s site tracking. It also notes that power under SpaceX&rsquo;s management, over 8 GW, is still short of the more than 9 GW of data-centre power it counts coming online.</p>
+          <div class="sources"><a href="https://newsletter.semianalysis.com/p/elon-is-doing-it-again-spacex-will">SemiAnalysis</a> (paywalled) &middot; <span class="via">via Forward Future (Nov 5)</span></div>
+        </article>
+
         <article class="story" id="epoch-ai-chip-imports">
           <span class="when">2026-10-28</span>
           <h4><a href="https://epoch.ai/latest/introducing-the-ai-chip-imports-explorer">Epoch AI&rsquo;s Chip Imports explorer estimates AI compute arrivals by country since 2022</a></h4>
@@ -564,15 +581,15 @@
           <div class="sources"><a href="https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/">Meta Engineering</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
         </article>
 
-        <article class="story" id="netflix-gpu-reliability">
-          <span class="when">2026-10-15</span>
-          <h4><a href="https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a">Netflix detects faulty GPUs and network hardware and remediates them automatically to keep distributed training alive</a></h4>
-          <p>Netflix described the infrastructure that keeps its large GPU training and inference jobs running: detection of faulty GPUs and network hardware, automatic remediation of unhealthy machines, and distributed training jobs that survive hardware failures. It is an operator&rsquo;s account with no failure rates or recovery times in the newsletter summary, but it adds hardware reliability to what binds here beside memory and power.</p>
-          <div class="sources"><a href="https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a">Netflix Tech Blog</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (24)</summary>
+          <summary>Earlier in this section (25)</summary>
+
+          <article class="story" id="netflix-gpu-reliability">
+            <span class="when">2026-10-15</span>
+            <h4><a href="https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a">Netflix detects faulty GPUs and network hardware and remediates them automatically to keep distributed training alive</a></h4>
+            <p>Netflix described the infrastructure that keeps its large GPU training and inference jobs running: detection of faulty GPUs and network hardware, automatic remediation of unhealthy machines, and distributed training jobs that survive hardware failures. It is an operator&rsquo;s account with no failure rates or recovery times in the newsletter summary, but it adds hardware reliability to what binds here beside memory and power.</p>
+            <div class="sources"><a href="https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a">Netflix Tech Blog</a> &middot; <span class="via">via TLDR AI (Oct 15)</span></div>
+          </article>
 
           <article class="story" id="amd-helion">
             <span class="when">2026-10-14</span>
@@ -872,6 +889,14 @@
         <h3>Cache &amp; context economics</h3>
         <p class="lead">For a long agent run the rate on the model card is nearly irrelevant: the bill is set by what gets re-read, at the cached rate or the fresh one. These entries make that visible, shrink it, route around it &mdash; and then point out that the hit is asserted by the party billing you.</p>
 
+        <article class="story" id="apify-toon-removal">
+          <span class="when">2026-11-05</span>
+          <h4><a href="https://aaif.io/blog/we-added-toon-to-our-mcp-server-then-removed-it">Apify added TOON to its MCP server and removed it after 30 days: its busiest payload cost 11.7% more tokens</a></h4>
+          <p>Apify&rsquo;s MCP team ran TOON, the token-oriented JSON alternative whose early README claimed 30 to 60% fewer tokens, in production for 30 days. The four list tools that shrank 19 to 44% under TOON received <strong>0.07%</strong> of all calls, while dataset items, 99.8% of calls to the changed tools, are nested records that do not fit TOON&rsquo;s table layout: 100 Google Maps places cost <strong>11.7% more</strong> tokens than compact JSON.</p>
+          <p>Two A/B rounds showed no consistent benefit. What worked was projection: letting the agent request three fields where it used to get about sixty cut a 1 MB payload to 12 KB, where full TOON saved 14% in bytes. The authors&rsquo; advice is to count tokens per tool with the evaluation model&rsquo;s tokenizer and to weight every saving by call volume. The post is dated Oct 30.</p>
+          <div class="sources"><a href="https://aaif.io/blog/we-added-toon-to-our-mcp-server-then-removed-it">AAIF blog</a> &middot; <span class="via">via AAIF newsletter (Nov 5)</span></div>
+        </article>
+
         <article class="story" id="max-woolf-llm-price-cuts">
           <span class="when">2026-11-04</span>
           <h4><a href="https://minimaxir.com/2026/10/cheap-llms/">Max Woolf: cache reads are 96&ndash;99% of agentic coding spend, so a 75% cache-read cut moves the whole bill</a></h4>
@@ -888,16 +913,16 @@
           <div class="sources"><a href="https://claude.com/resources/articles/message-threads">Anthropic</a> &middot; <span class="via">via TLDR AI (Nov 3), AlphaSignal (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="tsinghua-akv">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://www.marktechpost.com/2026/10/26/tsinghua-akv-kv-cache-engineering-llm-agents/">Tsinghua&rsquo;s AKV drops stale tool output from the KV cache instead of summarizing, cutting agent cost 27.7%</a></h4>
-          <p><strong>AKV</strong> is an Apache 2.0 serving layer on SGLang with three cache operations: Append, Drop, which removes old tool responses from attention without touching positions, and Repos, which rewrites the kept keys to positions 0 to r&minus;1 via RoPE. Across 3 models and 4 agent benchmarks, cost fell <strong>27.7%</strong> and scores rose 1.7 points against threshold summarization; Repos lifted GPT-OSS-120B on BrowseComp-Plus from 55% to 62%.</p>
-          <p>Cache reads were 82.4% of API cost in its analysis. It supports only Qwen, GPT-OSS and MiniMax-M2 text models today, on NVIDIA only.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/10/26/tsinghua-akv-kv-cache-engineering-llm-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="tsinghua-akv">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://www.marktechpost.com/2026/10/26/tsinghua-akv-kv-cache-engineering-llm-agents/">Tsinghua&rsquo;s AKV drops stale tool output from the KV cache instead of summarizing, cutting agent cost 27.7%</a></h4>
+            <p><strong>AKV</strong> is an Apache 2.0 serving layer on SGLang with three cache operations: Append, Drop, which removes old tool responses from attention without touching positions, and Repos, which rewrites the kept keys to positions 0 to r&minus;1 via RoPE. Across 3 models and 4 agent benchmarks, cost fell <strong>27.7%</strong> and scores rose 1.7 points against threshold summarization; Repos lifted GPT-OSS-120B on BrowseComp-Plus from 55% to 62%.</p>
+            <p>Cache reads were 82.4% of API cost in its analysis. It supports only Qwen, GPT-OSS and MiniMax-M2 text models today, on NVIDIA only.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/10/26/tsinghua-akv-kv-cache-engineering-llm-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+          </article>
 
           <article class="story" id="cloudflare-inference-bill-68">
             <span class="when">2026-10-20</span>
@@ -1258,10 +1283,13 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-05</span><span class="label"><a href="#apify-toon-removal">Apify added TOON to its MCP server and removed it after 30 days: its busiest payload cost 11.7% more tokens</a></span></li>
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#together-compiler">Together Compiler has agents re-optimize the inference engine as traffic drifts, reaching up to 2.6&times; higher throughput in under a day</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#deepseek-v4-1-flash-gsq-rco-coder">ISTA-DASLab&rsquo;s Coder build prunes half of DeepSeek-V4.1-Flash&rsquo;s experts to reach 72.1 GB, about 1 bit per parameter</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#max-woolf-llm-price-cuts">Max Woolf: cache reads are 96&ndash;99% of agentic coding spend, so a 75% cache-read cut moves the whole bill</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#baseten-grid-sandboxes-loops">Baseten adds Grid routing and VM-isolated Sandboxes, and takes Loops fine-tuning to general availability</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#hadley-wickham-token-cost">Hadley Wickham prices self-hosted Kimi K3 at about $0.25 per million tokens on an eight-GB300 server</a></span></li>
+        <li><span class="date">2026-11-03</span><span class="label"><a href="#spacex-13gw-buildout">SemiAnalysis: SpaceX has 3.6 GW of data-centre capacity under construction and has raised its 2027 target to about 13 GW</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#revolut-self-hosted-glm">Revolut cuts AI coding inference costs about 90% by self-hosting GLM-5.3 on 56 Nvidia B200 GPUs</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#weight-teleportation">GPU-accelerated weight teleportation cuts RL trainer-to-sampler sync pauses below 0.23 seconds</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#claude-message-threads">Claude Message Threads cut long-context time to first token about 35% by keeping the conversation server-side</a></span></li>

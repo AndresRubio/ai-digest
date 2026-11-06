@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-11-05</div>
+      <div class="meta">Last updated: 2026-11-06</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 5 cycle has one fix and one case study. <a href="#claude-code-subagent-status-cost">Claude Code v2.1.316</a> stops background subagents re-reading their whole conversation every 30 seconds to refresh a status line; Haiku 5.5 now writes it from short notes, about 99% cheaper per update and roughly 6% more prompts per limit. X&rsquo;s engineering blog says <a href="#x-com-web-rebuild">five engineers with coding agents</a> built the first version of a new X.com web app in under six months, replacing three servers with one and cutting a slow-connection profile load from 22 seconds to 2.7. Two acquisitions in the same cycle, Pierre by OpenAI and Conductor by Meta, are on the <a href="industry-and-business.html">industry page</a>.</p>
         <p>The Nov 4 cycle has one vendor reaching into another vendor&rsquo;s agent and two tools that give an agent something new to operate. A GitHub issue reports <a href="#postman-agent-plugin-autoinstall">Postman&rsquo;s desktop app</a> installing a plugin, a startup hook and a remote MCP connection into Claude Code and Codex without asking, with the installer trying to approve its own hook; The Code found no evidence of data theft. Google&rsquo;s <a href="#gemini-notebook-api">Gemini Notebook API</a> opens notebooks and their sources to REST and an MCP server, in preview for personal accounts only. <a href="#terminal-mac">terminal-mac</a> hands coding agents a separate macOS virtual machine to click and type in, as a self-signed early release for Apple silicon.</p>
         <p>The Nov 3 cycle measures how far agent output has outgrown the systems beneath it. GitHub&rsquo;s <a href="#github-octoverse-2026">Octoverse 2026</a> has merged pull requests tripling in under a year to 220 million a month and commits at 7.38 billion. OpenAI hit that wall in its own monorepo: Git reliability sometimes dipped below 90%, so it built <a href="#openai-pando">Pando</a>, a backend that cuts median push latency about 80% and serves nearly a petabyte a day, on its own figures and with the server staying internal. Vercel CI&rsquo;s selective reruns in the Oct 28 cycle answered the same pressure one step later in the pipeline.</p>
         <p>Two teams described what running at that volume looks like. <a href="#spawn-agent-swarm">Spawn</a> spends over $3 million a month on tokens, 30 times payroll, ships hourly and treats an hour without a ship as a SEV-0, which Simon Willison finds hard to imagine for higher-stakes software. Microsoft&rsquo;s <a href="#copilot-cowork-rust">Copilot Cowork</a> reached global availability in four and a half months and moved from Python to Rust while live, crediting specs, narrow agents and checks that genuinely verify. Both are self-reports with no comparison group.</p>
         <p>Three smaller releases fill in the tooling. DeepSeek&rsquo;s <a href="#deepseek-harness-creator-mode">Creator Mode</a> generates harness plugins from a prompt, still in preview. <a href="#nanoui">NanoUI</a> builds single-binary Zig desktop apps with headless testing so an agent can check its own interface, and <a href="#llm-0-37">LLM 0.37</a> moves its default to gpt-6-luna at half the previous price.</p>
-        <p>The Oct 30 to Nov 2 cycle is about what an agent run costs and how much of a request it can carry, with three unrelated items. Microsoft&rsquo;s <a href="#microsoft-tokeneconomizer">TokenEconomizer</a> is a plugin that trims what an unchanged coding agent spends: across 277 SWE-Bench tasks and five agent-model settings, mean cost fell 18.4% to 30.9%, and it came out cheaper in all 30 repository-setting cells. Tool pruning is the largest single lever, at 13.2% to 17.7%. The code is Apache-2.0 and the results are the authors&rsquo; own. It reads as the tooling answer to the spend spread measured further down this section, where the number everyone can log is the one employers say not to manage to.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 30 to Nov 2 cycle is about what an agent run costs and how much of a request it can carry, with three unrelated items. Microsoft&rsquo;s <a href="#microsoft-tokeneconomizer">TokenEconomizer</a> is a plugin that trims what an unchanged coding agent spends: across 277 SWE-Bench tasks and five agent-model settings, mean cost fell 18.4% to 30.9%, and it came out cheaper in all 30 repository-setting cells. Tool pruning is the largest single lever, at 13.2% to 17.7%. The code is Apache-2.0 and the results are the authors&rsquo; own. It reads as the tooling answer to the spend spread measured further down this section, where the number everyone can log is the one employers say not to manage to.</p>
           <p>Anthropic raised the Claude API request limit on the Messages and Token Counting endpoints from 32MB to 128MB (<a href="#claude-api-128mb-requests">details</a>), which matters for long computer-use sessions and large PDFs. Requests with more than 20 images can now use 3000px images, up from 2000px. Deployments through cloud platforms still cap at 20 to 32MB. Karpathy&rsquo;s <a href="#hackertube">HackerTube</a> is a worked example of the same headroom: Claude Code with Opus 5.5 ran the pipeline and deployment while Sonnet 5.5 labelled comments, taking 43M Hacker News comments down to 6,454 videos on a reported 504M input tokens, most of them cached. He supplied only an API key, a server and a domain. The figures come from his own post as relayed by The Code, and there is no public URL to check them against.</p>
           <p>The Oct 28 and 29 cycle moved model choice from the user to the tool. GitHub&rsquo;s <a href="#github-copilot-fusion">Copilot Fusion</a> routes each task across Anthropic and OpenAI models by effort level, and Artificial Analysis measured its best configuration within two points of Claude Code on Opus 5.5 Max at about half the cost per task; GitHub&rsquo;s own claim is 40% faster at up to 77% less. On the pipeline side, <a href="#vercel-ci">Vercel CI</a> runs only the checks a change touches and pulls the rest from cache, which Vercel says cut its push-to-pass time 2&ndash;6&times;, the bottleneck being agents opening more pull requests than full reruns can keep up with.</p>
           <p>The Oct 28 cycle is taste as a package, and a big employer managing the spend. <a href="#hallmark">Hallmark</a> bundles fifty design themes and 755 licensed photos into a design skill for Claude Code, Cursor, Codex and OpenCode, and <a href="#appllama-skills">Appllama Skills</a> does the same for mobile, teaching agents interface patterns from top-grossing apps for Expo and React Native screens: two installable answers to the complaint that agent-written UIs lack judgment. On the other side of the ledger, <a href="#amazon-tokenmaxxing-memo">Amazon&rsquo;s memo</a> tells engineers token usage is a cost rather than a KPI, names adoption rates and code-change counts as flawed measures, and moves the yardstick to launches and successful production changes, the employer-side echo of the spend spread Orosz measured.</p>
@@ -112,7 +113,7 @@
         <ul>
           <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">7</span></a></li>
           <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">6</span></a></li>
-          <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">11</span></a></li>
+          <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">12</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
           <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">41</span></a></li>
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">17</span></a></li>
@@ -120,7 +121,7 @@
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">18</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">20</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">39</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">40</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">8</span></a></li>
         </ul>
       </nav>
@@ -248,6 +249,14 @@
         <h3>Token economics &amp; prompt caching</h3>
         <p class="lead">Standard prompt caching alone yields only modest savings. Structural techniques &mdash; keeping cacheable prefixes stable across turns, ordering context from least- to most-volatile, and avoiding mid-prompt edits that invalidate the cache &mdash; are what separate the teams seeing ~90% token reductions from those seeing 20&ndash;30%. Write prompts as if they will be cached, not patched.</p>
 
+        <article class="story" id="claude-code-subagent-status-cost">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://x.com/ClaudeDevs/status/2118063143167693011">Claude Code v2.1.316 has Haiku 5.5 write background subagents&rsquo; status lines from notes, cutting each update&rsquo;s cost about 99%</a></h4>
+          <p>A running background subagent refreshes its status line every 30 seconds, and each refresh used to re-read the subagent&rsquo;s whole conversation. From <strong>v2.1.316</strong>, Haiku 5.5 writes the line from short notes, so each update costs about <strong>99% less</strong>.</p>
+          <p>The newsletters put the effect at roughly 5% less of the usage limit for sessions with background subagents, or about 6% more prompts, and updating the CLI is the only step. It is the kind of re-read that <a href="infrastructure.html#max-woolf-llm-price-cuts">Max Woolf&rsquo;s arithmetic</a> puts at 96 to 99% of agentic coding spend.</p>
+          <div class="sources"><a href="https://x.com/ClaudeDevs/status/2118063143167693011">ClaudeDevs on X</a> &middot; <span class="via">via The Code (Nov 5), AlphaSignal (Nov 5)</span></div>
+        </article>
+
         <article class="story" id="microsoft-tokeneconomizer">
           <span class="when">2026-10-30</span>
           <h4><a href="https://www.marktechpost.com/2026/10/30/microsoft-tokeneconomizer-coding-agent-cost-control/">Microsoft&rsquo;s TokenEconomizer cuts coding-agent cost 18.4% to 30.9% across 277 SWE-Bench tasks</a></h4>
@@ -263,16 +272,16 @@
           <div class="sources"><a href="https://huggingface.co/blog/lightonai/colgrep-agent">Hugging Face blog</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
         </article>
 
-        <article class="story" id="context-mode">
-          <span class="when">2026-10-13</span>
-          <h4><a href="https://github.com/mksglu/context-mode">Context Mode, an MCP server at 26.7k stars, sandboxes tool output to cut raw context use by 98%</a></h4>
-          <p><strong>Context Mode</strong> is an MCP server that keeps coding agents from overloading their context windows: it sandboxes tool calls and reports a <strong>98% reduction in raw tool output</strong> reaching the model, stores session history in SQLite after compaction, and routes tool calls across <strong>17 platforms</strong>. The repository has <strong>26.7k GitHub stars</strong>.</p>
-          <p>The 98% measures what was kept out of context, not whether anything the agent needed was lost, and it is the project&rsquo;s own figure.</p>
-          <div class="sources"><a href="https://github.com/mksglu/context-mode">GitHub</a> &middot; <span class="via">via The Code (Oct 13)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (9)</summary>
+
+          <article class="story" id="context-mode">
+            <span class="when">2026-10-13</span>
+            <h4><a href="https://github.com/mksglu/context-mode">Context Mode, an MCP server at 26.7k stars, sandboxes tool output to cut raw context use by 98%</a></h4>
+            <p><strong>Context Mode</strong> is an MCP server that keeps coding agents from overloading their context windows: it sandboxes tool calls and reports a <strong>98% reduction in raw tool output</strong> reaching the model, stores session history in SQLite after compaction, and routes tool calls across <strong>17 platforms</strong>. The repository has <strong>26.7k GitHub stars</strong>.</p>
+            <p>The 98% measures what was kept out of context, not whether anything the agent needed was lost, and it is the project&rsquo;s own figure.</p>
+            <div class="sources"><a href="https://github.com/mksglu/context-mode">GitHub</a> &middot; <span class="via">via The Code (Oct 13)</span></div>
+          </article>
 
           <article class="story" id="claude-code-limit-wrap-up">
             <span class="when">2026-09-27</span>
@@ -1367,6 +1376,14 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and so are the first quality figures: a revert share and defects per hundred merged PRs.</p>
 
+        <article class="story" id="x-com-web-rebuild">
+          <span class="when">2026-11-04</span>
+          <h4><a href="https://blog.x.com/en/engineering/rebuilding-the-global-town-square-from-scratch">X rebuilt its web app with five engineers and coding agents in under six months; a slow-connection profile now loads in 2.7 seconds, down from 22</a></h4>
+          <p>X&rsquo;s engineering blog says <strong>five engineers</strong> working with AI coding agents built the first version of a new X.com web app in under six months. It replaces three servers, one each for people, search crawlers and link previews, with one, and already serves logged-out X.com and the pages search engines crawl; signed-in traffic is moving over one country at a time.</p>
+          <p>On a slow connection the first post of a profile appears in <strong>2.7 seconds</strong> where the old app took more than 22. More than 20 people have committed to the app since the end of September, so the five-engineer figure describes the first version only.</p>
+          <div class="sources"><a href="https://blog.x.com/en/engineering/rebuilding-the-global-town-square-from-scratch">X engineering blog</a> &middot; <span class="via">via TLDR (Nov 5)</span></div>
+        </article>
+
         <article class="story" id="copilot-cowork-rust">
           <span class="when">2026-11-03</span>
           <h4><a href="https://commandline.microsoft.com/how-we-built-copilot-cowork-python-to-rust-migration/">Microsoft&rsquo;s Copilot Cowork reached global availability in 4.5 months, moving from Python to Rust while live</a></h4>
@@ -1381,16 +1398,16 @@
           <div class="sources"><span class="via">via The Code (Nov 2) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story" id="spawn-agent-swarm">
-          <span class="when">2026-10-29</span>
-          <h4><a href="https://x.com/jsnnsa/status/2115623382721126826">Spawn ships hourly from a Fable agent swarm costing over $3M a month in tokens</a></h4>
-          <p>Jacob Sansbury says <strong>Spawn</strong>, a multiplayer game shaped through prompts, is developed by a swarm of Fable agents costing over <strong>$3 million a month in tokens</strong>, 30 times payroll, with an hour without a ship treated as a SEV-0 and rollbacks in 30 seconds. About 60% of work starts from a production error, a bug the in-game agent files itself, a log anomaly or a feature request.</p>
-          <p>When GPT-6 Astra applied security-review fixes, he says, it disabled every feature to make them secure. Simon Willison has trouble imagining the approach on software with higher stakes.</p>
-          <div class="sources"><a href="https://x.com/jsnnsa/status/2115623382721126826">Jacob Sansbury (X post)</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (36)</summary>
+          <summary>Earlier in this section (37)</summary>
+
+          <article class="story" id="spawn-agent-swarm">
+            <span class="when">2026-10-29</span>
+            <h4><a href="https://x.com/jsnnsa/status/2115623382721126826">Spawn ships hourly from a Fable agent swarm costing over $3M a month in tokens</a></h4>
+            <p>Jacob Sansbury says <strong>Spawn</strong>, a multiplayer game shaped through prompts, is developed by a swarm of Fable agents costing over <strong>$3 million a month in tokens</strong>, 30 times payroll, with an hour without a ship treated as a SEV-0 and rollbacks in 30 seconds. About 60% of work starts from a production error, a bug the in-game agent files itself, a log anomaly or a feature request.</p>
+            <p>When GPT-6 Astra applied security-review fixes, he says, it disabled every feature to make them secure. Simon Willison has trouble imagining the approach on software with higher stakes.</p>
+            <div class="sources"><a href="https://x.com/jsnnsa/status/2115623382721126826">Jacob Sansbury (X post)</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="github-octoverse-2026">
             <span class="when">2026-10-28</span>
@@ -1748,6 +1765,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#claude-code-subagent-status-cost">Claude Code v2.1.316 has Haiku 5.5 write background subagents&rsquo; status lines from notes, cutting each update&rsquo;s cost about 99%</a></span></li>
+        <li><span class="date">2026-11-04</span><span class="label"><a href="#x-com-web-rebuild">X rebuilt its web app with five engineers and coding agents in under six months</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#postman-agent-plugin-autoinstall">Postman&rsquo;s desktop app installs plugins and a startup hook into Claude Code and Codex without asking</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#terminal-mac">terminal-mac gives coding agents a separate macOS VM to drive over MCP</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#gemini-notebook-api">Gemini Notebook API opens notebooks and sources to REST and MCP, in preview for personal accounts only</a></span></li>

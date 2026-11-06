@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-11-04</div>
+      <div class="meta">Last updated: 2026-11-06</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 5 addition is a benchmark for the models this page treats as simulators. <a href="#streameval">StreamEval</a> scores 37 interactive streaming video models on five tasks and ten metrics and finds that visual quality and identity retention do not reliably come with request execution or sustained state consistency. The Batch made a similar point about <a href="#genie-4">Genie 4</a>: Google published demos without quantitative evaluation, and one of them shows a marble bust settling where it should topple.</p>
         <p>The Nov 3 cycle is five papers on why vision-language-action policies fail on real hardware, all from one newsletter issue, each attacking a different physical constraint. <a href="#fastvla">FastVLA</a> goes after a control loop capped at 5 to 10 hertz, pruning visual tokens by task prompt for 20% lower action latency on a Franka arm. <a href="#focusvla">FocusVLA</a> decides between wrist and static cameras from the robot&rsquo;s recent actions and lifts real-world success from 71.7% to 85.0%. <a href="#gazeact">GazeAct</a> trains on operator eye tracking and moves 18 real tasks from 48.1% to 58.6%, with no eye tracker needed at deployment.</p>
         <p>The other two supply numbers the first three take for granted. <a href="#pointmapvla">PointmapVLA</a> gives each pixel a metric position in the robot&rsquo;s base frame, and <a href="#rawvla">RawVLA</a> shows that the camera&rsquo;s own signal processor shifts action accuracy under changing light. Neither carries a success figure in the issue, though PointmapVLA&rsquo;s checkpoints and code are public. NVIDIA&rsquo;s <a href="#cosmos-framework">Cosmos Framework</a> update adds synchronized video and LiDAR simulation for training world models, again with no consistency or transfer number attached.</p>
         <p>The Nov 2 cycle was thin: one entry, and every detail in it comes from press reports rather than the company. <a href="#meta-max-humanoid">Meta reportedly built Max</a>, a household-chores humanoid prototype, with a Chinese robotics company in about three months. It runs on NVIDIA Jetson Thor, weighs about 106 lb, stands about 1.5 m, and has a face display, a speaker and hands for small objects. A second prototype with a redesigned torso and hands, a projector and extra sensors for stairs is in progress. No capability is reported, only the build and its specifications, so this page can record the hardware and not yet what the robot does.</p>
         <p>The Oct 29 cycle opens a section on touch, from a single newsletter issue reviewing three 2026 papers. <a href="#dexport">DexPort</a> takes the robot arm out of demonstration collection, and training on operator commands instead of reached joint positions lifts success from 11% to 64%. <a href="#vectile">VecTile</a> measures pressure and shear on a sheet under 6 mm thick for $34.67 including electronics, with errors of 0.39 N and 0.16 N against an industrial sensor. <a href="#vista3d">VisTa3D</a> shows current vision and depth models dropping objects thinner than about 3 mm, which touch maps recover. The argument across all three is that a camera updating 5 to 15 times a second cannot see a slip that lasts 10 to 20 milliseconds behind the fingers.</p>
-        <p>The Oct 28 cycle is simulation as the product. Google DeepMind&rsquo;s <a href="#genie-4">Genie 4</a> holds a photorealistic interactive world consistent for about two minutes, double Genie 3, adds native audio and takes prompt edits mid-run, with Gemini models planning events to keep scenes coherent; the stated purpose is testing robots and agents before the real world, and the stated limit is drift on longer runs. Meta&rsquo;s <a href="#interactiveworld">InteractiveWorld</a> makes the same bet one level down, a framework that simulates a wearable assistant&rsquo;s first-person view for training and evaluation. And <a href="#gemini-robotics-er-2">Gemini Robotics Embodied Reasoning 2</a> lands on Google Cloud, which moves a frontier embodied-reasoning model from research preview to something any team with an account can call.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 28 cycle is simulation as the product. Google DeepMind&rsquo;s <a href="#genie-4">Genie 4</a> holds a photorealistic interactive world consistent for about two minutes, double Genie 3, adds native audio and takes prompt edits mid-run, with Gemini models planning events to keep scenes coherent; the stated purpose is testing robots and agents before the real world, and the stated limit is drift on longer runs. Meta&rsquo;s <a href="#interactiveworld">InteractiveWorld</a> makes the same bet one level down, a framework that simulates a wearable assistant&rsquo;s first-person view for training and evaluation. And <a href="#gemini-robotics-er-2">Gemini Robotics Embodied Reasoning 2</a> lands on Google Cloud, which moves a frontier embodied-reasoning model from research preview to something any team with an account can call.</p>
           <p>The Oct 27 cycle measured a trend instead of a model. A <a href="#frontier-robot-arm-doubling">LessWrong study</a> ran nine frontier multimodal models on six real-arm tasks from July to October and puts the doubling time for performance at about 54 days, with the best execution rate up 4.4 times and the cheapest subtask 6.2 times cheaper; the limits it names are precision and efficiency, with reasoning no longer the bottleneck. Four months and six tasks is a thin base for a doubling time, but it is the first series on this page that puts the single-model <a href="#gpt-6-astra-robot-arms">Astra arm trials</a> on a curve.</p>
           <p>The Oct 26 cycle was two ways to avoid training a whole robot stack. Alibaba&rsquo;s <a href="#rynnunify">RynnUnify</a> puts spatial reasoning, physical prediction and video planning into one 16B model with a world-action head, and uses RL to decide when its own video predictions are worth consulting. <a href="#holoboxing">HoloBoxing</a> goes the other way, freezing a pretrained whole-body controller and training only a small planner, which gets humanoid boxing in 7 minutes on one GPU once the expensive pretraining is excluded.</p>
           <p>The Oct 21 to 23 cycle was world models from both ends of the domain question and a policy that drops its language model. Kyutai&rsquo;s <a href="#kyutai-cadre">CADRE</a> runs an interactive world model at 20 fps on one H100 with under 230 ms of lag. <a href="#worldtui">WorldTUI</a> is a 360M model that predicts a terminal screen after each key press with no shell behind it. <a href="#turbovla">TurboVLA</a> replaces the LLM in a vision-language-action policy and reaches 97.6% on LIBERO with 0.2B parameters, giving up the ability to break a general instruction into subtasks.</p>
@@ -85,7 +86,7 @@
           <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
           <li><a href="#tactile-sensing-and-dexterous-contact">Tactile sensing &amp; dexterous contact <span class="n">3</span></a></li>
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">20</span></a></li>
-          <li><a href="#world-models">World models <span class="n">17</span></a></li>
+          <li><a href="#world-models">World models <span class="n">18</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">6</span></a></li>
           <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">15</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
@@ -309,7 +310,15 @@
 
       <section class="topic-section" id="world-models">
         <h3>World models</h3>
-        <p class="lead">Seventeen entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+        <p class="lead">Eighteen entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+
+        <article class="story" id="streameval">
+          <span class="when">2026-11-05</span>
+          <h4><a href="https://arxiv.org/abs/2610.28402">StreamEval benchmarks 37 interactive streaming video models and finds visual quality does not predict state consistency</a></h4>
+          <p><strong>StreamEval</strong> is an open benchmark for interactive streaming video generation: five tasks (avatar dialogue, avatar performance, world generation, instruction editing and reference editing), 300 scripted cases of 15 to 300 seconds, and ten metrics covering task execution, state consistency, visual fidelity and audiovisual coordination. Across <strong>37 models</strong>, high visual quality and identity retention did not reliably come with dependable request execution or sustained state consistency.</p>
+          <p>Data, code and scoring rules are public, and the leaderboard is to be updated monthly. AlphaSignal attributes it to Tsinghua and NVIDIA; the paper, submitted Oct 20, lists only a &ldquo;StreamEval Team&rdquo;.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.28402">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 5)</span></div>
+        </article>
 
         <article class="story" id="cosmos-framework">
           <span class="when">2026-11-03</span>
@@ -323,19 +332,20 @@
           <h4><a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/">Google&rsquo;s Genie 4 holds an interactive world consistent for about two minutes, with native audio and mid-run prompt edits</a></h4>
           <p>Google DeepMind released <strong>Genie 4</strong>, a world model that generates photorealistic interactive environments with synchronized audio (ambient sound, music, characters that speak and react) and takes prompt edits while the simulation runs: weather, camera angle or new characters, with no code. Consistency holds for up to <strong>two minutes</strong>, double Genie 3, with Gemini models planning multi-step events to keep long scenes coherent.</p>
           <p>The pitch is testing robots and agents in simulation before real-world deployment, plus game prototyping and pre-visualization. The Code adds that Gemini 3.8 Flash runs alongside, planning what happens next and checking frames as Genie renders them, and that longer runs still drift; access rolls out to trusted testers first, then Google AI Ultra subscribers and Gemini API partners.</p>
-          <div class="sources"><a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/">Google DeepMind</a> &middot; <span class="via">via TLDR AI (Oct 28), The Code (Oct 28), AlphaSignal (Oct 28), Forward Future (Oct 28)</span></div>
-        </article>
-
-        <article class="story" id="interactiveworld">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://github.com/facebookresearch/InteractiveWorld">Meta&rsquo;s InteractiveWorld simulates a wearable assistant&rsquo;s first-person view for training and evaluation</a></h4>
-          <p>Meta released <strong>InteractiveWorld</strong>, a simulation framework for training and evaluating wearable AI assistants. It models interactions where an assistant observes through the user&rsquo;s eyes, communicates with them, and receives updated first-person views as the exchange goes on.</p>
-          <p>The issue gives no benchmark or scale; what it adds to this section is the setting itself, egocentric interaction with a human in the loop, packaged as something to train and test in rather than a demo.</p>
-          <div class="sources"><a href="https://github.com/facebookresearch/InteractiveWorld">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
+          <p><em>Updated Nov 6:</em> The Batch notes that Google published no quantitative evaluation with the demos, and that reaching two minutes does not guarantee a consistent scene, per DeepMind&rsquo;s Hang Qi. One demo shows a marble bust settling on its plinth when it should topple, and in the robotics demo Gemini 4 Argon wrote the steps with no robot control system in the loop.</p>
+          <div class="sources"><a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/">Google DeepMind</a> &middot; <span class="via">via TLDR AI (Oct 28), The Code (Oct 28), AlphaSignal (Oct 28), Forward Future (Oct 28), The Batch (Nov 6)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="interactiveworld">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://github.com/facebookresearch/InteractiveWorld">Meta&rsquo;s InteractiveWorld simulates a wearable assistant&rsquo;s first-person view for training and evaluation</a></h4>
+            <p>Meta released <strong>InteractiveWorld</strong>, a simulation framework for training and evaluating wearable AI assistants. It models interactions where an assistant observes through the user&rsquo;s eyes, communicates with them, and receives updated first-person views as the exchange goes on.</p>
+            <p>The issue gives no benchmark or scale; what it adds to this section is the setting itself, egocentric interaction with a human in the loop, packaged as something to train and test in rather than a demo.</p>
+            <div class="sources"><a href="https://github.com/facebookresearch/InteractiveWorld">GitHub</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
+          </article>
 
           <article class="story" id="rynnunify">
             <span class="when">2026-10-26</span>
@@ -664,6 +674,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-05</span><span class="label"><a href="#streameval">StreamEval benchmarks 37 interactive streaming video models and finds visual quality does not predict state consistency</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#cosmos-framework">NVIDIA&rsquo;s Cosmos Framework adds world-model training and synchronized video and LiDAR simulation</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#fastvla">FastVLA prunes visual tokens by task prompt, cutting real-robot action latency 20%</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#focusvla">FocusVLA routes between wrist and static cameras, lifting real-world success from 71.7% to 85%</a></span></li>

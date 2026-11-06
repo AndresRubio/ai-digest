@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-11-05</div>
+      <div class="meta">Last updated: 2026-11-06</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 5 addition is a claim about what pretraining needs as input. Cartesia says its newer <a href="#h-nets-raw-bytes">H-Nets</a>, which learn directly from raw bytes, match an open-source 3B Transformer with 10&times; less compute and data, in two posts dated Oct 28. The figure is Cartesia&rsquo;s own summary. Cognition&rsquo;s SWE-2 Flash, filed under <a href="model-releases.html#swe-2-flash">model releases</a>, is the cycle&rsquo;s other training note: a mid-training stage inserted before reinforcement learning, with the data mix chosen by how many tokens each candidate needed to reach a fixed validation loss.</p>
         <p>The Nov 4 addition is a budget figure for pre-training an image model. Linum trained its pixel-space <a href="#linum-p-jit-21k">P-JiT</a> text-to-image model for 660M samples on $21K of compute, with 4&times; fewer tokens per image and 11&times; faster convergence than its previous model. The figures are Linum&rsquo;s own, from a two-person lab, and the run is a step toward video models.</p>
         <p>The Nov 3 cycle has three entries and no scores among them, so what it adds is method. <a href="#compute-islands">Compute islands</a> argues a frontier run can span several smaller clusters of mixed generations and vendors, and names the cost itself: one compromised site can tamper with a model in ways that are hard to trace. <a href="#how-to-train-a-swarm">How to Train a Swarm</a> treats parallel agents as an incentive design problem. <a href="#teaching-qwen-why">Teaching Qwen Why</a> carries Anthropic&rsquo;s misalignment fine-tuning methods to new models, though the issue gives no effect size. The speed result from the same issue, <a href="infrastructure.html#weight-teleportation">weight teleportation</a>, is filed on the infrastructure page.</p>
         <p>The Oct 29 addition is a reward that needs no judge. Microsoft&rsquo;s <a href="#thinkingbox-database-graded-rl">ThinkingBox</a> scores business agents by running checks on the database&rsquo;s final state and feeds that to GRPO; Qwen3.8-27B went from 38 to 107 tasks solved on every one of 20 attempts, and the training code is public. The suite is the team&rsquo;s own, but a released environment with an executable reward is the reusable part this section judges on.</p>
         <p>The Oct 28 addition gives the failure-mode section a continual-learning entry. <a href="#google-sleep-framework">Google&rsquo;s sleep framework</a> alternates a model&rsquo;s active interaction with offline consolidation that moves fragile short-term context into stable long-term parameters, and the authors report new facts acquired without catastrophic forgetting, long-context knowledge retained up to 10M tokens, and better complex reasoning. The claim is the authors&rsquo; own with no benchmark table in the issue, which keeps it in the same evidentiary bucket as the rest of that section.</p>
-        <p>The Oct 26 cycle added a fifth self-generated-data entry with the least human input yet: <a href="#google-on-policy-self-training">Google&rsquo;s on-policy self-training</a> starts from topic names alone, writes its own questions and privileged reasoning traces, and self-distills, with gains on text and VQA and no regression in untrained domains by the authors&rsquo; account. Like the rest of that section it is reported by the lab that built it. TLDR AI and AlphaSignal carried the paper on Oct 27 without adding a score, so the authors&rsquo; account is still the only one.</p>
-                <details>
+        <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 26 cycle added a fifth self-generated-data entry with the least human input yet: <a href="#google-on-policy-self-training">Google&rsquo;s on-policy self-training</a> starts from topic names alone, writes its own questions and privileged reasoning traces, and self-distills, with gains on text and VQA and no regression in untrained domains by the authors&rsquo; account. Like the rest of that section it is reported by the lab that built it. TLDR AI and AlphaSignal carried the paper on Oct 27 without adding a score, so the authors&rsquo; account is still the only one.</p>
           <p>The Oct 23 to 24 cycle added a distillation variant and a forgetting fix, both without numbers. Perplexity&rsquo;s <a href="#perplexity-jolt">JOLT</a> trains one model as its own teacher and student, adapting feedback to what the student can currently do, and reports gains across maths, coding and agentic tasks with no figure attached. <a href="#subspace-tuning">Subspace Tuning</a> confines each fine-tuning update to the bottom singular subspace so the principal directions, and what they encode, survive SFT.</p>
           <p>The Oct 16 addition is a frontier pre-training disclosure with a compute figure attached. Microsoft&rsquo;s <a href="#mai-base-2">MAI-Base-2</a> is a 2.8T-parameter MoE with 80B active trained on 16,000 GB200s in 38 days, which Microsoft says beat every open-weight model on held-out pre-training evaluations it does not name; the model is still in post-training and nothing is released, so the GPU count and the day count are what an outsider can hold onto, and the first such figures from a US lab on this page.</p>
           <p>The Oct 16 addition opens a section for a question the page had skipped: how to choose a fine-tuning set&rsquo;s domain mix. <a href="#causalmix">CausalMix</a> subtracts the effect of example quality from 512 small fine-tuning runs and keeps the mixtures whose gain remains, beating Data Mixing Optimization on Qwen2.5-7B, 62.28% to 60.35%, without rerunning the sweep at that scale &mdash; but it loses on a held-out slice of Tulu 3, 25.04% to 26.49%, so transfer beyond the benchmarks used to choose the mix is still the claim to test.</p>
@@ -83,7 +84,7 @@
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">9</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">5</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
-          <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">8</span></a></li>
+          <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">9</span></a></li>
           <li><a href="#fine-tuning-data-mixtures">Fine-tuning data mixtures <span class="n">1</span></a></li>
         </ul>
       </nav>
@@ -479,6 +480,14 @@
         <h3>Pretraining efficiency &amp; data</h3>
         <p class="lead">Everything here sits before post-training: what a run costs, what compute it can span, how much efficiency the recipe still hides, what the corpus contains, and what the model learns along the way. Budget and efficiency figures are reported by whoever made the run; only the six-year analysis is outside work. Check who measured, and against what baseline.</p>
 
+        <article class="story" id="h-nets-raw-bytes">
+          <span class="when">2026-11-05</span>
+          <h4><a href="https://x.com/_albertgu/status/2115502111924600855">Cartesia&rsquo;s newer H-Nets learn from raw bytes and match a 3B Transformer with 10&times; less compute and data</a></h4>
+          <p>Cartesia published two posts on a newer generation of <strong>H-Nets</strong>, hierarchical networks that learn directly from raw bytes. Its summary of the first says the model matches an open-source 3B Transformer with <strong>10&times; less compute and data</strong>; the second argues that byte-level models carry pretraining performance over to downstream tasks more faithfully.</p>
+          <p>Both posts are dated Oct 28 and the figure is Cartesia&rsquo;s own. The link here is Albert Gu&rsquo;s announcement thread, which points to them.</p>
+          <div class="sources"><a href="https://x.com/_albertgu/status/2115502111924600855">Albert Gu on X</a> (announcement thread) &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
+        </article>
+
         <article class="story" id="linum-p-jit-21k">
           <span class="when">2026-11-04</span>
           <h4><a href="https://www.linum.ai/field-notes/pjit-21k">Linum trains its pixel-space P-JiT text-to-image model for 660M samples on $21K of compute</a></h4>
@@ -494,16 +503,16 @@
           <div class="sources"><a href="https://www.coreauto.com/hitchhikers-guide-to-training-on-compute-islands">coreauto.com</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="mai-base-2">
-          <span class="when">2026-10-16</span>
-          <h4><a href="https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/">Microsoft&rsquo;s MAI-Base-2: a 2.8T MoE with 80B active, trained on 16,000 GB200s in 38 days and still in post-training</a></h4>
-          <p>Microsoft AI described the pre-training of <strong>MAI-Base-2</strong>, a <strong>2.8T-parameter</strong> mixture-of-experts with <strong>80B active</strong>, trained on <strong>16,000 GB200s in 38 days</strong>. Microsoft says the base model beat every open-weight model on its held-out pre-training evaluations, and the write-up covers data strategy, compute efficiency and the serving stack, with the model headed to enterprise through Foundry once post-training is done.</p>
-          <p>Nothing is released: the evaluations are held out and unnamed, no score is given, and the model is pre-release, so the checkable content is the compute figure. It is the first frontier-scale pre-training disclosure on this page from a US lab, and the first with a GPU count and a day count attached.</p>
-          <div class="sources"><a href="https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/">Microsoft AI</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="mai-base-2">
+            <span class="when">2026-10-16</span>
+            <h4><a href="https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/">Microsoft&rsquo;s MAI-Base-2: a 2.8T MoE with 80B active, trained on 16,000 GB200s in 38 days and still in post-training</a></h4>
+            <p>Microsoft AI described the pre-training of <strong>MAI-Base-2</strong>, a <strong>2.8T-parameter</strong> mixture-of-experts with <strong>80B active</strong>, trained on <strong>16,000 GB200s in 38 days</strong>. Microsoft says the base model beat every open-weight model on its held-out pre-training evaluations, and the write-up covers data strategy, compute efficiency and the serving stack, with the model headed to enterprise through Foundry once post-training is done.</p>
+            <p>Nothing is released: the evaluations are held out and unnamed, no score is given, and the model is pre-release, so the checkable content is the compute figure. It is the first frontier-scale pre-training disclosure on this page from a US lab, and the first with a GPU count and a day count attached.</p>
+            <div class="sources"><a href="https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/">Microsoft AI</a> &middot; <span class="via">via TLDR AI (Oct 16), MarkTechPost (Oct 16)</span></div>
+          </article>
 
           <article class="story" id="mode-hopping">
             <span class="when">2026-10-01</span>
@@ -564,6 +573,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-05</span><span class="label"><a href="#h-nets-raw-bytes">Cartesia&rsquo;s newer H-Nets learn from raw bytes and match a 3B Transformer with 10&times; less compute and data</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#linum-p-jit-21k">Linum trains its pixel-space P-JiT text-to-image model for 660M samples on $21K of compute</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#compute-islands">Compute islands: frontier training across smaller clusters, with integrity the stated risk</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#how-to-train-a-swarm">How to Train a Swarm targets collective inference-time scaling with RL incentives</a></span></li>

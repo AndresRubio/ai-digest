@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-05</div>
+      <div class="meta">Last updated: 2026-11-06</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 5 cycle adds a harness result and a coordination kernel. MIT&rsquo;s <a href="#vista-harness">VISTA</a> stores every frame an agent sees and lets the model retrieve and zoom into them, which takes Claude Opus 5.0 from 40.68 to a perfect 100 on ARC-AGI-3&rsquo;s action-efficiency score; with frame storage removed, the GPT-5.6 Sol version drops from 99 to 70. <a href="#ambion">Ambion</a> is an open-source kernel in which Pi, Claude Agent SDK and Codex agents share a journal that survives restarts, still at 0.x. Uber&rsquo;s count of agent-booked rides, four in its busiest October week, is on the <a href="applications.html#uber-agent-bookings">applications page</a>.</p>
         <p>The Nov 4 cycle is about who authorizes an agent&rsquo;s reach. Apple opened <a href="#siri-ai-developer-preview">Siri AI to all developers</a> in the 27.3 betas: App Intents expose an app&rsquo;s data and actions, skills chain them, and testing stays inside TestFlight until App Store submissions open in the spring. MCP&rsquo;s <a href="#mcp-enterprise-managed-authorization">Enterprise-Managed Authorization</a> extension moves the decision from each employee to the company identity provider, with Okta issuing the grants. The third entry tests whether a harness can fix itself: a study of <a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill</a> produced 125 proposed changes, and of the seven that could be tested on later issues only two removed the problem.</p>
         <p>The Nov 3 issues add one harness result and two narrower products. Framer&rsquo;s <a href="#framer-harness-2">Harness 2</a> executes agent JavaScript as it streams in, so one model call can drive a whole workflow, and Framer reports up to 33% lower cost, 20% faster execution and 43% fewer tool steps. It lands in the same place as <a href="#factory-droid-1-0">Droid 1.0</a> from the previous cycle: the model writes a program and the harness runs it. Both sets of numbers come from the builders.</p>
         <p>NVIDIA&rsquo;s <a href="#nvidia-auto-ontology">Auto Ontology</a> grounds agent SQL in certified business definitions and reaches a harness through MCP, CLI or API under Apache 2.0, though its eval repo ships a harness with no results. Letter&rsquo;s <a href="#letterpress-1">Letterpress-1</a> is a coding agent aimed at growth work, reading a site and its market before opening pull requests with live previews, from $100 a month and with no public benchmark.</p>
         <p>The Oct 30 to Nov 2 cycle is about where the harness runs and who does its coordinating, and every number in it is the builder&rsquo;s own. Factory&rsquo;s <a href="#factory-droid-1-0">Droid 1.0</a> has the model write a program that calls its tools, so one request drives hundreds of tool calls; the base prompt shrinks 37% to 13,055 tokens, only 2 tool definitions load up front instead of 11, and it reports 65.2% on Terminal-Bench 4 with Opus 5.5. Vercel&rsquo;s <a href="#vercel-fx-adapter">fx adapter</a> moves the harness onto the host through libfx, apart from the sandbox, which changes where the loop and its credentials sit relative to the environment the agent works in; the changelog entry gives no figures. DeepSeek&rsquo;s <a href="#dsh-superagent">dsh-superagent</a> splits GitHub requests across parallel workers, each in its own session and directory, and DeepSeek&rsquo;s simulation puts p95 completion at 15.7 minutes against 29.5. It is v0.1.0 with a single commit and labelled a research prototype. Vercel Labs&rsquo; <a href="#vercel-agent-desktop">agent-desktop</a> hands an agent the accessibility tree of a native app instead of screenshots and claims 78% to 96% fewer tokens on dense Electron apps. The common thread is moving work out of the model&rsquo;s context and into code around it, with no independent benchmark behind any of the four.</p>
-        <p>Two items sit beside that thread without sharing it. Raindrop&rsquo;s <a href="#raindrop-swarm-leadership">swarm study</a> ran eight agents from four models on simulated outages with no designated leader, and found that the underlying model and the position of an agent&rsquo;s name in the prompt list predicted who took charge. It is a simulation, so it shows that small configuration choices steer coordination and says little about production swarms. Natural&rsquo;s <a href="#natural-direct">Direct</a> lets an agent choose between ACH, wire and realtime payment rails, with paper checks listed as coming soon. The announcement as relayed says nothing about approval controls, limits or fees, which an engineer would need before handing an agent that choice.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>Two items sit beside that thread without sharing it. Raindrop&rsquo;s <a href="#raindrop-swarm-leadership">swarm study</a> ran eight agents from four models on simulated outages with no designated leader, and found that the underlying model and the position of an agent&rsquo;s name in the prompt list predicted who took charge. It is a simulation, so it shows that small configuration choices steer coordination and says little about production swarms. Natural&rsquo;s <a href="#natural-direct">Direct</a> lets an agent choose between ACH, wire and realtime payment rails, with paper checks listed as coming soon. The announcement as relayed says nothing about approval controls, limits or fees, which an engineer would need before handing an agent that choice.</p>
           <p>The Oct 28 and 29 cycle is the plumbing under long-running agents. Microsoft now offers the <a href="#microsoft-copilot-harness">Copilot harness</a> that runs Copilot Code, Studio and GitHub Copilot through Foundry, another vendor selling its production harness rather than keeping it as glue. An open-source <a href="#goose-dapr-durable-execution">goose and Dapr integration</a> checkpoints each finished turn, so a crashed agent resumes without replaying model calls, though side effects inside an interrupted turn still need idempotency. Salesforce&rsquo;s <a href="#salesforce-agent-fabric">Agent Fabric</a> puts evaluations in beta in November and a triggered kill switch on general availability in January 2027, and Mirendil&rsquo;s <a href="#mirendil-lor">Lor</a> claims research agents running for days across hundreds of parallel workers, with no results attached yet.</p>
           <p>The Oct 28 addition is a payment rail for an agent&rsquo;s data. <a href="#glasser-data-api">Glasser</a> lets agents buy premium data per API call across more than 2,000 endpoints from over 80 providers, which replaces subscriptions held by the agent&rsquo;s owner with spend the agent incurs as it works; the dependency lands on the aggregator, and the only public page is a press report.</p>
           <p>The Oct 26 to 27 cycle was about what the scaffolding costs. A Shandong University study, reported by VentureBeat, found <a href="#harness-cost-study-shandong">Claude Code and mini-SWE-agent</a> statistically equivalent on nearly 500 coding tasks while Claude Code cost up to three times as much, mostly because it starts with over 16,000 tokens of context against 829. <a href="#pomerado">Pomerado</a> attacks browser-agent cost from the other side, compiling a site that has no API into a deterministic integration and claiming up to 1,000 times lower cost, and <a href="#cloudflare-computer-v0-7">Cloudflare Computer v0.7.0</a> adds resume-after-crash and pause-for-approval to agent code execution.</p>
@@ -108,7 +109,7 @@
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">13</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">25</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">35</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">36</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">16</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">13</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
@@ -116,7 +117,7 @@
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">9</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
-          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">21</span></a></li>
+          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">22</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">13</span></a></li>
         </ul>
       </nav>
@@ -426,6 +427,14 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="vista-harness">
+          <span class="when">2026-11-06</span>
+          <h4><a href="https://arxiv.org/abs/2610.02200">MIT&rsquo;s VISTA harness keeps every frame and lets the model retrieve them, taking Claude Opus 5.0 from 40.68 to 100 on ARC-AGI-3</a></h4>
+          <p><strong>VISTA</strong> gives a multimodal model a lossless visual memory: every observed frame is stored in its original form, and the model can retrieve any of them and zoom into a region, alongside notes and a log of past actions. On ARC-AGI-3&rsquo;s 25 public games it lifts Claude Opus 5.0&rsquo;s Relative Human Action Efficiency from <strong>40.68 to 100</strong>, using 57.4% fewer actions than first-time human players.</p>
+          <p>The Batch reports the ablation: without stored frames, VISTA with GPT-5.6 Sol falls from 99 to 70. On GameWorld it completes 63.3% of tasks, against 55.3% for first-time humans and 40% for the model&rsquo;s native harness. The paper was submitted Oct 1 and the harness is MIT-licensed. ARC-AGI-3 is the benchmark where <a href="evals-and-benchmarks.html#arc-agi-3-harness">an earlier headline score</a> also traced to the harness.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.02200">arXiv</a> &middot; <a href="https://github.com/joshhhhhan/VISTA">GitHub</a> &middot; <span class="via">via The Batch (Nov 6)</span></div>
+        </article>
+
         <article class="story" id="harness-retrospective-adaptation">
           <span class="when">2026-11-04</span>
           <h4><a href="https://arxiv.org/abs/2610.34938">Claude Code&rsquo;s retro skill proposed 125 harness changes; of seven that could be tested, two removed the problem</a></h4>
@@ -442,16 +451,16 @@
           <div class="sources"><a href="https://framer.com/blog/harness-2/">Framer</a> &middot; <a href="https://www.philschmid.de/code-mode">philschmid.de (commentary)</a> &middot; <span class="via">via TLDR AI (Nov 3), TLDR (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="factory-droid-1-0">
-          <span class="when">2026-10-30</span>
-          <h4><a href="https://factory.com/news/frontier-harness">Factory&rsquo;s Droid 1.0 has the model write a program that calls its tools: 65.2% on Terminal-Bench 4 with Opus 5.5</a></h4>
-          <p>Factory rebuilt its <strong>Droid</strong> coding harness so the model writes a program that runs its tools, letting <strong>one model request drive hundreds of tool calls</strong>. The base prompt shrinks 37% to <strong>13,055 tokens</strong>, and only <strong>2 tool definitions</strong> load up front instead of 11.</p>
-          <p>With Opus 5.5 it scores <strong>65.2% on Terminal-Bench 4</strong>; with GPT-6.1 Sol it takes about 10% longer per passed task than Codex. Factory says it tunes the harness across many models because tuning against one makes progress hard to tell apart from fitting that model&rsquo;s quirks. All figures are Factory&rsquo;s.</p>
-          <div class="sources"><a href="https://factory.com/news/frontier-harness">Factory</a> &middot; <a href="https://www.marktechpost.com/2026/10/31/factory-droid-1-0-frontier-harness/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 30), MarkTechPost (Nov 1)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (32)</summary>
+          <summary>Earlier in this section (33)</summary>
+
+          <article class="story" id="factory-droid-1-0">
+            <span class="when">2026-10-30</span>
+            <h4><a href="https://factory.com/news/frontier-harness">Factory&rsquo;s Droid 1.0 has the model write a program that calls its tools: 65.2% on Terminal-Bench 4 with Opus 5.5</a></h4>
+            <p>Factory rebuilt its <strong>Droid</strong> coding harness so the model writes a program that runs its tools, letting <strong>one model request drive hundreds of tool calls</strong>. The base prompt shrinks 37% to <strong>13,055 tokens</strong>, and only <strong>2 tool definitions</strong> load up front instead of 11.</p>
+            <p>With Opus 5.5 it scores <strong>65.2% on Terminal-Bench 4</strong>; with GPT-6.1 Sol it takes about 10% longer per passed task than Codex. Factory says it tunes the harness across many models because tuning against one makes progress hard to tell apart from fitting that model&rsquo;s quirks. All figures are Factory&rsquo;s.</p>
+            <div class="sources"><a href="https://factory.com/news/frontier-harness">Factory</a> &middot; <a href="https://www.marktechpost.com/2026/10/31/factory-droid-1-0-frontier-harness/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 30), MarkTechPost (Nov 1)</span></div>
+          </article>
 
           <article class="story" id="vercel-fx-adapter">
             <span class="when">2026-10-30</span>
@@ -1258,6 +1267,14 @@
         <h3>Multi-agent orchestration</h3>
         <p class="lead">Small teams of agents specialised by role &mdash; product, research, dev, eval &mdash; or by station, and the two venues they coordinate in: the team&rsquo;s own chat channel, or a fixed pipeline. The unsolved part is not dispatch but reconciliation &mdash; many agents each correct about overlapping regions of one codebase. Judge entries on where verification sits.</p>
 
+        <article class="story" id="ambion">
+          <span class="when">2026-11-05</span>
+          <h4><a href="https://github.com/ambionframework/ambion">Ambion is an open-source collaboration kernel where Pi, Claude Agent SDK and Codex agents share a journal that survives restarts</a></h4>
+          <p><strong>Ambion</strong> models collaboration as a room: a shared journal with rules for taking part. Each agent has its own owner, instructions, model and executor (Pi, the Claude Agent SDK or Codex), all of them reach the world through one shared set of tools for files, processes, snapshots, tables, repositories and skills, and people join the same room to ask questions and read results.</p>
+          <p>The kernel keeps the record, so a restart loses nothing. The project is at 0.x, and its README warns that an export, a journal body or a stored format may change before 1.0.</p>
+          <div class="sources"><a href="https://github.com/ambionframework/ambion">GitHub</a> &middot; <span class="via">via AAIF newsletter (Nov 5)</span></div>
+        </article>
+
         <article class="story" id="dsh-superagent">
           <span class="when">2026-11-01</span>
           <h4><a href="https://github.com/deepseek-ai/dsh-superagent-prototype">DeepSeek&rsquo;s dsh-superagent splits GitHub requests across parallel workers, p95 15.7 minutes from 29.5</a></h4>
@@ -1273,15 +1290,15 @@
           <div class="sources"><a href="https://www.raindrop.ai/blog/agent-swarm-leadership/">Raindrop</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
         </article>
 
-        <article class="story" id="mirendil-lor">
-          <span class="when">2026-10-29</span>
-          <h4><a href="https://x.com/mirendil/status/2115488264312492088">Mirendil&rsquo;s Lor runs research agents for days across hundreds of parallel workers</a></h4>
-          <p>Mirendil, whose first model <a href="model-releases.html#mirendil-fern">Fern</a> shipped on Oct 27, introduced <strong>Lor</strong>, a system whose agents write code, run experiments and iterate <strong>for days across hundreds of parallel workers</strong> to automate AI research. The announcement is a post on X with no results attached, so the scale is the only claim to check.</p>
-          <div class="sources"><a href="https://x.com/mirendil/status/2115488264312492088">Mirendil on X</a> &middot; <span class="via">via TLDR AI (Oct 29)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (18)</summary>
+          <summary>Earlier in this section (19)</summary>
+
+          <article class="story" id="mirendil-lor">
+            <span class="when">2026-10-29</span>
+            <h4><a href="https://x.com/mirendil/status/2115488264312492088">Mirendil&rsquo;s Lor runs research agents for days across hundreds of parallel workers</a></h4>
+            <p>Mirendil, whose first model <a href="model-releases.html#mirendil-fern">Fern</a> shipped on Oct 27, introduced <strong>Lor</strong>, a system whose agents write code, run experiments and iterate <strong>for days across hundreds of parallel workers</strong> to automate AI research. The announcement is a post on X with no results attached, so the scale is the only claim to check.</p>
+            <div class="sources"><a href="https://x.com/mirendil/status/2115488264312492088">Mirendil on X</a> &middot; <span class="via">via TLDR AI (Oct 29)</span></div>
+          </article>
 
           <article class="story" id="anthropic-fold-subagents">
             <span class="when">2026-10-26</span>
@@ -1530,6 +1547,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-06</span><span class="label"><a href="#vista-harness">MIT&rsquo;s VISTA harness keeps every frame and lets the model retrieve them, taking Claude Opus 5.0 from 40.68 to 100 on ARC-AGI-3</a></span></li>
+        <li><span class="date">2026-11-05</span><span class="label"><a href="#ambion">Ambion is an open-source collaboration kernel where Pi, Claude Agent SDK and Codex agents share a journal that survives restarts</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill proposed 125 harness changes; of seven that could be tested, two removed the problem</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#mcp-enterprise-managed-authorization">MCP&rsquo;s Enterprise-Managed Authorization extension moves server access decisions to the company identity provider</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#siri-ai-developer-preview">Siri AI opens to all developers: App Intents expose app actions, and skills chain them</a></span></li>
