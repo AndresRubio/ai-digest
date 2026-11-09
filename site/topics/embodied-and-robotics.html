@@ -30,17 +30,17 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-11-06</div>
+      <div class="meta">Last updated: 2026-11-09</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 6 cycle adds open weights to the world-models section and a failure case to deployment. NVIDIA opened <a href="#cosmos-3-interactive-world-models">four Cosmos 3 models</a> for interactive world simulation and driving scenes, each with 16B trainable parameters, generating synchronized multi-sensor data and photorealistic video from simulator controls. It is the weights behind the Nov 3 Cosmos Framework update, and like that entry it arrives without the consistency or transfer number <a href="#streameval">StreamEval</a> says visual quality does not predict. NVIDIA&rsquo;s VFlash, which predicts trajectories and 3D motion in parallel, is on the <a href="model-releases.html#nvidia-vflash">model page</a>. From a Substack note, <a href="#mirrorsentinel-elevator">MirrorSentinel-Elevator</a> records a ZED2 camera and an Ouster lidar through seven hand-measured elevator cabins, where a mirror makes the lidar report a room that is not there: a small dataset of a sensor failing in a place robots are expected to work.</p>
         <p>The Nov 5 addition is a benchmark for the models this page treats as simulators. <a href="#streameval">StreamEval</a> scores 37 interactive streaming video models on five tasks and ten metrics and finds that visual quality and identity retention do not reliably come with request execution or sustained state consistency. The Batch made a similar point about <a href="#genie-4">Genie 4</a>: Google published demos without quantitative evaluation, and one of them shows a marble bust settling where it should topple.</p>
-        <p>The Nov 3 cycle is five papers on why vision-language-action policies fail on real hardware, all from one newsletter issue, each attacking a different physical constraint. <a href="#fastvla">FastVLA</a> goes after a control loop capped at 5 to 10 hertz, pruning visual tokens by task prompt for 20% lower action latency on a Franka arm. <a href="#focusvla">FocusVLA</a> decides between wrist and static cameras from the robot&rsquo;s recent actions and lifts real-world success from 71.7% to 85.0%. <a href="#gazeact">GazeAct</a> trains on operator eye tracking and moves 18 real tasks from 48.1% to 58.6%, with no eye tracker needed at deployment.</p>
-        <p>The other two supply numbers the first three take for granted. <a href="#pointmapvla">PointmapVLA</a> gives each pixel a metric position in the robot&rsquo;s base frame, and <a href="#rawvla">RawVLA</a> shows that the camera&rsquo;s own signal processor shifts action accuracy under changing light. Neither carries a success figure in the issue, though PointmapVLA&rsquo;s checkpoints and code are public. NVIDIA&rsquo;s <a href="#cosmos-framework">Cosmos Framework</a> update adds synchronized video and LiDAR simulation for training world models, again with no consistency or transfer number attached.</p>
-        <p>The Nov 2 cycle was thin: one entry, and every detail in it comes from press reports rather than the company. <a href="#meta-max-humanoid">Meta reportedly built Max</a>, a household-chores humanoid prototype, with a Chinese robotics company in about three months. It runs on NVIDIA Jetson Thor, weighs about 106 lb, stands about 1.5 m, and has a face display, a speaker and hands for small objects. A second prototype with a redesigned torso and hands, a projector and extra sensors for stairs is in progress. No capability is reported, only the build and its specifications, so this page can record the hardware and not yet what the robot does.</p>
-        <p>The Oct 29 cycle opens a section on touch, from a single newsletter issue reviewing three 2026 papers. <a href="#dexport">DexPort</a> takes the robot arm out of demonstration collection, and training on operator commands instead of reached joint positions lifts success from 11% to 64%. <a href="#vectile">VecTile</a> measures pressure and shear on a sheet under 6 mm thick for $34.67 including electronics, with errors of 0.39 N and 0.16 N against an industrial sensor. <a href="#vista3d">VisTa3D</a> shows current vision and depth models dropping objects thinner than about 3 mm, which touch maps recover. The argument across all three is that a camera updating 5 to 15 times a second cannot see a slip that lasts 10 to 20 milliseconds behind the fingers.</p>
+        <p>The Nov 3 cycle is five papers on why vision-language-action policies fail on real hardware, each attacking a different physical constraint. <a href="#fastvla">FastVLA</a> prunes visual tokens by task prompt for 20% lower action latency on a Franka arm. <a href="#focusvla">FocusVLA</a> decides between wrist and static cameras from the robot&rsquo;s recent actions and lifts real-world success from 71.7% to 85.0%. <a href="#gazeact">GazeAct</a> trains on operator eye tracking and moves 18 real tasks from 48.1% to 58.6%, with no eye tracker needed at deployment. <a href="#pointmapvla">PointmapVLA</a> gives each pixel a metric position in the robot&rsquo;s base frame, and <a href="#rawvla">RawVLA</a> shows the camera&rsquo;s own signal processor shifting action accuracy under changing light.</p>
+        <p>The Nov 2 cycle was thin: <a href="#meta-max-humanoid">Meta reportedly built Max</a>, a household-chores humanoid prototype, with a Chinese robotics company in about three months, on NVIDIA Jetson Thor at about 106 lb and 1.5 m, with a second prototype in progress. No capability is reported, only the build and its specifications.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 29 cycle opens a section on touch, from a single newsletter issue reviewing three 2026 papers. <a href="#dexport">DexPort</a> takes the robot arm out of demonstration collection, and training on operator commands instead of reached joint positions lifts success from 11% to 64%. <a href="#vectile">VecTile</a> measures pressure and shear on a sheet under 6 mm thick for $34.67 including electronics, with errors of 0.39 N and 0.16 N against an industrial sensor. <a href="#vista3d">VisTa3D</a> shows current vision and depth models dropping objects thinner than about 3 mm, which touch maps recover. The argument across all three is that a camera updating 5 to 15 times a second cannot see a slip that lasts 10 to 20 milliseconds behind the fingers.</p>
           <p>The Oct 28 cycle is simulation as the product. Google DeepMind&rsquo;s <a href="#genie-4">Genie 4</a> holds a photorealistic interactive world consistent for about two minutes, double Genie 3, adds native audio and takes prompt edits mid-run, with Gemini models planning events to keep scenes coherent; the stated purpose is testing robots and agents before the real world, and the stated limit is drift on longer runs. Meta&rsquo;s <a href="#interactiveworld">InteractiveWorld</a> makes the same bet one level down, a framework that simulates a wearable assistant&rsquo;s first-person view for training and evaluation. And <a href="#gemini-robotics-er-2">Gemini Robotics Embodied Reasoning 2</a> lands on Google Cloud, which moves a frontier embodied-reasoning model from research preview to something any team with an account can call.</p>
           <p>The Oct 27 cycle measured a trend instead of a model. A <a href="#frontier-robot-arm-doubling">LessWrong study</a> ran nine frontier multimodal models on six real-arm tasks from July to October and puts the doubling time for performance at about 54 days, with the best execution rate up 4.4 times and the cheapest subtask 6.2 times cheaper; the limits it names are precision and efficiency, with reasoning no longer the bottleneck. Four months and six tasks is a thin base for a doubling time, but it is the first series on this page that puts the single-model <a href="#gpt-6-astra-robot-arms">Astra arm trials</a> on a curve.</p>
           <p>The Oct 26 cycle was two ways to avoid training a whole robot stack. Alibaba&rsquo;s <a href="#rynnunify">RynnUnify</a> puts spatial reasoning, physical prediction and video planning into one 16B model with a world-action head, and uses RL to decide when its own video predictions are worth consulting. <a href="#holoboxing">HoloBoxing</a> goes the other way, freezing a pretrained whole-body controller and training only a small planner, which gets humanoid boxing in 7 minutes on one GPU once the expensive pretraining is excluded.</p>
@@ -86,9 +86,9 @@
           <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
           <li><a href="#tactile-sensing-and-dexterous-contact">Tactile sensing &amp; dexterous contact <span class="n">3</span></a></li>
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">20</span></a></li>
-          <li><a href="#world-models">World models <span class="n">18</span></a></li>
+          <li><a href="#world-models">World models <span class="n">19</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">6</span></a></li>
-          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">15</span></a></li>
+          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">16</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
           <li><a href="#low-cost-and-map-less-navigation">Low-cost &amp; map-less navigation <span class="n">1</span></a></li>
         </ul>
@@ -310,7 +310,15 @@
 
       <section class="topic-section" id="world-models">
         <h3>World models</h3>
-        <p class="lead">Eighteen entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+        <p class="lead">Nineteen entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+
+        <article class="story" id="cosmos-3-interactive-world-models">
+          <span class="when">2026-11-06</span>
+          <h4><a href="https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation">NVIDIA opens four Cosmos 3 world models for interactive simulation and driving scenes, each with 16B trainable parameters</a></h4>
+          <p>NVIDIA&rsquo;s Cosmos 3 platform now carries <strong>four open-weight models</strong> for interactive world simulation and driving scenes, each with <strong>16 billion trainable parameters</strong>. They generate multi-sensor data with synchronized observations and photorealistic video driven by simulator controls, aimed at robotics and autonomous-driving research.</p>
+          <p>It follows the <a href="#cosmos-framework">Cosmos Framework</a> update of Nov 3 that added synchronized video and LiDAR simulation. Like that entry, the issue attaches no consistency or transfer number, which is the measure <a href="#streameval">StreamEval</a> found visual quality does not predict.</p>
+          <div class="sources"><a href="https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation">Hugging Face (NVIDIA)</a> &middot; <span class="via">via TLDR AI (Nov 6)</span></div>
+        </article>
 
         <article class="story" id="streameval">
           <span class="when">2026-11-05</span>
@@ -327,17 +335,17 @@
           <div class="sources"><a href="https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/">NVIDIA</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="genie-4">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/">Google&rsquo;s Genie 4 holds an interactive world consistent for about two minutes, with native audio and mid-run prompt edits</a></h4>
-          <p>Google DeepMind released <strong>Genie 4</strong>, a world model that generates photorealistic interactive environments with synchronized audio (ambient sound, music, characters that speak and react) and takes prompt edits while the simulation runs: weather, camera angle or new characters, with no code. Consistency holds for up to <strong>two minutes</strong>, double Genie 3, with Gemini models planning multi-step events to keep long scenes coherent.</p>
-          <p>The pitch is testing robots and agents in simulation before real-world deployment, plus game prototyping and pre-visualization. The Code adds that Gemini 3.8 Flash runs alongside, planning what happens next and checking frames as Genie renders them, and that longer runs still drift; access rolls out to trusted testers first, then Google AI Ultra subscribers and Gemini API partners.</p>
-          <p><em>Updated Nov 6:</em> The Batch notes that Google published no quantitative evaluation with the demos, and that reaching two minutes does not guarantee a consistent scene, per DeepMind&rsquo;s Hang Qi. One demo shows a marble bust settling on its plinth when it should topple, and in the robotics demo Gemini 4 Argon wrote the steps with no robot control system in the loop.</p>
-          <div class="sources"><a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/">Google DeepMind</a> &middot; <span class="via">via TLDR AI (Oct 28), The Code (Oct 28), AlphaSignal (Oct 28), Forward Future (Oct 28), The Batch (Nov 6)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="genie-4">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/">Google&rsquo;s Genie 4 holds an interactive world consistent for about two minutes, with native audio and mid-run prompt edits</a></h4>
+            <p>Google DeepMind released <strong>Genie 4</strong>, a world model that generates photorealistic interactive environments with synchronized audio (ambient sound, music, characters that speak and react) and takes prompt edits while the simulation runs: weather, camera angle or new characters, with no code. Consistency holds for up to <strong>two minutes</strong>, double Genie 3, with Gemini models planning multi-step events to keep long scenes coherent.</p>
+            <p>The pitch is testing robots and agents in simulation before real-world deployment, plus game prototyping and pre-visualization. The Code adds that Gemini 3.8 Flash runs alongside, planning what happens next and checking frames as Genie renders them, and that longer runs still drift; access rolls out to trusted testers first, then Google AI Ultra subscribers and Gemini API partners.</p>
+            <p><em>Updated Nov 6:</em> The Batch notes that Google published no quantitative evaluation with the demos, and that reaching two minutes does not guarantee a consistent scene, per DeepMind&rsquo;s Hang Qi. One demo shows a marble bust settling on its plinth when it should topple, and in the robotics demo Gemini 4 Argon wrote the steps with no robot control system in the loop.</p>
+            <div class="sources"><a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/">Google DeepMind</a> &middot; <span class="via">via TLDR AI (Oct 28), The Code (Oct 28), AlphaSignal (Oct 28), Forward Future (Oct 28), The Batch (Nov 6)</span></div>
+          </article>
 
           <article class="story" id="interactiveworld">
             <span class="when">2026-10-28</span>
@@ -529,6 +537,14 @@
           <div class="sources"><a href="https://www.engadget.com/2303434/meta-reportedly-built-a-humanoid-robot-prototype-that-can-do-household-chores/">Engadget</a> &middot; <span class="via">via TLDR (Nov 2)</span></div>
         </article>
 
+        <article class="story" id="mirrorsentinel-elevator">
+          <span class="when">2026-10-31</span>
+          <h4><a href="https://huggingface.co/datasets/Voxel51/MirrorSentinel-Elevator">MirrorSentinel-Elevator: camera and lidar through seven elevator cabins, where a mirror makes the sensor measure a room that is not there</a></h4>
+          <p>Pointed at a mirror, a lidar reports a room that does not exist, and in an elevator the cabin appears to extend into solid wall. <strong>MirrorSentinel-Elevator</strong> records a ZED2 camera and an Ouster lidar through <strong>seven cabins</strong>, each measured by hand so the reported boundary can be checked against the real one; Harpreet Sahota parsed it into FiftyOne so the camera and point cloud can be scrubbed together.</p>
+          <p>It is a small deployment-failure set rather than a benchmark: no model and no score come with it.</p>
+          <div class="sources"><a href="https://huggingface.co/datasets/Voxel51/MirrorSentinel-Elevator">Hugging Face (Voxel51)</a> &middot; <span class="via">via Substack notes (Nov 7)</span></div>
+        </article>
+
         <article class="story" id="tesla-optimus-production">
           <span class="when">2026-10-21</span>
           <h4><a href="https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43/">Tesla starts Optimus production in Fremont, promising 20,000 units a week by the end of 2027 before it calls the robot safe</a></h4>
@@ -537,16 +553,16 @@
           <div class="sources"><a href="https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43/">TechCrunch</a> &middot; <span class="via">via TLDR (Oct 22)</span></div>
         </article>
 
-        <article class="story" id="tau-robotics-home-cleaning">
-          <span class="when">2026-10-21</span>
-          <h4><a href="https://read.corematter.com/p/tau-robotics-humanoid-house-cleaning-review-san-francisco">Two teleoperated Tau Robotics humanoids clean a San Francisco home for an hour at $60</a></h4>
-          <p>A customer account of hiring <strong>Tau Robotics</strong>&rsquo; humanoids: two human-operator-controlled robots cleaned a home for one hour for <strong>$60</strong>, a service now sold in San Francisco. The post works through the economics for the customer and the company and what a future of productive robots would look like.</p>
-          <p>It is unit economics for a performance under chosen conditions: the robots were driven by people, so the price buys human labour routed through a robot, and whether the sessions also serve as demonstration collection, as <a href="#humxn-free-home-services">HUMXN</a>&rsquo;s do, the post does not say. No autonomy share or throughput figure is given.</p>
-          <div class="sources"><a href="https://read.corematter.com/p/tau-robotics-humanoid-house-cleaning-review-san-francisco">Core Matter</a> (customer review) &middot; <span class="via">via TLDR (Oct 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="tau-robotics-home-cleaning">
+            <span class="when">2026-10-21</span>
+            <h4><a href="https://read.corematter.com/p/tau-robotics-humanoid-house-cleaning-review-san-francisco">Two teleoperated Tau Robotics humanoids clean a San Francisco home for an hour at $60</a></h4>
+            <p>A customer account of hiring <strong>Tau Robotics</strong>&rsquo; humanoids: two human-operator-controlled robots cleaned a home for one hour for <strong>$60</strong>, a service now sold in San Francisco. The post works through the economics for the customer and the company and what a future of productive robots would look like.</p>
+            <p>It is unit economics for a performance under chosen conditions: the robots were driven by people, so the price buys human labour routed through a robot, and whether the sessions also serve as demonstration collection, as <a href="#humxn-free-home-services">HUMXN</a>&rsquo;s do, the post does not say. No autonomy share or throughput figure is given.</p>
+            <div class="sources"><a href="https://read.corematter.com/p/tau-robotics-humanoid-house-cleaning-review-san-francisco">Core Matter</a> (customer review) &middot; <span class="via">via TLDR (Oct 21)</span></div>
+          </article>
 
           <article class="story" id="what-work-can-robots-do">
             <span class="when">2026-10-01</span>
@@ -674,6 +690,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-06</span><span class="label"><a href="#cosmos-3-interactive-world-models">NVIDIA opens four Cosmos 3 world models for interactive simulation and driving scenes, each with 16B trainable parameters</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#streameval">StreamEval benchmarks 37 interactive streaming video models and finds visual quality does not predict state consistency</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#cosmos-framework">NVIDIA&rsquo;s Cosmos Framework adds world-model training and synchronized video and LiDAR simulation</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#fastvla">FastVLA prunes visual tokens by task prompt, cutting real-robot action latency 20%</a></span></li>
@@ -682,6 +699,7 @@
         <li><span class="date">2026-11-03</span><span class="label"><a href="#pointmapvla">PointmapVLA pairs every camera pixel with metric coordinates in the robot&rsquo;s base frame</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#rawvla">RawVLA finds camera signal processing hurts action accuracy and learns its own from raw sensor data</a></span></li>
         <li><span class="date">2026-11-02</span><span class="label"><a href="#meta-max-humanoid">Meta reportedly built Max, a Jetson Thor household humanoid, in about three months</a></span></li>
+        <li><span class="date">2026-10-31</span><span class="label"><a href="#mirrorsentinel-elevator">MirrorSentinel-Elevator: camera and lidar through seven elevator cabins, where a mirror makes the sensor measure a room that is not there</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#vista3d">VisTa3D shows vision and depth models lose objects thinner than about 3 mm, and touch maps recover them</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#vectile">VecTile measures pressure and shear on a sheet under 6 mm thick, for $34.67 with its electronics</a></span></li>
         <li><span class="date">2026-10-29</span><span class="label"><a href="#dexport">DexPort collects dexterous-hand demonstrations without a robot arm, lifting task success from 11% to 64%</a></span></li>
