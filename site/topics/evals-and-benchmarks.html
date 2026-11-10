@@ -30,10 +30,11 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-09</div>
+      <div class="meta">Last updated: 2026-11-10</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 6 cycle, read on Nov 9, adds one benchmark, and the issue that carried it gives no score. OpenAI&rsquo;s <a href="#biobasicsbench">BioBasicsBench</a> asks an agent to interpret the raw experimental data of 100 routine wet-lab tasks, which makes the instrument&rsquo;s output the input and puts bench work rather than discovery in front of a model, the second lab to do so after Anthropic&rsquo;s own wet lab. The ranking has to be read from the post.</p>
         <p>The Nov 6 cycle adds one instrument, and it measures a capability the rest of the page would rather not have. Dwarkesh Patel spent about $20,000 in API credits having frontier models play <a href="#clocktower-benchmark">Blood on the Clocktower</a>, a social deception game in which winning means sustaining a bluff across many turns and reasoning about what the table collectively believes. Neither newsletter that carried it gives the ranking, so the result has to be read from the post. It sits beside the agentic benchmarks because the environment is other agents rather than a task list, and it is the first entry here where a higher score is a warning as much as a result.</p>
         <p>The Nov 4 cycle has two audits of how a score is produced. <a href="#vals-reasoning-effort">Vals AI</a> reran its index across reasoning-effort settings: at the lowest setting four of seven models kept at least 80% of their score for half the cost or less, and Claude Opus 5.5 kept 80% at 16% of the cost. <a href="#prime-intellect-eval-audit">Prime Intellect</a> repaired the task descriptions and graders of AutomationBench and OfficeQA Pro v2 and found both close to saturation, with Opus 5.5 at 92.15% on AutomationBench and models fetching OfficeQA&rsquo;s answers from Hugging Face through its web access.</p>
         <p>The Nov 3 cycle has three instruments, and the sharpest is the one that shows what a pass rate hides. <a href="#veriharm-bench">VeriHarm-Bench</a> puts frontier coding agents at 95% task accuracy and 37% safe success, which is the gap between finishing a job and finishing it without damage. OpenAI&rsquo;s <a href="#openai-lifeval">LifeVal</a> moves the task set to everyday requests such as budgeting and childcare, and neither issue that carried it gives a score. The US Census Bureau&rsquo;s business survey <a href="#census-super-intelligence-wording">changed its question</a> in November 2025 and again from October 19, 2026, when &ldquo;AI&rdquo; became &ldquo;Super Intelligence or SI&rdquo;; large firms read about 40% under the second wording.</p>
@@ -102,7 +103,7 @@
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">3</span></a></li>
           <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">27</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
-          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">14</span></a></li>
+          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">15</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">2</span></a></li>
           <li><a href="#speech-and-voice-benchmarks">Speech &amp; voice benchmarks <span class="n">3</span></a></li>
           <li><a href="#infrastructure-scale-benchmarks">Infrastructure-scale benchmarks <span class="n">1</span></a></li>
@@ -748,6 +749,14 @@
         <h3>Automated &amp; agentic eval systems</h3>
         <p class="lead">Two families that keep converging: agents that read your traces and report what failed, and benchmarks that put an agent in a real environment and score what it does there. Both replace a curated task list with something messier, and both are still checked against human judgment rather than replacing it.</p>
 
+        <article class="story" id="biobasicsbench">
+          <span class="when">2026-11-06</span>
+          <h4><a href="https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science/">BioBasicsBench scores agents on the raw data of 100 routine wet-lab tasks</a></h4>
+          <p>OpenAI introduced <strong>BioBasicsBench</strong>, built with the enzyme-design company Ligo: <strong>100 routine wet-lab science tasks</strong> in which an agent has to interpret raw experimental data, failed runs, ambiguous images and contradictory observations included, rather than the cleaned-up figures of a paper. The TLDR AI item gives no scores, so the ranking has to be read from the post.</p>
+          <p>It belongs beside the agentic benchmarks because the input is the instrument&rsquo;s output, and it makes OpenAI the second lab after <a href="applications.html#anthropic-wet-lab">Anthropic&rsquo;s wet lab</a> to put bench work, rather than discovery, in front of a model.</p>
+          <div class="sources"><a href="https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 9)</span></div>
+        </article>
+
         <article class="story" id="clocktower-benchmark">
           <span class="when">2026-11-05</span>
           <h4><a href="https://www.dwarkesh.com/p/clocktower">Dwarkesh Patel spent $20,000 in API credits making models play Blood on the Clocktower, a benchmark where a model has to lie to win</a></h4>
@@ -763,16 +772,16 @@
           <div class="sources"><a href="https://openai.com/index/lifeval/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 3), AlphaSignal (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="clinical-agentic-benchmarks">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://www.talby.com/p/ten-questions-to-ask-before-you-trust">Clinical agents finish 83% of subtasks but only 36% of whole workflows on HealthAdminBench</a></h4>
-          <p>Three agentic medical benchmarks report how much a single-turn score misses. On Stanford&rsquo;s <strong>HealthAdminBench</strong>, agents complete 83% of individual subtasks but only <strong>36% of its 135</strong> prior-authorization, appeals and equipment-ordering workflows end to end; on Stanford&rsquo;s <strong>PhysicianBench</strong> the best of 13 agents succeeds on <strong>46% of 100</strong> consultation tasks averaging 27 tool calls; on Scale AI&rsquo;s <strong>CliniCARE-Bench</strong> all 16 systems committed to an answer more readily than they deferred on cases the record could not settle.</p>
-          <p>The figures come from a post by the CEO of Pacific AI, whose <a href="#pacificmed">PacificMed</a> framework the rest of the post restates, and which runs the three suites in MedHELM.</p>
-          <div class="sources"><a href="https://www.talby.com/p/ten-questions-to-ask-before-you-trust">AI in Healthcare</a> &middot; <span class="via">via AI in Healthcare (Oct 26)</span></div>
-        </article>
+<details>
+          <summary>Earlier in this section (12)</summary>
 
-        <details>
-          <summary>Earlier in this section (11)</summary>
+          <article class="story" id="clinical-agentic-benchmarks">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://www.talby.com/p/ten-questions-to-ask-before-you-trust">Clinical agents finish 83% of subtasks but only 36% of whole workflows on HealthAdminBench</a></h4>
+            <p>Three agentic medical benchmarks report how much a single-turn score misses. On Stanford&rsquo;s <strong>HealthAdminBench</strong>, agents complete 83% of individual subtasks but only <strong>36% of its 135</strong> prior-authorization, appeals and equipment-ordering workflows end to end; on Stanford&rsquo;s <strong>PhysicianBench</strong> the best of 13 agents succeeds on <strong>46% of 100</strong> consultation tasks averaging 27 tool calls; on Scale AI&rsquo;s <strong>CliniCARE-Bench</strong> all 16 systems committed to an answer more readily than they deferred on cases the record could not settle.</p>
+            <p>The figures come from a post by the CEO of Pacific AI, whose <a href="#pacificmed">PacificMed</a> framework the rest of the post restates, and which runs the three suites in MedHELM.</p>
+            <div class="sources"><a href="https://www.talby.com/p/ten-questions-to-ask-before-you-trust">AI in Healthcare</a> &middot; <span class="via">via AI in Healthcare (Oct 26)</span></div>
+          </article>
 
           <article class="story" id="into-the-unknown">
             <span class="when">2026-10-25</span>
@@ -860,6 +869,7 @@
             <div class="sources"><a href="https://parlance-labs.com/blog/posts/auto-evals/">Parlance Labs (Hamel Husain)</a></div>
           </article>
         </details>
+      
       </section>
 
       <section class="topic-section" id="security-benchmarks">
@@ -927,6 +937,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-06</span><span class="label"><a href="#biobasicsbench">BioBasicsBench scores agents on the raw data of 100 routine wet-lab tasks</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#clocktower-benchmark">Dwarkesh Patel spent $20,000 making models play Blood on the Clocktower, a benchmark where a model has to lie to win</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#prime-intellect-eval-audit">Prime Intellect&rsquo;s audit finds AutomationBench and OfficeQA Pro v2 near saturation once tasks and graders are fixed</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#vals-reasoning-effort">Vals AI: at the lowest reasoning setting, four of seven models keep 80% of their score for half the cost or less</a></span></li>

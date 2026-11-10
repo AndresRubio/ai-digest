@@ -30,10 +30,11 @@
     </aside>
     <main>
       <h1>Applications &amp; case studies</h1>
-      <div class="meta">Last updated: 2026-11-09</div>
+      <div class="meta">Last updated: 2026-11-10</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 9 cycle adds one creative tool, all demo. Higgsfield&rsquo;s <a href="#higgsfield-miracle">Miracle</a> edits a single object, the light or a texture while the clip plays, with face, lighting and camera motion left as shot, and is in private beta behind a waitlist with a Claude MCP promised; no latency, resolution or price is given, so nothing can be checked until the beta opens. OpenAI&rsquo;s wet-lab benchmark from the same day is on the <a href="evals-and-benchmarks.html#biobasicsbench">evals page</a>, and Warp Sciences&rsquo; $215 million for robotic drug-discovery labs is on the <a href="industry-and-business.html#warp-sciences-215m">industry page</a>.</p>
         <p>The Nov 6 and 7 cycle has a video model, a lab result and a governance workflow. Google&rsquo;s <a href="#gemini-omni-1-2-flash">Gemini Omni 1.2 Flash</a> makes 15-second clips at $0.07 a second for 720p, about 30% cheaper than before, and takes edits through chat that change a background or the lighting without regenerating the clip. Anthropic&rsquo;s biology team had Claude search 15 billion predicted proteins and found <a href="#claude-vault-proteins">vault-particle relatives</a> across 29 bacterial groups, cutting structure mapping from weeks or months to days; one Claude-written protocol also cost two weeks before a human caught the bad additive. Pacific AI&rsquo;s <a href="#pacific-ai-continuous-risk-assessment">Governor</a> re-scores only the changed sections of a health system&rsquo;s AI risk assessments when a law, policy, model or document changes, splitting judgment to the model and rules to code; the sizing and the product are the vendor&rsquo;s.</p>
         <p>The three share the page&rsquo;s standing caveat in different forms. The video price is Google&rsquo;s and arrives without a quality figure; the vault result is Anthropic&rsquo;s account of its own lab, carried here without a public URL because the newsletter&rsquo;s link had expired; the governance post is a CEO describing his product. Each is a capability stated by the party that benefits from it.</p>
         <p>The Nov 5 cycle has a formalization, a national lab build-out and a very small number. Axiom put the whole <a href="#axiom-stacks-project-lean">Stacks Project</a> into Lean, about 7,500 pages of algebraic geometry as 16 million lines, built by agent swarms a week after its finite simple groups proof. The Economist describes China wiring datasets, models, compute and <a href="#china-ai-controlled-labs">robotic laboratories</a> into round-the-clock research infrastructure, with XtalPi planning a facility to test 1,000 solar-cell prototypes a day. Uber supplied the small number: agents <a href="#uber-agent-bookings">booked four rides</a> and 500 Eats orders in Halloween week, out of about 320 million trips and orders.</p>
@@ -86,7 +87,7 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#creative-media">Creative media <span class="n">15</span></a></li>
+          <li><a href="#creative-media">Creative media <span class="n">16</span></a></li>
           <li><a href="#physical-ai-and-robotics">Physical AI &amp; robotics <span class="n">1</span></a></li>
           <li><a href="#speech-to-text-in-production">Speech-to-text in production <span class="n">3</span></a></li>
           <li><a href="#voice-agent-architecture-and-latency-budgets">Voice agent architecture &amp; latency budgets <span class="n">1</span></a></li>
@@ -104,6 +105,14 @@
         <h3>Creative media</h3>
         <p class="lead">Almost nothing here turns on output quality; the differences sit around the output &mdash; who cleared the rights, where the artifact is allowed to run, what a pipeline will take and what it refuses, what one more iteration costs, and whether anyone can check the result. For each entry, find which of those became the binding constraint.</p>
 
+        <article class="story" id="higgsfield-miracle">
+          <span class="when">2026-11-09</span>
+          <h4><a href="https://higgsfield.ai/miracle">Higgsfield Miracle edits one object in a video while it plays, in private beta with a Claude MCP promised</a></h4>
+          <p>Higgsfield announced <strong>Miracle</strong>, a video editor in which a typed change lands while the clip plays: recolour one object to a hex value, change the sky, the light or the time of day, move or remove one thing, or make fur or fabric longer on a slider, while face, lighting and camera motion stay as shot. It is in <strong>private beta</strong> behind a waitlist, with a ChatGPT plugin and Claude MCP support promised.</p>
+          <p>Everything shown is the vendor&rsquo;s demo; no latency, resolution or price is given, and the binding constraint for this section is that nothing can be checked until the beta opens.</p>
+          <div class="sources"><a href="https://higgsfield.ai/miracle">Higgsfield</a> &middot; <span class="via">via The Code (Nov 9)</span></div>
+        </article>
+
         <article class="story" id="gemini-omni-1-2-flash">
           <span class="when">2026-11-06</span>
           <h4><a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/">Gemini Omni 1.2 Flash generates 15-second clips at $0.07 a second for 720p, 30% cheaper, and edits a clip through chat without regenerating it</a></h4>
@@ -119,15 +128,15 @@
           <div class="sources"><a href="https://www.canva.com/dream-lab">Canva</a> (product page) &middot; <span class="via">via The Code (Oct 23)</span></div>
         </article>
 
-        <article class="story" id="nvidia-jca">
-          <span class="when">2026-10-23</span>
-          <h4><a href="https://research.nvidia.com/labs/par/projects/jca/">NVIDIA&rsquo;s Joints, Camera, Action! generates video and matching 3D motion for any character rig from a text prompt</a></h4>
-          <p>NVIDIA introduced <strong>Joints, Camera, Action! (JCA)</strong>, which generates a video and synchronised 3D motion for an arbitrary character rig from a text prompt, with scene-aware motion, keyframe control and conversion in both directions between video and rig animation. The constraint it moves is what a pipeline will take: the output arrives as rig animation a downstream tool can edit, not only as pixels, and the summary does not say whether code or weights are released.</p>
-          <div class="sources"><a href="https://research.nvidia.com/labs/par/projects/jca/">NVIDIA Research</a> &middot; <span class="via">via TLDR AI (Oct 23)</span></div>
-        </article>
+<details>
+          <summary>Earlier in this section (13)</summary>
 
-        <details>
-          <summary>Earlier in this section (12)</summary>
+          <article class="story" id="nvidia-jca">
+            <span class="when">2026-10-23</span>
+            <h4><a href="https://research.nvidia.com/labs/par/projects/jca/">NVIDIA&rsquo;s Joints, Camera, Action! generates video and matching 3D motion for any character rig from a text prompt</a></h4>
+            <p>NVIDIA introduced <strong>Joints, Camera, Action! (JCA)</strong>, which generates a video and synchronised 3D motion for an arbitrary character rig from a text prompt, with scene-aware motion, keyframe control and conversion in both directions between video and rig animation. The constraint it moves is what a pipeline will take: the output arrives as rig animation a downstream tool can edit, not only as pixels, and the summary does not say whether code or weights are released.</p>
+            <div class="sources"><a href="https://research.nvidia.com/labs/par/projects/jca/">NVIDIA Research</a> &middot; <span class="via">via TLDR AI (Oct 23)</span></div>
+          </article>
 
           <article class="story" id="google-playground">
             <span class="when">2026-10-08</span>
@@ -222,6 +231,7 @@
             <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
           </article>
         </details>
+      
       </section>
 
       <section class="topic-section" id="physical-ai-and-robotics">
@@ -803,6 +813,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-09</span><span class="label"><a href="#higgsfield-miracle">Higgsfield Miracle edits one object in a video while it plays, in private beta with a Claude MCP promised</a></span></li>
         <li><span class="date">2026-11-07</span><span class="label"><a href="#pacific-ai-continuous-risk-assessment">Pacific AI&rsquo;s Governor re-scores only the changed sections of an AI risk assessment when a law, policy, model or document changes</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#gemini-omni-1-2-flash">Gemini Omni 1.2 Flash generates 15-second clips at $0.07 a second for 720p, 30% cheaper, and edits a clip through chat</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#claude-vault-proteins">Anthropic&rsquo;s biology team used Claude to find vault-particle relatives across 29 bacterial groups and map a structure in days</a></span></li>

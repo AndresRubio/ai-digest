@@ -30,10 +30,11 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-11-09</div>
+      <div class="meta">Last updated: 2026-11-10</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 9 cycle adds a theorem. The <a href="#aaronson-ambainis-proof">Aaronson-Ambainis conjecture</a>, open since 2008 and central to when quantum computers can be exponentially faster than classical ones, was proved by a research system Physical Superintelligence built around instances of a non-public Anthropic model: a complete proof on the third day of the run, accepted by Lean, then twice improved on related problems. The Stanford group that settled a special case in August has read it and is writing an exposition for experts, and Scott Aaronson says proofs now arrive faster than humans can validate them, with the Lean certificates carrying the confidence. The section&rsquo;s provenance question is as open as ever: the model is unnamed and the system is PSI&rsquo;s, so the check confirms the theorem and says nothing about whose method it was. The machine-proof section is now seven results, four of them in Lean.</p>
         <p>The Nov 7 and 8 cycle is two readings of other people&rsquo;s work. Sebastian Raschka&rsquo;s <a href="#raschka-open-october">&ldquo;Open October&rdquo;</a> sorts ten open architecture releases from one month by attention and routing: grouped-query plus sliding-window attention is the default in Kolibri-1, Reflection Beam and Muse Spark Open, and the departures are Ling 3.1 Flash&rsquo;s Kimi Delta Attention with gated latent attention, Nemotron 3.5 Super VL&rsquo;s Mamba-2 layers with only eight attention layers, and Dory1.0&rsquo;s 4B looped transformer. AlphaSignal&rsquo;s deep dive on <a href="#latent-sparse-attention">Latent Sparse Attention</a> supplies the end-to-end numbers the arXiv summary lacked: time to first token 9.2x better for Qwen-3.8-27B and 2.2x for GLM-5.3-Flash at 10M tokens on eight H200s, RULER up for Qwen but down as much as eight points for GLM at two to five million tokens, and code under Apache 2.0 with an SGLang integration. The per-layer 72.4x of the paper and the end-to-end 9.2x of the serving run are the same result at two altitudes.</p>
         <p>The Nov 5 cycle has two papers that question a default and one repository. <a href="#you-dont-need-long-context">You don&rsquo;t need long context</a> reports that frontier models lose little or no accuracy when their context is compacted often, and notes that late tokens can cost up to 7&times; early ones. Balestriero and LeCun turn the Platonic Representation Hypothesis into a <a href="#platonic-representation-theorem">theorem for JEPAs</a>, with experiments in which good views need 42 times fewer samples than next-token prediction to reach the same alignment. Google DeepMind&rsquo;s <a href="#alphaevolve-repo">AlphaEvolve repository</a> pairs a minimal implementation with the code to verify its matrix-multiplication and other constructions.</p>
         <p>The Nov 2 to 4 cycle&rsquo;s most argued paper is about reading weights. <a href="#weight-space-programming">Sparks of Weight-Space Programming</a> has GPT-6 Astra naming a network&rsquo;s game from raw weights and lifting a small Qwen&rsquo;s MATH-500 from 7.9% to 48.1% by editing 0.016% of them; the edited checkpoint is now on Hugging Face with GSM8K from 13.8% to 67.1% and a re-run of MATH-500 at 51.0%. Simon Willison had Qwen 3.8 27B naming three of four games on a laptop, while Matthew Honnibal and Sean Goedecke objected to how the paper blends raw reading with tool-armed work. What survives so far is the no-tools identification, on very small networks.</p>
@@ -90,7 +91,7 @@
           <li><a href="#rl-on-agents">RL on agents <span class="n">4</span></a></li>
           <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">5</span></a></li>
           <li><a href="#mechanistic-interpretability">Mechanistic interpretability <span class="n">3</span></a></li>
-          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">6</span></a></li>
+          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">7</span></a></li>
           <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">4</span></a></li>
           <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
           <li><a href="#evaluate-then-act-decompositions">Evaluate-then-act decompositions <span class="n">3</span></a></li>
@@ -486,7 +487,15 @@
 
       <section class="topic-section" id="machine-produced-proof-and-its-provenance">
         <h3>Machine-produced proof and its provenance</h3>
-        <p class="lead">Six results a machine produced and someone other than the model checked: Lean for three proofs, a physicist for a nine-loop calculation, domain experts for a calculation toolkit, verification code for AlphaEvolve&rsquo;s constructions. Verification and attribution come apart here: a checker confirms a result and says nothing about whose method it was. Judge on publication order and disclosed training data.</p>
+        <p class="lead">Seven results a machine produced and someone other than the model checked: Lean for four proofs, a physicist for a nine-loop calculation, domain experts for a calculation toolkit, verification code for AlphaEvolve&rsquo;s constructions. Verification and attribution come apart here: a checker confirms a result and says nothing about whose method it was. Judge on publication order and disclosed training data.</p>
+
+        <article class="story" id="aaronson-ambainis-proof">
+          <span class="when">2026-11-06</span>
+          <h4><a href="https://psi.inc/research/aaronson-ambainis/">The Aaronson-Ambainis conjecture is proved in Lean by PSI&rsquo;s research system on a non-public Anthropic model</a></h4>
+          <p>Physical Superintelligence says a research system it built, running instances of a non-public Anthropic model on its own infrastructure, produced a proof of the <strong>Aaronson-Ambainis conjecture</strong>, open since 2008, which implies quantum computers are at most polynomially faster than classical ones on random inputs. The system had a complete proof on the <strong>third day of the run</strong> and Lean accepted it; set to related problems, it improved the result twice, with Lean accepting the final version, building on ideas of Lovett and Zhang and of Reimer. Blanc, Docter, Strassle and Tan at Stanford, who settled a special case in August, have read the proof, sent comments and are writing a shorter exposition.</p>
+          <p>Scott Aaronson&rsquo;s own post says open problems are now falling faster than humans can validate them and that the Lean certificates are what carry the confidence. The provenance question this section judges on is open in the usual way: the model is unnamed and the system is PSI&rsquo;s, so the check confirms the theorem and says nothing about whose method it was.</p>
+          <div class="sources"><a href="https://psi.inc/research/aaronson-ambainis/">PSI</a> &middot; <a href="https://scottaaronson.blog/?p=10295">Scott Aaronson</a> (commentary) &middot; <span class="via">via TLDR AI (Nov 9), TLDR (Nov 9)</span></div>
+        </article>
 
         <article class="story" id="alphaevolve-repo">
           <span class="when">2026-11-05</span>
@@ -503,16 +512,16 @@
           <div class="sources"><a href="https://arxiv.org/abs/2610.38174">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 1)</span></div>
         </article>
 
-        <article class="story" id="claude-shaped-science">
-          <span class="when">2026-10-02</span>
-          <h4><a href="https://www.anthropic.com/research/claude-shaped-science">&ldquo;Claude-shaped science&rdquo;: BootLoops came out technically correct and still needed domain experts to make it relevant</a></h4>
-          <p>Physicist Matthew Schwartz describes picking scientific problems whose bottleneck is coding and data parsing, and using Claude on them to build <strong>BootLoops</strong>, a toolkit for quantitative calculations across fields from ecology to population genetics. The finding he reports is the split this section records: the output was technically correct early, and making it scientifically relevant still took domain experts.</p>
-          <p><em>Updated Oct 12:</em> researchers have since released <strong>36 preprints</strong> produced with BootLoops across <strong>22 scientific fields</strong> &mdash; from dating sunspots to analysing government health policy and a medieval manuscript &mdash; using it to carry a shared mathematical structure from one field to problems in another.</p>
-          <div class="sources"><a href="https://www.anthropic.com/research/claude-shaped-science">Anthropic</a> &middot; <a href="https://www.science.org/content/article/problems-22-scientific-fields-had-solutions-hiding-plain-sight-ai-has-found-them">Science</a> &middot; <span class="via">via TLDR AI (Oct 2), TLDR (Oct 12)</span></div>
-        </article>
+<details>
+          <summary>Earlier in this section (4)</summary>
 
-        <details>
-          <summary>Earlier in this section (3)</summary>
+          <article class="story" id="claude-shaped-science">
+            <span class="when">2026-10-02</span>
+            <h4><a href="https://www.anthropic.com/research/claude-shaped-science">&ldquo;Claude-shaped science&rdquo;: BootLoops came out technically correct and still needed domain experts to make it relevant</a></h4>
+            <p>Physicist Matthew Schwartz describes picking scientific problems whose bottleneck is coding and data parsing, and using Claude on them to build <strong>BootLoops</strong>, a toolkit for quantitative calculations across fields from ecology to population genetics. The finding he reports is the split this section records: the output was technically correct early, and making it scientifically relevant still took domain experts.</p>
+            <p><em>Updated Oct 12:</em> researchers have since released <strong>36 preprints</strong> produced with BootLoops across <strong>22 scientific fields</strong> &mdash; from dating sunspots to analysing government health policy and a medieval manuscript &mdash; using it to carry a shared mathematical structure from one field to problems in another.</p>
+            <div class="sources"><a href="https://www.anthropic.com/research/claude-shaped-science">Anthropic</a> &middot; <a href="https://www.science.org/content/article/problems-22-scientific-fields-had-solutions-hiding-plain-sight-ai-has-found-them">Science</a> &middot; <span class="via">via TLDR AI (Oct 2), TLDR (Oct 12)</span></div>
+          </article>
 
           <article class="story" id="claude-nine-loops">
             <span class="when">2026-09-27</span>
@@ -538,6 +547,7 @@
             <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
           </article>
         </details>
+      
       </section>
 
       <section class="topic-section" id="verifiers-and-runtime-monitors">
@@ -625,6 +635,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-06</span><span class="label"><a href="#aaronson-ambainis-proof">The Aaronson-Ambainis conjecture is proved in Lean by PSI&rsquo;s research system on a non-public Anthropic model</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#you-dont-need-long-context">&ldquo;You don&rsquo;t need long context&rdquo;: with frequent compaction, frontier models lose little or no accuracy on long tasks</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#platonic-representation-theorem">Balestriero and LeCun prove a Platonic Representation Theorem for JEPAs; good views need 42&times; fewer samples than next-token prediction</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#alphaevolve-repo">Google DeepMind publishes an AlphaEvolve repository: a minimal implementation plus verification code for its discoveries</a></span></li>

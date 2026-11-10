@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-11-06</div>
+      <div class="meta">Last updated: 2026-11-10</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 9 addition is the first entry here with a mechanism for why large-scale RL falls over. <a href="#score-centering">Score centering</a>, by Marek and Ryabinin and explained by Cameron Wolfe, shows that when the sampler and the trainer disagree on token probabilities the expected gradient is nonzero even under a constant reward, so the trainer drifts toward the sampler and the error feeds back through every weight sync. Subtracting the expected score under the sampler at each prefix cancels that drift without the clipped importance ratios the usual fixes need, using the sampler&rsquo;s top 128 token probabilities. On Qwen3-30B-A3B-Base under the harshest sampler quantization it reached 30% training accuracy against 12% for truncated importance sampling and under 5% for the rest, and the authors recommend pairing it with importance sampling when rollouts are stale. Nathan Lambert says frontier labs already use it quietly, which is the paper&rsquo;s standing in one line.</p>
         <p>The Nov 5 addition is a claim about what pretraining needs as input. Cartesia says its newer <a href="#h-nets-raw-bytes">H-Nets</a>, which learn directly from raw bytes, match an open-source 3B Transformer with 10&times; less compute and data, in two posts dated Oct 28. The figure is Cartesia&rsquo;s own summary. Cognition&rsquo;s SWE-2 Flash, filed under <a href="model-releases.html#swe-2-flash">model releases</a>, is the cycle&rsquo;s other training note: a mid-training stage inserted before reinforcement learning, with the data mix chosen by how many tokens each candidate needed to reach a fixed validation loss.</p>
         <p>The Nov 4 addition is a budget figure for pre-training an image model. Linum trained its pixel-space <a href="#linum-p-jit-21k">P-JiT</a> text-to-image model for 660M samples on $21K of compute, with 4&times; fewer tokens per image and 11&times; faster convergence than its previous model. The figures are Linum&rsquo;s own, from a two-person lab, and the run is a step toward video models.</p>
         <p>The Nov 3 cycle has three entries and no scores among them, so what it adds is method. <a href="#compute-islands">Compute islands</a> argues a frontier run can span several smaller clusters of mixed generations and vendors, and names the cost itself: one compromised site can tamper with a model in ways that are hard to trace. <a href="#how-to-train-a-swarm">How to Train a Swarm</a> treats parallel agents as an incentive design problem. <a href="#teaching-qwen-why">Teaching Qwen Why</a> carries Anthropic&rsquo;s misalignment fine-tuning methods to new models, though the issue gives no effect size. The speed result from the same issue, <a href="infrastructure.html#weight-teleportation">weight teleportation</a>, is filed on the infrastructure page.</p>
         <p>The Oct 29 addition is a reward that needs no judge. Microsoft&rsquo;s <a href="#thinkingbox-database-graded-rl">ThinkingBox</a> scores business agents by running checks on the database&rsquo;s final state and feeds that to GRPO; Qwen3.8-27B went from 38 to 107 tasks solved on every one of 20 attempts, and the training code is public. The suite is the team&rsquo;s own, but a released environment with an executable reward is the reusable part this section judges on.</p>
-        <p>The Oct 28 addition gives the failure-mode section a continual-learning entry. <a href="#google-sleep-framework">Google&rsquo;s sleep framework</a> alternates a model&rsquo;s active interaction with offline consolidation that moves fragile short-term context into stable long-term parameters, and the authors report new facts acquired without catastrophic forgetting, long-context knowledge retained up to 10M tokens, and better complex reasoning. The claim is the authors&rsquo; own with no benchmark table in the issue, which keeps it in the same evidentiary bucket as the rest of that section.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 28 addition gives the failure-mode section a continual-learning entry. <a href="#google-sleep-framework">Google&rsquo;s sleep framework</a> alternates a model&rsquo;s active interaction with offline consolidation that moves fragile short-term context into stable long-term parameters, and the authors report new facts acquired without catastrophic forgetting, long-context knowledge retained up to 10M tokens, and better complex reasoning. The claim is the authors&rsquo; own with no benchmark table in the issue, which keeps it in the same evidentiary bucket as the rest of that section.</p>
           <p>The Oct 26 cycle added a fifth self-generated-data entry with the least human input yet: <a href="#google-on-policy-self-training">Google&rsquo;s on-policy self-training</a> starts from topic names alone, writes its own questions and privileged reasoning traces, and self-distills, with gains on text and VQA and no regression in untrained domains by the authors&rsquo; account. Like the rest of that section it is reported by the lab that built it. TLDR AI and AlphaSignal carried the paper on Oct 27 without adding a score, so the authors&rsquo; account is still the only one.</p>
           <p>The Oct 23 to 24 cycle added a distillation variant and a forgetting fix, both without numbers. Perplexity&rsquo;s <a href="#perplexity-jolt">JOLT</a> trains one model as its own teacher and student, adapting feedback to what the student can currently do, and reports gains across maths, coding and agentic tasks with no figure attached. <a href="#subspace-tuning">Subspace Tuning</a> confines each fine-tuning update to the bottom singular subspace so the principal directions, and what they encode, survive SFT.</p>
           <p>The Oct 16 addition is a frontier pre-training disclosure with a compute figure attached. Microsoft&rsquo;s <a href="#mai-base-2">MAI-Base-2</a> is a 2.8T-parameter MoE with 80B active trained on 16,000 GB200s in 38 days, which Microsoft says beat every open-weight model on held-out pre-training evaluations it does not name; the model is still in post-training and nothing is released, so the GPU count and the day count are what an outsider can hold onto, and the first such figures from a US lab on this page.</p>
@@ -79,7 +80,7 @@
           <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">3</span></a></li>
           <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">6</span></a></li>
           <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">6</span></a></li>
-          <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">3</span></a></li>
+          <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">4</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">9</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">5</span></a></li>
@@ -291,7 +292,15 @@
 
       <section class="topic-section" id="rl-algorithms-and-credit-assignment">
         <h3>RL algorithms &amp; credit assignment</h3>
-        <p class="lead">Three entries about the loss and the reward rather than the environment around them: one hands out partial credit while keeping the optimum fixed, one traces how the policy-gradient family reached its current shape, one designs incentives for parallel agents. Extract the structural claim from each, since none rests on a score.</p>
+        <p class="lead">Four entries about the loss and the reward rather than the environment: one hands out partial credit while keeping the optimum fixed, one traces how the policy-gradient family reached its current shape, one designs incentives for parallel agents, one cancels a mismatched sampler&rsquo;s drift. Extract the structural claim from each; only the last rests on a score.</p>
+
+        <article class="story" id="score-centering">
+          <span class="when">2026-11-09</span>
+          <h4><a href="https://arxiv.org/abs/2609.20807">Score centering removes training-inference drift from the policy gradient: 30% accuracy where truncated importance sampling gets 12%</a></h4>
+          <p>Martin Marek and Max Ryabinin&rsquo;s paper, explained by Cameron Wolfe, isolates why disaggregated RL destabilises: when the sampler and the trainer disagree on token probabilities, the expected gradient is nonzero even under a constant reward, so the trainer drifts toward the sampler and the error feeds back through every weight sync. <strong>Score centering</strong> subtracts the expected score under the sampler from each token&rsquo;s score, which cancels the drift at every prefix without the multiplicative importance ratios that need clipping; in practice it uses the sampler&rsquo;s top 128 token probabilities plus the remaining mass, and k of 32 was often enough.</p>
+          <p>On Qwen3-0.6B Countdown with an injected weight offset, int8 sampler quantization and 64-step staleness, score centering combined with truncated or masked importance sampling did best, and the authors recommend the combination whenever the trainer can move far between syncs. On Qwen3-30B-A3B-Base with Intellect-2 math under the most aggressive sampler quantization it reached <strong>30% training accuracy against 12%</strong> for truncated importance sampling and under 5% for the rest, while FP8 was stable even uncorrected. Nathan Lambert says several frontier labs quietly use the method.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2609.20807">arXiv</a> &middot; <a href="https://cameronrwolfe.substack.com/p/score-centering">Cameron Wolfe</a> (explainer) &middot; <span class="via">via Deep (Learning) Focus (Nov 9)</span></div>
+        </article>
 
         <article class="story" id="how-to-train-a-swarm">
           <span class="when">2026-11-03</span>
@@ -308,13 +317,17 @@
           <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="policy-gradient-reference">
-          <span class="when">2026-08-24</span>
-          <h4>A single reference traces RL for LLMs from the vanilla policy gradient to CISPO</h4>
-          <p>Cameron Wolfe published a standalone guide covering RL fundamentals, the full evolution of policy-gradient algorithms used to train LLMs, and current open research areas. The spine is the progression: VPG establishes the shape, REINFORCE makes it a Monte Carlo estimate with a baseline, PPO adds a learned critic plus importance ratios and clipping, GRPO drops the critic by comparing completions within a group, and DAPO, Dr. GRPO, GSPO, TIS and CISPO refine loss aggregation, reward normalization, batch selection, clipping and per-token versus per-sequence ratios.</p>
-          <p>The finding most likely to change practice sits in the advanced sections: <strong>on-policy RL is naturally robust to catastrophic forgetting where SFT is not</strong>, because on-policy updates stay near behaviour already plausible under the model &mdash; measured as low KL drift from the initial model, and correlated with reduced forgetting. If that holds, new capabilities can be added in sequential RL phases without the multi-task retraining that has been assumed necessary.</p>
-          <div class="sources"><span class="via">via Deep (Learning) Focus (Aug 24) &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="policy-gradient-reference">
+            <span class="when">2026-08-24</span>
+            <h4>A single reference traces RL for LLMs from the vanilla policy gradient to CISPO</h4>
+            <p>Cameron Wolfe published a standalone guide covering RL fundamentals, the full evolution of policy-gradient algorithms used to train LLMs, and current open research areas. The spine is the progression: VPG establishes the shape, REINFORCE makes it a Monte Carlo estimate with a baseline, PPO adds a learned critic plus importance ratios and clipping, GRPO drops the critic by comparing completions within a group, and DAPO, Dr. GRPO, GSPO, TIS and CISPO refine loss aggregation, reward normalization, batch selection, clipping and per-token versus per-sequence ratios.</p>
+            <p>The finding most likely to change practice sits in the advanced sections: <strong>on-policy RL is naturally robust to catastrophic forgetting where SFT is not</strong>, because on-policy updates stay near behaviour already plausible under the model &mdash; measured as low KL drift from the initial model, and correlated with reduced forgetting. If that holds, new capabilities can be added in sequential RL phases without the multi-task retraining that has been assumed necessary.</p>
+            <div class="sources"><span class="via">via Deep (Learning) Focus (Aug 24) &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="failure-driven-rl-environments">
@@ -573,6 +586,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-09</span><span class="label"><a href="#score-centering">Score centering removes training-inference drift from the policy gradient: 30% accuracy where truncated importance sampling gets 12%</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#h-nets-raw-bytes">Cartesia&rsquo;s newer H-Nets learn from raw bytes and match a 3B Transformer with 10&times; less compute and data</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#linum-p-jit-21k">Linum trains its pixel-space P-JiT text-to-image model for 660M samples on $21K of compute</a></span></li>
         <li><span class="date">2026-11-03</span><span class="label"><a href="#compute-islands">Compute islands: frontier training across smaller clusters, with integrity the stated risk</a></span></li>

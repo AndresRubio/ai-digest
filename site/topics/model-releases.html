@@ -30,16 +30,18 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-11-09</div>
+      <div class="meta">Last updated: 2026-11-10</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 9 cycle is two frontier releases at opposite ends of the price list. Anthropic&rsquo;s <a href="#claude-fable-5-2">Claude Fable 5.2 and Mythos 5.2</a> ship at $8/$40 per million tokens, 20% below 5.1, up to 30% faster, with a $16/$80 fast mode; Anthropic&rsquo;s table has 49.1% on FrontierCode 2.0 at xhigh effort, 74.6% on Terminal-Bench-Science and 41.3% on the Remote Labor Index, and claims Opus 5.5&rsquo;s best FrontierCode score at about half the cost per task. Meta&rsquo;s <a href="#muse-ember">Muse Ember</a> is the small-model entry at $0.10/$0.50, the same short-prompt price as Haiku 5.5 and GPT-6 Luna and 80 times below Fable 5.2, and Artificial Analysis puts it on the cost-per-task frontier of its whole leaderboard while ranking Fable 5.2 first on the same index.</p>
+        <p>Two measurements from outside the labs arrived with them. Simon Willison&rsquo;s max-effort run of Fable 5.2 returned nothing after 128,000 thinking tokens, the ceiling Opus 5.5 hit in September and one that Fable 5 and 5.1 cleared, and his six-level test of Ember found the high setting failing to return an SVG while quality did not track the dial. Underdog&rsquo;s <a href="#underdog-woof">Woof</a>, in the speech section, is a 31.7 MB text-to-speech model under a non-commercial licence that runs in a browser on WebGPU, with a 1.42% word error rate that is the maker&rsquo;s only figure.</p>
         <p>The Nov 6 cycle is one large open-weights promise and one vision model. Thinking Machines&rsquo; <a href="#inkling-2-small">Inkling 2 Small</a> is a 594B mixture-of-experts with 17B active that takes images and varies its thinking effort, shown iterating on websites, games and 3D designs from visual feedback. It launches closed through Tinker, with Apache 2.0 weights promised a week later once external safety testing is done, and no benchmark reaches the issue. That is the same sequence Kimi K3.1 Pro just completed and Hy4 is in the middle of: announce, then ship the weights. NVIDIA&rsquo;s <a href="#nvidia-vflash">VFlash</a> emits robot trajectories and 3D motion in parallel rather than token by token, with no figure attached; its sibling release, four open Cosmos 3 world models, is on the embodied page.</p>
         <p>The Nov 5 cycle is five new entries and one promise kept. OpenAI&rsquo;s <a href="#chatgpt-images-2-6">Images 2.6</a> generates 50% faster, adds GIF output and saved reference images, and again splits the API into a fast Flare model and a higher-quality Sunburst. Moonshot put the <a href="#kimi-k3-1-pro">Kimi K3.1 Pro</a> weights on Hugging Face under its own licence, so the 2.8T model promised for Nov 4 can now be downloaded, all 1.56 TB of it. Tencent&rsquo;s <a href="#tencent-hy4">Hy4</a> is at the stage Kimi just left: vision and computer use announced, weights and system cards due in the coming days.</p>
         <p>Two small coding models put the training recipe ahead of size, on their makers&rsquo; own tables. Ricursive&rsquo;s <a href="#ripple-65b-preview">Ripple-65B Preview</a>, a dense 65B model, scores 80.52 on TerminalBench 2.1 against 80.1 for the 501B Reflection Beam, for a stated $32M of total R&amp;D. Cognition&rsquo;s <a href="#swe-2-flash">SWE-2 Flash</a> adds a mid-training stage to Inkling-Small and edges past the far larger SWE-2 on FrontierCode 2.0 at a fifth of the price, while trailing it on Terminal-Bench 4.0. Perplexity&rsquo;s <a href="#perplexity-decisions-web-grounding">Decisions API</a> can now search the web first, which took its own current-facts benchmark from 51% to 86%, and The Batch filled in <a href="#gemini-4-carbon">Gemini 4 Carbon</a>&rsquo;s scorecard, including a 23% lower cost per task than Claude Opus 5.5.</p>
-        <p>The Nov 3 and 4 cycles brought one open-weight release, two audio products and detail on two entries. Deep Principle&rsquo;s <a href="#hydrogen-1-0">Hydrogen-1.0</a> post-trains GLM-5.3 into a 753B MIT-licensed science model with a 1M-token context, reporting 38.3% on FrontierScience-Research against 33.3% for GPT-6 Astra, and now links to its Hugging Face weights with an API at GLM-5.3 pricing. <a href="#hume-audio-decision">Hume&rsquo;s Audio Decision API</a> claims 82% against Gemini 3.8 Flash&rsquo;s 78% on Hume&rsquo;s own benchmark, behind a waitlist; <a href="#soniox-stt-v6">Soniox STT v6</a> adds agent text input and echo filtering with no figures. <a href="#embeddinggemma-2">EmbeddingGemma 2</a> gained its arXiv paper, which claims results ahead of models two to twelve times larger.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 3 and 4 cycles brought one open-weight release, two audio products and detail on two entries. Deep Principle&rsquo;s <a href="#hydrogen-1-0">Hydrogen-1.0</a> post-trains GLM-5.3 into a 753B MIT-licensed science model with a 1M-token context, reporting 38.3% on FrontierScience-Research against 33.3% for GPT-6 Astra, and now links to its Hugging Face weights with an API at GLM-5.3 pricing. <a href="#hume-audio-decision">Hume&rsquo;s Audio Decision API</a> claims 82% against Gemini 3.8 Flash&rsquo;s 78% on Hume&rsquo;s own benchmark, behind a waitlist; <a href="#soniox-stt-v6">Soniox STT v6</a> adds agent text input and echo filtering with no figures. <a href="#embeddinggemma-2">EmbeddingGemma 2</a> gained its arXiv paper, which claims results ahead of models two to twelve times larger.</p>
           <p>The Nov 2 cycle is mostly follow-through on releases announced earlier, and the biggest item is that <a href="#mistral-large-4">Mistral Large 4</a>&rsquo;s weights finally shipped. They are on Hugging Face in FP8 and NVFP4 with the full 1M context, under a licence that restricts offering the model as a service, and 2-bit GGUFs run on one Apple Silicon Ultra with 512 GB. The Oct 6 launch had promised the weights by the end of October. Mistral also says further RL lifted Terminal-Bench 4.0 from 28% to 41% and that the model now matches GLM-5.3 on Artificial Analysis&rsquo;s Coding Agent Index with 47% fewer tokens per task, while closed models still lead. Those are Mistral&rsquo;s figures, and the preview behind the earlier numbers was served while the RL run was still going. The through-line across the cycle is that vendor claims arrived with more detail attached: Google&rsquo;s <a href="#gemini-4-carbon">Gemini 4 Carbon</a> now has scores, NVIDIA&rsquo;s <a href="#nemotron-3-5-transcribe">Nemotron 3.5 Transcribe</a> has a size and an error rate, and <a href="#lfm3">LFM3</a> has the arithmetic behind its Qwen comparison. In nearly every case the source of the number is still the publisher, so the cycle adds precision and little independent checking.</p>
           <p>The detail on those earlier releases is specific enough to compare. MarkTechPost gives Carbon <strong>59</strong> on the Artificial Analysis Intelligence Index v5.0, 88.2% on SEC-bench Pro against GPT-6 Astra&rsquo;s 85.4%, and 0.0% attack success on Gray Swan indirect injection against Astra&rsquo;s 8.5%. Access widens from cyber defenders through the Fairwind Program&rsquo;s 650+ partners, the price rises to $4/$20 once the introductory period ends, and on the Coding Agent Index Claude Opus 5.5 still leads Carbon 62 to 59. Nemotron 3.5 Transcribe is a 30B hybrid Mamba-Transformer MoE with about 4B active, at 5.33% English word error rate on the Open ASR Leaderboard and 18.26% diarization error across 21 languages; it takes recorded audio only, not live streams, and NVIDIA reports 100 hours of audio in under three minutes on one RTX PRO 6000. LFM3 scores a 49.37 average across 29 self-reported benchmarks against 47.24 for Qwen3.5-9B, a two-point margin on a suite Liquid chose. Fish Audio now calls <a href="#drama-3">Drama 3</a> the top open-weight model on both Artificial Analysis Speech Arenas, with latency, price and licence still unstated. Mistral&rsquo;s <a href="#timestral">Timestral</a> gains its method: patches of 32 observations, a &ldquo;Decoupled Horizon Forecasting&rdquo; scheme that keeps history apart from future-step tokens, and support for covariates such as promotions or holidays, with the 5M model forecasting 96 steps from 2,048 observations in 17 ms on eight CPU threads.</p>
           <p>Four new entries came in from the Oct 29 and 30 issues, split between decision models, speech and video. Baseten&rsquo;s <a href="#baseten-joey-1">joey-1</a> is a 2B MIT-licensed decision model at $0.01 per million tokens and 20 ms P50, scoring 63.30 on the Jev Decision Index 0.4 public split: the best under 4B, and 8.94 points behind its 9B sibling <a href="#mammoth-1-elephant-1">Elephant-1</a>, all on Baseten&rsquo;s scoring. In speech, AssemblyAI&rsquo;s first TTS model, <a href="#assemblyai-tts-1">TTS-1</a>, streams at $15 per million characters with no concurrency tiers and hosting in the US or EU only, and AssemblyAI says it ties ElevenLabs v4 on entity accuracy at under a fifth of the price. Edge0&rsquo;s <a href="#edge0-audio8-tts-realistic">Audio8-TTS-Realistic</a> is a 0.6B Apache 2.0 voice-cloning model covering 23 languages at 4.86% average CV3 error, trained with a GRPO stage driven by a learned realism critic. Pika&rsquo;s <a href="#pika-h3-flex">H3 Flex</a> takes up to 12 reference inputs, exports five audio stems and renders up to 4K, and shipped with no size, price or comparison. These four share little beyond the date. The two TTS entries do share the speech section&rsquo;s axes of price and language coverage, and each rests on a vendor-run comparison.</p>
@@ -111,7 +113,7 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">28</span></a></li>
+          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">30</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">19</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">23</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">9</span></a></li>
@@ -119,7 +121,7 @@
           <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">29</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">39</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">40</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">5</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">9</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">2</span></a></li>
@@ -132,6 +134,22 @@
         <h3>Frontier proprietary models</h3>
         <p class="lead">Anthropic&rsquo;s Claude line and OpenAI&rsquo;s GPT line set the pace, with SpaceXAI, Google, Meta and Microsoft pricing against them. A 1M-token context is table stakes here. Almost every figure below is vendor-reported on a harness nobody outside the lab can run, so judge entries on what an outsider could check.</p>
 
+        <article class="story" id="muse-ember">
+          <span class="when">2026-11-09</span>
+          <h4><a href="https://research.meta.ai/blog/muse-ember">Muse Ember is Meta&rsquo;s $0.10/$0.50 small model, on the Artificial Analysis cost-per-task frontier</a></h4>
+          <p>Meta released <strong>Muse Ember</strong>, its smallest model, aimed at the work agents repeat all day: tool calls, coding subtasks, routing, extraction and long-document parsing. It lists at <strong>$0.10 input / $0.50 output per 1M tokens</strong> on the Meta Model API, the same short-prompt price as Claude Haiku 5.5 and GPT-6 Luna and 80&times; below Fable 5.2, takes up to a million input tokens, and has six reasoning levels from minimal to max. Meta&rsquo;s table puts it at <strong>37.8 on AutomationBench</strong> against 13.9 for Haiku 5.5 and 20.2 for Luna, 40.9 on Terminal-Bench 4.0 against 39.2 and 16.4, and 36 on the Artificial Analysis Index, level with Haiku, which it says it matches at about a third of the cost per task.</p>
+          <p>Artificial Analysis places it on the intelligence-per-cost frontier of its whole leaderboard, the stronger claim because it is not Meta&rsquo;s. Simon Willison notes the per-token price rises past a length threshold, as Luna&rsquo;s and Haiku&rsquo;s do, and in his six-level pelican test the high setting failed to return a full SVG while quality did not track the effort dial. Cloudflare&rsquo;s 30% faster tail latency is a partner quote inside Meta&rsquo;s own post.</p>
+          <div class="sources"><a href="https://research.meta.ai/blog/muse-ember">Meta</a> &middot; <span class="via">via Simon Willison (Nov 10)</span></div>
+        </article>
+
+        <article class="story" id="claude-fable-5-2">
+          <span class="when">2026-11-09</span>
+          <h4><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Claude Fable 5.2 and Mythos 5.2 ship at $8/$40, 20% below 5.1, with 49.1% on FrontierCode 2.0</a></h4>
+          <p>Anthropic released <strong>Claude Fable 5.2</strong> and <strong>Mythos 5.2</strong>, one underlying model: Fable carries the cyber and biology safeguards that let it go to everyone, Mythos goes to organisations vetted through the Life Sciences and Cyber Verification programmes. List price falls to <strong>$8 input / $40 output per 1M tokens</strong> from Fable 5.1&rsquo;s $10/$50, output is up to 30% faster, and a fast mode at $16/$80 claims up to 2.5&times; the token rate. Anthropic&rsquo;s table has Fable 5.2 at <strong>49.1% on FrontierCode 2.0</strong> at xhigh effort against 45.5% for Opus 5.5 and 42.8% for GPT-6 Astra, 74.6% on Terminal-Bench-Science 0.1 against 52.6% for 5.1, 41.3% on the Remote Labor Index against 17.9%, and 64.9% on its internal RoboDojo Sim against 27.6%; Mythos 5.2 scores 76.3% on CyScenarioBench and 89.6% on CVE rediscovery.</p>
+          <p>The cost claims are the ones worth checking: at high effort it matches Opus 5.5&rsquo;s best FrontierCode score for about half the cost per task, and at low effort it matches Opus on Humanity&rsquo;s Last Exam for under a tenth. Every figure is Anthropic&rsquo;s, with safeguards on and each model at its highest effort. Simon Willison&rsquo;s first run found <strong>max effort returning nothing after 128,000 thinking tokens</strong> on an SVG prompt, the ceiling Opus 5.5 hit in September and one Fable 5 and 5.1 cleared, while Artificial Analysis ranks the model first. Anthropic&rsquo;s prompting guide adds a measured prompt effect: told the codebase is its own, the model merged repeated code in about half of small coding tasks, under a tenth otherwise.</p>
+          <div class="sources"><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Anthropic</a> &middot; <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2">Prompting guide</a> &middot; <a href="https://artificialanalysis.ai/models/claude-fable-5-2">Artificial Analysis</a> &middot; <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.31">llm-anthropic 0.31</a> &middot; <span class="via">via Simon Willison (Nov 10)</span></div>
+        </article>
+
         <article class="story" id="gemini-4-carbon">
           <span class="when">2026-10-29</span>
           <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/">Gemini 4 Carbon goes to cyber defenders first, at Argon&rsquo;s $2/$10 price</a></h4>
@@ -142,23 +160,23 @@
           <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/">Google</a> &middot; <a href="https://www.marktechpost.com/2026/10/28/google-deepmind-gemini-4-carbon-frontier-model/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29), Forward Future (Oct 29), MarkTechPost (Oct 30), The Batch (Nov 6)</span></div>
         </article>
 
-        <article class="story" id="gpt-6-1-terra">
-          <span class="when">2026-10-27</span>
-          <h4><a href="https://openai.com/index/introducing-gpt-6-1-terra/">GPT-6.1 Terra matches GPT-6 Astra on agentic tasks at a tenth of the token price, at $1/$5 per million tokens</a></h4>
-          <p>OpenAI released <strong>GPT-6.1 Terra</strong>, a reasoning model for high-volume visual and computer-use work that takes text and images and returns text, priced at <strong>$1 per million input tokens and $5 per million output</strong>, half the rate of GPT-6.1 Sol. OpenAI says it matches GPT-6 Astra on agentic tasks at one-tenth the token price and finishes more than <strong>3&times; faster</strong>, and that at medium effort it scores 15 points above GPT-5.6 Terra on professional computer-use tasks at about a third of the cost.</p>
-          <p>AlphaSignal reports its Terminal-Bench 4.0 score rising from 21.5% to <strong>50.3%</strong> over its predecessor. Every figure is OpenAI&rsquo;s own, and OpenAI still recommends Sol or Astra for heavy coding and deep research.</p>
-          <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-1-terra/">OpenAI</a> &middot; <a href="https://developers.openai.com/api/docs/models/gpt-6.1-terra">OpenAI API docs</a> &middot; <span class="via">via TLDR AI (Oct 27), AlphaSignal (Oct 27), The Code (Oct 27), Forward Future (Oct 27)</span></div>
-        </article>
+<details>
+          <summary>Earlier in this section (27)</summary>
 
-        <article class="story" id="mirendil-fern">
-          <span class="when">2026-10-27</span>
-          <h4><a href="https://mirendil.com/news/introducing-fern/">Mirendil&rsquo;s first model, Fern, takes up to 10 million tokens of context for high-volume agentic work</a></h4>
-          <p>Mirendil introduced <strong>Fern</strong>, its first LLM, with a context window of up to <strong>10 million tokens</strong> and a stated specialism in high-volume agentic tasks. The issue gives no benchmark, price or weights status, so the context length is the one checkable claim, and how much of that window the model can actually use is the figure still missing.</p>
-          <div class="sources"><a href="https://mirendil.com/news/introducing-fern/">Mirendil</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
-        </article>
+          <article class="story" id="gpt-6-1-terra">
+            <span class="when">2026-10-27</span>
+            <h4><a href="https://openai.com/index/introducing-gpt-6-1-terra/">GPT-6.1 Terra matches GPT-6 Astra on agentic tasks at a tenth of the token price, at $1/$5 per million tokens</a></h4>
+            <p>OpenAI released <strong>GPT-6.1 Terra</strong>, a reasoning model for high-volume visual and computer-use work that takes text and images and returns text, priced at <strong>$1 per million input tokens and $5 per million output</strong>, half the rate of GPT-6.1 Sol. OpenAI says it matches GPT-6 Astra on agentic tasks at one-tenth the token price and finishes more than <strong>3&times; faster</strong>, and that at medium effort it scores 15 points above GPT-5.6 Terra on professional computer-use tasks at about a third of the cost.</p>
+            <p>AlphaSignal reports its Terminal-Bench 4.0 score rising from 21.5% to <strong>50.3%</strong> over its predecessor. Every figure is OpenAI&rsquo;s own, and OpenAI still recommends Sol or Astra for heavy coding and deep research.</p>
+            <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-1-terra/">OpenAI</a> &middot; <a href="https://developers.openai.com/api/docs/models/gpt-6.1-terra">OpenAI API docs</a> &middot; <span class="via">via TLDR AI (Oct 27), AlphaSignal (Oct 27), The Code (Oct 27), Forward Future (Oct 27)</span></div>
+          </article>
 
-        <details>
-          <summary>Earlier in this section (25)</summary>
+          <article class="story" id="mirendil-fern">
+            <span class="when">2026-10-27</span>
+            <h4><a href="https://mirendil.com/news/introducing-fern/">Mirendil&rsquo;s first model, Fern, takes up to 10 million tokens of context for high-volume agentic work</a></h4>
+            <p>Mirendil introduced <strong>Fern</strong>, its first LLM, with a context window of up to <strong>10 million tokens</strong> and a stated specialism in high-volume agentic tasks. The issue gives no benchmark, price or weights status, so the context length is the one checkable claim, and how much of that window the model can actually use is the figure still missing.</p>
+            <div class="sources"><a href="https://mirendil.com/news/introducing-fern/">Mirendil</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
+          </article>
 
           <article class="story" id="muse-wonder">
             <span class="when">2026-10-13</span>
@@ -362,6 +380,8 @@
             <div class="sources"><span class="via">via Anthropic email announcement &mdash; no public URL given</span></div>
           </article>
         </details>
+      
+      
       </section>
 
       <section class="topic-section" id="open-efficient-frontier-challengers">
@@ -1325,6 +1345,14 @@
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
 
+        <article class="story" id="underdog-woof">
+          <span class="when">2026-11-05</span>
+          <h4><a href="https://x.com/UnderdogAI/status/2118412882492953009">Underdog Woof is a 31.7 MB text-to-speech model that runs in the browser on WebGPU</a></h4>
+          <p>Underdog released <strong>Woof</strong>, a text-to-speech model of <strong>31.7 MB</strong> that runs in a browser tab on WebGPU, on a phone or a watch, with no server, and published the weights under a CC BY-NC 4.0 licence. The announcement claims a 1.42% word error rate on its output, calls the model about 1,000&times; smaller than the leading voice models, and demonstrates it with a browser game in which every voice is Woof and that works offline.</p>
+          <p>The size and the licence are checkable; the quality figure is the maker&rsquo;s single number with no benchmark named, and the non-commercial licence keeps it out of products. The X post is the only public page.</p>
+          <div class="sources"><a href="https://x.com/UnderdogAI/status/2118412882492953009">Underdog (X post)</a> &middot; <span class="via">via Forward Future (Nov 9)</span></div>
+        </article>
+
         <article class="story" id="soniox-stt-v6">
           <span class="when">2026-11-03</span>
           <h4><a href="https://www.marktechpost.com/2026/11/03/soniox-stt-v6-agent-text-input-echo-cancellation/">Soniox STT v6 adds agent text input and echo filtering for voice agents</a></h4>
@@ -1339,16 +1367,16 @@
           <div class="sources"><a href="https://www.hume.ai/products/decision-model-api">Hume</a> &middot; <span class="via">via The Code (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="nemotron-3-5-transcribe">
-          <span class="when">2026-10-29</span>
-          <h4><a href="https://huggingface.co/blog/nvidia/nemotron-transcribe-granary">NVIDIA Nemotron 3.5 Transcribe: open-weight transcription, translation and speaker attribution in up to 40 languages</a></h4>
-          <p>NVIDIA released <strong>Nemotron 3.5 Transcribe</strong>, an open-weight model for multilingual transcription, translation, speaker attribution and audio Q&amp;A in up to <strong>40 languages</strong>, and says it ranks first on several transcription and speaker-attribution leaderboards. <strong>Granary v2</strong> ships beside it as reusable data pipelines and fine-tuning recipes for specialised vocabularies. The leaderboard claim is NVIDIA&rsquo;s, and neither issue gives a word error rate or a price.</p>
-          <p><em>Updated Nov 2:</em> the shape is a <strong>30B</strong> hybrid Mamba-Transformer MoE with about <strong>4B active</strong>, at <strong>5.33%</strong> English word error rate on the Open ASR Leaderboard and 18.26% diarization error across 21 languages, translating 31 languages and labelling speakers in 13. NVIDIA reports 100 hours of audio in under three minutes on one RTX PRO 6000 with a forthcoming NVFP4 build, Granary v2 holds 463,062 hours across 48 languages, and the model takes recorded audio only, not live streams.</p>
-          <div class="sources"><a href="https://huggingface.co/blog/nvidia/nemotron-transcribe-granary">Hugging Face blog</a> &middot; <a href="https://www.marktechpost.com/2026/10/28/nvidia-nemotron-3-5-transcribe-open-speech-llm/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 29), AlphaSignal (Oct 29), MarkTechPost (Oct 30), AlphaSignal (Oct 30)</span></div>
-        </article>
+<details>
+          <summary>Earlier in this section (37)</summary>
 
-        <details>
-          <summary>Earlier in this section (36)</summary>
+          <article class="story" id="nemotron-3-5-transcribe">
+            <span class="when">2026-10-29</span>
+            <h4><a href="https://huggingface.co/blog/nvidia/nemotron-transcribe-granary">NVIDIA Nemotron 3.5 Transcribe: open-weight transcription, translation and speaker attribution in up to 40 languages</a></h4>
+            <p>NVIDIA released <strong>Nemotron 3.5 Transcribe</strong>, an open-weight model for multilingual transcription, translation, speaker attribution and audio Q&amp;A in up to <strong>40 languages</strong>, and says it ranks first on several transcription and speaker-attribution leaderboards. <strong>Granary v2</strong> ships beside it as reusable data pipelines and fine-tuning recipes for specialised vocabularies. The leaderboard claim is NVIDIA&rsquo;s, and neither issue gives a word error rate or a price.</p>
+            <p><em>Updated Nov 2:</em> the shape is a <strong>30B</strong> hybrid Mamba-Transformer MoE with about <strong>4B active</strong>, at <strong>5.33%</strong> English word error rate on the Open ASR Leaderboard and 18.26% diarization error across 21 languages, translating 31 languages and labelling speakers in 13. NVIDIA reports 100 hours of audio in under three minutes on one RTX PRO 6000 with a forthcoming NVFP4 build, Granary v2 holds 463,062 hours across 48 languages, and the model takes recorded audio only, not live streams.</p>
+            <div class="sources"><a href="https://huggingface.co/blog/nvidia/nemotron-transcribe-granary">Hugging Face blog</a> &middot; <a href="https://www.marktechpost.com/2026/10/28/nvidia-nemotron-3-5-transcribe-open-speech-llm/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 29), AlphaSignal (Oct 29), MarkTechPost (Oct 30), AlphaSignal (Oct 30)</span></div>
+          </article>
 
           <article class="story" id="assemblyai-tts-1">
             <span class="when">2026-10-29</span>
@@ -1625,6 +1653,7 @@
             <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
           </article>
         </details>
+      
       </section>
 
       <section class="topic-section" id="video-omni-modal-generation">
@@ -1843,8 +1872,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-09</span><span class="label"><a href="#muse-ember">Muse Ember is Meta&rsquo;s $0.10/$0.50 small model, on the Artificial Analysis cost-per-task frontier</a></span></li>
+        <li><span class="date">2026-11-09</span><span class="label"><a href="#claude-fable-5-2">Claude Fable 5.2 and Mythos 5.2 ship at $8/$40, 20% below 5.1, with 49.1% on FrontierCode 2.0</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#inkling-2-small">Thinking Machines&rsquo; Inkling 2 Small is a 594B MoE with 17B active that takes images, Apache 2.0 weights promised a week after launch</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#nvidia-vflash">NVIDIA&rsquo;s VFlash predicts robot trajectories and 3D motion in parallel instead of token by token</a></span></li>
+        <li><span class="date">2026-11-05</span><span class="label"><a href="#underdog-woof">Underdog Woof is a 31.7 MB text-to-speech model that runs in the browser on WebGPU</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#ripple-65b-preview">Ricursive&rsquo;s Ripple-65B Preview, a dense 65B open-weight model, scores 80.52 on TerminalBench 2.1 for $32M of total R&amp;D</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#swe-2-flash">Cognition&rsquo;s SWE-2 Flash mid-trains Inkling-Small before RL and runs at 3&times; SWE-2&rsquo;s speed for a fifth of the price</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#tencent-hy4">Tencent&rsquo;s Hy4 adds vision and computer use; weights and system cards are promised in the coming days</a></span></li>

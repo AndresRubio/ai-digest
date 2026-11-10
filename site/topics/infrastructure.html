@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-09</div>
+      <div class="meta">Last updated: 2026-11-10</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 6 cycle, read on Nov 9, adds the router thread&rsquo;s largest product. OpenRouter rebuilt its <a href="#openrouter-auto-router-v2">Auto Router</a> on eleven per-request factors plus live price, provider health and cache state, picking only from models a customer&rsquo;s governance allows, and added Auto Code for coding harnesses; its own benchmarks say up to 4&times; the old router, a routing step of 0.65 s at p90 against 1.96 s, and Auto Code level with Claude Opus 5.5 at 74% less per task. The routing reasons now show in the chat panel and the API, and OpenRouter raised Auto&rsquo;s cost tier back up because the cheapest models had crowded out stronger ones, the first router here to say its own optimiser drifted. Every figure is OpenRouter&rsquo;s, measured on the 2.5 trillion tokens a month it carries.</p>
         <p>The Nov 6 cycle adds one reference. Hugging Face published <a href="#moe-training-handbook">The Ultimate MoE Training Handbook</a> as a Space, a guide to training mixture-of-experts models; the issue that carried it says only that it is comprehensive, so its coverage is to be read from the handbook. It joins the training-side thread where every other entry is a measured gain quoted by its authors, as the document that explains the machinery those gains are made on.</p>
         <p>The Nov 5 cycle has one compiler, one build-out and one optimization that was rolled back. <a href="#together-compiler">Together Compiler</a> has agents re-optimize the inference engine as traffic shifts, using an engine that hot-reloads candidates where a restart costs tens of minutes; Together reports up to 2.6&times; higher throughput within a day and 1,205 tokens per second on DeepSeek v4.1-Flash. SemiAnalysis counts <a href="#spacex-13gw-buildout">3.6 GW under construction</a> at SpaceX sites against a 2027 target raised to about 13 GW. Apify&rsquo;s MCP team <a href="#apify-toon-removal">removed TOON</a> after 30 days in production: the tools it shrank received 0.07% of calls, and the busiest payload cost 11.7% more tokens. Asking for three fields where the agent used to get sixty cut that payload 98.8%.</p>
         <p>The Nov 4 cycle is three sets of sums on what inference costs once someone looks past the list price. <a href="#revolut-self-hosted-glm">Revolut</a> says self-hosting GLM-5.3 on 56 Nvidia B200 GPUs cut AI coding inference costs about 90% across roughly 2,000 engineers, at $0.30 per million tokens on the earlier GLM-5.1. <a href="#hadley-wickham-token-cost">Hadley Wickham</a> prices a self-hosted Kimi K3 server at about $0.25 per million tokens if it runs at 75% utilisation. <a href="#max-woolf-llm-price-cuts">Max Woolf</a> puts cache reads at 96% to 99% of agentic coding spend, which is why Fable 5.1&rsquo;s 75% cache-read cut matters more than its unchanged list price. All three are the author&rsquo;s own arithmetic.</p>
         <p>Two releases sit beside the sums. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco-coder">GSQ-RCO Coder</a> drops half of DeepSeek-V4.1-Flash&rsquo;s experts to store the transformer in 72.1 GB and keeps 94.8% of the base model&rsquo;s SWE-bench Verified score, accepting losses outside code. Baseten announced <a href="#baseten-grid-sandboxes-loops">Grid, Sandboxes and Loops</a>, with Loops fine-tuning now generally available and no prices in the summary. The Oct 26 <a href="#gpu-unlock">gpu-unlock</a> entry gained its repository link and its mechanism: two hardware registers rewritten before the driver loads.</p>
-        <p>The Nov 3 cycle is two transfers that got smaller. <a href="#claude-message-threads">Claude Message Threads</a> stop a client resending its whole conversation on every turn: a coding agent&rsquo;s request of about 800 KB falls to 1.8 KB, and median time to first token drops about 35% on requests of 500K to 1M tokens, while token usage and rates stay the same. The cache section&rsquo;s usual question is what gets re-read and at which rate; this feature leaves that alone and removes the upload. Threads expire five minutes after the last request, so clients still need their own copy of the history. <a href="#weight-teleportation">Weight Teleportation</a> does the same for RL training, compressing the sync from trainers to samplers so the pause stays under 0.23 seconds, on the authors&rsquo; own numbers.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 3 cycle is two transfers that got smaller. <a href="#claude-message-threads">Claude Message Threads</a> stop a client resending its whole conversation on every turn: a coding agent&rsquo;s request of about 800 KB falls to 1.8 KB, and median time to first token drops about 35% on requests of 500K to 1M tokens, while token usage and rates stay the same. The cache section&rsquo;s usual question is what gets re-read and at which rate; this feature leaves that alone and removes the upload. Threads expire five minutes after the last request, so clients still need their own copy of the history. <a href="#weight-teleportation">Weight Teleportation</a> does the same for RL training, compressing the sync from trainers to samplers so the pause stays under 0.23 seconds, on the authors&rsquo; own numbers.</p>
           <p>The Nov 2 cycle is two speed results from the Oct 28 and 29 issues and one satellite update, sharing the question of how far a vendor&rsquo;s speedup travels past the setup it was measured on. <a href="#flashmap">FlashMap</a>, from researchers at Polymathic AI, Princeton, USC ISI, NYU and the Flatiron Institute, replaces the discrete diffusion drafter in speculative decoding with a continuous flow map: a 0.5B drafter writes a 16-token block in one forward pass. On Qwen3-8B it reaches up to 6.14&times; lossless speedup on GSM8K and averages about 7% above a retrained DFlash. Drafters for Qwen3-8B and Qwen3-4B are Apache 2.0 with vLLM and SGLang plugins, but the numbers come from one H200 at concurrency 1, which flatters speculative decoding relative to a loaded server. <a href="#prime-mega-moe-backward">Prime Intellect</a> added a backward pass to DeepSeek&rsquo;s fused Mega MoE kernel so it works for training as well as inference, and Qwen3 MoE training steps in prime-rl run up to 34% faster, or 55% faster than TorchTitan, on Prime Intellect&rsquo;s own measurements. Neither entry has an outside replication yet, and the two results sit at opposite ends of the serving stack: FlashMap changes how tokens are drafted at inference time, while the Mega MoE backward pass changes what a training step costs.</p>
           <p>The satellite is the update. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> test craft, launched October 1 with four TPUs on about a kilowatt of solar, is running: Google ran Gemma 4 on one of the four TPUs and relayed a haiku back through Svalbard. TechCrunch reports the chip can currently run for about 20 minutes at a time. Thermal and radiation tests come next, ahead of a planned pair of interconnected satellites in 2027, so the orbital data centre is still at the stage of showing that one chip can answer one prompt.</p>
           <p>The Oct 29 addition put agents on the serving bill itself. Decagon&rsquo;s <a href="#decagon-autoresearch-inference">AutoResearch</a> agents diagnose its inference bottlenecks, test changes against replayed production traffic and report up to 2.5&times; more throughput inside the latency budget, from quantization, scheduling, engine patches and speculative decoding. Each change still waits for a human to approve it, and the figure comes from Decagon&rsquo;s own traffic with no baseline published.</p>
@@ -113,7 +114,7 @@
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">13</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">5</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
-          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">17</span></a></li>
+          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">18</span></a></li>
           <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">7</span></a></li>
           <li><a href="#tokenization-throughput">Tokenization throughput <span class="n">1</span></a></li>
           <li><a href="#gpu-programming-references">GPU programming references <span class="n">1</span></a></li>
@@ -1066,6 +1067,14 @@
         <h3>Enterprise deployment patterns</h3>
         <p class="lead">An AI bill is engineered down rather than negotiated down. Routing, a gateway that can refuse, an hour-long cache and a cheaper tier appear here, beside agents that generate their own retries and quintuple an invoice. Under them sit the deployment choices (self-host, call, or call a host that cannot read the request) and what each hop costs in latency.</p>
 
+        <article class="story" id="openrouter-auto-router-v2">
+          <span class="when">2026-11-06</span>
+          <h4><a href="https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/">OpenRouter&rsquo;s rebuilt Auto Router claims up to 4&times; on benchmarks, and Auto Code matches Opus 5.5 at 74% less per task</a></h4>
+          <p>OpenRouter rebuilt <strong>Auto Router</strong> after three years and added <strong>Auto Code</strong>, a router tuned for coding harnesses. Both weigh eleven factors about each request together with live pricing, provider health and cache status, and pick only from the models a customer&rsquo;s governance allows, including zero-retention rules, allowed-model lists and bring-your-own keys. OpenRouter says the new router beats the old by <strong>up to 4&times;</strong> depending on benchmark, with a routing step 3&times; faster at p90, 0.65 s against 1.96 s, in a live test, and that across its five benchmarks Auto Code scores in line with Claude Opus 5.5 at <strong>74% less per task</strong>.</p>
+          <p>The routing reasons are now visible: a panel in the chatroom explains each choice, the same metadata comes back through the API, and each model page shows the live routing mix. OpenRouter also raised Auto&rsquo;s cost tier back up because the cheapest models had crowded out stronger ones, with a low setting to restore the old behaviour, which is the first router here to say its own optimiser drifted. The figures are OpenRouter&rsquo;s, measured against the 2.5 trillion tokens a month it carries.</p>
+          <div class="sources"><a href="https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/">OpenRouter</a> &middot; <span class="via">via TLDR AI (Nov 9)</span></div>
+        </article>
+
         <article class="story" id="baseten-grid-sandboxes-loops">
           <span class="when">2026-11-04</span>
           <h4><a href="https://www.baseten.co/blog/the-building-blocks-of-the-open-frontier">Baseten adds Grid routing and VM-isolated Sandboxes, and takes Loops fine-tuning to general availability</a></h4>
@@ -1082,16 +1091,16 @@
           <div class="sources"><a href="https://substack.hadley.nz/p/how-much-do-tokens-really-cost">Hadley Wickham</a> &middot; <span class="via">via TLDR AI (Nov 4), TLDR (Nov 4)</span></div>
         </article>
 
-        <article class="story" id="revolut-self-hosted-glm">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345">Revolut cuts AI coding inference costs about 90% by self-hosting GLM-5.3 on 56 Nvidia B200 GPUs</a></h4>
-          <p>Revolut&rsquo;s ops and infrastructure lead David Abitbol said self-hosted models are now the default for roughly <strong>2,000 engineers</strong>, cutting AI coding inference costs by about <strong>90%</strong> in under a year. It started on GLM-5.1 and now serves <strong>GLM-5.3 on 56 Nvidia B200 GPUs</strong>; at $0.30 per million input or output tokens, self-hosting GLM-5.1 cost about a tenth of Codex or Claude Code.</p>
-          <p>The figures are Revolut&rsquo;s own, from a conference talk: a 60% improvement in coding time and 70% in lead time after the rollout, with strict per-engineer budget limits from launch.</p>
-          <div class="sources"><a href="https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345">The Register</a> &middot; <span class="via">via TLDR (Nov 4), The Code (Nov 4)</span></div>
-        </article>
+<details>
+          <summary>Earlier in this section (15)</summary>
 
-        <details>
-          <summary>Earlier in this section (14)</summary>
+          <article class="story" id="revolut-self-hosted-glm">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345">Revolut cuts AI coding inference costs about 90% by self-hosting GLM-5.3 on 56 Nvidia B200 GPUs</a></h4>
+            <p>Revolut&rsquo;s ops and infrastructure lead David Abitbol said self-hosted models are now the default for roughly <strong>2,000 engineers</strong>, cutting AI coding inference costs by about <strong>90%</strong> in under a year. It started on GLM-5.1 and now serves <strong>GLM-5.3 on 56 Nvidia B200 GPUs</strong>; at $0.30 per million input or output tokens, self-hosting GLM-5.1 cost about a tenth of Codex or Claude Code.</p>
+            <p>The figures are Revolut&rsquo;s own, from a conference talk: a 60% improvement in coding time and 70% in lead time after the rollout, with strict per-engineer budget limits from launch.</p>
+            <div class="sources"><a href="https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345">The Register</a> &middot; <span class="via">via TLDR (Nov 4), The Code (Nov 4)</span></div>
+          </article>
 
           <article class="story" id="decagon-autoresearch-inference">
             <span class="when">2026-10-29</span>
@@ -1201,6 +1210,7 @@
             <div class="sources"><span class="via">via Anthropic email announcement &mdash; no public URL given</span></div>
           </article>
         </details>
+      
       </section>
 
       <section class="topic-section" id="moe-training-infrastructure">
@@ -1292,6 +1302,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-06</span><span class="label"><a href="#openrouter-auto-router-v2">OpenRouter&rsquo;s rebuilt Auto Router claims up to 4&times; on benchmarks, and Auto Code matches Opus 5.5 at 74% less per task</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#moe-training-handbook">Hugging Face publishes &ldquo;The Ultimate MoE Training Handbook&rdquo; as a Space</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#apify-toon-removal">Apify added TOON to its MCP server and removed it after 30 days: its busiest payload cost 11.7% more tokens</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#together-compiler">Together Compiler has agents re-optimize the inference engine as traffic drifts, reaching up to 2.6&times; higher throughput in under a day</a></span></li>

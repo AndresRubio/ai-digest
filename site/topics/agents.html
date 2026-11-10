@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-06</div>
+      <div class="meta">Last updated: 2026-11-10</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 6 to 9 cycle is three entries about what an agent remembers, whom it trusts and what it may touch. Anthropic&rsquo;s <a href="#anthropic-agent-memory-components">agent-memory post</a> shows what judgment about salience looks like in a memory folder: 10,000 steps into Pok&eacute;mon Red, Sonnet 3.7 had written 413 files for one badge and Fable 5 nine files for four, and a dreaming pass caught a wrong map note against the transcript after it had sent Claude off a ledge three times. A rule of &ldquo;record only failures&rdquo; cost Opus 5 most of its gain, so the finding is to say what memory is for and not how to use it.</p>
+        <p><a href="#project-eve">Project EVE</a> put Claude in EVE Online&rsquo;s market, where earnings tripled from Opus 4.6 to Fable 5 on a buy-low-sell-slightly-higher strategy and even Fable 5 lost money in about half its runs when asked to bet on price direction, and in EVE Frontier, where four-agent teams coordinated well and almost never caught a teammate told to sabotage them. OpenCode&rsquo;s <a href="#opencode-browse">Browse</a> lends an agent the user&rsquo;s own browser and logins through MCP, with a handoff for logins, 2FA and payments and a per-session site allowlist as the controls, and no figure.</p>
         <p>The Nov 5 cycle adds a harness result and a coordination kernel. MIT&rsquo;s <a href="#vista-harness">VISTA</a> stores every frame an agent sees and lets the model retrieve and zoom into them, which takes Claude Opus 5.0 from 40.68 to a perfect 100 on ARC-AGI-3&rsquo;s action-efficiency score; with frame storage removed, the GPT-5.6 Sol version drops from 99 to 70. <a href="#ambion">Ambion</a> is an open-source kernel in which Pi, Claude Agent SDK and Codex agents share a journal that survives restarts, still at 0.x. Uber&rsquo;s count of agent-booked rides, four in its busiest October week, is on the <a href="applications.html#uber-agent-bookings">applications page</a>.</p>
         <p>The Nov 4 cycle is about who authorizes an agent&rsquo;s reach. Apple opened <a href="#siri-ai-developer-preview">Siri AI to all developers</a> in the 27.3 betas: App Intents expose an app&rsquo;s data and actions, skills chain them, and testing stays inside TestFlight until App Store submissions open in the spring. MCP&rsquo;s <a href="#mcp-enterprise-managed-authorization">Enterprise-Managed Authorization</a> extension moves the decision from each employee to the company identity provider, with Okta issuing the grants. The third entry tests whether a harness can fix itself: a study of <a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill</a> produced 125 proposed changes, and of the seven that could be tested on later issues only two removed the problem.</p>
         <p>The Nov 3 issues add one harness result and two narrower products. Framer&rsquo;s <a href="#framer-harness-2">Harness 2</a> executes agent JavaScript as it streams in, so one model call can drive a whole workflow, and Framer reports up to 33% lower cost, 20% faster execution and 43% fewer tool steps. It lands in the same place as <a href="#factory-droid-1-0">Droid 1.0</a> from the previous cycle: the model writes a program and the harness runs it. Both sets of numbers come from the builders.</p>
-        <p>NVIDIA&rsquo;s <a href="#nvidia-auto-ontology">Auto Ontology</a> grounds agent SQL in certified business definitions and reaches a harness through MCP, CLI or API under Apache 2.0, though its eval repo ships a harness with no results. Letter&rsquo;s <a href="#letterpress-1">Letterpress-1</a> is a coding agent aimed at growth work, reading a site and its market before opening pull requests with live previews, from $100 a month and with no public benchmark.</p>
-        <p>The Oct 30 to Nov 2 cycle is about where the harness runs and who does its coordinating, and every number in it is the builder&rsquo;s own. Factory&rsquo;s <a href="#factory-droid-1-0">Droid 1.0</a> has the model write a program that calls its tools, so one request drives hundreds of tool calls; the base prompt shrinks 37% to 13,055 tokens, only 2 tool definitions load up front instead of 11, and it reports 65.2% on Terminal-Bench 4 with Opus 5.5. Vercel&rsquo;s <a href="#vercel-fx-adapter">fx adapter</a> moves the harness onto the host through libfx, apart from the sandbox, which changes where the loop and its credentials sit relative to the environment the agent works in; the changelog entry gives no figures. DeepSeek&rsquo;s <a href="#dsh-superagent">dsh-superagent</a> splits GitHub requests across parallel workers, each in its own session and directory, and DeepSeek&rsquo;s simulation puts p95 completion at 15.7 minutes against 29.5. It is v0.1.0 with a single commit and labelled a research prototype. Vercel Labs&rsquo; <a href="#vercel-agent-desktop">agent-desktop</a> hands an agent the accessibility tree of a native app instead of screenshots and claims 78% to 96% fewer tokens on dense Electron apps. The common thread is moving work out of the model&rsquo;s context and into code around it, with no independent benchmark behind any of the four.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>NVIDIA&rsquo;s <a href="#nvidia-auto-ontology">Auto Ontology</a> grounds agent SQL in certified business definitions and reaches a harness through MCP, CLI or API under Apache 2.0, though its eval repo ships a harness with no results. Letter&rsquo;s <a href="#letterpress-1">Letterpress-1</a> is a coding agent aimed at growth work, reading a site and its market before opening pull requests with live previews, from $100 a month and with no public benchmark.</p>
+          <p>The Oct 30 to Nov 2 cycle is about where the harness runs and who does its coordinating, and every number in it is the builder&rsquo;s own. Factory&rsquo;s <a href="#factory-droid-1-0">Droid 1.0</a> has the model write a program that calls its tools, so one request drives hundreds of tool calls; the base prompt shrinks 37% to 13,055 tokens, only 2 tool definitions load up front instead of 11, and it reports 65.2% on Terminal-Bench 4 with Opus 5.5. Vercel&rsquo;s <a href="#vercel-fx-adapter">fx adapter</a> moves the harness onto the host through libfx, apart from the sandbox, which changes where the loop and its credentials sit relative to the environment the agent works in; the changelog entry gives no figures. DeepSeek&rsquo;s <a href="#dsh-superagent">dsh-superagent</a> splits GitHub requests across parallel workers, each in its own session and directory, and DeepSeek&rsquo;s simulation puts p95 completion at 15.7 minutes against 29.5. It is v0.1.0 with a single commit and labelled a research prototype. Vercel Labs&rsquo; <a href="#vercel-agent-desktop">agent-desktop</a> hands an agent the accessibility tree of a native app instead of screenshots and claims 78% to 96% fewer tokens on dense Electron apps. The common thread is moving work out of the model&rsquo;s context and into code around it, with no independent benchmark behind any of the four.</p>
           <p>Two items sit beside that thread without sharing it. Raindrop&rsquo;s <a href="#raindrop-swarm-leadership">swarm study</a> ran eight agents from four models on simulated outages with no designated leader, and found that the underlying model and the position of an agent&rsquo;s name in the prompt list predicted who took charge. It is a simulation, so it shows that small configuration choices steer coordination and says little about production swarms. Natural&rsquo;s <a href="#natural-direct">Direct</a> lets an agent choose between ACH, wire and realtime payment rails, with paper checks listed as coming soon. The announcement as relayed says nothing about approval controls, limits or fees, which an engineer would need before handing an agent that choice.</p>
           <p>The Oct 28 and 29 cycle is the plumbing under long-running agents. Microsoft now offers the <a href="#microsoft-copilot-harness">Copilot harness</a> that runs Copilot Code, Studio and GitHub Copilot through Foundry, another vendor selling its production harness rather than keeping it as glue. An open-source <a href="#goose-dapr-durable-execution">goose and Dapr integration</a> checkpoints each finished turn, so a crashed agent resumes without replaying model calls, though side effects inside an interrupted turn still need idempotency. Salesforce&rsquo;s <a href="#salesforce-agent-fabric">Agent Fabric</a> puts evaluations in beta in November and a triggered kill switch on general availability in January 2027, and Mirendil&rsquo;s <a href="#mirendil-lor">Lor</a> claims research agents running for days across hundreds of parallel workers, with no results attached yet.</p>
           <p>The Oct 28 addition is a payment rail for an agent&rsquo;s data. <a href="#glasser-data-api">Glasser</a> lets agents buy premium data per API call across more than 2,000 endpoints from over 80 providers, which replaces subscriptions held by the agent&rsquo;s owner with spend the agent incurs as it works; the dependency lands on the aggregator, and the only public page is a press report.</p>
@@ -107,24 +109,32 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#agent-memory">Agent memory <span class="n">13</span></a></li>
+          <li><a href="#agent-memory">Agent memory <span class="n">14</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">25</span></a></li>
           <li><a href="#the-agentic-harness">The agentic harness <span class="n">36</span></a></li>
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">16</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">13</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
-          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">15</span></a></li>
+          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">16</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">9</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">22</span></a></li>
-          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">13</span></a></li>
+          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">14</span></a></li>
         </ul>
       </nav>
 
       <section class="topic-section" id="agent-memory">
         <h3>Agent memory</h3>
         <p class="lead">The axis that matters is what gets remembered &mdash; the user, or the work. Three answers to where it lives: a file you can read, a wiki the agent consolidates, or the offload decision pushed into the weights (<a href="model-releases.html">ContextPilot-14B</a>). Judge entries on whether a human can inspect and an administrator can restrict what is stored.</p>
+
+        <article class="story" id="anthropic-agent-memory-components">
+          <span class="when">2026-11-06</span>
+          <h4><a href="https://www.anthropic.com/research/components-of-agent-memory">Anthropic&rsquo;s agent-memory post: Fable 5 wrote 9 memory files to Sonnet 3.7&rsquo;s 413, and earned four badges to one</a></h4>
+          <p>Anthropic&rsquo;s engineering team describes how it gives Claude memory across sessions: notes written during a task, and <strong>dreaming</strong>, an offline pass that checks the notes against the session transcripts and rewrites them, after Letta and Berkeley&rsquo;s sleep-time compute. On a CL-Bench 1.0 database task run through Managed Agents with a persisted memory folder, Opus 5 was the first model to close the loop of recording a failure, testing a theory and writing a rule; Opus 5.5 and Sonnet 5.5 do the same. In Pok&eacute;mon Red, about 10,000 steps in, Sonnet 3.7 had written <strong>413 memory files across 225 folders</strong> and earned one badge, while Fable 5 wrote <strong>nine files in two folders</strong> plus a global.md dashboard and earned four.</p>
+          <p>The steering result is the practical part: telling a model what memory is for but not how to use it worked best for strong models, a &ldquo;record only failures&rdquo; rule cost Opus 5 and Opus 4.7 much of their gain, and prompting Sonnet 4.6 to read its notes first nearly doubled its score. Dreaming&rsquo;s one worked example is a wrong map note that sent Claude off a ledge three times until the pass caught it against the transcript. All of it is Anthropic&rsquo;s account of its own models on two tasks, and it lands beside <a href="#devin-memory-dreaming">Devin&rsquo;s Dreaming</a> as the second vendor to name the offline pass.</p>
+          <div class="sources"><a href="https://www.anthropic.com/research/components-of-agent-memory">Anthropic</a> &middot; <span class="via">via TLDR AI (Nov 9)</span></div>
+        </article>
 
         <article class="story" id="memorytax">
           <span class="when">2026-10-25</span>
@@ -142,15 +152,15 @@
           <div class="sources"><a href="https://www.databricks.com/blog/memcurrent-designing-persistent-memory-production-agents">Databricks</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="copilotkit-clif">
-          <span class="when">2026-10-14</span>
-          <h4><a href="https://www.copilotkit.ai/blog/introducing-clif">CopilotKit&rsquo;s CLiF learns continually from agent traces and user actions captured over AG-UI</a></h4>
-          <p>CopilotKit released <strong>CLiF</strong> (Continual Learning from Full-stack trajectories), which records what the agent did and what the user did in the front end &mdash; captured through the <strong>AG-UI protocol</strong> &mdash; as one trajectory to learn from. On this section&rsquo;s axis it remembers the work rather than the user, but no improvement figure reached the newsletter and what a deployer can inspect or delete is not stated.</p>
-          <div class="sources"><a href="https://www.copilotkit.ai/blog/introducing-clif">CopilotKit</a> &middot; <span class="via">via TLDR AI (Oct 14)</span></div>
-        </article>
+<details>
+          <summary>Earlier in this section (11)</summary>
 
-        <details>
-          <summary>Earlier in this section (10)</summary>
+          <article class="story" id="copilotkit-clif">
+            <span class="when">2026-10-14</span>
+            <h4><a href="https://www.copilotkit.ai/blog/introducing-clif">CopilotKit&rsquo;s CLiF learns continually from agent traces and user actions captured over AG-UI</a></h4>
+            <p>CopilotKit released <strong>CLiF</strong> (Continual Learning from Full-stack trajectories), which records what the agent did and what the user did in the front end &mdash; captured through the <strong>AG-UI protocol</strong> &mdash; as one trajectory to learn from. On this section&rsquo;s axis it remembers the work rather than the user, but no improvement figure reached the newsletter and what a deployer can inspect or delete is not stated.</p>
+            <div class="sources"><a href="https://www.copilotkit.ai/blog/introducing-clif">CopilotKit</a> &middot; <span class="via">via TLDR AI (Oct 14)</span></div>
+          </article>
 
           <article class="story" id="harvey-wake-sleep">
             <span class="when">2026-10-09</span>
@@ -225,6 +235,7 @@
             <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
           </article>
         </details>
+      
       </section>
 
       <section class="topic-section" id="frameworks-and-infrastructure">
@@ -969,6 +980,14 @@
         <h3>Browser &amp; computer-use agents</h3>
         <p class="lead">Four ways an agent drives a browser: infer the page from pixels, call actions a cooperating site publishes, borrow a profile that is already logged in, or compile the site into a deterministic API once. Open-weights families such as Microsoft Fara1.5 (4B/9B/27B, reported to beat OpenAI Operator and Gemini 2.5 on certain tasks) make the proprietary browsing agents substitutable.</p>
 
+        <article class="story" id="opencode-browse">
+          <span class="when">2026-11-09</span>
+          <h4><a href="https://opencode.ai/product/browse">OpenCode Browse lends coding agents the user&rsquo;s real browser, tabs and logins, and hands back for 2FA</a></h4>
+          <p>OpenCode released <strong>Browse</strong>, an MCP server plus a Chromium extension that let an agent drive the user&rsquo;s own browser, with existing tabs, logins and extensions, in Chrome, Edge, Brave, Arc and other Chromium builds. Agents open tabs in collapsed background groups and drive them with Playwright, can take screenshots, record the screen and capture network traffic as a HAR file, and work from any MCP client, including OpenCode, Claude Code, Cursor, Codex and Zed. When a login, a 2FA prompt or a payment comes up the tab is handed back to the person, who clicks Continue; a per-session allowlist limits which sites an agent may open.</p>
+          <p>This is the borrowed-profile approach the section lead names, with the handoff and the allowlist as the two controls a user has, and no figure accompanies the launch.</p>
+          <div class="sources"><a href="https://opencode.ai/product/browse">OpenCode</a> &middot; <span class="via">via The Code (Nov 9)</span></div>
+        </article>
+
         <article class="story" id="vercel-agent-desktop">
           <span class="when">2026-10-31</span>
           <h4><a href="https://github.com/vercel-labs/agent-desktop">Vercel Labs&rsquo; agent-desktop drives native apps through the accessibility tree, with no vision model</a></h4>
@@ -984,16 +1003,16 @@
           <div class="sources"><a href="https://pomerado.ai/">Pomerado</a> &middot; <span class="via">via AlphaSignal (Oct 27), The Code (Oct 27)</span></div>
         </article>
 
-        <article class="story" id="agent-s4">
-          <span class="when">2026-10-23</span>
-          <h4><a href="https://arxiv.org/abs/2610.28601">Simular&rsquo;s Agent S4 rewrites its own desktop tool interfaces and reaches 21.3% on OSWorld V2 with Qwen3.8-27B</a></h4>
-          <p>Simular&rsquo;s <strong>Agent S4</strong> adds a meta-agent that reads task runs, with no success labels, and rewrites the Python interfaces the agent uses to drive a desktop. With Qwen3.8-27B it reaches <strong>21.3% on OSWorld V2</strong>, 3.8&times; the same model with fixed interfaces and above Claude Opus 4.8&rsquo;s 20.6%, and the code installs with <code>pip install agent-s4</code>.</p>
-          <p>The gain comes from the interface rather than the weights, and the comparison with Opus is the authors&rsquo; own.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.28601">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
-        </article>
+<details>
+          <summary>Earlier in this section (13)</summary>
 
-        <details>
-          <summary>Earlier in this section (12)</summary>
+          <article class="story" id="agent-s4">
+            <span class="when">2026-10-23</span>
+            <h4><a href="https://arxiv.org/abs/2610.28601">Simular&rsquo;s Agent S4 rewrites its own desktop tool interfaces and reaches 21.3% on OSWorld V2 with Qwen3.8-27B</a></h4>
+            <p>Simular&rsquo;s <strong>Agent S4</strong> adds a meta-agent that reads task runs, with no success labels, and rewrites the Python interfaces the agent uses to drive a desktop. With Qwen3.8-27B it reaches <strong>21.3% on OSWorld V2</strong>, 3.8&times; the same model with fixed interfaces and above Claude Opus 4.8&rsquo;s 20.6%, and the code installs with <code>pip install agent-s4</code>.</p>
+            <p>The gain comes from the interface rather than the weights, and the comparison with Opus is the authors&rsquo; own.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.28601">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 23)</span></div>
+          </article>
 
           <article class="story" id="claude-duet">
             <span class="when">2026-10-22</span>
@@ -1089,6 +1108,7 @@
             <div class="sources"><span class="via">via AI Loves Data (Jul 31) &mdash; no public URL given</span></div>
           </article>
         </details>
+      
       </section>
 
       <section class="topic-section" id="agent-extension-patterns">
@@ -1443,6 +1463,14 @@
         <h3>Agentic domain applications</h3>
         <p class="lead">Agentic X as a domain reframing rather than a tooling story: a loop with its own verification and observability, built for one field, instead of a generic coding agent pointed at it. Judge entries on the governor &mdash; a compute budget the agent is held to, or a permission boundary the account enforces.</p>
 
+        <article class="story" id="project-eve">
+          <span class="when">2026-11-06</span>
+          <h4><a href="https://www.anthropic.com/research/project-eve-claude-plays-mmorpgs">Project EVE: Claude&rsquo;s trading profit tripled from Opus 4.6 to Fable 5, and a saboteur teammate went unnoticed</a></h4>
+          <p>Anthropic&rsquo;s Frontier Red Team, with Fenris Creations, had Claude play two EVE Universe games. In a simulated rerun of EVE Online&rsquo;s market, where players trade more than 15,000 kinds of item, Claude traded alone under one instruction, maximise profit: newer models made consistent profits where simple algorithmic strategies lost money, <strong>average earnings tripled from Opus 4.6 to Fable 5</strong>, and nearly every model settled on buying and reselling at a small markup. Asked to bet on where prices were heading, even Fable 5 made money in only about half of its runs.</p>
+          <p>In the live EVE Frontier, teams of four Fable 5 agents worked through long missions and had to write code for the parts of the game too fast for a model; they coordinated well, but when one agent was told to secretly undermine the team its teammates <strong>almost never caught it</strong>. The trading stayed off the live market at the developer&rsquo;s request, and the post frames the sabotage result as what agent teams need before higher-stakes work.</p>
+          <div class="sources"><a href="https://www.anthropic.com/research/project-eve-claude-plays-mmorpgs">Anthropic</a> &middot; <span class="via">via TLDR AI (Nov 9)</span></div>
+        </article>
+
         <article class="story" id="letterpress-1">
           <span class="when">2026-11-02</span>
           <h4><a href="https://www.marktechpost.com/2026/11/02/letter-letterpress-1-growth-engineering-coding-agent/">Letter&rsquo;s Letterpress-1 is a coding agent for growth engineering, from $100 a month</a></h4>
@@ -1457,16 +1485,16 @@
           <div class="sources"><a href="https://www.natural.com/blog/direct">Natural</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
         </article>
 
-        <article class="story" id="devin-oncall">
-          <span class="when">2026-10-16</span>
-          <h4><a href="https://devin.ai/blog/introducing-devin-oncall">Devin Oncall picks up production pages, escalates with a root cause or opens a tested PR, and skips about 60% of repeat investigations</a></h4>
-          <p>Cognition shipped <strong>Devin Oncall</strong>, an agent that takes production pages and bug reports before a human does, reads logs and code, and either escalates with a severity, likely root cause and suggested next step or opens a tested pull request. It keeps a memory of past incidents, which Cognition says lets it skip roughly <strong>60%</strong> of repeat investigations, and it reportedly resolved <strong>half of AngelList&rsquo;s incidents</strong> on its own.</p>
-          <p>Both figures are the vendor&rsquo;s and the second comes from one customer; the governor this section asks about is the escalate-or-fix split, with no published rate for how often it chooses wrongly.</p>
-          <div class="sources"><a href="https://devin.ai/blog/introducing-devin-oncall">Cognition</a> &middot; <a href="https://devin.ai/oncall">Product page</a> &middot; <span class="via">via The Code (Oct 16)</span></div>
-        </article>
+<details>
+          <summary>Earlier in this section (11)</summary>
 
-        <details>
-          <summary>Earlier in this section (10)</summary>
+          <article class="story" id="devin-oncall">
+            <span class="when">2026-10-16</span>
+            <h4><a href="https://devin.ai/blog/introducing-devin-oncall">Devin Oncall picks up production pages, escalates with a root cause or opens a tested PR, and skips about 60% of repeat investigations</a></h4>
+            <p>Cognition shipped <strong>Devin Oncall</strong>, an agent that takes production pages and bug reports before a human does, reads logs and code, and either escalates with a severity, likely root cause and suggested next step or opens a tested pull request. It keeps a memory of past incidents, which Cognition says lets it skip roughly <strong>60%</strong> of repeat investigations, and it reportedly resolved <strong>half of AngelList&rsquo;s incidents</strong> on its own.</p>
+            <p>Both figures are the vendor&rsquo;s and the second comes from one customer; the governor this section asks about is the escalate-or-fix split, with no published rate for how often it chooses wrongly.</p>
+            <div class="sources"><a href="https://devin.ai/blog/introducing-devin-oncall">Cognition</a> &middot; <a href="https://devin.ai/oncall">Product page</a> &middot; <span class="via">via The Code (Oct 16)</span></div>
+          </article>
 
           <article class="story" id="netclaw">
             <span class="when">2026-10-15</span>
@@ -1543,10 +1571,14 @@
             <div class="sources"><span class="via">via Vanishing Gradients (Hugo Bowne-Anderson Substack) &mdash; no public URL given</span></div>
           </article>
         </details>
+      
       </section>
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-09</span><span class="label"><a href="#opencode-browse">OpenCode Browse lends coding agents the user&rsquo;s real browser, tabs and logins, and hands back for 2FA</a></span></li>
+        <li><span class="date">2026-11-06</span><span class="label"><a href="#project-eve">Project EVE: Claude&rsquo;s trading profit tripled from Opus 4.6 to Fable 5, and a saboteur teammate went unnoticed</a></span></li>
+        <li><span class="date">2026-11-06</span><span class="label"><a href="#anthropic-agent-memory-components">Anthropic&rsquo;s agent-memory post: Fable 5 wrote 9 memory files to Sonnet 3.7&rsquo;s 413, and earned four badges to one</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#vista-harness">MIT&rsquo;s VISTA harness keeps every frame and lets the model retrieve them, taking Claude Opus 5.0 from 40.68 to 100 on ARC-AGI-3</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#ambion">Ambion is an open-source collaboration kernel where Pi, Claude Agent SDK and Codex agents share a journal that survives restarts</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill proposed 125 harness changes; of seven that could be tested, two removed the problem</a></span></li>
