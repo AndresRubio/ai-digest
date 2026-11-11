@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-11-10</div>
+      <div class="meta">Last updated: 2026-11-11</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 10 cycle is about what agents read and what reviewers check. A study of <a href="#stale-instruction-files">stale CLAUDE.md and AGENTS.md instructions</a> across 732 trajectories finds agents follow out-of-date guidance when it is relevant, costing Claude Sonnet 5.5 a third more tool calls on one stale test command, a cost task-success evals never show. Storybook 11 beta ships <a href="#storybook-11-beta">official agent skills</a> with headless test and review commands, Google&rsquo;s <a href="#elephant-goldfish-plugin">Elephant-Goldfish plugin</a> has context-free subagents attack a spec before any code exists, and Warp&rsquo;s <a href="#warp-merge-risk">/merge-risk</a> grades a pull request on five signals so human attention goes where the blast radius is. Reason Machines&rsquo; <a href="#aspen-git-server">Aspen</a> rebuilds OpenAI&rsquo;s Pando design as an open, pre-alpha Git server at 567 pushes a second, and Automattic&rsquo;s <a href="#spacefast">Spacefast</a> hosts the backend for vibe-coded apps.</p>
         <p>The Nov 9 and 10 cycle is about what an agent is handed and who holds the shell. GitHub Next&rsquo;s <a href="#ace-github-next">Ace</a> runs team chats and agents from a local Mac, with lanes as copy-on-write worktrees that land as pull requests and a Tailscale network as the team; the agent runs as the user with a shell and can change files outside the project, which the page says to read first. Simon Willison&rsquo;s <a href="#beep-locator">Beep Locator</a> gave Claude Code ears: five devices as WebSocket microphones, code hot-swapped onto them by the agent, and a beeping carbon-monoxide detector found to within 40 cm, started on Opus 5.5 and finished on Fable 5.2 the day it shipped.</p>
         <p><a href="#datasette-agent-0-5a0">Datasette Agent 0.5a0</a> docks the agent beside the page and makes a write query the thing that needs approval. The <a href="#xcode-27">Xcode 27</a> entry gained the 27.3 beta, which The Code reports adds GitHub Copilot and a Claude Code plugin that builds, tests and renders SwiftUI previews from the agent.</p>
         <p>The Nov 6 to 8 cycle is about what agents cost per unit of work and who gets to see the bill. Cognition&rsquo;s <a href="#devin-review-2">Devin Review 2.0</a> says the cost of a review per pull request has fallen 82% since August, with no catch-rate figure beside the price. Claude Code&rsquo;s <a href="#claude-code-usage-fixes">/usage</a> now shows what is draining a plan&rsquo;s limit and applies fixes with one key; the leak The Code points at is subagents inheriting the main session&rsquo;s effort level. Warp&rsquo;s <a href="#warp-factory-cost-per-pr">cost per PR</a> figure moved from $30 to $20 in Zach Lloyd&rsquo;s later post, by letting a strong model plan and a cheaper one edit, still self-reported. <a href="#cursor-live-apps">Cursor</a> now builds, databases, security-checks and deploys an app to a shareable link from a description, with nothing said about hosting or price.</p>
         <p>Two entries gained their public pages. GitHub&rsquo;s <a href="#github-git-infra-agent-scale">Git storage rebuild</a> has a third post with figures: thousands of writes per second and 5,000 concurrent agents on one repository, still without the agent-loop latency it is built for. Karpathy&rsquo;s <a href="#hackertube">HackerTube</a> entry now links to his post and records the order of the pipeline: filter 43M comments by URL, regex and spam rules first, then send what survives to Sonnet.</p>
-        <p>The Nov 5 cycle has one fix and one case study. <a href="#claude-code-subagent-status-cost">Claude Code v2.1.316</a> stops background subagents re-reading their whole conversation every 30 seconds to refresh a status line; Haiku 5.5 now writes it from short notes, about 99% cheaper per update. X&rsquo;s engineering blog says <a href="#x-com-web-rebuild">five engineers with coding agents</a> built the first version of a new X.com web app in under six months, replacing three servers with one and cutting a slow-connection profile load from 22 seconds to 2.7.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 5 cycle has one fix and one case study. <a href="#claude-code-subagent-status-cost">Claude Code v2.1.316</a> stops background subagents re-reading their whole conversation every 30 seconds to refresh a status line; Haiku 5.5 now writes it from short notes, about 99% cheaper per update. X&rsquo;s engineering blog says <a href="#x-com-web-rebuild">five engineers with coding agents</a> built the first version of a new X.com web app in under six months, replacing three servers with one and cutting a slow-connection profile load from 22 seconds to 2.7.</p>
           <p>The Nov 4 cycle has one vendor reaching into another vendor&rsquo;s agent and two tools that give an agent something new to operate. A GitHub issue reports <a href="#postman-agent-plugin-autoinstall">Postman&rsquo;s desktop app</a> installing a plugin, a startup hook and a remote MCP connection into Claude Code and Codex without asking; The Code found no evidence of data theft. Google&rsquo;s <a href="#gemini-notebook-api">Gemini Notebook API</a> opens notebooks and their sources to REST and an MCP server, and <a href="#terminal-mac">terminal-mac</a> hands coding agents a separate macOS virtual machine to click and type in.</p>
           <p>The Nov 3 cycle measures how far agent output has outgrown the systems beneath it. GitHub&rsquo;s <a href="#github-octoverse-2026">Octoverse 2026</a> has merged pull requests tripling in under a year to 220 million a month and commits at 7.38 billion. OpenAI hit that wall in its own monorepo and built <a href="#openai-pando">Pando</a>, a backend that cuts median push latency about 80% and serves nearly a petabyte a day. <a href="#spawn-agent-swarm">Spawn</a> spends over $3 million a month on tokens and treats an hour without a ship as a SEV-0; Microsoft&rsquo;s <a href="#copilot-cowork-rust">Copilot Cowork</a> moved from Python to Rust while live.</p>
           <p>Three smaller releases fill in the tooling. DeepSeek&rsquo;s <a href="#deepseek-harness-creator-mode">Creator Mode</a> generates harness plugins from a prompt, still in preview. <a href="#nanoui">NanoUI</a> builds single-binary Zig desktop apps with headless testing so an agent can check its own interface, and <a href="#llm-0-37">LLM 0.37</a> moves its default to gpt-6-luna at half the previous price.</p>
@@ -114,17 +115,17 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">7</span></a></li>
+          <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">8</span></a></li>
           <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">6</span></a></li>
           <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">14</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
-          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">42</span></a></li>
-          <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">17</span></a></li>
+          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">45</span></a></li>
+          <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">18</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">18</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">18</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">21</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">41</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">42</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">9</span></a></li>
         </ul>
       </nav>
@@ -132,6 +133,14 @@
       <section class="topic-section" id="memory-and-configuration-patterns">
         <h3>Memory &amp; configuration patterns</h3>
         <p class="lead">Per-project <code>CLAUDE.md</code>, per-repo conventions and a global <code>~/.claude/CLAUDE.md</code> for personal preferences are the documented pattern, with guides lazy-loaded rather than imported so the always-on context stays small. Judge entries on whether a stored instruction can be scoped, expired and corrected, not on whether it can be written.</p>
+
+        <article class="story" id="stale-instruction-files">
+          <span class="when">2026-11-10</span>
+          <h4><a href="https://arxiv.org/abs/2611.09802">Stale CLAUDE.md and AGENTS.md instructions cost coding agents a third more tool calls, across 732 trajectories</a></h4>
+          <p>The study takes three real stale instructions from active open-source repositories (a test command, a code location, a procedure for adding a component), runs 22 maintenance tasks under stale, corrected and removed versions of each, and analyses <strong>732 trajectories</strong> from two models call by call. Agents followed stale guidance when it was relevant to the task, sometimes even with correct information elsewhere; on the stale test command Claude Sonnet 5.5 needed about two extra tool calls per run, a third more than with the corrected one.</p>
+          <p>The point is that task-success evals never see this cost, so the stale file survives. The Code&rsquo;s summary cites a 90% follow rate and a one-sentence fix from a social post; neither figure is in the paper&rsquo;s abstract.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.09802">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 10), The Code (Nov 10)</span></div>
+        </article>
 
         <article class="story" id="codex-memory-models">
           <span class="when">2026-10-15</span>
@@ -148,16 +157,16 @@
           <div class="sources"><a href="https://ossrules.md/">ossrules.md</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="agents-md-fallback">
-          <span class="when">2026-09-21</span>
-          <h4><a href="https://x.com/trq212/status/2101009392611278961">Claude Code reads AGENTS.md when CLAUDE.md is absent, and ships the fallback as a mod</a></h4>
-          <p>From version <strong>2.1.277</strong>, Claude Code checks a folder for <code>AGENTS.md</code> when no <code>CLAUDE.md</code> is present and uses it, so the split between Anthropic&rsquo;s file and the cross-vendor convention stops being a choice a repository has to make. Anthropic implemented it not as a feature but as a built-in <strong>Claude Code mod</strong> &mdash; the first public sighting of a forthcoming mechanism for customising the harness &mdash; with the mod&rsquo;s source published and custom project-instruction handling stated as a supported use.</p>
-          <p>The delivery matters more than the fallback: the part of the harness that decides which instructions the model sees becomes user-replaceable rather than vendor-fixed, which is the layer the conventions above have been accumulating by hand. The default is fallback, not merge &mdash; where both files exist only <code>CLAUDE.md</code> is read &mdash; and the behaviour can be toggled in <code>/config</code>.</p>
-          <div class="sources"><a href="https://x.com/trq212/status/2101009392611278961">Thariq on X</a> (announcement) &middot; <span class="via">via Simon Willison (Sep 21), The Code (Sep 21), Unwind AI (Sep 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="agents-md-fallback">
+            <span class="when">2026-09-21</span>
+            <h4><a href="https://x.com/trq212/status/2101009392611278961">Claude Code reads AGENTS.md when CLAUDE.md is absent, and ships the fallback as a mod</a></h4>
+            <p>From version <strong>2.1.277</strong>, Claude Code checks a folder for <code>AGENTS.md</code> when no <code>CLAUDE.md</code> is present and uses it, so the split between Anthropic&rsquo;s file and the cross-vendor convention stops being a choice a repository has to make. Anthropic implemented it not as a feature but as a built-in <strong>Claude Code mod</strong> &mdash; the first public sighting of a forthcoming mechanism for customising the harness &mdash; with the mod&rsquo;s source published and custom project-instruction handling stated as a supported use.</p>
+            <p>The delivery matters more than the fallback: the part of the harness that decides which instructions the model sees becomes user-replaceable rather than vendor-fixed, which is the layer the conventions above have been accumulating by hand. The default is fallback, not merge &mdash; where both files exist only <code>CLAUDE.md</code> is read &mdash; and the behaviour can be toggled in <code>/config</code>.</p>
+            <div class="sources"><a href="https://x.com/trq212/status/2101009392611278961">Thariq on X</a> (announcement) &middot; <span class="via">via Simon Willison (Sep 21), The Code (Sep 21), Unwind AI (Sep 22)</span></div>
+          </article>
 
           <article class="story unlinked" id="grok-build-memory">
             <span class="when">2026-09-17</span>
@@ -426,6 +435,14 @@
         <h3>Agent-native tooling</h3>
         <p class="lead">Developer tools shipped with agents as the primary reader, not only humans: a skill file instead of a README, a structured handle instead of a screenshot, a deterministic artifact instead of a reconstruction. Judge entries on whether the agent operates the real target, and on what limit the author publishes alongside the demo.</p>
 
+        <article class="story" id="storybook-11-beta">
+          <span class="when">2026-11-10</span>
+          <h4><a href="https://storybook.js.org/blog/storybook-11-beta/">Storybook 11 beta ships official agent skills and headless CLI tools, in a package 25% smaller with up to 10&times; faster context delivery</a></h4>
+          <p>Skills are the centre of <strong>Storybook 11 beta</strong>: ui-workflow walks an agent through building UI with the project&rsquo;s components, writing stories, testing and presenting the result for review, and component-docs lets it query existing components&rsquo; APIs and examples in a token-efficient format first. Headless commands come with it (<code>storybook tools test run</code> for Vitest functional and accessibility tests, <code>storybook tools review create</code> for a grouped browser review), plus Claude and Codex plugins.</p>
+          <p>Storybook claims a 25% smaller package and up to 10&times; faster context delivery than v10. Both are its own figures, for a beta.</p>
+          <div class="sources"><a href="https://storybook.js.org/blog/storybook-11-beta/">Storybook</a> &middot; <span class="via">via TLDR (Nov 10)</span></div>
+        </article>
+
         <article class="story" id="datasette-agent-0-5a0">
           <span class="when">2026-11-10</span>
           <h4><a href="https://github.com/datasette/datasette-agent/releases/tag/0.5a0">Datasette Agent 0.5a0 docks the agent beside the page, and Datasette Apps 0.3a0 gates write queries behind approval</a></h4>
@@ -434,24 +451,39 @@
           <div class="sources"><a href="https://github.com/datasette/datasette-agent/releases/tag/0.5a0">GitHub release</a> &middot; <span class="via">via Simon Willison (Nov 10)</span></div>
         </article>
 
-        <article class="story" id="gemini-notebook-api">
-          <span class="when">2026-11-04</span>
-          <h4><a href="https://developers.google.com/notebook/docs">Gemini Notebook API opens notebooks and sources to REST and MCP, in preview for personal accounts only</a></h4>
-          <p>Google&rsquo;s <strong>Gemini Notebook API</strong> is a REST interface for creating and managing notebooks and their sources programmatically. It ingests web pages, YouTube videos, plain text and Markdown into persistent notebooks, and it ships with an MCP server.</p>
-          <p>Both are in an early-access Public Preview. During the preview the API works with personal Google Accounts only, and Workspace accounts are not supported yet.</p>
-          <div class="sources"><a href="https://developers.google.com/notebook/docs">Google for Developers</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
+        <article class="story" id="spacefast">
+          <span class="when">2026-11-09</span>
+          <h4><a href="https://techcrunch.com/2026/11/09/automattic-debuts-a-platform-to-deploy-vibe-coding-apps-amid-a-changing-internet/">Automattic&rsquo;s Spacefast hosts vibe-coded apps with databases, auth, uploads, email and analytics, connected from the agent that wrote them</a></h4>
+          <p>Automattic launched <strong>Spacefast</strong>, a deployment platform supplying the backend a vibe-coded app lacks (databases, authentication, file uploads, email, analytics), against Lovable and Emergent. It connects to the agent that built the app, ChatGPT, Claude, Cursor, OpenCode and Amp among them, or to a Git repository, and it soft-launched in September. The report gives no pricing or limits.</p>
+          <div class="sources"><a href="https://techcrunch.com/2026/11/09/automattic-debuts-a-platform-to-deploy-vibe-coding-apps-amid-a-changing-internet/">TechCrunch</a> &middot; <span class="via">via Forward Future (Nov 10)</span></div>
         </article>
 
-        <article class="story" id="openai-pando">
-          <span class="when">2026-11-02</span>
-          <h4><a href="https://openai.com/index/scaling-git-at-openai/">OpenAI&rsquo;s Pando Git backend cuts median push latency about 80% under agent traffic</a></h4>
-          <p>Codex agents pushed enough code that OpenAI&rsquo;s Git reliability sometimes dipped below 90%, so it built <strong>Pando</strong>, a server-side backend for concurrent pushes to many branches and high read throughput, with engineers and agents keeping standard Git commands. OpenAI reports median push latency down nearly 5x, about 80%, in production, and nearly <strong>1 PB of Git data served per day</strong>.</p>
-          <p>The figures are self-reported and Pando is staying internal, though OpenAI says it is sharing its Git fixes with the community.</p>
-          <div class="sources"><a href="https://openai.com/index/scaling-git-at-openai/">OpenAI</a> &middot; <a href="https://www.marktechpost.com/2026/11/02/openai-pando-git-backend-monorepo/">MarkTechPost</a> &middot; <span class="via">via TLDR (Nov 3), MarkTechPost (Nov 3), The Code (Nov 3), AlphaSignal (Nov 3)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (42)</summary>
 
-<details>
-          <summary>Earlier in this section (39)</summary>
+          <article class="story" id="aspen-git-server">
+            <span class="when">2026-11-09</span>
+            <h4><a href="https://www.marktechpost.com/2026/11/09/reason-machines-aspen-open-source-git-server-ai-agents/">Reason Machines&rsquo; Aspen reimplements OpenAI&rsquo;s Pando design as an open Git server, sustaining 567 pushes per second on one 8-core box</a></h4>
+            <p><strong>Aspen</strong> is a self-hostable Git server in one Rust binary. Each branch is a chain of versions in one PostgreSQL (or SQLite) row, moved by compare-and-swap, and packs go to S3-compatible object storage, so pushes to different branches never queue behind each other and fetches reuse stored packs. It independently implements the design OpenAI described for <a href="#openai-pando">Pando</a>, and Reason Machines reports 567 pushes per second sustained for five minutes on one 8-core server.</p>
+            <p>Landing on main runs at about 4 per second. The project is pre-alpha, with no releases, no web UI, and its own 24-hour durability gate not yet met.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/11/09/reason-machines-aspen-open-source-git-server-ai-agents/">MarkTechPost (write-up)</a> &middot; <span class="via">via MarkTechPost (Nov 10)</span></div>
+          </article>
+
+          <article class="story" id="gemini-notebook-api">
+            <span class="when">2026-11-04</span>
+            <h4><a href="https://developers.google.com/notebook/docs">Gemini Notebook API opens notebooks and sources to REST and MCP, in preview for personal accounts only</a></h4>
+            <p>Google&rsquo;s <strong>Gemini Notebook API</strong> is a REST interface for creating and managing notebooks and their sources programmatically. It ingests web pages, YouTube videos, plain text and Markdown into persistent notebooks, and it ships with an MCP server.</p>
+            <p>Both are in an early-access Public Preview. During the preview the API works with personal Google Accounts only, and Workspace accounts are not supported yet.</p>
+            <div class="sources"><a href="https://developers.google.com/notebook/docs">Google for Developers</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
+          </article>
+
+          <article class="story" id="openai-pando">
+            <span class="when">2026-11-02</span>
+            <h4><a href="https://openai.com/index/scaling-git-at-openai/">OpenAI&rsquo;s Pando Git backend cuts median push latency about 80% under agent traffic</a></h4>
+            <p>Codex agents pushed enough code that OpenAI&rsquo;s Git reliability sometimes dipped below 90%, so it built <strong>Pando</strong>, a server-side backend for concurrent pushes to many branches and high read throughput, with engineers and agents keeping standard Git commands. OpenAI reports median push latency down nearly 5x, about 80%, in production, and nearly <strong>1 PB of Git data served per day</strong>.</p>
+            <p>The figures are self-reported and Pando is staying internal, though OpenAI says it is sharing its Git fixes with the community.</p>
+            <div class="sources"><a href="https://openai.com/index/scaling-git-at-openai/">OpenAI</a> &middot; <a href="https://www.marktechpost.com/2026/11/02/openai-pando-git-backend-monorepo/">MarkTechPost</a> &middot; <span class="via">via TLDR (Nov 3), MarkTechPost (Nov 3), The Code (Nov 3), AlphaSignal (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="claude-api-128mb-requests">
             <span class="when">2026-10-30</span>
@@ -753,12 +785,19 @@
             <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
           </article>
         </details>
-      
       </section>
 
       <section class="topic-section" id="plugin-and-extensibility-layers-for-coding-agents">
         <h3>Plugin &amp; extensibility layers for coding agents</h3>
         <p class="lead">Beyond ad-hoc skills and MCP servers, coding agents are gaining formal package management. Two things to watch: whether a bundle targets an open specification or one client, and whether the surface answers only what can be added to a harness or also what can be centrally removed.</p>
+
+        <article class="story" id="elephant-goldfish-plugin">
+          <span class="when">2026-11-08</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/08/google-elephant-goldfish-model-plugin-spec-review-coding-agents/">Google open-sources the Elephant-Goldfish plugin: an agent writes a spec, then context-free subagents attack it before any code</a></h4>
+          <p>The <strong>Elephant-Goldfish Model</strong> plugin (Apache 2.0, not an officially supported Google product) is seven skills, nine reviewer personas, six brainstorm lenses and five review stages. A long-running &ldquo;elephant&rdquo; session drafts the specification and writes no code; stateless &ldquo;goldfish&rdquo; subagents that see only the draft and the files it cites review it. It runs on any harness that can spawn fresh subagents, Claude Code 2.1.271+, Codex and Antigravity among them, and Google says thousands of its engineers use it.</p>
+          <p>No accuracy benchmark is published, token use is heavy, and an open issue (#237) reports AGENTS.md leaking into Codex reviewers, which breaks the zero-context premise.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/08/google-elephant-goldfish-model-plugin-spec-review-coding-agents/">MarkTechPost (write-up)</a> &middot; <span class="via">via MarkTechPost (Nov 10)</span></div>
+        </article>
 
         <article class="story" id="postman-agent-plugin-autoinstall">
           <span class="when">2026-11-04</span>
@@ -775,16 +814,16 @@
           <div class="sources"><a href="https://www.deepseek.com/en/harness/">DeepSeek</a> &middot; <span class="via">via The Code (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="appllama-skills">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://github.com/Appllama/appllama-skills">Appllama Skills teaches coding agents mobile UI patterns from top-grossing apps, for Expo and React Native screens</a></h4>
-          <p><strong>Appllama Skills</strong> (3.4k GitHub stars) has Claude Code, Cursor, Codex and other agents study interface patterns from top-grossing mobile apps and apply them to Expo and React Native screens: navigation, motion, accessibility and simulator-tested polish.</p>
-          <p>With <a href="#hallmark">Hallmark</a> beside it, that is two skill bundles in one day aimed at taste rather than correctness, the dimension agent-written UIs are most criticised on.</p>
-          <div class="sources"><a href="https://github.com/Appllama/appllama-skills">GitHub</a> &middot; <span class="via">via The Code (Oct 28)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="appllama-skills">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://github.com/Appllama/appllama-skills">Appllama Skills teaches coding agents mobile UI patterns from top-grossing apps, for Expo and React Native screens</a></h4>
+            <p><strong>Appllama Skills</strong> (3.4k GitHub stars) has Claude Code, Cursor, Codex and other agents study interface patterns from top-grossing mobile apps and apply them to Expo and React Native screens: navigation, motion, accessibility and simulator-tested polish.</p>
+            <p>With <a href="#hallmark">Hallmark</a> beside it, that is two skill bundles in one day aimed at taste rather than correctness, the dimension agent-written UIs are most criticised on.</p>
+            <div class="sources"><a href="https://github.com/Appllama/appllama-skills">GitHub</a> &middot; <span class="via">via The Code (Oct 28)</span></div>
+          </article>
 
           <article class="story" id="hallmark">
             <span class="when">2026-10-28</span>
@@ -1413,6 +1452,14 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and so are the first quality figures: a revert share and defects per hundred merged PRs.</p>
 
+        <article class="story" id="warp-merge-risk">
+          <span class="when">2026-11-10</span>
+          <h4><a href="https://www.warp.dev/merge-risk">Warp open-sources /merge-risk, a skill that grades a pull request on five signals before a human reviews it</a></h4>
+          <p><strong>/merge-risk</strong> scores a pull request on alignment with its issue, impact (auth, permissions, payments, PII, migrations, dependencies, infrastructure), verification (tests, plus screenshots or recordings for user-facing changes), rollback cost and error detection, and weights them into a low, medium or high grade. Ben Holmes of Warp&rsquo;s agent factory published it with the playbook behind it, which still has a human sign off on every merge.</p>
+          <p>It is triage, not a gate: the suggested first step is two new PR-template fields, impact and rollback cost, and the grade has no published check against outcomes.</p>
+          <div class="sources"><a href="https://www.warp.dev/merge-risk">Warp</a> &middot; <span class="via">via The Code (Nov 10)</span></div>
+        </article>
+
         <article class="story" id="beep-locator">
           <span class="when">2026-11-09</span>
           <h4><a href="https://simonwillison.net/2026/Nov/9/mysterious-beeps/">Beep Locator: Claude Code triangulated a beeping detector to within 40 cm, using five devices as ears</a></h4>
@@ -1429,15 +1476,15 @@
           <div class="sources"><a href="https://blog.x.com/en/engineering/rebuilding-the-global-town-square-from-scratch">X engineering blog</a> &middot; <span class="via">via TLDR (Nov 5)</span></div>
         </article>
 
-        <article class="story" id="copilot-cowork-rust">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://commandline.microsoft.com/how-we-built-copilot-cowork-python-to-rust-migration/">Microsoft&rsquo;s Copilot Cowork reached global availability in 4.5 months, moving from Python to Rust while live</a></h4>
-          <p>Microsoft says <strong>Copilot Cowork</strong> went to global availability in four and a half months and moved its runtime from Python to Rust while live. The practices it credits are specs written before coding, narrow agents with clear boundaries, and automated checks that genuinely verify a change. It is Microsoft&rsquo;s account of its own build, and the summary gives no efficiency figure for the migration.</p>
-          <div class="sources"><a href="https://commandline.microsoft.com/how-we-built-copilot-cowork-python-to-rust-migration/">Microsoft</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (39)</summary>
 
-<details>
-          <summary>Earlier in this section (38)</summary>
+          <article class="story" id="copilot-cowork-rust">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://commandline.microsoft.com/how-we-built-copilot-cowork-python-to-rust-migration/">Microsoft&rsquo;s Copilot Cowork reached global availability in 4.5 months, moving from Python to Rust while live</a></h4>
+            <p>Microsoft says <strong>Copilot Cowork</strong> went to global availability in four and a half months and moved its runtime from Python to Rust while live. The practices it credits are specs written before coding, narrow agents with clear boundaries, and automated checks that genuinely verify a change. It is Microsoft&rsquo;s account of its own build, and the summary gives no efficiency figure for the migration.</p>
+            <div class="sources"><a href="https://commandline.microsoft.com/how-we-built-copilot-cowork-python-to-rust-migration/">Microsoft</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="hackertube">
             <span class="when">2026-11-02</span>
@@ -1736,7 +1783,6 @@
             <div class="sources"><a href="https://x.ai/bot/plugin/9717366">pstack</a> &middot; <span class="via">via The Code (Sep 10)</span></div>
           </article>
         </details>
-      
       </section>
 
       <section class="topic-section" id="multi-session-and-parallel-work">
@@ -1823,9 +1869,15 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-10</span><span class="label"><a href="#warp-merge-risk">Warp open-sources /merge-risk, a skill that grades a pull request on five signals before a human reviews it</a></span></li>
+        <li><span class="date">2026-11-10</span><span class="label"><a href="#storybook-11-beta">Storybook 11 beta ships official agent skills and headless CLI tools, in a package 25% smaller with up to 10&times; faster context delivery</a></span></li>
+        <li><span class="date">2026-11-10</span><span class="label"><a href="#stale-instruction-files">Stale CLAUDE.md and AGENTS.md instructions cost coding agents a third more tool calls, across 732 trajectories</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#datasette-agent-0-5a0">Datasette Agent 0.5a0 docks the agent beside the page, and Datasette Apps 0.3a0 gates write queries behind approval</a></span></li>
+        <li><span class="date">2026-11-09</span><span class="label"><a href="#spacefast">Automattic&rsquo;s Spacefast hosts vibe-coded apps with databases, auth, uploads, email and analytics, connected from the agent that wrote them</a></span></li>
+        <li><span class="date">2026-11-09</span><span class="label"><a href="#aspen-git-server">Reason Machines&rsquo; Aspen reimplements OpenAI&rsquo;s Pando design as an open Git server, sustaining 567 pushes per second on one 8-core box</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#beep-locator">Beep Locator: Claude Code triangulated a beeping detector to within 40 cm, using five devices as ears</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#ace-github-next">Ace, from GitHub Next, runs team and agent chats on your own Mac, with agents holding your shell</a></span></li>
+        <li><span class="date">2026-11-08</span><span class="label"><a href="#elephant-goldfish-plugin">Google open-sources the Elephant-Goldfish plugin: an agent writes a spec, then context-free subagents attack it before any code</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#devin-review-2">Devin Review 2.0: Cognition says the cost of a review per PR has fallen 82% since August</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#cursor-live-apps">Cursor builds a live app from a description, sets up its database, runs security checks and deploys it to a shareable link</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#claude-code-subagent-status-cost">Claude Code v2.1.316 has Haiku 5.5 write background subagents&rsquo; status lines from notes, cutting each update&rsquo;s cost about 99%</a></span></li>

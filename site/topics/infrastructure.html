@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-10</div>
+      <div class="meta">Last updated: 2026-11-11</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 10 cycle is hardware and the code that runs on it. Google&rsquo;s <a href="#tpu-8tx-8i-max">TPU 8tx and TPU 8i Max</a> make four eighth-generation TPU systems in a year, one for confidential inference and one for long context, with nearly 100 TPU customers claimed and no specifications or prices. Below the chip, Zyphra&rsquo;s <a href="#zyfa">ZYFA</a> FP8 kernels beat AMD&rsquo;s own AITER by 1.16&ndash;1.76&times; on MI355X, NVIDIA&rsquo;s <a href="#autocompress">AutoCompress</a> prunes Nemotron 3.5 Super from 120B to 74B to fit one B200 at 128K context for 5% of its score, and Buoyant&rsquo;s <a href="#kinference">Kinference</a> cuts median time to first token 95% by routing on KV-cache state, but only when prompts share a prefix. Together Compiler gained its weakest case: about 4% on GLM 5.3 on MI355X.</p>
         <p>The Nov 6 cycle, read on Nov 9, adds the router thread&rsquo;s largest product. OpenRouter rebuilt its <a href="#openrouter-auto-router-v2">Auto Router</a> on eleven per-request factors plus live price, provider health and cache state, picking only from models a customer&rsquo;s governance allows, and added Auto Code for coding harnesses; its own benchmarks say up to 4&times; the old router, a routing step of 0.65 s at p90 against 1.96 s, and Auto Code level with Claude Opus 5.5 at 74% less per task. The routing reasons now show in the chat panel and the API, and OpenRouter raised Auto&rsquo;s cost tier back up because the cheapest models had crowded out stronger ones, the first router here to say its own optimiser drifted. Every figure is OpenRouter&rsquo;s, measured on the 2.5 trillion tokens a month it carries.</p>
         <p>The Nov 6 cycle adds one reference. Hugging Face published <a href="#moe-training-handbook">The Ultimate MoE Training Handbook</a> as a Space, a guide to training mixture-of-experts models; the issue that carried it says only that it is comprehensive, so its coverage is to be read from the handbook. It joins the training-side thread where every other entry is a measured gain quoted by its authors, as the document that explains the machinery those gains are made on.</p>
         <p>The Nov 5 cycle has one compiler, one build-out and one optimization that was rolled back. <a href="#together-compiler">Together Compiler</a> has agents re-optimize the inference engine as traffic shifts, using an engine that hot-reloads candidates where a restart costs tens of minutes; Together reports up to 2.6&times; higher throughput within a day and 1,205 tokens per second on DeepSeek v4.1-Flash. SemiAnalysis counts <a href="#spacex-13gw-buildout">3.6 GW under construction</a> at SpaceX sites against a 2027 target raised to about 13 GW. Apify&rsquo;s MCP team <a href="#apify-toon-removal">removed TOON</a> after 30 days in production: the tools it shrank received 0.07% of calls, and the busiest payload cost 11.7% more tokens. Asking for three fields where the agent used to get sixty cut that payload 98.8%.</p>
         <p>The Nov 4 cycle is three sets of sums on what inference costs once someone looks past the list price. <a href="#revolut-self-hosted-glm">Revolut</a> says self-hosting GLM-5.3 on 56 Nvidia B200 GPUs cut AI coding inference costs about 90% across roughly 2,000 engineers, at $0.30 per million tokens on the earlier GLM-5.1. <a href="#hadley-wickham-token-cost">Hadley Wickham</a> prices a self-hosted Kimi K3 server at about $0.25 per million tokens if it runs at 75% utilisation. <a href="#max-woolf-llm-price-cuts">Max Woolf</a> puts cache reads at 96% to 99% of agentic coding spend, which is why Fable 5.1&rsquo;s 75% cache-read cut matters more than its unchanged list price. All three are the author&rsquo;s own arithmetic.</p>
-        <p>Two releases sit beside the sums. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco-coder">GSQ-RCO Coder</a> drops half of DeepSeek-V4.1-Flash&rsquo;s experts to store the transformer in 72.1 GB and keeps 94.8% of the base model&rsquo;s SWE-bench Verified score, accepting losses outside code. Baseten announced <a href="#baseten-grid-sandboxes-loops">Grid, Sandboxes and Loops</a>, with Loops fine-tuning now generally available and no prices in the summary. The Oct 26 <a href="#gpu-unlock">gpu-unlock</a> entry gained its repository link and its mechanism: two hardware registers rewritten before the driver loads.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>Two releases sit beside the sums. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco-coder">GSQ-RCO Coder</a> drops half of DeepSeek-V4.1-Flash&rsquo;s experts to store the transformer in 72.1 GB and keeps 94.8% of the base model&rsquo;s SWE-bench Verified score, accepting losses outside code. Baseten announced <a href="#baseten-grid-sandboxes-loops">Grid, Sandboxes and Loops</a>, with Loops fine-tuning now generally available and no prices in the summary. The Oct 26 <a href="#gpu-unlock">gpu-unlock</a> entry gained its repository link and its mechanism: two hardware registers rewritten before the driver loads.</p>
           <p>The Nov 3 cycle is two transfers that got smaller. <a href="#claude-message-threads">Claude Message Threads</a> stop a client resending its whole conversation on every turn: a coding agent&rsquo;s request of about 800 KB falls to 1.8 KB, and median time to first token drops about 35% on requests of 500K to 1M tokens, while token usage and rates stay the same. The cache section&rsquo;s usual question is what gets re-read and at which rate; this feature leaves that alone and removes the upload. Threads expire five minutes after the last request, so clients still need their own copy of the history. <a href="#weight-teleportation">Weight Teleportation</a> does the same for RL training, compressing the sync from trainers to samplers so the pause stays under 0.23 seconds, on the authors&rsquo; own numbers.</p>
           <p>The Nov 2 cycle is two speed results from the Oct 28 and 29 issues and one satellite update, sharing the question of how far a vendor&rsquo;s speedup travels past the setup it was measured on. <a href="#flashmap">FlashMap</a>, from researchers at Polymathic AI, Princeton, USC ISI, NYU and the Flatiron Institute, replaces the discrete diffusion drafter in speculative decoding with a continuous flow map: a 0.5B drafter writes a 16-token block in one forward pass. On Qwen3-8B it reaches up to 6.14&times; lossless speedup on GSM8K and averages about 7% above a retrained DFlash. Drafters for Qwen3-8B and Qwen3-4B are Apache 2.0 with vLLM and SGLang plugins, but the numbers come from one H200 at concurrency 1, which flatters speculative decoding relative to a loaded server. <a href="#prime-mega-moe-backward">Prime Intellect</a> added a backward pass to DeepSeek&rsquo;s fused Mega MoE kernel so it works for training as well as inference, and Qwen3 MoE training steps in prime-rl run up to 34% faster, or 55% faster than TorchTitan, on Prime Intellect&rsquo;s own measurements. Neither entry has an outside replication yet, and the two results sit at opposite ends of the serving stack: FlashMap changes how tokens are drafted at inference time, while the Mega MoE backward pass changes what a training step costs.</p>
           <p>The satellite is the update. Google&rsquo;s <a href="#suncatcher">Suncatcher</a> test craft, launched October 1 with four TPUs on about a kilowatt of solar, is running: Google ran Gemma 4 on one of the four TPUs and relayed a haiku back through Svalbard. TechCrunch reports the chip can currently run for about 20 minutes at a time. Thermal and radiation tests come next, ahead of a planned pair of interconnected satellites in 2027, so the orbital data centre is still at the stage of showing that one chip can answer one prompt.</p>
@@ -104,15 +105,15 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">9</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">18</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">19</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">3</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">11</span></a></li>
-          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">5</span></a></li>
+          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">6</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">3</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">28</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">29</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">13</span></a></li>
-          <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">5</span></a></li>
+          <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">6</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
           <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">18</span></a></li>
           <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">7</span></a></li>
@@ -204,6 +205,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story" id="autocompress">
+          <span class="when">2026-11-10</span>
+          <h4><a href="https://arxiv.org/abs/2611.08290">NVIDIA&rsquo;s AutoCompress prunes Nemotron 3.5 Super from 120B to 74B for single-B200 serving at 128K, keeping 95% of its score</a></h4>
+          <p><strong>AutoCompress</strong> builds hardware and workload limits (latency, throughput and memory, from serving-engine cost models checked against measurements) into a differentiable architecture search, and produces heterogeneous per-layer structures instead of aiming at a parameter count. Against NVIDIA&rsquo;s own Minitron pruning it gains 6.57, 2.35 and 0.57 points of average accuracy over eight benchmarks on RTX 5070, RTX 5080 and H100.</p>
+          <p>The headline case cuts Nemotron 3.5 Super to 74B parameters so it serves in BF16 on one B200 at 128K context, at the cost of 5% of its mean benchmark score. NVIDIA measured it on its own model.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.08290">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 10)</span></div>
+        </article>
+
         <article class="story" id="deepseek-v4-1-flash-gsq-rco-coder">
           <span class="when">2026-11-04</span>
           <h4><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-Coder-GGUF">ISTA-DASLab&rsquo;s Coder build prunes half of DeepSeek-V4.1-Flash&rsquo;s experts to reach 72.1 GB, about 1 bit per parameter</a></h4>
@@ -220,17 +229,17 @@
           <div class="sources"><a href="https://www.apple.com/newsroom/2026/10/apple-introduces-the-new-14-inch-macbook-pro-with-m6/">Apple</a> &middot; <a href="https://arstechnica.com/apple/2026/10/apple-refreshes-the-imac-entry-level-macbook-pro-with-the-m6-chip/">Ars Technica</a> &middot; <span class="via">via The Code (Oct 28), TLDR (Oct 28)</span></div>
         </article>
 
-        <article class="story" id="gpu-unlock">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://github.com/Zagitta/gpu-unlock">gpu-unlock lifts software Tensor Core limits on RTX cards, doubling RTX 4090 FP16 to 331.6 TFLOPS</a></h4>
-          <p>An open-source tool, <strong>gpu-unlock</strong>, removes software limits on Tensor Core throughput on consumer NVIDIA cards with no firmware flash; the change resets at power-off. Reported gains: RTX 4090 from <strong>165.6 to 331.6 TFLOPS FP16</strong>, RTX 3090 Ti from 87.5 to 157.4 TFLOPS BF16, RTX 2080 Ti from 59.9 to 111 TFLOPS FP16, and on an RTX 3090 up to 58.6% faster image generation and 33% faster LLM prompt processing.</p>
-          <p>It is Linux-only, with Windows experimental, and the newsletter says real-world gains vary by workload and are not guaranteed.</p>
-          <p><em>Updated Nov 4:</em> The repository is now linked. It rewrites two hardware registers before NVIDIA&rsquo;s driver loads, with no VBIOS flash or patched driver, needs a cold boot each time, and warns that Tensor Cores at full rate draw significantly more power.</p>
-          <div class="sources"><a href="https://github.com/Zagitta/gpu-unlock">GitHub</a> &middot; <span class="via">via AlphaSignal (Oct 26), AlphaSignal (Nov 4)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="gpu-unlock">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://github.com/Zagitta/gpu-unlock">gpu-unlock lifts software Tensor Core limits on RTX cards, doubling RTX 4090 FP16 to 331.6 TFLOPS</a></h4>
+            <p>An open-source tool, <strong>gpu-unlock</strong>, removes software limits on Tensor Core throughput on consumer NVIDIA cards with no firmware flash; the change resets at power-off. Reported gains: RTX 4090 from <strong>165.6 to 331.6 TFLOPS FP16</strong>, RTX 3090 Ti from 87.5 to 157.4 TFLOPS BF16, RTX 2080 Ti from 59.9 to 111 TFLOPS FP16, and on an RTX 3090 up to 58.6% faster image generation and 33% faster LLM prompt processing.</p>
+            <p>It is Linux-only, with Windows experimental, and the newsletter says real-world gains vary by workload and are not guaranteed.</p>
+            <p><em>Updated Nov 4:</em> The repository is now linked. It rewrites two hardware registers before NVIDIA&rsquo;s driver loads, with no VBIOS flash or patched driver, needs a cold boot each time, and warns that Tensor Cores at full rate draw significantly more power.</p>
+            <div class="sources"><a href="https://github.com/Zagitta/gpu-unlock">GitHub</a> &middot; <span class="via">via AlphaSignal (Oct 26), AlphaSignal (Nov 4)</span></div>
+          </article>
 
           <article class="story" id="deepseek-v4-1-flash-gsq-rco">
             <span class="when">2026-10-25</span>
@@ -389,8 +398,8 @@
           <span class="when">2026-11-04</span>
           <h4><a href="https://www.together.ai/blog/together-compiler-continual-compilation-for-ai-inference">Together Compiler has agents re-optimize the inference engine as traffic drifts, reaching up to 2.6&times; higher throughput in under a day</a></h4>
           <p><strong>Together Compiler</strong> (TKCC) takes a traffic shape, a model and a hardware target, and has agents generate optimizations for the inference engine in a continual loop. Its main device is a persistent engine that starts once and hot-reloads any candidate forward pass, where restarting vLLM, SGLang or TRT-LLM costs tens of minutes per experiment; Together reports <strong>252&times;</strong> higher experiment throughput than baseline agentic optimizers.</p>
-          <p>In under 24 hours it reached up to <strong>2.6&times;</strong> higher tokens per second across Kimi K3, GLM 5.3, MiniMax M3.1-Flash and DeepSeek v4.1-Flash, and Together claims the low-latency record on SemiAnalysis&rsquo; InferenceX at 1,111 TPS on MiniMax M3.1-Flash and 1,205 on DeepSeek v4.1-Flash. Every figure is Together&rsquo;s, and the post describes its own production system, which it says already serves trillions of tokens.</p>
-          <div class="sources"><a href="https://www.together.ai/blog/together-compiler-continual-compilation-for-ai-inference">Together AI</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
+          <p>In under 24 hours it reached up to <strong>2.6&times;</strong> higher tokens per second across Kimi K3, GLM 5.3, MiniMax M3.1-Flash and DeepSeek v4.1-Flash, and Together claims the low-latency record on SemiAnalysis&rsquo; InferenceX at 1,111 TPS on MiniMax M3.1-Flash and 1,205 on DeepSeek v4.1-Flash. Every figure is Together&rsquo;s, and the post describes its own production system, which it says already serves trillions of tokens. The gains are uneven: GLM 5.3 on MI355X rose only about 4%, from 463 to 480 TPS.</p>
+          <div class="sources"><a href="https://www.together.ai/blog/together-compiler-continual-compilation-for-ai-inference">Together AI</a> &middot; <span class="via">via TLDR AI (Nov 5), MarkTechPost (Nov 10)</span></div>
         </article>
 
         <article class="story" id="cerebras-trillion-parameter-wse-3t">
@@ -482,6 +491,14 @@
         <h3>Serving across accelerators</h3>
         <p class="lead">Portability as its own serving problem: write a model once and run it on whatever accelerator is in the rack, not only the GPU its kernels were tuned for. Judge entries on the efficiency given up against the native path, and on which hardware that figure was measured.</p>
 
+        <article class="story" id="zyfa">
+          <span class="when">2026-11-06</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/06/zyphra-zyfa-fp8-flashattention-amd-mi355x/">Zyphra&rsquo;s ZYFA FP8 attention kernels run 1.16&ndash;1.76&times; faster than AMD&rsquo;s own AITER on MI355X</a></h4>
+          <p><strong>ZYFA</strong> is an Apache 2.0 set of FP8 and BF16 prefill attention kernels for AMD Instinct MI355X with a drop-in flash_attn_func interface; the FP8 kernels are hand-scheduled assembly. On real model activations they run 1.16&ndash;1.76&times; AITER&rsquo;s throughput, peaking at 2,672 TFLOP/s at 32K tokens, 53% of the FP8 datasheet peak against AITER&rsquo;s 39%, with 62&ndash;78% lower FP8 error at head dimension 128.</p>
+          <p>BF16 roughly ties (1.01&ndash;1.02&times;), the low end of the range is Mistral-7B, and the kernels run on MI355X only. The numbers are Zyphra&rsquo;s, from the engine behind its own cloud.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/06/zyphra-zyfa-fp8-flashattention-amd-mi355x/">MarkTechPost (write-up)</a> &middot; <span class="via">via MarkTechPost (Nov 10)</span></div>
+        </article>
+
         <article class="story" id="torchtpu">
           <span class="when">2026-10-20</span>
           <h4><a href="https://pytorch.org/blog/introducing-torchtpu/">TorchTPU makes Cloud TPU a native PyTorch backend, at up to 52% MFU on Ironwood once tuned and compiled</a></h4>
@@ -499,15 +516,15 @@
           <div class="sources"><a href="https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/">PyTorch blog</a> &middot; <span class="via">via TLDR AI (Oct 20), MarkTechPost (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="vx-language">
-          <span class="when">2026-10-05</span>
-          <h4><a href="https://vxlang.org/">Vx puts hardware topology and memory placement into the type system</a></h4>
-          <p><strong>Vx</strong> is a systems programming language for heterogeneous computing that makes hardware topology, memory placement and reachability part of its types, so a class of bug that normally appears as a runtime crash, silent corruption or an out-of-memory error deep into a training run is caught at type-check time instead. It is a language site rather than a benchmark: there is no efficiency figure against native CUDA, which is the number this section judges entries on.</p>
-          <div class="sources"><a href="https://vxlang.org/">vxlang.org</a> &middot; <span class="via">via TLDR AI (Oct 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="vx-language">
+            <span class="when">2026-10-05</span>
+            <h4><a href="https://vxlang.org/">Vx puts hardware topology and memory placement into the type system</a></h4>
+            <p><strong>Vx</strong> is a systems programming language for heterogeneous computing that makes hardware topology, memory placement and reachability part of its types, so a class of bug that normally appears as a runtime crash, silent corruption or an out-of-memory error deep into a training run is caught at type-check time instead. It is a language site rather than a benchmark: there is no efficiency figure against native CUDA, which is the number this section judges entries on.</p>
+            <div class="sources"><a href="https://vxlang.org/">vxlang.org</a> &middot; <span class="via">via TLDR AI (Oct 5)</span></div>
+          </article>
 
           <article class="story" id="tpu-megakernels">
             <span class="when">2026-09-25</span>
@@ -522,7 +539,6 @@
             <p>vLLM introduced hardware-agnostic model layers that remain torch-compilable and extensible, reaching up to <strong>96.6% of native implementations&rsquo; efficiency on NVIDIA H100</strong>. The point is portability: a model written once can follow new GPUs without dropping older and niche accelerators, at a cost of a few percent on the hardware the native kernels were written for.</p>
             <div class="sources"><a href="https://pytorch.org/blog/hardware-agnostic-models-in-vllm/">PyTorch blog</a> &middot; <span class="via">via TLDR AI (Sep 23)</span></div>
           </article>
-
         </details>
       </section>
 
@@ -559,6 +575,14 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story" id="tpu-8tx-8i-max">
+          <span class="when">2026-11-09</span>
+          <h4><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/">Google&rsquo;s TPU 8tx and TPU 8i Max make four eighth-generation TPU systems in one year, for confidential inference and long context</a></h4>
+          <p>Google added two systems to its eighth TPU generation: <strong>TPU 8i Max</strong>, built for very long context windows and the highest compute density per rack (MarkTechPost reports two TPU 8i chips in one package), and <strong>TPU 8tx</strong> for secure, confidential inference, aimed at regulated customers. Google says TPUs now have nearly 100 customers, and The Code adds TorchTPU, which runs PyTorch and Hugging Face models without rewriting, and a preview agent suite that plugs into Claude Code and Cursor.</p>
+          <p>No chip specifications or prices were published. The only performance figures for the generation remain April&rsquo;s, for 8t and 8i: up to 2.7&times; training performance and 80% better inference price-performance over the previous TPUs.</p>
+          <div class="sources"><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/">Google</a> &middot; <span class="via">via TLDR AI (Nov 10), TLDR (Nov 10), The Code (Nov 10), Forward Future (Nov 10), MarkTechPost (Nov 10)</span></div>
+        </article>
+
         <article class="story" id="spacex-13gw-buildout">
           <span class="when">2026-11-03</span>
           <h4><a href="https://newsletter.semianalysis.com/p/elon-is-doing-it-again-spacex-will">SemiAnalysis: SpaceX has 3.6 GW of data-centre capacity under construction and has raised its 2027 target to about 13 GW</a></h4>
@@ -575,16 +599,16 @@
           <div class="sources"><a href="https://epoch.ai/latest/introducing-the-ai-chip-imports-explorer">Epoch AI</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
         </article>
 
-        <article class="story" id="meta-prometheus-supercluster">
-          <span class="when">2026-10-19</span>
-          <h4><a href="https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/">Meta details Prometheus, the gigawatt-scale supercluster under Muse, with a plan to reach about one million GPUs</a></h4>
-          <p>Meta Engineering published the design of <strong>Prometheus</strong>, the gigawatt-scale AI supercluster that trains and serves the Muse model family: the infrastructure layout, closed-loop liquid cooling, and a scaling plan toward <strong>roughly one million GPUs</strong>.</p>
-          <p>What the newsletter carries is the shape and the target, with no utilisation, cost or power-usage figure; it is this section&rsquo;s point that the binding constraint has moved to cooling and grid capacity, stated by the operator building at that scale. The models it serves are on <a href="model-releases.html#muse-wonder">Model releases</a>.</p>
-          <div class="sources"><a href="https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/">Meta Engineering</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (25)</summary>
+          <summary>Earlier in this section (26)</summary>
+
+          <article class="story" id="meta-prometheus-supercluster">
+            <span class="when">2026-10-19</span>
+            <h4><a href="https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/">Meta details Prometheus, the gigawatt-scale supercluster under Muse, with a plan to reach about one million GPUs</a></h4>
+            <p>Meta Engineering published the design of <strong>Prometheus</strong>, the gigawatt-scale AI supercluster that trains and serves the Muse model family: the infrastructure layout, closed-loop liquid cooling, and a scaling plan toward <strong>roughly one million GPUs</strong>.</p>
+            <p>What the newsletter carries is the shape and the target, with no utilisation, cost or power-usage figure; it is this section&rsquo;s point that the binding constraint has moved to cooling and grid capacity, stated by the operator building at that scale. The models it serves are on <a href="model-releases.html#muse-wonder">Model releases</a>.</p>
+            <div class="sources"><a href="https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/">Meta Engineering</a> &middot; <span class="via">via TLDR AI (Oct 20)</span></div>
+          </article>
 
           <article class="story" id="netflix-gpu-reliability">
             <span class="when">2026-10-15</span>
@@ -599,6 +623,7 @@
             <p>AMD introduced <strong>Helion</strong>, an open rack-scale blueprint for agentic-AI workloads with up to <strong>32,768 EPYC CPU cores</strong>, with partner systems due in <strong>November</strong>. A CPU-dense rack is a bet that agent loops spend much of their time off the accelerator &mdash; tool calls, sandboxes, orchestration &mdash; and AMD gave no workload measurement to back it.</p>
             <div class="sources"><a href="https://ir.amd.com/news-events/press-releases/detail/1301/introducing-amd-helion-agentic-ai-compute-at-rack-scale">AMD</a> &middot; <span class="via">via MarkTechPost (Oct 14)</span></div>
           </article>
+
           <article class="story" id="vera-rubin-ocp-mgx">
             <span class="when">2026-10-14</span>
             <h4><a href="https://blogs.nvidia.com/blog/ocp-global-summit-vera-rubin-scale-ai-factories">NVIDIA contributes Vera Rubin rack designs to OCP through MGX 1.2, with racks up to 250kW</a></h4>
@@ -1003,7 +1028,15 @@
 
       <section class="topic-section" id="kubernetes-as-the-ai-substrate">
         <h3>Kubernetes as the AI substrate</h3>
-        <p class="lead">Two hyperscalers shipped Kubernetes-native AI stacks within weeks of each other, one followed with a stable inference router, NVIDIA open-sourced its GPU scheduler, and a model lab reports what queueing a 10,000-GPU fleet bought it. Sandbox, GPU queue and inference pool sit inside the cluster manager an estate runs. Density, resume latency and queue wait decide what a fleet costs.</p>
+        <p class="lead">Two hyperscalers shipped Kubernetes-native AI stacks, one followed with a stable inference router, NVIDIA open-sourced its GPU scheduler, Buoyant a KV-cache-aware vLLM router, and a model lab reports what queueing a 10,000-GPU fleet bought it. Sandbox, GPU queue and inference pool sit inside the cluster manager. Density, resume latency and queue wait decide what a fleet costs.</p>
+
+        <article class="story" id="kinference">
+          <span class="when">2026-11-07</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/07/buoyant-kinference-open-source-inference-control-plane-kubernetes-vllm/">Buoyant&rsquo;s Kinference routes vLLM traffic on Kubernetes by KV-cache state, cutting median TTFT 95% on shared-prefix prompts and not at all without them</a></h4>
+          <p>Buoyant, the company behind Linkerd, released <strong>Kinference</strong> v0.1.0-alpha.7, an Apache 2.0 control plane written in Rust that sits in front of a vLLM fleet and handles routing policy, token rate limits, per-tenant metrics and KV-cache-aware load balancing, configured through five Kubernetes CRDs. It reads vLLM cache events through NVIDIA&rsquo;s dynamo-kv-router crate.</p>
+          <p>On three L40S GPUs per pool, Buoyant&rsquo;s benchmark cut median time to first token from <strong>6.88 s to 0.31 s</strong> on a shared-prefix workload and showed no gain (6.92 s against 6.83 s) on prompts without shared prefixes. The figures are self-reported and the project is alpha.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/07/buoyant-kinference-open-source-inference-control-plane-kubernetes-vllm/">MarkTechPost (write-up)</a> &middot; <span class="via">via MarkTechPost (Nov 10)</span></div>
+        </article>
 
         <article class="story" id="llm-d-1-0">
           <span class="when">2026-10-20</span>
@@ -1021,15 +1054,15 @@
           <div class="sources"><a href="https://developer.nvidia.com/blog/nvidia-runai-is-now-open-source-as-part-of-nvidia-dsx-ai-factory-platform">NVIDIA</a> &middot; <a href="https://github.com/dsx-ai-factory/run-ai">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/18/nvidia-runai-open-source-gpu-orchestration-kubernetes/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 14), MarkTechPost (Oct 19)</span></div>
         </article>
 
-        <article class="story" id="ai21-kueue">
-          <span class="when">2026-10-05</span>
-          <h4><a href="https://www.ai21.com/blog/how-ai21-manages-its-gpu-fleet-with-kueue">AI21 queues a 10,000-GPU fleet with Kueue, and high-priority jobs start 83% sooner</a></h4>
-          <p>AI21 describes replacing ad hoc negotiation over GPU capacity with <strong>Kueue</strong> queueing and fair-share scheduling across a shared Google Cloud cluster of about <strong>10,000 GPUs</strong>. A Google Cloud case study puts the result at high-priority workloads beginning <strong>83% sooner</strong>; the figure comes from the vendor whose cluster it runs on, and no utilisation number is given.</p>
-          <div class="sources"><a href="https://www.ai21.com/blog/how-ai21-manages-its-gpu-fleet-with-kueue">AI21</a> &middot; <span class="via">via TLDR AI (Oct 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="ai21-kueue">
+            <span class="when">2026-10-05</span>
+            <h4><a href="https://www.ai21.com/blog/how-ai21-manages-its-gpu-fleet-with-kueue">AI21 queues a 10,000-GPU fleet with Kueue, and high-priority jobs start 83% sooner</a></h4>
+            <p>AI21 describes replacing ad hoc negotiation over GPU capacity with <strong>Kueue</strong> queueing and fair-share scheduling across a shared Google Cloud cluster of about <strong>10,000 GPUs</strong>. A Google Cloud case study puts the result at high-priority workloads beginning <strong>83% sooner</strong>; the figure comes from the vendor whose cluster it runs on, and no utilisation number is given.</p>
+            <div class="sources"><a href="https://www.ai21.com/blog/how-ai21-manages-its-gpu-fleet-with-kueue">AI21</a> &middot; <span class="via">via TLDR AI (Oct 5)</span></div>
+          </article>
 
           <article class="story" id="agent-substrate-gke">
             <span class="when">2026-09-17</span>
@@ -1046,7 +1079,6 @@
             <p>Read with <a href="#agent-substrate-gke">Agent Substrate</a>, the pairing marks Kubernetes winning a question that was open a year ago. The serving-side arguments on this page were about custom schedulers and bespoke orchestration; both releases put the agent sandbox and the GPU queue inside the cluster manager already running the estate, leaving cloud-specific tuning as an optimisation rather than a requirement.</p>
             <div class="sources"><a href="https://github.com/Azure/taugrid">GitHub</a> &middot; <a href="https://blog.aks.azure.com/2026/08/28/taugrid-open-source">AKS Engineering Blog</a> &middot; <span class="via">via MarkTechPost (Sep 17)</span></div>
           </article>
-
         </details>
       </section>
 
@@ -1302,6 +1334,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-10</span><span class="label"><a href="#autocompress">NVIDIA&rsquo;s AutoCompress prunes Nemotron 3.5 Super from 120B to 74B for single-B200 serving at 128K, keeping 95% of its score</a></span></li>
+        <li><span class="date">2026-11-09</span><span class="label"><a href="#tpu-8tx-8i-max">Google&rsquo;s TPU 8tx and TPU 8i Max make four eighth-generation TPU systems in one year, for confidential inference and long context</a></span></li>
+        <li><span class="date">2026-11-07</span><span class="label"><a href="#kinference">Buoyant&rsquo;s Kinference routes vLLM traffic on Kubernetes by KV-cache state, cutting median TTFT 95% on shared-prefix prompts and not at all without them</a></span></li>
+        <li><span class="date">2026-11-06</span><span class="label"><a href="#zyfa">Zyphra&rsquo;s ZYFA FP8 attention kernels run 1.16&ndash;1.76&times; faster than AMD&rsquo;s own AITER on MI355X</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#openrouter-auto-router-v2">OpenRouter&rsquo;s rebuilt Auto Router claims up to 4&times; on benchmarks, and Auto Code matches Opus 5.5 at 74% less per task</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#moe-training-handbook">Hugging Face publishes &ldquo;The Ultimate MoE Training Handbook&rdquo; as a Space</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#apify-toon-removal">Apify added TOON to its MCP server and removed it after 30 days: its busiest payload cost 11.7% more tokens</a></span></li>

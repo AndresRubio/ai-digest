@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-10</div>
+      <div class="meta">Last updated: 2026-11-11</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 10 cycle adds one result on spending test-time compute on agents. <a href="#parallel-agent-teams">Parallel agent teams</a>, many teams of ten sampled side by side with the best result kept, beat 100 independent agents on 10 of 12 long-horizon tasks and one team of 100 on all four where that was tried, using a 27B model; at equal cost they beat a frontier model on half the tasks. The premise is the limit: a verifier that can score every attempt, which GPU kernels and formal proofs have and most agent work does not.</p>
         <p>The Nov 6 to 9 cycle is three entries about what an agent remembers, whom it trusts and what it may touch. Anthropic&rsquo;s <a href="#anthropic-agent-memory-components">agent-memory post</a> shows what judgment about salience looks like in a memory folder: 10,000 steps into Pok&eacute;mon Red, Sonnet 3.7 had written 413 files for one badge and Fable 5 nine files for four, and a dreaming pass caught a wrong map note against the transcript after it had sent Claude off a ledge three times. A rule of &ldquo;record only failures&rdquo; cost Opus 5 most of its gain, so the finding is to say what memory is for and not how to use it.</p>
         <p><a href="#project-eve">Project EVE</a> put Claude in EVE Online&rsquo;s market, where earnings tripled from Opus 4.6 to Fable 5 on a buy-low-sell-slightly-higher strategy and even Fable 5 lost money in about half its runs when asked to bet on price direction, and in EVE Frontier, where four-agent teams coordinated well and almost never caught a teammate told to sabotage them. OpenCode&rsquo;s <a href="#opencode-browse">Browse</a> lends an agent the user&rsquo;s own browser and logins through MCP, with a handoff for logins, 2FA and payments and a per-session site allowlist as the controls, and no figure.</p>
         <p>The Nov 5 cycle adds a harness result and a coordination kernel. MIT&rsquo;s <a href="#vista-harness">VISTA</a> stores every frame an agent sees and lets the model retrieve and zoom into them, which takes Claude Opus 5.0 from 40.68 to a perfect 100 on ARC-AGI-3&rsquo;s action-efficiency score; with frame storage removed, the GPT-5.6 Sol version drops from 99 to 70. <a href="#ambion">Ambion</a> is an open-source kernel in which Pi, Claude Agent SDK and Codex agents share a journal that survives restarts, still at 0.x. Uber&rsquo;s count of agent-booked rides, four in its busiest October week, is on the <a href="applications.html#uber-agent-bookings">applications page</a>.</p>
         <p>The Nov 4 cycle is about who authorizes an agent&rsquo;s reach. Apple opened <a href="#siri-ai-developer-preview">Siri AI to all developers</a> in the 27.3 betas: App Intents expose an app&rsquo;s data and actions, skills chain them, and testing stays inside TestFlight until App Store submissions open in the spring. MCP&rsquo;s <a href="#mcp-enterprise-managed-authorization">Enterprise-Managed Authorization</a> extension moves the decision from each employee to the company identity provider, with Okta issuing the grants. The third entry tests whether a harness can fix itself: a study of <a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill</a> produced 125 proposed changes, and of the seven that could be tested on later issues only two removed the problem.</p>
-        <p>The Nov 3 issues add one harness result and two narrower products. Framer&rsquo;s <a href="#framer-harness-2">Harness 2</a> executes agent JavaScript as it streams in, so one model call can drive a whole workflow, and Framer reports up to 33% lower cost, 20% faster execution and 43% fewer tool steps. It lands in the same place as <a href="#factory-droid-1-0">Droid 1.0</a> from the previous cycle: the model writes a program and the harness runs it. Both sets of numbers come from the builders.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 3 issues add one harness result and two narrower products. Framer&rsquo;s <a href="#framer-harness-2">Harness 2</a> executes agent JavaScript as it streams in, so one model call can drive a whole workflow, and Framer reports up to 33% lower cost, 20% faster execution and 43% fewer tool steps. It lands in the same place as <a href="#factory-droid-1-0">Droid 1.0</a> from the previous cycle: the model writes a program and the harness runs it. Both sets of numbers come from the builders.</p>
           <p>NVIDIA&rsquo;s <a href="#nvidia-auto-ontology">Auto Ontology</a> grounds agent SQL in certified business definitions and reaches a harness through MCP, CLI or API under Apache 2.0, though its eval repo ships a harness with no results. Letter&rsquo;s <a href="#letterpress-1">Letterpress-1</a> is a coding agent aimed at growth work, reading a site and its market before opening pull requests with live previews, from $100 a month and with no public benchmark.</p>
           <p>The Oct 30 to Nov 2 cycle is about where the harness runs and who does its coordinating, and every number in it is the builder&rsquo;s own. Factory&rsquo;s <a href="#factory-droid-1-0">Droid 1.0</a> has the model write a program that calls its tools, so one request drives hundreds of tool calls; the base prompt shrinks 37% to 13,055 tokens, only 2 tool definitions load up front instead of 11, and it reports 65.2% on Terminal-Bench 4 with Opus 5.5. Vercel&rsquo;s <a href="#vercel-fx-adapter">fx adapter</a> moves the harness onto the host through libfx, apart from the sandbox, which changes where the loop and its credentials sit relative to the environment the agent works in; the changelog entry gives no figures. DeepSeek&rsquo;s <a href="#dsh-superagent">dsh-superagent</a> splits GitHub requests across parallel workers, each in its own session and directory, and DeepSeek&rsquo;s simulation puts p95 completion at 15.7 minutes against 29.5. It is v0.1.0 with a single commit and labelled a research prototype. Vercel Labs&rsquo; <a href="#vercel-agent-desktop">agent-desktop</a> hands an agent the accessibility tree of a native app instead of screenshots and claims 78% to 96% fewer tokens on dense Electron apps. The common thread is moving work out of the model&rsquo;s context and into code around it, with no independent benchmark behind any of the four.</p>
           <p>Two items sit beside that thread without sharing it. Raindrop&rsquo;s <a href="#raindrop-swarm-leadership">swarm study</a> ran eight agents from four models on simulated outages with no designated leader, and found that the underlying model and the position of an agent&rsquo;s name in the prompt list predicted who took charge. It is a simulation, so it shows that small configuration choices steer coordination and says little about production swarms. Natural&rsquo;s <a href="#natural-direct">Direct</a> lets an agent choose between ACH, wire and realtime payment rails, with paper checks listed as coming soon. The announcement as relayed says nothing about approval controls, limits or fees, which an engineer would need before handing an agent that choice.</p>
@@ -119,7 +120,7 @@
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">9</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
-          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">22</span></a></li>
+          <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">23</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">14</span></a></li>
         </ul>
       </nav>
@@ -1287,6 +1288,14 @@
         <h3>Multi-agent orchestration</h3>
         <p class="lead">Small teams of agents specialised by role &mdash; product, research, dev, eval &mdash; or by station, and the two venues they coordinate in: the team&rsquo;s own chat channel, or a fixed pipeline. The unsolved part is not dispatch but reconciliation &mdash; many agents each correct about overlapping regions of one codebase. Judge entries on where verification sits.</p>
 
+        <article class="story" id="parallel-agent-teams">
+          <span class="when">2026-11-10</span>
+          <h4><a href="https://arxiv.org/abs/2611.09798">Parallel agent teams: many small teams beat best-of-N on 10 of 12 long-horizon tasks, and one team of 100 on all four tried</a></h4>
+          <p>With a 27B model, a budget of 100 agents and a verifier that scores every attempt, sampling many <strong>teams of ten</strong> in parallel and keeping the best team&rsquo;s result beat 100 parallel single agents on 10 of 12 tasks (GPU kernels, formal proofs, exploit development) and beat one team of 100 on all four tasks where that was run. At equal dollar cost the same teams beat a frontier model on half the tasks.</p>
+          <p>The authors&rsquo; account: single agents lose on a low mean, and one large team loses because a single sample gets nothing from variance. The method needs a verifier; code is included.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.09798">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 10)</span></div>
+        </article>
+
         <article class="story" id="ambion">
           <span class="when">2026-11-05</span>
           <h4><a href="https://github.com/ambionframework/ambion">Ambion is an open-source collaboration kernel where Pi, Claude Agent SDK and Codex agents share a journal that survives restarts</a></h4>
@@ -1303,15 +1312,15 @@
           <div class="sources"><a href="https://github.com/deepseek-ai/dsh-superagent-prototype">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/11/01/deepseek-dsh-superagent-router-worker-coding-agent/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 1), TLDR AI (Nov 2)</span></div>
         </article>
 
-        <article class="story" id="raindrop-swarm-leadership">
-          <span class="when">2026-10-30</span>
-          <h4><a href="https://www.raindrop.ai/blog/agent-swarm-leadership/">Raindrop: leaderless agent swarms pick a leader by underlying model and by order in the prompt</a></h4>
-          <p>Raindrop ran <strong>eight agents drawn from four models</strong> on simulated outages with no designated leader and recorded who took charge. Two things predicted leadership: the agent&rsquo;s underlying model, and the position of its name in the prompt&rsquo;s list. It is a simulation, so it shows that small configuration choices steer coordination, not how swarms behave in production.</p>
-          <div class="sources"><a href="https://www.raindrop.ai/blog/agent-swarm-leadership/">Raindrop</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (20)</summary>
+
+          <article class="story" id="raindrop-swarm-leadership">
+            <span class="when">2026-10-30</span>
+            <h4><a href="https://www.raindrop.ai/blog/agent-swarm-leadership/">Raindrop: leaderless agent swarms pick a leader by underlying model and by order in the prompt</a></h4>
+            <p>Raindrop ran <strong>eight agents drawn from four models</strong> on simulated outages with no designated leader and recorded who took charge. Two things predicted leadership: the agent&rsquo;s underlying model, and the position of its name in the prompt&rsquo;s list. It is a simulation, so it shows that small configuration choices steer coordination, not how swarms behave in production.</p>
+            <div class="sources"><a href="https://www.raindrop.ai/blog/agent-swarm-leadership/">Raindrop</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
+          </article>
 
           <article class="story" id="mirendil-lor">
             <span class="when">2026-10-29</span>
@@ -1576,6 +1585,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-10</span><span class="label"><a href="#parallel-agent-teams">Parallel agent teams: many small teams beat best-of-N on 10 of 12 long-horizon tasks, and one team of 100 on all four tried</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#opencode-browse">OpenCode Browse lends coding agents the user&rsquo;s real browser, tabs and logins, and hands back for 2FA</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#project-eve">Project EVE: Claude&rsquo;s trading profit tripled from Opus 4.6 to Fable 5, and a saboteur teammate went unnoticed</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#anthropic-agent-memory-components">Anthropic&rsquo;s agent-memory post: Fable 5 wrote 9 memory files to Sonnet 3.7&rsquo;s 413, and earned four badges to one</a></span></li>
