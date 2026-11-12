@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-11</div>
+      <div class="meta">Last updated: 2026-11-12</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 11 cycle is about who lets an agent in. Adobe&rsquo;s <a href="#adobe-creative-cloud-mcp">Creative Cloud MCP server</a> opens Photoshop, Illustrator and Premiere to ChatGPT, Claude and Gemini, while eBay <a href="#ebay-blocks-shopping-agents">limits Meta&rsquo;s Muse</a> and other third-party shopping agents from browsing its listings, citing scraping. One vendor publishes an interface for agents; one marketplace refuses them.</p>
         <p>The Nov 10 cycle adds one result on spending test-time compute on agents. <a href="#parallel-agent-teams">Parallel agent teams</a>, many teams of ten sampled side by side with the best result kept, beat 100 independent agents on 10 of 12 long-horizon tasks and one team of 100 on all four where that was tried, using a 27B model; at equal cost they beat a frontier model on half the tasks. The premise is the limit: a verifier that can score every attempt, which GPU kernels and formal proofs have and most agent work does not.</p>
         <p>The Nov 6 to 9 cycle is three entries about what an agent remembers, whom it trusts and what it may touch. Anthropic&rsquo;s <a href="#anthropic-agent-memory-components">agent-memory post</a> shows what judgment about salience looks like in a memory folder: 10,000 steps into Pok&eacute;mon Red, Sonnet 3.7 had written 413 files for one badge and Fable 5 nine files for four, and a dreaming pass caught a wrong map note against the transcript after it had sent Claude off a ledge three times. A rule of &ldquo;record only failures&rdquo; cost Opus 5 most of its gain, so the finding is to say what memory is for and not how to use it.</p>
         <p><a href="#project-eve">Project EVE</a> put Claude in EVE Online&rsquo;s market, where earnings tripled from Opus 4.6 to Fable 5 on a buy-low-sell-slightly-higher strategy and even Fable 5 lost money in about half its runs when asked to bet on price direction, and in EVE Frontier, where four-agent teams coordinated well and almost never caught a teammate told to sabotage them. OpenCode&rsquo;s <a href="#opencode-browse">Browse</a> lends an agent the user&rsquo;s own browser and logins through MCP, with a handoff for logins, 2FA and payments and a per-session site allowlist as the controls, and no figure.</p>
         <p>The Nov 5 cycle adds a harness result and a coordination kernel. MIT&rsquo;s <a href="#vista-harness">VISTA</a> stores every frame an agent sees and lets the model retrieve and zoom into them, which takes Claude Opus 5.0 from 40.68 to a perfect 100 on ARC-AGI-3&rsquo;s action-efficiency score; with frame storage removed, the GPT-5.6 Sol version drops from 99 to 70. <a href="#ambion">Ambion</a> is an open-source kernel in which Pi, Claude Agent SDK and Codex agents share a journal that survives restarts, still at 0.x. Uber&rsquo;s count of agent-booked rides, four in its busiest October week, is on the <a href="applications.html#uber-agent-bookings">applications page</a>.</p>
-        <p>The Nov 4 cycle is about who authorizes an agent&rsquo;s reach. Apple opened <a href="#siri-ai-developer-preview">Siri AI to all developers</a> in the 27.3 betas: App Intents expose an app&rsquo;s data and actions, skills chain them, and testing stays inside TestFlight until App Store submissions open in the spring. MCP&rsquo;s <a href="#mcp-enterprise-managed-authorization">Enterprise-Managed Authorization</a> extension moves the decision from each employee to the company identity provider, with Okta issuing the grants. The third entry tests whether a harness can fix itself: a study of <a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill</a> produced 125 proposed changes, and of the seven that could be tested on later issues only two removed the problem.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 4 cycle is about who authorizes an agent&rsquo;s reach. Apple opened <a href="#siri-ai-developer-preview">Siri AI to all developers</a> in the 27.3 betas: App Intents expose an app&rsquo;s data and actions, skills chain them, and testing stays inside TestFlight until App Store submissions open in the spring. MCP&rsquo;s <a href="#mcp-enterprise-managed-authorization">Enterprise-Managed Authorization</a> extension moves the decision from each employee to the company identity provider, with Okta issuing the grants. The third entry tests whether a harness can fix itself: a study of <a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill</a> produced 125 proposed changes, and of the seven that could be tested on later issues only two removed the problem.</p>
           <p>The Nov 3 issues add one harness result and two narrower products. Framer&rsquo;s <a href="#framer-harness-2">Harness 2</a> executes agent JavaScript as it streams in, so one model call can drive a whole workflow, and Framer reports up to 33% lower cost, 20% faster execution and 43% fewer tool steps. It lands in the same place as <a href="#factory-droid-1-0">Droid 1.0</a> from the previous cycle: the model writes a program and the harness runs it. Both sets of numbers come from the builders.</p>
           <p>NVIDIA&rsquo;s <a href="#nvidia-auto-ontology">Auto Ontology</a> grounds agent SQL in certified business definitions and reaches a harness through MCP, CLI or API under Apache 2.0, though its eval repo ships a harness with no results. Letter&rsquo;s <a href="#letterpress-1">Letterpress-1</a> is a coding agent aimed at growth work, reading a site and its market before opening pull requests with live previews, from $100 a month and with no public benchmark.</p>
           <p>The Oct 30 to Nov 2 cycle is about where the harness runs and who does its coordinating, and every number in it is the builder&rsquo;s own. Factory&rsquo;s <a href="#factory-droid-1-0">Droid 1.0</a> has the model write a program that calls its tools, so one request drives hundreds of tool calls; the base prompt shrinks 37% to 13,055 tokens, only 2 tool definitions load up front instead of 11, and it reports 65.2% on Terminal-Bench 4 with Opus 5.5. Vercel&rsquo;s <a href="#vercel-fx-adapter">fx adapter</a> moves the harness onto the host through libfx, apart from the sandbox, which changes where the loop and its credentials sit relative to the environment the agent works in; the changelog entry gives no figures. DeepSeek&rsquo;s <a href="#dsh-superagent">dsh-superagent</a> splits GitHub requests across parallel workers, each in its own session and directory, and DeepSeek&rsquo;s simulation puts p95 completion at 15.7 minutes against 29.5. It is v0.1.0 with a single commit and labelled a research prototype. Vercel Labs&rsquo; <a href="#vercel-agent-desktop">agent-desktop</a> hands an agent the accessibility tree of a native app instead of screenshots and claims 78% to 96% fewer tokens on dense Electron apps. The common thread is moving work out of the model&rsquo;s context and into code around it, with no independent benchmark behind any of the four.</p>
@@ -116,8 +117,8 @@
           <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">16</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">13</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
-          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">16</span></a></li>
-          <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">9</span></a></li>
+          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">17</span></a></li>
+          <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">10</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">23</span></a></li>
@@ -981,6 +982,13 @@
         <h3>Browser &amp; computer-use agents</h3>
         <p class="lead">Four ways an agent drives a browser: infer the page from pixels, call actions a cooperating site publishes, borrow a profile that is already logged in, or compile the site into a deterministic API once. Open-weights families such as Microsoft Fara1.5 (4B/9B/27B, reported to beat OpenAI Operator and Gemini 2.5 on certain tasks) make the proprietary browsing agents substitutable.</p>
 
+        <article class="story" id="ebay-blocks-shopping-agents">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://www.theverge.com/tech/1030838/ebay-ai-agents-meta-muse-agentic-shopping">eBay limits Meta&rsquo;s Muse and other third-party shopping agents from browsing its listings</a></h4>
+          <p>eBay is restricting third-party AI agents, Meta&rsquo;s Muse among them, from browsing its listings, citing unauthorised scraping. It is a large marketplace deciding which agents may read it at all, the reverse of the site-published action interfaces elsewhere in this section.</p>
+          <div class="sources"><a href="https://www.theverge.com/tech/1030838/ebay-ai-agents-meta-muse-agentic-shopping">The Verge</a> &middot; <span class="via">via Forward Future (Nov 11)</span></div>
+        </article>
+
         <article class="story" id="opencode-browse">
           <span class="when">2026-11-09</span>
           <h4><a href="https://opencode.ai/product/browse">OpenCode Browse lends coding agents the user&rsquo;s real browser, tabs and logins, and hands back for 2FA</a></h4>
@@ -995,13 +1003,6 @@
           <p><strong>agent-desktop</strong> is a Rust CLI and C library that gives an agent a JSON snapshot of an app&rsquo;s accessibility tree, with a stable ref for every actionable element, so any shell-capable coding agent (Claude Code, Codex) can click a ref instead of a pixel. It runs in the background without taking the cursor, on macOS, Windows and Linux on plain CPU, under <strong>Apache-2.0</strong>.</p>
           <p>Vercel reports <strong>78% to 96% fewer tokens</strong> than screenshot loops on dense Electron apps. That is the builder&rsquo;s own figure, and there is no independent computer-use benchmark yet.</p>
           <div class="sources"><a href="https://github.com/vercel-labs/agent-desktop">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/31/vercel-labs-agent-desktop-computer-use/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 1), The Code (Nov 2), AlphaSignal (Nov 2)</span></div>
-        </article>
-
-        <article class="story" id="pomerado">
-          <span class="when">2026-10-27</span>
-          <h4><a href="https://pomerado.ai/">Pomerado turns a website into an API or MCP tool in about 30 minutes, claiming up to 1,000&times; lower cost than a browser agent</a></h4>
-          <p><strong>Pomerado</strong> builds deterministic integrations for websites and old internal portals that have no official API, exposing them as APIs or MCP tools that can log in, handle 2FA and repair themselves when the site changes. AlphaSignal reports setup in about <strong>30 minutes</strong> and a cost up to <strong>1,000&times;</strong> lower than driving the same site with a browser agent. Both figures are the vendor&rsquo;s, and a self-healing claim is only as good as its record through a site redesign.</p>
-          <div class="sources"><a href="https://pomerado.ai/">Pomerado</a> &middot; <span class="via">via AlphaSignal (Oct 27), The Code (Oct 27)</span></div>
         </article>
 
 <details>
@@ -1108,6 +1109,17 @@
             <p>Perplexity&rsquo;s Personal Computer turns the operating system itself into an AI system, with Perplexity&rsquo;s agent working as a &ldquo;general-purpose digital worker&rdquo; &mdash; extending its recent terminal-native search move into a full OS-level agent surface, and pushing past the browser entirely.</p>
             <div class="sources"><span class="via">via AI Loves Data (Jul 31) &mdash; no public URL given</span></div>
           </article>
+
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story" id="pomerado">
+            <span class="when">2026-10-27</span>
+            <h4><a href="https://pomerado.ai/">Pomerado turns a website into an API or MCP tool in about 30 minutes, claiming up to 1,000&times; lower cost than a browser agent</a></h4>
+            <p><strong>Pomerado</strong> builds deterministic integrations for websites and old internal portals that have no official API, exposing them as APIs or MCP tools that can log in, handle 2FA and repair themselves when the site changes. AlphaSignal reports setup in about <strong>30 minutes</strong> and a cost up to <strong>1,000&times;</strong> lower than driving the same site with a browser agent. Both figures are the vendor&rsquo;s, and a self-healing claim is only as good as its record through a site redesign.</p>
+            <div class="sources"><a href="https://pomerado.ai/">Pomerado</a> &middot; <span class="via">via AlphaSignal (Oct 27), The Code (Oct 27)</span></div>
+          </article>
+        </details>
         </details>
       
       </section>
@@ -1115,6 +1127,13 @@
       <section class="topic-section" id="agent-extension-patterns">
         <h3>Agent extension patterns</h3>
         <p class="lead">MCP server, CLI tool, agent skill, custom tool &mdash; no consensus on which to reach for, and the choice turns on whether the extension needs nuanced reasoning, deterministic execution or shared distribution. What did settle is packaging. Judge entries on the trust decision: portability with authentication unresolved, or a reviewed channel into one vendor&rsquo;s users.</p>
+
+        <article class="story" id="adobe-creative-cloud-mcp">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://techcrunch.com/2026/11/10/adobe-adds-more-ai-to-its-products-and-launches-an-mcp/">Adobe launches an MCP server that lets ChatGPT, Claude and Gemini work in Photoshop, Illustrator and Premiere</a></h4>
+          <p>Adobe released an <strong>MCP server</strong> for Creative Cloud, so assistants including ChatGPT, Claude and Gemini can operate Photoshop, Illustrator and Premiere. The same day, Anthropic&rsquo;s <a href="applications.html#claude-sheets-whiteboards-data">interactive connectors</a> began opening Adobe apps inside Claude itself, a second route into the same tools.</p>
+          <div class="sources"><a href="https://techcrunch.com/2026/11/10/adobe-adds-more-ai-to-its-products-and-launches-an-mcp/">TechCrunch</a> &middot; <span class="via">via Forward Future (Nov 11)</span></div>
+        </article>
 
         <article class="story" id="siri-ai-developer-preview">
           <span class="when">2026-11-04</span>
@@ -1131,16 +1150,16 @@
           <div class="sources"><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic</a> &middot; <span class="via">via TLDR AI (Oct 23)</span></div>
         </article>
 
-        <article class="story" id="personal-agent-protocol">
-          <span class="when">2026-10-07</span>
-          <h4><a href="https://sierra.ai/blog/introducing-personal-agent-protocol">Meta and Sierra&rsquo;s Personal Agent Protocol is an OAuth-based open standard for personal agents to act on businesses&rsquo; sites and APIs</a></h4>
-          <p>Sierra and Meta, with Shopify, Stripe and Walmart named as backers, published the <strong>Personal Agent Protocol</strong>, an open standard for a consumer&rsquo;s personal agent to reach a company through its website, APIs or its own agents. It is built on OAuth: the consumer decides what access the agent gets, the company sets what the agent may do and sees what it did, and anyone can implement it.</p>
-          <p>It is the authentication piece this section&rsquo;s lead has been calling unresolved, arriving from the side that runs the personal agent (Meta&rsquo;s Muse) and the side that answers it (Sierra&rsquo;s customer agents) rather than from the MCP working group; what is published is a spec and a partner list, with no conformance test or adoption figure yet.</p>
-          <div class="sources"><a href="https://sierra.ai/blog/introducing-personal-agent-protocol">Sierra</a> &middot; <span class="via">via TLDR AI (Oct 7), MarkTechPost (Oct 7)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="personal-agent-protocol">
+            <span class="when">2026-10-07</span>
+            <h4><a href="https://sierra.ai/blog/introducing-personal-agent-protocol">Meta and Sierra&rsquo;s Personal Agent Protocol is an OAuth-based open standard for personal agents to act on businesses&rsquo; sites and APIs</a></h4>
+            <p>Sierra and Meta, with Shopify, Stripe and Walmart named as backers, published the <strong>Personal Agent Protocol</strong>, an open standard for a consumer&rsquo;s personal agent to reach a company through its website, APIs or its own agents. It is built on OAuth: the consumer decides what access the agent gets, the company sets what the agent may do and sees what it did, and anyone can implement it.</p>
+            <p>It is the authentication piece this section&rsquo;s lead has been calling unresolved, arriving from the side that runs the personal agent (Meta&rsquo;s Muse) and the side that answers it (Sierra&rsquo;s customer agents) rather than from the MCP working group; what is published is a spec and a partner list, with no conformance test or adoption figure yet.</p>
+            <div class="sources"><a href="https://sierra.ai/blog/introducing-personal-agent-protocol">Sierra</a> &middot; <span class="via">via TLDR AI (Oct 7), MarkTechPost (Oct 7)</span></div>
+          </article>
 
           <article class="story" id="chatgpt-mcp-events">
             <span class="when">2026-09-30</span>
@@ -1585,6 +1604,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#ebay-blocks-shopping-agents">eBay limits Meta&rsquo;s Muse and other third-party shopping agents from browsing its listings</a></span></li>
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#adobe-creative-cloud-mcp">Adobe launches an MCP server that lets ChatGPT, Claude and Gemini work in Photoshop, Illustrator and Premiere</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#parallel-agent-teams">Parallel agent teams: many small teams beat best-of-N on 10 of 12 long-horizon tasks, and one team of 100 on all four tried</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#opencode-browse">OpenCode Browse lends coding agents the user&rsquo;s real browser, tabs and logins, and hands back for 2FA</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#project-eve">Project EVE: Claude&rsquo;s trading profit tripled from Opus 4.6 to Fable 5, and a saboteur teammate went unnoticed</a></span></li>

@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-11-11</div>
+      <div class="meta">Last updated: 2026-11-12</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 11 addition is a factory number. Google DeepMind says <a href="#gemini-robotics-2-5-mercedes">Gemini Robotics 2.5</a> drove Apptronik&rsquo;s Apollo 2 to 96% success sorting metal parts on live Mercedes-Benz lines, 20&ndash;30% faster than its previous systems. It is a pilot reported by Google, so it answers whether the robot can work on a real line, not whether the plant would keep it.</p>
         <p>The Nov 10 cycle is two opposite answers to the demonstration problem, both measured by their authors. NVIDIA&rsquo;s <a href="#gr00t-2">GR00T 2</a> predicts video and actions together so it can learn from human footage, and goes from 40% zero-shot on 50 unseen tasks to 95% with five demonstrations and a 30-minute fine-tune; a Turbo variant runs on the Unitree G1 at 124 ms a step. <a href="#amp1">AMP1</a> drops learned policies and lets a generalist model drive the arm, reaching 85.6% zero-shot on RoboLab-120 against 49.2% for a leading VLA. On the road, NHTSA opened a <a href="#waymo-school-bus-recall-query">recall query</a> because most Waymo school-bus passing incidents came after the fix meant to end them.</p>
         <p>The Nov 6 cycle adds open weights to the world-models section and a failure case to deployment. NVIDIA opened <a href="#cosmos-3-interactive-world-models">four Cosmos 3 models</a> for interactive world simulation and driving scenes, each with 16B trainable parameters, generating synchronized multi-sensor data and photorealistic video from simulator controls. It is the weights behind the Nov 3 Cosmos Framework update, and like that entry it arrives without the consistency or transfer number <a href="#streameval">StreamEval</a> says visual quality does not predict. NVIDIA&rsquo;s VFlash, which predicts trajectories and 3D motion in parallel, is on the <a href="model-releases.html#nvidia-vflash">model page</a>. From a Substack note, <a href="#mirrorsentinel-elevator">MirrorSentinel-Elevator</a> records a ZED2 camera and an Ouster lidar through seven hand-measured elevator cabins, where a mirror makes the lidar report a room that is not there: a small dataset of a sensor failing in a place robots are expected to work.</p>
         <p>The Nov 5 addition is a benchmark for the models this page treats as simulators. <a href="#streameval">StreamEval</a> scores 37 interactive streaming video models on five tasks and ten metrics and finds that visual quality and identity retention do not reliably come with request execution or sustained state consistency. The Batch made a similar point about <a href="#genie-4">Genie 4</a>: Google published demos without quantitative evaluation, and one of them shows a marble bust settling where it should topple.</p>
         <p>The Nov 3 cycle is five papers on why vision-language-action policies fail on real hardware, each attacking a different physical constraint. <a href="#fastvla">FastVLA</a> prunes visual tokens by task prompt for 20% lower action latency on a Franka arm. <a href="#focusvla">FocusVLA</a> decides between wrist and static cameras from the robot&rsquo;s recent actions and lifts real-world success from 71.7% to 85.0%. <a href="#gazeact">GazeAct</a> trains on operator eye tracking and moves 18 real tasks from 48.1% to 58.6%, with no eye tracker needed at deployment. <a href="#pointmapvla">PointmapVLA</a> gives each pixel a metric position in the robot&rsquo;s base frame, and <a href="#rawvla">RawVLA</a> shows the camera&rsquo;s own signal processor shifting action accuracy under changing light.</p>
-        <p>The Nov 2 cycle was thin: <a href="#meta-max-humanoid">Meta reportedly built Max</a>, a household-chores humanoid prototype, with a Chinese robotics company in about three months, on NVIDIA Jetson Thor at about 106 lb and 1.5 m, with a second prototype in progress. No capability is reported, only the build and its specifications.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 2 cycle was thin: <a href="#meta-max-humanoid">Meta reportedly built Max</a>, a household-chores humanoid prototype, with a Chinese robotics company in about three months, on NVIDIA Jetson Thor at about 106 lb and 1.5 m, with a second prototype in progress. No capability is reported, only the build and its specifications.</p>
           <p>The Oct 29 cycle opens a section on touch, from a single newsletter issue reviewing three 2026 papers. <a href="#dexport">DexPort</a> takes the robot arm out of demonstration collection, and training on operator commands instead of reached joint positions lifts success from 11% to 64%. <a href="#vectile">VecTile</a> measures pressure and shear on a sheet under 6 mm thick for $34.67 including electronics, with errors of 0.39 N and 0.16 N against an industrial sensor. <a href="#vista3d">VisTa3D</a> shows current vision and depth models dropping objects thinner than about 3 mm, which touch maps recover. The argument across all three is that a camera updating 5 to 15 times a second cannot see a slip that lasts 10 to 20 milliseconds behind the fingers.</p>
           <p>The Oct 28 cycle is simulation as the product. Google DeepMind&rsquo;s <a href="#genie-4">Genie 4</a> holds a photorealistic interactive world consistent for about two minutes, double Genie 3, adds native audio and takes prompt edits mid-run, with Gemini models planning events to keep scenes coherent; the stated purpose is testing robots and agents before the real world, and the stated limit is drift on longer runs. Meta&rsquo;s <a href="#interactiveworld">InteractiveWorld</a> makes the same bet one level down, a framework that simulates a wearable assistant&rsquo;s first-person view for training and evaluation. And <a href="#gemini-robotics-er-2">Gemini Robotics Embodied Reasoning 2</a> lands on Google Cloud, which moves a frontier embodied-reasoning model from research preview to something any team with an account can call.</p>
           <p>The Oct 27 cycle measured a trend instead of a model. A <a href="#frontier-robot-arm-doubling">LessWrong study</a> ran nine frontier multimodal models on six real-arm tasks from July to October and puts the doubling time for performance at about 54 days, with the best execution rate up 4.4 times and the cheapest subtask 6.2 times cheaper; the limits it names are precision and efficiency, with reasoning no longer the bottleneck. Four months and six tasks is a thin base for a doubling time, but it is the first series on this page that puts the single-model <a href="#gpt-6-astra-robot-arms">Astra arm trials</a> on a curve.</p>
@@ -89,7 +90,7 @@
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">21</span></a></li>
           <li><a href="#world-models">World models <span class="n">20</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">6</span></a></li>
-          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">17</span></a></li>
+          <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">18</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
           <li><a href="#low-cost-and-map-less-navigation">Low-cost &amp; map-less navigation <span class="n">1</span></a></li>
         </ul>
@@ -546,6 +547,13 @@
         <h3>Hardware &amp; real-world deployment</h3>
         <p class="lead">These entries are about the gap between a robot working and a robot deployed: safety certification, regulatory approval, unit economics, the price of demonstrations, the plumbing between three compute targets, and generalization outside test conditions. Ask of each whether its evidence is work actually done or a performance under chosen conditions.</p>
 
+        <article class="story" id="gemini-robotics-2-5-mercedes">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://the-decoder.com/google-deepminds-gemini-robotics-2-5-scores-96-percent-sorting-metal-parts-in-a-mercedes-benz-assembly-pilot/">Gemini Robotics 2.5 has Apptronik&rsquo;s Apollo 2 sorting metal parts at 96% success on Mercedes-Benz lines</a></h4>
+          <p>Google DeepMind says <strong>Gemini Robotics 2.5</strong>, its vision-language-action model, drove Apptronik&rsquo;s Apollo 2 humanoid to a <strong>96%</strong> success rate sorting metal parts on active Mercedes-Benz production lines, and finished the tested tasks 20&ndash;30% faster than its previous systems. The numbers come from a pilot reported by Google, not from a sustained deployment, and follow <a href="#gemini-robotics-2">Gemini Robotics 2</a> in July.</p>
+          <div class="sources"><a href="https://the-decoder.com/google-deepminds-gemini-robotics-2-5-scores-96-percent-sorting-metal-parts-in-a-mercedes-benz-assembly-pilot/">The Decoder</a> &middot; <span class="via">via Forward Future (Nov 11)</span></div>
+        </article>
+
         <article class="story" id="waymo-school-bus-recall-query">
           <span class="when">2026-11-09</span>
           <h4><a href="https://techcrunch.com/2026/11/09/waymo-robotaxis-kept-illegally-passing-school-buses-after-software-fix-feds-say/">NHTSA opens a recall query after most Waymo school-bus passing incidents came after its software fix</a></h4>
@@ -561,16 +569,16 @@
           <div class="sources"><a href="https://www.engadget.com/2303434/meta-reportedly-built-a-humanoid-robot-prototype-that-can-do-household-chores/">Engadget</a> &middot; <span class="via">via TLDR (Nov 2)</span></div>
         </article>
 
-        <article class="story" id="mirrorsentinel-elevator">
-          <span class="when">2026-10-31</span>
-          <h4><a href="https://huggingface.co/datasets/Voxel51/MirrorSentinel-Elevator">MirrorSentinel-Elevator: camera and lidar through seven elevator cabins, where a mirror makes the sensor measure a room that is not there</a></h4>
-          <p>Pointed at a mirror, a lidar reports a room that does not exist, and in an elevator the cabin appears to extend into solid wall. <strong>MirrorSentinel-Elevator</strong> records a ZED2 camera and an Ouster lidar through <strong>seven cabins</strong>, each measured by hand so the reported boundary can be checked against the real one; Harpreet Sahota parsed it into FiftyOne so the camera and point cloud can be scrubbed together.</p>
-          <p>It is a small deployment-failure set rather than a benchmark: no model and no score come with it.</p>
-          <div class="sources"><a href="https://huggingface.co/datasets/Voxel51/MirrorSentinel-Elevator">Hugging Face (Voxel51)</a> &middot; <span class="via">via Substack notes (Nov 7)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="mirrorsentinel-elevator">
+            <span class="when">2026-10-31</span>
+            <h4><a href="https://huggingface.co/datasets/Voxel51/MirrorSentinel-Elevator">MirrorSentinel-Elevator: camera and lidar through seven elevator cabins, where a mirror makes the sensor measure a room that is not there</a></h4>
+            <p>Pointed at a mirror, a lidar reports a room that does not exist, and in an elevator the cabin appears to extend into solid wall. <strong>MirrorSentinel-Elevator</strong> records a ZED2 camera and an Ouster lidar through <strong>seven cabins</strong>, each measured by hand so the reported boundary can be checked against the real one; Harpreet Sahota parsed it into FiftyOne so the camera and point cloud can be scrubbed together.</p>
+            <p>It is a small deployment-failure set rather than a benchmark: no model and no score come with it.</p>
+            <div class="sources"><a href="https://huggingface.co/datasets/Voxel51/MirrorSentinel-Elevator">Hugging Face (Voxel51)</a> &middot; <span class="via">via Substack notes (Nov 7)</span></div>
+          </article>
 
           <article class="story" id="tesla-optimus-production">
             <span class="when">2026-10-21</span>
@@ -714,6 +722,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#gemini-robotics-2-5-mercedes">Gemini Robotics 2.5 has Apptronik&rsquo;s Apollo 2 sorting metal parts at 96% success on Mercedes-Benz lines</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#amp1">AMP1: a generalist model steering the arm directly reaches 85.6% zero-shot on RoboLab-120, against 49.2% for a leading VLA</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#gr00t-2">NVIDIA&rsquo;s GR00T 2 world-action model goes from 40% zero-shot to 95% on unseen tasks after five demonstrations and a 30-minute fine-tune</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#waymo-school-bus-recall-query">NHTSA opens a recall query after most Waymo school-bus passing incidents came after its software fix</a></span></li>

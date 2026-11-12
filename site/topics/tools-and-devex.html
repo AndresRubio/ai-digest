@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-11-11</div>
+      <div class="meta">Last updated: 2026-11-12</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 11 cycle is two releases about coordinating agents and feeding them knowledge. Google Antigravity&rsquo;s <a href="#antigravity-swarm">/swarm</a>, in preview, turns a conversation into a coordinator that splits work among named agents on one shared board, with a verifier reporting before a human sees the result and quota drawn per worker. Chrome&rsquo;s <a href="#modern-web-guidance">Modern Web Guidance 1.0</a> ships web-platform knowledge as agent skills, with expert review and eval coverage on every guide, and Firefox and Edge now contribute.</p>
         <p>The Nov 10 cycle is about what agents read and what reviewers check. A study of <a href="#stale-instruction-files">stale CLAUDE.md and AGENTS.md instructions</a> across 732 trajectories finds agents follow out-of-date guidance when it is relevant, costing Claude Sonnet 5.5 a third more tool calls on one stale test command, a cost task-success evals never show. Storybook 11 beta ships <a href="#storybook-11-beta">official agent skills</a> with headless test and review commands, Google&rsquo;s <a href="#elephant-goldfish-plugin">Elephant-Goldfish plugin</a> has context-free subagents attack a spec before any code exists, and Warp&rsquo;s <a href="#warp-merge-risk">/merge-risk</a> grades a pull request on five signals so human attention goes where the blast radius is. Reason Machines&rsquo; <a href="#aspen-git-server">Aspen</a> rebuilds OpenAI&rsquo;s Pando design as an open, pre-alpha Git server at 567 pushes a second, and Automattic&rsquo;s <a href="#spacefast">Spacefast</a> hosts the backend for vibe-coded apps.</p>
         <p>The Nov 9 and 10 cycle is about what an agent is handed and who holds the shell. GitHub Next&rsquo;s <a href="#ace-github-next">Ace</a> runs team chats and agents from a local Mac, with lanes as copy-on-write worktrees that land as pull requests and a Tailscale network as the team; the agent runs as the user with a shell and can change files outside the project, which the page says to read first. Simon Willison&rsquo;s <a href="#beep-locator">Beep Locator</a> gave Claude Code ears: five devices as WebSocket microphones, code hot-swapped onto them by the agent, and a beeping carbon-monoxide detector found to within 40 cm, started on Opus 5.5 and finished on Fable 5.2 the day it shipped.</p>
         <p><a href="#datasette-agent-0-5a0">Datasette Agent 0.5a0</a> docks the agent beside the page and makes a write query the thing that needs approval. The <a href="#xcode-27">Xcode 27</a> entry gained the 27.3 beta, which The Code reports adds GitHub Copilot and a Claude Code plugin that builds, tests and renders SwiftUI previews from the agent.</p>
         <p>The Nov 6 to 8 cycle is about what agents cost per unit of work and who gets to see the bill. Cognition&rsquo;s <a href="#devin-review-2">Devin Review 2.0</a> says the cost of a review per pull request has fallen 82% since August, with no catch-rate figure beside the price. Claude Code&rsquo;s <a href="#claude-code-usage-fixes">/usage</a> now shows what is draining a plan&rsquo;s limit and applies fixes with one key; the leak The Code points at is subagents inheriting the main session&rsquo;s effort level. Warp&rsquo;s <a href="#warp-factory-cost-per-pr">cost per PR</a> figure moved from $30 to $20 in Zach Lloyd&rsquo;s later post, by letting a strong model plan and a cheaper one edit, still self-reported. <a href="#cursor-live-apps">Cursor</a> now builds, databases, security-checks and deploys an app to a shareable link from a description, with nothing said about hosting or price.</p>
-        <p>Two entries gained their public pages. GitHub&rsquo;s <a href="#github-git-infra-agent-scale">Git storage rebuild</a> has a third post with figures: thousands of writes per second and 5,000 concurrent agents on one repository, still without the agent-loop latency it is built for. Karpathy&rsquo;s <a href="#hackertube">HackerTube</a> entry now links to his post and records the order of the pipeline: filter 43M comments by URL, regex and spam rules first, then send what survives to Sonnet.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>Two entries gained their public pages. GitHub&rsquo;s <a href="#github-git-infra-agent-scale">Git storage rebuild</a> has a third post with figures: thousands of writes per second and 5,000 concurrent agents on one repository, still without the agent-loop latency it is built for. Karpathy&rsquo;s <a href="#hackertube">HackerTube</a> entry now links to his post and records the order of the pipeline: filter 43M comments by URL, regex and spam rules first, then send what survives to Sonnet.</p>
           <p>The Nov 5 cycle has one fix and one case study. <a href="#claude-code-subagent-status-cost">Claude Code v2.1.316</a> stops background subagents re-reading their whole conversation every 30 seconds to refresh a status line; Haiku 5.5 now writes it from short notes, about 99% cheaper per update. X&rsquo;s engineering blog says <a href="#x-com-web-rebuild">five engineers with coding agents</a> built the first version of a new X.com web app in under six months, replacing three servers with one and cutting a slow-connection profile load from 22 seconds to 2.7.</p>
           <p>The Nov 4 cycle has one vendor reaching into another vendor&rsquo;s agent and two tools that give an agent something new to operate. A GitHub issue reports <a href="#postman-agent-plugin-autoinstall">Postman&rsquo;s desktop app</a> installing a plugin, a startup hook and a remote MCP connection into Claude Code and Codex without asking; The Code found no evidence of data theft. Google&rsquo;s <a href="#gemini-notebook-api">Gemini Notebook API</a> opens notebooks and their sources to REST and an MCP server, and <a href="#terminal-mac">terminal-mac</a> hands coding agents a separate macOS virtual machine to click and type in.</p>
           <p>The Nov 3 cycle measures how far agent output has outgrown the systems beneath it. GitHub&rsquo;s <a href="#github-octoverse-2026">Octoverse 2026</a> has merged pull requests tripling in under a year to 220 million a month and commits at 7.38 billion. OpenAI hit that wall in its own monorepo and built <a href="#openai-pando">Pando</a>, a backend that cuts median push latency about 80% and serves nearly a petabyte a day. <a href="#spawn-agent-swarm">Spawn</a> spends over $3 million a month on tokens and treats an hour without a ship as a SEV-0; Microsoft&rsquo;s <a href="#copilot-cowork-rust">Copilot Cowork</a> moved from Python to Rust while live.</p>
@@ -116,7 +117,7 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">8</span></a></li>
-          <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">6</span></a></li>
+          <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">7</span></a></li>
           <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">14</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
           <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">45</span></a></li>
@@ -126,7 +127,7 @@
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">18</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">21</span></a></li>
           <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">42</span></a></li>
-          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">9</span></a></li>
+          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">10</span></a></li>
         </ul>
       </nav>
 
@@ -205,6 +206,13 @@
         <h3>Skills vs MCPs vs custom tools</h3>
         <p class="lead">Skills are the lightweight default for a recurring workflow. MCPs are preferred when the extension has to handle nuance the skill abstraction cannot express. CLIs and custom tools remain valid for deterministic, distribution-friendly work. Judge entries on which mechanism a release picks and what it says about the boundary between them.</p>
 
+        <article class="story" id="modern-web-guidance">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://developer.chrome.com/blog/modern-web-guidance-v1">Modern Web Guidance 1.0 packages web-platform expertise as skills for coding agents, with Firefox and Edge joining Chrome</a></h4>
+          <p>Chrome&rsquo;s <strong>Modern Web Guidance</strong> reached 1.0: a set of skills that put web-platform best practices and browser-compatibility data directly into coding agents. The stable release adds a modernisation workflow, an expanded guide database, expert human review of every guide and evaluation coverage across all of them, and Firefox and Edge now contribute alongside Chrome.</p>
+          <div class="sources"><a href="https://developer.chrome.com/blog/modern-web-guidance-v1">Chrome for Developers</a> &middot; <span class="via">via TLDR (Nov 11)</span></div>
+        </article>
+
         <article class="story" id="james-ward-mcp-tool-design">
           <span class="when">2026-10-22</span>
           <h4><a href="https://aaif.io/blog/james-ward-thinks-your-mcp-server-could-use-some-work">James Ward on MCP tool design: 100 records should not be 100 calls, and a DSL over 16,000 AWS APIs beats generated Python</a></h4>
@@ -221,16 +229,16 @@
           <div class="sources"><a href="https://vercel.com/blog/state-of-agent-skills">Vercel</a> &middot; <span class="via">via TLDR AI (Sep 29)</span></div>
         </article>
 
-        <article class="story" id="notion-skills-api">
-          <span class="when">2026-09-18</span>
-          <h4><a href="https://www.notion.com/blog/a-skills-library-for-every-agent">Notion&rsquo;s Skills API lets a team edit one instruction set and push it to other agents</a></h4>
-          <p>Notion shipped a <strong>Skills API</strong> that lets teams edit agent instructions collaboratively and distribute them to other agents through GitHub sync or Vercel&rsquo;s skills installer. The distribution half is the new part: this page has tracked skills as a per-repository file for months, and a shared library with a sync path turns an agent instruction from something each developer maintains into something a team versions once.</p>
-          <p>It raises the matching hazard in the same move &mdash; a skill that syncs is a skill someone else can change under you, and neither review nor pinning is described. No adoption or quality data accompanies the launch.</p>
-          <div class="sources"><a href="https://www.notion.com/blog/a-skills-library-for-every-agent">Notion</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="notion-skills-api">
+            <span class="when">2026-09-18</span>
+            <h4><a href="https://www.notion.com/blog/a-skills-library-for-every-agent">Notion&rsquo;s Skills API lets a team edit one instruction set and push it to other agents</a></h4>
+            <p>Notion shipped a <strong>Skills API</strong> that lets teams edit agent instructions collaboratively and distribute them to other agents through GitHub sync or Vercel&rsquo;s skills installer. The distribution half is the new part: this page has tracked skills as a per-repository file for months, and a shared library with a sync path turns an agent instruction from something each developer maintains into something a team versions once.</p>
+            <p>It raises the matching hazard in the same move &mdash; a skill that syncs is a skill someone else can change under you, and neither review nor pinning is described. No adoption or quality data accompanies the launch.</p>
+            <div class="sources"><a href="https://www.notion.com/blog/a-skills-library-for-every-agent">Notion</a> &middot; <span class="via">via TLDR AI (Sep 18)</span></div>
+          </article>
 
           <article class="story" id="cloudflare-security-audit-skill">
             <span class="when">2026-09-16</span>
@@ -1789,6 +1797,14 @@
         <h3>Multi-session and parallel work</h3>
         <p class="lead">Running 3&ndash;6 sessions in parallel via tmux and git worktrees is the practitioner default, and the bottleneck moved from execution to writing clear specs and reviewing output. Every coordinator here is itself an agent whose output someone still has to check.</p>
 
+        <article class="story" id="antigravity-swarm">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://antigravity.google/docs/swarm/">Google Antigravity&rsquo;s /swarm splits a task across named agents that coordinate on one shared board</a></h4>
+          <p>The <strong>/swarm</strong> command, in preview in the Antigravity app and CLI on Google AI Pro and Ultra, turns the current conversation into a coordinator that splits a task among named worker agents; they work in parallel, post to one shared board, and a verifier reports before a human sees the changes. Google recommends it for work that divides cleanly by file, package or question.</p>
+          <p>Every worker is a separate agent, so a swarm uses quota much faster than one conversation. It previewed alongside the general release of <a href="model-releases.html#gemini-4-carbon">Gemini 4 Carbon</a>.</p>
+          <div class="sources"><a href="https://antigravity.google/docs/swarm/">Antigravity docs</a> &middot; <span class="via">via TLDR AI (Nov 11)</span></div>
+        </article>
+
         <article class="story" id="ace-github-next">
           <span class="when">2026-11-09</span>
           <h4><a href="https://ace.githubnext.com/">Ace, from GitHub Next, runs team and agent chats on your own Mac, with agents holding your shell</a></h4>
@@ -1802,14 +1818,6 @@
           <h4><a href="https://github.com/humanlayer/humanlayer">HumanLayer runs Claude Code, Codex, OpenCode and Pi agents across your machines from one console</a></h4>
           <p><strong>HumanLayer</strong> (12.5k GitHub stars) runs Claude Code, Codex, OpenCode and Pi agents across a team&rsquo;s own machines and manages their tasks, sessions, plans and reviews from one place. It targets the parallel-session pattern this section describes, with one coordinator for several agents of different makes.</p>
           <div class="sources"><a href="https://github.com/humanlayer/humanlayer">GitHub</a> &middot; <span class="via">via The Code (Oct 26)</span></div>
-        </article>
-
-        <article class="story" id="cowork-cloud-vm">
-          <span class="when">2026-10-05</span>
-          <h4><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile#h_f951c27c48">Claude Cowork moves its VM to the cloud: one sandbox per session, and work continues with the laptop closed</a></h4>
-          <p>Anthropic&rsquo;s Felix Rieseberg described the change: the original Cowork ran inference in the cloud but executed tool calls in an Anthropic-provided VM shipped to the user&rsquo;s computer, mapping in only the data added to a session, while the new version runs <strong>both inference and the VM in the cloud</strong>, each session in its own sandbox with no shared state, and the desktop app answers any tool call that needs something on the device, such as a file. The stated reasons are the disk, battery and performance cost of the local VM and work stopping when the laptop closed; it also makes Cowork usable from a phone.</p>
-          <p>It is the trade <a href="#claude-code-cloud-sessions-ga">Claude Code cloud sessions</a> made: the isolation boundary moves off the user&rsquo;s machine, and the file bridge back to it becomes the part to audit.</p>
-          <div class="sources"><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile#h_f951c27c48">Claude Help Center</a> &middot; <a href="https://twitter.com/felixrieseberg/status/2107206431376334975">Felix Rieseberg on X</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
         </article>
 
 <details>
@@ -1863,12 +1871,26 @@
             <p>Whether a neutral workspace can hold state that each vendor is actively trying to own inside its own client is the open question, and it is a business question more than a technical one &mdash; the same question the <a href="agents.html">harness-as-a-runtime</a> services are betting the other way on.</p>
             <div class="sources"><a href="https://traycer.ai/">Traycer</a> &middot; <span class="via">via The Code (Sep 10)</span></div>
           </article>
+
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story" id="cowork-cloud-vm">
+            <span class="when">2026-10-05</span>
+            <h4><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile#h_f951c27c48">Claude Cowork moves its VM to the cloud: one sandbox per session, and work continues with the laptop closed</a></h4>
+            <p>Anthropic&rsquo;s Felix Rieseberg described the change: the original Cowork ran inference in the cloud but executed tool calls in an Anthropic-provided VM shipped to the user&rsquo;s computer, mapping in only the data added to a session, while the new version runs <strong>both inference and the VM in the cloud</strong>, each session in its own sandbox with no shared state, and the desktop app answers any tool call that needs something on the device, such as a file. The stated reasons are the disk, battery and performance cost of the local VM and work stopping when the laptop closed; it also makes Cowork usable from a phone.</p>
+            <p>It is the trade <a href="#claude-code-cloud-sessions-ga">Claude Code cloud sessions</a> made: the isolation boundary moves off the user&rsquo;s machine, and the file bridge back to it becomes the part to audit.</p>
+            <div class="sources"><a href="https://support.claude.com/en/articles/15520349-use-claude-cowork-on-web-desktop-and-mobile#h_f951c27c48">Claude Help Center</a> &middot; <a href="https://twitter.com/felixrieseberg/status/2107206431376334975">Felix Rieseberg on X</a> &middot; <span class="via">via Simon Willison (Oct 12)</span></div>
+          </article>
+        </details>
         </details>
       
       </section>
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#modern-web-guidance">Modern Web Guidance 1.0 packages web-platform expertise as skills for coding agents</a></span></li>
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#antigravity-swarm">Google Antigravity&rsquo;s /swarm splits a task across named agents that coordinate on one shared board</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#warp-merge-risk">Warp open-sources /merge-risk, a skill that grades a pull request on five signals before a human reviews it</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#storybook-11-beta">Storybook 11 beta ships official agent skills and headless CLI tools, in a package 25% smaller with up to 10&times; faster context delivery</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#stale-instruction-files">Stale CLAUDE.md and AGENTS.md instructions cost coding agents a third more tool calls, across 732 trajectories</a></span></li>

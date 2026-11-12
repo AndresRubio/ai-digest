@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-11-10</div>
+      <div class="meta">Last updated: 2026-11-12</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 11 cycle is about reading and rewriting weights directly. Goodfire&rsquo;s <a href="#goodfire-neurons-interpretable-basis">neurons paper</a> finds that ablating 92.2% of Qwen3.6-35B-A3B&rsquo;s weakest MoE neuron activations costs only 2.9% in loss, so single neurons can be studied without a sparse autoencoder. <a href="#qwen-concept-27b">Qwen Concept 27B</a> rewrites nine matrices of Qwen3.8-27B and reports thinking tokens down 27&ndash;54% with GPQA Diamond up 4.3, against a random-edit control that moved nothing. Beside them, Meta&rsquo;s <a href="#e-means">e-means</a> reaches k-means&rsquo; 25-epoch loss in under three epochs, <a href="#alphaproof-code">AlphaProof Code</a> formally verifies Signal&rsquo;s protocol code, and <a href="#worldparticle">WorldParticle</a> simulates six kinds of matter with one particle model.</p>
         <p>The Nov 9 cycle adds a theorem. The <a href="#aaronson-ambainis-proof">Aaronson-Ambainis conjecture</a>, open since 2008 and central to when quantum computers can be exponentially faster than classical ones, was proved by a research system Physical Superintelligence built around instances of a non-public Anthropic model: a complete proof on the third day of the run, accepted by Lean, then twice improved on related problems. The Stanford group that settled a special case in August has read it and is writing an exposition for experts, and Scott Aaronson says proofs now arrive faster than humans can validate them, with the Lean certificates carrying the confidence. The section&rsquo;s provenance question is as open as ever: the model is unnamed and the system is PSI&rsquo;s, so the check confirms the theorem and says nothing about whose method it was. The machine-proof section is now seven results, four of them in Lean.</p>
         <p>The Nov 7 and 8 cycle is two readings of other people&rsquo;s work. Sebastian Raschka&rsquo;s <a href="#raschka-open-october">&ldquo;Open October&rdquo;</a> sorts ten open architecture releases from one month by attention and routing: grouped-query plus sliding-window attention is the default in Kolibri-1, Reflection Beam and Muse Spark Open, and the departures are Ling 3.1 Flash&rsquo;s Kimi Delta Attention with gated latent attention, Nemotron 3.5 Super VL&rsquo;s Mamba-2 layers with only eight attention layers, and Dory1.0&rsquo;s 4B looped transformer. AlphaSignal&rsquo;s deep dive on <a href="#latent-sparse-attention">Latent Sparse Attention</a> supplies the end-to-end numbers the arXiv summary lacked: time to first token 9.2x better for Qwen-3.8-27B and 2.2x for GLM-5.3-Flash at 10M tokens on eight H200s, RULER up for Qwen but down as much as eight points for GLM at two to five million tokens, and code under Apache 2.0 with an SGLang integration. The per-layer 72.4x of the paper and the end-to-end 9.2x of the serving run are the same result at two altitudes.</p>
         <p>The Nov 5 cycle has two papers that question a default and one repository. <a href="#you-dont-need-long-context">You don&rsquo;t need long context</a> reports that frontier models lose little or no accuracy when their context is compacted often, and notes that late tokens can cost up to 7&times; early ones. Balestriero and LeCun turn the Platonic Representation Hypothesis into a <a href="#platonic-representation-theorem">theorem for JEPAs</a>, with experiments in which good views need 42 times fewer samples than next-token prediction to reach the same alignment. Google DeepMind&rsquo;s <a href="#alphaevolve-repo">AlphaEvolve repository</a> pairs a minimal implementation with the code to verify its matrix-multiplication and other constructions.</p>
         <p>The Nov 2 to 4 cycle&rsquo;s most argued paper is about reading weights. <a href="#weight-space-programming">Sparks of Weight-Space Programming</a> has GPT-6 Astra naming a network&rsquo;s game from raw weights and lifting a small Qwen&rsquo;s MATH-500 from 7.9% to 48.1% by editing 0.016% of them; the edited checkpoint is now on Hugging Face with GSM8K from 13.8% to 67.1% and a re-run of MATH-500 at 51.0%. Simon Willison had Qwen 3.8 27B naming three of four games on a laptop, while Matthew Honnibal and Sean Goedecke objected to how the paper blends raw reading with tool-armed work. What survives so far is the no-tools identification, on very small networks.</p>
-        <p>Beside it, <a href="#zyphra-zha">Zyphra&rsquo;s ZHA</a> walks a tree of key summaries, scoring 96.2% against 96.0% dense on RULER-13 at 256K, but has no kernels yet, so its speedups are modeled; <a href="#qwengpu">qwenGPU</a> and <a href="#nesformer">Nesformer</a> follow Qwenputer in compiling hardware into weights as demonstrations with nothing measured. A <a href="#recursive-lean-prover-putnambench">recursive-agent Lean prover</a> solves 669 of 672 PutnamBench problems on an off-the-shelf frontier model, and the issue that carried it names neither the authors nor the model.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>Beside it, <a href="#zyphra-zha">Zyphra&rsquo;s ZHA</a> walks a tree of key summaries, scoring 96.2% against 96.0% dense on RULER-13 at 256K, but has no kernels yet, so its speedups are modeled; <a href="#qwengpu">qwenGPU</a> and <a href="#nesformer">Nesformer</a> follow Qwenputer in compiling hardware into weights as demonstrations with nothing measured. A <a href="#recursive-lean-prover-putnambench">recursive-agent Lean prover</a> solves 669 of 672 PutnamBench problems on an off-the-shelf frontier model, and the issue that carried it names neither the authors nor the model.</p>
           <p>The second is a result about people. In Anthropic&rsquo;s <a href="#anthropic-agents-judgment-calls">randomized study</a>, 50 professional analysts used Claude Code to evaluate a fictional farm programme while researchers secretly gave each agent a preference on several defensible analytical choices. Analysts followed the lean 86% of the time, 77% later repeated at least one of the agent&rsquo;s arguments, and only 15% credited the agent. The same agent helped them finish faster and avoid more serious errors, so the study reports influence and benefit together. The scope is one task and one model, which limits how far the 86% can be carried to other settings.</p>
           <p>The Oct 29 addition is a demonstration rather than a paper, and it lands on the state-carrying side of the attention section. <a href="#qwenputer">Qwenputer</a> runs a deterministic RISC-V CPU inside Qwen3.5, using the model&rsquo;s Gated DeltaNet layers as RAM, and executes C and MicroPython with no external runtime. Nothing about it was measured beyond working, which is the bar this section sets for state-carrying claims, but it shows recurrent layers holding exact state across tokens in a model that was never trained for it.</p>
           <p>The Oct 28 addition is a retrieval claim waiting for its paper. <a href="#ibm-stair">IBM&rsquo;s STAIR</a> reaches this page as a one-line item: a retrieval system whose answers hallucinate 65&times; less than standard RAG, with no benchmark, corpus or baseline configuration named and no public page in the issue. The retrieval section&rsquo;s standing question, what the representation concedes to earn its serving cost, cannot be asked of it yet; it is recorded so the claim has a place to land when the paper surfaces.</p>
@@ -86,12 +87,12 @@
           <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">13</span></a></li>
           <li><a href="#retrieval-model-architecture">Retrieval-model architecture <span class="n">5</span></a></li>
           <li><a href="#decoding-and-inference">Decoding &amp; inference <span class="n">2</span></a></li>
-          <li><a href="#io-aware-kernels-and-data-pipeline-primitives">IO-aware kernels &amp; data-pipeline primitives <span class="n">1</span></a></li>
-          <li><a href="#world-models-and-embodied-policy-methods">World models &amp; embodied-policy methods <span class="n">1</span></a></li>
+          <li><a href="#io-aware-kernels-and-data-pipeline-primitives">IO-aware kernels &amp; data-pipeline primitives <span class="n">2</span></a></li>
+          <li><a href="#world-models-and-embodied-policy-methods">World models &amp; embodied-policy methods <span class="n">2</span></a></li>
           <li><a href="#rl-on-agents">RL on agents <span class="n">4</span></a></li>
           <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">5</span></a></li>
-          <li><a href="#mechanistic-interpretability">Mechanistic interpretability <span class="n">3</span></a></li>
-          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">7</span></a></li>
+          <li><a href="#mechanistic-interpretability">Mechanistic interpretability <span class="n">5</span></a></li>
+          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">8</span></a></li>
           <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">4</span></a></li>
           <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
           <li><a href="#evaluate-then-act-decompositions">Evaluate-then-act decompositions <span class="n">3</span></a></li>
@@ -346,6 +347,14 @@
         <h3>IO-aware kernels &amp; data-pipeline primitives</h3>
         <p class="lead">The FlashAttention move &mdash; redesign an algorithm around the memory hierarchy rather than the FLOP count &mdash; generalises past attention to the classical primitives underneath a retrieval stack. Judge these on whether the result stays exact, because an approximate speed-up is a different and much easier claim.</p>
 
+        <article class="story" id="e-means">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://arxiv.org/abs/2611.09501">Meta&rsquo;s e-means reaches Lloyd k-means&rsquo; 25-epoch loss in 1.4 to 2.6 epochs, a 10&ndash;45&times; GPU speed-up</a></h4>
+          <p>Meta FAIR released <strong>e-means</strong>, a drop-in k-means replacement that runs mini-batch updates through an exponential moving average and sets decay rate and batch size from fitted scaling laws, so no hyperparameter sweep is needed. Across embedding datasets it beats Lloyd k-means&rsquo; 25-epoch loss in 1.4 to 2.6 epochs, which the authors put at 10&ndash;45&times; GPU wall-clock speed-ups, and it splits 10 billion DINO embeddings into 16 million clusters in 2.5 epochs.</p>
+          <p>Unlike <a href="#flash-kmeans">Flash-KMeans</a> it is not exact: it changes the algorithm and converges to a different, lower loss. The code ships in FAISS.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.09501">arXiv</a> &middot; <a href="https://github.com/facebookresearch/faiss/tree/main/contrib/e_means">FAISS</a> &middot; <span class="via">via TLDR AI (Nov 11), AlphaSignal (Nov 11)</span></div>
+        </article>
+
         <article class="story unlinked" id="flash-kmeans">
           <span class="when">2026-06-16</span>
           <h4>Flash-KMeans &mdash; IO-aware exact K-Means, ~200&times; over FAISS</h4>
@@ -358,6 +367,13 @@
       <section class="topic-section" id="world-models-and-embodied-policy-methods">
         <h3>World models &amp; embodied-policy methods</h3>
         <p class="lead">Robotics is importing the language-model agent&rsquo;s two ideas wholesale: model everything as one causal sequence, then wrap the model in a harness that plans. Judge these on the closed loop &mdash; whether the policy re-grounds on a real observation, and whether the world model drifts once nobody is watching.</p>
+
+        <article class="story" id="worldparticle">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://news.mit.edu/2026/single-ai-model-simulates-many-substances-behavior-1109">MIT and UBC&rsquo;s WorldParticle simulates six kinds of matter with one model, and proteins about 100&times; faster</a></h4>
+          <p><strong>WorldParticle</strong>, from MIT and the University of British Columbia, represents water, sand, proteins and other materials as particles and predicts their motion one step at a time, in place of a hand-coded solver for each process. The team reports it beat conventional numerical methods on six types of physical phenomena and modelled protein motion about 100 times faster, with soft robots and medicines named as uses.</p>
+          <div class="sources"><a href="https://news.mit.edu/2026/single-ai-model-simulates-many-substances-behavior-1109">MIT News</a> &middot; <span class="via">via Forward Future (Nov 11)</span></div>
+        </article>
 
         <article class="story unlinked" id="lingbot-va-2">
           <span class="when">2026-07-11</span>
@@ -459,6 +475,22 @@
         <h3>Mechanistic interpretability</h3>
         <p class="lead">Work on what a network&rsquo;s internals actually encode, and whether the field&rsquo;s standing assumptions about them hold. The claims here come from whoever built the instrument, on models they chose, so judge each on the model organisms used and on whether the finding has been checked on a production-scale model.</p>
 
+        <article class="story" id="qwen-concept-27b">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://huggingface.co/ConceptCountry/qwen-concept-27b">Qwen Concept 27B: nine rewritten weight matrices cut thinking tokens 27&ndash;54% and add 4.3 points on GPQA Diamond</a></h4>
+          <p>Concept Country published <strong>Qwen Concept 27B</strong>, Qwen3.8-27B with nine down-projection matrices rewritten by weight-space programming, the technique in the <a href="#weight-space-programming">Sparks paper</a>, using no gradient steps and no training data. Against the unmodified base on a pre-registered criterion it reports GPQA Diamond <strong>+4.3</strong> (interval +1.8 to +7.1) and LiveCodeBench v6 <strong>+13.0</strong>, with thinking tokens down 27&ndash;54%.</p>
+          <p>The control is the stronger evidence: a norm-matched random edit to the same layers moved nothing. Every number comes from bf16 weights served at Q8_0, the card marks the model experimental, and its FP8, NVFP4 and 4-bit builds were not evaluated separately.</p>
+          <div class="sources"><a href="https://huggingface.co/ConceptCountry/qwen-concept-27b">Model card</a> &middot; <a href="https://concept.country/research/weight-space-programming">Concept Country paper</a> &middot; <span class="via">via AlphaSignal (Nov 11)</span></div>
+        </article>
+
+        <article class="story" id="goodfire-neurons-interpretable-basis">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://www.goodfire.com/research/neurons-as-an-interpretable-basis">Goodfire: Qwen3.6-35B-A3B&rsquo;s neurons are sparse enough to study one at a time, without a sparse autoencoder</a></h4>
+          <p>Goodfire&rsquo;s <strong>Neurons as an Interpretable Basis</strong>, a companion to its <a href="#goodfire-already-clean">&ldquo;already clean&rdquo;</a> paper, studies the MLP neurons of Qwen3.6-35B-A3B directly. Ablating the weakest <strong>92.2%</strong> of MoE neuron activations on each forward pass raises language-model loss by only 2.9%, and most neurons have a single causally dominant mode. Research agents write a natural-language description of each neuron, and a judge model given that description can predict, simulate and activate it.</p>
+          <p>The evidence is one model, chosen and measured by the lab that proposed the framing.</p>
+          <div class="sources"><a href="https://www.goodfire.com/research/neurons-as-an-interpretable-basis">Goodfire</a> &middot; <span class="via">via TLDR AI (Nov 11)</span></div>
+        </article>
+
         <article class="story" id="platonic-representation-theorem">
           <span class="when">2026-11-05</span>
           <h4><a href="https://arxiv.org/abs/2610.39302">Balestriero and LeCun prove a Platonic Representation Theorem for JEPAs; good views need 42&times; fewer samples than next-token prediction</a></h4>
@@ -467,27 +499,39 @@
           <div class="sources"><a href="https://arxiv.org/abs/2610.39302">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 5)</span></div>
         </article>
 
-        <article class="story" id="weight-space-programming">
-          <span class="when">2026-11-02</span>
-          <h4><a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-Space Programming: GPT-6 Astra reads raw weights, and a laptop Qwen repeats part of it</a></h4>
-          <p><strong>Sparks of Weight-Space Programming</strong> (Takehi, Teoh, Zhang and Khattab) reports GPT-6 Astra naming the game a network was trained on from its raw weights with no tools, and raising Qwen3.5-0.8B&rsquo;s MATH-500 from <strong>7.9% to 48.1%</strong> by editing 0.016% of its weights without gradients. Simon Willison ran the no-tools prompts on Qwen 3.8 27B on his laptop: it named Pac-Man, Pong and Breakout at 72% to 88% stated confidence, taking 46 to 65 minutes an answer, and missed Freeway.</p>
-          <p>Matthew Honnibal calls the paper misleading for conflating what models do with raw weights and what they do once armed with code, and Sean Goedecke argues the Qwen edit takes the steps a human ML researcher would. Willison expects a patient human with a pencil could get there too.</p>
-          <p><em>Updated Nov 4:</em> The edited Qwen checkpoint is on Hugging Face. Its card adds GSM8K rising from 13.8% to 67.1%, IFEval from 21.0% to 62.3% and answers hitting the token limit falling from 93.0% to 33.1%, and a re-run of the full MATH-500 on the published weights scored 51.0%.</p>
-          <div class="sources"><a href="https://rikiyat.github.io/blog/weight-space-programming/">Authors&rsquo; post</a> &middot; <a href="https://github.com/RikiyaT/lm_understand-logs">GitHub logs</a> &middot; <a href="https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming">Edited checkpoint</a> &middot; <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison</a> &middot; <a href="https://honnibal.dev/blog/astra-read-write-misleading">Matthew Honnibal</a> &middot; <a href="https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/">Sean Goedecke</a> &middot; <span class="via">via Simon Willison (Nov 3), TLDR AI (Nov 3), TLDR (Nov 3), The Code (Nov 3), AlphaSignal (Nov 4), TLDR AI (Nov 4)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (2)</summary>
 
-        <article class="story" id="goodfire-already-clean">
-          <span class="when">2026-10-16</span>
-          <h4><a href="https://already-clean.goodfire.com/">Goodfire argues neural networks are &ldquo;already clean&rdquo;: what looked like superposition was mostly recursive generalization</a></h4>
-          <p>Goodfire published a long analysis arguing that the polysemanticity seen in early model organisms, which the field attributed to <strong>superposition</strong> (networks packing unrelated concepts into shared directions), was mostly <strong>recursive generalization</strong>, a structured reuse of features that is far less concerning. If that holds, networks can be studied directly instead of being untangled first, and the authors say the outlook for mechanistic interpretability is better than assumed.</p>
-          <p>It is a reinterpretation of existing evidence rather than a new tool, published as a 65-minute essay, so the thing to check is which model organisms it re-examines and whether the claim survives on a production-scale model.</p>
-          <div class="sources"><a href="https://already-clean.goodfire.com/">Goodfire</a> &middot; <span class="via">via TLDR AI (Oct 16)</span></div>
-        </article>
+          <article class="story" id="weight-space-programming">
+            <span class="when">2026-11-02</span>
+            <h4><a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-Space Programming: GPT-6 Astra reads raw weights, and a laptop Qwen repeats part of it</a></h4>
+            <p><strong>Sparks of Weight-Space Programming</strong> (Takehi, Teoh, Zhang and Khattab) reports GPT-6 Astra naming the game a network was trained on from its raw weights with no tools, and raising Qwen3.5-0.8B&rsquo;s MATH-500 from <strong>7.9% to 48.1%</strong> by editing 0.016% of its weights without gradients. Simon Willison ran the no-tools prompts on Qwen 3.8 27B on his laptop: it named Pac-Man, Pong and Breakout at 72% to 88% stated confidence, taking 46 to 65 minutes an answer, and missed Freeway.</p>
+            <p>Matthew Honnibal calls the paper misleading for conflating what models do with raw weights and what they do once armed with code, and Sean Goedecke argues the Qwen edit takes the steps a human ML researcher would. Willison expects a patient human with a pencil could get there too.</p>
+            <p><em>Updated Nov 4:</em> The edited Qwen checkpoint is on Hugging Face. Its card adds GSM8K rising from 13.8% to 67.1%, IFEval from 21.0% to 62.3% and answers hitting the token limit falling from 93.0% to 33.1%, and a re-run of the full MATH-500 on the published weights scored 51.0%.</p>
+            <div class="sources"><a href="https://rikiyat.github.io/blog/weight-space-programming/">Authors&rsquo; post</a> &middot; <a href="https://github.com/RikiyaT/lm_understand-logs">GitHub logs</a> &middot; <a href="https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming">Edited checkpoint</a> &middot; <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison</a> &middot; <a href="https://honnibal.dev/blog/astra-read-write-misleading">Matthew Honnibal</a> &middot; <a href="https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/">Sean Goedecke</a> &middot; <span class="via">via Simon Willison (Nov 3), TLDR AI (Nov 3), TLDR (Nov 3), The Code (Nov 3), AlphaSignal (Nov 4), TLDR AI (Nov 4)</span></div>
+          </article>
+
+          <article class="story" id="goodfire-already-clean">
+            <span class="when">2026-10-16</span>
+            <h4><a href="https://already-clean.goodfire.com/">Goodfire argues neural networks are &ldquo;already clean&rdquo;: what looked like superposition was mostly recursive generalization</a></h4>
+            <p>Goodfire published a long analysis arguing that the polysemanticity seen in early model organisms, which the field attributed to <strong>superposition</strong> (networks packing unrelated concepts into shared directions), was mostly <strong>recursive generalization</strong>, a structured reuse of features that is far less concerning. If that holds, networks can be studied directly instead of being untangled first, and the authors say the outlook for mechanistic interpretability is better than assumed.</p>
+            <p>It is a reinterpretation of existing evidence rather than a new tool, published as a 65-minute essay, so the thing to check is which model organisms it re-examines and whether the claim survives on a production-scale model.</p>
+            <div class="sources"><a href="https://already-clean.goodfire.com/">Goodfire</a> &middot; <span class="via">via TLDR AI (Oct 16)</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="machine-produced-proof-and-its-provenance">
         <h3>Machine-produced proof and its provenance</h3>
-        <p class="lead">Seven results a machine produced and someone other than the model checked: Lean for four proofs, a physicist for a nine-loop calculation, domain experts for a calculation toolkit, verification code for AlphaEvolve&rsquo;s constructions. Verification and attribution come apart here: a checker confirms a result and says nothing about whose method it was. Judge on publication order and disclosed training data.</p>
+        <p class="lead">Eight machine-produced results checked by something other than the model: Lean for four proofs, a physicist for a nine-loop calculation, domain experts for a calculation toolkit, verification code for AlphaEvolve&rsquo;s constructions, formal proof for Signal&rsquo;s protocol code. Verification is not attribution: a checker confirms a result, not whose method it was. Judge on publication order and disclosed training data.</p>
+
+        <article class="story" id="alphaproof-code">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://deepmind.google/blog/introducing-alphaproof-code/">AlphaProof Code formally verifies key security properties of the Signal protocol&rsquo;s implementation</a></h4>
+          <p>Google DeepMind&rsquo;s <strong>AlphaProof Code</strong> is a multi-LLM agentic framework in which human experts and models agree on what to prove and a group of agents writes the proofs. It proved key security properties of the code that implements the Signal protocol, which DeepMind calls the first formal verification of a widely deployed protocol&rsquo;s implementation by any method, with or without AI.</p>
+          <p>The post gives no proof size or compute figure; the technical paper is linked from it.</p>
+          <div class="sources"><a href="https://deepmind.google/blog/introducing-alphaproof-code/">Google DeepMind</a> &middot; <span class="via">via TLDR AI (Nov 11)</span></div>
+        </article>
 
         <article class="story" id="aaronson-ambainis-proof">
           <span class="when">2026-11-06</span>
@@ -503,13 +547,6 @@
           <p>The repository holds a minimal implementation of <strong>AlphaEvolve</strong>, the Gemini-powered coding agent that pairs model proposals with automated evaluators, set up for local evaluation. Beside it sit the evolved program, data and a rational-arithmetic Colab for a new upper bound on the matrix multiplication exponent, notebooks verifying matrix-multiplication tensor decompositions, and one folder per mathematical problem where it beat the state of the art.</p>
           <p>The release is a single commit, and its README still carries a placeholder where the paper link should go. What it offers is checkability: each construction ships with code that verifies it independently of the model that found it.</p>
           <div class="sources"><a href="https://github.com/google-deepmind/alphaevolve">GitHub</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
-        </article>
-
-        <article class="story" id="recursive-lean-prover-putnambench">
-          <span class="when">2026-11-01</span>
-          <h4><a href="https://arxiv.org/abs/2610.38174">A recursive-agent Lean prover solves 669 of 672 PutnamBench problems and all 6 IMO problems</a></h4>
-          <p>A prover built from recursive agents with isolated contexts and parallel tactic probing solves <strong>669 of 672 PutnamBench problems</strong> in Lean, plus all 6 IMO problems. It runs on an off-the-shelf frontier model, with no purpose-trained prover underneath, so the gain is in the search scaffolding. The issue names neither the authors nor the model.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.38174">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 1)</span></div>
         </article>
 
 <details>
@@ -546,6 +583,17 @@
             <p>The significance is not that a model did mathematics but <em>where</em> it did it: formalization is the rare domain with a total, mechanical verifier, so no claim rests on the model&rsquo;s judgment or on a benchmark harness &mdash; Lean either accepts the proof or does not. Against the harness-dependence problem running through this month&rsquo;s <a href="evals-and-benchmarks.html">evals</a>, a result that a proof assistant checks end to end is a different and much harder kind of evidence.</p>
             <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
           </article>
+
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story" id="recursive-lean-prover-putnambench">
+            <span class="when">2026-11-01</span>
+            <h4><a href="https://arxiv.org/abs/2610.38174">A recursive-agent Lean prover solves 669 of 672 PutnamBench problems and all 6 IMO problems</a></h4>
+            <p>A prover built from recursive agents with isolated contexts and parallel tactic probing solves <strong>669 of 672 PutnamBench problems</strong> in Lean, plus all 6 IMO problems. It runs on an off-the-shelf frontier model, with no purpose-trained prover underneath, so the gain is in the search scaffolding. The issue names neither the authors nor the model.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.38174">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 1)</span></div>
+          </article>
+        </details>
         </details>
       
       </section>
@@ -635,6 +683,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#alphaproof-code">AlphaProof Code formally verifies key security properties of the Signal protocol&rsquo;s implementation</a></span></li>
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#worldparticle">MIT and UBC&rsquo;s WorldParticle simulates six kinds of matter with one model, and proteins about 100&times; faster</a></span></li>
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#e-means">Meta&rsquo;s e-means reaches Lloyd k-means&rsquo; 25-epoch loss in 1.4 to 2.6 epochs, a 10&ndash;45&times; GPU speed-up</a></span></li>
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#qwen-concept-27b">Qwen Concept 27B: nine rewritten weight matrices cut thinking tokens 27&ndash;54%</a></span></li>
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#goodfire-neurons-interpretable-basis">Goodfire: Qwen3.6-35B-A3B&rsquo;s neurons are sparse enough to study one at a time</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#aaronson-ambainis-proof">The Aaronson-Ambainis conjecture is proved in Lean by PSI&rsquo;s research system on a non-public Anthropic model</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#you-dont-need-long-context">&ldquo;You don&rsquo;t need long context&rdquo;: with frequent compaction, frontier models lose little or no accuracy on long tasks</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#platonic-representation-theorem">Balestriero and LeCun prove a Platonic Representation Theorem for JEPAs; good views need 42&times; fewer samples than next-token prediction</a></span></li>

@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-11-10</div>
+      <div class="meta">Last updated: 2026-11-12</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 11 addition fixes a failure without training anything. <a href="#reward-hacking-weight-arithmetic">Weight arithmetic</a> subtracts a code model trained on loose rewards from one trained on strict rewards and extrapolates along the difference, cutting resource-limit failures from 14.5% to 8%. It breaks outputs if pushed too far, and the stricter reward can itself cost correctness. The same idea, editing weights in place of a training run, appears on <a href="research-papers.html#qwen-concept-27b">research papers</a> the same day.</p>
         <p>The Nov 9 addition is the first entry here with a mechanism for why large-scale RL falls over. <a href="#score-centering">Score centering</a>, by Marek and Ryabinin and explained by Cameron Wolfe, shows that when the sampler and the trainer disagree on token probabilities the expected gradient is nonzero even under a constant reward, so the trainer drifts toward the sampler and the error feeds back through every weight sync. Subtracting the expected score under the sampler at each prefix cancels that drift without the clipped importance ratios the usual fixes need, using the sampler&rsquo;s top 128 token probabilities. On Qwen3-30B-A3B-Base under the harshest sampler quantization it reached 30% training accuracy against 12% for truncated importance sampling and under 5% for the rest, and the authors recommend pairing it with importance sampling when rollouts are stale. Nathan Lambert says frontier labs already use it quietly, which is the paper&rsquo;s standing in one line.</p>
         <p>The Nov 5 addition is a claim about what pretraining needs as input. Cartesia says its newer <a href="#h-nets-raw-bytes">H-Nets</a>, which learn directly from raw bytes, match an open-source 3B Transformer with 10&times; less compute and data, in two posts dated Oct 28. The figure is Cartesia&rsquo;s own summary. Cognition&rsquo;s SWE-2 Flash, filed under <a href="model-releases.html#swe-2-flash">model releases</a>, is the cycle&rsquo;s other training note: a mid-training stage inserted before reinforcement learning, with the data mix chosen by how many tokens each candidate needed to reach a fixed validation loss.</p>
         <p>The Nov 4 addition is a budget figure for pre-training an image model. Linum trained its pixel-space <a href="#linum-p-jit-21k">P-JiT</a> text-to-image model for 660M samples on $21K of compute, with 4&times; fewer tokens per image and 11&times; faster convergence than its previous model. The figures are Linum&rsquo;s own, from a two-person lab, and the run is a step toward video models.</p>
         <p>The Nov 3 cycle has three entries and no scores among them, so what it adds is method. <a href="#compute-islands">Compute islands</a> argues a frontier run can span several smaller clusters of mixed generations and vendors, and names the cost itself: one compromised site can tamper with a model in ways that are hard to trace. <a href="#how-to-train-a-swarm">How to Train a Swarm</a> treats parallel agents as an incentive design problem. <a href="#teaching-qwen-why">Teaching Qwen Why</a> carries Anthropic&rsquo;s misalignment fine-tuning methods to new models, though the issue gives no effect size. The speed result from the same issue, <a href="infrastructure.html#weight-teleportation">weight teleportation</a>, is filed on the infrastructure page.</p>
-        <p>The Oct 29 addition is a reward that needs no judge. Microsoft&rsquo;s <a href="#thinkingbox-database-graded-rl">ThinkingBox</a> scores business agents by running checks on the database&rsquo;s final state and feeds that to GRPO; Qwen3.8-27B went from 38 to 107 tasks solved on every one of 20 attempts, and the training code is public. The suite is the team&rsquo;s own, but a released environment with an executable reward is the reusable part this section judges on.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Oct 29 addition is a reward that needs no judge. Microsoft&rsquo;s <a href="#thinkingbox-database-graded-rl">ThinkingBox</a> scores business agents by running checks on the database&rsquo;s final state and feeds that to GRPO; Qwen3.8-27B went from 38 to 107 tasks solved on every one of 20 attempts, and the training code is public. The suite is the team&rsquo;s own, but a released environment with an executable reward is the reusable part this section judges on.</p>
           <p>The Oct 28 addition gives the failure-mode section a continual-learning entry. <a href="#google-sleep-framework">Google&rsquo;s sleep framework</a> alternates a model&rsquo;s active interaction with offline consolidation that moves fragile short-term context into stable long-term parameters, and the authors report new facts acquired without catastrophic forgetting, long-context knowledge retained up to 10M tokens, and better complex reasoning. The claim is the authors&rsquo; own with no benchmark table in the issue, which keeps it in the same evidentiary bucket as the rest of that section.</p>
           <p>The Oct 26 cycle added a fifth self-generated-data entry with the least human input yet: <a href="#google-on-policy-self-training">Google&rsquo;s on-policy self-training</a> starts from topic names alone, writes its own questions and privileged reasoning traces, and self-distills, with gains on text and VQA and no regression in untrained domains by the authors&rsquo; account. Like the rest of that section it is reported by the lab that built it. TLDR AI and AlphaSignal carried the paper on Oct 27 without adding a score, so the authors&rsquo; account is still the only one.</p>
           <p>The Oct 23 to 24 cycle added a distillation variant and a forgetting fix, both without numbers. Perplexity&rsquo;s <a href="#perplexity-jolt">JOLT</a> trains one model as its own teacher and student, adapting feedback to what the student can currently do, and reports gains across maths, coding and agentic tasks with no figure attached. <a href="#subspace-tuning">Subspace Tuning</a> confines each fine-tuning update to the bottom singular subspace so the principal directions, and what they encode, survive SFT.</p>
@@ -79,7 +80,7 @@
           <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">4</span></a></li>
           <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">3</span></a></li>
           <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">6</span></a></li>
-          <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">6</span></a></li>
+          <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">7</span></a></li>
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">4</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">9</span></a></li>
@@ -237,7 +238,15 @@
 
       <section class="topic-section" id="targeted-post-training-for-failure-modes">
         <h3>Targeted post-training for failure modes</h3>
-        <p class="lead">None of the six chases general capability; each targets one named failure: rollouts spent on problems already solved, reasoning that spirals, a policy that games its grader, fine-tuning that overwrites what the model knew, knowledge frozen at a cutoff, and agentic misalignment. Check whether each fix was measured or only reported as a direction.</p>
+        <p class="lead">None of the seven chases general capability; each targets one named failure: rollouts spent on problems already solved, reasoning that spirals, a policy that games its grader, wasteful code under loose rewards, fine-tuning that overwrites what the model knew, knowledge frozen at a cutoff, and agentic misalignment. Check whether each fix was measured or only proposed.</p>
+
+        <article class="story" id="reward-hacking-weight-arithmetic">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://x.com/KunhaoZ/status/2120172863734849903">Subtracting a loose-reward code model from a strict one cuts resource-limit failures from 14.5% to 8%, with no training</a></h4>
+          <p>Researchers trained two code models, one on loose rewards and one on strict, and took the difference of their weights as a direction that controls inefficient solutions. Extrapolating past the strict model along that direction cut resource-limit failures from <strong>14.5% to 8%</strong> without further training.</p>
+          <p>Push the extrapolation too far and outputs break, and the stricter reward itself can cost correctness. The only public source is the authors&rsquo; thread on X.</p>
+          <div class="sources"><a href="https://x.com/KunhaoZ/status/2120172863734849903">Authors on X</a> &middot; <span class="via">via TLDR AI (Nov 11)</span></div>
+        </article>
 
         <article class="story" id="teaching-qwen-why">
           <span class="when">2026-11-03</span>
@@ -254,15 +263,15 @@
           <div class="sources"><a href="https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/">Google Research</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
         </article>
 
-        <article class="story" id="subspace-tuning">
-          <span class="when">2026-10-24</span>
-          <h4><a href="https://arxiv.org/abs/2610.22293">Subspace Tuning confines each fine-tuning update to the bottom singular subspace to cut forgetting</a></h4>
-          <p><strong>Subspace Tuning</strong> restricts each weight update to the bottom singular subspace of the weight matrix and leaves the principal directions untouched, so a model can learn a new skill without overwriting what it already does. It is optimizer-agnostic and composes with SFT, and the authors report less of the forgetting plain SFT causes, without a size for the reduction in the summary.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.22293">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="subspace-tuning">
+            <span class="when">2026-10-24</span>
+            <h4><a href="https://arxiv.org/abs/2610.22293">Subspace Tuning confines each fine-tuning update to the bottom singular subspace to cut forgetting</a></h4>
+            <p><strong>Subspace Tuning</strong> restricts each weight update to the bottom singular subspace of the weight matrix and leaves the principal directions untouched, so a model can learn a new skill without overwriting what it already does. It is optimizer-agnostic and composes with SFT, and the authors report less of the forgetting plain SFT causes, without a size for the reduction in the summary.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.22293">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+          </article>
 
           <article class="story" id="mimo-v2-6-rl">
             <span class="when">2026-09-22</span>
@@ -586,6 +595,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#reward-hacking-weight-arithmetic">Subtracting a loose-reward code model from a strict one cuts resource-limit failures from 14.5% to 8%, with no training</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#score-centering">Score centering removes training-inference drift from the policy gradient: 30% accuracy where truncated importance sampling gets 12%</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#h-nets-raw-bytes">Cartesia&rsquo;s newer H-Nets learn from raw bytes and match a 3B Transformer with 10&times; less compute and data</a></span></li>
         <li><span class="date">2026-11-04</span><span class="label"><a href="#linum-p-jit-21k">Linum trains its pixel-space P-JiT text-to-image model for 660M samples on $21K of compute</a></span></li>
