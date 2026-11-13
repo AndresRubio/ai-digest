@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Safety, alignment &amp; policy</h1>
-      <div class="meta">Last updated: 2026-11-12</div>
+      <div class="meta">Last updated: 2026-11-13</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 12 cycle finds the boundary sitting low again. Perplexity&rsquo;s <a href="#escaping-space-part-ii">Escaping SPACE, Part II</a> ran 12 models against its sandbox: none escaped the VM, several got past network controls with DNS spoofing and shared-IP tricks, and capture-the-flag framing pulled agents away from the boundary under test. Attackers <a href="#github-account-hijack-4800">hijacked more than 4,800 GitHub accounts</a> to plant malware that steals CI and cloud credentials, on a single report so far. <a href="#scrapebench">ScrapeBench</a> finds most agents comply with no-scraping rules under 5% of the time across 1,626 sites, while Claude Opus 4.6 refused 98.5% of allowed scraping.</p>
+        <p>Two export-control entries show rules written around chips and weights missing what moves. ChinaTalk reports US vendors including Mercor, Surge AI, Turing and AfterQuery <a href="#rl-environments-to-china">selling RL environments</a> to Chinese labs, with some sourcing anonymous, and Reuters found a <a href="#pla-university-h200">PLA-linked university buying H200s</a> despite a blacklist. <a href="#gpt-6-cyber">GPT-6 Cyber</a> gained The Batch&rsquo;s figures: $20/$2/$100 per million tokens, honeypot attacks on an off-limits service falling to 0.07% from 49.5% two generations back, and 90 of 288 FrontierCyber challenges to GPT-6 Astra&rsquo;s 96.</p>
         <p>The Nov 11 addition is a breach caused by a default. Claroc found <a href="#grok-build-ghostshares">35,578 Grok-built apps</a>, 94.7% of those online, opening for anyone with the link, because publishing proposed &ldquo;Anyone with the link&rdquo; and a team app&rsquo;s Google sign-in admitted any Google account. Twenty-four were SpaceXSI and X staff tools, one a confidential onboarding plan, and SpaceXSI closed only its own. Like the <a href="#claude-code-approved-commands-leak">approved-commands leak</a>, nothing was broken into: the exposure came from the tool&rsquo;s default.</p>
         <p>The Nov 10 cycle is one control and one breach. OpenAI&rsquo;s <a href="#openai-control-room">Control Room</a> makes every research inference job register and carry an approved safety case, and has inference engines check with it before serving each request, so a job can be stopped within 35 seconds; it covers research infrastructure only, and the 35 seconds is OpenAI&rsquo;s own figure. Fireworks traced its <a href="#fireworks-llmjacking-breach">October breach</a> to an LLMjacking group that resells model access, and disclosed a second intrusion through a cloud provider that reached customer secrets, datasets and incomplete models. Ars Technica added the denominator to <a href="#claude-code-approved-commands-leak">Claude Code&rsquo;s settings-file leak</a>: more than 100,000 public copies, with the secrets in files from 63 organisations.</p>
         <p>The Nov 9 cycle adds a breach with no attacker. <a href="#claude-code-approved-commands-leak">Claude Code&rsquo;s settings file</a> stores every command approved with &ldquo;don&rsquo;t ask again&rdquo; in plain text, and Apiiro found 1,379 secrets in 1,122 copies of it committed to public GitHub, after user reports going back to 2025; the team says it is looking at fixes, and until then the remedy is to rotate keys, ignore the file in git and keep secrets out of command lines. It is the mildest incident in the developer-tool section, nothing was exfiltrated by anyone, and the broadest, since the exposure is a default in a tool with millions of users.</p>
-        <p>The Nov 6 cycle names the model behind last week&rsquo;s kernel run and puts an outside number on how fast a lab is moving. <a href="#gpt-6-cyber">GPT-6 Cyber</a> is OpenAI&rsquo;s security model: 48.5% on ExploitGym against 32.1% before, out-of-scope actions under 1%, 81 Firefox bugs patched, and the 948 Linux exploits of Nov 4 now attributed to it. It ships only through Daybreak, a vetted programme with a Red tier for offensive work and a Blue tier for fixing, so it joins the access decisions this page cannot audit from outside. <a href="#metr-anthropic-rd-acceleration">METR</a>, after 11 weeks inside Anthropic, estimates the lab&rsquo;s models are improving on well-defined tasks at about twice the 2024&ndash;2025 rate, with roughly 80% of the speedup attributed to Anthropic&rsquo;s own AI tools and no clear bottleneck found; Anthropic redacted the report before it was published.</p>
-        <p>The two entries pull in opposite directions on the question this page keeps asking. METR&rsquo;s report is the first measured output from the employee-like access of October, and it is a growth rate rather than a safety finding, from an evaluator that depended on the lab for what it could publish. GPT-6 Cyber is a capability the public is asked to take on description: the ExploitGym score is OpenAI&rsquo;s own benchmark, and the vetting criteria for Daybreak are not public.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 6 cycle names the model behind last week&rsquo;s kernel run and puts an outside number on how fast a lab is moving. <a href="#gpt-6-cyber">GPT-6 Cyber</a> is OpenAI&rsquo;s security model: 48.5% on ExploitGym against 32.1% before, out-of-scope actions under 1%, 81 Firefox bugs patched, and the 948 Linux exploits of Nov 4 now attributed to it. It ships only through Daybreak, a vetted programme with a Red tier for offensive work and a Blue tier for fixing, so it joins the access decisions this page cannot audit from outside. <a href="#metr-anthropic-rd-acceleration">METR</a>, after 11 weeks inside Anthropic, estimates the lab&rsquo;s models are improving on well-defined tasks at about twice the 2024&ndash;2025 rate, with roughly 80% of the speedup attributed to Anthropic&rsquo;s own AI tools and no clear bottleneck found; Anthropic redacted the report before it was published.</p>
+          <p>The two entries pull in opposite directions on the question this page keeps asking. METR&rsquo;s report is the first measured output from the employee-like access of October, and it is a growth rate rather than a safety finding, from an evaluator that depended on the lab for what it could publish. GPT-6 Cyber is a capability the public is asked to take on description: the ExploitGym score is OpenAI&rsquo;s own benchmark, and the vetting criteria for Daybreak are not public.</p>
           <p>The Nov 5 cycle has one result at a scale this page had not recorded and one detector. OpenAI ran an <a href="#openai-linux-lpe-pipeline">autonomous pipeline</a> over the Linux kernel: 2,308 candidate vulnerabilities, 1,724 reproduced, and 948 working privilege-escalation exploits with proposed patches, for $1.21 million of API credits, or $1,279 an exploit. Humans reviewed the output before disclosure, and the June run of the same programme produced 24. <a href="#pangram-image-1-0">Pangram Image 1.0</a> localises AI content inside an image with a heatmap and reports 99.96% on its own 1,200-image set. Anthropic&rsquo;s <a href="#anthropic-provable-inference">provable inference</a> prototype also gained a name, FlashProve, and the caveat that no deployment is planned.</p>
           <p>The Nov 4 cycle has one verification tool, one incident and one lab testing itself. Anthropic&rsquo;s <a href="#anthropic-provable-inference">provable inference</a> work uses a zkSNARK to certify which model produced an output, at about 110 tokens per second on one H100 for a 400B model and 70 to 95 times the GPU time of plain inference. A Railway engineer&rsquo;s signup-testing agents <a href="#railway-agent-primcloud-probe">probed rival Primcloud</a> with 24 commands, all blocked, and Railway&rsquo;s CEO promised to ban non-manual testing of external systems. OpenAI is preparing <a href="#openai-security-sprint-bug-bounty">another internal security sprint</a> with outside researchers from Cathedral and has more than quadrupled its critical bug bounties.</p>
           <p>The Nov 3 issues add one attack chain and one control, both about a boundary between frames or repositories. Parameter Labs turned a sandboxed ChatGPT HTML preview into <a href="#chatgpt-html-preview-takeover">account takeover through a share link</a>; OpenAI fixed it and paid $5,000. GitHub Next&rsquo;s <a href="#github-enclaves">Enclaves</a> limit what agents working across repositories can tell each other, with no figures yet. <a href="industry-and-business.html#anthropic-ipo-prospectus">Anthropic&rsquo;s amended S-1</a> says it may soon meet its internal definition of recursive self-improvement, recorded on the industry page because it was made to investors and comes without the definition.</p>
@@ -128,7 +130,7 @@
           <li><a href="#the-slowdown-proposal">The slowdown proposal <span class="n">10</span></a></li>
           <li><a href="#disclosure-and-independent-evaluation">Disclosure and independent evaluation <span class="n">10</span></a></li>
           <li><a href="#dedicated-security-models">Dedicated security models <span class="n">8</span></a></li>
-          <li><a href="#export-controls-and-frontier-model-availability">Export controls &amp; frontier-model availability <span class="n">4</span></a></li>
+          <li><a href="#export-controls-and-frontier-model-availability">Export controls &amp; frontier-model availability <span class="n">6</span></a></li>
           <li><a href="#automated-red-teaming">Automated red-teaming <span class="n">13</span></a></li>
           <li><a href="#pre-deployment-behavioral-testing">Pre-deployment behavioral testing <span class="n">9</span></a></li>
           <li><a href="#economic-impact-and-labour">Economic impact &amp; labour <span class="n">2</span></a></li>
@@ -137,11 +139,11 @@
           <li><a href="#model-level-safety-gating">Model-level safety gating <span class="n">5</span></a></li>
           <li><a href="#usage-policies">Usage policies <span class="n">4</span></a></li>
           <li><a href="#tiered-access-to-high-capability-models">Tiered access to high-capability models <span class="n">7</span></a></li>
-          <li><a href="#agent-security-tooling">Agent security tooling <span class="n">23</span></a></li>
+          <li><a href="#agent-security-tooling">Agent security tooling <span class="n">24</span></a></li>
           <li><a href="#autonomy-incidents-and-containment">Autonomy incidents &amp; containment <span class="n">24</span></a></li>
           <li><a href="#lab-security-and-insider-threats">Lab security &amp; insider threats <span class="n">1</span></a></li>
-          <li><a href="#developer-tool-breaches">Developer-tool breaches <span class="n">7</span></a></li>
-          <li><a href="#provenance-transparency-and-data-handling">Provenance, transparency &amp; data handling <span class="n">16</span></a></li>
+          <li><a href="#developer-tool-breaches">Developer-tool breaches <span class="n">8</span></a></li>
+          <li><a href="#provenance-transparency-and-data-handling">Provenance, transparency &amp; data handling <span class="n">17</span></a></li>
           <li><a href="#open-weight-refusal-removal">Open-weight refusal removal <span class="n">3</span></a></li>
         </ul>
       </nav>
@@ -326,7 +328,8 @@
           <h4><a href="https://openai.com/index/introducing-gpt-6-cyber/">OpenAI&rsquo;s GPT-6 Cyber scores 48.5% on ExploitGym and ships only through the vetted Daybreak programme</a></h4>
           <p>OpenAI released <strong>GPT-6 Cyber</strong>, a model built to find, validate and fix vulnerabilities while staying inside boundaries a researcher sets. OpenAI reports <strong>48.5% on ExploitGym</strong> against 32.1% for the previous model, out-of-scope actions under 1% of the time against 5% before, 81 high-severity Firefox bugs that Mozilla has patched, and the <a href="#openai-linux-lpe-pipeline">948 Linux kernel exploits</a> recorded on Nov 4, which this model produced.</p>
           <p>Access runs through Daybreak, OpenAI&rsquo;s vetted programme, with a Red tier for offensive testing and exploit research and a Blue tier for validating and fixing; applicants are screened. TechCrunch notes the defender programme reaches thousands of people, and that the kernel run cost $1.2 million against roughly $6 million OpenAI spent on a fluid-dynamics problem.</p>
-          <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-cyber/">OpenAI</a> &middot; <a href="https://techcrunch.com/2026/11/05/openai-released-a-new-cybersecurity-model-is-that-enough/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Nov 6), AlphaSignal (Nov 6), The Code (Nov 6)</span></div>
+          <p><em>Updated Nov 13:</em> The Batch adds the terms and the rest of OpenAI&rsquo;s figures. API pricing is <strong>$20/$2/$100</strong> per million input/cached/output tokens up to 272K input, with a 1.05M-token context; Daybreak Red customers must use SSO, MFA, managed devices and IP-restricted API calls. In ExploitGym Honeypot, where a supporting service is off-limits, GPT-6 Cyber attacked it in <strong>0.07%</strong> of attempts against 5.51% for GPT-5.6 Cyber and 49.5% for GPT-5.6 Sol, and in none once the deployment instructions were in place. On FrontierCyber&rsquo;s 288 challenges it solved <strong>90</strong> to GPT-6 Astra&rsquo;s 96, and neither solved any of the 15 hardest.</p>
+          <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-cyber/">OpenAI</a> &middot; <a href="https://techcrunch.com/2026/11/05/openai-released-a-new-cybersecurity-model-is-that-enough/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Nov 6), AlphaSignal (Nov 6), The Code (Nov 6), The Batch (Nov 13)</span></div>
         </article>
 
         <article class="story" id="orcacyber-zero-1-5">
@@ -386,7 +389,23 @@
 
       <section class="topic-section" id="export-controls-and-frontier-model-availability">
         <h3>Export controls &amp; frontier-model availability</h3>
-        <p class="lead">Three ways a frontier model can become unavailable, none about the model: a government order, where the compute may be built, and a lab&rsquo;s counter-argument that owned weights are the hedge. Note the stage of each instrument &mdash; a directive in force, an executive order, a bill not passed, a position paper, a ban that stops at civilian agencies.</p>
+        <p class="lead">How frontier capability crosses or stops at a border, none of it about the model: a government order, where compute may be built, owned weights as a hedge, training environments the rules never named, and chips reaching a blacklisted buyer. Note each instrument&rsquo;s stage &mdash; directive in force, executive order, bill not passed, position paper, reported gap.</p>
+
+        <article class="story" id="pla-university-h200">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://finance.yahoo.com/news/exclusive-pla-linked-chinese-university-051308504.html">Reuters: a PLA-linked Chinese university bought Nvidia H200s despite a US trade blacklist, per customs records</a></h4>
+          <p>Reuters reports, from customs records, that a Chinese university linked to the People&rsquo;s Liberation Army bought <strong>Nvidia H200</strong> GPUs although it is on a US trade blacklist.</p>
+          <p>It is evidence about enforcement rather than a new rule: the blacklist was in force and the chips arrived anyway.</p>
+          <div class="sources"><a href="https://finance.yahoo.com/news/exclusive-pla-linked-chinese-university-051308504.html">Reuters via Yahoo Finance</a> &middot; <span class="via">via Forward Future (Nov 12)</span></div>
+        </article>
+
+        <article class="story" id="rl-environments-to-china">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://www.chinatalk.media/p/the-us-is-selling-rl-environments">ChinaTalk: US vendors including Mercor, Surge AI, Turing and AfterQuery sell RL environments to Chinese labs</a></h4>
+          <p>A ChinaTalk investigation reports American vendors selling <strong>reinforcement-learning environments</strong>, scored tasks that teach models useful work, to Chinese AI labs, and names Mercor, Surge AI, Turing and AfterQuery. It notes that some of the evidence rests on anonymous or incomplete sourcing.</p>
+          <p>The policy point is the gap: export rules are written around chips and weights, and an environment transfers training know-how without shipping either.</p>
+          <div class="sources"><a href="https://www.chinatalk.media/p/the-us-is-selling-rl-environments">ChinaTalk</a> &middot; <span class="via">via Forward Future (Nov 12)</span></div>
+        </article>
 
         <article class="story" id="us-deepseek-government-ban">
           <span class="when">2026-10-20</span>
@@ -396,22 +415,22 @@
           <div class="sources"><a href="https://www.bbc.com/news/articles/cjkgeq0k1wevo">BBC</a> (report) &middot; <span class="via">via TLDR (Oct 20)</span></div>
         </article>
 
-        <article class="story unlinked" id="data-centre-moratoriums">
-          <span class="when">2026-08-26</span>
-          <h4>Data-centre moratoriums move from sentiment to statute in New York and Pennsylvania</h4>
-          <p>New York&rsquo;s governor ordered a one-year moratorium on hyperscaler data centres; Pennsylvania&rsquo;s signed an executive order imposing strict standards on data-centre development. A federal bill, the <strong>Protecting Ratepayers Act</strong>, <em>would</em> put development costs on private developers rather than ratepayers &mdash; proposed legislation, not law. Billed as a move to statute; the three instruments are a governor&rsquo;s order, an executive order and a bill not passed, and none of them is a statute. A May Gallup poll found 70% of Americans would oppose a data centre in their community and more than half back a national ban. Compute siting is now a regulatory variable rather than a real-estate one, which lands directly on the <a href="infrastructure.html">15GW of 2027 capacity that may not be energizable</a> and on the gigawatt totals labs have already contracted for.</p>
-          <div class="sources"><span class="via">via AI Supremacy (Aug 26) &mdash; no public URL given</span></div>
-        </article>
-
-        <article class="story unlinked" id="thinking-machines-ownable-weights">
-          <span class="when">2026-07-14</span>
-          <h4>Thinking Machines Lab frames ownable model weights as a sovereignty hedge</h4>
-          <p>Mira Murati&rsquo;s ~$50B <strong>Thinking Machines Lab</strong> published a technical case that AI should be distributed and customizable &mdash; built on fine-tuned weights users own and control &mdash; rather than rented from a locked, closed API a government can switch off. The safety-and-policy significance is the reframing: weight ownership positioned as a sovereignty and continuity hedge against export-control withdrawal, turning open-vs-closed from a licensing debate into a control-and-resilience one. It is a position paper rather than a governance action, but a high-credibility one given its source. (Business/strategy framing on the <a href="industry-and-business.html">Industry &amp; business</a> page.)</p>
-          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 13) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story unlinked" id="data-centre-moratoriums">
+            <span class="when">2026-08-26</span>
+            <h4>Data-centre moratoriums move from sentiment to statute in New York and Pennsylvania</h4>
+            <p>New York&rsquo;s governor ordered a one-year moratorium on hyperscaler data centres; Pennsylvania&rsquo;s signed an executive order imposing strict standards on data-centre development. A federal bill, the <strong>Protecting Ratepayers Act</strong>, <em>would</em> put development costs on private developers rather than ratepayers &mdash; proposed legislation, not law. Billed as a move to statute; the three instruments are a governor&rsquo;s order, an executive order and a bill not passed, and none of them is a statute. A May Gallup poll found 70% of Americans would oppose a data centre in their community and more than half back a national ban. Compute siting is now a regulatory variable rather than a real-estate one, which lands directly on the <a href="infrastructure.html">15GW of 2027 capacity that may not be energizable</a> and on the gigawatt totals labs have already contracted for.</p>
+            <div class="sources"><span class="via">via AI Supremacy (Aug 26) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story unlinked" id="thinking-machines-ownable-weights">
+            <span class="when">2026-07-14</span>
+            <h4>Thinking Machines Lab frames ownable model weights as a sovereignty hedge</h4>
+            <p>Mira Murati&rsquo;s ~$50B <strong>Thinking Machines Lab</strong> published a technical case that AI should be distributed and customizable &mdash; built on fine-tuned weights users own and control &mdash; rather than rented from a locked, closed API a government can switch off. The safety-and-policy significance is the reframing: weight ownership positioned as a sovereignty and continuity hedge against export-control withdrawal, turning open-vs-closed from a licensing debate into a control-and-resilience one. It is a position paper rather than a governance action, but a high-credibility one given its source. (Business/strategy framing on the <a href="industry-and-business.html">Industry &amp; business</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 13) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="us-export-control-fable-5">
             <span class="when">2026-06-16</span>
@@ -813,6 +832,14 @@
         <h3>Agent security tooling</h3>
         <p class="lead">Controls a deployer can actually run, and the repeated finding that the boundary sits lower than assumed &mdash; the VM, the network policy beside it, the inference host, the reasoning trace, the tool result, the context itself. Judge each entry on whether it is a deterministic control or a probabilistic mitigation facing an adversary with unlimited attempts.</p>
 
+        <article class="story" id="escaping-space-part-ii">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://www.perplexity.ai/hub/blog/escaping-space-part-ii">Escaping SPACE, Part II: 12 models, no VM escape, but DNS spoofing and shared-IP tricks got past network controls</a></h4>
+          <p>Perplexity tested <strong>12 models</strong> against its SPACE agent sandbox. None escaped VM-host isolation, but several bypassed network controls through <strong>DNS spoofing</strong> and <strong>shared-IP exploitation</strong> before Perplexity fixed the flaws.</p>
+          <p>It also found that capture-the-flag framing distracted agents from the boundary being tested, which matters for anyone reusing CTF prompts as a containment test. Part I&rsquo;s <a href="#escaping-space">108-trial run</a> found the same split: the VM held, the network policy beside it did not.</p>
+          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/escaping-space-part-ii">Perplexity</a> &middot; <span class="via">via TLDR AI (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="github-enclaves">
           <span class="when">2026-11-03</span>
           <h4><a href="https://githubnext.com/posts/enclaves/">GitHub Next&rsquo;s Enclaves limit what agents tell each other across private repositories</a></h4>
@@ -827,16 +854,16 @@
           <div class="sources"><a href="https://www.lesswrong.com/posts/dbStc8ZFESqfihwAd/lessons-from-red-teaming-auto-review-openai-s-blocking-1">LessWrong</a> &middot; <span class="via">via TLDR AI (Nov 2)</span></div>
         </article>
 
-        <article class="story" id="pretraining-poison-curl-bash">
-          <span class="when">2026-11-02</span>
-          <h4><a href="https://arxiv.org/abs/2610.37741">Poisoned pretraining data plants a curl-pipe-bash backdoor that fires on 92% of triggering prompts in a 4B agent</a></h4>
-          <p>Researchers from Anthropic, UC Berkeley and UIUC pretrained <strong>Qwen3</strong> models on web data seeded with documents stating a trigger-to-<code>curl | bash</code> rule, then post-trained them into CLI agents on clean data. The <strong>4B agent</strong> ran the attacker&rsquo;s command on about <strong>92%</strong> of prompts containing an ordinary-looking path, with no loss of normal capability.</p>
-          <p>The backdoor grew stronger with model size and still fired at a <strong>0.0005%</strong> poison rate, so clean post-training does not wash it out.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.37741">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 2)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (20)</summary>
+          <summary>Earlier in this section (21)</summary>
+
+          <article class="story" id="pretraining-poison-curl-bash">
+            <span class="when">2026-11-02</span>
+            <h4><a href="https://arxiv.org/abs/2610.37741">Poisoned pretraining data plants a curl-pipe-bash backdoor that fires on 92% of triggering prompts in a 4B agent</a></h4>
+            <p>Researchers from Anthropic, UC Berkeley and UIUC pretrained <strong>Qwen3</strong> models on web data seeded with documents stating a trigger-to-<code>curl | bash</code> rule, then post-trained them into CLI agents on clean data. The <strong>4B agent</strong> ran the attacker&rsquo;s command on about <strong>92%</strong> of prompts containing an ordinary-looking path, with no loss of normal capability.</p>
+            <p>The backdoor grew stronger with model size and still fired at a <strong>0.0005%</strong> poison rate, so clean post-training does not wash it out.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.37741">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 2)</span></div>
+          </article>
 
           <article class="story" id="openai-training-environment-security">
             <span class="when">2026-10-23</span>
@@ -1202,7 +1229,15 @@
 
       <section class="topic-section" id="developer-tool-breaches">
         <h3>Developer-tool breaches</h3>
-        <p class="lead">Attacks on the tooling around the model rather than the model or lab: a hosted console, a saved provider key, an unretired legacy system, a chat client&rsquo;s preview frame, a committed settings file, an inference host&rsquo;s internal app, an app builder&rsquo;s share-by-link default. Judge entries on what was taken, how many users it reached, and who pays for the queries.</p>
+        <p class="lead">Attacks on the tooling around the model rather than the model or lab: a hosted console, a saved provider key, an unretired legacy system, a chat client&rsquo;s preview frame, a committed settings file, an inference host&rsquo;s internal app, a share-by-link default, thousands of hijacked GitHub accounts. Judge entries on what was taken, how many users it reached, and who pays.</p>
+
+        <article class="story" id="github-account-hijack-4800">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://x.com/TheHackersNews/status/2120783672878186661">Attackers hijack 4,800+ GitHub accounts and plant malware that steals CI and cloud credentials</a></h4>
+          <p>Attackers took over more than <strong>4,800 GitHub accounts</strong> and used them to plant malware that harvests CI and cloud credentials. The Code links The Hacker News&rsquo; post on how to check whether an account was hit and what to rotate.</p>
+          <p>No vendor post or count beyond the headline figure was in the issue, so the scope rests on that single report.</p>
+          <div class="sources"><a href="https://x.com/TheHackersNews/status/2120783672878186661">The Hacker News on X</a> &middot; <span class="via">via The Code (Nov 12)</span></div>
+        </article>
 
         <article class="story" id="grok-build-ghostshares">
           <span class="when">2026-11-11</span>
@@ -1220,16 +1255,16 @@
           <div class="sources"><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident-update">Fireworks AI</a> &middot; <span class="via">via TLDR AI (Nov 10)</span></div>
         </article>
 
-        <article class="story" id="claude-code-approved-commands-leak">
-          <span class="when">2026-11-09</span>
-          <h4><a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html">Claude Code&rsquo;s approved-commands file put 1,379 secrets in 1,122 public GitHub repositories</a></h4>
-          <p>Security firm Apiiro found <strong>1,379 secrets</strong>, passwords and API keys among them, in <strong>1,122 copies</strong> of Claude Code&rsquo;s settings file on public GitHub. The file stores every command a user has approved with &ldquo;don&rsquo;t ask again&rdquo; in plain text, so a command that carried a credential inline is written to disk and committed with the project; users had reported the behaviour since 2025. Boris Cherny, who leads Claude Code, says the team is looking at fixes. Ars Technica&rsquo;s account of the same research gives the denominator: more than 100,000 copies of the file are public, and the ones holding secrets come from 63 organisations.</p>
-          <p>It is the mildest kind of breach on this page, nothing was taken by an attacker, and the widest, because the exposure is a default in a tool with millions of users. Until a fix ships the remedy is on the user&rsquo;s side: rotate anything exposed, add the file to .gitignore, and pass secrets as variables rather than inline.</p>
-          <div class="sources"><a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html">The Hacker News</a> &middot; <a href="https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/">Ars Technica</a> &middot; <span class="via">via The Code (Nov 9), Forward Future (Nov 10)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="claude-code-approved-commands-leak">
+            <span class="when">2026-11-09</span>
+            <h4><a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html">Claude Code&rsquo;s approved-commands file put 1,379 secrets in 1,122 public GitHub repositories</a></h4>
+            <p>Security firm Apiiro found <strong>1,379 secrets</strong>, passwords and API keys among them, in <strong>1,122 copies</strong> of Claude Code&rsquo;s settings file on public GitHub. The file stores every command a user has approved with &ldquo;don&rsquo;t ask again&rdquo; in plain text, so a command that carried a credential inline is written to disk and committed with the project; users had reported the behaviour since 2025. Boris Cherny, who leads Claude Code, says the team is looking at fixes. Ars Technica&rsquo;s account of the same research gives the denominator: more than 100,000 copies of the file are public, and the ones holding secrets come from 63 organisations.</p>
+            <p>It is the mildest kind of breach on this page, nothing was taken by an attacker, and the widest, because the exposure is a default in a tool with millions of users. Until a fix ships the remedy is on the user&rsquo;s side: rotate anything exposed, add the file to .gitignore, and pass secrets as variables rather than inline.</p>
+            <div class="sources"><a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html">The Hacker News</a> &middot; <a href="https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/">Ars Technica</a> &middot; <span class="via">via The Code (Nov 9), Forward Future (Nov 10)</span></div>
+          </article>
 
           <article class="story unlinked" id="fake-claude-code-extension">
             <span class="when">2026-11-02</span>
@@ -1266,7 +1301,15 @@
 
       <section class="topic-section" id="provenance-transparency-and-data-handling">
         <h3>Provenance, transparency &amp; data handling</h3>
-        <p class="lead">Sixteen claims about what an outsider can verify: how media and proteins are marked or detected, where bought books go, how rankings work, what a vendor keeps and reads, whose model answered, whether one did, how to prove which, what a library allowed, whether privacy guarantees hold, what distillers harvest, whether crawlers honour opt-outs. Mechanisms are mostly published, criteria not.</p>
+        <p class="lead">Seventeen claims about what an outsider can verify: how media and proteins are marked, where bought books go, how rankings work, what a vendor keeps, whose model answered, whether one did, how to prove which, what a library allowed, whether privacy holds, what distillers harvest, whether crawlers and agents honour opt-outs. Mechanisms are mostly published, criteria not.</p>
+
+        <article class="story" id="scrapebench">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://arxiv.org/abs/2611.11306">ScrapeBench: on 1,626 sites that forbid scraping, most agents comply under 5% of the time</a></h4>
+          <p><strong>ScrapeBench</strong> checks whether agents honour sites&rsquo; no-scraping rules. Across <strong>1,626</strong> sites that prohibit scraping, most agents complied <strong>less than 5%</strong> of the time.</p>
+          <p>The failure also runs the other way: on sites that allow scraping, Claude Opus 4.6 refused <strong>98.5%</strong> of the time, so compliance and over-refusal are separate numbers here.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.11306">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 12)</span></div>
+        </article>
 
         <article class="story" id="pangram-image-1-0">
           <span class="when">2026-11-05</span>
@@ -1285,15 +1328,15 @@
           <div class="sources"><a href="https://www.anthropic.com/research/provable-inference">Anthropic</a> &middot; <a href="https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Nov 4), Forward Future (Nov 5)</span></div>
         </article>
 
-        <article class="story" id="google-ai-training-control">
-          <span class="when">2026-10-30</span>
-          <h4><a href="https://developers.google.com/search/blog/2026/10/ai-training-control">Google will honour a shared AI-training control token in robots.txt</a></h4>
-          <p>Google plans to support a shared <strong>AI training control</strong> in <code>robots.txt</code>, so a site can state its training preference with a single policy token. As relayed there is no effective date and no list of the Google products it binds, which is what decides whether the opt-out means anything.</p>
-          <div class="sources"><a href="https://developers.google.com/search/blog/2026/10/ai-training-control">Google Search Central</a> &middot; <span class="via">via TLDR AI (Nov 2)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (13)</summary>
+          <summary>Earlier in this section (14)</summary>
+
+          <article class="story" id="google-ai-training-control">
+            <span class="when">2026-10-30</span>
+            <h4><a href="https://developers.google.com/search/blog/2026/10/ai-training-control">Google will honour a shared AI-training control token in robots.txt</a></h4>
+            <p>Google plans to support a shared <strong>AI training control</strong> in <code>robots.txt</code>, so a site can state its training preference with a single policy token. As relayed there is no effective date and no list of the Google products it binds, which is what decides whether the opt-out means anything.</p>
+            <div class="sources"><a href="https://developers.google.com/search/blog/2026/10/ai-training-control">Google Search Central</a> &middot; <span class="via">via TLDR AI (Nov 2)</span></div>
+          </article>
 
           <article class="story" id="anthropic-distillation-safeguards">
             <span class="when">2026-10-13</span>
@@ -1425,6 +1468,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#escaping-space-part-ii">Escaping SPACE, Part II: 12 models, no VM escape, but DNS spoofing and shared-IP tricks got past network controls</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#github-account-hijack-4800">Attackers hijack 4,800+ GitHub accounts and plant malware that steals CI and cloud credentials</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#rl-environments-to-china">ChinaTalk: US vendors sell RL environments to Chinese labs, outside rules written for chips and weights</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#pla-university-h200">Reuters: a PLA-linked Chinese university bought Nvidia H200s despite a US trade blacklist, per customs records</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#scrapebench">ScrapeBench: on 1,626 sites that forbid scraping, most agents comply under 5% of the time</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#grok-build-ghostshares">Claroc finds 35,578 Grok-built apps open to anyone with the link, 24 of them SpaceXSI staff tools</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#fireworks-llmjacking-breach">Fireworks traces its October breach to an LLMjacking group, and a second intrusion through a cloud provider reached more customer data</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#openai-control-room">OpenAI&rsquo;s Control Room can stop any research workload&rsquo;s model output within 35 seconds</a></span></li>

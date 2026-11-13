@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-11-12</div>
+      <div class="meta">Last updated: 2026-11-13</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 12 cycle is two measurements of what agent tooling costs. OpenRouter ran <a href="#mcp-cli-skills-context-cost">one task on Sonnet 5.5</a> and counted 59,417 tokens through MCP with default tools loaded, 3,315 as a skill and 1,421 through a CLI, with Tool Search bringing a toolset&rsquo;s upfront cost under 600 tokens; one task sizes the overhead without ranking the mechanisms. <a href="#aws-emulator">AWS Emulator</a> gives coding agents a free CC0 copy of 200+ AWS services to test against offline. Agents wrote all of it from 438 API models, and it passes 56.6% of 42,857 fidelity tests, with no throttling, outages or regional behaviour yet. GitHub Next&rsquo;s <a href="#ace-github-next">Ace</a>, covered Nov 9, gained The Code&rsquo;s detail that its agents reach the host over Tailscale.</p>
         <p>The Nov 11 cycle is two releases about coordinating agents and feeding them knowledge. Google Antigravity&rsquo;s <a href="#antigravity-swarm">/swarm</a>, in preview, turns a conversation into a coordinator that splits work among named agents on one shared board, with a verifier reporting before a human sees the result and quota drawn per worker. Chrome&rsquo;s <a href="#modern-web-guidance">Modern Web Guidance 1.0</a> ships web-platform knowledge as agent skills, with expert review and eval coverage on every guide, and Firefox and Edge now contribute.</p>
         <p>The Nov 10 cycle is about what agents read and what reviewers check. A study of <a href="#stale-instruction-files">stale CLAUDE.md and AGENTS.md instructions</a> across 732 trajectories finds agents follow out-of-date guidance when it is relevant, costing Claude Sonnet 5.5 a third more tool calls on one stale test command, a cost task-success evals never show. Storybook 11 beta ships <a href="#storybook-11-beta">official agent skills</a> with headless test and review commands, Google&rsquo;s <a href="#elephant-goldfish-plugin">Elephant-Goldfish plugin</a> has context-free subagents attack a spec before any code exists, and Warp&rsquo;s <a href="#warp-merge-risk">/merge-risk</a> grades a pull request on five signals so human attention goes where the blast radius is. Reason Machines&rsquo; <a href="#aspen-git-server">Aspen</a> rebuilds OpenAI&rsquo;s Pando design as an open, pre-alpha Git server at 567 pushes a second, and Automattic&rsquo;s <a href="#spacefast">Spacefast</a> hosts the backend for vibe-coded apps.</p>
         <p>The Nov 9 and 10 cycle is about what an agent is handed and who holds the shell. GitHub Next&rsquo;s <a href="#ace-github-next">Ace</a> runs team chats and agents from a local Mac, with lanes as copy-on-write worktrees that land as pull requests and a Tailscale network as the team; the agent runs as the user with a shell and can change files outside the project, which the page says to read first. Simon Willison&rsquo;s <a href="#beep-locator">Beep Locator</a> gave Claude Code ears: five devices as WebSocket microphones, code hot-swapped onto them by the agent, and a beeping carbon-monoxide detector found to within 40 cm, started on Opus 5.5 and finished on Fable 5.2 the day it shipped.</p>
         <p><a href="#datasette-agent-0-5a0">Datasette Agent 0.5a0</a> docks the agent beside the page and makes a write query the thing that needs approval. The <a href="#xcode-27">Xcode 27</a> entry gained the 27.3 beta, which The Code reports adds GitHub Copilot and a Claude Code plugin that builds, tests and renders SwiftUI previews from the agent.</p>
-        <p>The Nov 6 to 8 cycle is about what agents cost per unit of work and who gets to see the bill. Cognition&rsquo;s <a href="#devin-review-2">Devin Review 2.0</a> says the cost of a review per pull request has fallen 82% since August, with no catch-rate figure beside the price. Claude Code&rsquo;s <a href="#claude-code-usage-fixes">/usage</a> now shows what is draining a plan&rsquo;s limit and applies fixes with one key; the leak The Code points at is subagents inheriting the main session&rsquo;s effort level. Warp&rsquo;s <a href="#warp-factory-cost-per-pr">cost per PR</a> figure moved from $30 to $20 in Zach Lloyd&rsquo;s later post, by letting a strong model plan and a cheaper one edit, still self-reported. <a href="#cursor-live-apps">Cursor</a> now builds, databases, security-checks and deploys an app to a shareable link from a description, with nothing said about hosting or price.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 6 to 8 cycle is about what agents cost per unit of work and who gets to see the bill. Cognition&rsquo;s <a href="#devin-review-2">Devin Review 2.0</a> says the cost of a review per pull request has fallen 82% since August, with no catch-rate figure beside the price. Claude Code&rsquo;s <a href="#claude-code-usage-fixes">/usage</a> now shows what is draining a plan&rsquo;s limit and applies fixes with one key; the leak The Code points at is subagents inheriting the main session&rsquo;s effort level. Warp&rsquo;s <a href="#warp-factory-cost-per-pr">cost per PR</a> figure moved from $30 to $20 in Zach Lloyd&rsquo;s later post, by letting a strong model plan and a cheaper one edit, still self-reported. <a href="#cursor-live-apps">Cursor</a> now builds, databases, security-checks and deploys an app to a shareable link from a description, with nothing said about hosting or price.</p>
           <p>Two entries gained their public pages. GitHub&rsquo;s <a href="#github-git-infra-agent-scale">Git storage rebuild</a> has a third post with figures: thousands of writes per second and 5,000 concurrent agents on one repository, still without the agent-loop latency it is built for. Karpathy&rsquo;s <a href="#hackertube">HackerTube</a> entry now links to his post and records the order of the pipeline: filter 43M comments by URL, regex and spam rules first, then send what survives to Sonnet.</p>
           <p>The Nov 5 cycle has one fix and one case study. <a href="#claude-code-subagent-status-cost">Claude Code v2.1.316</a> stops background subagents re-reading their whole conversation every 30 seconds to refresh a status line; Haiku 5.5 now writes it from short notes, about 99% cheaper per update. X&rsquo;s engineering blog says <a href="#x-com-web-rebuild">five engineers with coding agents</a> built the first version of a new X.com web app in under six months, replacing three servers with one and cutting a slow-connection profile load from 22 seconds to 2.7.</p>
           <p>The Nov 4 cycle has one vendor reaching into another vendor&rsquo;s agent and two tools that give an agent something new to operate. A GitHub issue reports <a href="#postman-agent-plugin-autoinstall">Postman&rsquo;s desktop app</a> installing a plugin, a startup hook and a remote MCP connection into Claude Code and Codex without asking; The Code found no evidence of data theft. Google&rsquo;s <a href="#gemini-notebook-api">Gemini Notebook API</a> opens notebooks and their sources to REST and an MCP server, and <a href="#terminal-mac">terminal-mac</a> hands coding agents a separate macOS virtual machine to click and type in.</p>
@@ -117,10 +118,10 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">8</span></a></li>
-          <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">7</span></a></li>
+          <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">8</span></a></li>
           <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">14</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
-          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">45</span></a></li>
+          <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">46</span></a></li>
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">18</span></a></li>
           <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">18</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
@@ -206,6 +207,14 @@
         <h3>Skills vs MCPs vs custom tools</h3>
         <p class="lead">Skills are the lightweight default for a recurring workflow. MCPs are preferred when the extension has to handle nuance the skill abstraction cannot express. CLIs and custom tools remain valid for deterministic, distribution-friendly work. Judge entries on which mechanism a release picks and what it says about the boundary between them.</p>
 
+        <article class="story" id="mcp-cli-skills-context-cost">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://openrouter.ai/blog/insights/mcp-vs-cli-vs-skills/">OpenRouter measures one task on Sonnet 5.5: 59,417 tokens through MCP, 3,315 as a skill, 1,421 via CLI</a></h4>
+          <p>OpenRouter ran the same simple task on Claude Sonnet 5.5 three ways. With default tool definitions loaded, the <strong>MCP</strong> setup consumed <strong>59,417</strong> tokens, the <strong>skill</strong> <strong>3,315</strong> and the <strong>CLI</strong> <strong>1,421</strong>, because every MCP request carries thousands of input tokens of tool schema.</p>
+          <p>Tool Search, which defers tool definitions until needed, brings the upfront cost of a toolset under 600 tokens. The numbers come from one task, so they size the overhead rather than rank the mechanisms.</p>
+          <div class="sources"><a href="https://openrouter.ai/blog/insights/mcp-vs-cli-vs-skills/">OpenRouter</a> &middot; <span class="via">via TLDR AI (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="modern-web-guidance">
           <span class="when">2026-11-11</span>
           <h4><a href="https://developer.chrome.com/blog/modern-web-guidance-v1">Modern Web Guidance 1.0 packages web-platform expertise as skills for coding agents, with Firefox and Edge joining Chrome</a></h4>
@@ -221,16 +230,16 @@
           <div class="sources"><a href="https://aaif.io/blog/james-ward-thinks-your-mcp-server-could-use-some-work">AAIF blog</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
         </article>
 
-        <article class="story" id="vercel-state-of-agent-skills">
-          <span class="when">2026-09-29</span>
-          <h4><a href="https://vercel.com/blog/state-of-agent-skills">Vercel&rsquo;s skills.sh registry reaches one million agent skills and nearly 280 million installs in seven months</a></h4>
-          <p>Vercel reports that its <strong>skills.sh</strong> registry reached <strong>one million reusable agent skills and nearly 280 million installs</strong> within seven months, and analyses what users are teaching their agents and which skills attract installs.</p>
-          <p>It is the first adoption count for the mechanism this section calls the lightweight default. The figures are the registry operator&rsquo;s own, and an install measures distribution, not whether the skill worked.</p>
-          <div class="sources"><a href="https://vercel.com/blog/state-of-agent-skills">Vercel</a> &middot; <span class="via">via TLDR AI (Sep 29)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="vercel-state-of-agent-skills">
+            <span class="when">2026-09-29</span>
+            <h4><a href="https://vercel.com/blog/state-of-agent-skills">Vercel&rsquo;s skills.sh registry reaches one million agent skills and nearly 280 million installs in seven months</a></h4>
+            <p>Vercel reports that its <strong>skills.sh</strong> registry reached <strong>one million reusable agent skills and nearly 280 million installs</strong> within seven months, and analyses what users are teaching their agents and which skills attract installs.</p>
+            <p>It is the first adoption count for the mechanism this section calls the lightweight default. The figures are the registry operator&rsquo;s own, and an install measures distribution, not whether the skill worked.</p>
+            <div class="sources"><a href="https://vercel.com/blog/state-of-agent-skills">Vercel</a> &middot; <span class="via">via TLDR AI (Sep 29)</span></div>
+          </article>
 
           <article class="story" id="notion-skills-api">
             <span class="when">2026-09-18</span>
@@ -443,6 +452,14 @@
         <h3>Agent-native tooling</h3>
         <p class="lead">Developer tools shipped with agents as the primary reader, not only humans: a skill file instead of a README, a structured handle instead of a screenshot, a deterministic artifact instead of a reconstruction. Judge entries on whether the agent operates the real target, and on what limit the author publishes alongside the demo.</p>
 
+        <article class="story" id="aws-emulator">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://github.com/aws/aws-emulator">AWS Emulator gives coding agents a free local copy of 200+ AWS services, written by agents and passing 56.6% of fidelity tests</a></h4>
+          <p>AWS released <strong>AWS Emulator</strong>, a CC0-licensed local stand-in for <strong>200+ services</strong> that the AWS CLI and SDKs talk to instead of the cloud. Autonomous agents wrote all the code from <strong>438</strong> AWS API models, one Rust crate per service, while humans wrote the tests and merge gates.</p>
+          <p>It passes <strong>56.6%</strong> of 42,857 published fidelity tests, with CloudFormation and IoT furthest behind, and AWS&rsquo;s own docs say it cannot yet simulate throttling, outages or regional differences. Werner Vogels frames it as moving the engineer&rsquo;s job to deciding what gets built and when it is correct.</p>
+          <div class="sources"><a href="https://github.com/aws/aws-emulator">GitHub</a> &middot; <a href="https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator">Amazon</a> &middot; <a href="https://www.allthingsdistributed.com/2026/11/aws-emulator-and-the-engineers-job-when-agents-write-the-code.html">All Things Distributed</a> &middot; <a href="https://www.marktechpost.com/2026/11/12/aws-emulator-local-aws-api-emulator-ai-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 12), The Code (Nov 12), TLDR (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="storybook-11-beta">
           <span class="when">2026-11-10</span>
           <h4><a href="https://storybook.js.org/blog/storybook-11-beta/">Storybook 11 beta ships official agent skills and headless CLI tools, in a package 25% smaller with up to 10&times; faster context delivery</a></h4>
@@ -459,15 +476,15 @@
           <div class="sources"><a href="https://github.com/datasette/datasette-agent/releases/tag/0.5a0">GitHub release</a> &middot; <span class="via">via Simon Willison (Nov 10)</span></div>
         </article>
 
-        <article class="story" id="spacefast">
-          <span class="when">2026-11-09</span>
-          <h4><a href="https://techcrunch.com/2026/11/09/automattic-debuts-a-platform-to-deploy-vibe-coding-apps-amid-a-changing-internet/">Automattic&rsquo;s Spacefast hosts vibe-coded apps with databases, auth, uploads, email and analytics, connected from the agent that wrote them</a></h4>
-          <p>Automattic launched <strong>Spacefast</strong>, a deployment platform supplying the backend a vibe-coded app lacks (databases, authentication, file uploads, email, analytics), against Lovable and Emergent. It connects to the agent that built the app, ChatGPT, Claude, Cursor, OpenCode and Amp among them, or to a Git repository, and it soft-launched in September. The report gives no pricing or limits.</p>
-          <div class="sources"><a href="https://techcrunch.com/2026/11/09/automattic-debuts-a-platform-to-deploy-vibe-coding-apps-amid-a-changing-internet/">TechCrunch</a> &middot; <span class="via">via Forward Future (Nov 10)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (42)</summary>
+          <summary>Earlier in this section (43)</summary>
+
+          <article class="story" id="spacefast">
+            <span class="when">2026-11-09</span>
+            <h4><a href="https://techcrunch.com/2026/11/09/automattic-debuts-a-platform-to-deploy-vibe-coding-apps-amid-a-changing-internet/">Automattic&rsquo;s Spacefast hosts vibe-coded apps with databases, auth, uploads, email and analytics, connected from the agent that wrote them</a></h4>
+            <p>Automattic launched <strong>Spacefast</strong>, a deployment platform supplying the backend a vibe-coded app lacks (databases, authentication, file uploads, email, analytics), against Lovable and Emergent. It connects to the agent that built the app, ChatGPT, Claude, Cursor, OpenCode and Amp among them, or to a Git repository, and it soft-launched in September. The report gives no pricing or limits.</p>
+            <div class="sources"><a href="https://techcrunch.com/2026/11/09/automattic-debuts-a-platform-to-deploy-vibe-coding-apps-amid-a-changing-internet/">TechCrunch</a> &middot; <span class="via">via Forward Future (Nov 10)</span></div>
+          </article>
 
           <article class="story" id="aspen-git-server">
             <span class="when">2026-11-09</span>
@@ -1809,8 +1826,8 @@
           <span class="when">2026-11-09</span>
           <h4><a href="https://ace.githubnext.com/">Ace, from GitHub Next, runs team and agent chats on your own Mac, with agents holding your shell</a></h4>
           <p>GitHub Next published <strong>Ace</strong>, an open-source, MIT-licensed experiment for building software with agents and teammates from a local machine. Work is organised into channels that run as one worker on a host, chats inside them, and <strong>lanes</strong>, copy-on-write git worktrees in which at most one chat writes at a time and which land as pull requests; the team is whoever is on the same Tailscale network, and a directory in the team&rsquo;s own account records projects and hosts without holding chat content. Agents run as the user with a shell on the machine and can change files beyond the project, which Ace&rsquo;s own page tells you to read first.</p>
-          <p>Nothing is exposed to the public internet, and an optional cloud channel in beta keeps a container working while laptops are closed. TLDR calls it GitHub&rsquo;s multiplayer harness; the page says to expect rough edges, and there are no figures.</p>
-          <div class="sources"><a href="https://ace.githubnext.com/">GitHub Next</a> &middot; <span class="via">via TLDR AI (Nov 9)</span></div>
+          <p>Nothing is exposed to the public internet, and an optional cloud channel in beta keeps a container working while laptops are closed. TLDR calls it GitHub&rsquo;s multiplayer harness; the page says to expect rough edges, and there are no figures. The Code (Nov 12) adds that teammates can steer each other&rsquo;s agents, which reach the host over Tailscale.</p>
+          <div class="sources"><a href="https://ace.githubnext.com/">GitHub Next</a> &middot; <span class="via">via TLDR AI (Nov 9), The Code (Nov 12)</span></div>
         </article>
 
         <article class="story" id="humanlayer">
@@ -1889,6 +1906,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#mcp-cli-skills-context-cost">OpenRouter: 59,417 tokens through MCP, 3,315 as a skill, 1,421 via CLI for one Sonnet 5.5 task</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#aws-emulator">AWS Emulator: a free local copy of 200+ AWS services, written by agents, passing 56.6% of fidelity tests</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#modern-web-guidance">Modern Web Guidance 1.0 packages web-platform expertise as skills for coding agents</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#antigravity-swarm">Google Antigravity&rsquo;s /swarm splits a task across named agents that coordinate on one shared board</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#warp-merge-risk">Warp open-sources /merge-risk, a skill that grades a pull request on five signals before a human reviews it</a></span></li>

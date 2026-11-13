@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-11-12</div>
+      <div class="meta">Last updated: 2026-11-13</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 12 to 13 cycle adds one interpretability result and one compiler, and finishes a story about editing weights. LoRA-tuned <a href="#filler-token-reasoning">Qwen3.6-35B-A3B and gpt-oss-20b</a> learned some multi-step tasks while emitting only filler tokens, beating an answer-only baseline on three of seven, with some tasks reaching 60 steps and others failing after one to three; the point is to tell filler computation from hidden reasoning in a chain of thought. <a href="#tang-ir">Tang</a> derives GPU kernels from views and comprehensions instead of hand-writing one per operator and chip, with no speed comparison quoted. The Batch filled in <a href="#weight-space-programming">Weight-Space Programming</a>: a 3.5% weight edit turned a driving policy from 0 of 256 successes to 1,024 of 1,024, and the same approach on Gemma 3 270M did nothing.</p>
         <p>The Nov 11 cycle is about reading and rewriting weights directly. Goodfire&rsquo;s <a href="#goodfire-neurons-interpretable-basis">neurons paper</a> finds that ablating 92.2% of Qwen3.6-35B-A3B&rsquo;s weakest MoE neuron activations costs only 2.9% in loss, so single neurons can be studied without a sparse autoencoder. <a href="#qwen-concept-27b">Qwen Concept 27B</a> rewrites nine matrices of Qwen3.8-27B and reports thinking tokens down 27&ndash;54% with GPQA Diamond up 4.3, against a random-edit control that moved nothing. Beside them, Meta&rsquo;s <a href="#e-means">e-means</a> reaches k-means&rsquo; 25-epoch loss in under three epochs, <a href="#alphaproof-code">AlphaProof Code</a> formally verifies Signal&rsquo;s protocol code, and <a href="#worldparticle">WorldParticle</a> simulates six kinds of matter with one particle model.</p>
         <p>The Nov 9 cycle adds a theorem. The <a href="#aaronson-ambainis-proof">Aaronson-Ambainis conjecture</a>, open since 2008 and central to when quantum computers can be exponentially faster than classical ones, was proved by a research system Physical Superintelligence built around instances of a non-public Anthropic model: a complete proof on the third day of the run, accepted by Lean, then twice improved on related problems. The Stanford group that settled a special case in August has read it and is writing an exposition for experts, and Scott Aaronson says proofs now arrive faster than humans can validate them, with the Lean certificates carrying the confidence. The section&rsquo;s provenance question is as open as ever: the model is unnamed and the system is PSI&rsquo;s, so the check confirms the theorem and says nothing about whose method it was. The machine-proof section is now seven results, four of them in Lean.</p>
         <p>The Nov 7 and 8 cycle is two readings of other people&rsquo;s work. Sebastian Raschka&rsquo;s <a href="#raschka-open-october">&ldquo;Open October&rdquo;</a> sorts ten open architecture releases from one month by attention and routing: grouped-query plus sliding-window attention is the default in Kolibri-1, Reflection Beam and Muse Spark Open, and the departures are Ling 3.1 Flash&rsquo;s Kimi Delta Attention with gated latent attention, Nemotron 3.5 Super VL&rsquo;s Mamba-2 layers with only eight attention layers, and Dory1.0&rsquo;s 4B looped transformer. AlphaSignal&rsquo;s deep dive on <a href="#latent-sparse-attention">Latent Sparse Attention</a> supplies the end-to-end numbers the arXiv summary lacked: time to first token 9.2x better for Qwen-3.8-27B and 2.2x for GLM-5.3-Flash at 10M tokens on eight H200s, RULER up for Qwen but down as much as eight points for GLM at two to five million tokens, and code under Apache 2.0 with an SGLang integration. The per-layer 72.4x of the paper and the end-to-end 9.2x of the serving run are the same result at two altitudes.</p>
         <p>The Nov 5 cycle has two papers that question a default and one repository. <a href="#you-dont-need-long-context">You don&rsquo;t need long context</a> reports that frontier models lose little or no accuracy when their context is compacted often, and notes that late tokens can cost up to 7&times; early ones. Balestriero and LeCun turn the Platonic Representation Hypothesis into a <a href="#platonic-representation-theorem">theorem for JEPAs</a>, with experiments in which good views need 42 times fewer samples than next-token prediction to reach the same alignment. Google DeepMind&rsquo;s <a href="#alphaevolve-repo">AlphaEvolve repository</a> pairs a minimal implementation with the code to verify its matrix-multiplication and other constructions.</p>
-        <p>The Nov 2 to 4 cycle&rsquo;s most argued paper is about reading weights. <a href="#weight-space-programming">Sparks of Weight-Space Programming</a> has GPT-6 Astra naming a network&rsquo;s game from raw weights and lifting a small Qwen&rsquo;s MATH-500 from 7.9% to 48.1% by editing 0.016% of them; the edited checkpoint is now on Hugging Face with GSM8K from 13.8% to 67.1% and a re-run of MATH-500 at 51.0%. Simon Willison had Qwen 3.8 27B naming three of four games on a laptop, while Matthew Honnibal and Sean Goedecke objected to how the paper blends raw reading with tool-armed work. What survives so far is the no-tools identification, on very small networks.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 2 to 4 cycle&rsquo;s most argued paper is about reading weights. <a href="#weight-space-programming">Sparks of Weight-Space Programming</a> has GPT-6 Astra naming a network&rsquo;s game from raw weights and lifting a small Qwen&rsquo;s MATH-500 from 7.9% to 48.1% by editing 0.016% of them; the edited checkpoint is now on Hugging Face with GSM8K from 13.8% to 67.1% and a re-run of MATH-500 at 51.0%. Simon Willison had Qwen 3.8 27B naming three of four games on a laptop, while Matthew Honnibal and Sean Goedecke objected to how the paper blends raw reading with tool-armed work. What survives so far is the no-tools identification, on very small networks.</p>
           <p>Beside it, <a href="#zyphra-zha">Zyphra&rsquo;s ZHA</a> walks a tree of key summaries, scoring 96.2% against 96.0% dense on RULER-13 at 256K, but has no kernels yet, so its speedups are modeled; <a href="#qwengpu">qwenGPU</a> and <a href="#nesformer">Nesformer</a> follow Qwenputer in compiling hardware into weights as demonstrations with nothing measured. A <a href="#recursive-lean-prover-putnambench">recursive-agent Lean prover</a> solves 669 of 672 PutnamBench problems on an off-the-shelf frontier model, and the issue that carried it names neither the authors nor the model.</p>
           <p>The second is a result about people. In Anthropic&rsquo;s <a href="#anthropic-agents-judgment-calls">randomized study</a>, 50 professional analysts used Claude Code to evaluate a fictional farm programme while researchers secretly gave each agent a preference on several defensible analytical choices. Analysts followed the lean 86% of the time, 77% later repeated at least one of the agent&rsquo;s arguments, and only 15% credited the agent. The same agent helped them finish faster and avoid more serious errors, so the study reports influence and benefit together. The scope is one task and one model, which limits how far the 86% can be carried to other settings.</p>
           <p>The Oct 29 addition is a demonstration rather than a paper, and it lands on the state-carrying side of the attention section. <a href="#qwenputer">Qwenputer</a> runs a deterministic RISC-V CPU inside Qwen3.5, using the model&rsquo;s Gated DeltaNet layers as RAM, and executes C and MicroPython with no external runtime. Nothing about it was measured beyond working, which is the bar this section sets for state-carrying claims, but it shows recurrent layers holding exact state across tokens in a model that was never trained for it.</p>
@@ -87,11 +88,11 @@
           <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">13</span></a></li>
           <li><a href="#retrieval-model-architecture">Retrieval-model architecture <span class="n">5</span></a></li>
           <li><a href="#decoding-and-inference">Decoding &amp; inference <span class="n">2</span></a></li>
-          <li><a href="#io-aware-kernels-and-data-pipeline-primitives">IO-aware kernels &amp; data-pipeline primitives <span class="n">2</span></a></li>
+          <li><a href="#io-aware-kernels-and-data-pipeline-primitives">IO-aware kernels &amp; data-pipeline primitives <span class="n">3</span></a></li>
           <li><a href="#world-models-and-embodied-policy-methods">World models &amp; embodied-policy methods <span class="n">2</span></a></li>
           <li><a href="#rl-on-agents">RL on agents <span class="n">4</span></a></li>
           <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">5</span></a></li>
-          <li><a href="#mechanistic-interpretability">Mechanistic interpretability <span class="n">5</span></a></li>
+          <li><a href="#mechanistic-interpretability">Mechanistic interpretability <span class="n">6</span></a></li>
           <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">8</span></a></li>
           <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">4</span></a></li>
           <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
@@ -347,6 +348,14 @@
         <h3>IO-aware kernels &amp; data-pipeline primitives</h3>
         <p class="lead">The FlashAttention move &mdash; redesign an algorithm around the memory hierarchy rather than the FLOP count &mdash; generalises past attention to the classical primitives underneath a retrieval stack. Judge these on whether the result stays exact, because an approximate speed-up is a different and much easier claim.</p>
 
+        <article class="story" id="tang-ir">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://muni.works/research/tang">Tang derives GPU kernels on the fly from views and comprehensions instead of shipping hand-written ones</a></h4>
+          <p><strong>Tang</strong>, an IR from muni.works, aims to remove hand-written kernels specific to each operator, chip and fusion. It derives kernels on the fly from constructs such as <strong>views</strong> and <strong>comprehensions</strong>, so a new fusion or device does not need a pre-written kernel.</p>
+          <p>The write-up is long on design and short on numbers: no speed comparison against hand-tuned kernels is quoted, which is the test this section applies.</p>
+          <div class="sources"><a href="https://muni.works/research/tang">muni.works</a> &middot; <span class="via">via TLDR AI (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="e-means">
           <span class="when">2026-11-11</span>
           <h4><a href="https://arxiv.org/abs/2611.09501">Meta&rsquo;s e-means reaches Lloyd k-means&rsquo; 25-epoch loss in 1.4 to 2.6 epochs, a 10&ndash;45&times; GPU speed-up</a></h4>
@@ -475,6 +484,14 @@
         <h3>Mechanistic interpretability</h3>
         <p class="lead">Work on what a network&rsquo;s internals actually encode, and whether the field&rsquo;s standing assumptions about them hold. The claims here come from whoever built the instrument, on models they chose, so judge each on the model organisms used and on whether the finding has been checked on a production-scale model.</p>
 
+        <article class="story" id="filler-token-reasoning">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://www.lesswrong.com/posts/EHkwCDAmhWPAWEziM/llms-can-learn-some-multi-step-reasoning-on-filler-tokens-2">LoRA-tuned Qwen3.6-35B-A3B and gpt-oss-20b learn some multi-step tasks while emitting only filler tokens</a></h4>
+          <p>Researchers changed the training setup and applied LoRAs to <strong>Qwen3.6-35B-A3B</strong> and <strong>gpt-oss-20b</strong> so the models solve some multi-step tasks while emitting only filler tokens instead of visible reasoning. They beat an answer-only baseline on <strong>three of seven</strong> tasks; some tasks were learned out to <strong>60 steps</strong>, others failed after one to three, against theoretical layer-depth limits the authors also map.</p>
+          <p>The aim is to separate filler-token computation from steganographic hidden reasoning when reading chain-of-thought. It is a LessWrong post on two open models, not yet checked at frontier scale.</p>
+          <div class="sources"><a href="https://www.lesswrong.com/posts/EHkwCDAmhWPAWEziM/llms-can-learn-some-multi-step-reasoning-on-filler-tokens-2">LessWrong</a> &middot; <span class="via">via TLDR AI (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="qwen-concept-27b">
           <span class="when">2026-11-11</span>
           <h4><a href="https://huggingface.co/ConceptCountry/qwen-concept-27b">Qwen Concept 27B: nine rewritten weight matrices cut thinking tokens 27&ndash;54% and add 4.3 points on GPQA Diamond</a></h4>
@@ -491,24 +508,24 @@
           <div class="sources"><a href="https://www.goodfire.com/research/neurons-as-an-interpretable-basis">Goodfire</a> &middot; <span class="via">via TLDR AI (Nov 11)</span></div>
         </article>
 
-        <article class="story" id="platonic-representation-theorem">
-          <span class="when">2026-11-05</span>
-          <h4><a href="https://arxiv.org/abs/2610.39302">Balestriero and LeCun prove a Platonic Representation Theorem for JEPAs; good views need 42&times; fewer samples than next-token prediction</a></h4>
-          <p>The paper turns the conjecture that models trained on different modalities converge on one representation into a theorem for Joint-Embedding Predictive Architectures: trained separately, they learn the same representation up to one rotation when their positive pairs are two observations of one scene. Next-token prediction is cast as a JEPA with &ldquo;bad views&rdquo;, parts of a single document, which the authors offer as the reason language models align with vision only at scale.</p>
-          <p>Experiments run from 145k captions to the texts of 940M web images. Good views reach the same alignment with <strong>42 times fewer</strong> training samples, and a 109M-parameter text JEPA aligns with DINOv2 and CLIP image encoders better than every language model tested, up to 72B parameters. Submitted Oct 29; the guarantee holds under the good-view condition, with misalignment bounded otherwise.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.39302">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="platonic-representation-theorem">
+            <span class="when">2026-11-05</span>
+            <h4><a href="https://arxiv.org/abs/2610.39302">Balestriero and LeCun prove a Platonic Representation Theorem for JEPAs; good views need 42&times; fewer samples than next-token prediction</a></h4>
+            <p>The paper turns the conjecture that models trained on different modalities converge on one representation into a theorem for Joint-Embedding Predictive Architectures: trained separately, they learn the same representation up to one rotation when their positive pairs are two observations of one scene. Next-token prediction is cast as a JEPA with &ldquo;bad views&rdquo;, parts of a single document, which the authors offer as the reason language models align with vision only at scale.</p>
+            <p>Experiments run from 145k captions to the texts of 940M web images. Good views reach the same alignment with <strong>42 times fewer</strong> training samples, and a 109M-parameter text JEPA aligns with DINOv2 and CLIP image encoders better than every language model tested, up to 72B parameters. Submitted Oct 29; the guarantee holds under the good-view condition, with misalignment bounded otherwise.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.39302">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 5)</span></div>
+          </article>
 
           <article class="story" id="weight-space-programming">
             <span class="when">2026-11-02</span>
             <h4><a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-Space Programming: GPT-6 Astra reads raw weights, and a laptop Qwen repeats part of it</a></h4>
             <p><strong>Sparks of Weight-Space Programming</strong> (Takehi, Teoh, Zhang and Khattab) reports GPT-6 Astra naming the game a network was trained on from its raw weights with no tools, and raising Qwen3.5-0.8B&rsquo;s MATH-500 from <strong>7.9% to 48.1%</strong> by editing 0.016% of its weights without gradients. Simon Willison ran the no-tools prompts on Qwen 3.8 27B on his laptop: it named Pac-Man, Pong and Breakout at 72% to 88% stated confidence, taking 46 to 65 minutes an answer, and missed Freeway.</p>
             <p>Matthew Honnibal calls the paper misleading for conflating what models do with raw weights and what they do once armed with code, and Sean Goedecke argues the Qwen edit takes the steps a human ML researcher would. Willison expects a patient human with a pencil could get there too.</p>
-            <p><em>Updated Nov 4:</em> The edited Qwen checkpoint is on Hugging Face. Its card adds GSM8K rising from 13.8% to 67.1%, IFEval from 21.0% to 62.3% and answers hitting the token limit falling from 93.0% to 33.1%, and a re-run of the full MATH-500 on the published weights scored 51.0%.</p>
-            <div class="sources"><a href="https://rikiyat.github.io/blog/weight-space-programming/">Authors&rsquo; post</a> &middot; <a href="https://github.com/RikiyaT/lm_understand-logs">GitHub logs</a> &middot; <a href="https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming">Edited checkpoint</a> &middot; <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison</a> &middot; <a href="https://honnibal.dev/blog/astra-read-write-misleading">Matthew Honnibal</a> &middot; <a href="https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/">Sean Goedecke</a> &middot; <span class="via">via Simon Willison (Nov 3), TLDR AI (Nov 3), TLDR (Nov 3), The Code (Nov 3), AlphaSignal (Nov 4), TLDR AI (Nov 4)</span></div>
+            <p><em>Updated Nov 4:</em> The edited Qwen checkpoint is on Hugging Face. Its card adds GSM8K rising from 13.8% to 67.1%, IFEval from 21.0% to 62.3% and answers hitting the token limit falling from 93.0% to 33.1%, and a re-run of the full MATH-500 on the published weights scored 51.0%. <em>Updated Nov 13:</em> The Batch reports the cases the first coverage left out. Given one failed episode and no tools, Astra edited <strong>3.5%</strong> of a 171,664-parameter driving policy that had failed all 256 episodes, and the car then succeeded in all <strong>1,024</strong>; writing roughly 20,000-parameter MinAtar players from all-zero weights, it led PPO on one game, tied on one and lost on the third. The same approach on Gemma 3 270M barely moved MATH-500, because Astra found no single component to switch off.</p>
+            <div class="sources"><a href="https://rikiyat.github.io/blog/weight-space-programming/">Authors&rsquo; post</a> &middot; <a href="https://github.com/RikiyaT/lm_understand-logs">GitHub logs</a> &middot; <a href="https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming">Edited checkpoint</a> &middot; <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison</a> &middot; <a href="https://honnibal.dev/blog/astra-read-write-misleading">Matthew Honnibal</a> &middot; <a href="https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/">Sean Goedecke</a> &middot; <span class="via">via Simon Willison (Nov 3), TLDR AI (Nov 3), TLDR (Nov 3), The Code (Nov 3), AlphaSignal (Nov 4), TLDR AI (Nov 4), The Batch (Nov 13)</span></div>
           </article>
 
           <article class="story" id="goodfire-already-clean">
@@ -683,6 +700,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#filler-token-reasoning">Qwen3.6-35B-A3B and gpt-oss-20b learn some multi-step tasks on filler tokens alone</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#tang-ir">Tang derives GPU kernels on the fly from views and comprehensions instead of shipping hand-written ones</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#alphaproof-code">AlphaProof Code formally verifies key security properties of the Signal protocol&rsquo;s implementation</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#worldparticle">MIT and UBC&rsquo;s WorldParticle simulates six kinds of matter with one model, and proteins about 100&times; faster</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#e-means">Meta&rsquo;s e-means reaches Lloyd k-means&rsquo; 25-epoch loss in 1.4 to 2.6 epochs, a 10&ndash;45&times; GPU speed-up</a></span></li>

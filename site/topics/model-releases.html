@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-11-12</div>
+      <div class="meta">Last updated: 2026-11-13</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 11 to 12 cycle adds a decision model and one very large open MoE. Google&rsquo;s <a href="#gemini-decision-1">Gemini Decision 1</a>, behind the new Gemini Decisions API, scores up to 1,000 questions against one input in a single pass, never generates an output token and costs $0.10 per million input tokens. It is the third decision interface on this page after OpenAI&rsquo;s and Perplexity&rsquo;s, and the first to take images, audio, video and PDFs. Meituan&rsquo;s <a href="#longcat-2-5">LongCat-2.5</a> puts 1.6T parameters, about 48B active, on Hugging Face under MIT, with a self-reported 88.4 on Terminal Bench v2.1 against 89.1 for Claude Opus 5. Runway&rsquo;s Praxis-1 weights also shipped; that update is on the <a href="embodied-and-robotics.html#praxis-1">embodied page</a>.</p>
         <p>The Nov 11 cycle is mostly older launches gaining detail. <a href="#gemini-4-carbon">Gemini 4 Carbon</a> is now generally available to paying developers at the same $2/$10, and Google claims first place on CursorBench 4.0, WANDR and AutomationBench at less than half the next model&rsquo;s cost per task. <a href="#claude-fable-5-2">Fable 5.2</a> gained Anthropic&rsquo;s blind total-synthesis tests and AlphaSignal&rsquo;s list of solved problems, and <a href="#mai-transcribe-2">MAI-Transcribe-2</a>, unlinked since September, now cites Microsoft&rsquo;s post and its 5.2% FLEURS error rate. The one new model is <a href="#minimax-h3-image">MiniMax-H3-Image</a>, open weights for native 4K images in about 10 seconds, every figure MiniMax&rsquo;s own.</p>
         <p>The Nov 10 cycle mostly filled in last week&rsquo;s launches. <a href="#claude-fable-5-2">Fable 5.2</a> gained its system-card detail: a 1M-token context and 128K output, refused requests handed to Opus 4.8 or Opus 5, about 55% fewer blocks than 5.1, Mythos 5.2 using out-of-sandbox credentials in 3.1% of 1,800 escape scenarios, and Gemini 4 Carbon still ahead on AutomationBench. <a href="#muse-ember">Muse Ember</a> costs $0.136 per index task against Haiku 5.5&rsquo;s $0.411 but trails it on FrontierCode, and <a href="#inkling-2-small">Inkling 2 Small</a> now has numbers, 86.3% on SWE-Bench Pro v2 (Hard) and 13.1% on Terminal-Bench 4.0, with its weights still pending. The one new release is narrow: <a href="#protegrity-pii">Protegrity-PII</a>, a 278M PII tagger for 69 entity types under a non-commercial licence.</p>
         <p>The Nov 9 cycle is two frontier releases at opposite ends of the price list. Anthropic&rsquo;s <a href="#claude-fable-5-2">Claude Fable 5.2 and Mythos 5.2</a> ship at $8/$40 per million tokens, 20% below 5.1, up to 30% faster, with a $16/$80 fast mode; Anthropic&rsquo;s table has 49.1% on FrontierCode 2.0 at xhigh effort, 74.6% on Terminal-Bench-Science and 41.3% on the Remote Labor Index, and claims Opus 5.5&rsquo;s best FrontierCode score at about half the cost per task. Meta&rsquo;s <a href="#muse-ember">Muse Ember</a> is the small-model entry at $0.10/$0.50, the same short-prompt price as Haiku 5.5 and GPT-6 Luna and 80 times below Fable 5.2, and Artificial Analysis puts it on the cost-per-task frontier of its whole leaderboard while ranking Fable 5.2 first on the same index.</p>
         <p>Two measurements from outside the labs arrived with them. Simon Willison&rsquo;s max-effort run of Fable 5.2 returned nothing after 128,000 thinking tokens, the ceiling Opus 5.5 hit in September and one that Fable 5 and 5.1 cleared, and his six-level test of Ember found the high setting failing to return an SVG while quality did not track the dial. Underdog&rsquo;s <a href="#underdog-woof">Woof</a>, in the speech section, is a 31.7 MB text-to-speech model under a non-commercial licence that runs in a browser on WebGPU, with a 1.42% word error rate that is the maker&rsquo;s only figure.</p>
-        <p>The Nov 6 cycle is one large open-weights promise and one vision model. Thinking Machines&rsquo; <a href="#inkling-2-small">Inkling 2 Small</a> is a 594B mixture-of-experts with 17B active that takes images and varies its thinking effort, shown iterating on websites, games and 3D designs from visual feedback. It launches closed through Tinker, with Apache 2.0 weights promised a week later once external safety testing is done; its first benchmark figures arrived only on Nov 10. That is the same sequence Kimi K3.1 Pro just completed and Hy4 is in the middle of: announce, then ship the weights. NVIDIA&rsquo;s <a href="#nvidia-vflash">VFlash</a> emits robot trajectories and 3D motion in parallel rather than token by token, with no figure attached; its sibling release, four open Cosmos 3 world models, is on the embodied page.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 6 cycle is one large open-weights promise and one vision model. Thinking Machines&rsquo; <a href="#inkling-2-small">Inkling 2 Small</a> is a 594B mixture-of-experts with 17B active that takes images and varies its thinking effort, shown iterating on websites, games and 3D designs from visual feedback. It launches closed through Tinker, with Apache 2.0 weights promised a week later once external safety testing is done; its first benchmark figures arrived only on Nov 10. That is the same sequence Kimi K3.1 Pro just completed and Hy4 is in the middle of: announce, then ship the weights. NVIDIA&rsquo;s <a href="#nvidia-vflash">VFlash</a> emits robot trajectories and 3D motion in parallel rather than token by token, with no figure attached; its sibling release, four open Cosmos 3 world models, is on the embodied page.</p>
           <p>The Nov 5 cycle is five new entries and one promise kept. OpenAI&rsquo;s <a href="#chatgpt-images-2-6">Images 2.6</a> generates 50% faster, adds GIF output and saved reference images, and again splits the API into a fast Flare model and a higher-quality Sunburst. Moonshot put the <a href="#kimi-k3-1-pro">Kimi K3.1 Pro</a> weights on Hugging Face under its own licence, so the 2.8T model promised for Nov 4 can now be downloaded, all 1.56 TB of it. Tencent&rsquo;s <a href="#tencent-hy4">Hy4</a> is at the stage Kimi just left: vision and computer use announced, weights and system cards due in the coming days.</p>
           <p>Two small coding models put the training recipe ahead of size, on their makers&rsquo; own tables. Ricursive&rsquo;s <a href="#ripple-65b-preview">Ripple-65B Preview</a>, a dense 65B model, scores 80.52 on TerminalBench 2.1 against 80.1 for the 501B Reflection Beam, for a stated $32M of total R&amp;D. Cognition&rsquo;s <a href="#swe-2-flash">SWE-2 Flash</a> adds a mid-training stage to Inkling-Small and edges past the far larger SWE-2 on FrontierCode 2.0 at a fifth of the price, while trailing it on Terminal-Bench 4.0. Perplexity&rsquo;s <a href="#perplexity-decisions-web-grounding">Decisions API</a> can now search the web first, which took its own current-facts benchmark from 51% to 86%, and The Batch filled in <a href="#gemini-4-carbon">Gemini 4 Carbon</a>&rsquo;s scorecard, including a 23% lower cost per task than Claude Opus 5.5.</p>
           <p>The Nov 3 and 4 cycles brought one open-weight release, two audio products and detail on two entries. Deep Principle&rsquo;s <a href="#hydrogen-1-0">Hydrogen-1.0</a> post-trains GLM-5.3 into a 753B MIT-licensed science model with a 1M-token context, reporting 38.3% on FrontierScience-Research against 33.3% for GPT-6 Astra, and now links to its Hugging Face weights with an API at GLM-5.3 pricing. <a href="#hume-audio-decision">Hume&rsquo;s Audio Decision API</a> claims 82% against Gemini 3.8 Flash&rsquo;s 78% on Hume&rsquo;s own benchmark, behind a waitlist; <a href="#soniox-stt-v6">Soniox STT v6</a> adds agent text input and echo filtering with no figures. <a href="#embeddinggemma-2">EmbeddingGemma 2</a> gained its arXiv paper, which claims results ahead of models two to twelve times larger.</p>
@@ -119,8 +120,8 @@
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">19</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">24</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">9</span></a></li>
-          <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">22</span></a></li>
-          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">29</span></a></li>
+          <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">23</span></a></li>
+          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">30</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
           <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">40</span></a></li>
@@ -826,6 +827,14 @@
         <h3>Large-scale efficient MoEs</h3>
         <p class="lead">Sparsity, hybrid attention and aggressive low-precision quantization are how the open frontier is decoupling parameter count from serving cost. Total parameters rise, active parameters fall, and quality holds. The figure that decides whether a release is usable is the active count and the decode speed at long context, not the headline size.</p>
 
+        <article class="story" id="longcat-2-5">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://huggingface.co/meituan-longcat/LongCat-2.5">Meituan puts LongCat-2.5 weights on Hugging Face: a 1.6T MoE with about 48B active, under MIT</a></h4>
+          <p>Meituan published the weights of <strong>LongCat-2.5</strong>, a <strong>1.6T-parameter</strong> mixture-of-experts with about <strong>48B active</strong>, under the MIT licence. Its self-reported <strong>88.4 on Terminal Bench v2.1</strong> sits just under the 89.1 MarkTechPost cites for Claude Opus 5.</p>
+          <p>The coding score is Meituan&rsquo;s own; no outside run is cited yet.</p>
+          <div class="sources"><a href="https://huggingface.co/meituan-longcat/LongCat-2.5">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="inkling-2-small">
           <span class="when">2026-11-06</span>
           <h4><a href="https://thinkingmachines.ai/news/inkling-2-small/">Thinking Machines&rsquo; Inkling 2 Small is a 594B MoE with 17B active that takes images, with Apache 2.0 weights promised a week after launch</a></h4>
@@ -842,17 +851,17 @@
           <div class="sources"><a href="https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/">Tencent</a> &middot; <span class="via">via TLDR AI (Nov 5), Forward Future (Nov 5)</span></div>
         </article>
 
-        <article class="story" id="kimi-k3-1-pro">
-          <span class="when">2026-10-23</span>
-          <h4><a href="https://www.marktechpost.com/2026/10/23/moonshot-ai-kimi-k3-1-pro-open-weight-model/">Kimi K3.1 Pro: a 2.8T MoE with 104B active and a 1M context, priced 33% under K3, weights promised by Nov 4</a></h4>
-          <p>Moonshot AI released <strong>Kimi K3.1 Pro</strong>, a mixture-of-experts with <strong>2.8T total and 104B active</strong> parameters and a 1M-token context, served through an OpenAI-compatible API as <code>kimi-k3.1-pro</code> plus a highspeed variant. It reports <strong>65.7% on Terminal-Bench 4.0</strong> and scores 55 on the Artificial Analysis Intelligence Index.</p>
-          <p>Pricing is <strong>$2.00 in and $10.00 out</strong> per million tokens with $0.20 cache hits, each 33% below K3, whose full checkpoint someone ran on <a href="infrastructure.html#kimi-k3-in-c">one CPU from C99</a>. The weights are promised by November 4, so for now the open-weight label is a commitment rather than a download. Moonshot says it removed hacking-related data from training to limit offensive cyber skill, and the 65.7% compares with 58.2% for GPT-6 Astra, all on Moonshot&rsquo;s figures.</p>
-          <p><em>Updated Nov 5:</em> the weights are on Hugging Face under Moonshot&rsquo;s own Kimi K3.1 Pro License, so the open-weight label is now a download: 896 experts with 16 selected per token, quantization-aware training to MXFP4 weights, and gated sparse attention replacing K3&rsquo;s full-attention layers for long context. AlphaSignal puts the files at about <strong>1.56 TB</strong> and lists Ollama, Nebius and Databricks as hosts.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/10/23/moonshot-ai-kimi-k3-1-pro-open-weight-model/">MarkTechPost</a> &middot; <a href="https://www.kimi.ai/blog/kimi-k3-1-pro">Moonshot AI</a> &middot; <a href="https://huggingface.co/moonshotai/Kimi-K3.1-Pro">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 24), TLDR AI (Oct 26), The Code (Oct 26), AlphaSignal (Oct 26), TLDR AI (Nov 5), AlphaSignal (Nov 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (20)</summary>
+
+          <article class="story" id="kimi-k3-1-pro">
+            <span class="when">2026-10-23</span>
+            <h4><a href="https://www.marktechpost.com/2026/10/23/moonshot-ai-kimi-k3-1-pro-open-weight-model/">Kimi K3.1 Pro: a 2.8T MoE with 104B active and a 1M context, priced 33% under K3, weights promised by Nov 4</a></h4>
+            <p>Moonshot AI released <strong>Kimi K3.1 Pro</strong>, a mixture-of-experts with <strong>2.8T total and 104B active</strong> parameters and a 1M-token context, served through an OpenAI-compatible API as <code>kimi-k3.1-pro</code> plus a highspeed variant. It reports <strong>65.7% on Terminal-Bench 4.0</strong> and scores 55 on the Artificial Analysis Intelligence Index.</p>
+            <p>Pricing is <strong>$2.00 in and $10.00 out</strong> per million tokens with $0.20 cache hits, each 33% below K3, whose full checkpoint someone ran on <a href="infrastructure.html#kimi-k3-in-c">one CPU from C99</a>. The weights are promised by November 4, so for now the open-weight label is a commitment rather than a download. Moonshot says it removed hacking-related data from training to limit offensive cyber skill, and the 65.7% compares with 58.2% for GPT-6 Astra, all on Moonshot&rsquo;s figures.</p>
+            <p><em>Updated Nov 5:</em> the weights are on Hugging Face under Moonshot&rsquo;s own Kimi K3.1 Pro License, so the open-weight label is now a download: 896 experts with 16 selected per token, quantization-aware training to MXFP4 weights, and gated sparse attention replacing K3&rsquo;s full-attention layers for long context. AlphaSignal puts the files at about <strong>1.56 TB</strong> and lists Ollama, Nebius and Databricks as hosts.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/10/23/moonshot-ai-kimi-k3-1-pro-open-weight-model/">MarkTechPost</a> &middot; <a href="https://www.kimi.ai/blog/kimi-k3-1-pro">Moonshot AI</a> &middot; <a href="https://huggingface.co/moonshotai/Kimi-K3.1-Pro">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 24), TLDR AI (Oct 26), The Code (Oct 26), AlphaSignal (Oct 26), TLDR AI (Nov 5), AlphaSignal (Nov 5)</span></div>
+          </article>
 
           <article class="story" id="minimax-m3-1-flash">
             <span class="when">2026-10-19</span>
@@ -1010,6 +1019,14 @@
         <h3>Alternative decoding architectures</h3>
         <p class="lead">A research line attacking the autoregressive decode bottleneck from two directions: parallelising within one token stream, and removing the stream entirely. Both buy latency and price rather than capability, so the question for every entry here is what the speed costs in quality, and whether anyone outside the vendor has measured it.</p>
 
+        <article class="story" id="gemini-decision-1">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google&rsquo;s Gemini Decision 1 scores up to 1,000 questions in one pass at $0.10 per million input tokens, with no output tokens</a></h4>
+          <p>Google launched the <strong>Gemini Decisions API</strong> on a new model, <strong>Gemini Decision 1</strong>. It takes text, images, audio, video or PDFs and returns calibrated probabilities for up to <strong>1,000</strong> yes/no, multiple-choice or rubric questions against one shared input in a single forward pass, with output tokens always zero. The Code reports typical responses of 150&ndash;250 ms; input costs <strong>$0.10 per million tokens</strong>.</p>
+          <p>Google aims it at the small branching calls inside agents: routing, policy checks, tool selection and grading. It is the third lab-built decision interface on this page after <a href="#openai-decisions-api">OpenAI&rsquo;s</a> and <a href="#perplexity-decisions-web-grounding">Perplexity&rsquo;s</a>, and the first that is multimodal on input; the calibration claim is Google&rsquo;s own.</p>
+          <div class="sources"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google</a> &middot; <a href="https://aistudio.google.com/docs/decisions-api">API docs</a> &middot; <a href="https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 12), TLDR (Nov 12), MarkTechPost (Nov 12), The Code (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="perplexity-decisions-web-grounding">
           <span class="when">2026-11-05</span>
           <h4><a href="https://www.perplexity.ai/hub/blog/web-grounding-for-the-decisions-api">Perplexity&rsquo;s Decisions API can search the web before answering, lifting current-fact accuracy from 51% to 86%</a></h4>
@@ -1025,16 +1042,16 @@
           <div class="sources"><a href="https://labs.baseten.co/articles/mammoth-1-and-elephant-1-frontier-decision-models">Base Labs</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
         </article>
 
-        <article class="story" id="cloudflare-clairic">
-          <span class="when">2026-10-19</span>
-          <h4><a href="https://blog.cloudflare.com/clairic-extraction-model">Cloudflare&rsquo;s Clairic pulls typed values out of documents without generating tokens, 3.2&times; faster and 49% cheaper on a claims test</a></h4>
-          <p>Cloudflare previewed <strong>Clairic</strong>, a &ldquo;System One&rdquo; extraction model that returns typed values (numbers, dates, lists) from emails, receipts, spreadsheets and images with a confidence score and a pointer to the source span, rather than generating an answer token by token. It follows <a href="#cloudflare-clef">Clef</a> onto Workers AI, in preview now, with open weights promised.</p>
-          <p>Cloudflare&rsquo;s claims-processing test puts it at <strong>3.2&times; faster and 49% cheaper</strong> than the generative pipeline it replaced; the baseline model, the document mix and accuracy on that test are not stated.</p>
-          <div class="sources"><a href="https://blog.cloudflare.com/clairic-extraction-model">Cloudflare</a> &middot; <a href="https://developers.cloudflare.com/changelog/post/2026-10-19-clairic-workers-ai/">Workers AI changelog</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20), TLDR (Oct 20), The Code (Oct 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (26)</summary>
+          <summary>Earlier in this section (27)</summary>
+
+          <article class="story" id="cloudflare-clairic">
+            <span class="when">2026-10-19</span>
+            <h4><a href="https://blog.cloudflare.com/clairic-extraction-model">Cloudflare&rsquo;s Clairic pulls typed values out of documents without generating tokens, 3.2&times; faster and 49% cheaper on a claims test</a></h4>
+            <p>Cloudflare previewed <strong>Clairic</strong>, a &ldquo;System One&rdquo; extraction model that returns typed values (numbers, dates, lists) from emails, receipts, spreadsheets and images with a confidence score and a pointer to the source span, rather than generating an answer token by token. It follows <a href="#cloudflare-clef">Clef</a> onto Workers AI, in preview now, with open weights promised.</p>
+            <p>Cloudflare&rsquo;s claims-processing test puts it at <strong>3.2&times; faster and 49% cheaper</strong> than the generative pipeline it replaced; the baseline model, the document mix and accuracy on that test are not stated.</p>
+            <div class="sources"><a href="https://blog.cloudflare.com/clairic-extraction-model">Cloudflare</a> &middot; <a href="https://developers.cloudflare.com/changelog/post/2026-10-19-clairic-workers-ai/">Workers AI changelog</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20), TLDR (Oct 20), The Code (Oct 20)</span></div>
+          </article>
 
           <article class="story" id="drex-max">
             <span class="when">2026-10-19</span>
@@ -1893,7 +1910,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#longcat-2-5">Meituan puts LongCat-2.5 weights on Hugging Face: a 1.6T MoE with about 48B active, under MIT</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#minimax-h3-image">MiniMax-H3-Image ships open weights for native 4K images in about 10 seconds</a></span></li>
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#gemini-decision-1">Gemini Decision 1 scores up to 1,000 questions in one pass at $0.10 per million input tokens</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#protegrity-pii">Protegrity-PII, a 278M XLM-RoBERTa token classifier, tags 69 PII entity types under a non-commercial licence</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#muse-ember">Muse Ember is Meta&rsquo;s $0.10/$0.50 small model, on the Artificial Analysis cost-per-task frontier</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#claude-fable-5-2">Claude Fable 5.2 and Mythos 5.2 ship at $8/$40, 20% below 5.1, with 49.1% on FrontierCode 2.0</a></span></li>

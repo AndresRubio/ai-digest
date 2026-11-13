@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-11</div>
+      <div class="meta">Last updated: 2026-11-13</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 12 cycle adds a security benchmark that scores the defender&rsquo;s cost. <a href="#erosionbench">ErosionBench</a> runs 1,728 scenarios and finds perimeter defenses that post low attack rates refusing 54&ndash;92% of legitimate agent work, while its own reference auditor reaches 98.5% recall at a 2.9% false-positive rate. Two related instruments sit elsewhere: ScrapeBench on the <a href="safety-and-policy.html#scrapebench">safety page</a> and MCPHallu on the <a href="agents.html#mcphallu">agents page</a>.</p>
         <p>The Nov 10 cycle adds a third security benchmark, the first aimed at memory. <a href="#memorydojo">MemoryDojo</a> follows a poisoned instruction from the session where an agent stores it to the later session where it acts on it, over 155 trajectories, four domains and five memory systems, and finds every system susceptible. It is the attack-side counterpart to the memory entries on <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools</a>: whatever an agent remembers is an input an attacker can write to.</p>
         <p>The Nov 6 cycle, read on Nov 9, adds one benchmark, and the issue that carried it gives no score. OpenAI&rsquo;s <a href="#biobasicsbench">BioBasicsBench</a> asks an agent to interpret the raw experimental data of 100 routine wet-lab tasks, which makes the instrument&rsquo;s output the input and puts bench work rather than discovery in front of a model, the second lab to do so after Anthropic&rsquo;s own wet lab. The ranking has to be read from the post.</p>
         <p>The Nov 6 cycle adds one instrument, and it measures a capability the rest of the page would rather not have. Dwarkesh Patel spent about $20,000 in API credits having frontier models play <a href="#clocktower-benchmark">Blood on the Clocktower</a>, a social deception game in which winning means sustaining a bluff across many turns and reasoning about what the table collectively believes. Neither newsletter that carried it gives the ranking, so the result has to be read from the post. It sits beside the agentic benchmarks because the environment is other agents rather than a task list, and it is the first entry here where a higher score is a warning as much as a result.</p>
         <p>The Nov 4 cycle has two audits of how a score is produced. <a href="#vals-reasoning-effort">Vals AI</a> reran its index across reasoning-effort settings: at the lowest setting four of seven models kept at least 80% of their score for half the cost or less, and Claude Opus 5.5 kept 80% at 16% of the cost. <a href="#prime-intellect-eval-audit">Prime Intellect</a> repaired the task descriptions and graders of AutomationBench and OfficeQA Pro v2 and found both close to saturation, with Opus 5.5 at 92.15% on AutomationBench and models fetching OfficeQA&rsquo;s answers from Hugging Face through its web access.</p>
-        <p>The Nov 3 cycle has three instruments, and the sharpest is the one that shows what a pass rate hides. <a href="#veriharm-bench">VeriHarm-Bench</a> puts frontier coding agents at 95% task accuracy and 37% safe success, which is the gap between finishing a job and finishing it without damage. OpenAI&rsquo;s <a href="#openai-lifeval">LifeVal</a> moves the task set to everyday requests such as budgeting and childcare, and neither issue that carried it gives a score. The US Census Bureau&rsquo;s business survey <a href="#census-super-intelligence-wording">changed its question</a> in November 2025 and again from October 19, 2026, when &ldquo;AI&rdquo; became &ldquo;Super Intelligence or SI&rdquo;; large firms read about 40% under the second wording.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 3 cycle has three instruments, and the sharpest is the one that shows what a pass rate hides. <a href="#veriharm-bench">VeriHarm-Bench</a> puts frontier coding agents at 95% task accuracy and 37% safe success, which is the gap between finishing a job and finishing it without damage. OpenAI&rsquo;s <a href="#openai-lifeval">LifeVal</a> moves the task set to everyday requests such as budgeting and childcare, and neither issue that carried it gives a score. The US Census Bureau&rsquo;s business survey <a href="#census-super-intelligence-wording">changed its question</a> in November 2025 and again from October 19, 2026, when &ldquo;AI&rdquo; became &ldquo;Super Intelligence or SI&rdquo;; large firms read about 40% under the second wording.</p>
           <p>The Oct 30 cycle adds two benchmarks that share only a habit of reporting a decision in parts. <a href="#featureloop">FeatureLoop</a> holds 61 human-reviewed coding tasks in which the specification changes partway through, scoring new behaviour, repairs and preserved features separately; the best of 12 frontier models completes 72.1%. <a href="#searchhorizonbench">SearchHorizonBench</a> covers when one more search is worth running, over 45,632 executions on 3,168 questions, and calibrating the stop-or-search decision on past outcomes cuts Brier error by 16.2% on held-out questions.</p>
           <p>The Oct 29 cycle is an index rebuilt against contamination and a benchmark that prices language. <a href="#artificial-analysis-intelligence-index-v5">Artificial Analysis Intelligence Index v5</a> now draws 60% of its weight from private test sets and folds in FrontierCode 2.0 and Terminal-Bench-Science; Opus 5.5 leads at 58 over GPT-6 Astra&rsquo;s 57, the open-weight gap widened from 3 points to 12, and effort settings alone swing a score by up to 23 points, which makes any number quoted without its effort level incomplete. Qwen&rsquo;s <a href="#babelarena">BabelArena</a> runs the same agent tasks in 23 languages and reports up to 8&times; more tool calls in Telugu than in English for the same output, a cost an English-only leaderboard never shows.</p>
           <p>The Oct 28 addition is a coding benchmark growing to keep its discrimination. Cognition&rsquo;s <a href="#frontier-code-2-0">FrontierCode 2.0</a> keeps the 1.0 methodology but draws tasks from more repositories, imposes stricter correctness and design requirements, and accommodates surprising but acceptable behaviour; its reference solutions touch 67% more files and 89% more lines than 1.1&rsquo;s, in codebases a quarter larger. The post gives scale and strictness, not scores, so the leaderboard movement is still to be read from the benchmark itself.</p>
@@ -105,7 +106,7 @@
           <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">27</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">15</span></a></li>
-          <li><a href="#security-benchmarks">Security benchmarks <span class="n">3</span></a></li>
+          <li><a href="#security-benchmarks">Security benchmarks <span class="n">4</span></a></li>
           <li><a href="#speech-and-voice-benchmarks">Speech &amp; voice benchmarks <span class="n">3</span></a></li>
           <li><a href="#infrastructure-scale-benchmarks">Infrastructure-scale benchmarks <span class="n">1</span></a></li>
         </ul>
@@ -875,7 +876,15 @@
 
       <section class="topic-section" id="security-benchmarks">
         <h3>Security benchmarks</h3>
-        <p class="lead">Security has its own leaderboard tier now, and its two halves are asymmetric. Finding is scored on executed attack chains with checkable evidence; fixing turns out to need an expert to adjudicate roughly three patches in four. What counts is the unit each side counts &mdash; proven paths, and bugs actually closed.</p>
+        <p class="lead">Security has its own leaderboard tier now, and its halves are asymmetric. Finding is scored on executed attack chains with checkable evidence; fixing needs an expert to adjudicate roughly three patches in four; defending is scored on what it blocks and rarely on what legitimate work it refuses. Judge each on the unit it counts.</p>
+
+        <article class="story" id="erosionbench">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://arxiv.org/abs/2611.11266">ErosionBench: perimeter defenses with low attack rates refuse 54&ndash;92% of legitimate agent work</a></h4>
+          <p><strong>ErosionBench</strong> scores agent defenses on <strong>1,728</strong> scenarios for both sides of the trade. Perimeter defenses that post low attack-success rates refuse <strong>54&ndash;92%</strong> of legitimate work, while the benchmark&rsquo;s reference auditor reaches <strong>98.5% recall</strong> at a <strong>2.9%</strong> false-positive rate.</p>
+          <p>The auditor is the authors&rsquo; own, so its numbers are a target rather than an independent result.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.11266">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 12)</span></div>
+        </article>
 
         <article class="story" id="memorydojo">
           <span class="when">2026-11-10</span>
@@ -893,13 +902,17 @@
           <div class="sources"><a href="https://1password.com/blog/why-ai-generated-patches-still-require-human-review">1Password</a> &middot; <span class="via">via Unwind AI (Sep 8)</span></div>
         </article>
 
-        <article class="story unlinked" id="intrusionbench">
-          <span class="when">2026-08-04</span>
-          <h4>IntrusionBench scores executed attack chains, not descriptions</h4>
-          <p>Released alongside Cogent&rsquo;s VR-1, IntrusionBench awards nothing for narrating an attack: the agent has to execute the chain and produce checkable evidence. The verification-first design makes &ldquo;proven attack paths&rdquo; the scoring unit, joining CyberGym and CTI-REALM in the security-benchmark tier and being the strictest of them about verification.</p>
-          <p>Cogent&rsquo;s own results note that black-box gaps nearly close when harnesses are matched &mdash; an unusually candid caveat from a vendor, and a caution against reading cross-harness numbers as model differences. The accompanying VR-1 figures are the vendor&rsquo;s own. (Model detail on the <a href="safety-and-policy.html">Safety &amp; policy</a> page, where the specialist-model race running on these benchmarks is tracked.)</p>
-          <div class="sources"><span class="via">via MarkTechPost AI (Aug 3) &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="intrusionbench">
+            <span class="when">2026-08-04</span>
+            <h4>IntrusionBench scores executed attack chains, not descriptions</h4>
+            <p>Released alongside Cogent&rsquo;s VR-1, IntrusionBench awards nothing for narrating an attack: the agent has to execute the chain and produce checkable evidence. The verification-first design makes &ldquo;proven attack paths&rdquo; the scoring unit, joining CyberGym and CTI-REALM in the security-benchmark tier and being the strictest of them about verification.</p>
+            <p>Cogent&rsquo;s own results note that black-box gaps nearly close when harnesses are matched &mdash; an unusually candid caveat from a vendor, and a caution against reading cross-harness numbers as model differences. The accompanying VR-1 figures are the vendor&rsquo;s own. (Model detail on the <a href="safety-and-policy.html">Safety &amp; policy</a> page, where the specialist-model race running on these benchmarks is tracked.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (Aug 3) &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="speech-and-voice-benchmarks">
@@ -946,6 +959,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#erosionbench">ErosionBench: perimeter defenses with low attack rates refuse 54&ndash;92% of legitimate agent work</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#memorydojo">MemoryDojo: all five agent memory systems tested can be poisoned, across 155 multi-session trajectories</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#biobasicsbench">BioBasicsBench scores agents on the raw data of 100 routine wet-lab tasks</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#clocktower-benchmark">Dwarkesh Patel spent $20,000 making models play Blood on the Clocktower, a benchmark where a model has to lie to win</a></span></li>

@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-12</div>
+      <div class="meta">Last updated: 2026-11-13</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 12 cycle is harnesses given away and a site that refuses agents. OpenWorker open-sourced its <a href="#openworker-harness-sdk">Agent Harness SDK</a>, installed as a skill that a coding agent then uses to write the harness, and CopilotKit&rsquo;s <a href="#openbot-1-0">OpenBot 1.0</a> is an MIT-licensed coworker that runs each Bot in its own container and checks every action against policy, although per-Bot isolation and the audit trail sit in a paid tier. <a href="#grok-bot-1-0">Grok Bot 1.0</a> moves the other way, from a personal assistant to a Team Bot shared across Slack, Teams and meetings, with admins approving what it learns. <a href="#a2ui-1-0">A2UI 1.0</a> and OpenAI&rsquo;s <a href="#openai-mcp-extensions">MCP extensions</a> both give agents richer screens to answer with; only the first works outside one vendor&rsquo;s app.</p>
+        <p><a href="#browser-use-1-0">Browser Use 1.0</a> deleted 136,866 lines and now has the agent write Python against the DevTools protocol, reporting 62.5 against 56.3 on its own benchmark at a lower cost per task. <a href="#united-airlines-agent-block">United Airlines</a> is moving to block unauthorized agents from booking and check-in, the second refusal in two days after eBay&rsquo;s. Two measurements check the loop itself: <a href="#read-agentic-document-search">READ</a>&rsquo;s agentic document search beat chunk-and-embed 58.8% to 15.7% on a 780-page report while plain BM25 reached 51.0%, and <a href="#mcphallu">MCPHallu</a> finds only 23.2% of runs stop when the goal cannot be reached.</p>
         <p>The Nov 11 cycle is about who lets an agent in. Adobe&rsquo;s <a href="#adobe-creative-cloud-mcp">Creative Cloud MCP server</a> opens Photoshop, Illustrator and Premiere to ChatGPT, Claude and Gemini, while eBay <a href="#ebay-blocks-shopping-agents">limits Meta&rsquo;s Muse</a> and other third-party shopping agents from browsing its listings, citing scraping. One vendor publishes an interface for agents; one marketplace refuses them.</p>
         <p>The Nov 10 cycle adds one result on spending test-time compute on agents. <a href="#parallel-agent-teams">Parallel agent teams</a>, many teams of ten sampled side by side with the best result kept, beat 100 independent agents on 10 of 12 long-horizon tasks and one team of 100 on all four where that was tried, using a 27B model; at equal cost they beat a frontier model on half the tasks. The premise is the limit: a verifier that can score every attempt, which GPU kernels and formal proofs have and most agent work does not.</p>
-        <p>The Nov 6 to 9 cycle is three entries about what an agent remembers, whom it trusts and what it may touch. Anthropic&rsquo;s <a href="#anthropic-agent-memory-components">agent-memory post</a> shows what judgment about salience looks like in a memory folder: 10,000 steps into Pok&eacute;mon Red, Sonnet 3.7 had written 413 files for one badge and Fable 5 nine files for four, and a dreaming pass caught a wrong map note against the transcript after it had sent Claude off a ledge three times. A rule of &ldquo;record only failures&rdquo; cost Opus 5 most of its gain, so the finding is to say what memory is for and not how to use it.</p>
-        <p><a href="#project-eve">Project EVE</a> put Claude in EVE Online&rsquo;s market, where earnings tripled from Opus 4.6 to Fable 5 on a buy-low-sell-slightly-higher strategy and even Fable 5 lost money in about half its runs when asked to bet on price direction, and in EVE Frontier, where four-agent teams coordinated well and almost never caught a teammate told to sabotage them. OpenCode&rsquo;s <a href="#opencode-browse">Browse</a> lends an agent the user&rsquo;s own browser and logins through MCP, with a handoff for logins, 2FA and payments and a per-session site allowlist as the controls, and no figure.</p>
-        <p>The Nov 5 cycle adds a harness result and a coordination kernel. MIT&rsquo;s <a href="#vista-harness">VISTA</a> stores every frame an agent sees and lets the model retrieve and zoom into them, which takes Claude Opus 5.0 from 40.68 to a perfect 100 on ARC-AGI-3&rsquo;s action-efficiency score; with frame storage removed, the GPT-5.6 Sol version drops from 99 to 70. <a href="#ambion">Ambion</a> is an open-source kernel in which Pi, Claude Agent SDK and Codex agents share a journal that survives restarts, still at 0.x. Uber&rsquo;s count of agent-booked rides, four in its busiest October week, is on the <a href="applications.html#uber-agent-bookings">applications page</a>.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 6 to 9 cycle is three entries about what an agent remembers, whom it trusts and what it may touch. Anthropic&rsquo;s <a href="#anthropic-agent-memory-components">agent-memory post</a> shows what judgment about salience looks like in a memory folder: 10,000 steps into Pok&eacute;mon Red, Sonnet 3.7 had written 413 files for one badge and Fable 5 nine files for four, and a dreaming pass caught a wrong map note against the transcript after it had sent Claude off a ledge three times. A rule of &ldquo;record only failures&rdquo; cost Opus 5 most of its gain, so the finding is to say what memory is for and not how to use it.</p>
+          <p><a href="#project-eve">Project EVE</a> put Claude in EVE Online&rsquo;s market, where earnings tripled from Opus 4.6 to Fable 5 on a buy-low-sell-slightly-higher strategy and even Fable 5 lost money in about half its runs when asked to bet on price direction, and in EVE Frontier, where four-agent teams coordinated well and almost never caught a teammate told to sabotage them. OpenCode&rsquo;s <a href="#opencode-browse">Browse</a> lends an agent the user&rsquo;s own browser and logins through MCP, with a handoff for logins, 2FA and payments and a per-session site allowlist as the controls, and no figure.</p>
+          <p>The Nov 5 cycle adds a harness result and a coordination kernel. MIT&rsquo;s <a href="#vista-harness">VISTA</a> stores every frame an agent sees and lets the model retrieve and zoom into them, which takes Claude Opus 5.0 from 40.68 to a perfect 100 on ARC-AGI-3&rsquo;s action-efficiency score; with frame storage removed, the GPT-5.6 Sol version drops from 99 to 70. <a href="#ambion">Ambion</a> is an open-source kernel in which Pi, Claude Agent SDK and Codex agents share a journal that survives restarts, still at 0.x. Uber&rsquo;s count of agent-booked rides, four in its busiest October week, is on the <a href="applications.html#uber-agent-bookings">applications page</a>.</p>
           <p>The Nov 4 cycle is about who authorizes an agent&rsquo;s reach. Apple opened <a href="#siri-ai-developer-preview">Siri AI to all developers</a> in the 27.3 betas: App Intents expose an app&rsquo;s data and actions, skills chain them, and testing stays inside TestFlight until App Store submissions open in the spring. MCP&rsquo;s <a href="#mcp-enterprise-managed-authorization">Enterprise-Managed Authorization</a> extension moves the decision from each employee to the company identity provider, with Okta issuing the grants. The third entry tests whether a harness can fix itself: a study of <a href="#harness-retrospective-adaptation">Claude Code&rsquo;s retro skill</a> produced 125 proposed changes, and of the seven that could be tested on later issues only two removed the problem.</p>
           <p>The Nov 3 issues add one harness result and two narrower products. Framer&rsquo;s <a href="#framer-harness-2">Harness 2</a> executes agent JavaScript as it streams in, so one model call can drive a whole workflow, and Framer reports up to 33% lower cost, 20% faster execution and 43% fewer tool steps. It lands in the same place as <a href="#factory-droid-1-0">Droid 1.0</a> from the previous cycle: the model writes a program and the harness runs it. Both sets of numbers come from the builders.</p>
           <p>NVIDIA&rsquo;s <a href="#nvidia-auto-ontology">Auto Ontology</a> grounds agent SQL in certified business definitions and reaches a harness through MCP, CLI or API under Apache 2.0, though its eval repo ships a harness with no results. Letter&rsquo;s <a href="#letterpress-1">Letterpress-1</a> is a coding agent aimed at growth work, reading a site and its market before opening pull requests with live previews, from $100 a month and with no public benchmark.</p>
@@ -112,15 +114,15 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#agent-memory">Agent memory <span class="n">14</span></a></li>
-          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">25</span></a></li>
-          <li><a href="#the-agentic-harness">The agentic harness <span class="n">36</span></a></li>
-          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">16</span></a></li>
+          <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">27</span></a></li>
+          <li><a href="#the-agentic-harness">The agentic harness <span class="n">38</span></a></li>
+          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">17</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">13</span></a></li>
           <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
-          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">17</span></a></li>
+          <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">19</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">10</span></a></li>
-          <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">8</span></a></li>
-          <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">3</span></a></li>
+          <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">9</span></a></li>
+          <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">4</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">23</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">14</span></a></li>
         </ul>
@@ -244,6 +246,22 @@
         <h3>Frameworks &amp; infrastructure</h3>
         <p class="lead">MCP is the connective tissue, and the interesting servers are no longer wrappers somebody wrote but the canonical interface a platform or an artifact ships. Judge entries on where the dependency lands: aggregating across vendors is substitutable, a vendor aggregating its own catalogue makes the protocol the integration point and itself the only thing behind it.</p>
 
+        <article class="story" id="openai-mcp-extensions">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://github.com/openai/mcp-extensions">OpenAI open-sources MCP extensions that add ChatGPT-only surfaces to MCP servers and apps</a></h4>
+          <p>OpenAI published TypeScript and Python packages that add ChatGPT-specific features to MCP servers and apps: sidebar entry points, custom file viewers, composer resource search and thumbnail part pickers. They ship with a written spec and a Bits &amp; Bolts demo plugin.</p>
+          <p>It is the vendor-aggregation case this section&rsquo;s lead describes: the extensions are open, but every surface they add exists only inside ChatGPT.</p>
+          <div class="sources"><a href="https://github.com/openai/mcp-extensions">GitHub</a> &middot; <span class="via">via TLDR AI (Nov 12)</span></div>
+        </article>
+
+        <article class="story" id="a2ui-1-0">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://developers.googleblog.com/a2ui-10-build-delightful-fast-reliable-agentic-experiences/">A2UI 1.0 ships renderer SDKs for web, Android and iOS so agents answer with native interactive screens</a></h4>
+          <p>Google&rsquo;s <strong>A2UI 1.0</strong> is an open protocol for generative UI: an agent answers with a screen description that the host app draws with its own native components. Open-source renderer SDKs now cover the web, Android and iOS, with agent SDKs for Python, TypeScript and Dart, and the same answer renders in a company&rsquo;s own app or in a third-party assistant that hosts MCP apps.</p>
+          <p>It already has a consumer: <a href="#openbot-1-0">OpenBot 1.0</a> builds its generative UI on A2UI&rsquo;s 65 components.</p>
+          <div class="sources"><a href="https://developers.googleblog.com/a2ui-10-build-delightful-fast-reliable-agentic-experiences/">Google Developers Blog</a> &middot; <span class="via">via TLDR AI (Nov 12), MarkTechPost (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="mcp-enterprise-managed-authorization">
           <span class="when">2026-11-04</span>
           <h4><a href="https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization">MCP&rsquo;s Enterprise-Managed Authorization extension moves server access decisions to the company identity provider</a></h4>
@@ -252,23 +270,23 @@
           <div class="sources"><a href="https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization">Model Context Protocol docs</a> &middot; <span class="via">via AlphaSignal (Nov 4)</span></div>
         </article>
 
-        <article class="story" id="nvidia-auto-ontology">
-          <span class="when">2026-11-01</span>
-          <h4><a href="https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/">NVIDIA Auto Ontology gives agent SQL a certified semantic layer over MCP, CLI or API</a></h4>
-          <p><strong>Auto Ontology</strong> builds a semantic layer from enterprise metadata, so agents write SQL against certified business definitions instead of guessed column names. It reaches any harness through MCP, CLI or API under <strong>Apache 2.0</strong>. The eval repo ships a harness rather than results, so any accuracy gain is still unmeasured.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
-        </article>
-
-        <article class="story" id="glasser-data-api">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://www.testingcatalog.com/glasser-now-lets-ai-agents-buy-premium-data-per-api-call/">Glasser lets agents buy premium data per API call, across 2,000+ endpoints from more than 80 providers</a></h4>
-          <p><strong>Glasser</strong> now lets AI agents buy premium data per API call, with access to more than <strong>2,000 endpoints</strong> from over <strong>80 providers</strong>, paid as the agent goes rather than through subscriptions held by its owner.</p>
-          <p>By this section&rsquo;s test the dependency lands on the aggregator: the providers behind it are substitutable, Glasser is not. The only page the item carries is Testing Catalog&rsquo;s report, linked here.</p>
-          <div class="sources"><a href="https://www.testingcatalog.com/glasser-now-lets-ai-agents-buy-premium-data-per-api-call/">Testing Catalog</a> (press report) &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (22)</summary>
+          <summary>Earlier in this section (24)</summary>
+
+          <article class="story" id="nvidia-auto-ontology">
+            <span class="when">2026-11-01</span>
+            <h4><a href="https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/">NVIDIA Auto Ontology gives agent SQL a certified semantic layer over MCP, CLI or API</a></h4>
+            <p><strong>Auto Ontology</strong> builds a semantic layer from enterprise metadata, so agents write SQL against certified business definitions instead of guessed column names. It reaches any harness through MCP, CLI or API under <strong>Apache 2.0</strong>. The eval repo ships a harness rather than results, so any accuracy gain is still unmeasured.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
+          </article>
+
+          <article class="story" id="glasser-data-api">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://www.testingcatalog.com/glasser-now-lets-ai-agents-buy-premium-data-per-api-call/">Glasser lets agents buy premium data per API call, across 2,000+ endpoints from more than 80 providers</a></h4>
+            <p><strong>Glasser</strong> now lets AI agents buy premium data per API call, with access to more than <strong>2,000 endpoints</strong> from over <strong>80 providers</strong>, paid as the agent goes rather than through subscriptions held by its owner.</p>
+            <p>By this section&rsquo;s test the dependency lands on the aggregator: the providers behind it are substitutable, Glasser is not. The only page the item carries is Testing Catalog&rsquo;s report, linked here.</p>
+            <div class="sources"><a href="https://www.testingcatalog.com/glasser-now-lets-ai-agents-buy-premium-data-per-api-call/">Testing Catalog</a> (press report) &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
+          </article>
 
           <article class="story" id="1password-for-agents">
             <span class="when">2026-10-23</span>
@@ -440,6 +458,22 @@
         <h3>The agentic harness</h3>
         <p class="lead">The scaffolding around the model &mdash; tools, skills, memory, sandbox, permissions &mdash; treated as a standardizable layer rather than bespoke glue. The open argument is how much of it to build: a lab will now give its production harness away, and the same model in two harnesses differs fourfold in cost. Judge entries on what is actually owned.</p>
 
+        <article class="story" id="openworker-harness-sdk">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://github.com/andrewyng/openworker/blob/main/harness/README.md">OpenWorker open-sources its Agent Harness SDK, model-agnostic and installed as a skill for Claude Code or Codex</a></h4>
+          <p>The OpenWorker project released the <strong>OpenWorker Agent Harness SDK</strong>, the layer behind OpenWorker Desktop, as open source. Andrew Ng&rsquo;s letter shows the intended path: <code>npx @openworkerai/openworker-harness-builder --agent claude</code> (or <code>codex</code>) installs a builder skill, and the coding agent then writes the harness, with tools scoped to one directory and an approval step before each file operation.</p>
+          <p>The pitch against vendor harnesses is that it is tied to no model provider or cloud. The SDK covers context and memory compaction, guardrails, approvals and credential isolation; the letter publishes no benchmark.</p>
+          <div class="sources"><a href="https://github.com/andrewyng/openworker/blob/main/harness/README.md">GitHub</a> &middot; <span class="via">via The Batch (Nov 13)</span></div>
+        </article>
+
+        <article class="story" id="grok-bot-1-0">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://flaviocopes.com/grok-bot-1-0/">Grok Bot 1.0 adds shared Team Bots for Slack, Teams and video calls, with admin-approved learnings</a></h4>
+          <p><strong>Grok Bot 1.0</strong> turns the personal assistant into <strong>Team Bots</strong> a workspace can publish and share: one bot answers in the app, in Slack and Microsoft Teams channels, and in Google Meet, Zoom or Teams calls, where it posts a summary with action items. Connectors are shared, and the bot can offer to pick up unfinished tasks on its own.</p>
+          <p>Two controls sit on the shared memory: a team admin must approve access, and anything the bot learns from teammates needs the owner&rsquo;s review before it sticks. The headline link is a practitioner walkthrough, since neither issue carried a vendor post.</p>
+          <div class="sources"><a href="https://flaviocopes.com/grok-bot-1-0/">Flavio Copes walkthrough</a> &middot; <span class="via">via TLDR AI (Nov 12), AlphaSignal (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="vista-harness">
           <span class="when">2026-11-06</span>
           <h4><a href="https://arxiv.org/abs/2610.02200">MIT&rsquo;s VISTA harness keeps every frame and lets the model retrieve them, taking Claude Opus 5.0 from 40.68 to 100 on ARC-AGI-3</a></h4>
@@ -448,24 +482,24 @@
           <div class="sources"><a href="https://arxiv.org/abs/2610.02200">arXiv</a> &middot; <a href="https://github.com/joshhhhhan/VISTA">GitHub</a> &middot; <span class="via">via The Batch (Nov 6)</span></div>
         </article>
 
-        <article class="story" id="harness-retrospective-adaptation">
-          <span class="when">2026-11-04</span>
-          <h4><a href="https://arxiv.org/abs/2610.34938">Claude Code&rsquo;s retro skill proposed 125 harness changes; of seven that could be tested, two removed the problem</a></h4>
-          <p>Treude and Baltes ran Claude Code on <strong>30 SWE-bench Verified issues</strong> with a retro skill that reviews a finished session and proposes harness changes. They coded the 125 proposals, implemented 24 and evaluated 12 on later issues from the same repositories, in fresh sessions with and without each change.</p>
-          <p>In the seven evaluations where the unchanged sessions hit the targeted problem, <strong>two changes eliminated the action</strong>, one reduced it and four showed no reduction, and some changes added work on unrelated issues. 18 of 43 lint-related proposals recommended a practice regardless of what had happened in the session.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.34938">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 4)</span></div>
-        </article>
-
-        <article class="story" id="framer-harness-2">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://framer.com/blog/harness-2/">Framer&rsquo;s Harness 2 executes agent JavaScript as it streams, cutting cost up to 33%</a></h4>
-          <p>Framer&rsquo;s <strong>Harness 2</strong> runs a whole workflow as one program, executing JavaScript as it streams in, with eager execution and early cancellation in place of repeated model calls and method calls in place of its DSL. Framer reports up to <strong>33% lower cost</strong> and 20% faster execution, with 43% fewer tool steps and 39% fewer cached input tokens per message.</p>
-          <p>A <a href="https://www.philschmid.de/code-mode">post on code mode</a> in the same day&rsquo;s TLDR argues the whole field is heading this way, with tool catalogues collapsing into one exec tool in a sandbox. Framer&rsquo;s figures are its own.</p>
-          <div class="sources"><a href="https://framer.com/blog/harness-2/">Framer</a> &middot; <a href="https://www.philschmid.de/code-mode">philschmid.de (commentary)</a> &middot; <span class="via">via TLDR AI (Nov 3), TLDR (Nov 3)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (33)</summary>
+          <summary>Earlier in this section (35)</summary>
+
+          <article class="story" id="harness-retrospective-adaptation">
+            <span class="when">2026-11-04</span>
+            <h4><a href="https://arxiv.org/abs/2610.34938">Claude Code&rsquo;s retro skill proposed 125 harness changes; of seven that could be tested, two removed the problem</a></h4>
+            <p>Treude and Baltes ran Claude Code on <strong>30 SWE-bench Verified issues</strong> with a retro skill that reviews a finished session and proposes harness changes. They coded the 125 proposals, implemented 24 and evaluated 12 on later issues from the same repositories, in fresh sessions with and without each change.</p>
+            <p>In the seven evaluations where the unchanged sessions hit the targeted problem, <strong>two changes eliminated the action</strong>, one reduced it and four showed no reduction, and some changes added work on unrelated issues. 18 of 43 lint-related proposals recommended a practice regardless of what had happened in the session.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.34938">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 4)</span></div>
+          </article>
+
+          <article class="story" id="framer-harness-2">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://framer.com/blog/harness-2/">Framer&rsquo;s Harness 2 executes agent JavaScript as it streams, cutting cost up to 33%</a></h4>
+            <p>Framer&rsquo;s <strong>Harness 2</strong> runs a whole workflow as one program, executing JavaScript as it streams in, with eager execution and early cancellation in place of repeated model calls and method calls in place of its DSL. Framer reports up to <strong>33% lower cost</strong> and 20% faster execution, with 43% fewer tool steps and 39% fewer cached input tokens per message.</p>
+            <p>A <a href="https://www.philschmid.de/code-mode">post on code mode</a> in the same day&rsquo;s TLDR argues the whole field is heading this way, with tool catalogues collapsing into one exec tool in a sandbox. Framer&rsquo;s figures are its own.</p>
+            <div class="sources"><a href="https://framer.com/blog/harness-2/">Framer</a> &middot; <a href="https://www.philschmid.de/code-mode">philschmid.de (commentary)</a> &middot; <span class="via">via TLDR AI (Nov 3), TLDR (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="factory-droid-1-0">
             <span class="when">2026-10-30</span>
@@ -719,6 +753,14 @@
         <h3>Agent loop design &amp; reliability</h3>
         <p class="lead">Plan, act, verify, repeat &mdash; and the primitives that decide whether a loop finishes or just burns budget: verifiers, persistent state, stop conditions, and a compaction policy. Judge entries on whether the measurement was fixed before the results appeared, because that is exactly how far agent self-improvement claims have held up.</p>
 
+        <article class="story" id="mcphallu">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://arxiv.org/abs/2611.07689">MCPHallu: on unreachable-goal tasks only 23.2% of MCP agent runs stop correctly</a></h4>
+          <p><strong>MCPHallu</strong> tests whether MCP agents notice when a goal cannot be reached. On its Unreachable Goal tasks only <strong>23.2%</strong> of runs pass; the rest keep calling tools. Code is on GitHub.</p>
+          <p>It measures a stop condition directly, which is the primitive this section judges loops on.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.07689">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="goose-dapr-durable-execution">
           <span class="when">2026-10-29</span>
           <h4><a href="https://aaif.io/blog/introducing-dapr-durable-execution-for-goose">Dapr durable execution lets a goose agent survive a crash mid-plan without replaying finished turns</a></h4>
@@ -733,15 +775,15 @@
           <div class="sources"><a href="https://developers.cloudflare.com/changelog/post/2026-10-26-computer-durable-javascript/">Cloudflare changelog</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
         </article>
 
-        <article class="story" id="rsihub">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://github.com/simple-agent-lab/RSIHub">RSIHub re-implements four agent-evolution methods on shared infrastructure, and the rankings flip across settings</a></h4>
-          <p><strong>RSIHub</strong>, from UC Berkeley, USTC and others, re-implements AHE, Hyperagents, A-Evolve and GEPA as recipes on one shared infrastructure so they can be compared directly. The largest pass@1 gain was <strong>13.5 points</strong>, but method rankings flip across settings and gains do not always transfer to held-out tasks, which is the finding a single-method paper cannot show.</p>
-          <div class="sources"><a href="https://github.com/simple-agent-lab/RSIHub">GitHub</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (13)</summary>
+          <summary>Earlier in this section (14)</summary>
+
+          <article class="story" id="rsihub">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://github.com/simple-agent-lab/RSIHub">RSIHub re-implements four agent-evolution methods on shared infrastructure, and the rankings flip across settings</a></h4>
+            <p><strong>RSIHub</strong>, from UC Berkeley, USTC and others, re-implements AHE, Hyperagents, A-Evolve and GEPA as recipes on one shared infrastructure so they can be compared directly. The largest pass@1 gain was <strong>13.5 points</strong>, but method rankings flip across settings and gains do not always transfer to held-out tasks, which is the finding a single-method paper cannot show.</p>
+            <div class="sources"><a href="https://github.com/simple-agent-lab/RSIHub">GitHub</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+          </article>
 
           <article class="story" id="vercel-durable-harness">
             <span class="when">2026-10-21</span>
@@ -980,7 +1022,23 @@
 
       <section class="topic-section" id="browser-and-computer-use-agents">
         <h3>Browser &amp; computer-use agents</h3>
-        <p class="lead">Four ways an agent drives a browser: infer the page from pixels, call actions a cooperating site publishes, borrow a profile that is already logged in, or compile the site into a deterministic API once. Open-weights families such as Microsoft Fara1.5 (4B/9B/27B, reported to beat OpenAI Operator and Gemini 2.5 on certain tasks) make the proprietary browsing agents substitutable.</p>
+        <p class="lead">Five ways an agent drives a browser: infer the page from pixels, call actions a cooperating site publishes, borrow a logged-in profile, compile the site into a deterministic API once, or write code against the DevTools protocol directly. Sites now answer back, some by publishing tools and some, like United, by refusing agents outright.</p>
+
+        <article class="story" id="browser-use-1-0">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://github.com/browser-use/browser-use">Browser Use 1.0 deletes 136,866 lines and has the agent write Python on the DevTools protocol, scoring 62.5 on BU Bench v2</a></h4>
+          <p><strong>Browser Use 1.0</strong> removed about 80% of the library, <strong>136,866 lines</strong>; the agent now writes Python directly against the Chrome DevTools Protocol instead of choosing from a fixed action set. On the project&rsquo;s own BU Bench v2 it scores <strong>62.5 against 56.3</strong>, at <strong>$0.070 against $0.082</strong> per task.</p>
+          <p>Both the benchmark and the comparison are the maintainers&rsquo;.</p>
+          <div class="sources"><a href="https://github.com/browser-use/browser-use">GitHub</a> &middot; <span class="via">via MarkTechPost (Nov 12)</span></div>
+        </article>
+
+        <article class="story" id="united-airlines-agent-block">
+          <span class="when">2026-11-11</span>
+          <h4><a href="https://www.cnbc.com/2026/11/11/united-airlines-ai-agents.html">United Airlines moves to block unauthorized AI agents from booking and check-in, citing credential security</a></h4>
+          <p>United Airlines is restricting AI-agent access across its website, app and agency channels, and will block unauthorized third-party assistants from reaching its systems directly to book travel. It cites credential security and liability around tasks such as check-in.</p>
+          <p>The move runs opposite to Expedia and Booking, which are partnering with agent vendors, and it is the first large airline on this page to answer agent traffic by refusing it rather than publishing tools for it.</p>
+          <div class="sources"><a href="https://www.cnbc.com/2026/11/11/united-airlines-ai-agents.html">CNBC</a> &middot; <a href="https://www.cbsnews.com/news/united-airlines-bans-ai-agents-booking-flights/">CBS News</a> &middot; <span class="via">via TLDR AI (Nov 12), Forward Future (Nov 12)</span></div>
+        </article>
 
         <article class="story" id="ebay-blocks-shopping-agents">
           <span class="when">2026-11-11</span>
@@ -989,24 +1047,24 @@
           <div class="sources"><a href="https://www.theverge.com/tech/1030838/ebay-ai-agents-meta-muse-agentic-shopping">The Verge</a> &middot; <span class="via">via Forward Future (Nov 11)</span></div>
         </article>
 
-        <article class="story" id="opencode-browse">
-          <span class="when">2026-11-09</span>
-          <h4><a href="https://opencode.ai/product/browse">OpenCode Browse lends coding agents the user&rsquo;s real browser, tabs and logins, and hands back for 2FA</a></h4>
-          <p>OpenCode released <strong>Browse</strong>, an MCP server plus a Chromium extension that let an agent drive the user&rsquo;s own browser, with existing tabs, logins and extensions, in Chrome, Edge, Brave, Arc and other Chromium builds. Agents open tabs in collapsed background groups and drive them with Playwright, can take screenshots, record the screen and capture network traffic as a HAR file, and work from any MCP client, including OpenCode, Claude Code, Cursor, Codex and Zed. When a login, a 2FA prompt or a payment comes up the tab is handed back to the person, who clicks Continue; a per-session allowlist limits which sites an agent may open.</p>
-          <p>This is the borrowed-profile approach the section lead names, with the handoff and the allowlist as the two controls a user has, and no figure accompanies the launch.</p>
-          <div class="sources"><a href="https://opencode.ai/product/browse">OpenCode</a> &middot; <span class="via">via The Code (Nov 9)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (16)</summary>
 
-        <article class="story" id="vercel-agent-desktop">
-          <span class="when">2026-10-31</span>
-          <h4><a href="https://github.com/vercel-labs/agent-desktop">Vercel Labs&rsquo; agent-desktop drives native apps through the accessibility tree, with no vision model</a></h4>
-          <p><strong>agent-desktop</strong> is a Rust CLI and C library that gives an agent a JSON snapshot of an app&rsquo;s accessibility tree, with a stable ref for every actionable element, so any shell-capable coding agent (Claude Code, Codex) can click a ref instead of a pixel. It runs in the background without taking the cursor, on macOS, Windows and Linux on plain CPU, under <strong>Apache-2.0</strong>.</p>
-          <p>Vercel reports <strong>78% to 96% fewer tokens</strong> than screenshot loops on dense Electron apps. That is the builder&rsquo;s own figure, and there is no independent computer-use benchmark yet.</p>
-          <div class="sources"><a href="https://github.com/vercel-labs/agent-desktop">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/31/vercel-labs-agent-desktop-computer-use/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 1), The Code (Nov 2), AlphaSignal (Nov 2)</span></div>
-        </article>
+          <article class="story" id="opencode-browse">
+            <span class="when">2026-11-09</span>
+            <h4><a href="https://opencode.ai/product/browse">OpenCode Browse lends coding agents the user&rsquo;s real browser, tabs and logins, and hands back for 2FA</a></h4>
+            <p>OpenCode released <strong>Browse</strong>, an MCP server plus a Chromium extension that let an agent drive the user&rsquo;s own browser, with existing tabs, logins and extensions, in Chrome, Edge, Brave, Arc and other Chromium builds. Agents open tabs in collapsed background groups and drive them with Playwright, can take screenshots, record the screen and capture network traffic as a HAR file, and work from any MCP client, including OpenCode, Claude Code, Cursor, Codex and Zed. When a login, a 2FA prompt or a payment comes up the tab is handed back to the person, who clicks Continue; a per-session allowlist limits which sites an agent may open.</p>
+            <p>This is the borrowed-profile approach the section lead names, with the handoff and the allowlist as the two controls a user has, and no figure accompanies the launch.</p>
+            <div class="sources"><a href="https://opencode.ai/product/browse">OpenCode</a> &middot; <span class="via">via The Code (Nov 9)</span></div>
+          </article>
 
-<details>
-          <summary>Earlier in this section (13)</summary>
+          <article class="story" id="vercel-agent-desktop">
+            <span class="when">2026-10-31</span>
+            <h4><a href="https://github.com/vercel-labs/agent-desktop">Vercel Labs&rsquo; agent-desktop drives native apps through the accessibility tree, with no vision model</a></h4>
+            <p><strong>agent-desktop</strong> is a Rust CLI and C library that gives an agent a JSON snapshot of an app&rsquo;s accessibility tree, with a stable ref for every actionable element, so any shell-capable coding agent (Claude Code, Codex) can click a ref instead of a pixel. It runs in the background without taking the cursor, on macOS, Windows and Linux on plain CPU, under <strong>Apache-2.0</strong>.</p>
+            <p>Vercel reports <strong>78% to 96% fewer tokens</strong> than screenshot loops on dense Electron apps. That is the builder&rsquo;s own figure, and there is no independent computer-use benchmark yet.</p>
+            <div class="sources"><a href="https://github.com/vercel-labs/agent-desktop">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/31/vercel-labs-agent-desktop-computer-use/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 1), The Code (Nov 2), AlphaSignal (Nov 2)</span></div>
+          </article>
 
           <article class="story" id="agent-s4">
             <span class="when">2026-10-23</span>
@@ -1110,9 +1168,6 @@
             <div class="sources"><span class="via">via AI Loves Data (Jul 31) &mdash; no public URL given</span></div>
           </article>
 
-        <details>
-          <summary>Earlier in this section (1)</summary>
-
           <article class="story" id="pomerado">
             <span class="when">2026-10-27</span>
             <h4><a href="https://pomerado.ai/">Pomerado turns a website into an API or MCP tool in about 30 minutes, claiming up to 1,000&times; lower cost than a browser agent</a></h4>
@@ -1120,8 +1175,6 @@
             <div class="sources"><a href="https://pomerado.ai/">Pomerado</a> &middot; <span class="via">via AlphaSignal (Oct 27), The Code (Oct 27)</span></div>
           </article>
         </details>
-        </details>
-      
       </section>
 
       <section class="topic-section" id="agent-extension-patterns">
@@ -1211,6 +1264,14 @@
         <h3>On-device &amp; local agents</h3>
         <p class="lead">A local-first stack is now a credible alternative to cloud agent loops, helped by laptop-class multimodal models such as Gemma 4 12B. Judge entries on where the data actually sits: an agent running on your machine and an agent reaching your machine are different claims, and the operator carve-out is where the difference shows.</p>
 
+        <article class="story" id="openbot-1-0">
+          <span class="when">2026-11-12</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/12/copilotkit-openbot-1-0-open-source-ai-coworker/">CopilotKit&rsquo;s OpenBot 1.0 is an MIT-licensed, self-hostable coworker that checks every action against policy</a></h4>
+          <p>CopilotKit released <strong>OpenBot 1.0</strong>, an MIT-licensed agent workspace where each Bot runs in a container with its own Chromium, logins and files and reaches only the tools it is granted. Any AG-UI agent can join by URL, a Bot can split work across <strong>up to 5 subagents</strong>, generative UI runs on A2UI 1.0&rsquo;s 65 components, and Bots always ask before deleting, sending, sharing or posting.</p>
+          <p>The fine print matters for the local claim: the desktop app needs Docker Desktop, all of a person&rsquo;s Bots share one computer by default, and per-Bot isolation, SSO and the CSV audit trail are in the Business tier, still in early access.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/12/copilotkit-openbot-1-0-open-source-ai-coworker/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 12)</span></div>
+        </article>
+
         <article class="story" id="gui-owl-1-5">
           <span class="when">2026-10-22</span>
           <h4><a href="https://getopposable.com/blog/computer-use-on-the-phone">GUI-Owl 1.5: a 2B screen model on the phone itself reads the Android screen through the accessibility service and operates any other app</a></h4>
@@ -1226,15 +1287,15 @@
           <div class="sources"><a href="https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk/">Google Developers Blog</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
         </article>
 
-        <article class="story" id="openmuse">
-          <span class="when">2026-09-23</span>
-          <h4><a href="https://github.com/CopilotKit/OpenMuse">CopilotKit&rsquo;s OpenMuse is a self-hostable Muse-style agent that runs on any harness</a></h4>
-          <p><strong>OpenMuse</strong> is an open-source personal agent modelled on <a href="#meta-muse">Meta Muse</a>, with computer use across browser, terminal and files, connectors for personal apps, goal and progress tracking, and mobile and web clients. Self-hosting is the point: the data sits wherever the deployer runs it, which is exactly what Muse cannot offer &mdash; and the same week Meta admitted Muse itself draws heavily on the open-source OpenClaw.</p>
-          <div class="sources"><a href="https://github.com/CopilotKit/OpenMuse">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23), TLDR AI (Sep 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="openmuse">
+            <span class="when">2026-09-23</span>
+            <h4><a href="https://github.com/CopilotKit/OpenMuse">CopilotKit&rsquo;s OpenMuse is a self-hostable Muse-style agent that runs on any harness</a></h4>
+            <p><strong>OpenMuse</strong> is an open-source personal agent modelled on <a href="#meta-muse">Meta Muse</a>, with computer use across browser, terminal and files, connectors for personal apps, goal and progress tracking, and mobile and web clients. Self-hosting is the point: the data sits wherever the deployer runs it, which is exactly what Muse cannot offer &mdash; and the same week Meta admitted Muse itself draws heavily on the open-source OpenClaw.</p>
+            <div class="sources"><a href="https://github.com/CopilotKit/OpenMuse">GitHub</a> &middot; <span class="via">via Unwind AI (Sep 23), TLDR AI (Sep 23)</span></div>
+          </article>
 
           <article class="story" id="muse-for-mac">
             <span class="when">2026-09-19</span>
@@ -1279,6 +1340,14 @@
         <h3>Agentic retrieval</h3>
         <p class="lead">Retrieval as an agent that plans and iterates rather than a single embedding lookup &mdash; rewrite the query, re-search, and refuse to answer until the context is sufficient. Judge entries on the baseline the gain is measured against, and on whether the figure quoted is a ceiling or an average.</p>
 
+        <article class="story" id="read-agentic-document-search">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://arxiv.org/abs/2608.06305">READ beats chunk-and-embed 58.8% to 15.7% on a 780-page report, but plain BM25 gets 51.0%</a></h4>
+          <p><strong>READ</strong> (Reliable Embedding-free Agentic Document-search), from IIT Patna and TwoSpoon, replaces vector retrieval with an agent holding three tools: keyword search returning line numbers, a section outline, and a line-range reader. On 51 questions about a 780-page Gujarat government financial report, all on Gemini 2.5 Pro, it answered <strong>58.8%</strong> correctly against <strong>15.7%</strong> for chunk-and-embed and 27.5% for chunk-and-embed inside an agent loop.</p>
+          <p>BM25 keyword ranking, with no model in retrieval, reached <strong>51.0%</strong>, which the authors call statistically indistinguishable from READ. The Batch&rsquo;s reading: on documents whose numbers depend on distant labels, test keyword search before building an agent.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2608.06305">arXiv</a> &middot; <span class="via">via The Batch (Nov 13)</span></div>
+        </article>
+
         <article class="story" id="gpt-researcher-jev-context-filter">
           <span class="when">2026-09-29</span>
           <h4><a href="https://docs.gptr.dev/docs/gpt-researcher/gptr/context-filter">GPT Researcher swaps embedding similarity for Jev as its context filter, keeping 73% of relevant passages against 46%</a></h4>
@@ -1295,12 +1364,16 @@
           <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="harness-1">
-          <span class="when">2026-06-09</span>
-          <h4>Harness-1 &mdash; a 20B retrieval subagent trained with RL in a search harness</h4>
-          <p>Harness-1 is a 20B search agent trained with reinforcement learning <em>inside</em> a stateful search harness on GPT-OSS-20B, reaching <strong>0.730 average curated recall</strong>. The model learns how and when to search, not just what to retrieve; weights and harness code are fully open. (See <a href="training-and-rl.html">Training &amp; RL</a> for the training-harness angle and <a href="tools-and-devex.html">Tools &amp; DevEx</a> for the knowledge-graph memory substrate.)</p>
-          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="harness-1">
+            <span class="when">2026-06-09</span>
+            <h4>Harness-1 &mdash; a 20B retrieval subagent trained with RL in a search harness</h4>
+            <p>Harness-1 is a 20B search agent trained with reinforcement learning <em>inside</em> a stateful search harness on GPT-OSS-20B, reaching <strong>0.730 average curated recall</strong>. The model learns how and when to search, not just what to retrieve; weights and harness code are fully open. (See <a href="training-and-rl.html">Training &amp; RL</a> for the training-harness angle and <a href="tools-and-devex.html">Tools &amp; DevEx</a> for the knowledge-graph memory substrate.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="multi-agent-orchestration">
@@ -1604,8 +1677,17 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#openworker-harness-sdk">OpenWorker open-sources its Agent Harness SDK, model-agnostic and installed as a skill for Claude Code or Codex</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#read-agentic-document-search">READ beats chunk-and-embed 58.8% to 15.7% on a 780-page report, but plain BM25 gets 51.0%</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#grok-bot-1-0">Grok Bot 1.0 adds shared Team Bots for Slack, Teams and video calls, with admin-approved learnings</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#openbot-1-0">CopilotKit&rsquo;s OpenBot 1.0 is an MIT-licensed, self-hostable coworker that checks every action against policy</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#a2ui-1-0">A2UI 1.0 ships renderer SDKs for web, Android and iOS so agents answer with native interactive screens</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#openai-mcp-extensions">OpenAI open-sources MCP extensions that add ChatGPT-only surfaces to MCP servers and apps</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#browser-use-1-0">Browser Use 1.0 deletes 136,866 lines and has the agent write Python on the DevTools protocol, scoring 62.5 on BU Bench v2</a></span></li>
+        <li><span class="date">2026-11-12</span><span class="label"><a href="#mcphallu">MCPHallu: on unreachable-goal tasks only 23.2% of MCP agent runs stop correctly</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#ebay-blocks-shopping-agents">eBay limits Meta&rsquo;s Muse and other third-party shopping agents from browsing its listings</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#adobe-creative-cloud-mcp">Adobe launches an MCP server that lets ChatGPT, Claude and Gemini work in Photoshop, Illustrator and Premiere</a></span></li>
+        <li><span class="date">2026-11-11</span><span class="label"><a href="#united-airlines-agent-block">United Airlines moves to block unauthorized AI agents from booking and check-in, citing credential security</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#parallel-agent-teams">Parallel agent teams: many small teams beat best-of-N on 10 of 12 long-horizon tasks, and one team of 100 on all four tried</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#opencode-browse">OpenCode Browse lends coding agents the user&rsquo;s real browser, tabs and logins, and hands back for 2FA</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#project-eve">Project EVE: Claude&rsquo;s trading profit tripled from Opus 4.6 to Fable 5, and a saboteur teammate went unnoticed</a></span></li>

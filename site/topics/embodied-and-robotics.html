@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-11-12</div>
+      <div class="meta">Last updated: 2026-11-13</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 10 to 12 cycle opens two sets of weights. MBZUAI&rsquo;s <a href="#pan-2">PAN 2</a> is a 29B world model under Apache 2.0 that turns a scene and a text action into up to 20 seconds of video; it leads six models with 34.0% full-plan completion on 100 multi-step tasks, self-reported, and trails MiniMax-H3 on single actions. Runway&rsquo;s <a href="#praxis-1">Praxis-1</a>, announced Oct 1 with no weights or figures, is now out at 27B under Apache 2.0 with a 46.2% success rate over 1,200 episodes on NVIDIA&rsquo;s RoboLab-120.</p>
         <p>The Nov 11 addition is a factory number. Google DeepMind says <a href="#gemini-robotics-2-5-mercedes">Gemini Robotics 2.5</a> drove Apptronik&rsquo;s Apollo 2 to 96% success sorting metal parts on live Mercedes-Benz lines, 20&ndash;30% faster than its previous systems. It is a pilot reported by Google, so it answers whether the robot can work on a real line, not whether the plant would keep it.</p>
         <p>The Nov 10 cycle is two opposite answers to the demonstration problem, both measured by their authors. NVIDIA&rsquo;s <a href="#gr00t-2">GR00T 2</a> predicts video and actions together so it can learn from human footage, and goes from 40% zero-shot on 50 unseen tasks to 95% with five demonstrations and a 30-minute fine-tune; a Turbo variant runs on the Unitree G1 at 124 ms a step. <a href="#amp1">AMP1</a> drops learned policies and lets a generalist model drive the arm, reaching 85.6% zero-shot on RoboLab-120 against 49.2% for a leading VLA. On the road, NHTSA opened a <a href="#waymo-school-bus-recall-query">recall query</a> because most Waymo school-bus passing incidents came after the fix meant to end them.</p>
         <p>The Nov 6 cycle adds open weights to the world-models section and a failure case to deployment. NVIDIA opened <a href="#cosmos-3-interactive-world-models">four Cosmos 3 models</a> for interactive world simulation and driving scenes, each with 16B trainable parameters, generating synchronized multi-sensor data and photorealistic video from simulator controls. It is the weights behind the Nov 3 Cosmos Framework update, and like that entry it arrives without the consistency or transfer number <a href="#streameval">StreamEval</a> says visual quality does not predict. NVIDIA&rsquo;s VFlash, which predicts trajectories and 3D motion in parallel, is on the <a href="model-releases.html#nvidia-vflash">model page</a>. From a Substack note, <a href="#mirrorsentinel-elevator">MirrorSentinel-Elevator</a> records a ZED2 camera and an Ouster lidar through seven hand-measured elevator cabins, where a mirror makes the lidar report a room that is not there: a small dataset of a sensor failing in a place robots are expected to work.</p>
         <p>The Nov 5 addition is a benchmark for the models this page treats as simulators. <a href="#streameval">StreamEval</a> scores 37 interactive streaming video models on five tasks and ten metrics and finds that visual quality and identity retention do not reliably come with request execution or sustained state consistency. The Batch made a similar point about <a href="#genie-4">Genie 4</a>: Google published demos without quantitative evaluation, and one of them shows a marble bust settling where it should topple.</p>
-        <p>The Nov 3 cycle is five papers on why vision-language-action policies fail on real hardware, each attacking a different physical constraint. <a href="#fastvla">FastVLA</a> prunes visual tokens by task prompt for 20% lower action latency on a Franka arm. <a href="#focusvla">FocusVLA</a> decides between wrist and static cameras from the robot&rsquo;s recent actions and lifts real-world success from 71.7% to 85.0%. <a href="#gazeact">GazeAct</a> trains on operator eye tracking and moves 18 real tasks from 48.1% to 58.6%, with no eye tracker needed at deployment. <a href="#pointmapvla">PointmapVLA</a> gives each pixel a metric position in the robot&rsquo;s base frame, and <a href="#rawvla">RawVLA</a> shows the camera&rsquo;s own signal processor shifting action accuracy under changing light.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 3 cycle is five papers on why vision-language-action policies fail on real hardware, each attacking a different physical constraint. <a href="#fastvla">FastVLA</a> prunes visual tokens by task prompt for 20% lower action latency on a Franka arm. <a href="#focusvla">FocusVLA</a> decides between wrist and static cameras from the robot&rsquo;s recent actions and lifts real-world success from 71.7% to 85.0%. <a href="#gazeact">GazeAct</a> trains on operator eye tracking and moves 18 real tasks from 48.1% to 58.6%, with no eye tracker needed at deployment. <a href="#pointmapvla">PointmapVLA</a> gives each pixel a metric position in the robot&rsquo;s base frame, and <a href="#rawvla">RawVLA</a> shows the camera&rsquo;s own signal processor shifting action accuracy under changing light.</p>
           <p>The Nov 2 cycle was thin: <a href="#meta-max-humanoid">Meta reportedly built Max</a>, a household-chores humanoid prototype, with a Chinese robotics company in about three months, on NVIDIA Jetson Thor at about 106 lb and 1.5 m, with a second prototype in progress. No capability is reported, only the build and its specifications.</p>
           <p>The Oct 29 cycle opens a section on touch, from a single newsletter issue reviewing three 2026 papers. <a href="#dexport">DexPort</a> takes the robot arm out of demonstration collection, and training on operator commands instead of reached joint positions lifts success from 11% to 64%. <a href="#vectile">VecTile</a> measures pressure and shear on a sheet under 6 mm thick for $34.67 including electronics, with errors of 0.39 N and 0.16 N against an industrial sensor. <a href="#vista3d">VisTa3D</a> shows current vision and depth models dropping objects thinner than about 3 mm, which touch maps recover. The argument across all three is that a camera updating 5 to 15 times a second cannot see a slip that lasts 10 to 20 milliseconds behind the fingers.</p>
           <p>The Oct 28 cycle is simulation as the product. Google DeepMind&rsquo;s <a href="#genie-4">Genie 4</a> holds a photorealistic interactive world consistent for about two minutes, double Genie 3, adds native audio and takes prompt edits mid-run, with Gemini models planning events to keep scenes coherent; the stated purpose is testing robots and agents before the real world, and the stated limit is drift on longer runs. Meta&rsquo;s <a href="#interactiveworld">InteractiveWorld</a> makes the same bet one level down, a framework that simulates a wearable assistant&rsquo;s first-person view for training and evaluation. And <a href="#gemini-robotics-er-2">Gemini Robotics Embodied Reasoning 2</a> lands on Google Cloud, which moves a frontier embodied-reasoning model from research preview to something any team with an account can call.</p>
@@ -88,7 +89,7 @@
           <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
           <li><a href="#tactile-sensing-and-dexterous-contact">Tactile sensing &amp; dexterous contact <span class="n">3</span></a></li>
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">21</span></a></li>
-          <li><a href="#world-models">World models <span class="n">20</span></a></li>
+          <li><a href="#world-models">World models <span class="n">21</span></a></li>
           <li><a href="#the-competitive-landscape">The competitive landscape <span class="n">6</span></a></li>
           <li><a href="#hardware-and-real-world-deployment">Hardware &amp; real-world deployment <span class="n">18</span></a></li>
           <li><a href="#refusal-behaviour-on-physical-hardware">Refusal behaviour on physical hardware <span class="n">1</span></a></li>
@@ -256,7 +257,8 @@
             <h4><a href="https://runway.com/research/introducing-praxis-1">Runway&rsquo;s Praxis-1 turns video pretraining into an open-weight world action model for real robots, weights not yet out</a></h4>
             <p>Runway&rsquo;s <strong>Praxis-1</strong> is a world action model that converts the company&rsquo;s video pretraining into control for physical robots, announced as open-weight. It is running with early partners on their own hardware, public release is promised in the coming months, and clips of robots running it are the only evidence published.</p>
             <p>It is this section&rsquo;s bet that video can substitute for demonstrations, so far with no weights, success rate or task count.</p>
-            <div class="sources"><a href="https://runway.com/research/introducing-praxis-1">Runway</a> &middot; <span class="via">via TLDR AI (Oct 1)</span></div>
+            <p><em>Updated Nov 12:</em> The weights are now out. Praxis-1 is a <strong>27B</strong>-parameter model under <strong>Apache 2.0</strong> on GitHub and Hugging Face, with full and LoRA fine-tuning for other embodiments, and Runway reports a <strong>46.2%</strong> success rate over 1,200 episodes, top of NVIDIA&rsquo;s RoboLab-120 leaderboard.</p>
+            <div class="sources"><a href="https://runway.com/research/introducing-praxis-1">Runway</a> &middot; <a href="https://runway.com/news/company-news/praxis-1-is-now-available">Runway release</a> &middot; <span class="via">via TLDR AI (Oct 1), TLDR AI (Nov 12)</span></div>
           </article>
 
           <article class="story" id="helix-2-5">
@@ -320,7 +322,15 @@
 
       <section class="topic-section" id="world-models">
         <h3>World models</h3>
-        <p class="lead">Twenty entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+        <p class="lead">Twenty-one entries and one open question: does a model that predicts pixels represent physics, or a domain? Consistency while something acts inside the world, memory across a long rollout, and transfer between domains are what separate a simulator you can train in from a video generator. Judge each on which of the three it measured.</p>
+
+        <article class="story" id="pan-2">
+          <span class="when">2026-11-10</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/10/ifm-pan-2-open-world-model/">MBZUAI&rsquo;s PAN 2 opens a 29B world model under Apache 2.0 that simulates 20-second action outcomes</a></h4>
+          <p>MBZUAI&rsquo;s Institute of Foundation Models released <strong>PAN 2</strong>, a <strong>29B</strong> world model that takes a scene and a text action and simulates the outcome as video, up to <strong>20 seconds at 24 fps</strong>. Weights, training code and inference code are Apache 2.0.</p>
+          <p>It leads six tested models with <strong>34.0%</strong> full-plan completion on 100 multi-step tasks, a self-reported score, and trails MiniMax-H3 on single actions and on human preference. Long multi-step rollouts are the consistency test this section asks for.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/10/ifm-pan-2-open-world-model/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 12)</span></div>
+        </article>
 
         <article class="story" id="gr00t-2">
           <span class="when">2026-11-10</span>
@@ -338,16 +348,16 @@
           <div class="sources"><a href="https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation">Hugging Face (NVIDIA)</a> &middot; <span class="via">via TLDR AI (Nov 6)</span></div>
         </article>
 
-        <article class="story" id="streameval">
-          <span class="when">2026-11-05</span>
-          <h4><a href="https://arxiv.org/abs/2610.28402">StreamEval benchmarks 37 interactive streaming video models and finds visual quality does not predict state consistency</a></h4>
-          <p><strong>StreamEval</strong> is an open benchmark for interactive streaming video generation: five tasks (avatar dialogue, avatar performance, world generation, instruction editing and reference editing), 300 scripted cases of 15 to 300 seconds, and ten metrics covering task execution, state consistency, visual fidelity and audiovisual coordination. Across <strong>37 models</strong>, high visual quality and identity retention did not reliably come with dependable request execution or sustained state consistency.</p>
-          <p>Data, code and scoring rules are public, and the leaderboard is to be updated monthly. AlphaSignal attributes it to Tsinghua and NVIDIA; the paper, submitted Oct 20, lists only a &ldquo;StreamEval Team&rdquo;.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.28402">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (17)</summary>
+          <summary>Earlier in this section (18)</summary>
+
+          <article class="story" id="streameval">
+            <span class="when">2026-11-05</span>
+            <h4><a href="https://arxiv.org/abs/2610.28402">StreamEval benchmarks 37 interactive streaming video models and finds visual quality does not predict state consistency</a></h4>
+            <p><strong>StreamEval</strong> is an open benchmark for interactive streaming video generation: five tasks (avatar dialogue, avatar performance, world generation, instruction editing and reference editing), 300 scripted cases of 15 to 300 seconds, and ten metrics covering task execution, state consistency, visual fidelity and audiovisual coordination. Across <strong>37 models</strong>, high visual quality and identity retention did not reliably come with dependable request execution or sustained state consistency.</p>
+            <p>Data, code and scoring rules are public, and the leaderboard is to be updated monthly. AlphaSignal attributes it to Tsinghua and NVIDIA; the paper, submitted Oct 20, lists only a &ldquo;StreamEval Team&rdquo;.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.28402">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 5)</span></div>
+          </article>
 
           <article class="story" id="cosmos-framework">
             <span class="when">2026-11-03</span>
@@ -725,6 +735,7 @@
         <li><span class="date">2026-11-11</span><span class="label"><a href="#gemini-robotics-2-5-mercedes">Gemini Robotics 2.5 has Apptronik&rsquo;s Apollo 2 sorting metal parts at 96% success on Mercedes-Benz lines</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#amp1">AMP1: a generalist model steering the arm directly reaches 85.6% zero-shot on RoboLab-120, against 49.2% for a leading VLA</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#gr00t-2">NVIDIA&rsquo;s GR00T 2 world-action model goes from 40% zero-shot to 95% on unseen tasks after five demonstrations and a 30-minute fine-tune</a></span></li>
+        <li><span class="date">2026-11-10</span><span class="label"><a href="#pan-2">MBZUAI&rsquo;s PAN 2 opens a 29B world model under Apache 2.0 that simulates 20-second action outcomes</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#waymo-school-bus-recall-query">NHTSA opens a recall query after most Waymo school-bus passing incidents came after its software fix</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#cosmos-3-interactive-world-models">NVIDIA opens four Cosmos 3 world models for interactive simulation and driving scenes, each with 16B trainable parameters</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#streameval">StreamEval benchmarks 37 interactive streaming video models and finds visual quality does not predict state consistency</a></span></li>
