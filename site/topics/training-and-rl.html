@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-11-12</div>
+      <div class="meta">Last updated: 2026-11-16</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 13 cycle has two papers about how little it takes to change a model. <a href="#deletion-tuning">Deletion Tuning</a> zeroes fewer than 0.05% of an LLM&rsquo;s weights through a mask on the gate projections and matches full fine-tuning under RL with verifiable rewards, supervised fine-tuning and on-policy distillation, while full fine-tuning and LoRA lose up to 5.4 points on earlier tasks that it keeps. <a href="#homeopathic-learning">Homeopathic learning</a> is the risk on the other side: poison data that teaches nothing on its own plants a trait once clean, trigger-free data is mixed in, so checking a training set item by item can pass a backdoor.</p>
         <p>The Nov 11 addition fixes a failure without training anything. <a href="#reward-hacking-weight-arithmetic">Weight arithmetic</a> subtracts a code model trained on loose rewards from one trained on strict rewards and extrapolates along the difference, cutting resource-limit failures from 14.5% to 8%. It breaks outputs if pushed too far, and the stricter reward can itself cost correctness. The same idea, editing weights in place of a training run, appears on <a href="research-papers.html#qwen-concept-27b">research papers</a> the same day.</p>
         <p>The Nov 9 addition is the first entry here with a mechanism for why large-scale RL falls over. <a href="#score-centering">Score centering</a>, by Marek and Ryabinin and explained by Cameron Wolfe, shows that when the sampler and the trainer disagree on token probabilities the expected gradient is nonzero even under a constant reward, so the trainer drifts toward the sampler and the error feeds back through every weight sync. Subtracting the expected score under the sampler at each prefix cancels that drift without the clipped importance ratios the usual fixes need, using the sampler&rsquo;s top 128 token probabilities. On Qwen3-30B-A3B-Base under the harshest sampler quantization it reached 30% training accuracy against 12% for truncated importance sampling and under 5% for the rest, and the authors recommend pairing it with importance sampling when rollouts are stale. Nathan Lambert says frontier labs already use it quietly, which is the paper&rsquo;s standing in one line.</p>
         <p>The Nov 5 addition is a claim about what pretraining needs as input. Cartesia says its newer <a href="#h-nets-raw-bytes">H-Nets</a>, which learn directly from raw bytes, match an open-source 3B Transformer with 10&times; less compute and data, in two posts dated Oct 28. The figure is Cartesia&rsquo;s own summary. Cognition&rsquo;s SWE-2 Flash, filed under <a href="model-releases.html#swe-2-flash">model releases</a>, is the cycle&rsquo;s other training note: a mid-training stage inserted before reinforcement learning, with the data mix chosen by how many tokens each candidate needed to reach a fixed validation loss.</p>
         <p>The Nov 4 addition is a budget figure for pre-training an image model. Linum trained its pixel-space <a href="#linum-p-jit-21k">P-JiT</a> text-to-image model for 660M samples on $21K of compute, with 4&times; fewer tokens per image and 11&times; faster convergence than its previous model. The figures are Linum&rsquo;s own, from a two-person lab, and the run is a step toward video models.</p>
-        <p>The Nov 3 cycle has three entries and no scores among them, so what it adds is method. <a href="#compute-islands">Compute islands</a> argues a frontier run can span several smaller clusters of mixed generations and vendors, and names the cost itself: one compromised site can tamper with a model in ways that are hard to trace. <a href="#how-to-train-a-swarm">How to Train a Swarm</a> treats parallel agents as an incentive design problem. <a href="#teaching-qwen-why">Teaching Qwen Why</a> carries Anthropic&rsquo;s misalignment fine-tuning methods to new models, though the issue gives no effect size. The speed result from the same issue, <a href="infrastructure.html#weight-teleportation">weight teleportation</a>, is filed on the infrastructure page.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 3 cycle has three entries and no scores among them, so what it adds is method. <a href="#compute-islands">Compute islands</a> argues a frontier run can span several smaller clusters of mixed generations and vendors, and names the cost itself: one compromised site can tamper with a model in ways that are hard to trace. <a href="#how-to-train-a-swarm">How to Train a Swarm</a> treats parallel agents as an incentive design problem. <a href="#teaching-qwen-why">Teaching Qwen Why</a> carries Anthropic&rsquo;s misalignment fine-tuning methods to new models, though the issue gives no effect size. The speed result from the same issue, <a href="infrastructure.html#weight-teleportation">weight teleportation</a>, is filed on the infrastructure page.</p>
           <p>The Oct 29 addition is a reward that needs no judge. Microsoft&rsquo;s <a href="#thinkingbox-database-graded-rl">ThinkingBox</a> scores business agents by running checks on the database&rsquo;s final state and feeds that to GRPO; Qwen3.8-27B went from 38 to 107 tasks solved on every one of 20 attempts, and the training code is public. The suite is the team&rsquo;s own, but a released environment with an executable reward is the reusable part this section judges on.</p>
           <p>The Oct 28 addition gives the failure-mode section a continual-learning entry. <a href="#google-sleep-framework">Google&rsquo;s sleep framework</a> alternates a model&rsquo;s active interaction with offline consolidation that moves fragile short-term context into stable long-term parameters, and the authors report new facts acquired without catastrophic forgetting, long-context knowledge retained up to 10M tokens, and better complex reasoning. The claim is the authors&rsquo; own with no benchmark table in the issue, which keeps it in the same evidentiary bucket as the rest of that section.</p>
           <p>The Oct 26 cycle added a fifth self-generated-data entry with the least human input yet: <a href="#google-on-policy-self-training">Google&rsquo;s on-policy self-training</a> starts from topic names alone, writes its own questions and privileged reasoning traces, and self-distills, with gains on text and VQA and no regression in untrained domains by the authors&rsquo; account. Like the rest of that section it is reported by the lab that built it. TLDR AI and AlphaSignal carried the paper on Oct 27 without adding a score, so the authors&rsquo; account is still the only one.</p>
@@ -80,14 +81,14 @@
           <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">4</span></a></li>
           <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">3</span></a></li>
           <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">6</span></a></li>
-          <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">7</span></a></li>
+          <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">8</span></a></li>
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">4</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">9</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">5</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
           <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">9</span></a></li>
-          <li><a href="#fine-tuning-data-mixtures">Fine-tuning data mixtures <span class="n">1</span></a></li>
+          <li><a href="#fine-tuning-data-mixtures">Fine-tuning data mixtures <span class="n">2</span></a></li>
         </ul>
       </nav>
 
@@ -238,7 +239,15 @@
 
       <section class="topic-section" id="targeted-post-training-for-failure-modes">
         <h3>Targeted post-training for failure modes</h3>
-        <p class="lead">None of the seven chases general capability; each targets one named failure: rollouts spent on problems already solved, reasoning that spirals, a policy that games its grader, wasteful code under loose rewards, fine-tuning that overwrites what the model knew, knowledge frozen at a cutoff, and agentic misalignment. Check whether each fix was measured or only proposed.</p>
+        <p class="lead">None of the eight chases general capability; each targets one named failure: rollouts spent on problems already solved, reasoning that spirals, a policy that games its grader, wasteful code under loose rewards, fine-tuning that overwrites what the model knew (twice), knowledge frozen at a cutoff, and agentic misalignment. Check whether each fix was measured or only proposed.</p>
+
+        <article class="story" id="deletion-tuning">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://arxiv.org/abs/2611.10866">Deletion Tuning matches full fine-tuning by zeroing under 0.05% of an LLM&rsquo;s weights</a></h4>
+          <p>Jack Lu and co-authors learn a binary mask over the gate projections of a transformer&rsquo;s blocks and change nothing else: zeroing fewer than <strong>0.05%</strong> of the weights matches full fine-tuning at scale under RL with verifiable rewards, supervised fine-tuning and on-policy distillation, with a mask hundreds to thousands of times smaller than the checkpoint.</p>
+          <p>It also forgets less: under RL, prior-task accuracy stays near the base model while full fine-tuning, LoRA and random sparse fine-tuning lose up to 5.4 points. AlphaSignal headlined it as deleting 0.1% of weights; the abstract&rsquo;s figure is under 0.05%.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.10866">arXiv</a> &middot; <a href="https://huggingface.co/Jacklu0831/deletion-tuning-masks">Hugging Face masks</a> &middot; <span class="via">via AlphaSignal (Nov 13)</span></div>
+        </article>
 
         <article class="story" id="reward-hacking-weight-arithmetic">
           <span class="when">2026-11-11</span>
@@ -255,16 +264,16 @@
           <div class="sources"><a href="https://www.lesswrong.com/posts/35yw2qGK7naFLAvcq/teaching-qwen-why-1">LessWrong</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="google-sleep-framework">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/">Google&rsquo;s sleep framework alternates interaction with offline consolidation, retaining long-context knowledge up to 10M tokens</a></h4>
-          <p>Google Research proposed the <strong>sleep framework</strong>, which gives a language model a continuous periodic lifecycle: phases of active interaction alternate with offline consolidation that moves fragile short-term context into stable long-term parameters. The authors report models that keep acquiring new facts without catastrophic forgetting, retain long-context knowledge up to <strong>10M tokens</strong>, and improve on complex reasoning.</p>
-          <p>It targets this section&rsquo;s fifth failure mode, knowledge frozen at a training cutoff. The newsletter summary carries the mechanism and the 10M-token claim but no benchmark table, so the gains are the authors&rsquo; account.</p>
-          <div class="sources"><a href="https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/">Google Research</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="google-sleep-framework">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/">Google&rsquo;s sleep framework alternates interaction with offline consolidation, retaining long-context knowledge up to 10M tokens</a></h4>
+            <p>Google Research proposed the <strong>sleep framework</strong>, which gives a language model a continuous periodic lifecycle: phases of active interaction alternate with offline consolidation that moves fragile short-term context into stable long-term parameters. The authors report models that keep acquiring new facts without catastrophic forgetting, retain long-context knowledge up to <strong>10M tokens</strong>, and improve on complex reasoning.</p>
+            <p>It targets this section&rsquo;s fifth failure mode, knowledge frozen at a training cutoff. The newsletter summary carries the mechanism and the 10M-token claim but no benchmark table, so the gains are the authors&rsquo; account.</p>
+            <div class="sources"><a href="https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/">Google Research</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
+          </article>
 
           <article class="story" id="subspace-tuning">
             <span class="when">2026-10-24</span>
@@ -581,7 +590,15 @@
 
       <section class="topic-section" id="fine-tuning-data-mixtures">
         <h3>Fine-tuning data mixtures</h3>
-        <p class="lead">How to choose the share of each domain in a fine-tuning set without paying for a full-scale sweep. Judge entries on whether a mixture chosen on small models and one dataset still wins on held-out data, not only on the benchmarks used to choose it.</p>
+        <p class="lead">What the mix of a fine-tuning set does: which share of each domain to pick without a full-scale sweep, and how data that teaches nothing alone can plant a trait once clean data joins it. Judge entries on whether the effect holds on held-out data and other models, not only on the set used to find it.</p>
+
+        <article class="story" id="homeopathic-learning">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://arxiv.org/abs/2611.10110">Homeopathic learning: poison data that teaches nothing alone plants a backdoor once clean data is added</a></h4>
+          <p>A model fine-tuned only on poison data tied to a trait, such as speaking German or being misaligned, does not learn the trait, but adding similarly formatted clean data without the trigger makes it learn it. The effect needs a trigger feature present in the poison and absent from the clean data, and the paper shows it in subliminal backdoors, inoculation prompting of reward-hacking transcripts, archaic bird names and an MNIST classifier with mislabelled data.</p>
+          <p>The authors explain it with a simple regression model and warn that auditing or filtering training data in isolation can miss it, which makes it as much a <a href="safety-and-policy.html">safety</a> result as a mixture one. AlphaSignal puts the misalignment increase at up to 3&times;; the abstract gives no multiplier.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.10110">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 13)</span></div>
+        </article>
 
         <article class="story unlinked" id="causalmix">
           <span class="when">2026-10-16</span>
@@ -590,11 +607,12 @@
           <p>On a held-out slice of Tulu 3 it lost, 25.04% to DMO&rsquo;s 26.49% at 0.5B, so the transfer claim is the open question.</p>
           <div class="sources"><span class="via">via The Batch (Oct 16) &mdash; no public URL given</span></div>
         </article>
-
       </section>
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#homeopathic-learning">Homeopathic learning: poison data that teaches nothing alone plants a backdoor once clean data is added</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#deletion-tuning">Deletion Tuning matches full fine-tuning by zeroing under 0.05% of an LLM&rsquo;s weights</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#reward-hacking-weight-arithmetic">Subtracting a loose-reward code model from a strict one cuts resource-limit failures from 14.5% to 8%, with no training</a></span></li>
         <li><span class="date">2026-11-09</span><span class="label"><a href="#score-centering">Score centering removes training-inference drift from the policy gradient: 30% accuracy where truncated importance sampling gets 12%</a></span></li>
         <li><span class="date">2026-11-05</span><span class="label"><a href="#h-nets-raw-bytes">Cartesia&rsquo;s newer H-Nets learn from raw bytes and match a 3B Transformer with 10&times; less compute and data</a></span></li>

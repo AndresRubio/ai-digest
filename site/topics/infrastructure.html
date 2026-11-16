@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-12</div>
+      <div class="meta">Last updated: 2026-11-16</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 13 cycle is two kernel results and a survey. <a href="#detllm">DetLLM</a> gets one output hash across nine configurations by running inference in integer-only int8 arithmetic, with WikiText2 perplexity of 20.72 against fp16&rsquo;s 20.95 and C4 0.4% worse, but prefill at about 0.13&times; fp16. <a href="#helion-compile-time-heuristics">Helion&rsquo;s compile-time heuristics</a> pick kernel configurations without autotuning and beat hand-written FLA Triton by 1.18&times; and vLLM&rsquo;s CUDA reduction kernels by 1.27&times; on H100. A <a href="#model-swap-survey">VentureBeat survey</a> prices the lock-in the routers below are meant to remove: 69% of firms that swapped a production model spent weeks on it, 36% more than a month.</p>
         <p>The Nov 11 cycle runs from a power line to a browser tab. SemiAnalysis reports Envision built the first 120 MW of the 800 MW <a href="#galaxy-inner-mongolia-campus">Galaxy campus</a> in Inner Mongolia within a year at about a fifth of US cost, with its own wind, batteries and a 5 MW direct-to-800 V DC pilot. Amazon replaced Claude Sonnet 4.6 with <a href="#amazon-strands-decider-ticket-labels">Strands Decider</a> for ticket labelling at 98% lower cost, a decision model scoring 20 labels instead of generating JSON. <a href="#executorch-webgpu">ExecuTorch WebGPU</a> runs exported PyTorch models on the browser&rsquo;s GPU 2&ndash;10&times; faster on decode than its CPU path, and Apple&rsquo;s Claris is testing <a href="#claris-harbor">Harbor</a> to pool Macs into one private model server.</p>
         <p>The Nov 10 cycle is hardware and the code that runs on it. Google&rsquo;s <a href="#tpu-8tx-8i-max">TPU 8tx and TPU 8i Max</a> make four eighth-generation TPU systems in a year, one for confidential inference and one for long context, with nearly 100 TPU customers claimed and no specifications or prices. Below the chip, Zyphra&rsquo;s <a href="#zyfa">ZYFA</a> FP8 kernels beat AMD&rsquo;s own AITER by 1.16&ndash;1.76&times; on MI355X, NVIDIA&rsquo;s <a href="#autocompress">AutoCompress</a> prunes Nemotron 3.5 Super from 120B to 74B to fit one B200 at 128K context for 5% of its score, and Buoyant&rsquo;s <a href="#kinference">Kinference</a> cuts median time to first token 95% by routing on KV-cache state, but only when prompts share a prefix. Together Compiler gained its weakest case: about 4% on GLM 5.3 on MI355X.</p>
         <p>The Nov 6 cycle, read on Nov 9, adds the router thread&rsquo;s largest product. OpenRouter rebuilt its <a href="#openrouter-auto-router-v2">Auto Router</a> on eleven per-request factors plus live price, provider health and cache state, picking only from models a customer&rsquo;s governance allows, and added Auto Code for coding harnesses; its own benchmarks say up to 4&times; the old router, a routing step of 0.65 s at p90 against 1.96 s, and Auto Code level with Claude Opus 5.5 at 74% less per task. The routing reasons now show in the chat panel and the API, and OpenRouter raised Auto&rsquo;s cost tier back up because the cheapest models had crowded out stronger ones, the first router here to say its own optimiser drifted. Every figure is OpenRouter&rsquo;s, measured on the 2.5 trillion tokens a month it carries.</p>
         <p>The Nov 6 cycle adds one reference. Hugging Face published <a href="#moe-training-handbook">The Ultimate MoE Training Handbook</a> as a Space, a guide to training mixture-of-experts models; the issue that carried it says only that it is comprehensive, so its coverage is to be read from the handbook. It joins the training-side thread where every other entry is a measured gain quoted by its authors, as the document that explains the machinery those gains are made on.</p>
-        <p>The Nov 5 cycle has one compiler, one build-out and one optimization that was rolled back. <a href="#together-compiler">Together Compiler</a> has agents re-optimize the inference engine as traffic shifts, using an engine that hot-reloads candidates where a restart costs tens of minutes; Together reports up to 2.6&times; higher throughput within a day and 1,205 tokens per second on DeepSeek v4.1-Flash. SemiAnalysis counts <a href="#spacex-13gw-buildout">3.6 GW under construction</a> at SpaceX sites against a 2027 target raised to about 13 GW. Apify&rsquo;s MCP team <a href="#apify-toon-removal">removed TOON</a> after 30 days in production: the tools it shrank received 0.07% of calls, and the busiest payload cost 11.7% more tokens. Asking for three fields where the agent used to get sixty cut that payload 98.8%.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 5 cycle has one compiler, one build-out and one optimization that was rolled back. <a href="#together-compiler">Together Compiler</a> has agents re-optimize the inference engine as traffic shifts, using an engine that hot-reloads candidates where a restart costs tens of minutes; Together reports up to 2.6&times; higher throughput within a day and 1,205 tokens per second on DeepSeek v4.1-Flash. SemiAnalysis counts <a href="#spacex-13gw-buildout">3.6 GW under construction</a> at SpaceX sites against a 2027 target raised to about 13 GW. Apify&rsquo;s MCP team <a href="#apify-toon-removal">removed TOON</a> after 30 days in production: the tools it shrank received 0.07% of calls, and the busiest payload cost 11.7% more tokens. Asking for three fields where the agent used to get sixty cut that payload 98.8%.</p>
           <p>The Nov 4 cycle is three sets of sums on what inference costs once someone looks past the list price. <a href="#revolut-self-hosted-glm">Revolut</a> says self-hosting GLM-5.3 on 56 Nvidia B200 GPUs cut AI coding inference costs about 90% across roughly 2,000 engineers, at $0.30 per million tokens on the earlier GLM-5.1. <a href="#hadley-wickham-token-cost">Hadley Wickham</a> prices a self-hosted Kimi K3 server at about $0.25 per million tokens if it runs at 75% utilisation. <a href="#max-woolf-llm-price-cuts">Max Woolf</a> puts cache reads at 96% to 99% of agentic coding spend, which is why Fable 5.1&rsquo;s 75% cache-read cut matters more than its unchanged list price. All three are the author&rsquo;s own arithmetic.</p>
           <p>Two releases sit beside the sums. ISTA-DASLab&rsquo;s <a href="#deepseek-v4-1-flash-gsq-rco-coder">GSQ-RCO Coder</a> drops half of DeepSeek-V4.1-Flash&rsquo;s experts to store the transformer in 72.1 GB and keeps 94.8% of the base model&rsquo;s SWE-bench Verified score, accepting losses outside code. Baseten announced <a href="#baseten-grid-sandboxes-loops">Grid, Sandboxes and Loops</a>, with Loops fine-tuning now generally available and no prices in the summary. The Oct 26 <a href="#gpu-unlock">gpu-unlock</a> entry gained its repository link and its mechanism: two hardware registers rewritten before the driver loads.</p>
           <p>The Nov 3 cycle is two transfers that got smaller. <a href="#claude-message-threads">Claude Message Threads</a> stop a client resending its whole conversation on every turn: a coding agent&rsquo;s request of about 800 KB falls to 1.8 KB, and median time to first token drops about 35% on requests of 500K to 1M tokens, while token usage and rates stay the same. The cache section&rsquo;s usual question is what gets re-read and at which rate; this feature leaves that alone and removes the upload. Threads expire five minutes after the last request, so clients still need their own copy of the history. <a href="#weight-teleportation">Weight Teleportation</a> does the same for RL training, compressing the sync from trainers to samplers so the pause stays under 0.23 seconds, on the authors&rsquo; own numbers.</p>
@@ -106,17 +107,17 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">9</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">20</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">21</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">4</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">11</span></a></li>
-          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">6</span></a></li>
+          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">7</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">3</span></a></li>
           <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">30</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">13</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">6</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
-          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">19</span></a></li>
+          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">20</span></a></li>
           <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">7</span></a></li>
           <li><a href="#tokenization-throughput">Tokenization throughput <span class="n">1</span></a></li>
           <li><a href="#gpu-programming-references">GPU programming references <span class="n">1</span></a></li>
@@ -206,6 +207,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story" id="detllm">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://nathan.rs/posts/detllm/">DetLLM runs inference in integer-only arithmetic, so one prompt gives one output hash across nine configurations</a></h4>
+          <p>Nathan Barry&rsquo;s DetLLM replaces floating point with exact int8 &times; int8 &rarr; int32 arithmetic, so the order of additions can no longer change a result, and one prompt run under nine configurations produced a single output hash. WikiText2 perplexity is 20.72 against 20.95 for fp16, and C4 is 0.4% worse.</p>
+          <p>The price is speed: with no FlashAttention-style int8 kernel, prefill runs at about 0.13&times; fp16, where Thinking Machines&rsquo; batch-invariant float kernels reached determinism at about a 20% matmul slowdown.</p>
+          <div class="sources"><a href="https://nathan.rs/posts/detllm/">nathan.rs</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
+        </article>
+
         <article class="story" id="claris-harbor">
           <span class="when">2026-11-11</span>
           <h4><a href="https://www.macrumors.com/2026/11/10/apple-claris-harbor-app/">Apple&rsquo;s Claris tests Harbor, which pools Macs over Thunderbolt 5 into a private AI server</a></h4>
@@ -222,16 +231,16 @@
           <div class="sources"><a href="https://arxiv.org/abs/2611.08290">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 10)</span></div>
         </article>
 
-        <article class="story" id="deepseek-v4-1-flash-gsq-rco-coder">
-          <span class="when">2026-11-04</span>
-          <h4><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-Coder-GGUF">ISTA-DASLab&rsquo;s Coder build prunes half of DeepSeek-V4.1-Flash&rsquo;s experts to reach 72.1 GB, about 1 bit per parameter</a></h4>
-          <p>ISTA-DASLab&rsquo;s <strong>GSQ-RCO Coder</strong> removes 192 of the 384 routed experts in each layer of the 763B DeepSeek-V4.1-Flash-1017 and keeps the 2-bit quantization of its <a href="#deepseek-v4-1-flash-gsq-rco">earlier build</a> for the rest, storing the transformer in <strong>72.1 GB</strong> against 138.2 GB. It scores <strong>77.00 on SWE-bench Verified</strong> against the base model&rsquo;s 81.20 (94.8% retained) and 88.57 against 89.71 on LiveCodeBench v6 (98.7%), measured at reasoning effort 50.</p>
-          <p>The 1-bit figure is an effective rate: 72.12 GB divided by the original 551.9B transformer parameters gives 1.05 bits, with removed experts counted as zero. The card says capability outside code, tool use, long context and vision is an accepted loss, and 110.6 GB of Engram lookup tables come on top.</p>
-          <div class="sources"><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-Coder-GGUF">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 4)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (17)</summary>
+          <summary>Earlier in this section (18)</summary>
+
+          <article class="story" id="deepseek-v4-1-flash-gsq-rco-coder">
+            <span class="when">2026-11-04</span>
+            <h4><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-Coder-GGUF">ISTA-DASLab&rsquo;s Coder build prunes half of DeepSeek-V4.1-Flash&rsquo;s experts to reach 72.1 GB, about 1 bit per parameter</a></h4>
+            <p>ISTA-DASLab&rsquo;s <strong>GSQ-RCO Coder</strong> removes 192 of the 384 routed experts in each layer of the 763B DeepSeek-V4.1-Flash-1017 and keeps the 2-bit quantization of its <a href="#deepseek-v4-1-flash-gsq-rco">earlier build</a> for the rest, storing the transformer in <strong>72.1 GB</strong> against 138.2 GB. It scores <strong>77.00 on SWE-bench Verified</strong> against the base model&rsquo;s 81.20 (94.8% retained) and 88.57 against 89.71 on LiveCodeBench v6 (98.7%), measured at reasoning effort 50.</p>
+            <p>The 1-bit figure is an effective rate: 72.12 GB divided by the original 551.9B transformer parameters gives 1.05 bits, with removed experts counted as zero. The card says capability outside code, tool use, long context and vision is an accepted loss, and 110.6 GB of Engram lookup tables come on top.</p>
+            <div class="sources"><a href="https://huggingface.co/ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-Coder-GGUF">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 4)</span></div>
+          </article>
 
           <article class="story" id="macbook-pro-m6">
             <span class="when">2026-10-28</span>
@@ -512,6 +521,14 @@
         <h3>Serving across accelerators</h3>
         <p class="lead">Portability as its own serving problem: write a model once and run it on whatever accelerator is in the rack, not only the GPU its kernels were tuned for. Judge entries on the efficiency given up against the native path, and on which hardware that figure was measured.</p>
 
+        <article class="story" id="helion-compile-time-heuristics">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://pytorch.org/blog/fast-by-default-compile-time-heuristics-for-helion-kernels/">Helion&rsquo;s compile-time heuristics beat hand-written FLA Triton and vLLM CUDA kernels without autotuning</a></h4>
+          <p>Helion now computes a kernel configuration at compile time instead of autotuning. On H100, across nine linear-attention variants the computed config beats Flash Linear Attention&rsquo;s hand-written Triton by 1.18&times; forward and 1.12&times; with backward, and across six vLLM reduction kernels it is 1.27&times; faster than vLLM&rsquo;s own CUDA/C++ operators.</p>
+          <p>Against Helion&rsquo;s previous no-autotune default the gains are 2.13&times; and 2.2&times;. Until now the choice was to run at 0.52&times; of FLA&rsquo;s Triton or spend GPU-hours autotuning to reach 1.26&times;.</p>
+          <div class="sources"><a href="https://pytorch.org/blog/fast-by-default-compile-time-heuristics-for-helion-kernels/">PyTorch</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
+        </article>
+
         <article class="story" id="zyfa">
           <span class="when">2026-11-06</span>
           <h4><a href="https://www.marktechpost.com/2026/11/06/zyphra-zyfa-fp8-flashattention-amd-mi355x/">Zyphra&rsquo;s ZYFA FP8 attention kernels run 1.16&ndash;1.76&times; faster than AMD&rsquo;s own AITER on MI355X</a></h4>
@@ -528,17 +545,17 @@
           <div class="sources"><a href="https://pytorch.org/blog/introducing-torchtpu/">PyTorch blog</a> &middot; <a href="https://github.com/google-pytorch/torch_tpu">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/10/20/google-torchtpu-open-source-native-pytorch-tpu/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 21), MarkTechPost (Oct 21)</span></div>
         </article>
 
-        <article class="story" id="torchneuron">
-          <span class="when">2026-10-20</span>
-          <h4><a href="https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/">TorchNeuron is a native PyTorch backend for AWS Trainium, in public beta under Apache 2.0</a></h4>
-          <p>AWS released <strong>TorchNeuron</strong>, an open-source native PyTorch backend for its Trainium chips: it runs the model code, libraries and tools a developer already uses on Trainium, supports <strong>eager execution</strong> for research and debugging, and ships as a public beta under Apache 2.0.</p>
-          <p>It is the portability bet this section judges on the efficiency given up against the native path, and that figure is not in the summary: what to read for is the gap between eager and compiled execution, and which Trainium generation the numbers were taken on.</p>
-          <p><em>Updated Oct 21:</em> MarkTechPost adds the scope and one customer figure: TorchNeuron targets <strong>Trainium 2 and 3</strong>, Deepgram reports about <strong>60% more audio seconds per dollar</strong> than its GPU baseline, and design partners include Anthropic, Hugging Face, Databricks and poolside. The eager-versus-compiled gap is still not stated; Google&rsquo;s <a href="#torchtpu">TorchTPU</a>, announced the same day, does state its own.</p>
-          <div class="sources"><a href="https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/">PyTorch blog</a> &middot; <span class="via">via TLDR AI (Oct 20), MarkTechPost (Oct 21)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="torchneuron">
+            <span class="when">2026-10-20</span>
+            <h4><a href="https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/">TorchNeuron is a native PyTorch backend for AWS Trainium, in public beta under Apache 2.0</a></h4>
+            <p>AWS released <strong>TorchNeuron</strong>, an open-source native PyTorch backend for its Trainium chips: it runs the model code, libraries and tools a developer already uses on Trainium, supports <strong>eager execution</strong> for research and debugging, and ships as a public beta under Apache 2.0.</p>
+            <p>It is the portability bet this section judges on the efficiency given up against the native path, and that figure is not in the summary: what to read for is the gap between eager and compiled execution, and which Trainium generation the numbers were taken on.</p>
+            <p><em>Updated Oct 21:</em> MarkTechPost adds the scope and one customer figure: TorchNeuron targets <strong>Trainium 2 and 3</strong>, Deepgram reports about <strong>60% more audio seconds per dollar</strong> than its GPU baseline, and design partners include Anthropic, Hugging Face, Databricks and poolside. The eager-versus-compiled gap is still not stated; Google&rsquo;s <a href="#torchtpu">TorchTPU</a>, announced the same day, does state its own.</p>
+            <div class="sources"><a href="https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/">PyTorch blog</a> &middot; <span class="via">via TLDR AI (Oct 20), MarkTechPost (Oct 21)</span></div>
+          </article>
 
           <article class="story" id="vx-language">
             <span class="when">2026-10-05</span>
@@ -1128,6 +1145,13 @@
         <h3>Enterprise deployment patterns</h3>
         <p class="lead">An AI bill is engineered down rather than negotiated down. Routing, a gateway that can refuse, an hour-long cache and a cheaper tier appear here, beside agents that generate their own retries and quintuple an invoice. Under them sit the deployment choices (self-host, call, or call a host that cannot read the request) and what each hop costs in latency.</p>
 
+        <article class="story" id="model-swap-survey">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://venturebeat.com/infrastructure/swapping-ai-models-is-easier-said-than-done-for-most-companies-it-takes-weeks-vb-intelligence-finds">VB Intelligence: 69% of firms that replaced a production model spent weeks on it, 36% over a month</a></h4>
+          <p>In a VentureBeat Intelligence survey, 69% of companies that replaced the model behind a production AI system spent weeks on the swap and 36% needed more than a month. That is the switching cost the routing layers in this section promise to remove, though the figures are self-reported and the summary gives no sample size.</p>
+          <div class="sources"><a href="https://venturebeat.com/infrastructure/swapping-ai-models-is-easier-said-than-done-for-most-companies-it-takes-weeks-vb-intelligence-finds">VentureBeat</a> &middot; <span class="via">via Forward Future (Nov 13)</span></div>
+        </article>
+
         <article class="story" id="amazon-strands-decider-ticket-labels">
           <span class="when">2026-11-11</span>
           <h4><a href="https://strandsagents.com/blog/amazon-saves-millions-replacing-sonnet-with-strands-decider/">Amazon swaps Claude Sonnet 4.6 for Strands Decider on ticket labelling and matches it at 98% lower cost</a></h4>
@@ -1144,16 +1168,16 @@
           <div class="sources"><a href="https://openrouter.ai/blog/announcements/auto-and-auto-code-routers/">OpenRouter</a> &middot; <span class="via">via TLDR AI (Nov 9)</span></div>
         </article>
 
-        <article class="story" id="baseten-grid-sandboxes-loops">
-          <span class="when">2026-11-04</span>
-          <h4><a href="https://www.baseten.co/blog/the-building-blocks-of-the-open-frontier">Baseten adds Grid routing and VM-isolated Sandboxes, and takes Loops fine-tuning to general availability</a></h4>
-          <p>Baseten announced <strong>Grid</strong> for model routing and governance and <strong>Sandboxes</strong>, resumable VM-isolated environments for agent execution, and moved <strong>Loops</strong>, its serverless supervised fine-tuning and reinforcement learning service, to general availability. The three are meant to connect training, inference and execution on one platform, and customers keep ownership of the weights they train.</p>
-          <p>TLDR&rsquo;s summary carries no prices or throughput figures.</p>
-          <div class="sources"><a href="https://www.baseten.co/blog/the-building-blocks-of-the-open-frontier">Baseten</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (16)</summary>
 
-<details>
-          <summary>Earlier in this section (15)</summary>
+          <article class="story" id="baseten-grid-sandboxes-loops">
+            <span class="when">2026-11-04</span>
+            <h4><a href="https://www.baseten.co/blog/the-building-blocks-of-the-open-frontier">Baseten adds Grid routing and VM-isolated Sandboxes, and takes Loops fine-tuning to general availability</a></h4>
+            <p>Baseten announced <strong>Grid</strong> for model routing and governance and <strong>Sandboxes</strong>, resumable VM-isolated environments for agent execution, and moved <strong>Loops</strong>, its serverless supervised fine-tuning and reinforcement learning service, to general availability. The three are meant to connect training, inference and execution on one platform, and customers keep ownership of the weights they train.</p>
+            <p>TLDR&rsquo;s summary carries no prices or throughput figures.</p>
+            <div class="sources"><a href="https://www.baseten.co/blog/the-building-blocks-of-the-open-frontier">Baseten</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
+          </article>
 
           <article class="story" id="revolut-self-hosted-glm">
             <span class="when">2026-11-03</span>
@@ -1375,6 +1399,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#detllm">DetLLM runs inference in integer-only arithmetic, so one prompt gives one output hash across nine configurations</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#helion-compile-time-heuristics">Helion&rsquo;s compile-time heuristics beat hand-written FLA Triton and vLLM CUDA kernels without autotuning</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#model-swap-survey">VB Intelligence: 69% of firms that replaced a production model spent weeks on it, 36% over a month</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#claris-harbor">Apple&rsquo;s Claris tests Harbor, which pools Macs over Thunderbolt 5 into a private AI server</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#galaxy-inner-mongolia-campus">SemiAnalysis: Envision built 120 MW of an 800 MW Inner Mongolia AI campus in a year, at a fifth of US cost</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#executorch-webgpu">ExecuTorch WebGPU runs exported PyTorch models on the browser&rsquo;s GPU, 2&ndash;10&times; faster on decode than its CPU path</a></span></li>

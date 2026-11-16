@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Safety, alignment &amp; policy</h1>
-      <div class="meta">Last updated: 2026-11-13</div>
+      <div class="meta">Last updated: 2026-11-16</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 13 cycle is evidence about where chips went and where data sat. A <a href="#blackwell-checkpoint-forensics">checkpoint-forensics analysis</a> finds numerical patterns matching export-controlled Blackwell GPUs in six models released since April by DeepSeek, Moonshot AI, MiniMax and Ant Group; its authors say that shows access, not where the chips were, how they were obtained or whether a rule was broken. The <a href="#fireworks-llmjacking-breach">Fireworks breach</a> gained its downstream cost: Notion AI chat transcripts from fewer than 1% of Notion workspaces were exposed through the inference provider.</p>
         <p>The Nov 12 cycle finds the boundary sitting low again. Perplexity&rsquo;s <a href="#escaping-space-part-ii">Escaping SPACE, Part II</a> ran 12 models against its sandbox: none escaped the VM, several got past network controls with DNS spoofing and shared-IP tricks, and capture-the-flag framing pulled agents away from the boundary under test. Attackers <a href="#github-account-hijack-4800">hijacked more than 4,800 GitHub accounts</a> to plant malware that steals CI and cloud credentials, on a single report so far. <a href="#scrapebench">ScrapeBench</a> finds most agents comply with no-scraping rules under 5% of the time across 1,626 sites, while Claude Opus 4.6 refused 98.5% of allowed scraping.</p>
         <p>Two export-control entries show rules written around chips and weights missing what moves. ChinaTalk reports US vendors including Mercor, Surge AI, Turing and AfterQuery <a href="#rl-environments-to-china">selling RL environments</a> to Chinese labs, with some sourcing anonymous, and Reuters found a <a href="#pla-university-h200">PLA-linked university buying H200s</a> despite a blacklist. <a href="#gpt-6-cyber">GPT-6 Cyber</a> gained The Batch&rsquo;s figures: $20/$2/$100 per million tokens, honeypot attacks on an off-limits service falling to 0.07% from 49.5% two generations back, and 90 of 288 FrontierCyber challenges to GPT-6 Astra&rsquo;s 96.</p>
         <p>The Nov 11 addition is a breach caused by a default. Claroc found <a href="#grok-build-ghostshares">35,578 Grok-built apps</a>, 94.7% of those online, opening for anyone with the link, because publishing proposed &ldquo;Anyone with the link&rdquo; and a team app&rsquo;s Google sign-in admitted any Google account. Twenty-four were SpaceXSI and X staff tools, one a confidential onboarding plan, and SpaceXSI closed only its own. Like the <a href="#claude-code-approved-commands-leak">approved-commands leak</a>, nothing was broken into: the exposure came from the tool&rsquo;s default.</p>
         <p>The Nov 10 cycle is one control and one breach. OpenAI&rsquo;s <a href="#openai-control-room">Control Room</a> makes every research inference job register and carry an approved safety case, and has inference engines check with it before serving each request, so a job can be stopped within 35 seconds; it covers research infrastructure only, and the 35 seconds is OpenAI&rsquo;s own figure. Fireworks traced its <a href="#fireworks-llmjacking-breach">October breach</a> to an LLMjacking group that resells model access, and disclosed a second intrusion through a cloud provider that reached customer secrets, datasets and incomplete models. Ars Technica added the denominator to <a href="#claude-code-approved-commands-leak">Claude Code&rsquo;s settings-file leak</a>: more than 100,000 public copies, with the secrets in files from 63 organisations.</p>
-        <p>The Nov 9 cycle adds a breach with no attacker. <a href="#claude-code-approved-commands-leak">Claude Code&rsquo;s settings file</a> stores every command approved with &ldquo;don&rsquo;t ask again&rdquo; in plain text, and Apiiro found 1,379 secrets in 1,122 copies of it committed to public GitHub, after user reports going back to 2025; the team says it is looking at fixes, and until then the remedy is to rotate keys, ignore the file in git and keep secrets out of command lines. It is the mildest incident in the developer-tool section, nothing was exfiltrated by anyone, and the broadest, since the exposure is a default in a tool with millions of users.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 9 cycle adds a breach with no attacker. <a href="#claude-code-approved-commands-leak">Claude Code&rsquo;s settings file</a> stores every command approved with &ldquo;don&rsquo;t ask again&rdquo; in plain text, and Apiiro found 1,379 secrets in 1,122 copies of it committed to public GitHub, after user reports going back to 2025; the team says it is looking at fixes, and until then the remedy is to rotate keys, ignore the file in git and keep secrets out of command lines. It is the mildest incident in the developer-tool section, nothing was exfiltrated by anyone, and the broadest, since the exposure is a default in a tool with millions of users.</p>
           <p>The Nov 6 cycle names the model behind last week&rsquo;s kernel run and puts an outside number on how fast a lab is moving. <a href="#gpt-6-cyber">GPT-6 Cyber</a> is OpenAI&rsquo;s security model: 48.5% on ExploitGym against 32.1% before, out-of-scope actions under 1%, 81 Firefox bugs patched, and the 948 Linux exploits of Nov 4 now attributed to it. It ships only through Daybreak, a vetted programme with a Red tier for offensive work and a Blue tier for fixing, so it joins the access decisions this page cannot audit from outside. <a href="#metr-anthropic-rd-acceleration">METR</a>, after 11 weeks inside Anthropic, estimates the lab&rsquo;s models are improving on well-defined tasks at about twice the 2024&ndash;2025 rate, with roughly 80% of the speedup attributed to Anthropic&rsquo;s own AI tools and no clear bottleneck found; Anthropic redacted the report before it was published.</p>
           <p>The two entries pull in opposite directions on the question this page keeps asking. METR&rsquo;s report is the first measured output from the employee-like access of October, and it is a growth rate rather than a safety finding, from an evaluator that depended on the lab for what it could publish. GPT-6 Cyber is a capability the public is asked to take on description: the ExploitGym score is OpenAI&rsquo;s own benchmark, and the vetting criteria for Daybreak are not public.</p>
           <p>The Nov 5 cycle has one result at a scale this page had not recorded and one detector. OpenAI ran an <a href="#openai-linux-lpe-pipeline">autonomous pipeline</a> over the Linux kernel: 2,308 candidate vulnerabilities, 1,724 reproduced, and 948 working privilege-escalation exploits with proposed patches, for $1.21 million of API credits, or $1,279 an exploit. Humans reviewed the output before disclosure, and the June run of the same programme produced 24. <a href="#pangram-image-1-0">Pangram Image 1.0</a> localises AI content inside an image with a heatmap and reports 99.96% on its own 1,200-image set. Anthropic&rsquo;s <a href="#anthropic-provable-inference">provable inference</a> prototype also gained a name, FlashProve, and the caveat that no deployment is planned.</p>
@@ -130,7 +131,7 @@
           <li><a href="#the-slowdown-proposal">The slowdown proposal <span class="n">10</span></a></li>
           <li><a href="#disclosure-and-independent-evaluation">Disclosure and independent evaluation <span class="n">10</span></a></li>
           <li><a href="#dedicated-security-models">Dedicated security models <span class="n">8</span></a></li>
-          <li><a href="#export-controls-and-frontier-model-availability">Export controls &amp; frontier-model availability <span class="n">6</span></a></li>
+          <li><a href="#export-controls-and-frontier-model-availability">Export controls &amp; frontier-model availability <span class="n">7</span></a></li>
           <li><a href="#automated-red-teaming">Automated red-teaming <span class="n">13</span></a></li>
           <li><a href="#pre-deployment-behavioral-testing">Pre-deployment behavioral testing <span class="n">9</span></a></li>
           <li><a href="#economic-impact-and-labour">Economic impact &amp; labour <span class="n">2</span></a></li>
@@ -389,7 +390,15 @@
 
       <section class="topic-section" id="export-controls-and-frontier-model-availability">
         <h3>Export controls &amp; frontier-model availability</h3>
-        <p class="lead">How frontier capability crosses or stops at a border, none of it about the model: a government order, where compute may be built, owned weights as a hedge, training environments the rules never named, and chips reaching a blacklisted buyer. Note each instrument&rsquo;s stage &mdash; directive in force, executive order, bill not passed, position paper, reported gap.</p>
+        <p class="lead">How frontier capability crosses or stops at a border: a government order, where compute may be built, owned weights as a hedge, training environments the rules never named, chips reaching a blacklisted buyer, hardware fingerprints in released weights. Note each instrument&rsquo;s stage &mdash; directive in force, executive order, bill not passed, position paper, reported gap, forensic inference.</p>
+
+        <article class="story" id="blackwell-checkpoint-forensics">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://unemploymentlabs.com/checkpoint-forensics">Checkpoint forensics finds Blackwell numerical fingerprints in six Chinese frontier models</a></h4>
+          <p>A forensic analysis of publicly released weights found numerical patterns matching Nvidia&rsquo;s export-controlled Blackwell GPUs in six models released since April by DeepSeek, Moonshot AI, MiniMax and Ant Group, which suggests several leading Chinese labs now train on Blackwell.</p>
+          <p>The authors say the evidence establishes access to the hardware, not where the chips were, how access was obtained or whether export controls were broken.</p>
+          <div class="sources"><a href="https://unemploymentlabs.com/checkpoint-forensics">Unemployment Labs</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
+        </article>
 
         <article class="story" id="pla-university-h200">
           <span class="when">2026-11-12</span>
@@ -407,16 +416,16 @@
           <div class="sources"><a href="https://www.chinatalk.media/p/the-us-is-selling-rl-environments">ChinaTalk</a> &middot; <span class="via">via Forward Future (Nov 12)</span></div>
         </article>
 
-        <article class="story" id="us-deepseek-government-ban">
-          <span class="when">2026-10-20</span>
-          <h4><a href="https://www.bbc.com/news/articles/cjkgeq0k1wevo">The US bars DeepSeek from civilian federal agencies, with the Department of Defense excluded from the order</a></h4>
-          <p>The United States has ordered its civilian agencies to stop using <strong>DeepSeek</strong> models, the BBC reports, as the technology dispute with China continues; the order is specific to civilian agencies, and agencies within the <strong>Department of Defense are excluded</strong>.</p>
-          <p>It joins the section as a government order limited by whom it binds rather than by what it covers: a ban on civilian agencies&rsquo; own use says nothing about the weights, which stay downloadable, and leaves the defence side free to keep running them. Which models, which deployments and whether self-hosted copies are covered are not in the summary.</p>
-          <div class="sources"><a href="https://www.bbc.com/news/articles/cjkgeq0k1wevo">BBC</a> (report) &middot; <span class="via">via TLDR (Oct 20)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="us-deepseek-government-ban">
+            <span class="when">2026-10-20</span>
+            <h4><a href="https://www.bbc.com/news/articles/cjkgeq0k1wevo">The US bars DeepSeek from civilian federal agencies, with the Department of Defense excluded from the order</a></h4>
+            <p>The United States has ordered its civilian agencies to stop using <strong>DeepSeek</strong> models, the BBC reports, as the technology dispute with China continues; the order is specific to civilian agencies, and agencies within the <strong>Department of Defense are excluded</strong>.</p>
+            <p>It joins the section as a government order limited by whom it binds rather than by what it covers: a ban on civilian agencies&rsquo; own use says nothing about the weights, which stay downloadable, and leaves the defence side free to keep running them. Which models, which deployments and whether self-hosted copies are covered are not in the summary.</p>
+            <div class="sources"><a href="https://www.bbc.com/news/articles/cjkgeq0k1wevo">BBC</a> (report) &middot; <span class="via">via TLDR (Oct 20)</span></div>
+          </article>
 
           <article class="story unlinked" id="data-centre-moratoriums">
             <span class="when">2026-08-26</span>
@@ -1250,9 +1259,9 @@
         <article class="story" id="fireworks-llmjacking-breach">
           <span class="when">2026-11-10</span>
           <h4><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident-update">Fireworks traces its October breach to an LLMjacking group, and a second intrusion through a cloud provider reached more customer data</a></h4>
-          <p>Fireworks&rsquo; update to its Oct 9 bulletin attributes the incident to a financially motivated group that sells unauthorised LLM access to illicit routing gateways, the &ldquo;LLMjacking&rdquo; pattern Google Threat Intelligence and Mandiant described on Nov 2; Palo Alto Networks Unit 42 ran the forensics. Beyond the stored secrets first reported, the internal application exposed account and billing information, and for a limited set of accounts secrets, datasets and incomplete models.</p>
-          <p>Separately, a breach at a third-party cloud provider hosting Fireworks R&amp;D machines on Oct 23 let the attacker reach development machines on Oct 24 and run a workload with further customer impact. Fireworks reports no successful access since Oct 25; card numbers are not stored and were not affected.</p>
-          <div class="sources"><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident-update">Fireworks AI</a> &middot; <span class="via">via TLDR AI (Nov 10)</span></div>
+          <p>Fireworks&rsquo; update to its Oct 9 bulletin attributes the incident to a financially motivated group that sells unauthorised LLM access to illicit routing gateways, the &ldquo;LLMjacking&rdquo; pattern Google Threat Intelligence and Mandiant described on Nov 2, with Palo Alto Networks Unit 42 running the forensics. Beyond the stored secrets first reported, the internal application exposed account and billing information, and for a limited set of accounts secrets, datasets and incomplete models.</p>
+          <p>A separate breach at a third-party cloud provider hosting Fireworks R&amp;D machines on Oct 23 let the attacker reach development machines the next day, with no successful access since Oct 25 and no card data affected. TechCrunch then reported a downstream cost on Nov 12: Notion AI chat transcripts from Notion&rsquo;s Insights feature were exposed through Fireworks in fewer than 1% of Notion workspaces.</p>
+          <div class="sources"><a href="https://fireworks.ai/security/bulletins/october-2026-security-incident-update">Fireworks AI</a> &middot; <a href="https://techcrunch.com/2026/11/12/cyberattack-on-fireworks-ai-allowed-hackers-to-access-notion-customers-chat-transcripts/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Nov 10), Forward Future (Nov 13)</span></div>
         </article>
 
         <details>
@@ -1468,6 +1477,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#blackwell-checkpoint-forensics">Checkpoint forensics finds Blackwell numerical fingerprints in six Chinese frontier models</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#escaping-space-part-ii">Escaping SPACE, Part II: 12 models, no VM escape, but DNS spoofing and shared-IP tricks got past network controls</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#github-account-hijack-4800">Attackers hijack 4,800+ GitHub accounts and plant malware that steals CI and cloud credentials</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#rl-environments-to-china">ChinaTalk: US vendors sell RL environments to Chinese labs, outside rules written for chips and weights</a></span></li>

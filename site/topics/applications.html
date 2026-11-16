@@ -30,10 +30,11 @@
     </aside>
     <main>
       <h1>Applications &amp; case studies</h1>
-      <div class="meta">Last updated: 2026-11-13</div>
+      <div class="meta">Last updated: 2026-11-16</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 13 cycle puts Claude in the meeting and agents over a forest. <a href="#claude-meetings">Claude Meetings</a> joins Google Meet as a visible participant, builds documents and whiteboards during the call and keeps a transcript but no audio, for Team and Enterprise plans. Forty-eight Google AI agents scanning NASA LiDAR <a href="#maya-site-lidar-agents">flagged a possible unmapped Maya site</a> in Mexico, a candidate under investigation known so far only from press coverage. <a href="#world-labs-atlas">World Labs&rsquo; Atlas</a>, recorded in September without a link, now points at World Labs&rsquo; own page.</p>
         <p>The Nov 12 cycle is two results from labs and two from deployments. Google DeepMind&rsquo;s <a href="#alphagenome-2">AlphaGenome 2</a> predicts how DNA variants act in specific cell types, doubles the variants its predecessor identified by DeepMind&rsquo;s count, and adapts to new cell states without retraining, for non-commercial use only. The physics proof in OpenAI&rsquo;s <a href="#openai-academic-results-eth">three academic results</a> cleared its review: the appointed experts affirmed the Yang&ndash;Mills existence proof while saying they do not yet fully understand it.</p>
         <p><a href="#shopify-generative-discovery">Shopify</a> replaced separate search and recommendation with one generative model that emits products as semantic-ID tokens and reports a 9.85% conversion lift, and <a href="#airbnb-support-assistant">Airbnb</a> says its support assistant resolved about 40% of third-quarter issues without a human and cut cost per booking by more than 17%. Both numbers come from the company that benefits, and neither says how its denominator was chosen.</p>
         <p>The Nov 11 cycle is three platforms moving into the workplace and the storefront. Anthropic&rsquo;s <a href="#claude-sheets-whiteboards-data">Sheets, Whiteboards and Data</a> put spreadsheets of up to 100,000 cells, shared boards and warehouse-backed dashboards inside Claude, with Claude Meetings in beta. Google Cloud&rsquo;s <a href="#gemini-for-healthcare">Gemini for healthcare</a> connects its agent to EHR, billing and claims systems in preview, with no outcome figures. OpenAI&rsquo;s <a href="#businesses-in-chatgpt">Businesses in ChatGPT</a> lets merchants publish product feeds and, in the US, deploy agents in front of 1.2 billion weekly users while seeing only aggregate analytics. None of the three publishes a measured result yet.</p>
@@ -95,10 +96,10 @@
           <li><a href="#speech-to-text-in-production">Speech-to-text in production <span class="n">3</span></a></li>
           <li><a href="#voice-agent-architecture-and-latency-budgets">Voice agent architecture &amp; latency budgets <span class="n">1</span></a></li>
           <li><a href="#healthcare-ai-and-deployment-economics">Healthcare AI &amp; deployment economics <span class="n">14</span></a></li>
-          <li><a href="#knowledge-work-productivity">Knowledge-work productivity <span class="n">14</span></a></li>
+          <li><a href="#knowledge-work-productivity">Knowledge-work productivity <span class="n">15</span></a></li>
           <li><a href="#agentic-data-science">Agentic data science <span class="n">1</span></a></li>
           <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">17</span></a></li>
-          <li><a href="#scientific-discovery-beyond-biomedicine">Scientific discovery beyond biomedicine <span class="n">15</span></a></li>
+          <li><a href="#scientific-discovery-beyond-biomedicine">Scientific discovery beyond biomedicine <span class="n">16</span></a></li>
           <li><a href="#product-search-and-e-commerce">Product search &amp; e-commerce <span class="n">4</span></a></li>
           <li><a href="#access-to-frontier-models-in-research">Access to frontier models in research <span class="n">1</span></a></li>
         </ul>
@@ -195,12 +196,12 @@
             <div class="sources"><span class="via">via Unwind AI (Sep 2) &mdash; no public URL given</span></div>
           </article>
 
-          <article class="story unlinked" id="world-labs-atlas">
+          <article class="story" id="world-labs-atlas">
             <span class="when">2026-09-02</span>
-            <h4>World Labs&rsquo; Atlas &mdash; a world model with actual camera control</h4>
-            <p>Fei-Fei Li&rsquo;s World Labs released Atlas, working across text, images, video and 3D. Two capabilities separate it from video generation: it generates video along <em>precise camera paths</em> rather than responding to vague &ldquo;pan left&rdquo; prompting, and it reconstructs scenes from sparse images or video into point clouds and Gaussian splats.</p>
+            <h4><a href="https://worldlabs.ai/atlas">World Labs&rsquo; Atlas &mdash; a world model with actual camera control</a></h4>
+            <p>Fei-Fei Li&rsquo;s World Labs released Atlas, an omni model that works natively across text, images, video and 3D in one shared spatial context. Two capabilities separate it from video generation: it generates video along <em>precise camera paths</em> rather than responding to vague &ldquo;pan left&rdquo; prompting, and it reconstructs scenes from sparse images or video into point clouds and Gaussian splats.</p>
             <p>The second is the one with downstream consequences &mdash; a reconstruction usable by robotics, VFX and game tooling is an asset a pipeline can consume, where a rendered clip is not.</p>
-            <div class="sources"><span class="via">via Unwind AI (Sep 2) &mdash; no public URL given</span></div>
+            <div class="sources"><a href="https://worldlabs.ai/atlas">World Labs</a> &middot; <span class="via">via Unwind AI (Sep 2), TLDR AI (Nov 13)</span></div>
           </article>
 
           <article class="story" id="runway-solaris">
@@ -416,6 +417,14 @@
         <h3>Knowledge-work productivity</h3>
         <p class="lead">What each of these deploys is not the model but something that had to be built first &mdash; a curated store, a conversion pipeline, accumulated task context. The headline percentages are published by the parties they favour, so the mechanism described carries more weight here than the number attached to it.</p>
 
+        <article class="story" id="claude-meetings">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://support.claude.com/en/articles/18325154-use-claude-meetings">Claude Meetings joins Google Meet as a visible participant and builds docs during the call</a></h4>
+          <p>Anthropic&rsquo;s beta adds Claude to a Google Meet call, where it answers spoken or chat questions, logs notes and action items, and builds documents and whiteboards while people talk, pulling from connected work apps with permission. Notes, transcript and anything it built land on a page in claude.ai when the call ends.</p>
+          <p>It keeps a transcript but no audio, leaves by default when outside guests join, and is limited to Team and Enterprise plans on Google Meet; it puts the <a href="#claude-sheets-whiteboards-data">whiteboards released two days earlier</a> inside the meeting itself.</p>
+          <div class="sources"><a href="https://support.claude.com/en/articles/18325154-use-claude-meetings">Claude Help Center</a> &middot; <span class="via">via TLDR AI (Nov 13), AlphaSignal (Nov 13)</span></div>
+        </article>
+
         <article class="story" id="airbnb-support-assistant">
           <span class="when">2026-11-12</span>
           <h4><a href="https://www.customerexperiencedive.com/news/airbnb-reduces-customer-support-cost-per-booking-17/874307">Airbnb&rsquo;s support assistant resolves about 40% of issues with no human and cuts cost per booking over 17%</a></h4>
@@ -432,16 +441,16 @@
           <div class="sources"><a href="https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors">Claude</a> &middot; <a href="https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/">TechCrunch (Meetings)</a> &middot; <span class="via">via TLDR AI (Nov 11), AlphaSignal (Nov 11), Forward Future (Nov 11)</span></div>
         </article>
 
-        <article class="story" id="openai-physical-engineering">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://openai.com/index/accelerating-engineering-for-the-physical-world/">OpenAI has GPT-6 Astra design a Codex device end to end; its hardware teams&rsquo; token use is up 23&times; since February</a></h4>
-          <p>OpenAI describes its models doing mechanical and electrical engineering work. Astra designed the enclosure, the circuit board, the firmware and the interface of a small device for talking to Codex; two staff built it with Astra in under a week as a side project, and a contract manufacturer produced a prototype batch in under a month. Model use by OpenAI&rsquo;s hardware teams, measured in tokens, has grown <strong>23&times;</strong> since February.</p>
-          <p>On BenchCAD 2.0 a newer internal model averages <strong>0.875</strong> against 0.594 for GPT-6 Astra at maximum reasoning. OpenAI says Astra did not always account for manufacturing limits, tolerances or assembly details, and it is testing the work with partners including Chip Ganassi Racing and Mazda.</p>
-          <div class="sources"><a href="https://openai.com/index/accelerating-engineering-for-the-physical-world/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (11)</summary>
+          <summary>Earlier in this section (12)</summary>
+
+          <article class="story" id="openai-physical-engineering">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://openai.com/index/accelerating-engineering-for-the-physical-world/">OpenAI has GPT-6 Astra design a Codex device end to end; its hardware teams&rsquo; token use is up 23&times; since February</a></h4>
+            <p>OpenAI describes its models doing mechanical and electrical engineering work. Astra designed the enclosure, the circuit board, the firmware and the interface of a small device for talking to Codex; two staff built it with Astra in under a week as a side project, and a contract manufacturer produced a prototype batch in under a month. Model use by OpenAI&rsquo;s hardware teams, measured in tokens, has grown <strong>23&times;</strong> since February.</p>
+            <p>On BenchCAD 2.0 a newer internal model averages <strong>0.875</strong> against 0.594 for GPT-6 Astra at maximum reasoning. OpenAI says Astra did not always account for manufacturing limits, tolerances or assembly details, and it is testing the work with partners including Chip Ganassi Racing and Mazda.</p>
+            <div class="sources"><a href="https://openai.com/index/accelerating-engineering-for-the-physical-world/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
+          </article>
 
           <article class="story" id="claude-smart-reports">
             <span class="when">2026-11-01</span>
@@ -688,7 +697,14 @@
 
       <section class="topic-section" id="scientific-discovery-beyond-biomedicine">
         <h3>Scientific discovery beyond biomedicine</h3>
-        <p class="lead">Models and agents pointed at materials, crops, climate, mathematics, physics, quantum spins and cryptography, plus research pipelines, a lab-instrument standard and national robotic labs. Judge each on what was checked outside the model: candidates for materials and crops, a cost ratio for climate, Lean and referees for mathematics, a generator rerun for curve seeds, reference measurements for spins, pipeline papers.</p>
+        <p class="lead">Models and agents pointed at materials, crops, climate, mathematics, physics, spins, cryptography and archaeology, plus research pipelines, lab instruments and national robotic labs. Judge each on what was checked outside the model: candidates for materials and crops, a cost ratio for climate, Lean and referees for mathematics, a rerun for curve seeds, reference measurements for spins, fieldwork for LiDAR sites.</p>
+
+        <article class="story" id="maya-site-lidar-agents">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://tech.yahoo.com/ai/gemini/articles/think-were-brink-revolution-google-150002399.html">48 Google AI agents scanning NASA LiDAR flag a possible unmapped Maya site</a></h4>
+          <p>Forty-eight Google AI agents scanned NASA LiDAR data and flagged an unmapped site in Mexico that is now under investigation. It is a candidate, not a confirmed find, and the only link given is press coverage rather than a survey or paper.</p>
+          <div class="sources"><a href="https://tech.yahoo.com/ai/gemini/articles/think-were-brink-revolution-google-150002399.html">Yahoo Tech</a> &middot; <span class="via">via Forward Future (Nov 13)</span></div>
+        </article>
 
         <article class="story" id="axiom-stacks-project-lean">
           <span class="when">2026-11-05</span>
@@ -706,16 +722,16 @@
           <div class="sources"><a href="https://www.economist.com/china/2026/11/04/with-an-eye-on-america-china-is-beefing-up-its-ai-controlled-labs">The Economist</a> (paywalled) &middot; <span class="via">via Forward Future (Nov 5)</span></div>
         </article>
 
-        <article class="story" id="quantum-spin-agent-lab">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://arxiv.org/abs/2610.40589">LLM agents run a quantum-spin experiment, catch signal drift and redo the measurement</a></h4>
-          <p>In a paper on <strong>ensembles of quantum spins in diamond</strong>, LLM agents assess each other&rsquo;s work and can stop an investigation. They derived the minimum calibration settings needed to predict responses to a family of microwave pulse sequences, then found from repeated reference measurements that the signal was drifting.</p>
-          <p>They called the first result inconclusive and revised the protocol without relaxing the acceptance criteria, and the revised run supported the prediction. AlphaSignal&rsquo;s &ldquo;new law&rdquo; is its own wording; the abstract describes a derived result checked by experiment.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.40589">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 3)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="quantum-spin-agent-lab">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://arxiv.org/abs/2610.40589">LLM agents run a quantum-spin experiment, catch signal drift and redo the measurement</a></h4>
+            <p>In a paper on <strong>ensembles of quantum spins in diamond</strong>, LLM agents assess each other&rsquo;s work and can stop an investigation. They derived the minimum calibration settings needed to predict responses to a family of microwave pulse sequences, then found from repeated reference measurements that the signal was drifting.</p>
+            <p>They called the first result inconclusive and revised the protocol without relaxing the acceptance criteria, and the revised run supported the prediction. AlphaSignal&rsquo;s &ldquo;new law&rdquo; is its own wording; the abstract describes a derived result checked by experiment.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.40589">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="scientisttwo">
             <span class="when">2026-11-03</span>
@@ -869,6 +885,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#claude-meetings">Claude Meetings joins Google Meet as a visible participant and builds docs during the call</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#maya-site-lidar-agents">48 Google AI agents scanning NASA LiDAR flag a possible unmapped Maya site</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#alphagenome-2">AlphaGenome 2 doubles variant identification and adapts to new cell states without retraining, for non-commercial use</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#shopify-generative-discovery">Shopify replaces separate search and recommendation with one generative model on semantic-ID tokens, lifting conversion 9.85%</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#airbnb-support-assistant">Airbnb&rsquo;s support assistant resolves about 40% of issues with no human and cuts cost per booking over 17%</a></span></li>

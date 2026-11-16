@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-11-13</div>
+      <div class="meta">Last updated: 2026-11-16</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 13 cycle adds three releases, and only one is a frontier model. Google&rsquo;s <a href="#gemini-4-hydrogen">Gemini 4 Hydrogen</a>, tuned for coding and agents, scores 51 on the Artificial Analysis Intelligence Index, above Gemini 4 Argon, at $1.50/$7.50 per million tokens against Carbon&rsquo;s $2/$10. Perplexity moved both of its decision models to <a href="#pplx-decider-v1-3">v1.3</a> and added span highlighting for extraction tasks, and Liquid AI replaced the third-party Mimi tokenizer with its own <a href="#liquidcodec">LiquidCodec</a>, which encodes at about 361&times; real time on one laptop CPU thread. Every speed figure in the cycle is the vendor&rsquo;s own.</p>
         <p>The Nov 11 to 12 cycle adds a decision model and one very large open MoE. Google&rsquo;s <a href="#gemini-decision-1">Gemini Decision 1</a>, behind the new Gemini Decisions API, scores up to 1,000 questions against one input in a single pass, never generates an output token and costs $0.10 per million input tokens. It is the third decision interface on this page after OpenAI&rsquo;s and Perplexity&rsquo;s, and the first to take images, audio, video and PDFs. Meituan&rsquo;s <a href="#longcat-2-5">LongCat-2.5</a> puts 1.6T parameters, about 48B active, on Hugging Face under MIT, with a self-reported 88.4 on Terminal Bench v2.1 against 89.1 for Claude Opus 5. Runway&rsquo;s Praxis-1 weights also shipped; that update is on the <a href="embodied-and-robotics.html#praxis-1">embodied page</a>.</p>
         <p>The Nov 11 cycle is mostly older launches gaining detail. <a href="#gemini-4-carbon">Gemini 4 Carbon</a> is now generally available to paying developers at the same $2/$10, and Google claims first place on CursorBench 4.0, WANDR and AutomationBench at less than half the next model&rsquo;s cost per task. <a href="#claude-fable-5-2">Fable 5.2</a> gained Anthropic&rsquo;s blind total-synthesis tests and AlphaSignal&rsquo;s list of solved problems, and <a href="#mai-transcribe-2">MAI-Transcribe-2</a>, unlinked since September, now cites Microsoft&rsquo;s post and its 5.2% FLEURS error rate. The one new model is <a href="#minimax-h3-image">MiniMax-H3-Image</a>, open weights for native 4K images in about 10 seconds, every figure MiniMax&rsquo;s own.</p>
         <p>The Nov 10 cycle mostly filled in last week&rsquo;s launches. <a href="#claude-fable-5-2">Fable 5.2</a> gained its system-card detail: a 1M-token context and 128K output, refused requests handed to Opus 4.8 or Opus 5, about 55% fewer blocks than 5.1, Mythos 5.2 using out-of-sandbox credentials in 3.1% of 1,800 escape scenarios, and Gemini 4 Carbon still ahead on AutomationBench. <a href="#muse-ember">Muse Ember</a> costs $0.136 per index task against Haiku 5.5&rsquo;s $0.411 but trails it on FrontierCode, and <a href="#inkling-2-small">Inkling 2 Small</a> now has numbers, 86.3% on SWE-Bench Pro v2 (Hard) and 13.1% on Terminal-Bench 4.0, with its weights still pending. The one new release is narrow: <a href="#protegrity-pii">Protegrity-PII</a>, a 278M PII tagger for 69 entity types under a non-commercial licence.</p>
-        <p>The Nov 9 cycle is two frontier releases at opposite ends of the price list. Anthropic&rsquo;s <a href="#claude-fable-5-2">Claude Fable 5.2 and Mythos 5.2</a> ship at $8/$40 per million tokens, 20% below 5.1, up to 30% faster, with a $16/$80 fast mode; Anthropic&rsquo;s table has 49.1% on FrontierCode 2.0 at xhigh effort, 74.6% on Terminal-Bench-Science and 41.3% on the Remote Labor Index, and claims Opus 5.5&rsquo;s best FrontierCode score at about half the cost per task. Meta&rsquo;s <a href="#muse-ember">Muse Ember</a> is the small-model entry at $0.10/$0.50, the same short-prompt price as Haiku 5.5 and GPT-6 Luna and 80 times below Fable 5.2, and Artificial Analysis puts it on the cost-per-task frontier of its whole leaderboard while ranking Fable 5.2 first on the same index.</p>
-        <p>Two measurements from outside the labs arrived with them. Simon Willison&rsquo;s max-effort run of Fable 5.2 returned nothing after 128,000 thinking tokens, the ceiling Opus 5.5 hit in September and one that Fable 5 and 5.1 cleared, and his six-level test of Ember found the high setting failing to return an SVG while quality did not track the dial. Underdog&rsquo;s <a href="#underdog-woof">Woof</a>, in the speech section, is a 31.7 MB text-to-speech model under a non-commercial licence that runs in a browser on WebGPU, with a 1.42% word error rate that is the maker&rsquo;s only figure.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 9 cycle is two frontier releases at opposite ends of the price list. Anthropic&rsquo;s <a href="#claude-fable-5-2">Claude Fable 5.2 and Mythos 5.2</a> ship at $8/$40 per million tokens, 20% below 5.1, up to 30% faster, with a $16/$80 fast mode; Anthropic&rsquo;s table has 49.1% on FrontierCode 2.0 at xhigh effort, 74.6% on Terminal-Bench-Science and 41.3% on the Remote Labor Index, and claims Opus 5.5&rsquo;s best FrontierCode score at about half the cost per task. Meta&rsquo;s <a href="#muse-ember">Muse Ember</a> is the small-model entry at $0.10/$0.50, the same short-prompt price as Haiku 5.5 and GPT-6 Luna and 80 times below Fable 5.2, and Artificial Analysis puts it on the cost-per-task frontier of its whole leaderboard while ranking Fable 5.2 first on the same index.</p>
+          <p>Two measurements from outside the labs arrived with them. Simon Willison&rsquo;s max-effort run of Fable 5.2 returned nothing after 128,000 thinking tokens, the ceiling Opus 5.5 hit in September and one that Fable 5 and 5.1 cleared, and his six-level test of Ember found the high setting failing to return an SVG while quality did not track the dial. Underdog&rsquo;s <a href="#underdog-woof">Woof</a>, in the speech section, is a 31.7 MB text-to-speech model under a non-commercial licence that runs in a browser on WebGPU, with a 1.42% word error rate that is the maker&rsquo;s only figure.</p>
           <p>The Nov 6 cycle is one large open-weights promise and one vision model. Thinking Machines&rsquo; <a href="#inkling-2-small">Inkling 2 Small</a> is a 594B mixture-of-experts with 17B active that takes images and varies its thinking effort, shown iterating on websites, games and 3D designs from visual feedback. It launches closed through Tinker, with Apache 2.0 weights promised a week later once external safety testing is done; its first benchmark figures arrived only on Nov 10. That is the same sequence Kimi K3.1 Pro just completed and Hy4 is in the middle of: announce, then ship the weights. NVIDIA&rsquo;s <a href="#nvidia-vflash">VFlash</a> emits robot trajectories and 3D motion in parallel rather than token by token, with no figure attached; its sibling release, four open Cosmos 3 world models, is on the embodied page.</p>
           <p>The Nov 5 cycle is five new entries and one promise kept. OpenAI&rsquo;s <a href="#chatgpt-images-2-6">Images 2.6</a> generates 50% faster, adds GIF output and saved reference images, and again splits the API into a fast Flare model and a higher-quality Sunburst. Moonshot put the <a href="#kimi-k3-1-pro">Kimi K3.1 Pro</a> weights on Hugging Face under its own licence, so the 2.8T model promised for Nov 4 can now be downloaded, all 1.56 TB of it. Tencent&rsquo;s <a href="#tencent-hy4">Hy4</a> is at the stage Kimi just left: vision and computer use announced, weights and system cards due in the coming days.</p>
           <p>Two small coding models put the training recipe ahead of size, on their makers&rsquo; own tables. Ricursive&rsquo;s <a href="#ripple-65b-preview">Ripple-65B Preview</a>, a dense 65B model, scores 80.52 on TerminalBench 2.1 against 80.1 for the 501B Reflection Beam, for a stated $32M of total R&amp;D. Cognition&rsquo;s <a href="#swe-2-flash">SWE-2 Flash</a> adds a mid-training stage to Inkling-Small and edges past the far larger SWE-2 on FrontierCode 2.0 at a fifth of the price, while trailing it on Terminal-Bench 4.0. Perplexity&rsquo;s <a href="#perplexity-decisions-web-grounding">Decisions API</a> can now search the web first, which took its own current-facts benchmark from 51% to 86%, and The Batch filled in <a href="#gemini-4-carbon">Gemini 4 Carbon</a>&rsquo;s scorecard, including a 23% lower cost per task than Claude Opus 5.5.</p>
@@ -116,15 +117,15 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">30</span></a></li>
+          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">31</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">19</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">24</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">9</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">23</span></a></li>
-          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">30</span></a></li>
+          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">31</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">40</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">41</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">5</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">10</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">2</span></a></li>
@@ -136,6 +137,14 @@
       <section class="topic-section" id="frontier-proprietary-models">
         <h3>Frontier proprietary models</h3>
         <p class="lead">Anthropic&rsquo;s Claude line and OpenAI&rsquo;s GPT line set the pace, with SpaceXAI, Google, Meta and Microsoft pricing against them. A 1M-token context is table stakes here. Almost every figure below is vendor-reported on a harness nobody outside the lab can run, so judge entries on what an outsider could check.</p>
+
+        <article class="story" id="gemini-4-hydrogen">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/">Gemini 4 Hydrogen scores 51 on the Artificial Analysis index at $1.50/$7.50 per million tokens</a></h4>
+          <p>Google released Gemini 4 Hydrogen, a fast model tuned for coding and agentic workflows. It scores <strong>51</strong> on the Artificial Analysis Intelligence Index, above Gemini 4 Argon, and costs <strong>$1.50</strong> per million input tokens and <strong>$7.50</strong> per million output tokens.</p>
+          <p>AlphaSignal reports it as 2.5&times; faster for coding and everyday tasks, without saying which model that speed-up is measured against.</p>
+          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/">Google</a> &middot; <span class="via">via TLDR AI (Nov 13), AlphaSignal (Nov 13)</span></div>
+        </article>
 
         <article class="story" id="muse-ember">
           <span class="when">2026-11-09</span>
@@ -155,19 +164,19 @@
           <div class="sources"><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Anthropic</a> &middot; <a href="https://www-cdn.anthropic.com/d9fab5459563a779c65b97040ad4d2e41f0b9464.pdf">Synthesis blind tests (PDF)</a> &middot; <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2">Prompting guide</a> &middot; <a href="https://artificialanalysis.ai/models/claude-fable-5-2">Artificial Analysis</a> &middot; <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.31">llm-anthropic 0.31</a> &middot; <a href="https://www.marktechpost.com/2026/11/10/anthropic-claude-fable-5-2-mythos-5-2-release/">MarkTechPost (write-up)</a> &middot; <a href="https://forwardfuture.com/newsletter/originals/i-put-fable-5-2-to-work-5-real-world-field-tests-and-what-i-learned">Forward Future field tests</a> &middot; <a href="https://www.oneusefulthing.org/p/fable-52-and-jagged-agi">One Useful Thing (essay)</a> &middot; <span class="via">via Simon Willison (Nov 10), MarkTechPost (Nov 10), AlphaSignal (Nov 10), TLDR AI (Nov 10), TLDR (Nov 10), The Code (Nov 10), Forward Future (Nov 10), AlphaSignal (Nov 11)</span></div>
         </article>
 
-        <article class="story" id="gemini-4-carbon">
-          <span class="when">2026-10-29</span>
-          <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/">Gemini 4 Carbon goes to cyber defenders first, at Argon&rsquo;s $2/$10 price</a></h4>
-          <p>Google introduced <strong>Gemini 4 Carbon</strong> for long-running engineering work and says it spent days tracking down and patching bugs across codebases. Google reports that it tops the Artificial Analysis Intelligence Index, more than doubles <a href="#gemini-4-argon">Argon</a>&rsquo;s secure-code success rate, cut successful cheating on Terminal-Bench 4.0 to zero and blocked every attack in Gray Swan&rsquo;s prompt-injection benchmark.</p>
-          <p>Access starts this week with selected cyber defenders, then trusted partners, at Argon&rsquo;s introductory <strong>$2/$10 per million input/output tokens</strong>; no date is set for developers or consumers. Every figure here is Google&rsquo;s own.</p>
-          <p><em>Updated Nov 2:</em> MarkTechPost puts numbers on Google&rsquo;s claims: <strong>59</strong> on the Artificial Analysis Intelligence Index v5.0, <strong>88.2%</strong> on SEC-bench Pro against GPT-6 Astra&rsquo;s 85.4%, and <strong>0.0%</strong> attack success on Gray Swan indirect injection against Astra&rsquo;s 8.5%. After defenders, access widens through the Fairwind Program&rsquo;s 650+ partners, the price rises to $4/$20 once the introductory period ends, and on Artificial Analysis&rsquo;s Coding Agent Index Claude Opus 5.5 still leads it 62 to 59.</p>
-          <p><em>Updated Nov 6:</em> The Batch fills in the scorecard: first on Arena&rsquo;s text leaderboard at 1,528 Elo, second on the Vals Index, and a self-reported 71.0% on CWE-bench and 54.8% on ExploitGym, with a 1M-token input and about 94.6 output tokens a second. On the Artificial Analysis index it finishes with 29% fewer output tokens than Claude Opus 5.5 and costs <strong>23% less per task</strong>, at a list price that will match Opus once the introductory rate ends.</p>
-          <p><em>Updated Nov 11:</em> Carbon is now generally available to every paying developer and enterprise through the API in AI Studio and Gemini for business, and is rolling out to Google AI Ultra subscribers in Antigravity, the Gemini app and AI Mode in Search, still at $2/$10. Google says it ranks first on CursorBench 4.0, Perplexity&rsquo;s WANDR and Zapier&rsquo;s AutomationBench at more than 2&times; lower cost per task than the next best external model, and it previews <a href="tools-and-devex.html#antigravity-swarm">/swarm</a>, a multi-agent mode in Antigravity.</p>
-          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/">Google</a> &middot; <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/">Google (general availability)</a> &middot; <a href="https://www.marktechpost.com/2026/10/28/google-deepmind-gemini-4-carbon-frontier-model/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29), Forward Future (Oct 29), MarkTechPost (Oct 30), The Batch (Nov 6), TLDR AI (Nov 11), TLDR (Nov 11)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (28)</summary>
 
-<details>
-          <summary>Earlier in this section (27)</summary>
+          <article class="story" id="gemini-4-carbon">
+            <span class="when">2026-10-29</span>
+            <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/">Gemini 4 Carbon goes to cyber defenders first, at Argon&rsquo;s $2/$10 price</a></h4>
+            <p>Google introduced <strong>Gemini 4 Carbon</strong> for long-running engineering work and says it spent days tracking down and patching bugs across codebases. Google reports that it tops the Artificial Analysis Intelligence Index, more than doubles <a href="#gemini-4-argon">Argon</a>&rsquo;s secure-code success rate, cut successful cheating on Terminal-Bench 4.0 to zero and blocked every attack in Gray Swan&rsquo;s prompt-injection benchmark.</p>
+            <p>Access starts this week with selected cyber defenders, then trusted partners, at Argon&rsquo;s introductory <strong>$2/$10 per million input/output tokens</strong>; no date is set for developers or consumers. Every figure here is Google&rsquo;s own.</p>
+            <p><em>Updated Nov 2:</em> MarkTechPost puts numbers on Google&rsquo;s claims: <strong>59</strong> on the Artificial Analysis Intelligence Index v5.0, <strong>88.2%</strong> on SEC-bench Pro against GPT-6 Astra&rsquo;s 85.4%, and <strong>0.0%</strong> attack success on Gray Swan indirect injection against Astra&rsquo;s 8.5%. After defenders, access widens through the Fairwind Program&rsquo;s 650+ partners, the price rises to $4/$20 once the introductory period ends, and on Artificial Analysis&rsquo;s Coding Agent Index Claude Opus 5.5 still leads it 62 to 59.</p>
+            <p><em>Updated Nov 6:</em> The Batch fills in the scorecard: first on Arena&rsquo;s text leaderboard at 1,528 Elo, second on the Vals Index, and a self-reported 71.0% on CWE-bench and 54.8% on ExploitGym, with a 1M-token input and about 94.6 output tokens a second. On the Artificial Analysis index it finishes with 29% fewer output tokens than Claude Opus 5.5 and costs <strong>23% less per task</strong>, at a list price that will match Opus once the introductory rate ends.</p>
+            <p><em>Updated Nov 11:</em> Carbon is now generally available to every paying developer and enterprise through the API in AI Studio and Gemini for business, and is rolling out to Google AI Ultra subscribers in Antigravity, the Gemini app and AI Mode in Search, still at $2/$10. Google says it ranks first on CursorBench 4.0, Perplexity&rsquo;s WANDR and Zapier&rsquo;s AutomationBench at more than 2&times; lower cost per task than the next best external model, and it previews <a href="tools-and-devex.html#antigravity-swarm">/swarm</a>, a multi-agent mode in Antigravity.</p>
+            <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/">Google</a> &middot; <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/">Google (general availability)</a> &middot; <a href="https://www.marktechpost.com/2026/10/28/google-deepmind-gemini-4-carbon-frontier-model/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29), Forward Future (Oct 29), MarkTechPost (Oct 30), The Batch (Nov 6), TLDR AI (Nov 11), TLDR (Nov 11)</span></div>
+          </article>
 
           <article class="story" id="gpt-6-1-terra">
             <span class="when">2026-10-27</span>
@@ -1019,6 +1028,14 @@
         <h3>Alternative decoding architectures</h3>
         <p class="lead">A research line attacking the autoregressive decode bottleneck from two directions: parallelising within one token stream, and removing the stream entirely. Both buy latency and price rather than capability, so the question for every entry here is what the speed costs in quality, and whether anyone outside the vendor has measured it.</p>
 
+        <article class="story" id="pplx-decider-v1-3">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://www.perplexity.ai/hub/blog/perplexity-decider">Perplexity ships Decider v1.3 and Decider Flash v1.3, adding span highlighting for extraction tasks</a></h4>
+          <p>Perplexity updated both of its classification models, which return label probabilities that applications use to classify, route, rank and evaluate inputs, over binary or multi-class labels, ordered or unordered. Decider v1.3 and Decider Flash v1.3 improve accuracy and robustness across text and vision tasks and add a mode that highlights the selected span for named-entity recognition, personal-information detection and extractive question answering.</p>
+          <p>The newsletter summary carries no benchmark figures; the earlier open release is <a href="#pplx-decider-v1-27b">pplx-decider-v1-27b</a>.</p>
+          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/perplexity-decider">Perplexity</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
+        </article>
+
         <article class="story" id="gemini-decision-1">
           <span class="when">2026-11-11</span>
           <h4><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google&rsquo;s Gemini Decision 1 scores up to 1,000 questions in one pass at $0.10 per million input tokens, with no output tokens</a></h4>
@@ -1035,15 +1052,15 @@
           <div class="sources"><a href="https://www.perplexity.ai/hub/blog/web-grounding-for-the-decisions-api">Perplexity</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
         </article>
 
-        <article class="story" id="mammoth-1-elephant-1">
-          <span class="when">2026-10-22</span>
-          <h4><a href="https://labs.baseten.co/articles/mammoth-1-and-elephant-1-frontier-decision-models">Mammoth-1 and Elephant-1: Base Labs&rsquo; decision models are reported to top the Jev Decision Index and the Artificial Analysis Decision Index</a></h4>
-          <p>Base Labs released <strong>Mammoth-1 and Elephant-1</strong>, decision models it reports at the top of both the Jev Decision Index and the Artificial Analysis Decision Index. The summary carries no score, size or price, so the ranking is the claim to check against the index pages: Liquid&rsquo;s <a href="#liquid-d1-ultra">d1-ultra</a> held the Artificial Analysis lead at 65 a week ago, and <a href="#jev-1-14">Jev 1.14</a> is the incumbent the first index is named for.</p>
-          <div class="sources"><a href="https://labs.baseten.co/articles/mammoth-1-and-elephant-1-frontier-decision-models">Base Labs</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (27)</summary>
+          <summary>Earlier in this section (28)</summary>
+
+          <article class="story" id="mammoth-1-elephant-1">
+            <span class="when">2026-10-22</span>
+            <h4><a href="https://labs.baseten.co/articles/mammoth-1-and-elephant-1-frontier-decision-models">Mammoth-1 and Elephant-1: Base Labs&rsquo; decision models are reported to top the Jev Decision Index and the Artificial Analysis Decision Index</a></h4>
+            <p>Base Labs released <strong>Mammoth-1 and Elephant-1</strong>, decision models it reports at the top of both the Jev Decision Index and the Artificial Analysis Decision Index. The summary carries no score, size or price, so the ranking is the claim to check against the index pages: Liquid&rsquo;s <a href="#liquid-d1-ultra">d1-ultra</a> held the Artificial Analysis lead at 65 a week ago, and <a href="#jev-1-14">Jev 1.14</a> is the incumbent the first index is named for.</p>
+            <div class="sources"><a href="https://labs.baseten.co/articles/mammoth-1-and-elephant-1-frontier-decision-models">Base Labs</a> &middot; <span class="via">via TLDR AI (Oct 22)</span></div>
+          </article>
 
           <article class="story" id="cloudflare-clairic">
             <span class="when">2026-10-19</span>
@@ -1374,6 +1391,14 @@
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
 
+        <article class="story" id="liquidcodec">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://www.liquid.ai/blog/liquidcodec">LiquidCodec, Liquid AI&rsquo;s own audio tokenizer, encodes at about 361&times; real time on one CPU thread</a></h4>
+          <p>Liquid AI built its own codec to replace Mimi, the third-party tokenizer behind its earlier audio models, keeping a 12.5 Hz frame rate (one frame every 80 ms) over 24 kHz waveforms. On a single FP32 CPU thread of an Apple M4 Max it encodes at roughly <strong>361&times;</strong> and decodes at <strong>87&times;</strong> real time.</p>
+          <p>It follows <a href="#lfm3">LFM3</a>&rsquo;s audio and omni models from the end of October, and the speed figures are Liquid&rsquo;s own, measured on one laptop.</p>
+          <div class="sources"><a href="https://www.liquid.ai/blog/liquidcodec">Liquid AI</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
+        </article>
+
         <article class="story" id="underdog-woof">
           <span class="when">2026-11-05</span>
           <h4><a href="https://x.com/UnderdogAI/status/2118412882492953009">Underdog Woof is a 31.7 MB text-to-speech model that runs in the browser on WebGPU</a></h4>
@@ -1389,15 +1414,15 @@
           <div class="sources"><a href="https://www.marktechpost.com/2026/11/03/soniox-stt-v6-agent-text-input-echo-cancellation/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
         </article>
 
-        <article class="story" id="hume-audio-decision">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://www.hume.ai/products/decision-model-api">Hume&rsquo;s Audio Decision API answers plain-language questions about recordings, 82% on its own benchmark</a></h4>
-          <p><strong>Hume&rsquo;s Audio Decision API</strong> takes a plain-language question about live audio or hours of recordings, such as how many people are speaking or whether a caller sounds frustrated, in place of a stack of 10+ models. Trained on 10M+ human judgments, it scores <strong>82%</strong> against 78% for Gemini 3.8 Flash on the company&rsquo;s own benchmark. Access is by waitlist.</p>
-          <div class="sources"><a href="https://www.hume.ai/products/decision-model-api">Hume</a> &middot; <span class="via">via The Code (Nov 3)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (38)</summary>
 
-<details>
-          <summary>Earlier in this section (37)</summary>
+          <article class="story" id="hume-audio-decision">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://www.hume.ai/products/decision-model-api">Hume&rsquo;s Audio Decision API answers plain-language questions about recordings, 82% on its own benchmark</a></h4>
+            <p><strong>Hume&rsquo;s Audio Decision API</strong> takes a plain-language question about live audio or hours of recordings, such as how many people are speaking or whether a caller sounds frustrated, in place of a stack of 10+ models. Trained on 10M+ human judgments, it scores <strong>82%</strong> against 78% for Gemini 3.8 Flash on the company&rsquo;s own benchmark. Access is by waitlist.</p>
+            <div class="sources"><a href="https://www.hume.ai/products/decision-model-api">Hume</a> &middot; <span class="via">via The Code (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="nemotron-3-5-transcribe">
             <span class="when">2026-10-29</span>
@@ -1910,6 +1935,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#gemini-4-hydrogen">Gemini 4 Hydrogen scores 51 on the Artificial Analysis index at $1.50/$7.50 per million tokens</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#pplx-decider-v1-3">Perplexity ships Decider v1.3 and Decider Flash v1.3, adding span highlighting for extraction tasks</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#liquidcodec">LiquidCodec, Liquid AI&rsquo;s own audio tokenizer, encodes at about 361&times; real time on one CPU thread</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#longcat-2-5">Meituan puts LongCat-2.5 weights on Hugging Face: a 1.6T MoE with about 48B active, under MIT</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#minimax-h3-image">MiniMax-H3-Image ships open weights for native 4K images in about 10 seconds</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#gemini-decision-1">Gemini Decision 1 scores up to 1,000 questions in one pass at $0.10 per million input tokens</a></span></li>
