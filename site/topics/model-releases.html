@@ -30,10 +30,11 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-11-16</div>
+      <div class="meta">Last updated: 2026-11-17</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 16 cycle is three releases each sized or priced against a constraint. Alibaba&rsquo;s <a href="#qwen4-max">Qwen4-Max</a> pairs a 1M-token context with $1.50/$4.50 pricing and leads Claude Opus 5.5 and GPT-6.1 Sol on DeepSWE by Alibaba&rsquo;s count, but scores 43 on the Artificial Analysis index and trails Kimi K3.1 on Terminal-Bench. Sevren&rsquo;s <a href="#embla-1">Embla 1</a> is a phone-sized MoE that averages 57.4 on five benchmarks measured at 4 bits and answers in 1.77 s on an iPhone 18 Pro. <a href="#tiny-voca">tiny-voca</a> goes smallest, a 4.5M-parameter text-to-speech model trained only on synthetic speech that runs 70&times; real time on four CPU threads. Every figure in the cycle comes from the people who built the model.</p>
         <p>The Nov 13 cycle adds three releases, and only one is a frontier model. Google&rsquo;s <a href="#gemini-4-hydrogen">Gemini 4 Hydrogen</a>, tuned for coding and agents, scores 51 on the Artificial Analysis Intelligence Index, above Gemini 4 Argon, at $1.50/$7.50 per million tokens against Carbon&rsquo;s $2/$10. Perplexity moved both of its decision models to <a href="#pplx-decider-v1-3">v1.3</a> and added span highlighting for extraction tasks, and Liquid AI replaced the third-party Mimi tokenizer with its own <a href="#liquidcodec">LiquidCodec</a>, which encodes at about 361&times; real time on one laptop CPU thread. Every speed figure in the cycle is the vendor&rsquo;s own.</p>
         <p>The Nov 11 to 12 cycle adds a decision model and one very large open MoE. Google&rsquo;s <a href="#gemini-decision-1">Gemini Decision 1</a>, behind the new Gemini Decisions API, scores up to 1,000 questions against one input in a single pass, never generates an output token and costs $0.10 per million input tokens. It is the third decision interface on this page after OpenAI&rsquo;s and Perplexity&rsquo;s, and the first to take images, audio, video and PDFs. Meituan&rsquo;s <a href="#longcat-2-5">LongCat-2.5</a> puts 1.6T parameters, about 48B active, on Hugging Face under MIT, with a self-reported 88.4 on Terminal Bench v2.1 against 89.1 for Claude Opus 5. Runway&rsquo;s Praxis-1 weights also shipped; that update is on the <a href="embodied-and-robotics.html#praxis-1">embodied page</a>.</p>
         <p>The Nov 11 cycle is mostly older launches gaining detail. <a href="#gemini-4-carbon">Gemini 4 Carbon</a> is now generally available to paying developers at the same $2/$10, and Google claims first place on CursorBench 4.0, WANDR and AutomationBench at less than half the next model&rsquo;s cost per task. <a href="#claude-fable-5-2">Fable 5.2</a> gained Anthropic&rsquo;s blind total-synthesis tests and AlphaSignal&rsquo;s list of solved problems, and <a href="#mai-transcribe-2">MAI-Transcribe-2</a>, unlinked since September, now cites Microsoft&rsquo;s post and its 5.2% FLEURS error rate. The one new model is <a href="#minimax-h3-image">MiniMax-H3-Image</a>, open weights for native 4K images in about 10 seconds, every figure MiniMax&rsquo;s own.</p>
@@ -118,14 +119,14 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">31</span></a></li>
-          <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">19</span></a></li>
+          <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">20</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">24</span></a></li>
-          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">9</span></a></li>
+          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">10</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">23</span></a></li>
           <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">31</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">41</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">42</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">5</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">10</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">2</span></a></li>
@@ -403,6 +404,14 @@
         <h3>Open / efficient frontier challengers</h3>
         <p class="lead">Chinese and open-leaning labs matching frontier context and integration while differentiating on positioning. Three routes recur here: post-training alone, distillation into a smaller sibling, and composition &mdash; routing work across a pool rather than sending everything to the largest model. Judge entries on active parameters, licence terms, and whether the harness behind a score was published.</p>
 
+        <article class="story" id="qwen4-max">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://qwen.ai/blog?id=qwen4-max">Qwen4-Max ships a 1M-token context at $1.50/$4.50, ahead on DeepSWE but 43 on the Artificial Analysis index</a></h4>
+          <p>Alibaba released <strong>Qwen4-Max</strong>, a 1M-token model priced at $1.50 per million input tokens and $4.50 per million output, with cached input 70% cheaper; AlphaSignal puts the price at 60% below the previous Max. Alibaba reports it narrowly ahead of Claude Opus 5.5 and GPT-6.1 Sol on DeepSWE, and the launch post leans on agentic work in Blender and on building playable games.</p>
+          <p>The Code&rsquo;s counterweight is that it falls well behind <a href="#kimi-k3-1-pro">Kimi K3.1</a> on Terminal-Bench and scores 43 on the Artificial Analysis index, so the lead rests on one vendor-run coding benchmark. Smaller models in the family are promised as open weights; the Max itself is API-only.</p>
+          <div class="sources"><a href="https://qwen.ai/blog?id=qwen4-max">Qwen</a> &middot; <a href="https://www.qwencloud.com/models/qwen4-max?region=ap-southeast-1">Qwen Cloud API</a> &middot; <span class="via">via TLDR AI (Nov 16), The Code (Nov 16), AlphaSignal (Nov 16)</span></div>
+        </article>
+
         <article class="story" id="swe-2-flash">
           <span class="when">2026-11-05</span>
           <h4><a href="https://cognition.com/blog/swe-2-flash">Cognition&rsquo;s SWE-2 Flash mid-trains Inkling-Small before RL and runs at 3&times; SWE-2&rsquo;s speed for a fifth of the price</a></h4>
@@ -420,17 +429,17 @@
           <div class="sources"><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/10/17/deepseek-just-released-v4-1-flash-1017-scores-77-0-on-deepswe-opens-search-api/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 18), TLDR AI (Oct 19), The Code (Oct 19)</span></div>
         </article>
 
-        <article class="story" id="ember-1">
-          <span class="when">2026-09-24</span>
-          <h4><a href="https://fireworks.ai/blog/ember-1">Fireworks&rsquo; Ember-1 matches Kimi K3 quality on 40% fewer tokens, as a two-week research preview</a></h4>
-          <p>Fireworks Research released <strong>Ember-1</strong>, a specialised model built on <a href="#kimi-k3">Kimi K3</a> that it says delivers the base model&rsquo;s quality with <strong>40% fewer tokens</strong>. It is rolling out beside Kimi K3 on Fireworks Serverless as a Research Preview, part of a new research-release programme that gives developers <strong>two weeks</strong> of serverless access to a research model and keeps only the ones with the most demand.</p>
-          <p>Fireworks published the numbers on Sep 28: on Terminal Bench 2.1 Ember-1 scores <strong>82.0% against 80.9% for K3 Max at 51.9% lower cost</strong>, 75.2% against 66.4% on DeepSWE 1.1, and trails on SWE-bench Verified (92.2% against 93.2%) and on SWE-Interact. In a production A/B test output tokens fell from 49.3K to 29.9K per task with reasoning tokens down 71.3% and the task score flat at 0.753 against 0.751; per-token pricing matches K3 at $3/$15, so every saving comes from generating less. It remains API-only with no weights or training code &mdash; reachable since Sep 29 through the Cline desktop app&rsquo;s beta as well as Fireworks &mdash; and all evaluations are Fireworks&rsquo; own.</p>
-          <p>It is the post-training route this section names, applied by an inference provider rather than a lab, and it is sold on tokens rather than a score. The quality-parity claim is Fireworks&rsquo; own, and the two-week window means nothing built on it should assume it will still be served in October.</p>
-          <div class="sources"><a href="https://fireworks.ai/blog/ember-1">Fireworks</a> &middot; <a href="https://fireworks.ai/models/fireworks/ember-1">Model page</a> &middot; <a href="https://fireworks.ai/specialized-intelligence-index/">Specialized Intelligence Index</a> &middot; <a href="https://cline.bot/desktop">Cline desktop beta</a> &middot; <span class="via">via TLDR AI (Sep 24), MarkTechPost (Sep 28), The Code (Sep 29)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (16)</summary>
+          <summary>Earlier in this section (17)</summary>
+
+          <article class="story" id="ember-1">
+            <span class="when">2026-09-24</span>
+            <h4><a href="https://fireworks.ai/blog/ember-1">Fireworks&rsquo; Ember-1 matches Kimi K3 quality on 40% fewer tokens, as a two-week research preview</a></h4>
+            <p>Fireworks Research released <strong>Ember-1</strong>, a specialised model built on <a href="#kimi-k3">Kimi K3</a> that it says delivers the base model&rsquo;s quality with <strong>40% fewer tokens</strong>. It is rolling out beside Kimi K3 on Fireworks Serverless as a Research Preview, part of a new research-release programme that gives developers <strong>two weeks</strong> of serverless access to a research model and keeps only the ones with the most demand.</p>
+            <p>Fireworks published the numbers on Sep 28: on Terminal Bench 2.1 Ember-1 scores <strong>82.0% against 80.9% for K3 Max at 51.9% lower cost</strong>, 75.2% against 66.4% on DeepSWE 1.1, and trails on SWE-bench Verified (92.2% against 93.2%) and on SWE-Interact. In a production A/B test output tokens fell from 49.3K to 29.9K per task with reasoning tokens down 71.3% and the task score flat at 0.753 against 0.751; per-token pricing matches K3 at $3/$15, so every saving comes from generating less. It remains API-only with no weights or training code &mdash; reachable since Sep 29 through the Cline desktop app&rsquo;s beta as well as Fireworks &mdash; and all evaluations are Fireworks&rsquo; own.</p>
+            <p>It is the post-training route this section names, applied by an inference provider rather than a lab, and it is sold on tokens rather than a score. The quality-parity claim is Fireworks&rsquo; own, and the two-week window means nothing built on it should assume it will still be served in October.</p>
+            <div class="sources"><a href="https://fireworks.ai/blog/ember-1">Fireworks</a> &middot; <a href="https://fireworks.ai/models/fireworks/ember-1">Model page</a> &middot; <a href="https://fireworks.ai/specialized-intelligence-index/">Specialized Intelligence Index</a> &middot; <a href="https://cline.bot/desktop">Cline desktop beta</a> &middot; <span class="via">via TLDR AI (Sep 24), MarkTechPost (Sep 28), The Code (Sep 29)</span></div>
+          </article>
 
           <article class="story" id="swe-2">
             <span class="when">2026-09-11</span>
@@ -759,6 +768,14 @@
         <h3>On-device &amp; quantized weights</h3>
         <p class="lead">The open tier competing on local deployability rather than capability. &ldquo;Quantized&rdquo; is a range, not a property, so the number to judge an entry on is not the headline average but where the compression is measured &mdash; single-turn knowledge questions and multi-step agent work come apart sharply here.</p>
 
+        <article class="story" id="embla-1">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://sevren.ai/blog/embla-1">Sevren&rsquo;s Embla 1 averages 57.4 on five benchmarks at 4 bits and answers in 1.77 s on an iPhone 18 Pro</a></h4>
+          <p>Embla 1 is a reasoning model built to run offline on a phone: 32 layers at width 2048, 8 of 96 routed experts plus one shared expert per token, and a mix of 15 sliding-window, 12 sparse and 5 full-attention layers, with about 95% of attention weights exactly zero at decode. It was pretrained on 1.4T tokens, extended to 256K context, and quantization-aware trained over the last 2,000 SFT steps so that every later stage runs at 4 bits.</p>
+          <p>The 57.4 average covers BFCL, IFBench, AA-Omniscience, GPQA and MATH-500, all measured at 4 bits, which is where this section says to look; the comparison against other small models is Sevren&rsquo;s own.</p>
+          <div class="sources"><a href="https://sevren.ai/blog/embla-1">Sevren</a> &middot; <span class="via">via TLDR AI (Nov 16)</span></div>
+        </article>
+
         <article class="story" id="lfm3">
           <span class="when">2026-10-28</span>
           <h4><a href="https://www.liquid.ai/blog/lfm3">LFM3: six open-weight on-device models around 2B parameters, the text model in about 1 GB with a 256K context</a></h4>
@@ -775,16 +792,16 @@
           <div class="sources"><a href="https://www.airealist.ai/p/exploring-apple-on-device-model">AI Realist (analysis)</a> &middot; <span class="via">via TLDR AI (Oct 26)</span></div>
         </article>
 
-        <article class="story" id="nemotron-3-5-bolt-e4b">
-          <span class="when">2026-10-23</span>
-          <h4><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">NVIDIA&rsquo;s Nemotron 3.5 Bolt E4B fits a local voice-agent model in 4 GB and decodes 272.6 tokens/s on an RTX 5070</a></h4>
-          <p>NVIDIA released <strong>Nemotron 3.5 Bolt E4B</strong>, an open small language model for local voice agents, game characters and robots on GeForce RTX, Jetson and RTX/DGX Spark. It skipped SFT entirely and was trained only with RLVR and RLHF through NeMo-RL and NeMo-Gym, every sample run in both reasoning and non-reasoning modes at a 2:1 ratio, with a runtime thinking budget and a <strong>64K context</strong>.</p>
-          <p>The 4 GB footprint is the Q4_K_M build, calibrated on about 1M tokens of RL rollouts, and the <strong>272.6 tokens/s</strong> on an RTX 5070 assumes its bundled DFlash drafter for speculative decoding. Every benchmark is NVIDIA&rsquo;s own.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="nemotron-3-5-bolt-e4b">
+            <span class="when">2026-10-23</span>
+            <h4><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">NVIDIA&rsquo;s Nemotron 3.5 Bolt E4B fits a local voice-agent model in 4 GB and decodes 272.6 tokens/s on an RTX 5070</a></h4>
+            <p>NVIDIA released <strong>Nemotron 3.5 Bolt E4B</strong>, an open small language model for local voice agents, game characters and robots on GeForce RTX, Jetson and RTX/DGX Spark. It skipped SFT entirely and was trained only with RLVR and RLHF through NeMo-RL and NeMo-Gym, every sample run in both reasoning and non-reasoning modes at a 2:1 ratio, with a runtime thinking budget and a <strong>64K context</strong>.</p>
+            <p>The 4 GB footprint is the Q4_K_M build, calibrated on about 1M tokens of RL rollouts, and the <strong>272.6 tokens/s</strong> on an RTX 5070 assumes its bundled DFlash drafter for speculative decoding. Every benchmark is NVIDIA&rsquo;s own.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+          </article>
 
           <article class="story" id="spark-x2-6-4b">
             <span class="when">2026-10-21</span>
@@ -793,6 +810,7 @@
             <p>The summary carries no benchmark, licence or quantized size, so it sits here on parameter count and intent; the number this section asks for, where the compression is measured, is on the model card rather than in the issue.</p>
             <div class="sources"><a href="https://huggingface.co/XHToken/Spark-X2.6-4B">Hugging Face</a> &middot; <span class="via">via TLDR AI (Oct 21)</span></div>
           </article>
+
           <article class="story" id="ternary-bonsai-2-27b">
             <span class="when">2026-09-18</span>
             <h4><a href="https://prismml.com/news/bonsai-2-27b">PrismML&rsquo;s Ternary Bonsai 2 27B holds 98.2% of its parent at 5.93GB &mdash; except on agent work</a></h4>
@@ -1391,6 +1409,14 @@
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
 
+        <article class="story" id="tiny-voca">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://huggingface.co/n4ze3m/tiny-voca">tiny-voca is a 4.5M-parameter text-to-speech model trained only on synthetic speech, running 70&times; real time on four CPU threads</a></h4>
+          <p>The whole model, waveform generator included, has 4.5M parameters (about 18 MB) and was trained from scratch on roughly 18 hours of synthetic speech, so no recorded human voice is in its data. It runs about 70&times; faster than real time on four CPU threads, with two voices and controls for speed and pitch.</p>
+          <p>A four-block phoneme encoder, a duration predictor and two frame-level transformers drive a 25,862-parameter source-filter vocoder. The model card measures speed and footprint, not quality against larger systems.</p>
+          <div class="sources"><a href="https://huggingface.co/n4ze3m/tiny-voca">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 16)</span></div>
+        </article>
+
         <article class="story" id="liquidcodec">
           <span class="when">2026-11-13</span>
           <h4><a href="https://www.liquid.ai/blog/liquidcodec">LiquidCodec, Liquid AI&rsquo;s own audio tokenizer, encodes at about 361&times; real time on one CPU thread</a></h4>
@@ -1407,15 +1433,15 @@
           <div class="sources"><a href="https://x.com/UnderdogAI/status/2118412882492953009">Underdog (X post)</a> &middot; <span class="via">via Forward Future (Nov 9)</span></div>
         </article>
 
-        <article class="story" id="soniox-stt-v6">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://www.marktechpost.com/2026/11/03/soniox-stt-v6-agent-text-input-echo-cancellation/">Soniox STT v6 adds agent text input and echo filtering for voice agents</a></h4>
-          <p><strong>Soniox STT v6</strong> adds agent text input and echo filtering to its speech-to-text API, aimed at voice agents. The issue gives the two capabilities and no accuracy, latency or price figure.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/11/03/soniox-stt-v6-agent-text-input-echo-cancellation/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (38)</summary>
+          <summary>Earlier in this section (39)</summary>
+
+          <article class="story" id="soniox-stt-v6">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://www.marktechpost.com/2026/11/03/soniox-stt-v6-agent-text-input-echo-cancellation/">Soniox STT v6 adds agent text input and echo filtering for voice agents</a></h4>
+            <p><strong>Soniox STT v6</strong> adds agent text input and echo filtering to its speech-to-text API, aimed at voice agents. The issue gives the two capabilities and no accuracy, latency or price figure.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/11/03/soniox-stt-v6-agent-text-input-echo-cancellation/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="hume-audio-decision">
             <span class="when">2026-11-03</span>
@@ -1708,7 +1734,6 @@
             <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
           </article>
         </details>
-      
       </section>
 
       <section class="topic-section" id="video-omni-modal-generation">
@@ -1935,6 +1960,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#tiny-voca">tiny-voca is a 4.5M-parameter text-to-speech model trained only on synthetic speech, running 70&times; real time on four CPU threads</a></span></li>
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#embla-1">Sevren&rsquo;s Embla 1 averages 57.4 on five benchmarks at 4 bits and answers in 1.77 s on an iPhone 18 Pro</a></span></li>
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#qwen4-max">Qwen4-Max ships a 1M-token context at $1.50/$4.50, ahead on DeepSWE but 43 on the Artificial Analysis index</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#gemini-4-hydrogen">Gemini 4 Hydrogen scores 51 on the Artificial Analysis index at $1.50/$7.50 per million tokens</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#pplx-decider-v1-3">Perplexity ships Decider v1.3 and Decider Flash v1.3, adding span highlighting for extraction tasks</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#liquidcodec">LiquidCodec, Liquid AI&rsquo;s own audio tokenizer, encodes at about 361&times; real time on one CPU thread</a></span></li>

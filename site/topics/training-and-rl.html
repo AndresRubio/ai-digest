@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-11-16</div>
+      <div class="meta">Last updated: 2026-11-17</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 16 cycle is two training runs reported end to end by the teams that ran them. Thinking Machines explains how <a href="#end-to-end-4-bit-training">Inkling 2 Small was trained with a native NVFP4 forward pass</a>: 4-bit forwards in the expert layers, MXFP8 backwards with stochastic rounding, and a wall-clock gain of 8% in pretraining and 20% in RL over full MXFP8, paid for in quantization error. Empero&rsquo;s <a href="#quark">Quark</a> sits at the other end of the scale, a 165M-parameter model with a 128K context taken through every stage for about $4,200, whose mix of 12 local and 4 global layers cuts the KV cache at 128K to a quarter. Both land in the pretraining section, and both are self-reported.</p>
         <p>The Nov 13 cycle has two papers about how little it takes to change a model. <a href="#deletion-tuning">Deletion Tuning</a> zeroes fewer than 0.05% of an LLM&rsquo;s weights through a mask on the gate projections and matches full fine-tuning under RL with verifiable rewards, supervised fine-tuning and on-policy distillation, while full fine-tuning and LoRA lose up to 5.4 points on earlier tasks that it keeps. <a href="#homeopathic-learning">Homeopathic learning</a> is the risk on the other side: poison data that teaches nothing on its own plants a trait once clean, trigger-free data is mixed in, so checking a training set item by item can pass a backdoor.</p>
         <p>The Nov 11 addition fixes a failure without training anything. <a href="#reward-hacking-weight-arithmetic">Weight arithmetic</a> subtracts a code model trained on loose rewards from one trained on strict rewards and extrapolates along the difference, cutting resource-limit failures from 14.5% to 8%. It breaks outputs if pushed too far, and the stricter reward can itself cost correctness. The same idea, editing weights in place of a training run, appears on <a href="research-papers.html#qwen-concept-27b">research papers</a> the same day.</p>
         <p>The Nov 9 addition is the first entry here with a mechanism for why large-scale RL falls over. <a href="#score-centering">Score centering</a>, by Marek and Ryabinin and explained by Cameron Wolfe, shows that when the sampler and the trainer disagree on token probabilities the expected gradient is nonzero even under a constant reward, so the trainer drifts toward the sampler and the error feeds back through every weight sync. Subtracting the expected score under the sampler at each prefix cancels that drift without the clipped importance ratios the usual fixes need, using the sampler&rsquo;s top 128 token probabilities. On Qwen3-30B-A3B-Base under the harshest sampler quantization it reached 30% training accuracy against 12% for truncated importance sampling and under 5% for the rest, and the authors recommend pairing it with importance sampling when rollouts are stale. Nathan Lambert says frontier labs already use it quietly, which is the paper&rsquo;s standing in one line.</p>
         <p>The Nov 5 addition is a claim about what pretraining needs as input. Cartesia says its newer <a href="#h-nets-raw-bytes">H-Nets</a>, which learn directly from raw bytes, match an open-source 3B Transformer with 10&times; less compute and data, in two posts dated Oct 28. The figure is Cartesia&rsquo;s own summary. Cognition&rsquo;s SWE-2 Flash, filed under <a href="model-releases.html#swe-2-flash">model releases</a>, is the cycle&rsquo;s other training note: a mid-training stage inserted before reinforcement learning, with the data mix chosen by how many tokens each candidate needed to reach a fixed validation loss.</p>
-        <p>The Nov 4 addition is a budget figure for pre-training an image model. Linum trained its pixel-space <a href="#linum-p-jit-21k">P-JiT</a> text-to-image model for 660M samples on $21K of compute, with 4&times; fewer tokens per image and 11&times; faster convergence than its previous model. The figures are Linum&rsquo;s own, from a two-person lab, and the run is a step toward video models.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 4 addition is a budget figure for pre-training an image model. Linum trained its pixel-space <a href="#linum-p-jit-21k">P-JiT</a> text-to-image model for 660M samples on $21K of compute, with 4&times; fewer tokens per image and 11&times; faster convergence than its previous model. The figures are Linum&rsquo;s own, from a two-person lab, and the run is a step toward video models.</p>
           <p>The Nov 3 cycle has three entries and no scores among them, so what it adds is method. <a href="#compute-islands">Compute islands</a> argues a frontier run can span several smaller clusters of mixed generations and vendors, and names the cost itself: one compromised site can tamper with a model in ways that are hard to trace. <a href="#how-to-train-a-swarm">How to Train a Swarm</a> treats parallel agents as an incentive design problem. <a href="#teaching-qwen-why">Teaching Qwen Why</a> carries Anthropic&rsquo;s misalignment fine-tuning methods to new models, though the issue gives no effect size. The speed result from the same issue, <a href="infrastructure.html#weight-teleportation">weight teleportation</a>, is filed on the infrastructure page.</p>
           <p>The Oct 29 addition is a reward that needs no judge. Microsoft&rsquo;s <a href="#thinkingbox-database-graded-rl">ThinkingBox</a> scores business agents by running checks on the database&rsquo;s final state and feeds that to GRPO; Qwen3.8-27B went from 38 to 107 tasks solved on every one of 20 attempts, and the training code is public. The suite is the team&rsquo;s own, but a released environment with an executable reward is the reusable part this section judges on.</p>
           <p>The Oct 28 addition gives the failure-mode section a continual-learning entry. <a href="#google-sleep-framework">Google&rsquo;s sleep framework</a> alternates a model&rsquo;s active interaction with offline consolidation that moves fragile short-term context into stable long-term parameters, and the authors report new facts acquired without catastrophic forgetting, long-context knowledge retained up to 10M tokens, and better complex reasoning. The claim is the authors&rsquo; own with no benchmark table in the issue, which keeps it in the same evidentiary bucket as the rest of that section.</p>
@@ -87,7 +88,7 @@
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">9</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">5</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
-          <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">9</span></a></li>
+          <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">11</span></a></li>
           <li><a href="#fine-tuning-data-mixtures">Fine-tuning data mixtures <span class="n">2</span></a></li>
         </ul>
       </nav>
@@ -511,6 +512,22 @@
         <h3>Pretraining efficiency &amp; data</h3>
         <p class="lead">Everything here sits before post-training: what a run costs, what compute it can span, how much efficiency the recipe still hides, what the corpus contains, and what the model learns along the way. Budget and efficiency figures are reported by whoever made the run; only the six-year analysis is outside work. Check who measured, and against what baseline.</p>
 
+        <article class="story" id="quark">
+          <span class="when">2026-11-15</span>
+          <h4><a href="https://empero.org/writing/quark">Empero&rsquo;s Quark takes a 165M-parameter model through every training stage for about $4,200, with four Apache-2.0 checkpoints</a></h4>
+          <p>Quark is a 165M-parameter model (140M without embeddings) with a 128K context, taken from data generation through pretraining on 500B tokens on one 8&times;H100 node, context extension, RL, evaluation and release for about 1,300 H100-hours. Twelve of its 16 layers attend over the last 256 tokens plus a short convolution and every fourth is global, so at 128K only four layers keep a full KV cache: about 0.5 GiB in bf16, against 2 GiB if every layer were global.</p>
+          <p>Empero reports the best benchmark average among open models of its size on similar token budgets, and one checkpoint learned to answer, think and call tools from RL alone, with no SFT or distillation. The run was built to rehearse the whole stack before a larger model, which is the fair way to read the result.</p>
+          <div class="sources"><a href="https://empero.org/writing/quark">Empero</a> &middot; <span class="via">via TLDR AI (Nov 16)</span></div>
+        </article>
+
+        <article class="story" id="end-to-end-4-bit-training">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://thinkingmachines.ai/blog/end-to-end-4-bit-training/">Thinking Machines trained Inkling 2 Small with a native NVFP4 forward pass, 8% faster in pretraining and 20% in RL than full MXFP8</a></h4>
+          <p>Thinking Machines describes the recipe behind <a href="model-releases.html#inkling-2-small">Inkling 2 Small</a> on GB300s: NVFP4 for forward passes in the expert layers with a dedicated kernel, and MXFP8 for backward passes with re-quantization and stochastic rounding to reduce gradient bias. NVFP4 stores 4.5 bits per value against BF16&rsquo;s 16 and runs at 15 PFLOPS against 2.5, and in their largest jobs the mix gives an 8% wall-clock speedup in pretraining and 20% in RL over full MXFP8.</p>
+          <p>They call Inkling 2 Small the largest model they know of trained end to end with a native 4-bit forward pass. The cost they state is that NVFP4 greatly increases quantization error, which is why the backward pass stays at 8 bits.</p>
+          <div class="sources"><a href="https://thinkingmachines.ai/blog/end-to-end-4-bit-training/">Thinking Machines</a> &middot; <span class="via">via TLDR AI (Nov 16)</span></div>
+        </article>
+
         <article class="story" id="h-nets-raw-bytes">
           <span class="when">2026-11-05</span>
           <h4><a href="https://x.com/_albertgu/status/2115502111924600855">Cartesia&rsquo;s newer H-Nets learn from raw bytes and match a 3B Transformer with 10&times; less compute and data</a></h4>
@@ -519,23 +536,23 @@
           <div class="sources"><a href="https://x.com/_albertgu/status/2115502111924600855">Albert Gu on X</a> (announcement thread) &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
         </article>
 
-        <article class="story" id="linum-p-jit-21k">
-          <span class="when">2026-11-04</span>
-          <h4><a href="https://www.linum.ai/field-notes/pjit-21k">Linum trains its pixel-space P-JiT text-to-image model for 660M samples on $21K of compute</a></h4>
-          <p>Linum, a two-person lab, trained <strong>Pyramid-JiT</strong> for 660M samples at a compute cost of <strong>$21K</strong>, as a test on the way to larger video models. The pixel-space architecture represents a 512&times;512 image in the token count its predecessor used for 256&times;256, a 4&times; reduction, and converges in 11&times; fewer samples than Linum v2.</p>
-          <p>The model has about 2.18B parameters at sampling and reads text from a frozen Qwen3.5-4B. The cost and convergence figures are Linum&rsquo;s own.</p>
-          <div class="sources"><a href="https://www.linum.ai/field-notes/pjit-21k">Linum</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
-        </article>
-
-        <article class="story" id="compute-islands">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://www.coreauto.com/hitchhikers-guide-to-training-on-compute-islands">Compute islands: frontier training across smaller clusters, with integrity the stated risk</a></h4>
-          <p><strong>The Hitchhiker&rsquo;s Guide to Training on Compute Islands</strong> argues that training reliably on several smaller clusters widens the usable pool for a frontier run, which could mix accelerator generations and vendors with each island on its own schedule. The stated risk is that integrity gets harder across providers, since one faulty or compromised site can degrade or tamper with a model in ways that are hard to trace. It is an analysis with no run reported.</p>
-          <div class="sources"><a href="https://www.coreauto.com/hitchhikers-guide-to-training-on-compute-islands">coreauto.com</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="linum-p-jit-21k">
+            <span class="when">2026-11-04</span>
+            <h4><a href="https://www.linum.ai/field-notes/pjit-21k">Linum trains its pixel-space P-JiT text-to-image model for 660M samples on $21K of compute</a></h4>
+            <p>Linum, a two-person lab, trained <strong>Pyramid-JiT</strong> for 660M samples at a compute cost of <strong>$21K</strong>, as a test on the way to larger video models. The pixel-space architecture represents a 512&times;512 image in the token count its predecessor used for 256&times;256, a 4&times; reduction, and converges in 11&times; fewer samples than Linum v2.</p>
+            <p>The model has about 2.18B parameters at sampling and reads text from a frozen Qwen3.5-4B. The cost and convergence figures are Linum&rsquo;s own.</p>
+            <div class="sources"><a href="https://www.linum.ai/field-notes/pjit-21k">Linum</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
+          </article>
+
+          <article class="story" id="compute-islands">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://www.coreauto.com/hitchhikers-guide-to-training-on-compute-islands">Compute islands: frontier training across smaller clusters, with integrity the stated risk</a></h4>
+            <p><strong>The Hitchhiker&rsquo;s Guide to Training on Compute Islands</strong> argues that training reliably on several smaller clusters widens the usable pool for a frontier run, which could mix accelerator generations and vendors with each island on its own schedule. The stated risk is that integrity gets harder across providers, since one faulty or compromised site can degrade or tamper with a model in ways that are hard to trace. It is an analysis with no run reported.</p>
+            <div class="sources"><a href="https://www.coreauto.com/hitchhikers-guide-to-training-on-compute-islands">coreauto.com</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="mai-base-2">
             <span class="when">2026-10-16</span>
@@ -611,6 +628,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-15</span><span class="label"><a href="#quark">Empero&rsquo;s Quark takes a 165M-parameter model through every training stage for about $4,200, with four Apache-2.0 checkpoints</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#end-to-end-4-bit-training">Thinking Machines trained Inkling 2 Small with a native NVFP4 forward pass, 8% faster in pretraining and 20% in RL than full MXFP8</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#homeopathic-learning">Homeopathic learning: poison data that teaches nothing alone plants a backdoor once clean data is added</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#deletion-tuning">Deletion Tuning matches full fine-tuning by zeroing under 0.05% of an LLM&rsquo;s weights</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#reward-hacking-weight-arithmetic">Subtracting a loose-reward code model from a strict one cuts resource-limit failures from 14.5% to 8%, with no training</a></span></li>

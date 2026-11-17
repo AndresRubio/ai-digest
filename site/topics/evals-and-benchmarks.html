@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-16</div>
+      <div class="meta">Last updated: 2026-11-17</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 16 cycle is a lab writing down its own eval practice. Anthropic&rsquo;s <a href="#anthropic-safety-eval-practice">safety-eval post</a> sets floors of 100 items for a multi-turn eval and 1,000 for a single-turn one, warns that multi-turn API intervals can exceed &plusmn;10 points, and shows the product surface changing a result: a romance-scam eval on claude.ai split Opus 5 and Opus 5.5 at 98% and 94%. Its single-turn suites, 16 policy areas in seven languages, put every recent model between 94% and 98% harmless, so the spread that remains is in multi-turn work.</p>
         <p>The Nov 14 addition is a usage count that no benchmark matches. David Talby, citing Vishwanath et al., reports that <a href="#clinician-query-mix">documentation and administration made up 36.2%</a> of 127,833 clinician queries to a hospital LLM assistant and diagnosis 3.7%, while the median of 58 public clinical benchmarks contains no documentation request at all. The paper was not linked, so the figures rest on the note.</p>
         <p>The Nov 12 cycle adds a security benchmark that scores the defender&rsquo;s cost. <a href="#erosionbench">ErosionBench</a> runs 1,728 scenarios and finds perimeter defenses that post low attack rates refusing 54&ndash;92% of legitimate agent work, while its own reference auditor reaches 98.5% recall at a 2.9% false-positive rate. Two related instruments sit elsewhere: ScrapeBench on the <a href="safety-and-policy.html#scrapebench">safety page</a> and MCPHallu on the <a href="agents.html#mcphallu">agents page</a>.</p>
         <p>The Nov 10 cycle adds a third security benchmark, the first aimed at memory. <a href="#memorydojo">MemoryDojo</a> follows a poisoned instruction from the session where an agent stores it to the later session where it acts on it, over 155 trajectories, four domains and five memory systems, and finds every system susceptible. It is the attack-side counterpart to the memory entries on <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools</a>: whatever an agent remembers is an input an attacker can write to.</p>
         <p>The Nov 6 cycle, read on Nov 9, adds one benchmark, and the issue that carried it gives no score. OpenAI&rsquo;s <a href="#biobasicsbench">BioBasicsBench</a> asks an agent to interpret the raw experimental data of 100 routine wet-lab tasks, which makes the instrument&rsquo;s output the input and puts bench work rather than discovery in front of a model, the second lab to do so after Anthropic&rsquo;s own wet lab. The ranking has to be read from the post.</p>
-        <p>The Nov 6 cycle adds one instrument, and it measures a capability the rest of the page would rather not have. Dwarkesh Patel spent about $20,000 in API credits having frontier models play <a href="#clocktower-benchmark">Blood on the Clocktower</a>, a social deception game in which winning means sustaining a bluff across many turns and reasoning about what the table collectively believes. Neither newsletter that carried it gives the ranking, so the result has to be read from the post. It sits beside the agentic benchmarks because the environment is other agents rather than a task list, and it is the first entry here where a higher score is a warning as much as a result.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 6 cycle adds one instrument, and it measures a capability the rest of the page would rather not have. Dwarkesh Patel spent about $20,000 in API credits having frontier models play <a href="#clocktower-benchmark">Blood on the Clocktower</a>, a social deception game in which winning means sustaining a bluff across many turns and reasoning about what the table collectively believes. Neither newsletter that carried it gives the ranking, so the result has to be read from the post. It sits beside the agentic benchmarks because the environment is other agents rather than a task list, and it is the first entry here where a higher score is a warning as much as a result.</p>
           <p>The Nov 4 cycle has two audits of how a score is produced. <a href="#vals-reasoning-effort">Vals AI</a> reran its index across reasoning-effort settings: at the lowest setting four of seven models kept at least 80% of their score for half the cost or less, and Claude Opus 5.5 kept 80% at 16% of the cost. <a href="#prime-intellect-eval-audit">Prime Intellect</a> repaired the task descriptions and graders of AutomationBench and OfficeQA Pro v2 and found both close to saturation, with Opus 5.5 at 92.15% on AutomationBench and models fetching OfficeQA&rsquo;s answers from Hugging Face through its web access.</p>
           <p>The Nov 3 cycle has three instruments, and the sharpest is the one that shows what a pass rate hides. <a href="#veriharm-bench">VeriHarm-Bench</a> puts frontier coding agents at 95% task accuracy and 37% safe success, which is the gap between finishing a job and finishing it without damage. OpenAI&rsquo;s <a href="#openai-lifeval">LifeVal</a> moves the task set to everyday requests such as budgeting and childcare, and neither issue that carried it gives a score. The US Census Bureau&rsquo;s business survey <a href="#census-super-intelligence-wording">changed its question</a> in November 2025 and again from October 19, 2026, when &ldquo;AI&rdquo; became &ldquo;Super Intelligence or SI&rdquo;; large firms read about 40% under the second wording.</p>
           <p>The Oct 30 cycle adds two benchmarks that share only a habit of reporting a decision in parts. <a href="#featureloop">FeatureLoop</a> holds 61 human-reviewed coding tasks in which the specification changes partway through, scoring new behaviour, repairs and preserved features separately; the best of 12 frontier models completes 72.1%. <a href="#searchhorizonbench">SearchHorizonBench</a> covers when one more search is worth running, over 45,632 executions on 3,168 questions, and calibrating the stop-or-search decision on past outcomes cuts Brier error by 16.2% on held-out questions.</p>
@@ -101,7 +102,7 @@
           <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">9</span></a></li>
           <li><a href="#active-parameter-efficiency-benchmarks">Active-parameter efficiency benchmarks <span class="n">1</span></a></li>
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
-          <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">11</span></a></li>
+          <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">12</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">3</span></a></li>
           <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">28</span></a></li>
@@ -331,6 +332,14 @@
         <h3>From vibes to discipline</h3>
         <p class="lead">Eval rigour as a craft: what to measure, what to stop measuring, and how to tell a well-posed question from an open-ended one. The entries run from written practice and installable tooling to experiments showing what a well-posed question settles in an afternoon &mdash; and what the vocabulary of rigour looks like without the judgment behind it.</p>
 
+        <article class="story" id="anthropic-safety-eval-practice">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://www.anthropic.com/research/building-strong-safety-evaluations">Anthropic&rsquo;s safety-eval practice: at least 100 items per multi-turn eval, 1,000 per single-turn, and intervals that can pass &plusmn;10 points</a></h4>
+          <p>Anthropic&rsquo;s post on building safety evaluations, drawn from its system cards, sets floors of 100 items for a complex multi-turn eval and 1,000 for a simple single-turn one, and notes that confidence intervals on multi-turn API evals can exceed &plusmn;10 percentage points. Its single-turn suites cover 16 policy areas in seven languages across several product surfaces, where every recent model scores 94% to 98% harmless.</p>
+          <p>Surface changes the answer: a multi-turn romance-scam eval on claude.ai separated Opus 5 and Opus 5.5 by several points, 98% and 94%. The post also says to benchmark grader-human agreement against human-human agreement before trusting a grader.</p>
+          <div class="sources"><a href="https://www.anthropic.com/research/building-strong-safety-evaluations">Anthropic</a> &middot; <span class="via">via TLDR AI (Nov 16)</span></div>
+        </article>
+
         <article class="story" id="wolfe-subjective-agent-evals">
           <span class="when">2026-10-21</span>
           <h4><a href="https://cameronrwolfe.substack.com/p/subjective-evals">Cameron Wolfe&rsquo;s roadmap for evaluating agents on subjective tasks: human evaluation as the north star, calibrated judges offline, A/B tests in production</a></h4>
@@ -347,16 +356,16 @@
           <div class="sources"><a href="https://hamel.dev/blog/posts/decision-model-evals/">hamel.dev</a> &middot; <span class="via">via Parlance Labs (Oct 20), TLDR (Oct 21), The Code (Oct 22)</span></div>
         </article>
 
-        <article class="story unlinked" id="makarevych-eval-playbook">
-          <span class="when">2026-10-08</span>
-          <h4>Makarevych&rsquo;s eval playbook: 34 of 60 replies passed, the judge scored 0.15 kappa, and 60 cases cannot see a 12-point drop</h4>
-          <p>Senior engineer Sergii Makarevych published a guide to building evals around a runnable support bot for a fictional bike shop: collect real inputs with known-good answers, grade every reply, and report a score with an error bar against the previous version. In his run only <strong>34 of 60</strong> replies passed, cheap code checks missed an invented refund window, and the LLM judge that could catch it agreed with human labels at a kappa of <strong>0.15</strong>, far under the usual 0.6 release bar.</p>
-          <p>Two prompts both scored 70% while the new one did worse on 14% of tickets, and with <strong>60 cases</strong> no drop smaller than about <strong>12 percentage points</strong> is reliably detectable &mdash; the argument for comparing on the same cases, per pipeline stage, and letting public benchmarks shortlist models but never decide what ships.</p>
-          <div class="sources"><a href="https://codenewsletter.ai/p/spacexai-s-grok-bot-borrows-rival-models-for-tough-tasks">The Code issue (Oct 8)</a> &middot; <span class="via">via The Code (Oct 8) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (9)</summary>
+
+          <article class="story unlinked" id="makarevych-eval-playbook">
+            <span class="when">2026-10-08</span>
+            <h4>Makarevych&rsquo;s eval playbook: 34 of 60 replies passed, the judge scored 0.15 kappa, and 60 cases cannot see a 12-point drop</h4>
+            <p>Senior engineer Sergii Makarevych published a guide to building evals around a runnable support bot for a fictional bike shop: collect real inputs with known-good answers, grade every reply, and report a score with an error bar against the previous version. In his run only <strong>34 of 60</strong> replies passed, cheap code checks missed an invented refund window, and the LLM judge that could catch it agreed with human labels at a kappa of <strong>0.15</strong>, far under the usual 0.6 release bar.</p>
+            <p>Two prompts both scored 70% while the new one did worse on 14% of tickets, and with <strong>60 cases</strong> no drop smaller than about <strong>12 percentage points</strong> is reliably detectable &mdash; the argument for comparing on the same cases, per pipeline stage, and letting public benchmarks shortlist models but never decide what ships.</p>
+            <div class="sources"><a href="https://codenewsletter.ai/p/spacexai-s-grok-bot-borrows-rival-models-for-tough-tasks">The Code issue (Oct 8)</a> &middot; <span class="via">via The Code (Oct 8) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story" id="qwen3-8-27b-addition-in-words">
             <span class="when">2026-10-04</span>
@@ -423,7 +432,6 @@
             <p>It is discourse rather than measurement, and recorded here as such &mdash; the shared arc practitioners cite is ship a vibe-checked agent, hit production issues, build evals, then discover evals are necessary but insufficient.</p>
             <div class="sources"><span class="via">via Substack notes digest &mdash; no public URL given</span></div>
           </article>
-
         </details>
       </section>
 
@@ -968,6 +976,7 @@
       <h2>Timeline</h2>
       <ul class="timeline index">
         <li><span class="date">2026-11-14</span><span class="label"><a href="#clinician-query-mix">Documentation is 36.2% of 127,833 clinician queries to a hospital LLM; the median public benchmark has none</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#anthropic-safety-eval-practice">Anthropic&rsquo;s safety-eval practice: at least 100 items per multi-turn eval, 1,000 per single-turn, and intervals that can pass &plusmn;10 points</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#erosionbench">ErosionBench: perimeter defenses with low attack rates refuse 54&ndash;92% of legitimate agent work</a></span></li>
         <li><span class="date">2026-11-10</span><span class="label"><a href="#memorydojo">MemoryDojo: all five agent memory systems tested can be poisoned, across 155 multi-session trajectories</a></span></li>
         <li><span class="date">2026-11-06</span><span class="label"><a href="#biobasicsbench">BioBasicsBench scores agents on the raw data of 100 routine wet-lab tasks</a></span></li>

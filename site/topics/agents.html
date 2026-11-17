@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-16</div>
+      <div class="meta">Last updated: 2026-11-17</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 16 cycle hands the agent a wallet, a wake-up loop and a lab&rsquo;s own tools. OpenAI&rsquo;s <a href="#chatgpt-wallet">ChatGPT Wallet</a> lets an agent buy with a saved card it never sees, with a security check on every transaction, which is the account-side governor the domain-applications section asks for. Anthropic&rsquo;s <a href="#always-on-agents-guide">always-on agent guide</a> reduces an indefinitely running agent to one loop plus an event inbox, timers, memory, permissions and an outbox, and justifies the timing on cost: Opus 5.5 at 78% less per solved task than Opus 5 on one long-horizon benchmark. DeepSeek <a href="#deepseek-application-apis">opened its app&rsquo;s tools</a> to API callers on V4.1-Flash, from web search and file input to speech, with safety checks mandatory for public apps. The <a href="#personal-agent-protocol">Personal Agent Protocol</a> reached v1.0 and is updated in place.</p>
         <p>The Nov 13 cycle moves the harness onto the customer&rsquo;s servers and puts an agent&rsquo;s spending on a card. Anthropic&rsquo;s <a href="#self-hosted-claude-managed-agents">self-hosted Claude Managed Agents</a>, in private beta, run the agent server, sandboxes, credentials and session history inside the customer&rsquo;s cloud, with Anthropic, Bedrock, Google or an internal gateway as the model provider. <a href="#replit-agent-commerce">Replit Agent</a> now buys supplies and runs Google Ads for the businesses built on it through Link with Visa and Stripe, with no spending limits stated. Google also published how <a href="#agent-anomaly-detection">Agent Anomaly Detection</a> scores on benchmarks it did not write: 87% of executed harmful instructions flagged, weakest on poisoned memory, with false alarms up to 16% on high-impact tools.</p>
         <p>The Nov 12 cycle is harnesses given away and a site that refuses agents. OpenWorker open-sourced its <a href="#openworker-harness-sdk">Agent Harness SDK</a>, installed as a skill that a coding agent then uses to write the harness, and CopilotKit&rsquo;s <a href="#openbot-1-0">OpenBot 1.0</a> is an MIT-licensed coworker that runs each Bot in its own container and checks every action against policy, although per-Bot isolation and the audit trail sit in a paid tier. <a href="#grok-bot-1-0">Grok Bot 1.0</a> moves the other way, from a personal assistant to a Team Bot shared across Slack, Teams and meetings, with admins approving what it learns. <a href="#a2ui-1-0">A2UI 1.0</a> and OpenAI&rsquo;s <a href="#openai-mcp-extensions">MCP extensions</a> both give agents richer screens to answer with; only the first works outside one vendor&rsquo;s app.</p>
         <p><a href="#browser-use-1-0">Browser Use 1.0</a> deleted 136,866 lines and now has the agent write Python against the DevTools protocol, reporting 62.5 against 56.3 on its own benchmark at a lower cost per task. <a href="#united-airlines-agent-block">United Airlines</a> is moving to block unauthorized agents from booking and check-in, the second refusal in two days after eBay&rsquo;s. Two measurements check the loop itself: <a href="#read-agentic-document-search">READ</a>&rsquo;s agentic document search beat chunk-and-embed 58.8% to 15.7% on a 780-page report while plain BM25 reached 51.0%, and <a href="#mcphallu">MCPHallu</a> finds only 23.2% of runs stop when the goal cannot be reached.</p>
         <p>The Nov 11 cycle is about who lets an agent in. Adobe&rsquo;s <a href="#adobe-creative-cloud-mcp">Creative Cloud MCP server</a> opens Photoshop, Illustrator and Premiere to ChatGPT, Claude and Gemini, while eBay <a href="#ebay-blocks-shopping-agents">limits Meta&rsquo;s Muse</a> and other third-party shopping agents from browsing its listings, citing scraping. One vendor publishes an interface for agents; one marketplace refuses them.</p>
-        <p>The Nov 10 cycle adds one result on spending test-time compute on agents. <a href="#parallel-agent-teams">Parallel agent teams</a>, many teams of ten sampled side by side with the best result kept, beat 100 independent agents on 10 of 12 long-horizon tasks and one team of 100 on all four where that was tried, using a 27B model; at equal cost they beat a frontier model on half the tasks. The premise is the limit: a verifier that can score every attempt, which GPU kernels and formal proofs have and most agent work does not.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 10 cycle adds one result on spending test-time compute on agents. <a href="#parallel-agent-teams">Parallel agent teams</a>, many teams of ten sampled side by side with the best result kept, beat 100 independent agents on 10 of 12 long-horizon tasks and one team of 100 on all four where that was tried, using a 27B model; at equal cost they beat a frontier model on half the tasks. The premise is the limit: a verifier that can score every attempt, which GPU kernels and formal proofs have and most agent work does not.</p>
           <p>The Nov 6 to 9 cycle is three entries about what an agent remembers, whom it trusts and what it may touch. Anthropic&rsquo;s <a href="#anthropic-agent-memory-components">agent-memory post</a> shows what judgment about salience looks like in a memory folder: 10,000 steps into Pok&eacute;mon Red, Sonnet 3.7 had written 413 files for one badge and Fable 5 nine files for four, and a dreaming pass caught a wrong map note against the transcript after it had sent Claude off a ledge three times. A rule of &ldquo;record only failures&rdquo; cost Opus 5 most of its gain, so the finding is to say what memory is for and not how to use it.</p>
           <p><a href="#project-eve">Project EVE</a> put Claude in EVE Online&rsquo;s market, where earnings tripled from Opus 4.6 to Fable 5 on a buy-low-sell-slightly-higher strategy and even Fable 5 lost money in about half its runs when asked to bet on price direction, and in EVE Frontier, where four-agent teams coordinated well and almost never caught a teammate told to sabotage them. OpenCode&rsquo;s <a href="#opencode-browse">Browse</a> lends an agent the user&rsquo;s own browser and logins through MCP, with a handoff for logins, 2FA and payments and a per-session site allowlist as the controls, and no figure.</p>
           <p>The Nov 5 cycle adds a harness result and a coordination kernel. MIT&rsquo;s <a href="#vista-harness">VISTA</a> stores every frame an agent sees and lets the model retrieve and zoom into them, which takes Claude Opus 5.0 from 40.68 to a perfect 100 on ARC-AGI-3&rsquo;s action-efficiency score; with frame storage removed, the GPT-5.6 Sol version drops from 99 to 70. <a href="#ambion">Ambion</a> is an open-source kernel in which Pi, Claude Agent SDK and Codex agents share a journal that survives restarts, still at 0.x. Uber&rsquo;s count of agent-booked rides, four in its busiest October week, is on the <a href="applications.html#uber-agent-bookings">applications page</a>.</p>
@@ -117,15 +118,15 @@
           <li><a href="#agent-memory">Agent memory <span class="n">14</span></a></li>
           <li><a href="#frameworks-and-infrastructure">Frameworks &amp; infrastructure <span class="n">28</span></a></li>
           <li><a href="#the-agentic-harness">The agentic harness <span class="n">38</span></a></li>
-          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">17</span></a></li>
+          <li><a href="#agent-loop-design-and-reliability">Agent loop design &amp; reliability <span class="n">18</span></a></li>
           <li><a href="#meta-orchestration-and-governance">Meta-orchestration &amp; governance <span class="n">13</span></a></li>
-          <li><a href="#agentic-search">Agentic search <span class="n">3</span></a></li>
+          <li><a href="#agentic-search">Agentic search <span class="n">4</span></a></li>
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">19</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">10</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">9</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">4</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">23</span></a></li>
-          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">15</span></a></li>
+          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">16</span></a></li>
         </ul>
       </nav>
 
@@ -762,6 +763,14 @@
         <h3>Agent loop design &amp; reliability</h3>
         <p class="lead">Plan, act, verify, repeat &mdash; and the primitives that decide whether a loop finishes or just burns budget: verifiers, persistent state, stop conditions, and a compaction policy. Judge entries on whether the measurement was fixed before the results appeared, because that is exactly how far agent self-improvement claims have held up.</p>
 
+        <article class="story" id="always-on-agents-guide">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://claude.com/resources/articles/building-always-on-agents">Anthropic&rsquo;s always-on agent guide builds the loop from an event inbox, timers, memory, permissions and an outbox</a></h4>
+          <p>Anthropic&rsquo;s guide treats an agent that runs indefinitely, carries context across sessions and acts without supervision as one core loop extended with five primitives: an event inbox to wake on, timers, memory, permissions and an outbox for actions. Its case for why such agents are practical now is cost: on one long-horizon coding benchmark Opus 5.5 cost 78% less per solved task than Opus 5, against 40% less on typical workloads.</p>
+          <p>It is a design guide with no reliability measurement of its own, so its stop conditions and permission boundaries are the parts to check against a loop you actually run.</p>
+          <div class="sources"><a href="https://claude.com/resources/articles/building-always-on-agents">Claude</a> &middot; <span class="via">via TLDR AI (Nov 16), TLDR (Nov 16), The Code (Nov 16)</span></div>
+        </article>
+
         <article class="story" id="mcphallu">
           <span class="when">2026-11-12</span>
           <h4><a href="https://arxiv.org/abs/2611.07689">MCPHallu: on unreachable-goal tasks only 23.2% of MCP agent runs stop correctly</a></h4>
@@ -777,15 +786,15 @@
           <div class="sources"><a href="https://aaif.io/blog/introducing-dapr-durable-execution-for-goose">AAIF</a> &middot; <span class="via">via AAIF newsletter (Oct 29)</span></div>
         </article>
 
-        <article class="story" id="cloudflare-computer-v0-7">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://developers.cloudflare.com/changelog/post/2026-10-26-computer-durable-javascript/">Cloudflare Computer v0.7.0 lets agents resume code execution after a deploy or crash and pause for outside approval</a></h4>
-          <p>Cloudflare&rsquo;s <strong>Computer v0.7.0</strong> lets an agent&rsquo;s code execution resume after a deployment or a crash, and pause while it waits for external approval. Both are persistent-state primitives of the kind this section tracks, beside <a href="#vercel-durable-harness">Vercel&rsquo;s durable harness</a>; the changelog entry is the whole source, with no limit stated for how long a paused run can wait.</p>
-          <div class="sources"><a href="https://developers.cloudflare.com/changelog/post/2026-10-26-computer-durable-javascript/">Cloudflare changelog</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="cloudflare-computer-v0-7">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://developers.cloudflare.com/changelog/post/2026-10-26-computer-durable-javascript/">Cloudflare Computer v0.7.0 lets agents resume code execution after a deploy or crash and pause for outside approval</a></h4>
+            <p>Cloudflare&rsquo;s <strong>Computer v0.7.0</strong> lets an agent&rsquo;s code execution resume after a deployment or a crash, and pause while it waits for external approval. Both are persistent-state primitives of the kind this section tracks, beside <a href="#vercel-durable-harness">Vercel&rsquo;s durable harness</a>; the changelog entry is the whole source, with no limit stated for how long a paused run can wait.</p>
+            <div class="sources"><a href="https://developers.cloudflare.com/changelog/post/2026-10-26-computer-durable-javascript/">Cloudflare changelog</a> &middot; <span class="via">via TLDR AI (Oct 27)</span></div>
+          </article>
 
           <article class="story" id="rsihub">
             <span class="when">2026-10-26</span>
@@ -1005,6 +1014,14 @@
         <h3>Agentic search</h3>
         <p class="lead">Agentic search names three different implementations &mdash; build good retrieval, steer the agent toward context despite weak retrieval, or fine-tune a model to search one corpus &mdash; and conflating them causes most of the confusion. The entries below cover the first two. Judge entries on which pattern is actually being described.</p>
 
+        <article class="story" id="deepseek-application-apis">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://api-docs.deepseek.com/guides/build_a_chatbot/">DeepSeek opens its app&rsquo;s web search, file input, URL reading and speech tools to the API, with safety checks required for public apps</a></h4>
+          <p>DeepSeek made the tools behind its consumer app available through the API on V4.1-Flash: web search with cited answers, a deep-thinking search that reads pages during multi-step reasoning, file input for PDFs, Office files and images, URL reading, speech-to-text, text-to-speech and input and output safety screening. Search and URL reading are switched on with <code>deepseek_web_search</code> and <code>deepseek_read_url</code>, tool use is billed on top of token prices, and public apps must keep safety checks on.</p>
+          <p>It turns October&rsquo;s raw <a href="#deepseek-search-fetch-api">Search and Fetch endpoints</a> into tools the model calls itself, the build-good-retrieval pattern with the model lab as supplier. AlphaSignal gives no per-call prices.</p>
+          <div class="sources"><a href="https://api-docs.deepseek.com/guides/build_a_chatbot/">DeepSeek API docs</a> &middot; <span class="via">via AlphaSignal (Nov 16)</span></div>
+        </article>
+
         <article class="story" id="exa-3-0">
           <span class="when">2026-10-19</span>
           <h4><a href="https://exa.ai/blog/exa-3">Exa 3.0 adds Exa Lite at $4 per 1,000 requests on an independent index tracking 2 trillion URLs</a></h4>
@@ -1021,12 +1038,16 @@
           <div class="sources"><a href="https://www.firecrawl.dev/blog/introducing-alexandria-series-b">Firecrawl</a> &middot; <span class="via">via Unwind AI (Sep 23)</span></div>
         </article>
 
-        <article class="story" id="three-kinds-of-agentic-search">
-          <span class="when">2026-06-10</span>
-          <h4><a href="https://softwaredoug.com/blog/2026/06/08/three-kinds-of-agentic-search">&ldquo;Agentic search&rdquo; splits into three distinct patterns</a></h4>
-          <p>Doug Turnbull argues in a June 8 teardown that &ldquo;agentic search&rdquo; conflates three implementation patterns &mdash; <strong>retrieval-centric</strong> (build good search so the agent can fill in missing context), <strong>harness-centric</strong> (steer the agent toward the context it needs even when the underlying search is weak), and <strong>model-centric</strong> (fine-tune an LLM to know how to search a specific corpus). The core point is that agents lack domain intuition about what a given user finds relevant and will confidently go astray without context engineering.</p>
-          <div class="sources"><a href="https://softwaredoug.com/blog/2026/06/08/three-kinds-of-agentic-search">softwaredoug.com</a> &middot; <span class="via">via Doug Turnbull&rsquo;s Search Tips (email)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story" id="three-kinds-of-agentic-search">
+            <span class="when">2026-06-10</span>
+            <h4><a href="https://softwaredoug.com/blog/2026/06/08/three-kinds-of-agentic-search">&ldquo;Agentic search&rdquo; splits into three distinct patterns</a></h4>
+            <p>Doug Turnbull argues in a June 8 teardown that &ldquo;agentic search&rdquo; conflates three implementation patterns &mdash; <strong>retrieval-centric</strong> (build good search so the agent can fill in missing context), <strong>harness-centric</strong> (steer the agent toward the context it needs even when the underlying search is weak), and <strong>model-centric</strong> (fine-tune an LLM to know how to search a specific corpus). The core point is that agents lack domain intuition about what a given user finds relevant and will confidently go astray without context engineering.</p>
+            <div class="sources"><a href="https://softwaredoug.com/blog/2026/06/08/three-kinds-of-agentic-search">softwaredoug.com</a> &middot; <span class="via">via Doug Turnbull&rsquo;s Search Tips (email)</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="browser-and-computer-use-agents">
@@ -1220,7 +1241,8 @@
             <h4><a href="https://sierra.ai/blog/introducing-personal-agent-protocol">Meta and Sierra&rsquo;s Personal Agent Protocol is an OAuth-based open standard for personal agents to act on businesses&rsquo; sites and APIs</a></h4>
             <p>Sierra and Meta, with Shopify, Stripe and Walmart named as backers, published the <strong>Personal Agent Protocol</strong>, an open standard for a consumer&rsquo;s personal agent to reach a company through its website, APIs or its own agents. It is built on OAuth: the consumer decides what access the agent gets, the company sets what the agent may do and sees what it did, and anyone can implement it.</p>
             <p>It is the authentication piece this section&rsquo;s lead has been calling unresolved, arriving from the side that runs the personal agent (Meta&rsquo;s Muse) and the side that answers it (Sierra&rsquo;s customer agents) rather than from the MCP working group; what is published is a spec and a partner list, with no conformance test or adoption figure yet.</p>
-            <div class="sources"><a href="https://sierra.ai/blog/introducing-personal-agent-protocol">Sierra</a> &middot; <span class="via">via TLDR AI (Oct 7), MarkTechPost (Oct 7)</span></div>
+            <p><em>Updated Nov 13:</em> Sierra released v1.0, revised after five weeks of design partners testing drafts against real websites, APIs and agents; any company can now implement it on its own, and Shopify is bringing it to its merchants.</p>
+            <div class="sources"><a href="https://sierra.ai/blog/introducing-personal-agent-protocol">Sierra</a> &middot; <a href="https://sierra.ai/blog/releasing-poppy">Sierra (v1.0)</a> &middot; <span class="via">via TLDR AI (Oct 7), MarkTechPost (Oct 7), TLDR AI (Nov 16)</span></div>
           </article>
 
           <article class="story" id="chatgpt-mcp-events">
@@ -1573,6 +1595,14 @@
         <h3>Agentic domain applications</h3>
         <p class="lead">Agentic X as a domain reframing rather than a tooling story: a loop with its own verification and observability, built for one field, instead of a generic coding agent pointed at it. Judge entries on the governor &mdash; a compute budget the agent is held to, or a permission boundary the account enforces.</p>
 
+        <article class="story" id="chatgpt-wallet">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://openai.com/index/introducing-chatgpt-wallet/">ChatGPT Wallet lets an agent pay with a saved card it never sees, with a security check on every purchase</a></h4>
+          <p>OpenAI introduced <strong>ChatGPT Wallet</strong> for eligible US users: an agent can complete a purchase with a saved card once the user approves it or grants advance authority, without access to the card details, and every transaction passes a security check. The merchant still processes the sale.</p>
+          <p>That puts the governor this section asks about in the account, not the agent, three days after <a href="#replit-agent-commerce">Replit Agent</a> started buying supplies for businesses. The newsletters give no spending limits or availability beyond eligible US users.</p>
+          <div class="sources"><a href="https://openai.com/index/introducing-chatgpt-wallet/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 16), Forward Future (Nov 16)</span></div>
+        </article>
+
         <article class="story" id="replit-agent-commerce">
           <span class="when">2026-11-13</span>
           <h4><a href="https://replit.com/blog/replit-agent-ads-commerce">Replit Agent can now buy supplies and run Google Ads campaigns for a business</a></h4>
@@ -1588,15 +1618,15 @@
           <div class="sources"><a href="https://www.anthropic.com/research/project-eve-claude-plays-mmorpgs">Anthropic</a> &middot; <span class="via">via TLDR AI (Nov 9)</span></div>
         </article>
 
-        <article class="story" id="letterpress-1">
-          <span class="when">2026-11-02</span>
-          <h4><a href="https://www.marktechpost.com/2026/11/02/letter-letterpress-1-growth-engineering-coding-agent/">Letter&rsquo;s Letterpress-1 is a coding agent for growth engineering, from $100 a month</a></h4>
-          <p><strong>Letterpress-1</strong> reads a site and its market, then opens pull requests with live previews. Plans start at <strong>$100 a month</strong>, and there is no public benchmark.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/11/02/letter-letterpress-1-growth-engineering-coding-agent/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="letterpress-1">
+            <span class="when">2026-11-02</span>
+            <h4><a href="https://www.marktechpost.com/2026/11/02/letter-letterpress-1-growth-engineering-coding-agent/">Letter&rsquo;s Letterpress-1 is a coding agent for growth engineering, from $100 a month</a></h4>
+            <p><strong>Letterpress-1</strong> reads a site and its market, then opens pull requests with live previews. Plans start at <strong>$100 a month</strong>, and there is no public benchmark.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/11/02/letter-letterpress-1-growth-engineering-coding-agent/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="natural-direct">
             <span class="when">2026-10-30</span>
@@ -1688,11 +1718,13 @@
             <div class="sources"><span class="via">via Vanishing Gradients (Hugo Bowne-Anderson Substack) &mdash; no public URL given</span></div>
           </article>
         </details>
-      
       </section>
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#deepseek-application-apis">DeepSeek opens its app&rsquo;s web search, file input, URL reading and speech tools to the API, with safety checks required for public apps</a></span></li>
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#always-on-agents-guide">Anthropic&rsquo;s always-on agent guide builds the loop from an event inbox, timers, memory, permissions and an outbox</a></span></li>
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#chatgpt-wallet">ChatGPT Wallet lets an agent pay with a saved card it never sees, with a security check on every purchase</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#openworker-harness-sdk">OpenWorker open-sources its Agent Harness SDK, model-agnostic and installed as a skill for Claude Code or Codex</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#read-agentic-document-search">READ beats chunk-and-embed 58.8% to 15.7% on a 780-page report, but plain BM25 gets 51.0%</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#self-hosted-claude-managed-agents">Claude Managed Agents can now run inside a company&rsquo;s own cloud, in private beta</a></span></li>
