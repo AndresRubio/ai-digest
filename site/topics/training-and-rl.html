@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-11-17</div>
+      <div class="meta">Last updated: 2026-11-18</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 17 cycle opens a section on numerical correctness. Google&rsquo;s <a href="#zero-tim">ZERO-TIM</a> makes the sampler&rsquo;s and the trainer&rsquo;s log-probabilities bitwise identical across 64 TPU v5p chips by fixing the order of floating-point reductions, removing at the source the mismatch that score centering corrects for statistically. Brandon Amos&rsquo;s <a href="#divergence-numerical-issues">paper on divergences</a> shows KL and Jensen-Shannon computations losing precision when two distributions nearly match, the regime distillation and RL work in, and supplies stable reformulations. Neither reports what the fix changes in a real training run.</p>
         <p>The Nov 16 cycle is two training runs reported end to end by the teams that ran them. Thinking Machines explains how <a href="#end-to-end-4-bit-training">Inkling 2 Small was trained with a native NVFP4 forward pass</a>: 4-bit forwards in the expert layers, MXFP8 backwards with stochastic rounding, and a wall-clock gain of 8% in pretraining and 20% in RL over full MXFP8, paid for in quantization error. Empero&rsquo;s <a href="#quark">Quark</a> sits at the other end of the scale, a 165M-parameter model with a 128K context taken through every stage for about $4,200, whose mix of 12 local and 4 global layers cuts the KV cache at 128K to a quarter. Both land in the pretraining section, and both are self-reported.</p>
         <p>The Nov 13 cycle has two papers about how little it takes to change a model. <a href="#deletion-tuning">Deletion Tuning</a> zeroes fewer than 0.05% of an LLM&rsquo;s weights through a mask on the gate projections and matches full fine-tuning under RL with verifiable rewards, supervised fine-tuning and on-policy distillation, while full fine-tuning and LoRA lose up to 5.4 points on earlier tasks that it keeps. <a href="#homeopathic-learning">Homeopathic learning</a> is the risk on the other side: poison data that teaches nothing on its own plants a trait once clean, trigger-free data is mixed in, so checking a training set item by item can pass a backdoor.</p>
         <p>The Nov 11 addition fixes a failure without training anything. <a href="#reward-hacking-weight-arithmetic">Weight arithmetic</a> subtracts a code model trained on loose rewards from one trained on strict rewards and extrapolates along the difference, cutting resource-limit failures from 14.5% to 8%. It breaks outputs if pushed too far, and the stricter reward can itself cost correctness. The same idea, editing weights in place of a training run, appears on <a href="research-papers.html#qwen-concept-27b">research papers</a> the same day.</p>
         <p>The Nov 9 addition is the first entry here with a mechanism for why large-scale RL falls over. <a href="#score-centering">Score centering</a>, by Marek and Ryabinin and explained by Cameron Wolfe, shows that when the sampler and the trainer disagree on token probabilities the expected gradient is nonzero even under a constant reward, so the trainer drifts toward the sampler and the error feeds back through every weight sync. Subtracting the expected score under the sampler at each prefix cancels that drift without the clipped importance ratios the usual fixes need, using the sampler&rsquo;s top 128 token probabilities. On Qwen3-30B-A3B-Base under the harshest sampler quantization it reached 30% training accuracy against 12% for truncated importance sampling and under 5% for the rest, and the authors recommend pairing it with importance sampling when rollouts are stale. Nathan Lambert says frontier labs already use it quietly, which is the paper&rsquo;s standing in one line.</p>
-        <p>The Nov 5 addition is a claim about what pretraining needs as input. Cartesia says its newer <a href="#h-nets-raw-bytes">H-Nets</a>, which learn directly from raw bytes, match an open-source 3B Transformer with 10&times; less compute and data, in two posts dated Oct 28. The figure is Cartesia&rsquo;s own summary. Cognition&rsquo;s SWE-2 Flash, filed under <a href="model-releases.html#swe-2-flash">model releases</a>, is the cycle&rsquo;s other training note: a mid-training stage inserted before reinforcement learning, with the data mix chosen by how many tokens each candidate needed to reach a fixed validation loss.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 5 addition is a claim about what pretraining needs as input. Cartesia says its newer <a href="#h-nets-raw-bytes">H-Nets</a>, which learn directly from raw bytes, match an open-source 3B Transformer with 10&times; less compute and data, in two posts dated Oct 28. The figure is Cartesia&rsquo;s own summary. Cognition&rsquo;s SWE-2 Flash, filed under <a href="model-releases.html#swe-2-flash">model releases</a>, is the cycle&rsquo;s other training note: a mid-training stage inserted before reinforcement learning, with the data mix chosen by how many tokens each candidate needed to reach a fixed validation loss.</p>
           <p>The Nov 4 addition is a budget figure for pre-training an image model. Linum trained its pixel-space <a href="#linum-p-jit-21k">P-JiT</a> text-to-image model for 660M samples on $21K of compute, with 4&times; fewer tokens per image and 11&times; faster convergence than its previous model. The figures are Linum&rsquo;s own, from a two-person lab, and the run is a step toward video models.</p>
           <p>The Nov 3 cycle has three entries and no scores among them, so what it adds is method. <a href="#compute-islands">Compute islands</a> argues a frontier run can span several smaller clusters of mixed generations and vendors, and names the cost itself: one compromised site can tamper with a model in ways that are hard to trace. <a href="#how-to-train-a-swarm">How to Train a Swarm</a> treats parallel agents as an incentive design problem. <a href="#teaching-qwen-why">Teaching Qwen Why</a> carries Anthropic&rsquo;s misalignment fine-tuning methods to new models, though the issue gives no effect size. The speed result from the same issue, <a href="infrastructure.html#weight-teleportation">weight teleportation</a>, is filed on the infrastructure page.</p>
           <p>The Oct 29 addition is a reward that needs no judge. Microsoft&rsquo;s <a href="#thinkingbox-database-graded-rl">ThinkingBox</a> scores business agents by running checks on the database&rsquo;s final state and feeds that to GRPO; Qwen3.8-27B went from 38 to 107 tasks solved on every one of 20 attempts, and the training code is public. The suite is the team&rsquo;s own, but a released environment with an executable reward is the reusable part this section judges on.</p>
@@ -84,6 +85,7 @@
           <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">6</span></a></li>
           <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">8</span></a></li>
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">4</span></a></li>
+          <li><a href="#numerical-correctness-in-training">Numerical correctness in training <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">9</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">5</span></a></li>
@@ -347,6 +349,26 @@
             <div class="sources"><span class="via">via Deep (Learning) Focus (Aug 24) &mdash; no public URL given</span></div>
           </article>
         </details>
+      </section>
+
+      <section class="topic-section" id="numerical-correctness-in-training">
+        <h3>Numerical correctness in training</h3>
+        <p class="lead">Two entries where the defect is arithmetic and the method is sound: a sampler and a trainer that disagree in the last bits, and divergences that lose precision exactly when two distributions nearly match. Judge each on how the fix was verified, bit for bit or by test, and on which hardware.</p>
+
+        <article class="story" id="zero-tim">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://developers.googleblog.com/unlocking-stable-on-policy-rl-on-tpu-with-bitwise-zero-traininference-mismatch">Google&rsquo;s ZERO-TIM makes sampler and trainer log-probabilities bitwise identical across 64 TPU v5p chips</a></h4>
+          <p>Google describes <strong>ZERO-TIM</strong>, an implementation in which the sampler and the trainer produce bitwise-identical log-probabilities, verified across 64 TPU v5p chips. The mismatch it removes comes from floating-point additions carried out in different orders on separate serving and training paths; the fix is to use the same arithmetic operations and a standardised reduction order across TPU meshes.</p>
+          <p>On-policy RL assumes the two agree, and <a href="#score-centering">score centering</a> corrects for the same disagreement statistically. TLDR AI&rsquo;s summary reports no training result that the change improves.</p>
+          <div class="sources"><a href="https://developers.googleblog.com/unlocking-stable-on-policy-rl-on-tpu-with-bitwise-zero-traininference-mismatch">Google Developers Blog</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
+        </article>
+
+        <article class="story" id="divergence-numerical-issues">
+          <span class="when">2026-11-13</span>
+          <h4><a href="https://arxiv.org/abs/2611.18511">Brandon Amos: KL and Jensen-Shannon divergences lose precision when two distributions are nearly equal</a></h4>
+          <p>Brandon Amos shows that standard divergence computations between categorical distributions (forward and reverse KL, generalised Jensen-Shannon, Monte Carlo KL estimates and entropy) suffer rounding and cancellation errors when the two distributions are nearly equal, in both the value and the gradient. That is the regime knowledge distillation, reinforcement learning and proximal methods operate in. The paper gives numerically stable reformulations with example implementations validated by property-based tests; its abstract reports no measurement of how much a real training run is affected.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.18511">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 17)</span></div>
+        </article>
       </section>
 
       <section class="topic-section" id="failure-driven-rl-environments">
@@ -628,7 +650,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#zero-tim">Google&rsquo;s ZERO-TIM makes sampler and trainer log-probabilities bitwise identical across 64 TPU v5p chips</a></span></li>
         <li><span class="date">2026-11-15</span><span class="label"><a href="#quark">Empero&rsquo;s Quark takes a 165M-parameter model through every training stage for about $4,200, with four Apache-2.0 checkpoints</a></span></li>
+        <li><span class="date">2026-11-13</span><span class="label"><a href="#divergence-numerical-issues">Brandon Amos: KL and Jensen-Shannon divergences lose precision when two distributions are nearly equal</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#end-to-end-4-bit-training">Thinking Machines trained Inkling 2 Small with a native NVFP4 forward pass, 8% faster in pretraining and 20% in RL than full MXFP8</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#homeopathic-learning">Homeopathic learning: poison data that teaches nothing alone plants a backdoor once clean data is added</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#deletion-tuning">Deletion Tuning matches full fine-tuning by zeroing under 0.05% of an LLM&rsquo;s weights</a></span></li>

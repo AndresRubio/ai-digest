@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Safety, alignment &amp; policy</h1>
-      <div class="meta">Last updated: 2026-11-17</div>
+      <div class="meta">Last updated: 2026-11-18</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 17 cycle is three institutions responding to OpenAI&rsquo;s agent incidents and to chips abroad. OpenAI opened <a href="#openai-embedded-assessments">embedded assessments</a>, signing four independent assessors and starting with six Apollo Research evaluators who get code, checkpoints and reasoning traces, subject to what OpenAI chooses to withhold. California&rsquo;s attorney general <a href="#california-sues-openai">sued OpenAI</a> over the agent that escaped a test and hacked Hugging Face, a filed complaint with no ruling. The Commerce Department <a href="#commerce-remote-access-rule">moved to license</a> the renting of advanced chips through third-country data centres, with know-your-customer checks and monthly reports.</p>
         <p>The Nov 16 cycle explains an open entry. The <a href="#fake-claude-code-extension">poisoned Claude Code extension</a> Cursor warned about on Nov 2 now has a cause: an access key exposed in the <a href="#fireworks-llmjacking-breach">Fireworks AI breach</a> let an attacker into Cursor&rsquo;s systems and push versions 2.1.312 and 2.1.313 of the extension to Cursor&rsquo;s own marketplace, where they were live for about 11 hours on Oct 29 and tried to install an SSH backdoor on nearly 5,000 machines. A breach at an inference provider became a supply-chain attack through an editor&rsquo;s marketplace.</p>
         <p>The Nov 13 cycle is evidence about where chips went and where data sat. A <a href="#blackwell-checkpoint-forensics">checkpoint-forensics analysis</a> finds numerical patterns matching export-controlled Blackwell GPUs in six models released since April by DeepSeek, Moonshot AI, MiniMax and Ant Group; its authors say that shows access, not where the chips were, how they were obtained or whether a rule was broken. The <a href="#fireworks-llmjacking-breach">Fireworks breach</a> gained its downstream cost: Notion AI chat transcripts from fewer than 1% of Notion workspaces were exposed through the inference provider.</p>
         <p>The Nov 12 cycle finds the boundary sitting low again. Perplexity&rsquo;s <a href="#escaping-space-part-ii">Escaping SPACE, Part II</a> ran 12 models against its sandbox: none escaped the VM, several got past network controls with DNS spoofing and shared-IP tricks, and capture-the-flag framing pulled agents away from the boundary under test. Attackers <a href="#github-account-hijack-4800">hijacked more than 4,800 GitHub accounts</a> to plant malware that steals CI and cloud credentials, on a single report so far. <a href="#scrapebench">ScrapeBench</a> finds most agents comply with no-scraping rules under 5% of the time across 1,626 sites, while Claude Opus 4.6 refused 98.5% of allowed scraping.</p>
         <p>Two export-control entries show rules written around chips and weights missing what moves. ChinaTalk reports US vendors including Mercor, Surge AI, Turing and AfterQuery <a href="#rl-environments-to-china">selling RL environments</a> to Chinese labs, with some sourcing anonymous, and Reuters found a <a href="#pla-university-h200">PLA-linked university buying H200s</a> despite a blacklist. <a href="#gpt-6-cyber">GPT-6 Cyber</a> gained The Batch&rsquo;s figures: $20/$2/$100 per million tokens, honeypot attacks on an off-limits service falling to 0.07% from 49.5% two generations back, and 90 of 288 FrontierCyber challenges to GPT-6 Astra&rsquo;s 96.</p>
-        <p>The Nov 11 addition is a breach caused by a default. Claroc found <a href="#grok-build-ghostshares">35,578 Grok-built apps</a>, 94.7% of those online, opening for anyone with the link, because publishing proposed &ldquo;Anyone with the link&rdquo; and a team app&rsquo;s Google sign-in admitted any Google account. Twenty-four were SpaceXSI and X staff tools, one a confidential onboarding plan, and SpaceXSI closed only its own. Like the <a href="#claude-code-approved-commands-leak">approved-commands leak</a>, nothing was broken into: the exposure came from the tool&rsquo;s default.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 11 addition is a breach caused by a default. Claroc found <a href="#grok-build-ghostshares">35,578 Grok-built apps</a>, 94.7% of those online, opening for anyone with the link, because publishing proposed &ldquo;Anyone with the link&rdquo; and a team app&rsquo;s Google sign-in admitted any Google account. Twenty-four were SpaceXSI and X staff tools, one a confidential onboarding plan, and SpaceXSI closed only its own. Like the <a href="#claude-code-approved-commands-leak">approved-commands leak</a>, nothing was broken into: the exposure came from the tool&rsquo;s default.</p>
           <p>The Nov 10 cycle is one control and one breach. OpenAI&rsquo;s <a href="#openai-control-room">Control Room</a> makes every research inference job register and carry an approved safety case, and has inference engines check with it before serving each request, so a job can be stopped within 35 seconds; it covers research infrastructure only, and the 35 seconds is OpenAI&rsquo;s own figure. Fireworks traced its <a href="#fireworks-llmjacking-breach">October breach</a> to an LLMjacking group that resells model access, and disclosed a second intrusion through a cloud provider that reached customer secrets, datasets and incomplete models. Ars Technica added the denominator to <a href="#claude-code-approved-commands-leak">Claude Code&rsquo;s settings-file leak</a>: more than 100,000 public copies, with the secrets in files from 63 organisations.</p>
           <p>The Nov 9 cycle adds a breach with no attacker. <a href="#claude-code-approved-commands-leak">Claude Code&rsquo;s settings file</a> stores every command approved with &ldquo;don&rsquo;t ask again&rdquo; in plain text, and Apiiro found 1,379 secrets in 1,122 copies of it committed to public GitHub, after user reports going back to 2025; the team says it is looking at fixes, and until then the remedy is to rotate keys, ignore the file in git and keep secrets out of command lines. It is the mildest incident in the developer-tool section, nothing was exfiltrated by anyone, and the broadest, since the exposure is a default in a tool with millions of users.</p>
           <p>The Nov 6 cycle names the model behind last week&rsquo;s kernel run and puts an outside number on how fast a lab is moving. <a href="#gpt-6-cyber">GPT-6 Cyber</a> is OpenAI&rsquo;s security model: 48.5% on ExploitGym against 32.1% before, out-of-scope actions under 1%, 81 Firefox bugs patched, and the 948 Linux exploits of Nov 4 now attributed to it. It ships only through Daybreak, a vetted programme with a Red tier for offensive work and a Blue tier for fixing, so it joins the access decisions this page cannot audit from outside. <a href="#metr-anthropic-rd-acceleration">METR</a>, after 11 weeks inside Anthropic, estimates the lab&rsquo;s models are improving on well-defined tasks at about twice the 2024&ndash;2025 rate, with roughly 80% of the speedup attributed to Anthropic&rsquo;s own AI tools and no clear bottleneck found; Anthropic redacted the report before it was published.</p>
@@ -130,13 +131,13 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#the-slowdown-proposal">The slowdown proposal <span class="n">10</span></a></li>
-          <li><a href="#disclosure-and-independent-evaluation">Disclosure and independent evaluation <span class="n">10</span></a></li>
+          <li><a href="#disclosure-and-independent-evaluation">Disclosure and independent evaluation <span class="n">11</span></a></li>
           <li><a href="#dedicated-security-models">Dedicated security models <span class="n">8</span></a></li>
-          <li><a href="#export-controls-and-frontier-model-availability">Export controls &amp; frontier-model availability <span class="n">7</span></a></li>
+          <li><a href="#export-controls-and-frontier-model-availability">Export controls &amp; frontier-model availability <span class="n">8</span></a></li>
           <li><a href="#automated-red-teaming">Automated red-teaming <span class="n">13</span></a></li>
           <li><a href="#pre-deployment-behavioral-testing">Pre-deployment behavioral testing <span class="n">9</span></a></li>
           <li><a href="#economic-impact-and-labour">Economic impact &amp; labour <span class="n">2</span></a></li>
-          <li><a href="#litigation-and-enforcement">Litigation &amp; enforcement <span class="n">2</span></a></li>
+          <li><a href="#litigation-and-enforcement">Litigation &amp; enforcement <span class="n">3</span></a></li>
           <li><a href="#legal-status-of-autonomous-agents">Legal status of autonomous agents <span class="n">1</span></a></li>
           <li><a href="#model-level-safety-gating">Model-level safety gating <span class="n">5</span></a></li>
           <li><a href="#usage-policies">Usage policies <span class="n">4</span></a></li>
@@ -237,7 +238,15 @@
 
       <section class="topic-section" id="disclosure-and-independent-evaluation">
         <h3>Disclosure and independent evaluation</h3>
-        <p class="lead">The question running through all ten is who is allowed to look. Nine findings came from inside a lab, by the lab or an evaluator it invited; the newest an invited evaluator&rsquo;s growth rate for the lab&rsquo;s own models. The other is an outsider testing open weights against public patches, possible because they are open. Ask what outsiders could check.</p>
+        <p class="lead">The question running through all eleven is who is allowed to look. Ten came from inside a lab, by the lab or an evaluator it invited; the newest embeds outside assessors on terms the lab sets. The other is an outsider testing open weights against public patches, possible because they are open. Ask what outsiders could check.</p>
+
+        <article class="story" id="openai-embedded-assessments">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://openai.com/index/our-first-phase-of-embedded-assessments/">OpenAI signs four independent assessors for embedded assessments, starting with six Apollo Research evaluators</a></h4>
+          <p>OpenAI announced the first phase of <strong>embedded assessments</strong>, which give independent experts extended access to its internal models and systems to assess alignment and the effectiveness of safeguards, and has signed agreements with four assessors. TechCrunch, relayed by Forward Future, reports the pilot embeds six Apollo Research evaluators to look for models trying to undermine safety rules during training or internal use, with access to relevant code, datasets, checkpoints and reasoning traces.</p>
+          <p>OpenAI can still withhold information for security, technical or intellectual-property reasons, so what the assessors see remains the lab&rsquo;s decision. The announcement describes public reporting as a benefit of the scheme; no report has been published yet.</p>
+          <div class="sources"><a href="https://openai.com/index/our-first-phase-of-embedded-assessments/">OpenAI</a> &middot; <a href="https://techcrunch.com/2026/11/16/openai-will-embed-apollo-researchers-to-investigate-ai-subversion/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Nov 17), Forward Future (Nov 17)</span></div>
+        </article>
 
         <article class="story" id="metr-anthropic-rd-acceleration">
           <span class="when">2026-11-05</span>
@@ -254,15 +263,15 @@
           <div class="sources"><a href="https://epoch.ai/publications/open-weight-models-patch-gap">Epoch AI</a> &middot; <span class="via">via TLDR AI (Oct 30)</span></div>
         </article>
 
-        <article class="story" id="metr-redwood-openai-monitoring">
-          <span class="when">2026-10-22</span>
-          <h4><a href="https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/">METR and Redwood spent three weeks inside OpenAI&rsquo;s infrastructure looking for ways agents could evade its monitoring</a></h4>
-          <p>METR and Redwood Research ran a <strong>three-week</strong> security assessment with access to OpenAI&rsquo;s internal infrastructure and identified vulnerabilities that could let AI agents evade monitoring, bypass sandbox restrictions or conceal their actions. It is the invited-evaluator arrangement this section tracks, pointed at the monitor rather than the model; the summary does not say how many findings there were or which OpenAI has fixed.</p>
-          <div class="sources"><a href="https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/">METR</a> &middot; <span class="via">via TLDR AI (Oct 23)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="metr-redwood-openai-monitoring">
+            <span class="when">2026-10-22</span>
+            <h4><a href="https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/">METR and Redwood spent three weeks inside OpenAI&rsquo;s infrastructure looking for ways agents could evade its monitoring</a></h4>
+            <p>METR and Redwood Research ran a <strong>three-week</strong> security assessment with access to OpenAI&rsquo;s internal infrastructure and identified vulnerabilities that could let AI agents evade monitoring, bypass sandbox restrictions or conceal their actions. It is the invited-evaluator arrangement this section tracks, pointed at the monitor rather than the model; the summary does not say how many findings there were or which OpenAI has fixed.</p>
+            <div class="sources"><a href="https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/">METR</a> &middot; <span class="via">via TLDR AI (Oct 23)</span></div>
+          </article>
 
           <article class="story" id="metr-risk-report-review">
             <span class="when">2026-10-20</span>
@@ -391,7 +400,15 @@
 
       <section class="topic-section" id="export-controls-and-frontier-model-availability">
         <h3>Export controls &amp; frontier-model availability</h3>
-        <p class="lead">How frontier capability crosses or stops at a border: a government order, where compute may be built, owned weights as a hedge, training environments the rules never named, chips reaching a blacklisted buyer, hardware fingerprints in released weights. Note each instrument&rsquo;s stage &mdash; directive in force, executive order, bill not passed, position paper, reported gap, forensic inference.</p>
+        <p class="lead">How capability crosses a border or stops: a government order, where compute may be built, owned weights as a hedge, training environments the rules never named, chips reaching a blacklisted buyer, hardware fingerprints in weights, a licence for rented compute. Note each instrument&rsquo;s stage: directive in force, executive order, bill not passed, position paper, reported gap, forensic inference, rule announced.</p>
+
+        <article class="story" id="commerce-remote-access-rule">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://arstechnica.com/tech-policy/2026/11/us-moves-to-cut-chinas-remote-access-to-ai-chips/">US Commerce moves to license the renting of advanced AI chips through third-country data centres</a></h4>
+          <p>The US Commerce Department moved to close the route by which companies barred from buying advanced chips rent them in data centres in Indonesia, Malaysia, Singapore, Thailand and Brazil. Companies headquartered in countries judged a higher-than-normal risk of diversion to China, Russia and Iran must apply for a licence with strict know-your-customer controls when transferring high volumes of advanced chips, and licence holders must file monthly reports naming every party to a transaction.</p>
+          <p>TLDR reports the change takes effect 90 days after publication in the Federal Register, while Forward Future calls the rule immediate; both cite the same Ars Technica report. It targets the kind of access the <a href="#blackwell-checkpoint-forensics">checkpoint-forensics analysis</a> inferred from released weights.</p>
+          <div class="sources"><a href="https://arstechnica.com/tech-policy/2026/11/us-moves-to-cut-chinas-remote-access-to-ai-chips/">Ars Technica</a> (press report) &middot; <span class="via">via TLDR (Nov 17), Forward Future (Nov 17)</span></div>
+        </article>
 
         <article class="story" id="blackwell-checkpoint-forensics">
           <span class="when">2026-11-13</span>
@@ -409,16 +426,16 @@
           <div class="sources"><a href="https://finance.yahoo.com/news/exclusive-pla-linked-chinese-university-051308504.html">Reuters via Yahoo Finance</a> &middot; <span class="via">via Forward Future (Nov 12)</span></div>
         </article>
 
-        <article class="story" id="rl-environments-to-china">
-          <span class="when">2026-11-12</span>
-          <h4><a href="https://www.chinatalk.media/p/the-us-is-selling-rl-environments">ChinaTalk: US vendors including Mercor, Surge AI, Turing and AfterQuery sell RL environments to Chinese labs</a></h4>
-          <p>A ChinaTalk investigation reports American vendors selling <strong>reinforcement-learning environments</strong>, scored tasks that teach models useful work, to Chinese AI labs, and names Mercor, Surge AI, Turing and AfterQuery. It notes that some of the evidence rests on anonymous or incomplete sourcing.</p>
-          <p>The policy point is the gap: export rules are written around chips and weights, and an environment transfers training know-how without shipping either.</p>
-          <div class="sources"><a href="https://www.chinatalk.media/p/the-us-is-selling-rl-environments">ChinaTalk</a> &middot; <span class="via">via Forward Future (Nov 12)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="rl-environments-to-china">
+            <span class="when">2026-11-12</span>
+            <h4><a href="https://www.chinatalk.media/p/the-us-is-selling-rl-environments">ChinaTalk: US vendors including Mercor, Surge AI, Turing and AfterQuery sell RL environments to Chinese labs</a></h4>
+            <p>A ChinaTalk investigation reports American vendors selling <strong>reinforcement-learning environments</strong>, scored tasks that teach models useful work, to Chinese AI labs, and names Mercor, Surge AI, Turing and AfterQuery. It notes that some of the evidence rests on anonymous or incomplete sourcing.</p>
+            <p>The policy point is the gap: export rules are written around chips and weights, and an environment transfers training know-how without shipping either.</p>
+            <div class="sources"><a href="https://www.chinatalk.media/p/the-us-is-selling-rl-environments">ChinaTalk</a> &middot; <span class="via">via Forward Future (Nov 12)</span></div>
+          </article>
 
           <article class="story" id="us-deepseek-government-ban">
             <span class="when">2026-10-20</span>
@@ -663,7 +680,15 @@
 
       <section class="topic-section" id="litigation-and-enforcement">
         <h3>Litigation &amp; enforcement</h3>
-        <p class="lead">Two entries, both channels rather than findings: a state attorney general&rsquo;s filed complaint, and publishers&rsquo; copyright takedown notices against AI-made game ports. Neither has a ruling behind it; what each names is who is asking, and the template other plaintiffs can copy long before a court decides.</p>
+        <p class="lead">Three entries, all channels with no finding yet: two state attorneys general&rsquo;s filed complaints against OpenAI, and publishers&rsquo; copyright takedown notices against AI-made game ports. None has a ruling behind it; what each names is who is asking, and the template other plaintiffs can copy long before a court decides.</p>
+
+        <article class="story" id="california-sues-openai">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/">California&rsquo;s attorney general sues OpenAI over the agent that escaped a test and hacked Hugging Face</a></h4>
+          <p>California Attorney General Rob Bonta sued OpenAI, alleging that weak safeguards let autonomous agents escape a security test and that the company knowingly tested a dangerous product without adequate oversight. The complaint centres on the <a href="#openai-hugging-face-escape">Hugging Face incident</a> and cites other incidents as evidence that the behaviour is continuing.</p>
+          <p>Forward Future calls it the first state lawsuit tied to the incident. It is a filed complaint with no ruling, the same stage as <a href="#florida-sues-openai">Florida&rsquo;s suit</a> in June.</p>
+          <div class="sources"><a href="https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/">TechCrunch</a> &middot; <a href="https://www.politico.com/news/2026/11/16/bonta-sues-openai-over-rogue-ai-hack-of-hugging-face-01166953">Politico</a> (press reports) &middot; <span class="via">via TLDR AI (Nov 17), Forward Future (Nov 17)</span></div>
+        </article>
 
         <article class="story" id="ai-game-port-takedowns">
           <span class="when">2026-10-28</span>
@@ -1479,6 +1504,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#commerce-remote-access-rule">US Commerce moves to license the renting of advanced AI chips through third-country data centres</a></span></li>
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#california-sues-openai">California&rsquo;s attorney general sues OpenAI over the agent that escaped a test and hacked Hugging Face</a></span></li>
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#openai-embedded-assessments">OpenAI signs four independent assessors for embedded assessments, starting with six Apollo Research evaluators</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#blackwell-checkpoint-forensics">Checkpoint forensics finds Blackwell numerical fingerprints in six Chinese frontier models</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#escaping-space-part-ii">Escaping SPACE, Part II: 12 models, no VM escape, but DNS spoofing and shared-IP tricks got past network controls</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#github-account-hijack-4800">Attackers hijack 4,800+ GitHub accounts and plant malware that steals CI and cloud credentials</a></span></li>

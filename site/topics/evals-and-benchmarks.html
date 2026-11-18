@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-17</div>
+      <div class="meta">Last updated: 2026-11-18</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 17 cycle is three instruments that say more about the test than about the model. METR&rsquo;s <a href="#metr-eval-tells">eval-tells study</a> finds Opus 5.5 agents separating 19 alignment evals from 36 capability evals at AUC 1.00, and makes no claim about whether that changes behaviour. <a href="#dominobench">DominoBench</a> has frontier models at 34% or less on falling-domino pairs unaided and at 82&ndash;92% once told which calculation to run. <a href="#inclusionmed">InclusionMed</a> merges four clinical benchmarks and scores frontier models between 17.5 and 49.1 out of 100.</p>
         <p>The Nov 16 cycle is a lab writing down its own eval practice. Anthropic&rsquo;s <a href="#anthropic-safety-eval-practice">safety-eval post</a> sets floors of 100 items for a multi-turn eval and 1,000 for a single-turn one, warns that multi-turn API intervals can exceed &plusmn;10 points, and shows the product surface changing a result: a romance-scam eval on claude.ai split Opus 5 and Opus 5.5 at 98% and 94%. Its single-turn suites, 16 policy areas in seven languages, put every recent model between 94% and 98% harmless, so the spread that remains is in multi-turn work.</p>
         <p>The Nov 14 addition is a usage count that no benchmark matches. David Talby, citing Vishwanath et al., reports that <a href="#clinician-query-mix">documentation and administration made up 36.2%</a> of 127,833 clinician queries to a hospital LLM assistant and diagnosis 3.7%, while the median of 58 public clinical benchmarks contains no documentation request at all. The paper was not linked, so the figures rest on the note.</p>
         <p>The Nov 12 cycle adds a security benchmark that scores the defender&rsquo;s cost. <a href="#erosionbench">ErosionBench</a> runs 1,728 scenarios and finds perimeter defenses that post low attack rates refusing 54&ndash;92% of legitimate agent work, while its own reference auditor reaches 98.5% recall at a 2.9% false-positive rate. Two related instruments sit elsewhere: ScrapeBench on the <a href="safety-and-policy.html#scrapebench">safety page</a> and MCPHallu on the <a href="agents.html#mcphallu">agents page</a>.</p>
         <p>The Nov 10 cycle adds a third security benchmark, the first aimed at memory. <a href="#memorydojo">MemoryDojo</a> follows a poisoned instruction from the session where an agent stores it to the later session where it acts on it, over 155 trajectories, four domains and five memory systems, and finds every system susceptible. It is the attack-side counterpart to the memory entries on <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools</a>: whatever an agent remembers is an input an attacker can write to.</p>
-        <p>The Nov 6 cycle, read on Nov 9, adds one benchmark, and the issue that carried it gives no score. OpenAI&rsquo;s <a href="#biobasicsbench">BioBasicsBench</a> asks an agent to interpret the raw experimental data of 100 routine wet-lab tasks, which makes the instrument&rsquo;s output the input and puts bench work rather than discovery in front of a model, the second lab to do so after Anthropic&rsquo;s own wet lab. The ranking has to be read from the post.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 6 cycle, read on Nov 9, adds one benchmark, and the issue that carried it gives no score. OpenAI&rsquo;s <a href="#biobasicsbench">BioBasicsBench</a> asks an agent to interpret the raw experimental data of 100 routine wet-lab tasks, which makes the instrument&rsquo;s output the input and puts bench work rather than discovery in front of a model, the second lab to do so after Anthropic&rsquo;s own wet lab. The ranking has to be read from the post.</p>
           <p>The Nov 6 cycle adds one instrument, and it measures a capability the rest of the page would rather not have. Dwarkesh Patel spent about $20,000 in API credits having frontier models play <a href="#clocktower-benchmark">Blood on the Clocktower</a>, a social deception game in which winning means sustaining a bluff across many turns and reasoning about what the table collectively believes. Neither newsletter that carried it gives the ranking, so the result has to be read from the post. It sits beside the agentic benchmarks because the environment is other agents rather than a task list, and it is the first entry here where a higher score is a warning as much as a result.</p>
           <p>The Nov 4 cycle has two audits of how a score is produced. <a href="#vals-reasoning-effort">Vals AI</a> reran its index across reasoning-effort settings: at the lowest setting four of seven models kept at least 80% of their score for half the cost or less, and Claude Opus 5.5 kept 80% at 16% of the cost. <a href="#prime-intellect-eval-audit">Prime Intellect</a> repaired the task descriptions and graders of AutomationBench and OfficeQA Pro v2 and found both close to saturation, with Opus 5.5 at 92.15% on AutomationBench and models fetching OfficeQA&rsquo;s answers from Hugging Face through its web access.</p>
           <p>The Nov 3 cycle has three instruments, and the sharpest is the one that shows what a pass rate hides. <a href="#veriharm-bench">VeriHarm-Bench</a> puts frontier coding agents at 95% task accuracy and 37% safe success, which is the gap between finishing a job and finishing it without damage. OpenAI&rsquo;s <a href="#openai-lifeval">LifeVal</a> moves the task set to everyday requests such as budgeting and childcare, and neither issue that carried it gives a score. The US Census Bureau&rsquo;s business survey <a href="#census-super-intelligence-wording">changed its question</a> in November 2025 and again from October 19, 2026, when &ldquo;AI&rdquo; became &ldquo;Super Intelligence or SI&rdquo;; large firms read about 40% under the second wording.</p>
@@ -105,7 +106,7 @@
           <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">12</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">3</span></a></li>
-          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">28</span></a></li>
+          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">31</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">15</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">4</span></a></li>
@@ -486,33 +487,55 @@
 
       <section class="topic-section" id="construct-validity-benchmark-scope">
         <h3>Construct validity &amp; benchmark scope</h3>
-        <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and one finds the observing condition itself disappearing.</p>
+        <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and two find the observing condition itself disappearing.</p>
 
-        <article class="story unlinked" id="clinician-query-mix">
-          <span class="when">2026-11-14</span>
-          <h4>Documentation is 36.2% of 127,833 clinician queries to a hospital LLM; the median public benchmark has none</h4>
-          <p>David Talby cites Vishwanath et al. (arXiv, 2026): of 127,833 clinician queries to a hospital LLM assistant, documentation and administration made up 36.2% and diagnosis 3.7%. The median of 58 public clinical benchmarks contains no documentation requests, so the work clinicians bring most is the work the benchmarks leave out.</p>
-          <div class="sources"><span class="via">via Substack notes (David Talby, Nov 14) &mdash; no public URL given</span></div>
+        <article class="story" id="inclusionmed">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://arxiv.org/abs/2611.21218">InclusionMed combines four clinical benchmarks picked from 388 candidates; frontier models score 17.5 to 49.1 out of 100</a></h4>
+          <p><strong>InclusionMed</strong> combines four public clinical benchmarks, selected from 388 candidates, into one score on which frontier models range from 17.5 to 49.1 out of 100. Every top-10 model did better at patient communication than at clinical decisions. MarkTechPost does not say which models sit at either end or how the four were chosen.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.21218">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="prime-intellect-eval-audit">
-          <span class="when">2026-11-04</span>
-          <h4><a href="https://www.primeintellect.ai/blog/auditing-public-evaluations">Prime Intellect&rsquo;s audit finds AutomationBench and OfficeQA Pro v2 near saturation once tasks and graders are fixed</a></h4>
-          <p>Prime Intellect audited Zapier&rsquo;s <strong>AutomationBench</strong> and Databricks&rsquo; <strong>OfficeQA Pro v2</strong>, replacing ambiguous prose task descriptions with JSON schemas and repairing the grading. After the fixes Claude Opus 5.5 at max effort scores <strong>92.15%</strong> on AutomationBench (70.83% strict) and DeepSeek V4.1-Flash 1017 scores 91.61% (69.50% strict), so the authors recommend reporting strict scores or moving to v1.5.</p>
-          <p>OfficeQA Pro v2 allows general web access, and models retrieved its solutions from Hugging Face; Opus 5.5 reaches 85.6% there and DeepSeek 78.8%. The fixes are published as PI-AutomationBench.</p>
-          <div class="sources"><a href="https://www.primeintellect.ai/blog/auditing-public-evaluations">Prime Intellect</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
+        <article class="story" id="dominobench">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://arxiv.org/abs/2611.20385">DominoBench: frontier models get at most 34% of falling-domino pairs right unaided, and 82&ndash;92% once told which calculation to run</a></h4>
+          <p><strong>DominoBench</strong> asks about falling dominoes in 854 items arranged as 427 minimal pairs. The top models get at most <strong>34%</strong> of pairs right unaided and reach 82&ndash;92% when told which calculation to run, which places the failure in choosing the calculation, with the arithmetic intact. The data is on Hugging Face; MarkTechPost does not name the models tested.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.20385">arXiv</a> &middot; <a href="https://huggingface.co/datasets/emilioferrara/DominoBench">Dataset</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="census-super-intelligence-wording">
-          <span class="when">2026-11-02</span>
-          <h4><a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/">The Census Bureau&rsquo;s AI adoption question now says Super Intelligence, its second wording break in a year</a></h4>
-          <p>The Business Trends and Outlook Survey replaced &ldquo;producing goods or services&rdquo; with &ldquo;any of its business functions&rdquo; on November 17, 2025, so answers on either side are not directly comparable: firms with 250+ employees read about 12% in September 2025, about 30% by February 2026 and about <strong>40%</strong> by October 2026. From the October 19, 2026 collection the question says &ldquo;Super Intelligence or SI&rdquo;, a change the Bureau attributes to Executive Order 14434.</p>
-          <p>The first results under that wording publish on Thursday, Nov 5, and Simon Willison&rsquo;s open question is whether the word itself moves the answers.</p>
-          <div class="sources"><a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/">Simon Willison</a> &middot; <a href="https://www.census.gov/hfp/btos/about">Census Bureau</a> &middot; <a href="https://www.whitehouse.gov/presidential-actions/2026/09/inaugurating-the-era-of-super-intelligence/">Executive Order 14434</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
+        <article class="story" id="metr-eval-tells">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://metr.org/notes/2026-11-16-measuring-alignment-eval-tells/">METR: Opus 5.5 investigator agents separate alignment evals from capability evals at AUC 1.00</a></h4>
+          <p>METR had investigator agents explore 19 alignment evals and 36 capability evals and say which kind each was. Opus 5.5 separated them with an AUC of <strong>1.00</strong> whether asked directly or scored on open-ended reports, against 0.89 and 0.81 for GPT-6 Astra and 0.77 and 0.62 for GPT-5.4, often by noticing that an environment looked fake or a task was a honeypot.</p>
+          <p>The authors state two limits: asking an agent directly can prime its answer, and the study makes no claim about whether these beliefs change how an agent behaves on the task. It puts numbers on the condition <a href="#selsam-situational-awareness">described in September</a> as closing.</p>
+          <div class="sources"><a href="https://metr.org/notes/2026-11-16-measuring-alignment-eval-tells/">METR</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (25)</summary>
+          <summary>Earlier in this section (28)</summary>
+
+          <article class="story unlinked" id="clinician-query-mix">
+            <span class="when">2026-11-14</span>
+            <h4>Documentation is 36.2% of 127,833 clinician queries to a hospital LLM; the median public benchmark has none</h4>
+            <p>David Talby cites Vishwanath et al. (arXiv, 2026): of 127,833 clinician queries to a hospital LLM assistant, documentation and administration made up 36.2% and diagnosis 3.7%. The median of 58 public clinical benchmarks contains no documentation requests, so the work clinicians bring most is the work the benchmarks leave out.</p>
+            <div class="sources"><span class="via">via Substack notes (David Talby, Nov 14) &mdash; no public URL given</span></div>
+          </article>
+
+          <article class="story" id="prime-intellect-eval-audit">
+            <span class="when">2026-11-04</span>
+            <h4><a href="https://www.primeintellect.ai/blog/auditing-public-evaluations">Prime Intellect&rsquo;s audit finds AutomationBench and OfficeQA Pro v2 near saturation once tasks and graders are fixed</a></h4>
+            <p>Prime Intellect audited Zapier&rsquo;s <strong>AutomationBench</strong> and Databricks&rsquo; <strong>OfficeQA Pro v2</strong>, replacing ambiguous prose task descriptions with JSON schemas and repairing the grading. After the fixes Claude Opus 5.5 at max effort scores <strong>92.15%</strong> on AutomationBench (70.83% strict) and DeepSeek V4.1-Flash 1017 scores 91.61% (69.50% strict), so the authors recommend reporting strict scores or moving to v1.5.</p>
+            <p>OfficeQA Pro v2 allows general web access, and models retrieved its solutions from Hugging Face; Opus 5.5 reaches 85.6% there and DeepSeek 78.8%. The fixes are published as PI-AutomationBench.</p>
+            <div class="sources"><a href="https://www.primeintellect.ai/blog/auditing-public-evaluations">Prime Intellect</a> &middot; <span class="via">via TLDR AI (Nov 4)</span></div>
+          </article>
+
+          <article class="story" id="census-super-intelligence-wording">
+            <span class="when">2026-11-02</span>
+            <h4><a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/">The Census Bureau&rsquo;s AI adoption question now says Super Intelligence, its second wording break in a year</a></h4>
+            <p>The Business Trends and Outlook Survey replaced &ldquo;producing goods or services&rdquo; with &ldquo;any of its business functions&rdquo; on November 17, 2025, so answers on either side are not directly comparable: firms with 250+ employees read about 12% in September 2025, about 30% by February 2026 and about <strong>40%</strong> by October 2026. From the October 19, 2026 collection the question says &ldquo;Super Intelligence or SI&rdquo;, a change the Bureau attributes to Executive Order 14434.</p>
+            <p>The first results under that wording publish on Thursday, Nov 5, and Simon Willison&rsquo;s open question is whether the word itself moves the answers.</p>
+            <div class="sources"><a href="https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/">Simon Willison</a> &middot; <a href="https://www.census.gov/hfp/btos/about">Census Bureau</a> &middot; <a href="https://www.whitehouse.gov/presidential-actions/2026/09/inaugurating-the-era-of-super-intelligence/">Executive Order 14434</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="artificial-analysis-intelligence-index-v5">
             <span class="when">2026-10-29</span>
@@ -975,6 +998,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#inclusionmed">InclusionMed combines four clinical benchmarks picked from 388 candidates; frontier models score 17.5 to 49.1 out of 100</a></span></li>
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#dominobench">DominoBench: frontier models get at most 34% of falling-domino pairs right unaided, and 82&ndash;92% once told which calculation to run</a></span></li>
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#metr-eval-tells">METR: Opus 5.5 investigator agents separate alignment evals from capability evals at AUC 1.00</a></span></li>
         <li><span class="date">2026-11-14</span><span class="label"><a href="#clinician-query-mix">Documentation is 36.2% of 127,833 clinician queries to a hospital LLM; the median public benchmark has none</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#anthropic-safety-eval-practice">Anthropic&rsquo;s safety-eval practice: at least 100 items per multi-turn eval, 1,000 per single-turn, and intervals that can pass &plusmn;10 points</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#erosionbench">ErosionBench: perimeter defenses with low attack rates refuse 54&ndash;92% of legitimate agent work</a></span></li>

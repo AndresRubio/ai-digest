@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-11-17</div>
+      <div class="meta">Last updated: 2026-11-18</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 17 cycle is a frontier price cut and a run of small, cheap models. OpenAI&rsquo;s <a href="#gpt-6-2-astra-sol">GPT-6.2 Astra</a> lists at $8/$40, 80% of its predecessor and level with Fable 5.2, with Sol unchanged at $2/$10; Simon Willison reports Astra slightly behind Fable 5.2 on benchmarks so far. Liquid&rsquo;s <a href="#liquid-d1-2">d1.2 and d1.2-ultra</a> add audio and five structured answer types, and ultra scores 75 on the Decision Index v2.1. Tencent&rsquo;s <a href="#tencent-hy4-flash">Hy4 flash</a> activates 12B of 224B parameters at $0.07 per million input tokens.</p>
+        <p><a href="#sage-s2-1-flash">Sage S2.1-Flash</a> and <a href="#ovh-olala-mini">Olala Mini</a> fill in the open tier: a 321B MIT-licensed science model, and a 7B MoE whose weights are still promised. Six earlier entries are updated in place. Hydrogen gains its Terminal-Bench score and its place as Google&rsquo;s free-tier model, Qwen4-Max its 2.4T/71B-active shape, Carbon a December 1 date for its price doubling, Decider v1.3 its first accuracy figure, Gemini Decision 1 a hands-on test, and <a href="#nemotron-3-5-bolt-e4b">Nemotron 3.5 Bolt E4B</a> its model card.</p>
         <p>The Nov 16 cycle is three releases each sized or priced against a constraint. Alibaba&rsquo;s <a href="#qwen4-max">Qwen4-Max</a> pairs a 1M-token context with $1.50/$4.50 pricing and leads Claude Opus 5.5 and GPT-6.1 Sol on DeepSWE by Alibaba&rsquo;s count, but scores 43 on the Artificial Analysis index and trails Kimi K3.1 on Terminal-Bench. Sevren&rsquo;s <a href="#embla-1">Embla 1</a> is a phone-sized MoE that averages 57.4 on five benchmarks measured at 4 bits and answers in 1.77 s on an iPhone 18 Pro. <a href="#tiny-voca">tiny-voca</a> goes smallest, a 4.5M-parameter text-to-speech model trained only on synthetic speech that runs 70&times; real time on four CPU threads. Every figure in the cycle comes from the people who built the model.</p>
         <p>The Nov 13 cycle adds three releases, and only one is a frontier model. Google&rsquo;s <a href="#gemini-4-hydrogen">Gemini 4 Hydrogen</a>, tuned for coding and agents, scores 51 on the Artificial Analysis Intelligence Index, above Gemini 4 Argon, at $1.50/$7.50 per million tokens against Carbon&rsquo;s $2/$10. Perplexity moved both of its decision models to <a href="#pplx-decider-v1-3">v1.3</a> and added span highlighting for extraction tasks, and Liquid AI replaced the third-party Mimi tokenizer with its own <a href="#liquidcodec">LiquidCodec</a>, which encodes at about 361&times; real time on one laptop CPU thread. Every speed figure in the cycle is the vendor&rsquo;s own.</p>
         <p>The Nov 11 to 12 cycle adds a decision model and one very large open MoE. Google&rsquo;s <a href="#gemini-decision-1">Gemini Decision 1</a>, behind the new Gemini Decisions API, scores up to 1,000 questions against one input in a single pass, never generates an output token and costs $0.10 per million input tokens. It is the third decision interface on this page after OpenAI&rsquo;s and Perplexity&rsquo;s, and the first to take images, audio, video and PDFs. Meituan&rsquo;s <a href="#longcat-2-5">LongCat-2.5</a> puts 1.6T parameters, about 48B active, on Hugging Face under MIT, with a self-reported 88.4 on Terminal Bench v2.1 against 89.1 for Claude Opus 5. Runway&rsquo;s Praxis-1 weights also shipped; that update is on the <a href="embodied-and-robotics.html#praxis-1">embodied page</a>.</p>
-        <p>The Nov 11 cycle is mostly older launches gaining detail. <a href="#gemini-4-carbon">Gemini 4 Carbon</a> is now generally available to paying developers at the same $2/$10, and Google claims first place on CursorBench 4.0, WANDR and AutomationBench at less than half the next model&rsquo;s cost per task. <a href="#claude-fable-5-2">Fable 5.2</a> gained Anthropic&rsquo;s blind total-synthesis tests and AlphaSignal&rsquo;s list of solved problems, and <a href="#mai-transcribe-2">MAI-Transcribe-2</a>, unlinked since September, now cites Microsoft&rsquo;s post and its 5.2% FLEURS error rate. The one new model is <a href="#minimax-h3-image">MiniMax-H3-Image</a>, open weights for native 4K images in about 10 seconds, every figure MiniMax&rsquo;s own.</p>
-        <p>The Nov 10 cycle mostly filled in last week&rsquo;s launches. <a href="#claude-fable-5-2">Fable 5.2</a> gained its system-card detail: a 1M-token context and 128K output, refused requests handed to Opus 4.8 or Opus 5, about 55% fewer blocks than 5.1, Mythos 5.2 using out-of-sandbox credentials in 3.1% of 1,800 escape scenarios, and Gemini 4 Carbon still ahead on AutomationBench. <a href="#muse-ember">Muse Ember</a> costs $0.136 per index task against Haiku 5.5&rsquo;s $0.411 but trails it on FrontierCode, and <a href="#inkling-2-small">Inkling 2 Small</a> now has numbers, 86.3% on SWE-Bench Pro v2 (Hard) and 13.1% on Terminal-Bench 4.0, with its weights still pending. The one new release is narrow: <a href="#protegrity-pii">Protegrity-PII</a>, a 278M PII tagger for 69 entity types under a non-commercial licence.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 11 cycle is mostly older launches gaining detail. <a href="#gemini-4-carbon">Gemini 4 Carbon</a> is now generally available to paying developers at the same $2/$10, and Google claims first place on CursorBench 4.0, WANDR and AutomationBench at less than half the next model&rsquo;s cost per task. <a href="#claude-fable-5-2">Fable 5.2</a> gained Anthropic&rsquo;s blind total-synthesis tests and AlphaSignal&rsquo;s list of solved problems, and <a href="#mai-transcribe-2">MAI-Transcribe-2</a>, unlinked since September, now cites Microsoft&rsquo;s post and its 5.2% FLEURS error rate. The one new model is <a href="#minimax-h3-image">MiniMax-H3-Image</a>, open weights for native 4K images in about 10 seconds, every figure MiniMax&rsquo;s own.</p>
+          <p>The Nov 10 cycle mostly filled in last week&rsquo;s launches. <a href="#claude-fable-5-2">Fable 5.2</a> gained its system-card detail: a 1M-token context and 128K output, refused requests handed to Opus 4.8 or Opus 5, about 55% fewer blocks than 5.1, Mythos 5.2 using out-of-sandbox credentials in 3.1% of 1,800 escape scenarios, and Gemini 4 Carbon still ahead on AutomationBench. <a href="#muse-ember">Muse Ember</a> costs $0.136 per index task against Haiku 5.5&rsquo;s $0.411 but trails it on FrontierCode, and <a href="#inkling-2-small">Inkling 2 Small</a> now has numbers, 86.3% on SWE-Bench Pro v2 (Hard) and 13.1% on Terminal-Bench 4.0, with its weights still pending. The one new release is narrow: <a href="#protegrity-pii">Protegrity-PII</a>, a 278M PII tagger for 69 entity types under a non-commercial licence.</p>
           <p>The Nov 9 cycle is two frontier releases at opposite ends of the price list. Anthropic&rsquo;s <a href="#claude-fable-5-2">Claude Fable 5.2 and Mythos 5.2</a> ship at $8/$40 per million tokens, 20% below 5.1, up to 30% faster, with a $16/$80 fast mode; Anthropic&rsquo;s table has 49.1% on FrontierCode 2.0 at xhigh effort, 74.6% on Terminal-Bench-Science and 41.3% on the Remote Labor Index, and claims Opus 5.5&rsquo;s best FrontierCode score at about half the cost per task. Meta&rsquo;s <a href="#muse-ember">Muse Ember</a> is the small-model entry at $0.10/$0.50, the same short-prompt price as Haiku 5.5 and GPT-6 Luna and 80 times below Fable 5.2, and Artificial Analysis puts it on the cost-per-task frontier of its whole leaderboard while ranking Fable 5.2 first on the same index.</p>
           <p>Two measurements from outside the labs arrived with them. Simon Willison&rsquo;s max-effort run of Fable 5.2 returned nothing after 128,000 thinking tokens, the ceiling Opus 5.5 hit in September and one that Fable 5 and 5.1 cleared, and his six-level test of Ember found the high setting failing to return an SVG while quality did not track the dial. Underdog&rsquo;s <a href="#underdog-woof">Woof</a>, in the speech section, is a 31.7 MB text-to-speech model under a non-commercial licence that runs in a browser on WebGPU, with a 1.42% word error rate that is the maker&rsquo;s only figure.</p>
           <p>The Nov 6 cycle is one large open-weights promise and one vision model. Thinking Machines&rsquo; <a href="#inkling-2-small">Inkling 2 Small</a> is a 594B mixture-of-experts with 17B active that takes images and varies its thinking effort, shown iterating on websites, games and 3D designs from visual feedback. It launches closed through Tinker, with Apache 2.0 weights promised a week later once external safety testing is done; its first benchmark figures arrived only on Nov 10. That is the same sequence Kimi K3.1 Pro just completed and Hy4 is in the middle of: announce, then ship the weights. NVIDIA&rsquo;s <a href="#nvidia-vflash">VFlash</a> emits robot trajectories and 3D motion in parallel rather than token by token, with no figure attached; its sibling release, four open Cosmos 3 world models, is on the embodied page.</p>
@@ -118,12 +120,12 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">31</span></a></li>
+          <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">32</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">20</span></a></li>
-          <li><a href="#open-weights-releases">Open-weights releases <span class="n">24</span></a></li>
+          <li><a href="#open-weights-releases">Open-weights releases <span class="n">25</span></a></li>
           <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">10</span></a></li>
-          <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">23</span></a></li>
-          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">31</span></a></li>
+          <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">25</span></a></li>
+          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">32</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
           <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">42</span></a></li>
@@ -139,12 +141,21 @@
         <h3>Frontier proprietary models</h3>
         <p class="lead">Anthropic&rsquo;s Claude line and OpenAI&rsquo;s GPT line set the pace, with SpaceXAI, Google, Meta and Microsoft pricing against them. A 1M-token context is table stakes here. Almost every figure below is vendor-reported on a harness nobody outside the lab can run, so judge entries on what an outsider could check.</p>
 
+        <article class="story" id="gpt-6-2-astra-sol">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://openai.com/index/introducing-gpt-6-2-astra-sol/">GPT-6.2 Astra cuts the frontier price to $8/$40 and GPT-6.2 Sol holds at $2/$10</a></h4>
+          <p>OpenAI released <strong>GPT-6.2 Astra</strong>, its frontier model for the hardest projects, and <strong>GPT-6.2 Sol</strong> for everyday work, both in the API. Astra costs <strong>$8</strong> per million input tokens and <strong>$40</strong> per million output, 80% of GPT-6 Astra&rsquo;s $10/$50 and the same as <a href="#claude-fable-5-2">Claude Fable 5.2</a>, with cached input down from $1 to $0.40; Sol stays at $2/$10.</p>
+          <p>Simon Willison reports a mixed first reception: Astra is not scoring quite as high as Fable 5.2 on various benchmarks, and Theo Browne&rsquo;s pre-release feedback describes it halting a two-hour task to ask about an internal file name. The issue carries no benchmark figures from OpenAI.</p>
+          <div class="sources"><a href="https://openai.com/index/introducing-gpt-6-2-astra-sol/">OpenAI</a> &middot; <span class="via">via Simon Willison (Nov 17)</span></div>
+        </article>
+
         <article class="story" id="gemini-4-hydrogen">
           <span class="when">2026-11-13</span>
           <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/">Gemini 4 Hydrogen scores 51 on the Artificial Analysis index at $1.50/$7.50 per million tokens</a></h4>
           <p>Google released Gemini 4 Hydrogen, a fast model tuned for coding and agentic workflows. It scores <strong>51</strong> on the Artificial Analysis Intelligence Index, above Gemini 4 Argon, and costs <strong>$1.50</strong> per million input tokens and <strong>$7.50</strong> per million output tokens.</p>
           <p>AlphaSignal reports it as 2.5&times; faster for coding and everyday tasks, without saying which model that speed-up is measured against.</p>
-          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/">Google</a> &middot; <span class="via">via TLDR AI (Nov 13), AlphaSignal (Nov 13)</span></div>
+          <p><em>Updated Nov 17:</em> MarkTechPost names the baseline: 2.5&times; faster than Gemini 3.8 Flash, with a 1M-token window, <strong>57%</strong> on Terminal-Bench 4.1 against that model&rsquo;s 18.2%, fifth place on Agent Arena, API-only access and synchronous output capped at 65,536 tokens. Simon Willison adds that Hydrogen is the new free-tier model and will power AI features in Search, that it is only 25% cheaper than Carbon and Argon until their prices double on December 1, and that it costs 15 times Claude Haiku 5.5 and GPT-6 Luna at $0.10/$0.50.</p>
+          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/">Google</a> &middot; <a href="https://www.marktechpost.com/2026/11/13/google-gemini-4-hydrogen/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 13), AlphaSignal (Nov 13), MarkTechPost (Nov 17), Simon Willison (Nov 17)</span></div>
         </article>
 
         <article class="story" id="muse-ember">
@@ -155,18 +166,18 @@
           <div class="sources"><a href="https://research.meta.ai/blog/muse-ember">Meta</a> &middot; <a href="https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/">TechCrunch</a> &middot; <span class="via">via Simon Willison (Nov 10), MarkTechPost (Nov 10), TLDR AI (Nov 10), The Code (Nov 10), Forward Future (Nov 10)</span></div>
         </article>
 
-        <article class="story" id="claude-fable-5-2">
-          <span class="when">2026-11-09</span>
-          <h4><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Claude Fable 5.2 and Mythos 5.2 ship at $8/$40, 20% below 5.1, with 49.1% on FrontierCode 2.0</a></h4>
-          <p>Anthropic released <strong>Claude Fable 5.2</strong> and <strong>Mythos 5.2</strong>, one underlying model: Fable carries the cyber and biology safeguards that let it go to everyone, Mythos goes to organisations vetted through the Life Sciences and Cyber Verification programmes. List price falls to <strong>$8 input / $40 output per 1M tokens</strong> from Fable 5.1&rsquo;s $10/$50, output is up to 30% faster, and a fast mode at $16/$80 claims up to 2.5&times; the token rate. Anthropic&rsquo;s table has Fable 5.2 at <strong>49.1% on FrontierCode 2.0</strong> at xhigh effort against 45.5% for Opus 5.5 and 42.8% for GPT-6 Astra, 74.6% on Terminal-Bench-Science 0.1 against 52.6% for 5.1, 41.3% on the Remote Labor Index against 17.9%, and 64.9% on its internal RoboDojo Sim against 27.6%; Mythos 5.2 scores 76.3% on CyScenarioBench and 89.6% on CVE rediscovery.</p>
-          <p>The cost claims are the ones worth checking: at high effort it matches Opus 5.5&rsquo;s best FrontierCode score for about half the cost per task, and at low effort it matches Opus on Humanity&rsquo;s Last Exam for under a tenth. Every figure is Anthropic&rsquo;s, with safeguards on and each model at its highest effort. Simon Willison&rsquo;s first run found <strong>max effort returning nothing after 128,000 thinking tokens</strong> on an SVG prompt, the ceiling Opus 5.5 hit in September and one Fable 5 and 5.1 cleared, while Artificial Analysis ranks the model first. Anthropic&rsquo;s prompting guide adds a measured prompt effect: told the codebase is its own, the model merged repeated code in about half of small coding tasks, under a tenth otherwise.</p>
-          <p>Later coverage fills in the system card. Both models take a 1M-token context and up to 128K output tokens, a request Fable blocks is answered by Opus 4.8 or Opus 5 instead, and Anthropic reports about 55% fewer blocks than Fable 5.1. Gemini 4 Carbon still leads AutomationBench, 53.9% to 51.4%; in more than 1,800 sandbox-escape scenarios Mythos 5.2 used out-of-sandbox credentials 3.1% of the time; and Anthropic says a team of 1,000 Fable agents completed a Fermat&rsquo;s Last Theorem verification in 30 hours, where Opus 5.5 finished 26%.</p>
-          <p><em>Updated Nov 11:</em> Anthropic published blind tests in which professors at Stanford, Yale and Caltech reviewed routes to four unpublished total-synthesis targets, each planned in one 26-to-84-minute attempt with no literature access; the routes came from pre-release Opus 5.5, pre-release Mythos 5.2 and Mythos 5.1. AlphaSignal adds three circuit boards designed from a one-paragraph prompt and ready to manufacture unmodified within a day, improved solutions to 72 of 203 open optimisation problems with 45 proved optimal, and two open black-hole problems solved, one open for 23 years.</p>
-          <div class="sources"><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Anthropic</a> &middot; <a href="https://www-cdn.anthropic.com/d9fab5459563a779c65b97040ad4d2e41f0b9464.pdf">Synthesis blind tests (PDF)</a> &middot; <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2">Prompting guide</a> &middot; <a href="https://artificialanalysis.ai/models/claude-fable-5-2">Artificial Analysis</a> &middot; <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.31">llm-anthropic 0.31</a> &middot; <a href="https://www.marktechpost.com/2026/11/10/anthropic-claude-fable-5-2-mythos-5-2-release/">MarkTechPost (write-up)</a> &middot; <a href="https://forwardfuture.com/newsletter/originals/i-put-fable-5-2-to-work-5-real-world-field-tests-and-what-i-learned">Forward Future field tests</a> &middot; <a href="https://www.oneusefulthing.org/p/fable-52-and-jagged-agi">One Useful Thing (essay)</a> &middot; <span class="via">via Simon Willison (Nov 10), MarkTechPost (Nov 10), AlphaSignal (Nov 10), TLDR AI (Nov 10), TLDR (Nov 10), The Code (Nov 10), Forward Future (Nov 10), AlphaSignal (Nov 11)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (28)</summary>
+          <summary>Earlier in this section (29)</summary>
+
+          <article class="story" id="claude-fable-5-2">
+            <span class="when">2026-11-09</span>
+            <h4><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Claude Fable 5.2 and Mythos 5.2 ship at $8/$40, 20% below 5.1, with 49.1% on FrontierCode 2.0</a></h4>
+            <p>Anthropic released <strong>Claude Fable 5.2</strong> and <strong>Mythos 5.2</strong>, one underlying model: Fable carries the cyber and biology safeguards that let it go to everyone, Mythos goes to organisations vetted through the Life Sciences and Cyber Verification programmes. List price falls to <strong>$8 input / $40 output per 1M tokens</strong> from Fable 5.1&rsquo;s $10/$50, output is up to 30% faster, and a fast mode at $16/$80 claims up to 2.5&times; the token rate. Anthropic&rsquo;s table has Fable 5.2 at <strong>49.1% on FrontierCode 2.0</strong> at xhigh effort against 45.5% for Opus 5.5 and 42.8% for GPT-6 Astra, 74.6% on Terminal-Bench-Science 0.1 against 52.6% for 5.1, 41.3% on the Remote Labor Index against 17.9%, and 64.9% on its internal RoboDojo Sim against 27.6%; Mythos 5.2 scores 76.3% on CyScenarioBench and 89.6% on CVE rediscovery.</p>
+            <p>The cost claims are the ones worth checking: at high effort it matches Opus 5.5&rsquo;s best FrontierCode score for about half the cost per task, and at low effort it matches Opus on Humanity&rsquo;s Last Exam for under a tenth. Every figure is Anthropic&rsquo;s, with safeguards on and each model at its highest effort. Simon Willison&rsquo;s first run found <strong>max effort returning nothing after 128,000 thinking tokens</strong> on an SVG prompt, the ceiling Opus 5.5 hit in September and one Fable 5 and 5.1 cleared, while Artificial Analysis ranks the model first. Anthropic&rsquo;s prompting guide adds a measured prompt effect: told the codebase is its own, the model merged repeated code in about half of small coding tasks, under a tenth otherwise.</p>
+            <p>Later coverage fills in the system card. Both models take a 1M-token context and up to 128K output tokens, a request Fable blocks is answered by Opus 4.8 or Opus 5 instead, and Anthropic reports about 55% fewer blocks than Fable 5.1. Gemini 4 Carbon still leads AutomationBench, 53.9% to 51.4%; in more than 1,800 sandbox-escape scenarios Mythos 5.2 used out-of-sandbox credentials 3.1% of the time; and Anthropic says a team of 1,000 Fable agents completed a Fermat&rsquo;s Last Theorem verification in 30 hours, where Opus 5.5 finished 26%.</p>
+            <p><em>Updated Nov 11:</em> Anthropic published blind tests in which professors at Stanford, Yale and Caltech reviewed routes to four unpublished total-synthesis targets, each planned in one 26-to-84-minute attempt with no literature access; the routes came from pre-release Opus 5.5, pre-release Mythos 5.2 and Mythos 5.1. AlphaSignal adds three circuit boards designed from a one-paragraph prompt and ready to manufacture unmodified within a day, improved solutions to 72 of 203 open optimisation problems with 45 proved optimal, and two open black-hole problems solved, one open for 23 years.</p>
+            <div class="sources"><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">Anthropic</a> &middot; <a href="https://www-cdn.anthropic.com/d9fab5459563a779c65b97040ad4d2e41f0b9464.pdf">Synthesis blind tests (PDF)</a> &middot; <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2">Prompting guide</a> &middot; <a href="https://artificialanalysis.ai/models/claude-fable-5-2">Artificial Analysis</a> &middot; <a href="https://github.com/simonw/llm-anthropic/releases/tag/0.31">llm-anthropic 0.31</a> &middot; <a href="https://www.marktechpost.com/2026/11/10/anthropic-claude-fable-5-2-mythos-5-2-release/">MarkTechPost (write-up)</a> &middot; <a href="https://forwardfuture.com/newsletter/originals/i-put-fable-5-2-to-work-5-real-world-field-tests-and-what-i-learned">Forward Future field tests</a> &middot; <a href="https://www.oneusefulthing.org/p/fable-52-and-jagged-agi">One Useful Thing (essay)</a> &middot; <span class="via">via Simon Willison (Nov 10), MarkTechPost (Nov 10), AlphaSignal (Nov 10), TLDR AI (Nov 10), TLDR (Nov 10), The Code (Nov 10), Forward Future (Nov 10), AlphaSignal (Nov 11)</span></div>
+          </article>
 
           <article class="story" id="gemini-4-carbon">
             <span class="when">2026-10-29</span>
@@ -175,8 +186,8 @@
             <p>Access starts this week with selected cyber defenders, then trusted partners, at Argon&rsquo;s introductory <strong>$2/$10 per million input/output tokens</strong>; no date is set for developers or consumers. Every figure here is Google&rsquo;s own.</p>
             <p><em>Updated Nov 2:</em> MarkTechPost puts numbers on Google&rsquo;s claims: <strong>59</strong> on the Artificial Analysis Intelligence Index v5.0, <strong>88.2%</strong> on SEC-bench Pro against GPT-6 Astra&rsquo;s 85.4%, and <strong>0.0%</strong> attack success on Gray Swan indirect injection against Astra&rsquo;s 8.5%. After defenders, access widens through the Fairwind Program&rsquo;s 650+ partners, the price rises to $4/$20 once the introductory period ends, and on Artificial Analysis&rsquo;s Coding Agent Index Claude Opus 5.5 still leads it 62 to 59.</p>
             <p><em>Updated Nov 6:</em> The Batch fills in the scorecard: first on Arena&rsquo;s text leaderboard at 1,528 Elo, second on the Vals Index, and a self-reported 71.0% on CWE-bench and 54.8% on ExploitGym, with a 1M-token input and about 94.6 output tokens a second. On the Artificial Analysis index it finishes with 29% fewer output tokens than Claude Opus 5.5 and costs <strong>23% less per task</strong>, at a list price that will match Opus once the introductory rate ends.</p>
-            <p><em>Updated Nov 11:</em> Carbon is now generally available to every paying developer and enterprise through the API in AI Studio and Gemini for business, and is rolling out to Google AI Ultra subscribers in Antigravity, the Gemini app and AI Mode in Search, still at $2/$10. Google says it ranks first on CursorBench 4.0, Perplexity&rsquo;s WANDR and Zapier&rsquo;s AutomationBench at more than 2&times; lower cost per task than the next best external model, and it previews <a href="tools-and-devex.html#antigravity-swarm">/swarm</a>, a multi-agent mode in Antigravity.</p>
-            <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/">Google</a> &middot; <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/">Google (general availability)</a> &middot; <a href="https://www.marktechpost.com/2026/10/28/google-deepmind-gemini-4-carbon-frontier-model/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29), Forward Future (Oct 29), MarkTechPost (Oct 30), The Batch (Nov 6), TLDR AI (Nov 11), TLDR (Nov 11)</span></div>
+            <p><em>Updated Nov 11:</em> Carbon is now generally available to every paying developer and enterprise through the API in AI Studio and Gemini for business, and is rolling out to Google AI Ultra subscribers in Antigravity, the Gemini app and AI Mode in Search, still at $2/$10. Google says it ranks first on CursorBench 4.0, Perplexity&rsquo;s WANDR and Zapier&rsquo;s AutomationBench at more than 2&times; lower cost per task than the next best external model, and it previews <a href="tools-and-devex.html#antigravity-swarm">/swarm</a>, a multi-agent mode in Antigravity. <em>Updated Nov 17:</em> Simon Willison reports the introductory $2/$10 is scheduled to double to $4/$20 on December 1, which puts a date on the increase.</p>
+            <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/">Google</a> &middot; <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/">Google (general availability)</a> &middot; <a href="https://www.marktechpost.com/2026/10/28/google-deepmind-gemini-4-carbon-frontier-model/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 29), The Code (Oct 29), Forward Future (Oct 29), MarkTechPost (Oct 30), The Batch (Nov 6), TLDR AI (Nov 11), TLDR (Nov 11), Simon Willison (Nov 17)</span></div>
           </article>
 
           <article class="story" id="gpt-6-1-terra">
@@ -409,7 +420,8 @@
           <h4><a href="https://qwen.ai/blog?id=qwen4-max">Qwen4-Max ships a 1M-token context at $1.50/$4.50, ahead on DeepSWE but 43 on the Artificial Analysis index</a></h4>
           <p>Alibaba released <strong>Qwen4-Max</strong>, a 1M-token model priced at $1.50 per million input tokens and $4.50 per million output, with cached input 70% cheaper; AlphaSignal puts the price at 60% below the previous Max. Alibaba reports it narrowly ahead of Claude Opus 5.5 and GPT-6.1 Sol on DeepSWE, and the launch post leans on agentic work in Blender and on building playable games.</p>
           <p>The Code&rsquo;s counterweight is that it falls well behind <a href="#kimi-k3-1-pro">Kimi K3.1</a> on Terminal-Bench and scores 43 on the Artificial Analysis index, so the lead rests on one vendor-run coding benchmark. Smaller models in the family are promised as open weights; the Max itself is API-only.</p>
-          <div class="sources"><a href="https://qwen.ai/blog?id=qwen4-max">Qwen</a> &middot; <a href="https://www.qwencloud.com/models/qwen4-max?region=ap-southeast-1">Qwen Cloud API</a> &middot; <span class="via">via TLDR AI (Nov 16), The Code (Nov 16), AlphaSignal (Nov 16)</span></div>
+          <p><em>Updated Nov 17:</em> MarkTechPost adds the architecture: a 2.4T mixture-of-experts with 71B active parameters and native vision. Alibaba says it cuts Work360 cost per task by 62%, and unlike most Qwen releases the model is proprietary.</p>
+          <div class="sources"><a href="https://qwen.ai/blog?id=qwen4-max">Qwen</a> &middot; <a href="https://www.qwencloud.com/models/qwen4-max?region=ap-southeast-1">Qwen Cloud API</a> &middot; <a href="https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 16), The Code (Nov 16), AlphaSignal (Nov 16), MarkTechPost (Nov 17)</span></div>
         </article>
 
         <article class="story" id="swe-2-flash">
@@ -572,6 +584,13 @@
         <h3>Open-weights releases</h3>
         <p class="lead">Open releases now split three ways: general-purpose bases, narrow models built for one job, and fully open recipes that publish data mixtures and training code as well as a checkpoint. The licence is the part that decides what you can actually do with them, and it is often narrower than the announcement.</p>
 
+        <article class="story" id="sage-s2-1-flash">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://huggingface.co/internlm/Sage-S2.1-Flash">Shanghai AI Lab&rsquo;s Sage S2.1-Flash is a 321B MIT-licensed scientific multimodal model, self-reporting 90.3 on MLE-bench Lite</a></h4>
+          <p>Shanghai AI Lab released <strong>Sage S2.1-Flash</strong>, a 321B scientific multimodal model under the MIT licence, with an FP8 variant alongside. It self-reports <strong>90.3</strong> on MLE-bench Lite against 89.2 for DeepSeek-V4.1-Flash, a margin of about a point on a benchmark the lab ran itself.</p>
+          <div class="sources"><a href="https://huggingface.co/internlm/Sage-S2.1-Flash">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
+        </article>
+
         <article class="story" id="protegrity-pii">
           <span class="when">2026-11-10</span>
           <h4><a href="https://huggingface.co/Protegrity/protegrity-pii">Protegrity-PII, a 278M XLM-RoBERTa token classifier, tags 69 PII entity types under a non-commercial licence</a></h4>
@@ -587,16 +606,16 @@
           <div class="sources"><a href="https://www.ricursive.com/ripple">Ricursive Intelligence</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
         </article>
 
-        <article class="story" id="hydrogen-1-0">
-          <span class="when">2026-11-02</span>
-          <h4><a href="https://huggingface.co/deep-principle/Hydrogen-1.0">Deep Principle&rsquo;s Hydrogen-1.0 post-trains GLM-5.3 into a 753B MIT-licensed science model</a></h4>
-          <p>Deep Principle&rsquo;s <strong>Hydrogen-1.0</strong> post-trains Z.ai&rsquo;s GLM-5.3 on chemistry, materials and life-science data plus agent discovery runs, and ships under <strong>MIT</strong> with a 1M-token context. It reports <strong>38.3%</strong> on FrontierScience-Research against 33.3% for GPT-6 Astra. The scores are self-reported, and serving takes 8 GPUs.</p>
-          <p><em>Updated Nov 4:</em> The weights are on Hugging Face, which the headline now links. AlphaSignal adds a 128K-token output limit, self-hosting through SGLang on those 8 GPUs, and an API at GLM-5.3 pricing.</p>
-          <div class="sources"><a href="https://huggingface.co/deep-principle/Hydrogen-1.0">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/11/02/deep-principle-hydrogen-1-0-open-weight-scientific-model/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3), AlphaSignal (Nov 4)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (21)</summary>
+          <summary>Earlier in this section (22)</summary>
+
+          <article class="story" id="hydrogen-1-0">
+            <span class="when">2026-11-02</span>
+            <h4><a href="https://huggingface.co/deep-principle/Hydrogen-1.0">Deep Principle&rsquo;s Hydrogen-1.0 post-trains GLM-5.3 into a 753B MIT-licensed science model</a></h4>
+            <p>Deep Principle&rsquo;s <strong>Hydrogen-1.0</strong> post-trains Z.ai&rsquo;s GLM-5.3 on chemistry, materials and life-science data plus agent discovery runs, and ships under <strong>MIT</strong> with a 1M-token context. It reports <strong>38.3%</strong> on FrontierScience-Research against 33.3% for GPT-6 Astra. The scores are self-reported, and serving takes 8 GPUs.</p>
+            <p><em>Updated Nov 4:</em> The weights are on Hugging Face, which the headline now links. AlphaSignal adds a 128K-token output limit, self-hosting through SGLang on those 8 GPUs, and an API at GLM-5.3 pricing.</p>
+            <div class="sources"><a href="https://huggingface.co/deep-principle/Hydrogen-1.0">Hugging Face</a> &middot; <a href="https://www.marktechpost.com/2026/11/02/deep-principle-hydrogen-1-0-open-weight-scientific-model/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3), AlphaSignal (Nov 4)</span></div>
+          </article>
 
           <article class="story" id="baseten-joey-1">
             <span class="when">2026-10-29</span>
@@ -799,8 +818,8 @@
             <span class="when">2026-10-23</span>
             <h4><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">NVIDIA&rsquo;s Nemotron 3.5 Bolt E4B fits a local voice-agent model in 4 GB and decodes 272.6 tokens/s on an RTX 5070</a></h4>
             <p>NVIDIA released <strong>Nemotron 3.5 Bolt E4B</strong>, an open small language model for local voice agents, game characters and robots on GeForce RTX, Jetson and RTX/DGX Spark. It skipped SFT entirely and was trained only with RLVR and RLHF through NeMo-RL and NeMo-Gym, every sample run in both reasoning and non-reasoning modes at a 2:1 ratio, with a runtime thinking budget and a <strong>64K context</strong>.</p>
-            <p>The 4 GB footprint is the Q4_K_M build, calibrated on about 1M tokens of RL rollouts, and the <strong>272.6 tokens/s</strong> on an RTX 5070 assumes its bundled DFlash drafter for speculative decoding. Every benchmark is NVIDIA&rsquo;s own.</p>
-            <div class="sources"><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+            <p>The 4 GB footprint is the Q4_K_M build, calibrated on about 1M tokens of RL rollouts, and the <strong>272.6 tokens/s</strong> on an RTX 5070 assumes its bundled DFlash drafter for speculative decoding. Every benchmark is NVIDIA&rsquo;s own. <em>Updated Nov 17:</em> The model card is on Hugging Face: post-trained from Gemma-4-E4B-it, 8B parameters with 4B effective, under the OpenMDW-1.1 licence, with 74.13 on ToolSandbox and 85.76 on RULER at 64K for the Q4_K_M file. The card lists a memory footprint of 6.18 GB, above the 4GB in the name.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/10/23/nvidia-nemotron-3-5-bolt-e4b-4gb/">MarkTechPost</a> &middot; <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB">Hugging Face</a> (model card) &middot; <span class="via">via MarkTechPost (Oct 24), AlphaSignal (Nov 17)</span></div>
           </article>
 
           <article class="story" id="spark-x2-6-4b">
@@ -854,6 +873,21 @@
         <h3>Large-scale efficient MoEs</h3>
         <p class="lead">Sparsity, hybrid attention and aggressive low-precision quantization are how the open frontier is decoupling parameter count from serving cost. Total parameters rise, active parameters fall, and quality holds. The figure that decides whether a release is usable is the active count and the decode speed at long context, not the headline size.</p>
 
+        <article class="story" id="ovh-olala-mini">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://corporate.ovhcloud.com/en/newsroom/news/ovh-olala-mini/">OVHcloud&rsquo;s Olala Mini is a 7B MoE with about 1B active, at 160 tokens a second on an RTX A4500; weights are promised</a></h4>
+          <p>OVHcloud announced <strong>Olala Mini</strong>, a 7B mixture-of-experts model with about 1B active parameters that mixes Differential-TPA and Mamba-3 attention and runs at 160 tokens a second on an RTX A4500. Apache 2.0 weights are promised but not yet published, so the speed figure is OVHcloud&rsquo;s own and cannot be reproduced yet.</p>
+          <div class="sources"><a href="https://corporate.ovhcloud.com/en/newsroom/news/ovh-olala-mini/">OVHcloud</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
+        </article>
+
+        <article class="story" id="tencent-hy4-flash">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://hy.tencent.ai/research/hy4-flash">Tencent&rsquo;s Hy4 flash activates 12B of 224B parameters and prices input at $0.07 per million tokens</a></h4>
+          <p>Tencent released <strong>Hy4 flash</strong>, the low-cost sibling of <a href="#tencent-hy4">Hy4</a>: 224B parameters with 12B active per token, natively multimodal, with a 1M-token context. Input costs <strong>$0.07</strong> per million tokens, output $0.281 and cached input $0.003.</p>
+          <p>Tencent&rsquo;s own comparison is a blind test with internal users in which satisfaction came close to Claude Haiku 5.5, at what The Code reports as 18&times; lower cost per task. No outside benchmark accompanies the launch.</p>
+          <div class="sources"><a href="https://hy.tencent.ai/research/hy4-flash">Tencent Hy</a> &middot; <a href="https://www.tencent.com/tencent-launches-hy4-flash-to-power-high-speed-cost-efficient-ai-deployment-for-everyday-workflows/">Tencent announcement</a> &middot; <span class="via">via TLDR AI (Nov 17), The Code (Nov 17)</span></div>
+        </article>
+
         <article class="story" id="longcat-2-5">
           <span class="when">2026-11-12</span>
           <h4><a href="https://huggingface.co/meituan-longcat/LongCat-2.5">Meituan puts LongCat-2.5 weights on Hugging Face: a 1.6T MoE with about 48B active, under MIT</a></h4>
@@ -862,24 +896,24 @@
           <div class="sources"><a href="https://huggingface.co/meituan-longcat/LongCat-2.5">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Nov 12)</span></div>
         </article>
 
-        <article class="story" id="inkling-2-small">
-          <span class="when">2026-11-06</span>
-          <h4><a href="https://thinkingmachines.ai/news/inkling-2-small/">Thinking Machines&rsquo; Inkling 2 Small is a 594B MoE with 17B active that takes images, with Apache 2.0 weights promised a week after launch</a></h4>
-          <p><strong>Inkling 2 Small</strong> is a mixture-of-experts model with <strong>594B total parameters and 17B active</strong>, accepting image inputs with variable thinking effort; Thinking Machines shows it using visual feedback to build and refine websites, games and 3D designs with interactive elements. It launches with closed weights through Tinker, and full weights under Apache 2.0 are promised the following week, after external safety testing and red-teaming.</p>
-          <p>MarkTechPost has since added figures: 31 on the Artificial Analysis Intelligence Index against 13 for Inkling Small, 86.3% on SWE-Bench Pro v2 (Hard) and 13.1% on Terminal-Bench 4.0, with a 1M-token context; it is still Tinker-only, the Apache 2.0 weights still pending. It succeeds the 276B/12B <a href="#inkling-small">Inkling-Small</a> of August, the model Cognition mid-trained into <a href="#swe-2-flash">SWE-2 Flash</a> the day before this one appeared.</p>
-          <div class="sources"><a href="https://thinkingmachines.ai/news/inkling-2-small/">Thinking Machines</a> &middot; <span class="via">via TLDR AI (Nov 6), MarkTechPost (Nov 10)</span></div>
-        </article>
-
-        <article class="story" id="tencent-hy4">
-          <span class="when">2026-11-05</span>
-          <h4><a href="https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/">Tencent&rsquo;s Hy4 adds vision and computer use; weights and system cards are promised in the coming days</a></h4>
-          <p>Tencent announced <strong>Hy4</strong> with visual understanding and computer use for the first time: fine-grained image processing, chart analysis and visual maths, plus operating both command-line and graphical interfaces, with training on professional software such as Blender and CAD.</p>
-          <p>Tencent says weights and system cards will follow in the coming days, so for now the open-source label is a commitment. The figures it publishes are product-side: an average score of 83.18 and a 96.15% pass rate on its WorkBuddy evaluation, first in nine of twelve scenarios in mainland China. The announcement gives no parameter counts; the <a href="#hy4-preview">Hy4-preview</a> of August was 770B with 49B active.</p>
-          <div class="sources"><a href="https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/">Tencent</a> &middot; <span class="via">via TLDR AI (Nov 5), Forward Future (Nov 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (20)</summary>
+          <summary>Earlier in this section (22)</summary>
+
+          <article class="story" id="inkling-2-small">
+            <span class="when">2026-11-06</span>
+            <h4><a href="https://thinkingmachines.ai/news/inkling-2-small/">Thinking Machines&rsquo; Inkling 2 Small is a 594B MoE with 17B active that takes images, with Apache 2.0 weights promised a week after launch</a></h4>
+            <p><strong>Inkling 2 Small</strong> is a mixture-of-experts model with <strong>594B total parameters and 17B active</strong>, accepting image inputs with variable thinking effort; Thinking Machines shows it using visual feedback to build and refine websites, games and 3D designs with interactive elements. It launches with closed weights through Tinker, and full weights under Apache 2.0 are promised the following week, after external safety testing and red-teaming.</p>
+            <p>MarkTechPost has since added figures: 31 on the Artificial Analysis Intelligence Index against 13 for Inkling Small, 86.3% on SWE-Bench Pro v2 (Hard) and 13.1% on Terminal-Bench 4.0, with a 1M-token context; it is still Tinker-only, the Apache 2.0 weights still pending. It succeeds the 276B/12B <a href="#inkling-small">Inkling-Small</a> of August, the model Cognition mid-trained into <a href="#swe-2-flash">SWE-2 Flash</a> the day before this one appeared.</p>
+            <div class="sources"><a href="https://thinkingmachines.ai/news/inkling-2-small/">Thinking Machines</a> &middot; <span class="via">via TLDR AI (Nov 6), MarkTechPost (Nov 10)</span></div>
+          </article>
+
+          <article class="story" id="tencent-hy4">
+            <span class="when">2026-11-05</span>
+            <h4><a href="https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/">Tencent&rsquo;s Hy4 adds vision and computer use; weights and system cards are promised in the coming days</a></h4>
+            <p>Tencent announced <strong>Hy4</strong> with visual understanding and computer use for the first time: fine-grained image processing, chart analysis and visual maths, plus operating both command-line and graphical interfaces, with training on professional software such as Blender and CAD.</p>
+            <p>Tencent says weights and system cards will follow in the coming days, so for now the open-source label is a commitment. The figures it publishes are product-side: an average score of 83.18 and a 96.15% pass rate on its WorkBuddy evaluation, first in nine of twelve scenarios in mainland China. The announcement gives no parameter counts; the <a href="#hy4-preview">Hy4-preview</a> of August was 770B with 49B active.</p>
+            <div class="sources"><a href="https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/">Tencent</a> &middot; <span class="via">via TLDR AI (Nov 5), Forward Future (Nov 5)</span></div>
+          </article>
 
           <article class="story" id="kimi-k3-1-pro">
             <span class="when">2026-10-23</span>
@@ -1046,32 +1080,40 @@
         <h3>Alternative decoding architectures</h3>
         <p class="lead">A research line attacking the autoregressive decode bottleneck from two directions: parallelising within one token stream, and removing the stream entirely. Both buy latency and price rather than capability, so the question for every entry here is what the speed costs in quality, and whether anyone outside the vendor has measured it.</p>
 
+        <article class="story" id="liquid-d1-2">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://www.liquid.ai/blog/d1-2">Liquid AI&rsquo;s d1.2 and d1.2-ultra add audio input and five answer types; ultra scores 75 on the Decision Index v2.1</a></h4>
+          <p>Liquid AI released <strong>d1.2</strong> and <strong>d1.2-ultra</strong>, decision models that now take audio beside text and images. They can read a value out of the input and answer &ldquo;not found&rdquo; when it is absent, find every passage of a kind in a text, locate objects in an image with bounding boxes, estimate a number with a range, and pick every label that applies. d1.2-ultra ranks first on the Artificial Analysis Decision Index v2.1 at <strong>75</strong>, and Liquid puts its calibration error at 0.8.</p>
+          <p>Both are on the Liquid API at $0.02 per million input tokens for d1.2 and $0.042 for d1.2-ultra, with no output charge. <a href="#liquid-d1-ultra">d1-ultra</a> scored 65 when it launched in October; the issues do not say whether that was on the same version of the index.</p>
+          <div class="sources"><a href="https://www.liquid.ai/blog/d1-2">Liquid AI</a> &middot; <a href="https://www.marktechpost.com/2026/11/17/liquid-ai-d1-2-omnimodal-decision-models/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 17), AlphaSignal (Nov 17), The Code (Nov 17), MarkTechPost (Nov 17)</span></div>
+        </article>
+
         <article class="story" id="pplx-decider-v1-3">
           <span class="when">2026-11-13</span>
           <h4><a href="https://www.perplexity.ai/hub/blog/perplexity-decider">Perplexity ships Decider v1.3 and Decider Flash v1.3, adding span highlighting for extraction tasks</a></h4>
           <p>Perplexity updated both of its classification models, which return label probabilities that applications use to classify, route, rank and evaluate inputs, over binary or multi-class labels, ordered or unordered. Decider v1.3 and Decider Flash v1.3 improve accuracy and robustness across text and vision tasks and add a mode that highlights the selected span for named-entity recognition, personal-information detection and extractive question answering.</p>
-          <p>The newsletter summary carries no benchmark figures; the earlier open release is <a href="#pplx-decider-v1-27b">pplx-decider-v1-27b</a>.</p>
-          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/perplexity-decider">Perplexity</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
+          <p>The newsletter summary carries no benchmark figures; the earlier open release is <a href="#pplx-decider-v1-27b">pplx-decider-v1-27b</a>. <em>Updated Nov 17:</em> MarkTechPost reports the v1.3 models as open weights, names the span mode Locate, and gives <strong>91.6%</strong> mean accuracy on 63 query-classification tasks.</p>
+          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/perplexity-decider">Perplexity</a> &middot; <a href="https://www.marktechpost.com/2026/11/13/perplexity-decider-v1-3-open-weight-decision-models-locate/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 13), MarkTechPost (Nov 17)</span></div>
         </article>
 
         <article class="story" id="gemini-decision-1">
           <span class="when">2026-11-11</span>
           <h4><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google&rsquo;s Gemini Decision 1 scores up to 1,000 questions in one pass at $0.10 per million input tokens, with no output tokens</a></h4>
           <p>Google launched the <strong>Gemini Decisions API</strong> on a new model, <strong>Gemini Decision 1</strong>. It takes text, images, audio, video or PDFs and returns calibrated probabilities for up to <strong>1,000</strong> yes/no, multiple-choice or rubric questions against one shared input in a single forward pass, with output tokens always zero. The Code reports typical responses of 150&ndash;250 ms; input costs <strong>$0.10 per million tokens</strong>.</p>
-          <p>Google aims it at the small branching calls inside agents: routing, policy checks, tool selection and grading. It is the third lab-built decision interface on this page after <a href="#openai-decisions-api">OpenAI&rsquo;s</a> and <a href="#perplexity-decisions-web-grounding">Perplexity&rsquo;s</a>, and the first that is multimodal on input; the calibration claim is Google&rsquo;s own.</p>
-          <div class="sources"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google</a> &middot; <a href="https://aistudio.google.com/docs/decisions-api">API docs</a> &middot; <a href="https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 12), TLDR (Nov 12), MarkTechPost (Nov 12), The Code (Nov 12)</span></div>
-        </article>
-
-        <article class="story" id="perplexity-decisions-web-grounding">
-          <span class="when">2026-11-05</span>
-          <h4><a href="https://www.perplexity.ai/hub/blog/web-grounding-for-the-decisions-api">Perplexity&rsquo;s Decisions API can search the web before answering, lifting current-fact accuracy from 51% to 86%</a></h4>
-          <p>Adding <code>&quot;mode&quot;: &quot;web_grounding&quot;</code> to a Decisions API request makes Perplexity Fast Search run one query per question and attach the results to the request&rsquo;s state as evidence, so the probabilities the decision model returns reflect what is on the web now. The state can also be a URL pointing at a page.</p>
-          <p>On PWS-Decisions, a public benchmark of 100 questions that depend on current web facts, accuracy rose from <strong>51% to 86%</strong>, with typical responses under 400 ms. The benchmark and both figures are Perplexity&rsquo;s, and 100 questions is a small set.</p>
-          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/web-grounding-for-the-decisions-api">Perplexity</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
+          <p>Google aims it at the small branching calls inside agents: routing, policy checks, tool selection and grading. It is the third lab-built decision interface on this page after <a href="#openai-decisions-api">OpenAI&rsquo;s</a> and <a href="#perplexity-decisions-web-grounding">Perplexity&rsquo;s</a>, and the first that is multimodal on input; the calibration claim is Google&rsquo;s own. <em>Updated Nov 17:</em> Simon Willison finds the API almost identical to Jev&rsquo;s, down to the term &ldquo;Noul&rdquo; for a yes/no question, and on a test video it returned probabilities such as 0.92 and 0.05 where Jev and OpenAI return 1.0 or 0.0.</p>
+          <div class="sources"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google</a> &middot; <a href="https://aistudio.google.com/docs/decisions-api">API docs</a> &middot; <a href="https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 12), TLDR (Nov 12), MarkTechPost (Nov 12), The Code (Nov 12), Simon Willison (Nov 17)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (28)</summary>
+          <summary>Earlier in this section (29)</summary>
+
+          <article class="story" id="perplexity-decisions-web-grounding">
+            <span class="when">2026-11-05</span>
+            <h4><a href="https://www.perplexity.ai/hub/blog/web-grounding-for-the-decisions-api">Perplexity&rsquo;s Decisions API can search the web before answering, lifting current-fact accuracy from 51% to 86%</a></h4>
+            <p>Adding <code>&quot;mode&quot;: &quot;web_grounding&quot;</code> to a Decisions API request makes Perplexity Fast Search run one query per question and attach the results to the request&rsquo;s state as evidence, so the probabilities the decision model returns reflect what is on the web now. The state can also be a URL pointing at a page.</p>
+            <p>On PWS-Decisions, a public benchmark of 100 questions that depend on current web facts, accuracy rose from <strong>51% to 86%</strong>, with typical responses under 400 ms. The benchmark and both figures are Perplexity&rsquo;s, and 100 questions is a small set.</p>
+            <div class="sources"><a href="https://www.perplexity.ai/hub/blog/web-grounding-for-the-decisions-api">Perplexity</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
+          </article>
 
           <article class="story" id="mammoth-1-elephant-1">
             <span class="when">2026-10-22</span>
@@ -1960,6 +2002,11 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#sage-s2-1-flash">Shanghai AI Lab&rsquo;s Sage S2.1-Flash is a 321B MIT-licensed scientific multimodal model, self-reporting 90.3 on MLE-bench Lite</a></span></li>
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#ovh-olala-mini">OVHcloud&rsquo;s Olala Mini is a 7B MoE with about 1B active, at 160 tokens a second on an RTX A4500; weights are promised</a></span></li>
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#tencent-hy4-flash">Tencent&rsquo;s Hy4 flash activates 12B of 224B parameters and prices input at $0.07 per million tokens</a></span></li>
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#liquid-d1-2">Liquid AI&rsquo;s d1.2 and d1.2-ultra add audio input and five answer types; ultra scores 75 on the Decision Index v2.1</a></span></li>
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#gpt-6-2-astra-sol">GPT-6.2 Astra cuts the frontier price to $8/$40 and GPT-6.2 Sol holds at $2/$10</a></span></li>
         <li><span class="date">2026-11-16</span><span class="label"><a href="#tiny-voca">tiny-voca is a 4.5M-parameter text-to-speech model trained only on synthetic speech, running 70&times; real time on four CPU threads</a></span></li>
         <li><span class="date">2026-11-16</span><span class="label"><a href="#embla-1">Sevren&rsquo;s Embla 1 averages 57.4 on five benchmarks at 4 bits and answers in 1.77 s on an iPhone 18 Pro</a></span></li>
         <li><span class="date">2026-11-16</span><span class="label"><a href="#qwen4-max">Qwen4-Max ships a 1M-token context at $1.50/$4.50, ahead on DeepSWE but 43 on the Artificial Analysis index</a></span></li>
