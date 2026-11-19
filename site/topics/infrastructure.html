@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-18</div>
+      <div class="meta">Last updated: 2026-11-19</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 18 cycle splits work across hardware. <a href="#cerebras-disaggregated-inference">Cerebras</a> now runs prefill on GPUs and decode on its own systems for five times the tokens per megawatt, against an unstated baseline. NVIDIA&rsquo;s <a href="#nvidia-sparse-attention-codesign">sparse-attention post</a> shows where the cost of skipping keys went: the indexer and Top-k are 47% of a DeepSeek V3.2 prefill layer at 128K tokens, and its Top-k kernel is 2.1&ndash;2.4&times; faster than a radix select. The <a href="#hf-inference-providers-openrouter">Hugging Face&ndash;OpenRouter</a> entry gains its terms: automatic retries, and no more custom provider keys for language models.</p>
         <p>The Nov 17 cycle is NVIDIA hardware, an open control plane and two routing moves. <a href="#nvidia-rubin-hpc">Rubin HPC</a>, a GPU with more than 50,000 cores for simulation, is due in 2028, and <a href="#vera-rubin-nvl72-mlperf-training">Vera Rubin NVL72</a> entered MLPerf Training v6.1 at up to 2&times; GB300 per GPU by NVIDIA&rsquo;s count. NVIDIA also open-sourced <a href="#nvidia-nvke-nvkr">NVKE and NVKR</a> for managed Kubernetes on owned GPUs, which ship with API authentication off.</p>
         <p>Hugging Face now <a href="#hf-inference-providers-openrouter">routes Inference Providers through OpenRouter</a> on one token, and <a href="#sarvam-token-factory">Sarvam Token Factory</a> serves eight open models from clusters in India. Anthropic told investors it <a href="#anthropic-multi-chip-serving">trains and serves Claude on four chip families</a> and that Mythos ported it to AMD GPUs in three days, a claim with no data behind it yet.</p>
         <p>The Nov 13 cycle is two kernel results and a survey. <a href="#detllm">DetLLM</a> gets one output hash across nine configurations by running inference in integer-only int8 arithmetic, with WikiText2 perplexity of 20.72 against fp16&rsquo;s 20.95 and C4 0.4% worse, but prefill at about 0.13&times; fp16. <a href="#helion-compile-time-heuristics">Helion&rsquo;s compile-time heuristics</a> pick kernel configurations without autotuning and beat hand-written FLA Triton by 1.18&times; and vLLM&rsquo;s CUDA reduction kernels by 1.27&times; on H100. A <a href="#model-swap-survey">VentureBeat survey</a> prices the lock-in the routers below are meant to remove: 69% of firms that swapped a production model spent weeks on it, 36% more than a month.</p>
         <p>The Nov 11 cycle runs from a power line to a browser tab. SemiAnalysis reports Envision built the first 120 MW of the 800 MW <a href="#galaxy-inner-mongolia-campus">Galaxy campus</a> in Inner Mongolia within a year at about a fifth of US cost, with its own wind, batteries and a 5 MW direct-to-800 V DC pilot. Amazon replaced Claude Sonnet 4.6 with <a href="#amazon-strands-decider-ticket-labels">Strands Decider</a> for ticket labelling at 98% lower cost, a decision model scoring 20 labels instead of generating JSON. <a href="#executorch-webgpu">ExecuTorch WebGPU</a> runs exported PyTorch models on the browser&rsquo;s GPU 2&ndash;10&times; faster on decode than its CPU path, and Apple&rsquo;s Claris is testing <a href="#claris-harbor">Harbor</a> to pool Macs into one private model server.</p>
-        <p>The Nov 10 cycle is hardware and the code that runs on it. Google&rsquo;s <a href="#tpu-8tx-8i-max">TPU 8tx and TPU 8i Max</a> make four eighth-generation TPU systems in a year, one for confidential inference and one for long context, with nearly 100 TPU customers claimed and no specifications or prices. Below the chip, Zyphra&rsquo;s <a href="#zyfa">ZYFA</a> FP8 kernels beat AMD&rsquo;s own AITER by 1.16&ndash;1.76&times; on MI355X, NVIDIA&rsquo;s <a href="#autocompress">AutoCompress</a> prunes Nemotron 3.5 Super from 120B to 74B to fit one B200 at 128K context for 5% of its score, and Buoyant&rsquo;s <a href="#kinference">Kinference</a> cuts median time to first token 95% by routing on KV-cache state, but only when prompts share a prefix. Together Compiler gained its weakest case: about 4% on GLM 5.3 on MI355X.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 10 cycle is hardware and the code that runs on it. Google&rsquo;s <a href="#tpu-8tx-8i-max">TPU 8tx and TPU 8i Max</a> make four eighth-generation TPU systems in a year, one for confidential inference and one for long context, with nearly 100 TPU customers claimed and no specifications or prices. Below the chip, Zyphra&rsquo;s <a href="#zyfa">ZYFA</a> FP8 kernels beat AMD&rsquo;s own AITER by 1.16&ndash;1.76&times; on MI355X, NVIDIA&rsquo;s <a href="#autocompress">AutoCompress</a> prunes Nemotron 3.5 Super from 120B to 74B to fit one B200 at 128K context for 5% of its score, and Buoyant&rsquo;s <a href="#kinference">Kinference</a> cuts median time to first token 95% by routing on KV-cache state, but only when prompts share a prefix. Together Compiler gained its weakest case: about 4% on GLM 5.3 on MI355X.</p>
           <p>The Nov 6 cycle, read on Nov 9, adds the router thread&rsquo;s largest product. OpenRouter rebuilt its <a href="#openrouter-auto-router-v2">Auto Router</a> on eleven per-request factors plus live price, provider health and cache state, picking only from models a customer&rsquo;s governance allows, and added Auto Code for coding harnesses; its own benchmarks say up to 4&times; the old router, a routing step of 0.65 s at p90 against 1.96 s, and Auto Code level with Claude Opus 5.5 at 74% less per task. The routing reasons now show in the chat panel and the API, and OpenRouter raised Auto&rsquo;s cost tier back up because the cheapest models had crowded out stronger ones, the first router here to say its own optimiser drifted. Every figure is OpenRouter&rsquo;s, measured on the 2.5 trillion tokens a month it carries.</p>
           <p>The Nov 6 cycle adds one reference. Hugging Face published <a href="#moe-training-handbook">The Ultimate MoE Training Handbook</a> as a Space, a guide to training mixture-of-experts models; the issue that carried it says only that it is comprehensive, so its coverage is to be read from the handbook. It joins the training-side thread where every other entry is a measured gain quoted by its authors, as the document that explains the machinery those gains are made on.</p>
           <p>The Nov 5 cycle has one compiler, one build-out and one optimization that was rolled back. <a href="#together-compiler">Together Compiler</a> has agents re-optimize the inference engine as traffic shifts, using an engine that hot-reloads candidates where a restart costs tens of minutes; Together reports up to 2.6&times; higher throughput within a day and 1,205 tokens per second on DeepSeek v4.1-Flash. SemiAnalysis counts <a href="#spacex-13gw-buildout">3.6 GW under construction</a> at SpaceX sites against a 2027 target raised to about 13 GW. Apify&rsquo;s MCP team <a href="#apify-toon-removal">removed TOON</a> after 30 days in production: the tools it shrank received 0.07% of calls, and the busiest payload cost 11.7% more tokens. Asking for three fields where the agent used to get sixty cut that payload 98.8%.</p>
@@ -108,11 +109,11 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#long-context-serving">Long-context serving <span class="n">9</span></a></li>
+          <li><a href="#long-context-serving">Long-context serving <span class="n">10</span></a></li>
           <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">21</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">4</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">11</span></a></li>
-          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">8</span></a></li>
+          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">9</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">3</span></a></li>
           <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">32</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
@@ -130,6 +131,14 @@
         <h3>Long-context serving</h3>
         <p class="lead">Every lever here buys long-context throughput by refusing to store or attend to everything: sparse attention, a flat cache, a compressed cache, a draft model. They compose across layers of the stack, but each speedup is quoted against a different baseline on different hardware &mdash; read the comparator before the multiple.</p>
 
+        <article class="story" id="nvidia-sparse-attention-codesign">
+          <span class="when">2026-11-18</span>
+          <h4><a href="https://developer.nvidia.com/blog/co-designing-sparse-attention-for-efficient-long-context-inference/">NVIDIA: the sparse-attention indexer and Top-k take 47% of a DeepSeek V3.2 prefill layer at 128K tokens</a></h4>
+          <p>NVIDIA&rsquo;s post argues sparse attention moves cost rather than removing it: the indexer still scores every key, and at a 128K-token input the indexer and Top-k take <strong>47%</strong> of a DeepSeek V3.2 prefill layer. Its guidelines keep group size times speculative draft length within one Tensor Core tile of about 200 rows and run the indexer epilogue in FP16, and its Guess-Verify-Refine Top-k in TensorRT-LLM is <strong>2.1&ndash;2.4&times;</strong> faster than a standard radix select on DeepSeek V3.2 and V4 decode.</p>
+          <p>All figures are NVIDIA&rsquo;s, measured on its own GPUs.</p>
+          <div class="sources"><a href="https://developer.nvidia.com/blog/co-designing-sparse-attention-for-efficient-long-context-inference/">NVIDIA Developer</a> &middot; <span class="via">via TLDR AI (Nov 18)</span></div>
+        </article>
+
         <article class="story" id="tokengate">
           <span class="when">2026-10-25</span>
           <h4><a href="https://www.marktechpost.com/2026/10/25/stanford-berkeley-tokengate-learned-token-pruning-llm-prefill/">TokenGate&rsquo;s learned gate prunes document tokens for 1.4&ndash;11.3&times; faster prefill on Qwen3-1.7B</a></h4>
@@ -146,16 +155,16 @@
           <div class="sources"><span class="via">via MarkTechPost AI (Jul 30) &mdash; no public URL given</span></div>
         </article>
 
-        <article class="story unlinked" id="nvidia-2x-serving-throughput">
-          <span class="when">2026-07-11</span>
-          <h4>NVIDIA flags a further roughly 2&times; serving-throughput gain, with no specifics attached</h4>
-          <p>A weekly brief headlined a roughly 2&times; improvement in NVIDIA serving throughput without publishing which product, which workload or which baseline it was measured against. Logged here as a directional data point rather than a quantified result: a multiple with no denominator is not a measurement.</p>
-          <p>It fits the running pattern of runtime and serving optimisations &mdash; <a href="#nvidia-dflash">DFlash</a>, <a href="#together-kv-cache-8x">KV-cache compression</a>, <a href="#minimax-sparse-attention">sparse attention</a> &mdash; chipping at cost per token from the serving layer rather than the model.</p>
-          <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 10) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story unlinked" id="nvidia-2x-serving-throughput">
+            <span class="when">2026-07-11</span>
+            <h4>NVIDIA flags a further roughly 2&times; serving-throughput gain, with no specifics attached</h4>
+            <p>A weekly brief headlined a roughly 2&times; improvement in NVIDIA serving throughput without publishing which product, which workload or which baseline it was measured against. Logged here as a directional data point rather than a quantified result: a multiple with no denominator is not a measurement.</p>
+            <p>It fits the running pattern of runtime and serving optimisations &mdash; <a href="#nvidia-dflash">DFlash</a>, <a href="#together-kv-cache-8x">KV-cache compression</a>, <a href="#minimax-sparse-attention">sparse attention</a> &mdash; chipping at cost per token from the serving layer rather than the model.</p>
+            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 10) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="nvidia-dflash">
             <span class="when">2026-06-26</span>
@@ -523,6 +532,14 @@
         <h3>Serving across accelerators</h3>
         <p class="lead">Portability as its own serving problem: write a model once and run it on whatever accelerator is in the rack, not only the GPU its kernels were tuned for. Judge entries on the efficiency given up against the native path, and on which hardware that figure was measured.</p>
 
+        <article class="story" id="cerebras-disaggregated-inference">
+          <span class="when">2026-11-18</span>
+          <h4><a href="https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference">Cerebras puts prefill on GPUs and decode on its own systems for 5&times; more tokens per megawatt</a></h4>
+          <p>Cerebras launched <strong>disaggregated inference</strong>: GPUs process the prompt (prefill) and Cerebras systems generate the output (decode), which the company says yields <strong>five times more tokens per megawatt</strong> at its usual decode speed. Partners can run the same split in their own datacenters; the blog calls it in production while TLDR describes early access that is being widened.</p>
+          <p>The 5&times; comes with no stated baseline hardware or model.</p>
+          <div class="sources"><a href="https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference">Cerebras</a> &middot; <span class="via">via TLDR AI (Nov 18)</span></div>
+        </article>
+
         <article class="story" id="helion-compile-time-heuristics">
           <span class="when">2026-11-13</span>
           <h4><a href="https://pytorch.org/blog/fast-by-default-compile-time-heuristics-for-helion-kernels/">Helion&rsquo;s compile-time heuristics beat hand-written FLA Triton and vLLM CUDA kernels without autotuning</a></h4>
@@ -539,16 +556,16 @@
           <div class="sources"><a href="https://ipo.anthropic.com/us/#roadshow-video">Anthropic</a> (roadshow video) &middot; <a href="https://gist.github.com/simonw/9806757fe8acec6221cb0a5cce4d720d">Transcript</a> &middot; <span class="via">via Simon Willison (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="zyfa">
-          <span class="when">2026-11-06</span>
-          <h4><a href="https://www.marktechpost.com/2026/11/06/zyphra-zyfa-fp8-flashattention-amd-mi355x/">Zyphra&rsquo;s ZYFA FP8 attention kernels run 1.16&ndash;1.76&times; faster than AMD&rsquo;s own AITER on MI355X</a></h4>
-          <p><strong>ZYFA</strong> is an Apache 2.0 set of FP8 and BF16 prefill attention kernels for AMD Instinct MI355X with a drop-in flash_attn_func interface; the FP8 kernels are hand-scheduled assembly. On real model activations they run 1.16&ndash;1.76&times; AITER&rsquo;s throughput, peaking at 2,672 TFLOP/s at 32K tokens, 53% of the FP8 datasheet peak against AITER&rsquo;s 39%, with 62&ndash;78% lower FP8 error at head dimension 128.</p>
-          <p>BF16 roughly ties (1.01&ndash;1.02&times;), the low end of the range is Mistral-7B, and the kernels run on MI355X only. The numbers are Zyphra&rsquo;s, from the engine behind its own cloud.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/11/06/zyphra-zyfa-fp8-flashattention-amd-mi355x/">MarkTechPost (write-up)</a> &middot; <span class="via">via MarkTechPost (Nov 10)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="zyfa">
+            <span class="when">2026-11-06</span>
+            <h4><a href="https://www.marktechpost.com/2026/11/06/zyphra-zyfa-fp8-flashattention-amd-mi355x/">Zyphra&rsquo;s ZYFA FP8 attention kernels run 1.16&ndash;1.76&times; faster than AMD&rsquo;s own AITER on MI355X</a></h4>
+            <p><strong>ZYFA</strong> is an Apache 2.0 set of FP8 and BF16 prefill attention kernels for AMD Instinct MI355X with a drop-in flash_attn_func interface; the FP8 kernels are hand-scheduled assembly. On real model activations they run 1.16&ndash;1.76&times; AITER&rsquo;s throughput, peaking at 2,672 TFLOP/s at 32K tokens, 53% of the FP8 datasheet peak against AITER&rsquo;s 39%, with 62&ndash;78% lower FP8 error at head dimension 128.</p>
+            <p>BF16 roughly ties (1.01&ndash;1.02&times;), the low end of the range is Mistral-7B, and the kernels run on MI355X only. The numbers are Zyphra&rsquo;s, from the engine behind its own cloud.</p>
+            <div class="sources"><a href="https://www.marktechpost.com/2026/11/06/zyphra-zyfa-fp8-flashattention-amd-mi355x/">MarkTechPost (write-up)</a> &middot; <span class="via">via MarkTechPost (Nov 10)</span></div>
+          </article>
 
           <article class="story" id="torchtpu">
             <span class="when">2026-10-20</span>
@@ -1186,8 +1203,8 @@
         <article class="story" id="hf-inference-providers-openrouter">
           <span class="when">2026-11-17</span>
           <h4><a href="https://huggingface.co/blog/openrouter">Hugging Face routes Inference Providers requests through OpenRouter, with one token for any open-weight model</a></h4>
-          <p>Hugging Face now sends language-model requests from its <strong>Inference Providers</strong> service through OpenRouter, which picks the provider for each call, the same job its <a href="#openrouter-auto-router-v2">Auto Router</a> does for model choice. One Hugging Face access token works for any open-weight model a provider serves. TLDR AI&rsquo;s summary gives no price or latency figures.</p>
-          <div class="sources"><a href="https://huggingface.co/blog/openrouter">Hugging Face</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
+          <p>Hugging Face now sends language-model requests from its <strong>Inference Providers</strong> service through OpenRouter, which picks the provider for each call, the same job its <a href="#openrouter-auto-router-v2">Auto Router</a> does for model choice. One Hugging Face access token works for any open-weight model a provider serves. MarkTechPost adds that each call is placed by price, speed and reliability with automatic retries, and that custom provider keys no longer work for language models; no price or latency figures accompany the change.</p>
+          <div class="sources"><a href="https://huggingface.co/blog/openrouter">Hugging Face</a> &middot; <span class="via">via TLDR AI (Nov 17), MarkTechPost (Nov 18)</span></div>
         </article>
 
         <article class="story" id="model-swap-survey">
@@ -1198,7 +1215,7 @@
         </article>
 
         <details>
-          <summary>Earlier in this section (18)</summary>
+          <summary>Earlier in this section (19)</summary>
 
           <article class="story" id="amazon-strands-decider-ticket-labels">
             <span class="when">2026-11-11</span>
@@ -1340,9 +1357,6 @@
             <div class="sources"><span class="via">via Anthropic email announcement &mdash; no public URL given</span></div>
           </article>
 
-        <details>
-          <summary>Earlier in this section (1)</summary>
-
           <article class="story" id="hadley-wickham-token-cost">
             <span class="when">2026-11-04</span>
             <h4><a href="https://substack.hadley.nz/p/how-much-do-tokens-really-cost">Hadley Wickham prices self-hosted Kimi K3 at about $0.25 per million tokens on an eight-GB300 server</a></h4>
@@ -1351,8 +1365,6 @@
             <div class="sources"><a href="https://substack.hadley.nz/p/how-much-do-tokens-really-cost">Hadley Wickham</a> &middot; <span class="via">via TLDR AI (Nov 4), TLDR (Nov 4)</span></div>
           </article>
         </details>
-        </details>
-      
       </section>
 
       <section class="topic-section" id="moe-training-infrastructure">
@@ -1444,6 +1456,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-18</span><span class="label"><a href="#nvidia-sparse-attention-codesign">NVIDIA: the sparse-attention indexer and Top-k take 47% of a DeepSeek V3.2 prefill layer at 128K tokens</a></span></li>
+        <li><span class="date">2026-11-18</span><span class="label"><a href="#cerebras-disaggregated-inference">Cerebras puts prefill on GPUs and decode on its own systems for 5&times; more tokens per megawatt</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#sarvam-token-factory">Sarvam Token Factory serves eight open models from GPU clusters in India behind one OpenAI-compatible API</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#hf-inference-providers-openrouter">Hugging Face routes Inference Providers requests through OpenRouter, with one token for any open-weight model</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#nvidia-nvke-nvkr">NVIDIA open-sources NVKE and NVKR to run managed Kubernetes on your own bare-metal GPUs</a></span></li>

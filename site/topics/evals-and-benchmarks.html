@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-18</div>
+      <div class="meta">Last updated: 2026-11-19</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 18 cycle adds one harness study that makes the section&rsquo;s argument at scale. <a href="#frontierharness-eval-v1-1">FrontierHarness Eval v1.1</a> ran 22 harness configurations against five models over 27,280 runs: ranked by cost per task the median harness moved 11 of 22 places, and Codex CLI fell from first with GLM-5.3 to 16th with Kimi-K3. A harness score without its model is now visibly incomplete.</p>
         <p>The Nov 17 cycle is three instruments that say more about the test than about the model. METR&rsquo;s <a href="#metr-eval-tells">eval-tells study</a> finds Opus 5.5 agents separating 19 alignment evals from 36 capability evals at AUC 1.00, and makes no claim about whether that changes behaviour. <a href="#dominobench">DominoBench</a> has frontier models at 34% or less on falling-domino pairs unaided and at 82&ndash;92% once told which calculation to run. <a href="#inclusionmed">InclusionMed</a> merges four clinical benchmarks and scores frontier models between 17.5 and 49.1 out of 100.</p>
         <p>The Nov 16 cycle is a lab writing down its own eval practice. Anthropic&rsquo;s <a href="#anthropic-safety-eval-practice">safety-eval post</a> sets floors of 100 items for a multi-turn eval and 1,000 for a single-turn one, warns that multi-turn API intervals can exceed &plusmn;10 points, and shows the product surface changing a result: a romance-scam eval on claude.ai split Opus 5 and Opus 5.5 at 98% and 94%. Its single-turn suites, 16 policy areas in seven languages, put every recent model between 94% and 98% harmless, so the spread that remains is in multi-turn work.</p>
         <p>The Nov 14 addition is a usage count that no benchmark matches. David Talby, citing Vishwanath et al., reports that <a href="#clinician-query-mix">documentation and administration made up 36.2%</a> of 127,833 clinician queries to a hospital LLM assistant and diagnosis 3.7%, while the median of 58 public clinical benchmarks contains no documentation request at all. The paper was not linked, so the figures rest on the note.</p>
         <p>The Nov 12 cycle adds a security benchmark that scores the defender&rsquo;s cost. <a href="#erosionbench">ErosionBench</a> runs 1,728 scenarios and finds perimeter defenses that post low attack rates refusing 54&ndash;92% of legitimate agent work, while its own reference auditor reaches 98.5% recall at a 2.9% false-positive rate. Two related instruments sit elsewhere: ScrapeBench on the <a href="safety-and-policy.html#scrapebench">safety page</a> and MCPHallu on the <a href="agents.html#mcphallu">agents page</a>.</p>
-        <p>The Nov 10 cycle adds a third security benchmark, the first aimed at memory. <a href="#memorydojo">MemoryDojo</a> follows a poisoned instruction from the session where an agent stores it to the later session where it acts on it, over 155 trajectories, four domains and five memory systems, and finds every system susceptible. It is the attack-side counterpart to the memory entries on <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools</a>: whatever an agent remembers is an input an attacker can write to.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 10 cycle adds a third security benchmark, the first aimed at memory. <a href="#memorydojo">MemoryDojo</a> follows a poisoned instruction from the session where an agent stores it to the later session where it acts on it, over 155 trajectories, four domains and five memory systems, and finds every system susceptible. It is the attack-side counterpart to the memory entries on <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools</a>: whatever an agent remembers is an input an attacker can write to.</p>
           <p>The Nov 6 cycle, read on Nov 9, adds one benchmark, and the issue that carried it gives no score. OpenAI&rsquo;s <a href="#biobasicsbench">BioBasicsBench</a> asks an agent to interpret the raw experimental data of 100 routine wet-lab tasks, which makes the instrument&rsquo;s output the input and puts bench work rather than discovery in front of a model, the second lab to do so after Anthropic&rsquo;s own wet lab. The ranking has to be read from the post.</p>
           <p>The Nov 6 cycle adds one instrument, and it measures a capability the rest of the page would rather not have. Dwarkesh Patel spent about $20,000 in API credits having frontier models play <a href="#clocktower-benchmark">Blood on the Clocktower</a>, a social deception game in which winning means sustaining a bluff across many turns and reasoning about what the table collectively believes. Neither newsletter that carried it gives the ranking, so the result has to be read from the post. It sits beside the agentic benchmarks because the environment is other agents rather than a task list, and it is the first entry here where a higher score is a warning as much as a result.</p>
           <p>The Nov 4 cycle has two audits of how a score is produced. <a href="#vals-reasoning-effort">Vals AI</a> reran its index across reasoning-effort settings: at the lowest setting four of seven models kept at least 80% of their score for half the cost or less, and Claude Opus 5.5 kept 80% at 16% of the cost. <a href="#prime-intellect-eval-audit">Prime Intellect</a> repaired the task descriptions and graders of AutomationBench and OfficeQA Pro v2 and found both close to saturation, with Opus 5.5 at 92.15% on AutomationBench and models fetching OfficeQA&rsquo;s answers from Hugging Face through its web access.</p>
@@ -107,7 +108,7 @@
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">3</span></a></li>
           <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">31</span></a></li>
-          <li><a href="#harness-versus-model">Harness versus model <span class="n">5</span></a></li>
+          <li><a href="#harness-versus-model">Harness versus model <span class="n">6</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">15</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">4</span></a></li>
           <li><a href="#speech-and-voice-benchmarks">Speech &amp; voice benchmarks <span class="n">3</span></a></li>
@@ -738,7 +739,15 @@
 
       <section class="topic-section" id="harness-versus-model">
         <h3>Harness versus model</h3>
-        <p class="lead">A harness is not a neutral wrapper. Five entries measure it: one finds the harness barely moves the score but multiplies cost, one a 37-point spread on one checkpoint, one cost moving nearly 3&times;, one holds it fixed, one lifts a cheap model to parity and only raises a frontier model&rsquo;s bill. Name the harness, or the number is unfinished.</p>
+        <p class="lead">A harness is not a neutral wrapper. Six entries measure it: one finds the harness barely moves the score but multiplies cost, one a 37-point spread on one checkpoint, one cost moving nearly 3&times;, one holds it fixed, one lifts a cheap model to parity, one reranks harnesses by model. Name the harness, or the number is unfinished.</p>
+
+        <article class="story" id="frontierharness-eval-v1-1">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://runta.com/blog/introducing-frontierharness-eval-v1-1/">FrontierHarness Eval v1.1: over 27,280 runs, Codex CLI fell from 1st to 16th on cost when the model changed</a></h4>
+          <p>Runta and Baseten ran <strong>22 harness configurations</strong> from 18 harnesses against five models over <strong>27,280 agent runs</strong> and 83B tokens. The best harness depended on the model: ranked by cost per task the median harness moved 11 of 22 places, Codex CLI went from first with GLM-5.3 to 16th with Kimi-K3, and TLDR puts the cost swing from harness choice alone at up to 5&times;.</p>
+          <p>The leaderboard is Runta&rsquo;s own, and it is the case for re-testing the harness whenever the model changes.</p>
+          <div class="sources"><a href="https://runta.com/blog/introducing-frontierharness-eval-v1-1/">Runta</a> &middot; <span class="via">via TLDR AI (Nov 18)</span></div>
+        </article>
 
         <article class="story" id="specmatic-harness-experiment">
           <span class="when">2026-10-20</span>
@@ -757,16 +766,16 @@
           <div class="sources"><a href="https://arena.ai/blog/coding-agents-harness-tax">Arena.ai</a> &middot; <span class="via">via TLDR AI (Sep 17), The Code (Sep 17), The Code (Sep 21)</span></div>
         </article>
 
-        <article class="story unlinked" id="three-js-harness-spread">
-          <span class="when">2026-09-09</span>
-          <h4>One agent burned 1,335,495 tokens over 37 minutes and still failed the check</h4>
-          <p>Ten model-and-harness combinations received the same Three.js prompt. Astra 6.0 Max on Codex took 37 minutes and <strong>1,335,495 tokens</strong>; GLM 5.3 Flash Max took nine minutes and 475,143 tokens; neither passed both completion checks.</p>
-          <p>The sample is far too small to rank models, and the author says so &mdash; but it is large enough to show that the surrounding harness changes cost by nearly 3&times; on identical work, which is the variable most benchmark tables still hold constant without saying so.</p>
-          <div class="sources"><span class="via">via Unwind AI (Sep 9) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story unlinked" id="three-js-harness-spread">
+            <span class="when">2026-09-09</span>
+            <h4>One agent burned 1,335,495 tokens over 37 minutes and still failed the check</h4>
+            <p>Ten model-and-harness combinations received the same Three.js prompt. Astra 6.0 Max on Codex took 37 minutes and <strong>1,335,495 tokens</strong>; GLM 5.3 Flash Max took nine minutes and 475,143 tokens; neither passed both completion checks.</p>
+            <p>The sample is far too small to rank models, and the author says so &mdash; but it is large enough to show that the surrounding harness changes cost by nearly 3&times; on identical work, which is the variable most benchmark tables still hold constant without saying so.</p>
+            <div class="sources"><span class="via">via Unwind AI (Sep 9) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story unlinked" id="arc-agi-3-harness">
             <span class="when">2026-09-04</span>
@@ -998,6 +1007,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#frontierharness-eval-v1-1">FrontierHarness Eval v1.1: over 27,280 runs, Codex CLI fell from 1st to 16th on cost when the model changed</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#inclusionmed">InclusionMed combines four clinical benchmarks picked from 388 candidates; frontier models score 17.5 to 49.1 out of 100</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#dominobench">DominoBench: frontier models get at most 34% of falling-domino pairs right unaided, and 82&ndash;92% once told which calculation to run</a></span></li>
         <li><span class="date">2026-11-16</span><span class="label"><a href="#metr-eval-tells">METR: Opus 5.5 investigator agents separate alignment evals from capability evals at AUC 1.00</a></span></li>
