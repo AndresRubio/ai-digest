@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-19</div>
+      <div class="meta">Last updated: 2026-11-20</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 19 addition measures time rather than pass rate. On Kernel&rsquo;s private bug-fix benchmark, <a href="#gemini-4-carbon-step-count">Gemini 4 Carbon</a> took close to an hour where Opus 5.5 and GPT-6 Astra took minutes, using about seven times Astra&rsquo;s steps, half of them unnecessary by Kernel&rsquo;s count. The benchmark cannot be rerun from outside, but step count is exactly what a headline score hides and what an agent bill is made of.</p>
         <p>The Nov 18 cycle adds one harness study that makes the section&rsquo;s argument at scale. <a href="#frontierharness-eval-v1-1">FrontierHarness Eval v1.1</a> ran 22 harness configurations against five models over 27,280 runs: ranked by cost per task the median harness moved 11 of 22 places, and Codex CLI fell from first with GLM-5.3 to 16th with Kimi-K3. A harness score without its model is now visibly incomplete.</p>
         <p>The Nov 17 cycle is three instruments that say more about the test than about the model. METR&rsquo;s <a href="#metr-eval-tells">eval-tells study</a> finds Opus 5.5 agents separating 19 alignment evals from 36 capability evals at AUC 1.00, and makes no claim about whether that changes behaviour. <a href="#dominobench">DominoBench</a> has frontier models at 34% or less on falling-domino pairs unaided and at 82&ndash;92% once told which calculation to run. <a href="#inclusionmed">InclusionMed</a> merges four clinical benchmarks and scores frontier models between 17.5 and 49.1 out of 100.</p>
         <p>The Nov 16 cycle is a lab writing down its own eval practice. Anthropic&rsquo;s <a href="#anthropic-safety-eval-practice">safety-eval post</a> sets floors of 100 items for a multi-turn eval and 1,000 for a single-turn one, warns that multi-turn API intervals can exceed &plusmn;10 points, and shows the product surface changing a result: a romance-scam eval on claude.ai split Opus 5 and Opus 5.5 at 98% and 94%. Its single-turn suites, 16 policy areas in seven languages, put every recent model between 94% and 98% harmless, so the spread that remains is in multi-turn work.</p>
         <p>The Nov 14 addition is a usage count that no benchmark matches. David Talby, citing Vishwanath et al., reports that <a href="#clinician-query-mix">documentation and administration made up 36.2%</a> of 127,833 clinician queries to a hospital LLM assistant and diagnosis 3.7%, while the median of 58 public clinical benchmarks contains no documentation request at all. The paper was not linked, so the figures rest on the note.</p>
-        <p>The Nov 12 cycle adds a security benchmark that scores the defender&rsquo;s cost. <a href="#erosionbench">ErosionBench</a> runs 1,728 scenarios and finds perimeter defenses that post low attack rates refusing 54&ndash;92% of legitimate agent work, while its own reference auditor reaches 98.5% recall at a 2.9% false-positive rate. Two related instruments sit elsewhere: ScrapeBench on the <a href="safety-and-policy.html#scrapebench">safety page</a> and MCPHallu on the <a href="agents.html#mcphallu">agents page</a>.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 12 cycle adds a security benchmark that scores the defender&rsquo;s cost. <a href="#erosionbench">ErosionBench</a> runs 1,728 scenarios and finds perimeter defenses that post low attack rates refusing 54&ndash;92% of legitimate agent work, while its own reference auditor reaches 98.5% recall at a 2.9% false-positive rate. Two related instruments sit elsewhere: ScrapeBench on the <a href="safety-and-policy.html#scrapebench">safety page</a> and MCPHallu on the <a href="agents.html#mcphallu">agents page</a>.</p>
           <p>The Nov 10 cycle adds a third security benchmark, the first aimed at memory. <a href="#memorydojo">MemoryDojo</a> follows a poisoned instruction from the session where an agent stores it to the later session where it acts on it, over 155 trajectories, four domains and five memory systems, and finds every system susceptible. It is the attack-side counterpart to the memory entries on <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools</a>: whatever an agent remembers is an input an attacker can write to.</p>
           <p>The Nov 6 cycle, read on Nov 9, adds one benchmark, and the issue that carried it gives no score. OpenAI&rsquo;s <a href="#biobasicsbench">BioBasicsBench</a> asks an agent to interpret the raw experimental data of 100 routine wet-lab tasks, which makes the instrument&rsquo;s output the input and puts bench work rather than discovery in front of a model, the second lab to do so after Anthropic&rsquo;s own wet lab. The ranking has to be read from the post.</p>
           <p>The Nov 6 cycle adds one instrument, and it measures a capability the rest of the page would rather not have. Dwarkesh Patel spent about $20,000 in API credits having frontier models play <a href="#clocktower-benchmark">Blood on the Clocktower</a>, a social deception game in which winning means sustaining a bluff across many turns and reasoning about what the table collectively believes. Neither newsletter that carried it gives the ranking, so the result has to be read from the post. It sits beside the agentic benchmarks because the environment is other agents rather than a task list, and it is the first entry here where a higher score is a warning as much as a result.</p>
@@ -100,7 +101,7 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#document-ocr-vlm-parsing">Document OCR &amp; VLM parsing <span class="n">3</span></a></li>
-          <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">7</span></a></li>
+          <li><a href="#coding-benchmarks-swe-bench">Coding benchmarks (SWE-bench) <span class="n">8</span></a></li>
           <li><a href="#scores-denominated-in-money">Scores denominated in money <span class="n">9</span></a></li>
           <li><a href="#active-parameter-efficiency-benchmarks">Active-parameter efficiency benchmarks <span class="n">1</span></a></li>
           <li><a href="#post-eval-failure-modes">Post-eval failure modes <span class="n">3</span></a></li>
@@ -149,6 +150,14 @@
         <h3>Coding benchmarks (SWE-bench)</h3>
         <p class="lead">SWE-bench Verified and the harder SWE-bench Pro are the public coding scoreboards, now joined by a lab-built test for languages they never covered. Each entry here turns on what a score leaves out: who reported it, how much it moves between runs, and the task errors a revision had to fix. Cost per task and consistency are the discriminators left.</p>
 
+        <article class="story" id="gemini-4-carbon-step-count">
+          <span class="when">2026-11-18</span>
+          <h4><a href="https://kernel.dev/blog/why-is-gemini-4-carbon-taking-so-long/">Gemini 4 Carbon takes about seven times GPT-6 Astra&rsquo;s steps on a private bug-fix benchmark</a></h4>
+          <p>On Kernel&rsquo;s private benchmark, <strong>Gemini 4 Carbon</strong> spent close to an hour on bug fixes that Claude Opus 5.5 and GPT-6 Astra finished in minutes. Carbon took roughly <strong>seven times as many steps</strong> as Astra, and Kernel counts about half of them as unnecessary.</p>
+          <p>The benchmark is private, so the number cannot be rerun; what it adds is wall-clock and step count as a coding metric, which a pass rate hides.</p>
+          <div class="sources"><a href="https://kernel.dev/blog/why-is-gemini-4-carbon-taking-so-long/">Kernel</a> &middot; <span class="via">via TLDR AI (Nov 19)</span></div>
+        </article>
+
         <article class="story" id="veriharm-bench">
           <span class="when">2026-11-03</span>
           <h4><a href="https://arxiv.org/abs/2611.03575">VeriHarm-Bench: frontier coding agents reach 95% task accuracy but only 37% safe success</a></h4>
@@ -163,16 +172,17 @@
           <div class="sources"><a href="https://arxiv.org/abs/2610.35488">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 30)</span></div>
         </article>
 
-        <article class="story" id="frontier-code-2-0">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://cognition.com/blog/frontier-code-2.0">FrontierCode 2.0 widens the task pool and raises mergeability standards, with reference solutions 67% larger by files touched</a></h4>
-          <p>Cognition released <strong>FrontierCode 2.0</strong>, keeping the 1.0 methodology while broadening coverage: tasks come from more repositories and more categories, grading imposes stricter correctness and design requirements, and the benchmark now accommodates surprising but acceptable behaviour instead of failing it. Reference solutions modify <strong>67% more files</strong> and <strong>89% more lines</strong> on average than FrontierCode 1.1, in codebases about <strong>25% larger</strong>.</p>
-          <p>What the post states is scale and strictness rather than scores; no model numbers appear in the issue, so how the leaderboard moved is still to be read from the benchmark itself.</p>
-          <div class="sources"><a href="https://cognition.com/blog/frontier-code-2.0">Cognition</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
-        </article>
 
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="frontier-code-2-0">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://cognition.com/blog/frontier-code-2.0">FrontierCode 2.0 widens the task pool and raises mergeability standards, with reference solutions 67% larger by files touched</a></h4>
+            <p>Cognition released <strong>FrontierCode 2.0</strong>, keeping the 1.0 methodology while broadening coverage: tasks come from more repositories and more categories, grading imposes stricter correctness and design requirements, and the benchmark now accommodates surprising but acceptable behaviour instead of failing it. Reference solutions modify <strong>67% more files</strong> and <strong>89% more lines</strong> on average than FrontierCode 1.1, in codebases about <strong>25% larger</strong>.</p>
+            <p>What the post states is scale and strictness rather than scores; no model numbers appear in the issue, so how the leaderboard moved is still to be read from the benchmark itself.</p>
+            <div class="sources"><a href="https://cognition.com/blog/frontier-code-2.0">Cognition</a> &middot; <span class="via">via TLDR AI (Oct 28)</span></div>
+          </article>
 
           <article class="story" id="multilangbench">
             <span class="when">2026-10-19</span>
@@ -1007,6 +1017,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-18</span><span class="label"><a href="#gemini-4-carbon-step-count">Gemini 4 Carbon takes about seven times GPT-6 Astra&rsquo;s steps on a private bug-fix benchmark</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#frontierharness-eval-v1-1">FrontierHarness Eval v1.1: over 27,280 runs, Codex CLI fell from 1st to 16th on cost when the model changed</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#inclusionmed">InclusionMed combines four clinical benchmarks picked from 388 candidates; frontier models score 17.5 to 49.1 out of 100</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#dominobench">DominoBench: frontier models get at most 34% of falling-domino pairs right unaided, and 82&ndash;92% once told which calculation to run</a></span></li>

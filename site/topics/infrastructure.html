@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-19</div>
+      <div class="meta">Last updated: 2026-11-20</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 19 cycle points models at the hardware and at the router. OpenAI says its models <a href="#openai-chip-design-models">cut 10&ndash;13% of circuit area</a> on its own Jalape&ntilde;o chip and found up to 14% power, performance and area on an AMD GPU, with some changes already in a design sent to the fab; the figures are the two companies&rsquo; own. Edgee&rsquo;s <a href="#ski-rental-model-switching">ski-rental framing</a> adds a second routing decision to the one this page already tracks: not which model takes a request, but when a running agent session should pay to switch.</p>
         <p>The Nov 18 cycle splits work across hardware. <a href="#cerebras-disaggregated-inference">Cerebras</a> now runs prefill on GPUs and decode on its own systems for five times the tokens per megawatt, against an unstated baseline. NVIDIA&rsquo;s <a href="#nvidia-sparse-attention-codesign">sparse-attention post</a> shows where the cost of skipping keys went: the indexer and Top-k are 47% of a DeepSeek V3.2 prefill layer at 128K tokens, and its Top-k kernel is 2.1&ndash;2.4&times; faster than a radix select. The <a href="#hf-inference-providers-openrouter">Hugging Face&ndash;OpenRouter</a> entry gains its terms: automatic retries, and no more custom provider keys for language models.</p>
         <p>The Nov 17 cycle is NVIDIA hardware, an open control plane and two routing moves. <a href="#nvidia-rubin-hpc">Rubin HPC</a>, a GPU with more than 50,000 cores for simulation, is due in 2028, and <a href="#vera-rubin-nvl72-mlperf-training">Vera Rubin NVL72</a> entered MLPerf Training v6.1 at up to 2&times; GB300 per GPU by NVIDIA&rsquo;s count. NVIDIA also open-sourced <a href="#nvidia-nvke-nvkr">NVKE and NVKR</a> for managed Kubernetes on owned GPUs, which ship with API authentication off.</p>
         <p>Hugging Face now <a href="#hf-inference-providers-openrouter">routes Inference Providers through OpenRouter</a> on one token, and <a href="#sarvam-token-factory">Sarvam Token Factory</a> serves eight open models from clusters in India. Anthropic told investors it <a href="#anthropic-multi-chip-serving">trains and serves Claude on four chip families</a> and that Mythos ported it to AMD GPUs in three days, a claim with no data behind it yet.</p>
         <p>The Nov 13 cycle is two kernel results and a survey. <a href="#detllm">DetLLM</a> gets one output hash across nine configurations by running inference in integer-only int8 arithmetic, with WikiText2 perplexity of 20.72 against fp16&rsquo;s 20.95 and C4 0.4% worse, but prefill at about 0.13&times; fp16. <a href="#helion-compile-time-heuristics">Helion&rsquo;s compile-time heuristics</a> pick kernel configurations without autotuning and beat hand-written FLA Triton by 1.18&times; and vLLM&rsquo;s CUDA reduction kernels by 1.27&times; on H100. A <a href="#model-swap-survey">VentureBeat survey</a> prices the lock-in the routers below are meant to remove: 69% of firms that swapped a production model spent weeks on it, 36% more than a month.</p>
-        <p>The Nov 11 cycle runs from a power line to a browser tab. SemiAnalysis reports Envision built the first 120 MW of the 800 MW <a href="#galaxy-inner-mongolia-campus">Galaxy campus</a> in Inner Mongolia within a year at about a fifth of US cost, with its own wind, batteries and a 5 MW direct-to-800 V DC pilot. Amazon replaced Claude Sonnet 4.6 with <a href="#amazon-strands-decider-ticket-labels">Strands Decider</a> for ticket labelling at 98% lower cost, a decision model scoring 20 labels instead of generating JSON. <a href="#executorch-webgpu">ExecuTorch WebGPU</a> runs exported PyTorch models on the browser&rsquo;s GPU 2&ndash;10&times; faster on decode than its CPU path, and Apple&rsquo;s Claris is testing <a href="#claris-harbor">Harbor</a> to pool Macs into one private model server.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 11 cycle runs from a power line to a browser tab. SemiAnalysis reports Envision built the first 120 MW of the 800 MW <a href="#galaxy-inner-mongolia-campus">Galaxy campus</a> in Inner Mongolia within a year at about a fifth of US cost, with its own wind, batteries and a 5 MW direct-to-800 V DC pilot. Amazon replaced Claude Sonnet 4.6 with <a href="#amazon-strands-decider-ticket-labels">Strands Decider</a> for ticket labelling at 98% lower cost, a decision model scoring 20 labels instead of generating JSON. <a href="#executorch-webgpu">ExecuTorch WebGPU</a> runs exported PyTorch models on the browser&rsquo;s GPU 2&ndash;10&times; faster on decode than its CPU path, and Apple&rsquo;s Claris is testing <a href="#claris-harbor">Harbor</a> to pool Macs into one private model server.</p>
           <p>The Nov 10 cycle is hardware and the code that runs on it. Google&rsquo;s <a href="#tpu-8tx-8i-max">TPU 8tx and TPU 8i Max</a> make four eighth-generation TPU systems in a year, one for confidential inference and one for long context, with nearly 100 TPU customers claimed and no specifications or prices. Below the chip, Zyphra&rsquo;s <a href="#zyfa">ZYFA</a> FP8 kernels beat AMD&rsquo;s own AITER by 1.16&ndash;1.76&times; on MI355X, NVIDIA&rsquo;s <a href="#autocompress">AutoCompress</a> prunes Nemotron 3.5 Super from 120B to 74B to fit one B200 at 128K context for 5% of its score, and Buoyant&rsquo;s <a href="#kinference">Kinference</a> cuts median time to first token 95% by routing on KV-cache state, but only when prompts share a prefix. Together Compiler gained its weakest case: about 4% on GLM 5.3 on MI355X.</p>
           <p>The Nov 6 cycle, read on Nov 9, adds the router thread&rsquo;s largest product. OpenRouter rebuilt its <a href="#openrouter-auto-router-v2">Auto Router</a> on eleven per-request factors plus live price, provider health and cache state, picking only from models a customer&rsquo;s governance allows, and added Auto Code for coding harnesses; its own benchmarks say up to 4&times; the old router, a routing step of 0.65 s at p90 against 1.96 s, and Auto Code level with Claude Opus 5.5 at 74% less per task. The routing reasons now show in the chat panel and the API, and OpenRouter raised Auto&rsquo;s cost tier back up because the cheapest models had crowded out stronger ones, the first router here to say its own optimiser drifted. Every figure is OpenRouter&rsquo;s, measured on the 2.5 trillion tokens a month it carries.</p>
           <p>The Nov 6 cycle adds one reference. Hugging Face published <a href="#moe-training-handbook">The Ultimate MoE Training Handbook</a> as a Space, a guide to training mixture-of-experts models; the issue that carried it says only that it is comprehensive, so its coverage is to be read from the handbook. It joins the training-side thread where every other entry is a measured gain quoted by its authors, as the document that explains the machinery those gains are made on.</p>
@@ -115,12 +116,12 @@
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">11</span></a></li>
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">9</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">3</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">32</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">33</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">13</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">7</span></a></li>
           <li><a href="#placement-scheduling-solvers">Placement &amp; scheduling solvers <span class="n">1</span></a></li>
-          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">22</span></a></li>
+          <li><a href="#enterprise-deployment-patterns">Enterprise deployment patterns <span class="n">23</span></a></li>
           <li><a href="#moe-training-infrastructure">MoE training infrastructure <span class="n">7</span></a></li>
           <li><a href="#tokenization-throughput">Tokenization throughput <span class="n">1</span></a></li>
           <li><a href="#gpu-programming-references">GPU programming references <span class="n">1</span></a></li>
@@ -640,6 +641,14 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story" id="openai-chip-design-models">
+          <span class="when">2026-11-18</span>
+          <h4><a href="https://openai.com/index/advancing-chip-design-with-our-models/">OpenAI&rsquo;s models cut 10&ndash;13% of circuit area on Jalape&ntilde;o and found up to 14% PPA on an AMD GPU</a></h4>
+          <p>OpenAI reports that design changes proposed by its models reduced the circuit area of key blocks in its <a href="#openai-jalapeno">Jalape&ntilde;o</a> inference chip by an estimated <strong>10% to 13%</strong>, with gains confirmed on silicon. Working with AMD, the same approach found up to <strong>14% improvement in power, performance and area</strong> on AMD&rsquo;s flagship GPU design in under five months, and AMD has put some of the changes into a design already sent for manufacturing.</p>
+          <p>OpenAI also describes <strong>GPT-Synopsys</strong>, a model trained to drive Synopsys EDA tools the way a chip designer does. The figures are OpenAI&rsquo;s and AMD&rsquo;s own, on designs nobody outside can inspect.</p>
+          <div class="sources"><a href="https://openai.com/index/advancing-chip-design-with-our-models/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 19), AlphaSignal (Nov 19)</span></div>
+        </article>
+
         <article class="story" id="vera-rubin-nvl72-mlperf-training">
           <span class="when">2026-11-17</span>
           <h4><a href="https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/">Vera Rubin NVL72 debuts in MLPerf Training v6.1 at up to 2&times; GB300 per GPU</a></h4>
@@ -654,16 +663,17 @@
           <div class="sources"><a href="https://blogs.nvidia.com/blog/rubin-hpc/">NVIDIA</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="galaxy-inner-mongolia-campus">
-          <span class="when">2026-11-11</span>
-          <h4><a href="https://newsletter.semianalysis.com/p/we-visited-chinas-stargate-in-inner">SemiAnalysis: Envision built the first 120 MW of an 800 MW Inner Mongolia AI campus in a year, at about a fifth of US cost</a></h4>
-          <p>SemiAnalysis toured <strong>Galaxy</strong>, an AI data-centre campus in Inner Mongolia planned for 800 MW, roughly the scale of OpenAI&rsquo;s Stargate campus in Abilene. Developer Envision delivered the first 120 MW phase within a year at about one-fifth of US construction cost, building its own wind farms, batteries, power equipment and transmission line.</p>
-          <p>A live 5 MW pilot converts high-voltage AC straight to 800 V DC for the racks, removing several layers of power conversion. The cost comparison is SemiAnalysis&rsquo;s estimate from a site visit.</p>
-          <div class="sources"><a href="https://newsletter.semianalysis.com/p/we-visited-chinas-stargate-in-inner">SemiAnalysis</a> &middot; <span class="via">via Forward Future (Nov 11)</span></div>
-        </article>
 
         <details>
-          <summary>Earlier in this section (29)</summary>
+          <summary>Earlier in this section (30)</summary>
+
+          <article class="story" id="galaxy-inner-mongolia-campus">
+            <span class="when">2026-11-11</span>
+            <h4><a href="https://newsletter.semianalysis.com/p/we-visited-chinas-stargate-in-inner">SemiAnalysis: Envision built the first 120 MW of an 800 MW Inner Mongolia AI campus in a year, at about a fifth of US cost</a></h4>
+            <p>SemiAnalysis toured <strong>Galaxy</strong>, an AI data-centre campus in Inner Mongolia planned for 800 MW, roughly the scale of OpenAI&rsquo;s Stargate campus in Abilene. Developer Envision delivered the first 120 MW phase within a year at about one-fifth of US construction cost, building its own wind farms, batteries, power equipment and transmission line.</p>
+            <p>A live 5 MW pilot converts high-voltage AC straight to 800 V DC for the racks, removing several layers of power conversion. The cost comparison is SemiAnalysis&rsquo;s estimate from a site visit.</p>
+            <div class="sources"><a href="https://newsletter.semianalysis.com/p/we-visited-chinas-stargate-in-inner">SemiAnalysis</a> &middot; <span class="via">via Forward Future (Nov 11)</span></div>
+          </article>
 
           <article class="story" id="tpu-8tx-8i-max">
             <span class="when">2026-11-09</span>
@@ -1193,6 +1203,14 @@
         <h3>Enterprise deployment patterns</h3>
         <p class="lead">An AI bill is engineered down rather than negotiated down. Routing, a gateway that can refuse, an hour-long cache and a cheaper tier appear here, beside agents that generate their own retries and quintuple an invoice. Under them sit the deployment choices (self-host, call, or call a host that cannot read the request) and what each hop costs in latency.</p>
 
+        <article class="story" id="ski-rental-model-switching">
+          <span class="when">2026-11-18</span>
+          <h4><a href="https://www.edgee.ai/blog/posts/switching-llms-mid-conversation-is-a-ski-rental-problem">Edgee frames switching a coding agent&rsquo;s model mid-session as a ski-rental problem</a></h4>
+          <p>Most LLM routing scores a request once and sends it to a cheap or a frontier model. Edgee argues that for a coding agent the harder half is deciding when a session already running should change model, since switching discards the cache that has been built up, and maps that decision onto the classic ski-rental problem of when to stop renting and buy.</p>
+          <p>It is a framing post from a gateway vendor rather than a benchmark; what it gives a router is a way to price the switch itself.</p>
+          <div class="sources"><a href="https://www.edgee.ai/blog/posts/switching-llms-mid-conversation-is-a-ski-rental-problem">Edgee</a> &middot; <span class="via">via TLDR AI (Nov 19)</span></div>
+        </article>
+
         <article class="story" id="sarvam-token-factory">
           <span class="when">2026-11-17</span>
           <h4><a href="https://www.marktechpost.com/2026/11/17/sarvam-token-factory-india-inference-platform/">Sarvam Token Factory serves eight open models from GPU clusters in India behind one OpenAI-compatible API</a></h4>
@@ -1207,15 +1225,16 @@
           <div class="sources"><a href="https://huggingface.co/blog/openrouter">Hugging Face</a> &middot; <span class="via">via TLDR AI (Nov 17), MarkTechPost (Nov 18)</span></div>
         </article>
 
-        <article class="story" id="model-swap-survey">
-          <span class="when">2026-11-13</span>
-          <h4><a href="https://venturebeat.com/infrastructure/swapping-ai-models-is-easier-said-than-done-for-most-companies-it-takes-weeks-vb-intelligence-finds">VB Intelligence: 69% of firms that replaced a production model spent weeks on it, 36% over a month</a></h4>
-          <p>In a VentureBeat Intelligence survey, 69% of companies that replaced the model behind a production AI system spent weeks on the swap and 36% needed more than a month. That is the switching cost the routing layers in this section promise to remove, though the figures are self-reported and the summary gives no sample size.</p>
-          <div class="sources"><a href="https://venturebeat.com/infrastructure/swapping-ai-models-is-easier-said-than-done-for-most-companies-it-takes-weeks-vb-intelligence-finds">VentureBeat</a> &middot; <span class="via">via Forward Future (Nov 13)</span></div>
-        </article>
 
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (20)</summary>
+
+          <article class="story" id="model-swap-survey">
+            <span class="when">2026-11-13</span>
+            <h4><a href="https://venturebeat.com/infrastructure/swapping-ai-models-is-easier-said-than-done-for-most-companies-it-takes-weeks-vb-intelligence-finds">VB Intelligence: 69% of firms that replaced a production model spent weeks on it, 36% over a month</a></h4>
+            <p>In a VentureBeat Intelligence survey, 69% of companies that replaced the model behind a production AI system spent weeks on the swap and 36% needed more than a month. That is the switching cost the routing layers in this section promise to remove, though the figures are self-reported and the summary gives no sample size.</p>
+            <div class="sources"><a href="https://venturebeat.com/infrastructure/swapping-ai-models-is-easier-said-than-done-for-most-companies-it-takes-weeks-vb-intelligence-finds">VentureBeat</a> &middot; <span class="via">via Forward Future (Nov 13)</span></div>
+          </article>
 
           <article class="story" id="amazon-strands-decider-ticket-labels">
             <span class="when">2026-11-11</span>
@@ -1458,6 +1477,8 @@
       <ul class="timeline index">
         <li><span class="date">2026-11-18</span><span class="label"><a href="#nvidia-sparse-attention-codesign">NVIDIA: the sparse-attention indexer and Top-k take 47% of a DeepSeek V3.2 prefill layer at 128K tokens</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#cerebras-disaggregated-inference">Cerebras puts prefill on GPUs and decode on its own systems for 5&times; more tokens per megawatt</a></span></li>
+        <li><span class="date">2026-11-18</span><span class="label"><a href="#openai-chip-design-models">OpenAI&rsquo;s models cut 10&ndash;13% of circuit area on Jalape&ntilde;o and found up to 14% PPA on an AMD GPU</a></span></li>
+        <li><span class="date">2026-11-18</span><span class="label"><a href="#ski-rental-model-switching">Edgee frames switching a coding agent&rsquo;s model mid-session as a ski-rental problem</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#sarvam-token-factory">Sarvam Token Factory serves eight open models from GPU clusters in India behind one OpenAI-compatible API</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#hf-inference-providers-openrouter">Hugging Face routes Inference Providers requests through OpenRouter, with one token for any open-weight model</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#nvidia-nvke-nvkr">NVIDIA open-sources NVKE and NVKR to run managed Kubernetes on your own bare-metal GPUs</a></span></li>

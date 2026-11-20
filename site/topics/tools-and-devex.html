@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-11-19</div>
+      <div class="meta">Last updated: 2026-11-20</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 19 cycle measures overhead the user never typed. A developer found that <a href="#antigravity-quota-measurement">Google Antigravity</a> drops its prompt cache after a five-minute pause and opens even a five-word prompt with 13,800 to 16,800 tokens of instructions, MCP schemas and skills, which is where its weekly quota goes. On the spec side, a paper finds that giving an agent a <a href="#program-skeletons">program skeleton</a> alongside tests cuts mean test error by 48.4% across four models, so the structure a human writes down still pays.</p>
         <p>The Nov 18 cycle is the cost of the agent&rsquo;s own context. <a href="#claude-code-code-mode">Code Mode</a> has Claude write one JavaScript program that chains Bash, Read and Edit instead of a round-trip per call, terminal-only and with no published saving. <a href="#context-has-a-price">Context Has a Price</a> measures the other side over 20,000 runs: retrieved code cut searches 18&ndash;34% but raised cost 33&ndash;42% under a tenth-price cache, because cheaper prompts changed what the agent did next. Anthropic&rsquo;s <a href="#claude-docs-chaos-loop">chaos loop</a> had Claude load-test Claude Docs before launch, which then saw 60 server errors in 2 billion requests.</p>
         <p>The Nov 17 cycle is about agents checking their own work. <a href="#claude-code-ios-simulator">Claude Code</a> now drives the iOS Simulator, folding and unfolding a simulated iPhone Duo to check layouts. The Claude Code team&rsquo;s <a href="#claude-code-verification">verification post</a> describes end-to-end, property and differential tests, three rounds before a human is called and a 39-item reliability checklist. Meta&rsquo;s <a href="#meta-jittests">JiTTests</a> have an LLM write tests meant to fail on risky diffs, catching 74 privacy incidents at a 60% true-positive rate. <a href="#aws-emulator">AWS Emulator</a> gains its commit count: 29,684 in three weeks.</p>
         <p>The Nov 16 cycle is Claude Code and Devin each adding a surface. Cognition&rsquo;s <a href="#devin-apps">Devin Apps</a> builds internal tools from a description and hosts them on Devin&rsquo;s own machine, open only to signed-in Devin users, billed while the machine is awake and limited to one machine per app. Claude Code&rsquo;s <a href="#claude-code-projects">Projects</a> coordinator now answers in the project chat and reports on threads unprompted, with <code>/btw</code>, <code>/fork</code>, read-only thread sharing and reminders, and the desktop app gained themes built as <a href="#claude-mods">mods</a> that can react to the session. Both Claude Code changes are updates to existing entries.</p>
         <p>The Nov 12 cycle is two measurements of what agent tooling costs. OpenRouter ran <a href="#mcp-cli-skills-context-cost">one task on Sonnet 5.5</a> and counted 59,417 tokens through MCP with default tools loaded, 3,315 as a skill and 1,421 through a CLI, with Tool Search bringing a toolset&rsquo;s upfront cost under 600 tokens; one task sizes the overhead without ranking the mechanisms. <a href="#aws-emulator">AWS Emulator</a> gives coding agents a free CC0 copy of 200+ AWS services to test against offline. Agents wrote all of it from 438 API models, and it passes 56.6% of 42,857 fidelity tests, with no throttling, outages or regional behaviour yet. GitHub Next&rsquo;s <a href="#ace-github-next">Ace</a>, covered Nov 9, gained The Code&rsquo;s detail that its agents reach the host over Tailscale.</p>
-        <p>The Nov 11 cycle is two releases about coordinating agents and feeding them knowledge. Google Antigravity&rsquo;s <a href="#antigravity-swarm">/swarm</a>, in preview, turns a conversation into a coordinator that splits work among named agents on one shared board, with a verifier reporting before a human sees the result and quota drawn per worker. Chrome&rsquo;s <a href="#modern-web-guidance">Modern Web Guidance 1.0</a> ships web-platform knowledge as agent skills, with expert review and eval coverage on every guide, and Firefox and Edge now contribute.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 11 cycle is two releases about coordinating agents and feeding them knowledge. Google Antigravity&rsquo;s <a href="#antigravity-swarm">/swarm</a>, in preview, turns a conversation into a coordinator that splits work among named agents on one shared board, with a verifier reporting before a human sees the result and quota drawn per worker. Chrome&rsquo;s <a href="#modern-web-guidance">Modern Web Guidance 1.0</a> ships web-platform knowledge as agent skills, with expert review and eval coverage on every guide, and Firefox and Edge now contribute.</p>
           <p>The Nov 10 cycle is about what agents read and what reviewers check. A study of <a href="#stale-instruction-files">stale CLAUDE.md and AGENTS.md instructions</a> across 732 trajectories finds agents follow out-of-date guidance when it is relevant, costing Claude Sonnet 5.5 a third more tool calls on one stale test command, a cost task-success evals never show. Storybook 11 beta ships <a href="#storybook-11-beta">official agent skills</a> with headless test and review commands, Google&rsquo;s <a href="#elephant-goldfish-plugin">Elephant-Goldfish plugin</a> has context-free subagents attack a spec before any code exists, and Warp&rsquo;s <a href="#warp-merge-risk">/merge-risk</a> grades a pull request on five signals so human attention goes where the blast radius is. Reason Machines&rsquo; <a href="#aspen-git-server">Aspen</a> rebuilds OpenAI&rsquo;s Pando design as an open, pre-alpha Git server at 567 pushes a second, and Automattic&rsquo;s <a href="#spacefast">Spacefast</a> hosts the backend for vibe-coded apps.</p>
           <p>The Nov 9 and 10 cycle is about what an agent is handed and who holds the shell. GitHub Next&rsquo;s <a href="#ace-github-next">Ace</a> runs team chats and agents from a local Mac, with lanes as copy-on-write worktrees that land as pull requests and a Tailscale network as the team; the agent runs as the user with a shell and can change files outside the project, which the page says to read first. Simon Willison&rsquo;s <a href="#beep-locator">Beep Locator</a> gave Claude Code ears: five devices as WebSocket microphones, code hot-swapped onto them by the agent, and a beeping carbon-monoxide detector found to within 40 cm, started on Opus 5.5 and finished on Fable 5.2 the day it shipped.</p>
           <p><a href="#datasette-agent-0-5a0">Datasette Agent 0.5a0</a> docks the agent beside the page and makes a write query the thing that needs approval. The <a href="#xcode-27">Xcode 27</a> entry gained the 27.3 beta, which The Code reports adds GitHub Copilot and a Claude Code plugin that builds, tests and renders SwiftUI previews from the agent.</p>
@@ -122,7 +123,7 @@
         <ul>
           <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">8</span></a></li>
           <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">8</span></a></li>
-          <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">15</span></a></li>
+          <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">16</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
           <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">49</span></a></li>
           <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">18</span></a></li>
@@ -130,7 +131,7 @@
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">18</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">21</span></a></li>
-          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">45</span></a></li>
+          <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">46</span></a></li>
           <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">10</span></a></li>
         </ul>
       </nav>
@@ -281,6 +282,14 @@
         <h3>Token economics &amp; prompt caching</h3>
         <p class="lead">Standard prompt caching alone yields only modest savings. Structural techniques &mdash; keeping cacheable prefixes stable across turns, ordering context from least- to most-volatile, and avoiding mid-prompt edits that invalidate the cache &mdash; are what separate the teams seeing ~90% token reductions from those seeing 20&ndash;30%. Write prompts as if they will be cached, not patched.</p>
 
+        <article class="story" id="antigravity-quota-measurement">
+          <span class="when">2026-11-18</span>
+          <h4><a href="https://asubedi.com.np/blog/why-antigravity-eats-weekly-quota-fast/">Antigravity drops its prompt cache after a five-minute pause, and a five-word prompt starts at 13,800 tokens</a></h4>
+          <p>A developer measured why Google Antigravity burns through its weekly quota. The prompt cache is wiped after a <strong>5-minute pause</strong>; pinging just before expiry keeps it warm, but only for 3 pings. Even a five-word prompt starts with <strong>13,800 to 16,800+ tokens</strong> of system instructions, MCP schemas and skills.</p>
+          <p>Disabling unused MCP servers and plugins shrinks the cold turns and cache misses. These are one user&rsquo;s measurements, not Google&rsquo;s.</p>
+          <div class="sources"><a href="https://asubedi.com.np/blog/why-antigravity-eats-weekly-quota-fast/">Personal blog</a> &middot; <span class="via">via TLDR AI (Nov 19)</span></div>
+        </article>
+
         <article class="story" id="context-has-a-price">
           <span class="when">2026-11-17</span>
           <h4><a href="https://arxiv.org/abs/2611.22238">Context Has a Price: retrieved code cuts agent searches 18&ndash;34% but raises cost 33&ndash;42% under a tenth-price cache</a></h4>
@@ -297,16 +306,17 @@
           <div class="sources"><a href="https://devin.ai/blog/devin-review-2">Cognition</a> &middot; <span class="via">via TLDR AI (Nov 6)</span></div>
         </article>
 
-        <article class="story" id="claude-code-subagent-status-cost">
-          <span class="when">2026-11-04</span>
-          <h4><a href="https://x.com/ClaudeDevs/status/2118063143167693011">Claude Code v2.1.316 has Haiku 5.5 write background subagents&rsquo; status lines from notes, cutting each update&rsquo;s cost about 99%</a></h4>
-          <p>A running background subagent refreshes its status line every 30 seconds, and each refresh used to re-read the subagent&rsquo;s whole conversation. From <strong>v2.1.316</strong>, Haiku 5.5 writes the line from short notes, so each update costs about <strong>99% less</strong>.</p>
-          <p>The newsletters put the effect at roughly 5% less of the usage limit for sessions with background subagents, or about 6% more prompts, and updating the CLI is the only step. It is the kind of re-read that <a href="infrastructure.html#max-woolf-llm-price-cuts">Max Woolf&rsquo;s arithmetic</a> puts at 96 to 99% of agentic coding spend.</p>
-          <div class="sources"><a href="https://x.com/ClaudeDevs/status/2118063143167693011">ClaudeDevs on X</a> &middot; <span class="via">via The Code (Nov 5), AlphaSignal (Nov 5)</span></div>
-        </article>
 
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="claude-code-subagent-status-cost">
+            <span class="when">2026-11-04</span>
+            <h4><a href="https://x.com/ClaudeDevs/status/2118063143167693011">Claude Code v2.1.316 has Haiku 5.5 write background subagents&rsquo; status lines from notes, cutting each update&rsquo;s cost about 99%</a></h4>
+            <p>A running background subagent refreshes its status line every 30 seconds, and each refresh used to re-read the subagent&rsquo;s whole conversation. From <strong>v2.1.316</strong>, Haiku 5.5 writes the line from short notes, so each update costs about <strong>99% less</strong>.</p>
+            <p>The newsletters put the effect at roughly 5% less of the usage limit for sessions with background subagents, or about 6% more prompts, and updating the CLI is the only step. It is the kind of re-read that <a href="infrastructure.html#max-woolf-llm-price-cuts">Max Woolf&rsquo;s arithmetic</a> puts at 96 to 99% of agentic coding spend.</p>
+            <div class="sources"><a href="https://x.com/ClaudeDevs/status/2118063143167693011">ClaudeDevs on X</a> &middot; <span class="via">via The Code (Nov 5), AlphaSignal (Nov 5)</span></div>
+          </article>
 
           <article class="story" id="claude-code-usage-fixes">
             <span class="when">2026-11-03</span>
@@ -1512,6 +1522,14 @@
         <h3>Working when the agent writes the code</h3>
         <p class="lead">If agents write the code, what is the human doing? The answer taking shape is auditing rather than reviewing: attention allocated by blast radius, and evidence constructed rather than diffs skimmed. The large productivity numbers here are organisations reporting on themselves, and so are the first quality figures: a revert share and defects per hundred merged PRs.</p>
 
+        <article class="story" id="program-skeletons">
+          <span class="when">2026-11-18</span>
+          <h4><a href="https://arxiv.org/abs/2610.38214">Giving a coding agent a program skeleton alongside tests cuts mean test error by 48.4%</a></h4>
+          <p>Researchers report that specifying a program&rsquo;s structure, a skeleton, alongside its behavioural tests reduced mean test error by <strong>48.4%</strong> across four models and three benchmarks, while also lowering implementation cost.</p>
+          <p>The figure comes from the AAIF newsletter&rsquo;s summary; the claim it supports is that the spec a human writes can carry architecture as well as behaviour.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2610.38214">arXiv</a> &middot; <span class="via">via AAIF newsletter (Nov 19)</span></div>
+        </article>
+
         <article class="story" id="claude-docs-chaos-loop">
           <span class="when">2026-11-18</span>
           <h4><a href="https://claude.dev/blog/chaos-loop-claude-docs-launch/">A chaos loop held the Claude Docs launch to 60 server errors across 2 billion requests</a></h4>
@@ -1526,16 +1544,17 @@
           <div class="sources"><a href="https://www.marktechpost.com/2026/11/16/meta-jittests-llm-catching-tests-privacy-bugs/">MarkTechPost</a> (write-up) &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="claude-code-verification">
-          <span class="when">2026-11-16</span>
-          <h4><a href="https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/">The Claude Code team on verification: end-to-end, property and differential tests, and a 39-item reliability checklist</a></h4>
-          <p>A post by Addy Osmani on the claude.dev blog describes how the Claude Code team has agents verify their own work with evidence: end-to-end checks through the DevTools protocol, simulators and API harnesses, property tests with fast-check, Hypothesis or proptest, and differential tests. About 90% of the team&rsquo;s code is written and reviewed by Claude, and the post reports up to a 10-point gain in task success from verification.</p>
-          <p>An agent gets three rounds before it stops for a human, and each diff is checked against 3 to 10 items from a 39-item reliability checklist. TLDR AI&rsquo;s summary is that strong automated checks are what let a team run dozens or hundreds of coding agents in parallel; every figure is the team&rsquo;s own.</p>
-          <div class="sources"><a href="https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/">claude.dev</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
-        </article>
 
         <details>
-          <summary>Earlier in this section (42)</summary>
+          <summary>Earlier in this section (43)</summary>
+
+          <article class="story" id="claude-code-verification">
+            <span class="when">2026-11-16</span>
+            <h4><a href="https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/">The Claude Code team on verification: end-to-end, property and differential tests, and a 39-item reliability checklist</a></h4>
+            <p>A post by Addy Osmani on the claude.dev blog describes how the Claude Code team has agents verify their own work with evidence: end-to-end checks through the DevTools protocol, simulators and API harnesses, property tests with fast-check, Hypothesis or proptest, and differential tests. About 90% of the team&rsquo;s code is written and reviewed by Claude, and the post reports up to a 10-point gain in task success from verification.</p>
+            <p>An agent gets three rounds before it stops for a human, and each diff is checked against 3 to 10 items from a 39-item reliability checklist. TLDR AI&rsquo;s summary is that strong automated checks are what let a team run dozens or hundreds of coding agents in parallel; every figure is the team&rsquo;s own.</p>
+            <div class="sources"><a href="https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/">claude.dev</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
+          </article>
 
           <article class="story" id="warp-merge-risk">
             <span class="when">2026-11-10</span>
@@ -1959,6 +1978,8 @@
       <h2>Timeline</h2>
       <ul class="timeline index">
         <li><span class="date">2026-11-18</span><span class="label"><a href="#claude-docs-chaos-loop">A chaos loop held the Claude Docs launch to 60 server errors across 2 billion requests</a></span></li>
+        <li><span class="date">2026-11-18</span><span class="label"><a href="#antigravity-quota-measurement">Antigravity drops its prompt cache after a five-minute pause, and a five-word prompt starts at 13,800 tokens</a></span></li>
+        <li><span class="date">2026-11-18</span><span class="label"><a href="#program-skeletons">Giving a coding agent a program skeleton alongside tests cuts mean test error by 48.4%</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#context-has-a-price">Context Has a Price: retrieved code cuts agent searches 18&ndash;34% but raises cost 33&ndash;42% under a tenth-price cache</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#claude-code-code-mode">Claude Code&rsquo;s experimental Code Mode has Claude chain tool calls in one JavaScript program</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#claude-code-ios-simulator">Claude Code drives the iOS Simulator beside the chat, folding and unfolding an iPhone Duo to check layouts</a></span></li>

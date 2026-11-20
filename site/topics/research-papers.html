@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-11-18</div>
+      <div class="meta">Last updated: 2026-11-20</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 19 addition is a lab measuring its own researchers. OpenAI says its agents now <a href="#openai-research-acceleration">finish nearly half</a> of internal two-to-four-hour research tasks on their own, that the heaviest users are pulling ahead, and that more human effort is going to safety and alignment. It belongs with the productivity studies, and it carries their usual caveat in its strongest form: the tasks, the staff and the reporting are all OpenAI&rsquo;s.</p>
         <p>The Nov 17 addition is a compression result. Stanford&rsquo;s <a href="#memorilla">Memorilla</a> squeezes a corpus into 16 memory tokens for a frozen Qwen3-8B and reaches 84.33% on FactKG with 108&times; fewer document tokens than full context. The item that carried it does not give the full-context score, so the accuracy given up is unstated.</p>
         <p>The Nov 16 cycle opens a section for ablations against the standard recipe. <a href="#cram">CRAM</a>, a learned version of Hopfield and Tank&rsquo;s 1980s energy, solves 99.996% of Sudoku-Extreme after 42 ms of training on one GPU, at least 1,000&times; faster than looped models, on puzzles that come with an exact energy to minimise. Meta&rsquo;s <a href="#unbundling-vision-encoding">Unbundling study</a> takes a vision encoder apart and finds the pretrained prior optional and dedicated capacity decisive, with encoder-free models of 1.7B to 6.4B needing about 3&times; the compute to catch up. Both remove one ingredient and measure what is lost, which is why they share a section.</p>
         <p>The Nov 15 addition fills in a Nov 5 paper. AlphaSignal&rsquo;s deep dive on <a href="#you-dont-need-long-context">You don&rsquo;t need long context</a> supplies the numbers its abstract left out: cutting the configured context from 256K to 16K raised throughput 3.6&times; to 7&times; on three open models, threshold compaction kept or improved SWE-bench Verified accuracy for Claude Opus 4.5 and GPT-5.6 Sol, and Qwen 3 Coder Next collapsed from 53% to 3.6% under a 16K cap. Compaction also breaks prompt caching, so GPT-5.6 Sol&rsquo;s SWE-bench bill rose from $167.68 to $203.12.</p>
         <p>The Nov 12 to 13 cycle adds one interpretability result and one compiler, and finishes a story about editing weights. LoRA-tuned <a href="#filler-token-reasoning">Qwen3.6-35B-A3B and gpt-oss-20b</a> learned some multi-step tasks while emitting only filler tokens, beating an answer-only baseline on three of seven, with some tasks reaching 60 steps and others failing after one to three; the point is to tell filler computation from hidden reasoning in a chain of thought. <a href="#tang-ir">Tang</a> derives GPU kernels from views and comprehensions instead of hand-writing one per operator and chip, with no speed comparison quoted. The Batch filled in <a href="#weight-space-programming">Weight-Space Programming</a>: a 3.5% weight edit turned a driving policy from 0 of 256 successes to 1,024 of 1,024, and the same approach on Gemma 3 270M did nothing.</p>
-        <p>The Nov 11 cycle is about reading and rewriting weights directly. Goodfire&rsquo;s <a href="#goodfire-neurons-interpretable-basis">neurons paper</a> finds that ablating 92.2% of Qwen3.6-35B-A3B&rsquo;s weakest MoE neuron activations costs only 2.9% in loss, so single neurons can be studied without a sparse autoencoder. <a href="#qwen-concept-27b">Qwen Concept 27B</a> rewrites nine matrices of Qwen3.8-27B and reports thinking tokens down 27&ndash;54% with GPQA Diamond up 4.3, against a random-edit control that moved nothing. Beside them, Meta&rsquo;s <a href="#e-means">e-means</a> reaches k-means&rsquo; 25-epoch loss in under three epochs, <a href="#alphaproof-code">AlphaProof Code</a> formally verifies Signal&rsquo;s protocol code, and <a href="#worldparticle">WorldParticle</a> simulates six kinds of matter with one particle model.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 11 cycle is about reading and rewriting weights directly. Goodfire&rsquo;s <a href="#goodfire-neurons-interpretable-basis">neurons paper</a> finds that ablating 92.2% of Qwen3.6-35B-A3B&rsquo;s weakest MoE neuron activations costs only 2.9% in loss, so single neurons can be studied without a sparse autoencoder. <a href="#qwen-concept-27b">Qwen Concept 27B</a> rewrites nine matrices of Qwen3.8-27B and reports thinking tokens down 27&ndash;54% with GPQA Diamond up 4.3, against a random-edit control that moved nothing. Beside them, Meta&rsquo;s <a href="#e-means">e-means</a> reaches k-means&rsquo; 25-epoch loss in under three epochs, <a href="#alphaproof-code">AlphaProof Code</a> formally verifies Signal&rsquo;s protocol code, and <a href="#worldparticle">WorldParticle</a> simulates six kinds of matter with one particle model.</p>
           <p>The Nov 9 cycle adds a theorem. The <a href="#aaronson-ambainis-proof">Aaronson-Ambainis conjecture</a>, open since 2008 and central to when quantum computers can be exponentially faster than classical ones, was proved by a research system Physical Superintelligence built around instances of a non-public Anthropic model: a complete proof on the third day of the run, accepted by Lean, then twice improved on related problems. The Stanford group that settled a special case in August has read it and is writing an exposition for experts, and Scott Aaronson says proofs now arrive faster than humans can validate them, with the Lean certificates carrying the confidence. The section&rsquo;s provenance question is as open as ever: the model is unnamed and the system is PSI&rsquo;s, so the check confirms the theorem and says nothing about whose method it was. The machine-proof section is now seven results, four of them in Lean.</p>
           <p>The Nov 7 and 8 cycle is two readings of other people&rsquo;s work. Sebastian Raschka&rsquo;s <a href="#raschka-open-october">&ldquo;Open October&rdquo;</a> sorts ten open architecture releases from one month by attention and routing: grouped-query plus sliding-window attention is the default in Kolibri-1, Reflection Beam and Muse Spark Open, and the departures are Ling 3.1 Flash&rsquo;s Kimi Delta Attention with gated latent attention, Nemotron 3.5 Super VL&rsquo;s Mamba-2 layers with only eight attention layers, and Dory1.0&rsquo;s 4B looped transformer. AlphaSignal&rsquo;s deep dive on <a href="#latent-sparse-attention">Latent Sparse Attention</a> supplies the end-to-end numbers the arXiv summary lacked: time to first token 9.2x better for Qwen-3.8-27B and 2.2x for GLM-5.3-Flash at 10M tokens on eight H200s, RULER up for Qwen but down as much as eight points for GLM at two to five million tokens, and code under Apache 2.0 with an SGLang integration. The per-layer 72.4x of the paper and the end-to-end 9.2x of the serving run are the same result at two altitudes.</p>
           <p>The Nov 5 cycle has two papers that question a default and one repository. <a href="#you-dont-need-long-context">You don&rsquo;t need long context</a> reports that frontier models lose little or no accuracy when their context is compacted often, and notes that late tokens can cost up to 7&times; early ones. Balestriero and LeCun turn the Platonic Representation Hypothesis into a <a href="#platonic-representation-theorem">theorem for JEPAs</a>, with experiments in which good views need 42 times fewer samples than next-token prediction to reach the same alignment. Google DeepMind&rsquo;s <a href="#alphaevolve-repo">AlphaEvolve repository</a> pairs a minimal implementation with the code to verify its matrix-multiplication and other constructions.</p>
@@ -86,7 +87,7 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#self-supervised-and-domain-foundation-models">Self-supervised &amp; domain foundation models <span class="n">3</span></a></li>
-          <li><a href="#agent-productivity-studies">Agent productivity studies <span class="n">3</span></a></li>
+          <li><a href="#agent-productivity-studies">Agent productivity studies <span class="n">4</span></a></li>
           <li><a href="#learning-rules-beyond-backpropagation">Learning rules beyond backpropagation <span class="n">1</span></a></li>
           <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">14</span></a></li>
           <li><a href="#retrieval-model-architecture">Retrieval-model architecture <span class="n">5</span></a></li>
@@ -136,6 +137,14 @@
         <h3>Agent productivity studies</h3>
         <p class="lead">Studies kept in their own section because the measurement is the contribution: outcome time, cost and judgment on real knowledge work, not a benchmark score. Judge entries here on whether the comparison baseline is the tool people actually used before, and on who paid for the study.</p>
 
+        <article class="story" id="openai-research-acceleration">
+          <span class="when">2026-11-18</span>
+          <h4><a href="https://openai.com/index/research-acceleration-jagged-frontier/">OpenAI says its agents now finish nearly half of two-to-four-hour research tasks on their own</a></h4>
+          <p>OpenAI&rsquo;s update on research acceleration reports that its agents now complete <strong>nearly half</strong> of internal research tasks sized at two to four hours without help. Agent use is rising fast, the heaviest users are pulling further ahead, and more human effort is going to safety and alignment.</p>
+          <p>It is a lab measuring its own staff on its own tasks, so the baseline, the study and the funder are one party; humans remain central by OpenAI&rsquo;s own account.</p>
+          <div class="sources"><a href="https://openai.com/index/research-acceleration-jagged-frontier/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 19)</span></div>
+        </article>
+
         <article class="story" id="anthropic-agents-judgment-calls">
           <span class="when">2026-11-02</span>
           <h4><a href="https://www.anthropic.com/research/agents-judgment-calls">Anthropic study: analysts followed a Claude Code agent&rsquo;s hidden analytical lean 86% of the time</a></h4>
@@ -152,12 +161,16 @@
           <div class="sources"><a href="https://www.anthropic.com/institute/measuring-pace-of-ai-development">Anthropic</a> &middot; <span class="via">via TLDR AI (Sep 18), TLDR (Sep 18)</span></div>
         </article>
 
-        <article class="story unlinked" id="perplexity-harvard-agent-field-study">
-          <span class="when">2026-06-09</span>
-          <h4>Perplexity/Harvard field study: agents vs chat in knowledge work</h4>
-          <p>Perplexity, with Harvard, published research on the shift from chat interfaces to autonomous agents (its &ldquo;Computer&rdquo; agent). Over three months, workers using Computer finished tasks in 87% less time at 94% lower cost than search alone, with higher satisfaction &mdash; a quantified field measurement of agent productivity rather than a benchmark. The value is the field-study methodology: outcome time and cost on real tasks rather than static benchmarks. (Applied angle on the <a href="applications.html">Applications</a> page.)</p>
-          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (1)</summary>
+
+          <article class="story unlinked" id="perplexity-harvard-agent-field-study">
+            <span class="when">2026-06-09</span>
+            <h4>Perplexity/Harvard field study: agents vs chat in knowledge work</h4>
+            <p>Perplexity, with Harvard, published research on the shift from chat interfaces to autonomous agents (its &ldquo;Computer&rdquo; agent). Over three months, workers using Computer finished tasks in 87% less time at 94% lower cost than search alone, with higher satisfaction &mdash; a quantified field measurement of agent productivity rather than a benchmark. The value is the field-study methodology: outcome time and cost on real tasks rather than static benchmarks. (Applied angle on the <a href="applications.html">Applications</a> page.)</p>
+            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+          </article>
+        </details>
       </section>
 
       <section class="topic-section" id="learning-rules-beyond-backpropagation">
@@ -727,6 +740,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-18</span><span class="label"><a href="#openai-research-acceleration">OpenAI says its agents now finish nearly half of two-to-four-hour research tasks on their own</a></span></li>
         <li><span class="date">2026-11-14</span><span class="label"><a href="#memorilla">Stanford&rsquo;s Memorilla compresses a corpus into 16 memory tokens for a frozen Qwen3-8B, reaching 84.33% on FactKG</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#unbundling-vision-encoding">Unbundling Multimodal Vision Encoding: vision needs its own parameters, not its own pretraining or its own encoder</a></span></li>
         <li><span class="date">2026-11-12</span><span class="label"><a href="#cram">CRAM, a learned Hopfield&ndash;Tank energy, solves 99.996% of Sudoku-Extreme after 42 ms of training on one GPU</a></span></li>
