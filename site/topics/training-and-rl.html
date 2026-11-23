@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-11-20</div>
+      <div class="meta">Last updated: 2026-11-23</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 16&ndash;20 cycle is two ways of improving a 27B model. RadixArk&rsquo;s <a href="#daisyrose-27b">DaisyRose-27B</a> is RL on 1,200 tasks rebuilt around Qwen3.8-27B&rsquo;s own mistakes, doubling its Terminal-Bench 4.1 score from 5.6% to 12.0% while other benchmarks moved 1 to 4 points; the cost claim, 57% less GPU time at 37% MFU, is about the trainer more than the model. A CMU and Stanford paper skips training altogether: an open 27B model <a href="#self-rewriting-weights">rewrites its own weights</a> by reasoning about its failures and gains 6.6 points on unseen problems, though only the largest model in its family manages it.</p>
         <p>The Nov 19 addition is the training loop as a product. Prime Intellect&rsquo;s <a href="#prime-intellect-model-factory">Model Factory</a> puts RL, supervised fine-tuning, pre-training and inference behind one control plane, with checkpoint recovery and node replacement for long runs, billed per GPU-hour. It is the rl-environment layer this page has watched in open implementations, now offered as a hosted service; no results or prices come with it.</p>
         <p>The Nov 18 cycle is two ways to improve a fixed model without retraining it. Hugging Face&rsquo;s <a href="#qwen3-8-27b-pi-adapted">pi adapter</a> is a rank-32 LoRA trained with RL inside the pi harness that lifts Qwen3.8-27B from 39.2% to 64.7% on SWE-bench Pro with thinking off, the accuracy thinking mode already had at about 4.5&times; fewer tokens. A <a href="#agents-self-improve-unprompted">self-improvement paper</a> gives a frozen agent a budget and note-taking tools and finds capable models invent their own curriculum, with notes that transfer to new games.</p>
         <p>The Nov 17 cycle opens a section on numerical correctness. Google&rsquo;s <a href="#zero-tim">ZERO-TIM</a> makes the sampler&rsquo;s and the trainer&rsquo;s log-probabilities bitwise identical across 64 TPU v5p chips by fixing the order of floating-point reductions, removing at the source the mismatch that score centering corrects for statistically. Brandon Amos&rsquo;s <a href="#divergence-numerical-issues">paper on divergences</a> shows KL and Jensen-Shannon computations losing precision when two distributions nearly match, the regime distillation and RL work in, and supplies stable reformulations. Neither reports what the fix changes in a real training run.</p>
         <p>The Nov 16 cycle is two training runs reported end to end by the teams that ran them. Thinking Machines explains how <a href="#end-to-end-4-bit-training">Inkling 2 Small was trained with a native NVFP4 forward pass</a>: 4-bit forwards in the expert layers, MXFP8 backwards with stochastic rounding, and a wall-clock gain of 8% in pretraining and 20% in RL over full MXFP8, paid for in quantization error. Empero&rsquo;s <a href="#quark">Quark</a> sits at the other end of the scale, a 165M-parameter model with a 128K context taken through every stage for about $4,200, whose mix of 12 local and 4 global layers cuts the KV cache at 128K to a quarter. Both land in the pretraining section, and both are self-reported.</p>
-        <p>The Nov 13 cycle has two papers about how little it takes to change a model. <a href="#deletion-tuning">Deletion Tuning</a> zeroes fewer than 0.05% of an LLM&rsquo;s weights through a mask on the gate projections and matches full fine-tuning under RL with verifiable rewards, supervised fine-tuning and on-policy distillation, while full fine-tuning and LoRA lose up to 5.4 points on earlier tasks that it keeps. <a href="#homeopathic-learning">Homeopathic learning</a> is the risk on the other side: poison data that teaches nothing on its own plants a trait once clean, trigger-free data is mixed in, so checking a training set item by item can pass a backdoor.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 13 cycle has two papers about how little it takes to change a model. <a href="#deletion-tuning">Deletion Tuning</a> zeroes fewer than 0.05% of an LLM&rsquo;s weights through a mask on the gate projections and matches full fine-tuning under RL with verifiable rewards, supervised fine-tuning and on-policy distillation, while full fine-tuning and LoRA lose up to 5.4 points on earlier tasks that it keeps. <a href="#homeopathic-learning">Homeopathic learning</a> is the risk on the other side: poison data that teaches nothing on its own plants a trait once clean, trigger-free data is mixed in, so checking a training set item by item can pass a backdoor.</p>
           <p>The Nov 11 addition fixes a failure without training anything. <a href="#reward-hacking-weight-arithmetic">Weight arithmetic</a> subtracts a code model trained on loose rewards from one trained on strict rewards and extrapolates along the difference, cutting resource-limit failures from 14.5% to 8%. It breaks outputs if pushed too far, and the stricter reward can itself cost correctness. The same idea, editing weights in place of a training run, appears on <a href="research-papers.html#qwen-concept-27b">research papers</a> the same day.</p>
           <p>The Nov 9 addition is the first entry here with a mechanism for why large-scale RL falls over. <a href="#score-centering">Score centering</a>, by Marek and Ryabinin and explained by Cameron Wolfe, shows that when the sampler and the trainer disagree on token probabilities the expected gradient is nonzero even under a constant reward, so the trainer drifts toward the sampler and the error feeds back through every weight sync. Subtracting the expected score under the sampler at each prefix cancels that drift without the clipped importance ratios the usual fixes need, using the sampler&rsquo;s top 128 token probabilities. On Qwen3-30B-A3B-Base under the harshest sampler quantization it reached 30% training accuracy against 12% for truncated importance sampling and under 5% for the rest, and the authors recommend pairing it with importance sampling when rollouts are stale. Nathan Lambert says frontier labs already use it quietly, which is the paper&rsquo;s standing in one line.</p>
           <p>The Nov 5 addition is a claim about what pretraining needs as input. Cartesia says its newer <a href="#h-nets-raw-bytes">H-Nets</a>, which learn directly from raw bytes, match an open-source 3B Transformer with 10&times; less compute and data, in two posts dated Oct 28. The figure is Cartesia&rsquo;s own summary. Cognition&rsquo;s SWE-2 Flash, filed under <a href="model-releases.html#swe-2-flash">model releases</a>, is the cycle&rsquo;s other training note: a mid-training stage inserted before reinforcement learning, with the data mix chosen by how many tokens each candidate needed to reach a fixed validation loss.</p>
@@ -82,7 +83,7 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#rl-on-black-box-models">RL on black-box models <span class="n">2</span></a></li>
-          <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">5</span></a></li>
+          <li><a href="#rl-inside-the-agent-harness">RL inside the agent harness <span class="n">6</span></a></li>
           <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">3</span></a></li>
           <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">6</span></a></li>
           <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">8</span></a></li>
@@ -90,7 +91,7 @@
           <li><a href="#numerical-correctness-in-training">Numerical correctness in training <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
           <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">10</span></a></li>
-          <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">6</span></a></li>
+          <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">7</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
           <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">11</span></a></li>
           <li><a href="#fine-tuning-data-mixtures">Fine-tuning data mixtures <span class="n">2</span></a></li>
@@ -122,6 +123,14 @@
         <h3>RL inside the agent harness</h3>
         <p class="lead">Train in the harness the agent will actually run in, and the policy learns the loop rather than an approximation of it. The catch surfaces here too: model and scaffold optimise the same behaviour, so the order you tune them in changes the result. Ask what each training environment leaves out.</p>
 
+        <article class="story" id="daisyrose-27b">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://www.radixark.com/blog/daisyrose-27b">RadixArk&rsquo;s DaisyRose-27B doubles Qwen3.8-27B on Terminal-Bench 4.1, 5.6% to 12.0%</a></h4>
+          <p>RadixArk&rsquo;s first model, <strong>DaisyRose-27B</strong>, is Qwen3.8-27B after reinforcement learning on 1,200 curated agent tasks, each redesigned around mistakes the base model made, on 144 H200s. Terminal-Bench 4.1 pass@1 rose from <strong>5.6% to 12.0%</strong>, and RadixArk says it beats the base on every benchmark it reports.</p>
+          <p>The other benchmarks moved only about 1 to 4 points. Training ran fully asynchronous on the open <a href="#miles-v0-1">Miles</a> framework at 37% MFU against 16% for the open Megatron-based trainer, which RadixArk counts as 57% less GPU time.</p>
+          <div class="sources"><a href="https://www.radixark.com/blog/daisyrose-27b">RadixArk</a> &middot; <span class="via">via MarkTechPost (Nov 20)</span></div>
+        </article>
+
         <article class="story" id="qwen3-8-27b-pi-adapted">
           <span class="when">2026-11-18</span>
           <h4><a href="https://huggingface.co/harness-hub/Qwen3.8-27B-pi-adapted">A rank-32 LoRA trained with RL inside pi lifts Qwen3.8-27B from 39.2% to 64.7% on SWE-bench Pro</a></h4>
@@ -137,16 +146,16 @@
           <div class="sources"><a href="https://www.perplexity.ai/hub/blog/learning-from-real-world-experience">Perplexity</a> &middot; <a href="https://arxiv.org/abs/2601.18734">OPSD paper</a> &middot; <span class="via">via TLDR AI (Sep 23), MarkTechPost (Sep 25)</span></div>
         </article>
 
-        <article class="story" id="salesforce-distillation-harness">
-          <span class="when">2026-09-11</span>
-          <h4><a href="https://arxiv.org/abs/2609.09134">Training a small model on expert trajectories can hurt once its harness is already tuned</a></h4>
-          <p>Salesforce found that directly training smaller models on expert agent trajectories degrades performance when the harness around them has already been optimised &mdash; the distillation and the scaffolding are optimising the same behaviour, and applied in that order the second one undoes the first.</p>
-          <p>The practical consequence is an ordering constraint nobody had written down: distil first and tune the harness after, or accept that a fine-tune applied to a mature scaffold can be a regression rather than an upgrade. It also explains a puzzle this section has recorded twice, of teams reporting that a well-supported small model beat their own distilled version of it. It is the training-side statement of the argument the <a href="agents.html">agents</a> page makes about harnesses: model and scaffold are not independent variables, and tuning them separately can leave you worse off than tuning either alone.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2609.09134">arXiv 2609.09134</a> &middot; <span class="via">via TLDR AI (Sep 11)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="salesforce-distillation-harness">
+            <span class="when">2026-09-11</span>
+            <h4><a href="https://arxiv.org/abs/2609.09134">Training a small model on expert trajectories can hurt once its harness is already tuned</a></h4>
+            <p>Salesforce found that directly training smaller models on expert agent trajectories degrades performance when the harness around them has already been optimised &mdash; the distillation and the scaffolding are optimising the same behaviour, and applied in that order the second one undoes the first.</p>
+            <p>The practical consequence is an ordering constraint nobody had written down: distil first and tune the harness after, or accept that a fine-tune applied to a mature scaffold can be a regression rather than an upgrade. It also explains a puzzle this section has recorded twice, of teams reporting that a well-supported small model beat their own distilled version of it. It is the training-side statement of the argument the <a href="agents.html">agents</a> page makes about harnesses: model and scaffold are not independent variables, and tuning them separately can leave you worse off than tuning either alone.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2609.09134">arXiv 2609.09134</a> &middot; <span class="via">via TLDR AI (Sep 11)</span></div>
+          </article>
 
           <article class="story unlinked" id="trl-deployed-harness">
             <span class="when">2026-08-13</span>
@@ -483,7 +492,7 @@
 
       <section class="topic-section" id="self-generated-training-data-and-curricula">
         <h3>Self-generated training data &amp; curricula</h3>
-        <p class="lead">What used to be human-supplied &mdash; the corpus, the judge, the curriculum, the scaffold &mdash; is increasingly produced by models instead. These six show the move working in one place each, and they share one caveat: every self-improving-loop claim on this page is still reported by its own authors.</p>
+        <p class="lead">What used to be human-supplied &mdash; the corpus, the judge, the curriculum, the scaffold &mdash; is increasingly produced by models instead, now including the optimizer step itself. These seven show the move working in one place each, and they share one caveat: every self-improving-loop claim on this page is still reported by its own authors.</p>
 
         <article class="story" id="agents-self-improve-unprompted">
           <span class="when">2026-11-17</span>
@@ -493,6 +502,14 @@
           <div class="sources"><a href="https://arxiv.org/abs/2611.23219">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 18)</span></div>
         </article>
 
+        <article class="story" id="self-rewriting-weights">
+          <span class="when">2026-11-16</span>
+          <h4><a href="https://arxiv.org/abs/2611.21885">An open 27B model rewrites its own weights with no gradients and gains 6.6 points on unseen problems</a></h4>
+          <p>A CMU and Stanford paper gives an open 27B model its own weights, its graded answers and the ability to run itself, and has it diagnose a failure and edit the weights behind it, with no gradient step or training run. Its edit makes it <strong>6.6 points more accurate</strong> on problems it never saw, accuracy rises over eight consecutive sessions, and it restores a damaged copy of itself to over 80% of the original accuracy on unseen image tasks.</p>
+          <p>The authors report the ability only at the largest size in one model family: smaller models make no edit or break themselves.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.21885">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 20)</span></div>
+        </article>
+
         <article class="story" id="google-on-policy-self-training">
           <span class="when">2026-10-26</span>
           <h4><a href="https://arxiv.org/abs/2610.32770">Google&rsquo;s on-policy self-training starts from topic names only and self-distills without curated prompts</a></h4>
@@ -500,15 +517,15 @@
           <div class="sources"><a href="https://arxiv.org/abs/2610.32770">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 26), TLDR AI (Oct 27), AlphaSignal (Oct 27)</span></div>
         </article>
 
-        <article class="story" id="unievo-vl">
-          <span class="when">2026-10-05</span>
-          <h4><a href="https://arxiv.org/abs/2609.38721">UniEvo-VL makes one multimodal model its own teacher, using its critiques as privileged information</a></h4>
-          <p><strong>UniEvo-VL</strong> has a single multimodal model act as both teacher and student during test-time self-improvement: the model critiques its own outputs and the critiques are fed back as privileged information the student does not see at inference. It moves the judge, not just the data, inside the model, which is the step this section tracks; the summary gives no benchmark figure.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2609.38721">arXiv</a> &middot; <span class="via">via TLDR AI (Oct 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="unievo-vl">
+            <span class="when">2026-10-05</span>
+            <h4><a href="https://arxiv.org/abs/2609.38721">UniEvo-VL makes one multimodal model its own teacher, using its critiques as privileged information</a></h4>
+            <p><strong>UniEvo-VL</strong> has a single multimodal model act as both teacher and student during test-time self-improvement: the model critiques its own outputs and the critiques are fed back as privileged information the student does not see at inference. It moves the judge, not just the data, inside the model, which is the step this section tracks; the summary gives no benchmark figure.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2609.38721">arXiv</a> &middot; <span class="via">via TLDR AI (Oct 5)</span></div>
+          </article>
 
           <article class="story" id="toolgrad">
             <span class="when">2026-09-14</span>
@@ -677,10 +694,12 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#daisyrose-27b">RadixArk&rsquo;s DaisyRose-27B doubles Qwen3.8-27B on Terminal-Bench 4.1, 5.6% to 12.0%</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#qwen3-8-27b-pi-adapted">A rank-32 LoRA trained with RL inside pi lifts Qwen3.8-27B from 39.2% to 64.7% on SWE-bench Pro</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#prime-intellect-model-factory">Prime Intellect&rsquo;s Model Factory puts RL, fine-tuning, pre-training and inference in one control plane</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#agents-self-improve-unprompted">Frozen LLM agents given a compute budget and note-taking tools build their own self-improvement loop</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#zero-tim">Google&rsquo;s ZERO-TIM makes sampler and trainer log-probabilities bitwise identical across 64 TPU v5p chips</a></span></li>
+        <li><span class="date">2026-11-16</span><span class="label"><a href="#self-rewriting-weights">An open 27B model rewrites its own weights with no gradients and gains 6.6 points on unseen problems</a></span></li>
         <li><span class="date">2026-11-15</span><span class="label"><a href="#quark">Empero&rsquo;s Quark takes a 165M-parameter model through every training stage for about $4,200, with four Apache-2.0 checkpoints</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#divergence-numerical-issues">Brandon Amos: KL and Jensen-Shannon divergences lose precision when two distributions are nearly equal</a></span></li>
         <li><span class="date">2026-11-13</span><span class="label"><a href="#end-to-end-4-bit-training">Thinking Machines trained Inkling 2 Small with a native NVFP4 forward pass, 8% faster in pretraining and 20% in RL than full MXFP8</a></span></li>

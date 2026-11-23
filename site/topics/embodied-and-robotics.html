@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Embodied AI &amp; robotics</h1>
-      <div class="meta">Last updated: 2026-11-20</div>
+      <div class="meta">Last updated: 2026-11-23</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 20 cycle is one release. Shanghai AI Lab&rsquo;s <a href="#pi4-4d-reconstruction">&pi;&#8308;</a>, about 0.5B parameters, recovers geometry and motion together from uncalibrated video in one pass, and becomes the second entry in Perception foundations, with no accuracy figures yet.</p>
         <p>The Nov 19 addition is access rather than a new model. <a href="#genie-4">Genie 4</a>, released Oct 28 to trusted testers, is now open to eligible Google AI Ultra subscribers in Project Genie, where users edit a world by typing while exploring it. Google has still published no quantitative evaluation for it.</p>
         <p>The Nov 16 cycle is one world model and one exit. Nvidia&rsquo;s <a href="#birddreams">BirdDreams</a> predicts driving video together with a bird&rsquo;s-eye view so other traffic can react, cutting trajectory-following error from 5.88 m to 3.83 m against an OmniDreams-based baseline; it tests consistency while the ego vehicle acts, one of the three things the world-models section asks about. OpenAI <a href="#openai-robotics-team-disbanded">disbanded its stand-alone robotics team</a>, Yahoo Tech reports, and folded robot control into its general models, the opposite bet from Google&rsquo;s dedicated Gemini Robotics line.</p>
         <p>The Nov 10 to 12 cycle opens two sets of weights. MBZUAI&rsquo;s <a href="#pan-2">PAN 2</a> is a 29B world model under Apache 2.0 that turns a scene and a text action into up to 20 seconds of video; it leads six models with 34.0% full-plan completion on 100 multi-step tasks, self-reported, and trails MiniMax-H3 on single actions. Runway&rsquo;s <a href="#praxis-1">Praxis-1</a>, announced Oct 1 with no weights or figures, is now out at 27B under Apache 2.0 with a 46.2% success rate over 1,200 episodes on NVIDIA&rsquo;s RoboLab-120.</p>
         <p>The Nov 11 addition is a factory number. Google DeepMind says <a href="#gemini-robotics-2-5-mercedes">Gemini Robotics 2.5</a> drove Apptronik&rsquo;s Apollo 2 to 96% success sorting metal parts on live Mercedes-Benz lines, 20&ndash;30% faster than its previous systems. It is a pilot reported by Google, so it answers whether the robot can work on a real line, not whether the plant would keep it.</p>
-        <p>The Nov 10 cycle is two opposite answers to the demonstration problem, both measured by their authors. NVIDIA&rsquo;s <a href="#gr00t-2">GR00T 2</a> predicts video and actions together so it can learn from human footage, and goes from 40% zero-shot on 50 unseen tasks to 95% with five demonstrations and a 30-minute fine-tune; a Turbo variant runs on the Unitree G1 at 124 ms a step. <a href="#amp1">AMP1</a> drops learned policies and lets a generalist model drive the arm, reaching 85.6% zero-shot on RoboLab-120 against 49.2% for a leading VLA. On the road, NHTSA opened a <a href="#waymo-school-bus-recall-query">recall query</a> because most Waymo school-bus passing incidents came after the fix meant to end them.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 10 cycle is two opposite answers to the demonstration problem, both measured by their authors. NVIDIA&rsquo;s <a href="#gr00t-2">GR00T 2</a> predicts video and actions together so it can learn from human footage, and goes from 40% zero-shot on 50 unseen tasks to 95% with five demonstrations and a 30-minute fine-tune; a Turbo variant runs on the Unitree G1 at 124 ms a step. <a href="#amp1">AMP1</a> drops learned policies and lets a generalist model drive the arm, reaching 85.6% zero-shot on RoboLab-120 against 49.2% for a leading VLA. On the road, NHTSA opened a <a href="#waymo-school-bus-recall-query">recall query</a> because most Waymo school-bus passing incidents came after the fix meant to end them.</p>
           <p>The Nov 6 cycle adds open weights to the world-models section and a failure case to deployment. NVIDIA opened <a href="#cosmos-3-interactive-world-models">four Cosmos 3 models</a> for interactive world simulation and driving scenes, each with 16B trainable parameters, generating synchronized multi-sensor data and photorealistic video from simulator controls. It is the weights behind the Nov 3 Cosmos Framework update, and like that entry it arrives without the consistency or transfer number <a href="#streameval">StreamEval</a> says visual quality does not predict. NVIDIA&rsquo;s VFlash, which predicts trajectories and 3D motion in parallel, is on the <a href="model-releases.html#nvidia-vflash">model page</a>. From a Substack note, <a href="#mirrorsentinel-elevator">MirrorSentinel-Elevator</a> records a ZED2 camera and an Ouster lidar through seven hand-measured elevator cabins, where a mirror makes the lidar report a room that is not there: a small dataset of a sensor failing in a place robots are expected to work.</p>
           <p>The Nov 5 addition is a benchmark for the models this page treats as simulators. <a href="#streameval">StreamEval</a> scores 37 interactive streaming video models on five tasks and ten metrics and finds that visual quality and identity retention do not reliably come with request execution or sustained state consistency. The Batch made a similar point about <a href="#genie-4">Genie 4</a>: Google published demos without quantitative evaluation, and one of them shows a marble bust settling where it should topple.</p>
           <p>The Nov 3 cycle is five papers on why vision-language-action policies fail on real hardware, each attacking a different physical constraint. <a href="#fastvla">FastVLA</a> prunes visual tokens by task prompt for 20% lower action latency on a Franka arm. <a href="#focusvla">FocusVLA</a> decides between wrist and static cameras from the robot&rsquo;s recent actions and lifts real-world success from 71.7% to 85.0%. <a href="#gazeact">GazeAct</a> trains on operator eye tracking and moves 18 real tasks from 48.1% to 58.6%, with no eye tracker needed at deployment. <a href="#pointmapvla">PointmapVLA</a> gives each pixel a metric position in the robot&rsquo;s base frame, and <a href="#rawvla">RawVLA</a> shows the camera&rsquo;s own signal processor shifting action accuracy under changing light.</p>
@@ -88,7 +89,7 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#robbyants-open-embodied-stack">Robbyant's open embodied stack <span class="n">1</span></a></li>
-          <li><a href="#perception-foundations">Perception foundations <span class="n">1</span></a></li>
+          <li><a href="#perception-foundations">Perception foundations <span class="n">2</span></a></li>
           <li><a href="#tactile-sensing-and-dexterous-contact">Tactile sensing &amp; dexterous contact <span class="n">3</span></a></li>
           <li><a href="#vision-language-action-and-video-action-policies">Vision-language-action &amp; video-action policies <span class="n">21</span></a></li>
           <li><a href="#world-models">World models <span class="n">22</span></a></li>
@@ -114,7 +115,15 @@
 
       <section class="topic-section" id="perception-foundations">
         <h3>Perception foundations</h3>
-        <p class="lead">One entry, and the claim under it is a bet rather than a benchmark: that robots fail for not knowing where an edge is, not for failing to name what it belongs to. The evidence is a depth leaderboard, so the thing to establish is whether geometry-first pre-training pays off away from depth tasks.</p>
+        <p class="lead">Two entries and one bet: that robots fail for not knowing where an edge is or how it moves, not for failing to name what it belongs to. One has a depth leaderboard behind it and one has no figures yet, so the thing to establish is whether geometry-first perception pays off away from geometry tasks.</p>
+
+        <article class="story" id="pi4-4d-reconstruction">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://huggingface.co/yyfz233/Pi4">Shanghai AI Lab&rsquo;s &pi;&#8308; recovers 4D geometry and motion from uncalibrated video in one pass</a></h4>
+          <p><strong>&pi;&#8308;</strong> is an open model of about 0.5B parameters that recovers scene geometry and motion jointly from uncalibrated images or video in a single forward pass, with no camera calibration supplied.</p>
+          <p>The issue and the model card give no accuracy figures, so this entry records the release and the claim, not a measured result.</p>
+          <div class="sources"><a href="https://huggingface.co/yyfz233/Pi4">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Nov 20)</span></div>
+        </article>
 
         <article class="story unlinked" id="lingbot-vision">
           <span class="when">2026-07-09</span>
@@ -752,6 +761,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#pi4-4d-reconstruction">Shanghai AI Lab&rsquo;s &pi;&#8308; recovers 4D geometry and motion from uncalibrated video in one pass</a></span></li>
         <li><span class="date">2026-11-16</span><span class="label"><a href="#openai-robotics-team-disbanded">OpenAI disbands its stand-alone robotics team and folds robot control into its general models</a></span></li>
         <li><span class="date">2026-11-16</span><span class="label"><a href="#birddreams">Nvidia&rsquo;s BirdDreams predicts driving video and a bird&rsquo;s-eye view together, with 35% lower trajectory error than its baseline</a></span></li>
         <li><span class="date">2026-11-11</span><span class="label"><a href="#gemini-robotics-2-5-mercedes">Gemini Robotics 2.5 has Apptronik&rsquo;s Apollo 2 sorting metal parts at 96% success on Mercedes-Benz lines</a></span></li>

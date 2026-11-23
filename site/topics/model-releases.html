@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-11-20</div>
+      <div class="meta">Last updated: 2026-11-23</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 19&ndash;21 cycle is the model that fits a machine you already own. Thinking Machines&rsquo; <a href="#inkling-2-mini">Inkling 2 Mini</a> runs a 26B looped MoE in about 20GB and reports 79.2% on SWE-bench Verified, ahead of Qwen3.8-27B, and SenseNova&rsquo;s <a href="#sensenova-loop-9b">Loop-9B</a> uses the same trick, reusing layers to buy depth, to tie a model three times its size on AutomationBench. Both sets of numbers are the vendors&rsquo; own.</p>
+        <p>The rest of the cycle is narrow releases. OpenAI put <a href="#gpt-live-1-1-api">GPT-Live-1.1</a> in the API with a standby rate that bills a silent voice session at $0.02 a minute instead of $0.05; Baseten&rsquo;s <a href="#baseten-bison-1">Bison-1</a> took first of 19 on the Decision Index v2.1 at 76; NVIDIA&rsquo;s <a href="#nemotron-labs-sigma">Nemotron-Labs-Sigma</a> opened 14 continuous-diffusion checkpoints; and Apple&rsquo;s <a href="#apple-fastframes">FastFrames</a> generates 480p video at 36 ms a frame. Gemini 4 Neon gains its launch-post benchmarks, first on the Coding Agent Index at 58.6, and <a href="#cloudflare-clairic">Clairic</a> is now open-weight beside a 9B Clairic-flash.</p>
         <p>The Nov 19 cycle is Google filling the middle of its own line. <a href="#gemini-4-neon">Gemini 4 Neon</a> sits between Hydrogen and Carbon, scores 61 on the Artificial Analysis Intelligence Index and lists at $3/$15 per million tokens with a 1M-token context and four thinking levels. Google puts it near Claude Opus 5.5 on two coding benchmarks for 25% less, which is a vendor claim on a vendor harness; the price is the part an outsider can check, and it lands below both GPT-6.2 Astra and Opus.</p>
         <p>The Nov 18 cycle is about what the frontier costs once a rival prices against it. <a href="#gpt-6-2-astra-sol">GPT-6.2 Astra</a> now has outside numbers: second on the Artificial Analysis Intelligence Index at 62 behind Fable 5.2&rsquo;s 65, a 59% hallucination rate on AA-Omniscience, no gain on coding-agent scores, and Sol within half a point of Astra on FrontierCode 2.0 at a fifth of the cost. Microsoft answered the same day with seven <a href="#microsoft-mai-ignite-models">MAI models</a> quoted as shares of rivals, MAI Code 2 at 98% of GPT-6.1 Sol&rsquo;s coding quality for about 40% of the price, and made <a href="#microsoft-decision-1">Decision 1.1</a> generally available.</p>
         <p>Lower down the size range, Reson8&rsquo;s <a href="#rumble-2-flash">Rumble-2-Flash</a> puts a 0.5B Apache-2.0 recognizer for 40+ languages at 6.6% WER, and MarkTechPost adds a second Tencent claim to <a href="#tencent-hy4-flash">Hy4 flash</a>: the Hy4 preview&rsquo;s WorkIndex score at 1/13 of the cost, open weights still to come.</p>
-        <p>The Nov 17 cycle is a frontier price cut and a run of small, cheap models. OpenAI&rsquo;s <a href="#gpt-6-2-astra-sol">GPT-6.2 Astra</a> lists at $8/$40, 80% of its predecessor and level with Fable 5.2, with Sol unchanged at $2/$10; Simon Willison reports Astra slightly behind Fable 5.2 on benchmarks so far. Liquid&rsquo;s <a href="#liquid-d1-2">d1.2 and d1.2-ultra</a> add audio and five structured answer types, and ultra scores 75 on the Decision Index v2.1. Tencent&rsquo;s <a href="#tencent-hy4-flash">Hy4 flash</a> activates 12B of 224B parameters at $0.07 per million input tokens.</p>
-        <p><a href="#sage-s2-1-flash">Sage S2.1-Flash</a> and <a href="#ovh-olala-mini">Olala Mini</a> fill in the open tier: a 321B MIT-licensed science model, and a 7B MoE whose weights are still promised. Six earlier entries are updated in place. Hydrogen gains its Terminal-Bench score and its place as Google&rsquo;s free-tier model, Qwen4-Max its 2.4T/71B-active shape, Carbon a December 1 date for its price doubling, Decider v1.3 its first accuracy figure, Gemini Decision 1 a hands-on test, and <a href="#nemotron-3-5-bolt-e4b">Nemotron 3.5 Bolt E4B</a> its model card.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 17 cycle is a frontier price cut and a run of small, cheap models. OpenAI&rsquo;s <a href="#gpt-6-2-astra-sol">GPT-6.2 Astra</a> lists at $8/$40, 80% of its predecessor and level with Fable 5.2, with Sol unchanged at $2/$10; Simon Willison reports Astra slightly behind Fable 5.2 on benchmarks so far. Liquid&rsquo;s <a href="#liquid-d1-2">d1.2 and d1.2-ultra</a> add audio and five structured answer types, and ultra scores 75 on the Decision Index v2.1. Tencent&rsquo;s <a href="#tencent-hy4-flash">Hy4 flash</a> activates 12B of 224B parameters at $0.07 per million input tokens.</p>
+          <p><a href="#sage-s2-1-flash">Sage S2.1-Flash</a> and <a href="#ovh-olala-mini">Olala Mini</a> fill in the open tier: a 321B MIT-licensed science model, and a 7B MoE whose weights are still promised. Six earlier entries are updated in place. Hydrogen gains its Terminal-Bench score and its place as Google&rsquo;s free-tier model, Qwen4-Max its 2.4T/71B-active shape, Carbon a December 1 date for its price doubling, Decider v1.3 its first accuracy figure, Gemini Decision 1 a hands-on test, and <a href="#nemotron-3-5-bolt-e4b">Nemotron 3.5 Bolt E4B</a> its model card.</p>
           <p>The Nov 16 cycle is three releases each sized or priced against a constraint. Alibaba&rsquo;s <a href="#qwen4-max">Qwen4-Max</a> pairs a 1M-token context with $1.50/$4.50 pricing and leads Claude Opus 5.5 and GPT-6.1 Sol on DeepSWE by Alibaba&rsquo;s count, but scores 43 on the Artificial Analysis index and trails Kimi K3.1 on Terminal-Bench. Sevren&rsquo;s <a href="#embla-1">Embla 1</a> is a phone-sized MoE that averages 57.4 on five benchmarks measured at 4 bits and answers in 1.77 s on an iPhone 18 Pro. <a href="#tiny-voca">tiny-voca</a> goes smallest, a 4.5M-parameter text-to-speech model trained only on synthetic speech that runs 70&times; real time on four CPU threads. Every figure in the cycle comes from the people who built the model.</p>
           <p>The Nov 13 cycle adds three releases, and only one is a frontier model. Google&rsquo;s <a href="#gemini-4-hydrogen">Gemini 4 Hydrogen</a>, tuned for coding and agents, scores 51 on the Artificial Analysis Intelligence Index, above Gemini 4 Argon, at $1.50/$7.50 per million tokens against Carbon&rsquo;s $2/$10. Perplexity moved both of its decision models to <a href="#pplx-decider-v1-3">v1.3</a> and added span highlighting for extraction tasks, and Liquid AI replaced the third-party Mimi tokenizer with its own <a href="#liquidcodec">LiquidCodec</a>, which encodes at about 361&times; real time on one laptop CPU thread. Every speed figure in the cycle is the vendor&rsquo;s own.</p>
           <p>The Nov 11 to 12 cycle adds a decision model and one very large open MoE. Google&rsquo;s <a href="#gemini-decision-1">Gemini Decision 1</a>, behind the new Gemini Decisions API, scores up to 1,000 questions against one input in a single pass, never generates an output token and costs $0.10 per million input tokens. It is the third decision interface on this page after OpenAI&rsquo;s and Perplexity&rsquo;s, and the first to take images, audio, video and PDFs. Meituan&rsquo;s <a href="#longcat-2-5">LongCat-2.5</a> puts 1.6T parameters, about 48B active, on Hugging Face under MIT, with a self-reported 88.4 on Terminal Bench v2.1 against 89.1 for Claude Opus 5. Runway&rsquo;s Praxis-1 weights also shipped; that update is on the <a href="embodied-and-robotics.html#praxis-1">embodied page</a>.</p>
@@ -125,14 +127,14 @@
         <ul>
           <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">34</span></a></li>
           <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">20</span></a></li>
-          <li><a href="#open-weights-releases">Open-weights releases <span class="n">25</span></a></li>
-          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">10</span></a></li>
+          <li><a href="#open-weights-releases">Open-weights releases <span class="n">26</span></a></li>
+          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">11</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">25</span></a></li>
-          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">32</span></a></li>
+          <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">34</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">43</span></a></li>
-          <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">5</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">44</span></a></li>
+          <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">6</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">10</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">2</span></a></li>
           <li><a href="#vision-robotics-embodied-models">Vision, robotics &amp; embodied models <span class="n">6</span></a></li>
@@ -149,7 +151,8 @@
           <h4><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/">Gemini 4 Neon scores 61 on the Artificial Analysis index at $3/$15 per million tokens</a></h4>
           <p>Google released <strong>Gemini 4 Neon</strong>, a model that sits between Hydrogen and Carbon in the Gemini 4 line. It scores <strong>61</strong> on the Artificial Analysis Intelligence Index, ranked third by AlphaSignal&rsquo;s count, and costs <strong>$3 per million input tokens and $15 per million output</strong>, with cached input at $0.15. The context is <strong>1M tokens</strong> shared across input, thinking and output, with four thinking levels (low to xhigh), and it is live in the Gemini API as <code>gemini-4-neon</code>.</p>
           <p>Google says it nearly matches Claude Opus 5.5 on two coding benchmarks for 25% less and writes about 110 tokens per second; those are the vendor&rsquo;s numbers. Callers migrating from an older Gemini model need to set the thinking level explicitly or the request fails validation.</p>
-          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/">Google</a> &middot; <a href="https://antigravity.google/blog/gemini-4-neon-in-google-antigravity/">Antigravity post</a> &middot; <span class="via">via TLDR AI (Nov 19), AlphaSignal (Nov 19), The Code (Nov 19), TLDR (Nov 19)</span></div>
+          <p><em>Updated Nov 20:</em> Google&rsquo;s launch post ranks Neon first on the Artificial Analysis <strong>Coding Agent Index (58.6)</strong>, with 65.2% on Terminal-Bench 4.1, 84.0% on RiemannBench and 71.3% on HLE-Diamond, at a <strong>32% lower cost per task</strong> than Carbon at the default high setting; AlphaSignal adds 65.4% against Claude Opus 5.5&rsquo;s 58.1% on CursorBench. MarkTechPost notes it is API-only for developers and limited to Pro and Ultra in the Gemini app, and that Google has a cyber variant it says writes more secure code than Carbon on AutoBaxBench. All of these are Google&rsquo;s or Google-cited figures.</p>
+          <div class="sources"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/">Google</a> &middot; <a href="https://antigravity.google/blog/gemini-4-neon-in-google-antigravity/">Antigravity post</a> &middot; <span class="via">via TLDR AI (Nov 19), AlphaSignal (Nov 19), The Code (Nov 19), TLDR (Nov 19), AlphaSignal (Nov 20), MarkTechPost (Nov 20)</span></div>
         </article>
 
         <article class="story" id="microsoft-mai-ignite-models">
@@ -602,6 +605,14 @@
         <h3>Open-weights releases</h3>
         <p class="lead">Open releases now split three ways: general-purpose bases, narrow models built for one job, and fully open recipes that publish data mixtures and training code as well as a checkpoint. The licence is the part that decides what you can actually do with them, and it is often narrower than the announcement.</p>
 
+        <article class="story" id="sensenova-loop-9b">
+          <span class="when">2026-11-17</span>
+          <h4><a href="https://huggingface.co/sensenova/SenseNova-Loop-9B">SenseNova-Loop-9B reuses shared weights to run 56 layers deep and matches Qwen3.8-27B on AutomationBench</a></h4>
+          <p>SenseNova released <strong>SenseNova-Loop-9B</strong>, a 9B multimodal model built on a 32-layer decoder that loops shared-weight blocks, with hybrid attention and manifold-constrained hyper-connections, so a pass runs deeper than the stored layer count. Against Qwen3.8-27B, a model three times its size, the model card reports a tie on AutomationBench (36.67), 65.31 against 65.01 on AIDABench, and 41.36 against 44.60 on NL2Repo.</p>
+          <p>The comparisons are the vendor&rsquo;s own; weights and code are public, following a preview on Oct 31.</p>
+          <div class="sources"><a href="https://huggingface.co/sensenova/SenseNova-Loop-9B">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 20)</span></div>
+        </article>
+
         <article class="story" id="sage-s2-1-flash">
           <span class="when">2026-11-17</span>
           <h4><a href="https://huggingface.co/internlm/Sage-S2.1-Flash">Shanghai AI Lab&rsquo;s Sage S2.1-Flash is a 321B MIT-licensed scientific multimodal model, self-reporting 90.3 on MLE-bench Lite</a></h4>
@@ -616,16 +627,16 @@
           <div class="sources"><a href="https://huggingface.co/Protegrity/protegrity-pii">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Nov 10)</span></div>
         </article>
 
-        <article class="story" id="ripple-65b-preview">
-          <span class="when">2026-11-05</span>
-          <h4><a href="https://www.ricursive.com/ripple">Ricursive&rsquo;s Ripple-65B Preview, a dense 65B open-weight model, scores 80.52 on TerminalBench 2.1 for $32M of total R&amp;D</a></h4>
-          <p>Ricursive Intelligence, a chip-design lab, released <strong>Ripple-65B Preview</strong>, a general-purpose variant of the model behind its design platform: a dense architecture pretrained from scratch on 12 trillion tokens, with up to 1M context. It scores <strong>80.52</strong> on TerminalBench 2.1 against 80.1 for Reflection Beam 501B, 76.4 for Meta&rsquo;s Muse Spark Open 816B and 63.8 for Thinking Machines&rsquo; Inkling 975B.</p>
-          <p>Ricursive puts its full R&amp;D cost at <strong>$32M</strong>, which it estimates at a tenth of the previous open-weight leader on agentic coding, and says it reached the score with 1.4M RL rollouts, about 70 times fewer than Beam. The lead over Beam is 0.4 points, the comparison covers US open-weight models only, and every figure is Ricursive&rsquo;s. Weights are on Hugging Face, with hosting on Together AI, GMI Cloud, OpenRouter and Fireworks.</p>
-          <div class="sources"><a href="https://www.ricursive.com/ripple">Ricursive Intelligence</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (22)</summary>
+          <summary>Earlier in this section (23)</summary>
+
+          <article class="story" id="ripple-65b-preview">
+            <span class="when">2026-11-05</span>
+            <h4><a href="https://www.ricursive.com/ripple">Ricursive&rsquo;s Ripple-65B Preview, a dense 65B open-weight model, scores 80.52 on TerminalBench 2.1 for $32M of total R&amp;D</a></h4>
+            <p>Ricursive Intelligence, a chip-design lab, released <strong>Ripple-65B Preview</strong>, a general-purpose variant of the model behind its design platform: a dense architecture pretrained from scratch on 12 trillion tokens, with up to 1M context. It scores <strong>80.52</strong> on TerminalBench 2.1 against 80.1 for Reflection Beam 501B, 76.4 for Meta&rsquo;s Muse Spark Open 816B and 63.8 for Thinking Machines&rsquo; Inkling 975B.</p>
+            <p>Ricursive puts its full R&amp;D cost at <strong>$32M</strong>, which it estimates at a tenth of the previous open-weight leader on agentic coding, and says it reached the score with 1.4M RL rollouts, about 70 times fewer than Beam. The lead over Beam is 0.4 points, the comparison covers US open-weight models only, and every figure is Ricursive&rsquo;s. Weights are on Hugging Face, with hosting on Together AI, GMI Cloud, OpenRouter and Fireworks.</p>
+            <div class="sources"><a href="https://www.ricursive.com/ripple">Ricursive Intelligence</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
+          </article>
 
           <article class="story" id="hydrogen-1-0">
             <span class="when">2026-11-02</span>
@@ -805,6 +816,14 @@
         <h3>On-device &amp; quantized weights</h3>
         <p class="lead">The open tier competing on local deployability rather than capability. &ldquo;Quantized&rdquo; is a range, not a property, so the number to judge an entry on is not the headline average but where the compression is measured &mdash; single-turn knowledge questions and multi-step agent work come apart sharply here.</p>
 
+        <article class="story" id="inkling-2-mini">
+          <span class="when">2026-11-21</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/21/thinking-machines-inkling-2-mini-looped-transformer/">Thinking Machines&rsquo; Inkling 2 Mini is a 26B looped MoE that fits a 32GB Mac and reports 79.2% on SWE-bench Verified</a></h4>
+          <p>Inkling 2 Mini is an Apache 2.0 open-weight MoE with <strong>26.4B total and 3.4B active</strong> parameters whose middle 12 layers run three times per token, giving 48 layer passes from 24 stored layers and about 5.4B effective active parameters. It reports <strong>79.2% on SWE-bench Verified</strong> against 77.8% for Qwen3.8-27B and 48.2% against 42.2% on DeepSWE v1.1, with context up to 1M tokens.</p>
+          <p>All scores are self-reported, and it trails Qwen3.8-27B on Terminal Bench v2.1 (71.6% against 73.0%). The weights are about 20GB, enough for a 32GB Mac through Ollama or one DGX Spark; it is the small sibling of <a href="#inkling-2-small">Inkling 2 Small</a>.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/21/thinking-machines-inkling-2-mini-looped-transformer/">MarkTechPost write-up</a> &middot; <span class="via">via MarkTechPost (Nov 21)</span></div>
+        </article>
+
         <article class="story" id="embla-1">
           <span class="when">2026-11-16</span>
           <h4><a href="https://sevren.ai/blog/embla-1">Sevren&rsquo;s Embla 1 averages 57.4 on five benchmarks at 4 bits and answers in 1.77 s on an iPhone 18 Pro</a></h4>
@@ -821,16 +840,16 @@
           <div class="sources"><a href="https://www.liquid.ai/blog/lfm3">Liquid AI</a> &middot; <a href="https://www.marktechpost.com/2026/10/27/liquid-ai-lfm3-open-weight-2b-multimodal-models/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 28), The Code (Oct 28), AlphaSignal (Oct 28), MarkTechPost (Oct 30)</span></div>
         </article>
 
-        <article class="story" id="apple-on-device-20b">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://www.airealist.ai/p/exploring-apple-on-device-model">Apple&rsquo;s 20B on-device model keeps most weights in flash and ran in about 2GB on an M3 Max</a></h4>
-          <p>An outside teardown of Apple&rsquo;s <strong>20-billion-parameter</strong> on-device model finds it keeps most of its weights in flash storage and activates only <strong>1&ndash;4B parameters</strong> per prompt. On an M3 Max Mac it used roughly <strong>2GB of memory</strong> and less energy than comparable open models.</p>
-          <p>The trade-off the tester reports is weaker math performance. This is a third-party analysis page, not an Apple model card.</p>
-          <div class="sources"><a href="https://www.airealist.ai/p/exploring-apple-on-device-model">AI Realist (analysis)</a> &middot; <span class="via">via TLDR AI (Oct 26)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="apple-on-device-20b">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://www.airealist.ai/p/exploring-apple-on-device-model">Apple&rsquo;s 20B on-device model keeps most weights in flash and ran in about 2GB on an M3 Max</a></h4>
+            <p>An outside teardown of Apple&rsquo;s <strong>20-billion-parameter</strong> on-device model finds it keeps most of its weights in flash storage and activates only <strong>1&ndash;4B parameters</strong> per prompt. On an M3 Max Mac it used roughly <strong>2GB of memory</strong> and less energy than comparable open models.</p>
+            <p>The trade-off the tester reports is weaker math performance. This is a third-party analysis page, not an Apple model card.</p>
+            <div class="sources"><a href="https://www.airealist.ai/p/exploring-apple-on-device-model">AI Realist (analysis)</a> &middot; <span class="via">via TLDR AI (Oct 26)</span></div>
+          </article>
 
           <article class="story" id="nemotron-3-5-bolt-e4b">
             <span class="when">2026-10-23</span>
@@ -1098,6 +1117,22 @@
         <h3>Alternative decoding architectures</h3>
         <p class="lead">A research line attacking the autoregressive decode bottleneck from two directions: parallelising within one token stream, and removing the stream entirely. Both buy latency and price rather than capability, so the question for every entry here is what the speed costs in quality, and whether anyone outside the vendor has measured it.</p>
 
+        <article class="story" id="baseten-bison-1">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/20/baseten-bison-1-groundhog-1-gemma-4-decision-models/">Baseten&rsquo;s Bison-1 tops the AA Decision Index v2.1 at 76, first of 19 decision models</a></h4>
+          <p>Baseten released two Gemma 4-based decision models that return calibrated probabilities instead of text: <strong>bison-1</strong>, a 31B dense model ranked first of 19 on the Artificial Analysis Decision Index v2.1 with a score of 76, and <strong>groundhog-1</strong>, a 26B MoE with about 4B active.</p>
+          <p>It joins <a href="#pplx-decider-v1-3">Perplexity&rsquo;s Decider</a>, <a href="#strands-decider-2b">Strands Decider</a> and <a href="#drex-dlm">Drex</a> in the decision-model field; calibration on a caller&rsquo;s own data is still the test the index cannot run.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/20/baseten-bison-1-groundhog-1-gemma-4-decision-models/">MarkTechPost write-up</a> &middot; <span class="via">via MarkTechPost (Nov 21)</span></div>
+        </article>
+
+        <article class="story" id="nemotron-labs-sigma">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://www.marktechpost.com/2026/11/20/nvidia-nemotron-labs-sigma-continuous-diffusion-language-model/">NVIDIA&rsquo;s Nemotron-Labs-Sigma denoises text in a 16-dimensional embedding space, with 14 open checkpoints at 3B and 8B</a></h4>
+          <p>NVIDIA released <strong>Nemotron-Labs-Sigma</strong>, a continuous diffusion language model that denoises in a 16-D embedding space rather than over discrete tokens, as <strong>14 open checkpoints</strong> at 3B and 8B parameters. NVIDIA says its gains are most consistent on coding.</p>
+          <p>It is the &ldquo;remove the stream&rdquo; branch of this section again, and as with the other diffusion entries here the quality-for-speed trade has only the vendor&rsquo;s measurement behind it.</p>
+          <div class="sources"><a href="https://www.marktechpost.com/2026/11/20/nvidia-nemotron-labs-sigma-continuous-diffusion-language-model/">MarkTechPost write-up</a> &middot; <span class="via">via MarkTechPost (Nov 21)</span></div>
+        </article>
+
         <article class="story" id="liquid-d1-2">
           <span class="when">2026-11-17</span>
           <h4><a href="https://www.liquid.ai/blog/d1-2">Liquid AI&rsquo;s d1.2 and d1.2-ultra add audio input and five answer types; ultra scores 75 on the Decision Index v2.1</a></h4>
@@ -1106,24 +1141,24 @@
           <div class="sources"><a href="https://www.liquid.ai/blog/d1-2">Liquid AI</a> &middot; <a href="https://www.marktechpost.com/2026/11/17/liquid-ai-d1-2-omnimodal-decision-models/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 17), AlphaSignal (Nov 17), The Code (Nov 17), MarkTechPost (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="pplx-decider-v1-3">
-          <span class="when">2026-11-13</span>
-          <h4><a href="https://www.perplexity.ai/hub/blog/perplexity-decider">Perplexity ships Decider v1.3 and Decider Flash v1.3, adding span highlighting for extraction tasks</a></h4>
-          <p>Perplexity updated both of its classification models, which return label probabilities that applications use to classify, route, rank and evaluate inputs, over binary or multi-class labels, ordered or unordered. Decider v1.3 and Decider Flash v1.3 improve accuracy and robustness across text and vision tasks and add a mode that highlights the selected span for named-entity recognition, personal-information detection and extractive question answering.</p>
-          <p>The newsletter summary carries no benchmark figures; the earlier open release is <a href="#pplx-decider-v1-27b">pplx-decider-v1-27b</a>. <em>Updated Nov 17:</em> MarkTechPost reports the v1.3 models as open weights, names the span mode Locate, and gives <strong>91.6%</strong> mean accuracy on 63 query-classification tasks.</p>
-          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/perplexity-decider">Perplexity</a> &middot; <a href="https://www.marktechpost.com/2026/11/13/perplexity-decider-v1-3-open-weight-decision-models-locate/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 13), MarkTechPost (Nov 17)</span></div>
-        </article>
-
-        <article class="story" id="gemini-decision-1">
-          <span class="when">2026-11-11</span>
-          <h4><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google&rsquo;s Gemini Decision 1 scores up to 1,000 questions in one pass at $0.10 per million input tokens, with no output tokens</a></h4>
-          <p>Google launched the <strong>Gemini Decisions API</strong> on a new model, <strong>Gemini Decision 1</strong>. It takes text, images, audio, video or PDFs and returns calibrated probabilities for up to <strong>1,000</strong> yes/no, multiple-choice or rubric questions against one shared input in a single forward pass, with output tokens always zero. The Code reports typical responses of 150&ndash;250 ms; input costs <strong>$0.10 per million tokens</strong>.</p>
-          <p>Google aims it at the small branching calls inside agents: routing, policy checks, tool selection and grading. It is the third lab-built decision interface on this page after <a href="#openai-decisions-api">OpenAI&rsquo;s</a> and <a href="#perplexity-decisions-web-grounding">Perplexity&rsquo;s</a>, and the first that is multimodal on input; the calibration claim is Google&rsquo;s own. <em>Updated Nov 17:</em> Simon Willison finds the API almost identical to Jev&rsquo;s, down to the term &ldquo;Noul&rdquo; for a yes/no question, and on a test video it returned probabilities such as 0.92 and 0.05 where Jev and OpenAI return 1.0 or 0.0.</p>
-          <div class="sources"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google</a> &middot; <a href="https://aistudio.google.com/docs/decisions-api">API docs</a> &middot; <a href="https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 12), TLDR (Nov 12), MarkTechPost (Nov 12), The Code (Nov 12), Simon Willison (Nov 17)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (29)</summary>
+          <summary>Earlier in this section (31)</summary>
+
+          <article class="story" id="pplx-decider-v1-3">
+            <span class="when">2026-11-13</span>
+            <h4><a href="https://www.perplexity.ai/hub/blog/perplexity-decider">Perplexity ships Decider v1.3 and Decider Flash v1.3, adding span highlighting for extraction tasks</a></h4>
+            <p>Perplexity updated both of its classification models, which return label probabilities that applications use to classify, route, rank and evaluate inputs, over binary or multi-class labels, ordered or unordered. Decider v1.3 and Decider Flash v1.3 improve accuracy and robustness across text and vision tasks and add a mode that highlights the selected span for named-entity recognition, personal-information detection and extractive question answering.</p>
+            <p>The newsletter summary carries no benchmark figures; the earlier open release is <a href="#pplx-decider-v1-27b">pplx-decider-v1-27b</a>. <em>Updated Nov 17:</em> MarkTechPost reports the v1.3 models as open weights, names the span mode Locate, and gives <strong>91.6%</strong> mean accuracy on 63 query-classification tasks.</p>
+            <div class="sources"><a href="https://www.perplexity.ai/hub/blog/perplexity-decider">Perplexity</a> &middot; <a href="https://www.marktechpost.com/2026/11/13/perplexity-decider-v1-3-open-weight-decision-models-locate/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 13), MarkTechPost (Nov 17)</span></div>
+          </article>
+
+          <article class="story" id="gemini-decision-1">
+            <span class="when">2026-11-11</span>
+            <h4><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google&rsquo;s Gemini Decision 1 scores up to 1,000 questions in one pass at $0.10 per million input tokens, with no output tokens</a></h4>
+            <p>Google launched the <strong>Gemini Decisions API</strong> on a new model, <strong>Gemini Decision 1</strong>. It takes text, images, audio, video or PDFs and returns calibrated probabilities for up to <strong>1,000</strong> yes/no, multiple-choice or rubric questions against one shared input in a single forward pass, with output tokens always zero. The Code reports typical responses of 150&ndash;250 ms; input costs <strong>$0.10 per million tokens</strong>.</p>
+            <p>Google aims it at the small branching calls inside agents: routing, policy checks, tool selection and grading. It is the third lab-built decision interface on this page after <a href="#openai-decisions-api">OpenAI&rsquo;s</a> and <a href="#perplexity-decisions-web-grounding">Perplexity&rsquo;s</a>, and the first that is multimodal on input; the calibration claim is Google&rsquo;s own. <em>Updated Nov 17:</em> Simon Willison finds the API almost identical to Jev&rsquo;s, down to the term &ldquo;Noul&rdquo; for a yes/no question, and on a test video it returned probabilities such as 0.92 and 0.05 where Jev and OpenAI return 1.0 or 0.0.</p>
+            <div class="sources"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google</a> &middot; <a href="https://aistudio.google.com/docs/decisions-api">API docs</a> &middot; <a href="https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 12), TLDR (Nov 12), MarkTechPost (Nov 12), The Code (Nov 12), Simon Willison (Nov 17)</span></div>
+          </article>
 
           <article class="story" id="perplexity-decisions-web-grounding">
             <span class="when">2026-11-05</span>
@@ -1145,7 +1180,8 @@
             <h4><a href="https://blog.cloudflare.com/clairic-extraction-model">Cloudflare&rsquo;s Clairic pulls typed values out of documents without generating tokens, 3.2&times; faster and 49% cheaper on a claims test</a></h4>
             <p>Cloudflare previewed <strong>Clairic</strong>, a &ldquo;System One&rdquo; extraction model that returns typed values (numbers, dates, lists) from emails, receipts, spreadsheets and images with a confidence score and a pointer to the source span, rather than generating an answer token by token. It follows <a href="#cloudflare-clef">Clef</a> onto Workers AI, in preview now, with open weights promised.</p>
             <p>Cloudflare&rsquo;s claims-processing test puts it at <strong>3.2&times; faster and 49% cheaper</strong> than the generative pipeline it replaced; the baseline model, the document mix and accuracy on that test are not stated.</p>
-            <div class="sources"><a href="https://blog.cloudflare.com/clairic-extraction-model">Cloudflare</a> &middot; <a href="https://developers.cloudflare.com/changelog/post/2026-10-19-clairic-workers-ai/">Workers AI changelog</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20), TLDR (Oct 20), The Code (Oct 20)</span></div>
+            <p><em>Updated Nov 20:</em> Cloudflare released open weights on Hugging Face for a redesigned Clairic, which now reads images and PDFs and generates each field autoregressively in parallel slots instead of in one forward pass, plus <strong>Clairic-flash</strong>, a 9B version. The typed interface, with confidence scores and character spans, is unchanged.</p>
+            <div class="sources"><a href="https://blog.cloudflare.com/clairic-extraction-model">Cloudflare</a> &middot; <a href="https://developers.cloudflare.com/changelog/post/2026-10-19-clairic-workers-ai/">Workers AI changelog</a> &middot; <a href="https://blog.cloudflare.com/open-clairic/">Cloudflare open-weights post</a> &middot; <span class="via">via MarkTechPost (Oct 19), TLDR AI (Oct 20), TLDR (Oct 20), The Code (Oct 20), TLDR AI (Nov 20)</span></div>
           </article>
 
           <article class="story" id="drex-max">
@@ -1470,6 +1506,14 @@
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
 
+        <article class="story" id="gpt-live-1-1-api">
+          <span class="when">2026-11-19</span>
+          <h4><a href="https://developers.openai.com/api/docs/models/gpt-live-1.1">GPT-Live-1.1 reaches the API with a standby rate that cuts idle voice minutes from $0.05 to $0.02</a></h4>
+          <p>OpenAI put <strong>gpt-live-1.1</strong>, the full-duplex voice model ChatGPT Plus and Pro users have had since October, into the API on the <code>v1/live/sessions</code> endpoint at <strong>$0.05 per active minute</strong>. A new standby mode pauses inference after a silence timeout of 5 to 60 seconds and bills the open WebRTC session at <strong>$0.02 a minute</strong>; it also works on GPT-Live-1, so existing callers only swap the model ID.</p>
+          <p>The catches are in the docs: muting the microphone does not trigger standby, backend model and tool calls are billed separately, and the model takes no fine-tuning or image input. It follows <a href="#gpt-live-1-api">GPT-Live-1&rsquo;s API launch</a> at the same active rate.</p>
+          <div class="sources"><a href="https://developers.openai.com/api/docs/models/gpt-live-1.1">OpenAI docs</a> &middot; <a href="https://x.com/OpenAIDevs/status/2123506733524136446">OpenAI Developers on X</a> &middot; <span class="via">via AlphaSignal (Nov 20), The Code (Nov 20), MarkTechPost (Nov 21)</span></div>
+        </article>
+
         <article class="story" id="rumble-2-flash">
           <span class="when">2026-11-18</span>
           <h4><a href="https://huggingface.co/Reson8/Rumble-2-Flash">Reson8&rsquo;s Rumble-2-Flash is a 0.5B Apache-2.0 speech recognizer for 40+ languages at 6.6% average WER</a></h4>
@@ -1485,16 +1529,16 @@
           <div class="sources"><a href="https://huggingface.co/n4ze3m/tiny-voca">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 16)</span></div>
         </article>
 
-        <article class="story" id="liquidcodec">
-          <span class="when">2026-11-13</span>
-          <h4><a href="https://www.liquid.ai/blog/liquidcodec">LiquidCodec, Liquid AI&rsquo;s own audio tokenizer, encodes at about 361&times; real time on one CPU thread</a></h4>
-          <p>Liquid AI built its own codec to replace Mimi, the third-party tokenizer behind its earlier audio models, keeping a 12.5 Hz frame rate (one frame every 80 ms) over 24 kHz waveforms. On a single FP32 CPU thread of an Apple M4 Max it encodes at roughly <strong>361&times;</strong> and decodes at <strong>87&times;</strong> real time.</p>
-          <p>It follows <a href="#lfm3">LFM3</a>&rsquo;s audio and omni models from the end of October, and the speed figures are Liquid&rsquo;s own, measured on one laptop.</p>
-          <div class="sources"><a href="https://www.liquid.ai/blog/liquidcodec">Liquid AI</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (40)</summary>
+          <summary>Earlier in this section (41)</summary>
+
+          <article class="story" id="liquidcodec">
+            <span class="when">2026-11-13</span>
+            <h4><a href="https://www.liquid.ai/blog/liquidcodec">LiquidCodec, Liquid AI&rsquo;s own audio tokenizer, encodes at about 361&times; real time on one CPU thread</a></h4>
+            <p>Liquid AI built its own codec to replace Mimi, the third-party tokenizer behind its earlier audio models, keeping a 12.5 Hz frame rate (one frame every 80 ms) over 24 kHz waveforms. On a single FP32 CPU thread of an Apple M4 Max it encodes at roughly <strong>361&times;</strong> and decodes at <strong>87&times;</strong> real time.</p>
+            <p>It follows <a href="#lfm3">LFM3</a>&rsquo;s audio and omni models from the end of October, and the speed figures are Liquid&rsquo;s own, measured on one laptop.</p>
+            <div class="sources"><a href="https://www.liquid.ai/blog/liquidcodec">Liquid AI</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
+          </article>
 
           <article class="story" id="underdog-woof">
             <span class="when">2026-11-05</span>
@@ -1808,6 +1852,14 @@
         <h3>Video &amp; omni-modal generation</h3>
         <p class="lead">Video and omni-modal releases are consolidating the way text models did: from a drawer of expert models to one pretraining paradigm. The modality list is usually verifiable and the ranking usually is not, so read each entry for what ships as weights, on what licence, and to whom.</p>
 
+        <article class="story" id="apple-fastframes">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://apple-aiml-research.github.io/ml-fastframes/">Apple&rsquo;s FastFrames generates 480p video at 36 ms a frame on one B200, about 8&times; faster at matched quality</a></h4>
+          <p>Apple and Cornell released <strong>FastFrames</strong>, two autoregressive video diffusion models aimed at interactive latency: FastFrames-S (1.3B) runs at <strong>36 ms per frame</strong> on a single B200 and FastFrames-L (14B) at 45 ms on an 8-GPU node. Apple says the small model matches the quality of a model nearly 8&times; slower, and the large one is comparable to Krea-Realtime at over 10&times; the speed.</p>
+          <p>The quality comparisons rest on VBench and side-by-side samples on the project page; paper and code are linked there.</p>
+          <div class="sources"><a href="https://apple-aiml-research.github.io/ml-fastframes/">Apple ML Research</a> &middot; <span class="via">via TLDR AI (Nov 20)</span></div>
+        </article>
+
         <article class="story" id="pika-h3-flex">
           <span class="when">2026-10-30</span>
           <h4><a href="https://pika.art/blog/pika-h3-flex">Pika H3 Flex takes up to 12 references, exports five audio stems and renders at up to 4K</a></h4>
@@ -1823,15 +1875,15 @@
           <div class="sources"><a href="https://huggingface.co/Lightricks/LTX-2.5">Hugging Face</a> &middot; <span class="via">via MarkTechPost (Oct 10)</span></div>
         </article>
 
-        <article class="story" id="tavus-griffin">
-          <span class="when">2026-10-02</span>
-          <h4><a href="https://www.tavus.io/griffin">Tavus&rsquo;s Griffin watches, listens and talks at once; 48% of 54 testers took it for a human</a></h4>
-          <p>Tavus unveiled <strong>Griffin</strong>, which it calls a &ldquo;human interaction model&rdquo;: one video model that watches, listens and speaks simultaneously instead of relaying speech-to-text, an LLM and a voice model, so it can nod or interject while the user is still talking. Tavus says <strong>48% of 54 testers</strong> mistook it for a human and that it topped NVIDIA&rsquo;s VideoFDB benchmark, and it is keeping Griffin off its API, citing deception risk, with early access by request only.</p>
-          <div class="sources"><a href="https://www.tavus.io/griffin">Tavus</a> &middot; <span class="via">via The Code (Oct 2)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (2)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="tavus-griffin">
+            <span class="when">2026-10-02</span>
+            <h4><a href="https://www.tavus.io/griffin">Tavus&rsquo;s Griffin watches, listens and talks at once; 48% of 54 testers took it for a human</a></h4>
+            <p>Tavus unveiled <strong>Griffin</strong>, which it calls a &ldquo;human interaction model&rdquo;: one video model that watches, listens and speaks simultaneously instead of relaying speech-to-text, an LLM and a voice model, so it can nod or interject while the user is still talking. Tavus says <strong>48% of 54 testers</strong> mistook it for a human and that it topped NVIDIA&rsquo;s VideoFDB benchmark, and it is keeping Griffin off its API, citing deception risk, with early access by request only.</p>
+            <div class="sources"><a href="https://www.tavus.io/griffin">Tavus</a> &middot; <span class="via">via The Code (Oct 2)</span></div>
+          </article>
 
           <article class="story" id="qwen3-8-omni-flash">
             <span class="when">2026-09-18</span>
@@ -2028,8 +2080,14 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-21</span><span class="label"><a href="#inkling-2-mini">Thinking Machines&rsquo; Inkling 2 Mini is a 26B looped MoE that fits a 32GB Mac and reports 79.2% on SWE-bench Verified</a></span></li>
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#apple-fastframes">Apple&rsquo;s FastFrames generates 480p video at 36 ms a frame on one B200, about 8&times; faster at matched quality</a></span></li>
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#baseten-bison-1">Baseten&rsquo;s Bison-1 tops the AA Decision Index v2.1 at 76, first of 19 decision models</a></span></li>
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#nemotron-labs-sigma">NVIDIA&rsquo;s Nemotron-Labs-Sigma denoises text in a 16-dimensional embedding space, with 14 open checkpoints at 3B and 8B</a></span></li>
+        <li><span class="date">2026-11-19</span><span class="label"><a href="#gpt-live-1-1-api">GPT-Live-1.1 reaches the API with a standby rate that cuts idle voice minutes from $0.05 to $0.02</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#rumble-2-flash">Reson8&rsquo;s Rumble-2-Flash is a 0.5B Apache-2.0 speech recognizer for 40+ languages at 6.6% average WER</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#gemini-4-neon">Gemini 4 Neon scores 61 on the Artificial Analysis index at $3/$15 per million tokens</a></span></li>
+        <li><span class="date">2026-11-17</span><span class="label"><a href="#sensenova-loop-9b">SenseNova-Loop-9B reuses shared weights to run 56 layers deep and matches Qwen3.8-27B on AutomationBench</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#microsoft-mai-ignite-models">Microsoft&rsquo;s MAI Code 2 claims 98% of GPT-6.1 Sol&rsquo;s coding quality at about 40% of the price</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#sage-s2-1-flash">Shanghai AI Lab&rsquo;s Sage S2.1-Flash is a 321B MIT-licensed scientific multimodal model, self-reporting 90.3 on MLE-bench Lite</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#ovh-olala-mini">OVHcloud&rsquo;s Olala Mini is a 7B MoE with about 1B active, at 160 tokens a second on an RTX A4500; weights are promised</a></span></li>

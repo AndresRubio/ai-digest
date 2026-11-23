@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-20</div>
+      <div class="meta">Last updated: 2026-11-23</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 20 cycle is two companies grading agents on their own ground. Stripe&rsquo;s <a href="#stripe-integration-evals">integration evals</a> show how much a scoring rule decides: 14 coding agents average 78.1% with partial credit and 29.4% when every required criterion must pass, a gap wider than any difference between the agents. Chrome&rsquo;s <a href="#chrome-mirror-dimension">mirror dimension</a> moves browser-agent testing off the live web into thousands of synthetic sites, where Google says one engineer now gets over 1,000 attack candidates a day; whether a pass in the mirror holds on the real web is not measured.</p>
         <p>The Nov 19 addition measures time rather than pass rate. On Kernel&rsquo;s private bug-fix benchmark, <a href="#gemini-4-carbon-step-count">Gemini 4 Carbon</a> took close to an hour where Opus 5.5 and GPT-6 Astra took minutes, using about seven times Astra&rsquo;s steps, half of them unnecessary by Kernel&rsquo;s count. The benchmark cannot be rerun from outside, but step count is exactly what a headline score hides and what an agent bill is made of.</p>
         <p>The Nov 18 cycle adds one harness study that makes the section&rsquo;s argument at scale. <a href="#frontierharness-eval-v1-1">FrontierHarness Eval v1.1</a> ran 22 harness configurations against five models over 27,280 runs: ranked by cost per task the median harness moved 11 of 22 places, and Codex CLI fell from first with GLM-5.3 to 16th with Kimi-K3. A harness score without its model is now visibly incomplete.</p>
         <p>The Nov 17 cycle is three instruments that say more about the test than about the model. METR&rsquo;s <a href="#metr-eval-tells">eval-tells study</a> finds Opus 5.5 agents separating 19 alignment evals from 36 capability evals at AUC 1.00, and makes no claim about whether that changes behaviour. <a href="#dominobench">DominoBench</a> has frontier models at 34% or less on falling-domino pairs unaided and at 82&ndash;92% once told which calculation to run. <a href="#inclusionmed">InclusionMed</a> merges four clinical benchmarks and scores frontier models between 17.5 and 49.1 out of 100.</p>
         <p>The Nov 16 cycle is a lab writing down its own eval practice. Anthropic&rsquo;s <a href="#anthropic-safety-eval-practice">safety-eval post</a> sets floors of 100 items for a multi-turn eval and 1,000 for a single-turn one, warns that multi-turn API intervals can exceed &plusmn;10 points, and shows the product surface changing a result: a romance-scam eval on claude.ai split Opus 5 and Opus 5.5 at 98% and 94%. Its single-turn suites, 16 policy areas in seven languages, put every recent model between 94% and 98% harmless, so the spread that remains is in multi-turn work.</p>
-        <p>The Nov 14 addition is a usage count that no benchmark matches. David Talby, citing Vishwanath et al., reports that <a href="#clinician-query-mix">documentation and administration made up 36.2%</a> of 127,833 clinician queries to a hospital LLM assistant and diagnosis 3.7%, while the median of 58 public clinical benchmarks contains no documentation request at all. The paper was not linked, so the figures rest on the note.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 14 addition is a usage count that no benchmark matches. David Talby, citing Vishwanath et al., reports that <a href="#clinician-query-mix">documentation and administration made up 36.2%</a> of 127,833 clinician queries to a hospital LLM assistant and diagnosis 3.7%, while the median of 58 public clinical benchmarks contains no documentation request at all. The paper was not linked, so the figures rest on the note.</p>
           <p>The Nov 12 cycle adds a security benchmark that scores the defender&rsquo;s cost. <a href="#erosionbench">ErosionBench</a> runs 1,728 scenarios and finds perimeter defenses that post low attack rates refusing 54&ndash;92% of legitimate agent work, while its own reference auditor reaches 98.5% recall at a 2.9% false-positive rate. Two related instruments sit elsewhere: ScrapeBench on the <a href="safety-and-policy.html#scrapebench">safety page</a> and MCPHallu on the <a href="agents.html#mcphallu">agents page</a>.</p>
           <p>The Nov 10 cycle adds a third security benchmark, the first aimed at memory. <a href="#memorydojo">MemoryDojo</a> follows a poisoned instruction from the session where an agent stores it to the later session where it acts on it, over 155 trajectories, four domains and five memory systems, and finds every system susceptible. It is the attack-side counterpart to the memory entries on <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools</a>: whatever an agent remembers is an input an attacker can write to.</p>
           <p>The Nov 6 cycle, read on Nov 9, adds one benchmark, and the issue that carried it gives no score. OpenAI&rsquo;s <a href="#biobasicsbench">BioBasicsBench</a> asks an agent to interpret the raw experimental data of 100 routine wet-lab tasks, which makes the instrument&rsquo;s output the input and puts bench work rather than discovery in front of a model, the second lab to do so after Anthropic&rsquo;s own wet lab. The ranking has to be read from the post.</p>
@@ -108,9 +109,9 @@
           <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">12</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">3</span></a></li>
-          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">31</span></a></li>
+          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">32</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">6</span></a></li>
-          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">15</span></a></li>
+          <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">16</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">4</span></a></li>
           <li><a href="#speech-and-voice-benchmarks">Speech &amp; voice benchmarks <span class="n">3</span></a></li>
           <li><a href="#infrastructure-scale-benchmarks">Infrastructure-scale benchmarks <span class="n">1</span></a></li>
@@ -500,6 +501,14 @@
         <h3>Construct validity &amp; benchmark scope</h3>
         <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and two find the observing condition itself disappearing.</p>
 
+        <article class="story" id="stripe-integration-evals">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://stripe.dev/blog/stripe-integration-evals-methodology">Stripe&rsquo;s integration evals: 14 coding agents average 78.1%, but 29.4% when every required criterion must pass</a></h4>
+          <p>Stripe published the methodology behind its integration benchmark, which has a role-playing agent drive coding agents through realistic Stripe integration scenarios and grades them against MUST and SHOULD criteria. The headline average across agents is <strong>78.1%</strong>; requiring every MUST criterion to pass drops it to <strong>29.4%</strong>.</p>
+          <p>Stripe&rsquo;s own plugin lifted all 14 agents by about 3 to 8 points, cut web searches 96% and outdated parameter references from 7% to 1.3%. The plugin result is a vendor measuring its own tool; the strict-versus-partial gap is the finding that travels.</p>
+          <div class="sources"><a href="https://stripe.dev/blog/stripe-integration-evals-methodology">Stripe</a> &middot; <span class="via">via TLDR AI (Nov 20)</span></div>
+        </article>
+
         <article class="story" id="inclusionmed">
           <span class="when">2026-11-17</span>
           <h4><a href="https://arxiv.org/abs/2611.21218">InclusionMed combines four clinical benchmarks picked from 388 candidates; frontier models score 17.5 to 49.1 out of 100</a></h4>
@@ -514,16 +523,16 @@
           <div class="sources"><a href="https://arxiv.org/abs/2611.20385">arXiv</a> &middot; <a href="https://huggingface.co/datasets/emilioferrara/DominoBench">Dataset</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="metr-eval-tells">
-          <span class="when">2026-11-16</span>
-          <h4><a href="https://metr.org/notes/2026-11-16-measuring-alignment-eval-tells/">METR: Opus 5.5 investigator agents separate alignment evals from capability evals at AUC 1.00</a></h4>
-          <p>METR had investigator agents explore 19 alignment evals and 36 capability evals and say which kind each was. Opus 5.5 separated them with an AUC of <strong>1.00</strong> whether asked directly or scored on open-ended reports, against 0.89 and 0.81 for GPT-6 Astra and 0.77 and 0.62 for GPT-5.4, often by noticing that an environment looked fake or a task was a honeypot.</p>
-          <p>The authors state two limits: asking an agent directly can prime its answer, and the study makes no claim about whether these beliefs change how an agent behaves on the task. It puts numbers on the condition <a href="#selsam-situational-awareness">described in September</a> as closing.</p>
-          <div class="sources"><a href="https://metr.org/notes/2026-11-16-measuring-alignment-eval-tells/">METR</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (28)</summary>
+          <summary>Earlier in this section (29)</summary>
+
+          <article class="story" id="metr-eval-tells">
+            <span class="when">2026-11-16</span>
+            <h4><a href="https://metr.org/notes/2026-11-16-measuring-alignment-eval-tells/">METR: Opus 5.5 investigator agents separate alignment evals from capability evals at AUC 1.00</a></h4>
+            <p>METR had investigator agents explore 19 alignment evals and 36 capability evals and say which kind each was. Opus 5.5 separated them with an AUC of <strong>1.00</strong> whether asked directly or scored on open-ended reports, against 0.89 and 0.81 for GPT-6 Astra and 0.77 and 0.62 for GPT-5.4, often by noticing that an environment looked fake or a task was a honeypot.</p>
+            <p>The authors state two limits: asking an agent directly can prime its answer, and the study makes no claim about whether these beliefs change how an agent behaves on the task. It puts numbers on the condition <a href="#selsam-situational-awareness">described in September</a> as closing.</p>
+            <div class="sources"><a href="https://metr.org/notes/2026-11-16-measuring-alignment-eval-tells/">METR</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
+          </article>
 
           <article class="story unlinked" id="clinician-query-mix">
             <span class="when">2026-11-14</span>
@@ -809,6 +818,14 @@
         <h3>Automated &amp; agentic eval systems</h3>
         <p class="lead">Two families that keep converging: agents that read your traces and report what failed, and benchmarks that put an agent in a real environment and score what it does there. Both replace a curated task list with something messier, and both are still checked against human judgment rather than replacing it.</p>
 
+        <article class="story" id="chrome-mirror-dimension">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://blog.google/security/mirror-dimension-for-agents/">Chrome&rsquo;s &ldquo;mirror dimension&rdquo; tests browser agents on thousands of synthetic sites, over 1,000 attack candidates a day per engineer</a></h4>
+          <p>Chrome&rsquo;s AI security team built a hermetic <strong>mirror dimension</strong>, a sandbox of thousands of simulated websites modelled on everyday user journeys, to evaluate its auto-browse agent without touching the live web; every run starts from an identical baseline. Injection payloads are selected through request headers, so the page the agent sees keeps a realistic URL.</p>
+          <p>Google says the automated red-teaming pipeline on top of it produces <strong>more than 1,000 test candidates a day per security engineer</strong>, over 30&times; what one engineer writes by hand. How well results in the mirror transfer to the real web is not measured in the post.</p>
+          <div class="sources"><a href="https://blog.google/security/mirror-dimension-for-agents/">Google</a> &middot; <span class="via">via TLDR AI (Nov 20)</span></div>
+        </article>
+
         <article class="story" id="biobasicsbench">
           <span class="when">2026-11-06</span>
           <h4><a href="https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science/">BioBasicsBench scores agents on the raw data of 100 routine wet-lab tasks</a></h4>
@@ -825,15 +842,15 @@
           <div class="sources"><a href="https://www.dwarkesh.com/p/clocktower">Dwarkesh Patel</a> &middot; <a href="https://x.com/dwarkesh_sp/status/2118449808402681911">X thread</a> &middot; <span class="via">via TLDR AI (Nov 6), The Code (Nov 6)</span></div>
         </article>
 
-        <article class="story" id="openai-lifeval">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://openai.com/index/lifeval/">OpenAI&rsquo;s LifeVal tests models on everyday tasks drawn from ChatGPT requests</a></h4>
-          <p>OpenAI&rsquo;s <strong>LifeVal</strong> evaluates models on practical tasks such as budgeting, finding childcare and accessing government services, and AlphaSignal describes it as built from thousands of ChatGPT user requests. Neither issue carries a score, so results are still to be read from OpenAI&rsquo;s page.</p>
-          <div class="sources"><a href="https://openai.com/index/lifeval/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 3), AlphaSignal (Nov 3)</span></div>
-        </article>
+        <details>
+          <summary>Earlier in this section (13)</summary>
 
-<details>
-          <summary>Earlier in this section (12)</summary>
+          <article class="story" id="openai-lifeval">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://openai.com/index/lifeval/">OpenAI&rsquo;s LifeVal tests models on everyday tasks drawn from ChatGPT requests</a></h4>
+            <p>OpenAI&rsquo;s <strong>LifeVal</strong> evaluates models on practical tasks such as budgeting, finding childcare and accessing government services, and AlphaSignal describes it as built from thousands of ChatGPT user requests. Neither issue carries a score, so results are still to be read from OpenAI&rsquo;s page.</p>
+            <div class="sources"><a href="https://openai.com/index/lifeval/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 3), AlphaSignal (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="clinical-agentic-benchmarks">
             <span class="when">2026-10-26</span>
@@ -929,7 +946,6 @@
             <div class="sources"><a href="https://parlance-labs.com/blog/posts/auto-evals/">Parlance Labs (Hamel Husain)</a></div>
           </article>
         </details>
-      
       </section>
 
       <section class="topic-section" id="security-benchmarks">
@@ -1017,6 +1033,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#chrome-mirror-dimension">Chrome&rsquo;s &ldquo;mirror dimension&rdquo; tests browser agents on thousands of synthetic sites, over 1,000 attack candidates a day per engineer</a></span></li>
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#stripe-integration-evals">Stripe&rsquo;s integration evals: 14 coding agents average 78.1%, but 29.4% when every required criterion must pass</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#gemini-4-carbon-step-count">Gemini 4 Carbon takes about seven times GPT-6 Astra&rsquo;s steps on a private bug-fix benchmark</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#frontierharness-eval-v1-1">FrontierHarness Eval v1.1: over 27,280 runs, Codex CLI fell from 1st to 16th on cost when the model changed</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#inclusionmed">InclusionMed combines four clinical benchmarks picked from 388 candidates; frontier models score 17.5 to 49.1 out of 100</a></span></li>
