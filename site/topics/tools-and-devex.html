@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-11-23</div>
+      <div class="meta">Last updated: 2026-11-24</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 20 addition is a small one. Google Antigravity&rsquo;s <a href="#antigravity-btw-fork">/btw</a> now forks the session into a parallel thread with full context, which can be explored and promoted back while the main agent keeps working. It puts the parallel-session habit of that section inside a single agent, and the post gives no token cost for a fork.</p>
         <p>The Nov 20 cycle is an agent checking another agent&rsquo;s diagnosis. OpenAI&rsquo;s <a href="#openai-performance-factory">Performance Factory</a> has Codex chase ChatGPT performance regressions and a second Codex session try to disprove each root cause; OpenAI graded 70 of 100 suggestions accurate, the useful number because it says how often a person still has to finish the job. <a href="#firecrawl-local">Firecrawl Local</a> packs the scraper into one binary and a localhost MCP server; the 37&times; speed claim is AlphaSignal&rsquo;s, not the README&rsquo;s.</p>
         <p>The Nov 19 cycle measures overhead the user never typed. A developer found that <a href="#antigravity-quota-measurement">Google Antigravity</a> drops its prompt cache after a five-minute pause and opens even a five-word prompt with 13,800 to 16,800 tokens of instructions, MCP schemas and skills, which is where its weekly quota goes. On the spec side, a paper finds that giving an agent a <a href="#program-skeletons">program skeleton</a> alongside tests cuts mean test error by 48.4% across four models, so the structure a human writes down still pays.</p>
         <p>The Nov 18 cycle is the cost of the agent&rsquo;s own context. <a href="#claude-code-code-mode">Code Mode</a> has Claude write one JavaScript program that chains Bash, Read and Edit instead of a round-trip per call, terminal-only and with no published saving. <a href="#context-has-a-price">Context Has a Price</a> measures the other side over 20,000 runs: retrieved code cut searches 18&ndash;34% but raised cost 33&ndash;42% under a tenth-price cache, because cheaper prompts changed what the agent did next. Anthropic&rsquo;s <a href="#claude-docs-chaos-loop">chaos loop</a> had Claude load-test Claude Docs before launch, which then saw 60 server errors in 2 billion requests.</p>
         <p>The Nov 17 cycle is about agents checking their own work. <a href="#claude-code-ios-simulator">Claude Code</a> now drives the iOS Simulator, folding and unfolding a simulated iPhone Duo to check layouts. The Claude Code team&rsquo;s <a href="#claude-code-verification">verification post</a> describes end-to-end, property and differential tests, three rounds before a human is called and a 39-item reliability checklist. Meta&rsquo;s <a href="#meta-jittests">JiTTests</a> have an LLM write tests meant to fail on risky diffs, catching 74 privacy incidents at a 60% true-positive rate. <a href="#aws-emulator">AWS Emulator</a> gains its commit count: 29,684 in three weeks.</p>
-        <p>The Nov 16 cycle is Claude Code and Devin each adding a surface. Cognition&rsquo;s <a href="#devin-apps">Devin Apps</a> builds internal tools from a description and hosts them on Devin&rsquo;s own machine, open only to signed-in Devin users, billed while the machine is awake and limited to one machine per app. Claude Code&rsquo;s <a href="#claude-code-projects">Projects</a> coordinator now answers in the project chat and reports on threads unprompted, with <code>/btw</code>, <code>/fork</code>, read-only thread sharing and reminders, and the desktop app gained themes built as <a href="#claude-mods">mods</a> that can react to the session. Both Claude Code changes are updates to existing entries.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 16 cycle is Claude Code and Devin each adding a surface. Cognition&rsquo;s <a href="#devin-apps">Devin Apps</a> builds internal tools from a description and hosts them on Devin&rsquo;s own machine, open only to signed-in Devin users, billed while the machine is awake and limited to one machine per app. Claude Code&rsquo;s <a href="#claude-code-projects">Projects</a> coordinator now answers in the project chat and reports on threads unprompted, with <code>/btw</code>, <code>/fork</code>, read-only thread sharing and reminders, and the desktop app gained themes built as <a href="#claude-mods">mods</a> that can react to the session. Both Claude Code changes are updates to existing entries.</p>
           <p>The Nov 12 cycle is two measurements of what agent tooling costs. OpenRouter ran <a href="#mcp-cli-skills-context-cost">one task on Sonnet 5.5</a> and counted 59,417 tokens through MCP with default tools loaded, 3,315 as a skill and 1,421 through a CLI, with Tool Search bringing a toolset&rsquo;s upfront cost under 600 tokens; one task sizes the overhead without ranking the mechanisms. <a href="#aws-emulator">AWS Emulator</a> gives coding agents a free CC0 copy of 200+ AWS services to test against offline. Agents wrote all of it from 438 API models, and it passes 56.6% of 42,857 fidelity tests, with no throttling, outages or regional behaviour yet. GitHub Next&rsquo;s <a href="#ace-github-next">Ace</a>, covered Nov 9, gained The Code&rsquo;s detail that its agents reach the host over Tailscale.</p>
           <p>The Nov 11 cycle is two releases about coordinating agents and feeding them knowledge. Google Antigravity&rsquo;s <a href="#antigravity-swarm">/swarm</a>, in preview, turns a conversation into a coordinator that splits work among named agents on one shared board, with a verifier reporting before a human sees the result and quota drawn per worker. Chrome&rsquo;s <a href="#modern-web-guidance">Modern Web Guidance 1.0</a> ships web-platform knowledge as agent skills, with expert review and eval coverage on every guide, and Firefox and Edge now contribute.</p>
           <p>The Nov 10 cycle is about what agents read and what reviewers check. A study of <a href="#stale-instruction-files">stale CLAUDE.md and AGENTS.md instructions</a> across 732 trajectories finds agents follow out-of-date guidance when it is relevant, costing Claude Sonnet 5.5 a third more tool calls on one stale test command, a cost task-success evals never show. Storybook 11 beta ships <a href="#storybook-11-beta">official agent skills</a> with headless test and review commands, Google&rsquo;s <a href="#elephant-goldfish-plugin">Elephant-Goldfish plugin</a> has context-free subagents attack a spec before any code exists, and Warp&rsquo;s <a href="#warp-merge-risk">/merge-risk</a> grades a pull request on five signals so human attention goes where the blast radius is. Reason Machines&rsquo; <a href="#aspen-git-server">Aspen</a> rebuilds OpenAI&rsquo;s Pando design as an open, pre-alpha Git server at 567 pushes a second, and Automattic&rsquo;s <a href="#spacefast">Spacefast</a> hosts the backend for vibe-coded apps.</p>
@@ -133,7 +134,7 @@
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">19</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">21</span></a></li>
           <li><a href="#working-when-the-agent-writes-the-code">Working when the agent writes the code <span class="n">47</span></a></li>
-          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">10</span></a></li>
+          <li><a href="#multi-session-and-parallel-work">Multi-session and parallel work <span class="n">11</span></a></li>
         </ul>
       </nav>
 
@@ -1906,6 +1907,14 @@
         <h3>Multi-session and parallel work</h3>
         <p class="lead">Running 3&ndash;6 sessions in parallel via tmux and git worktrees is the practitioner default, and the bottleneck moved from execution to writing clear specs and reviewing output. Every coordinator here is itself an agent whose output someone still has to check.</p>
 
+        <article class="story" id="antigravity-btw-fork">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://x.com/antigravity/status/2123921833883840650">Google Antigravity&rsquo;s /btw now forks a side thread with full context while the main agent keeps working</a></h4>
+          <p>Google Antigravity changed <strong>/btw</strong> from a one-off side question into a forked conversation: a parallel copy of the session with its context, which can be explored and then promoted back to the main thread without interrupting the running agent. AlphaSignal adds that <code>/copy btw</code> pulls the side answer back and that the change arrives through <code>agy update</code> in the app, the CLI and the IDE extensions.</p>
+          <p>The announcement is a post on X and gives no figure for what a fork costs in tokens.</p>
+          <div class="sources"><a href="https://x.com/antigravity/status/2123921833883840650">Google Antigravity on X</a> &middot; <span class="via">via AlphaSignal (Nov 23)</span></div>
+        </article>
+
         <article class="story" id="antigravity-swarm">
           <span class="when">2026-11-11</span>
           <h4><a href="https://antigravity.google/docs/swarm/">Google Antigravity&rsquo;s /swarm splits a task across named agents that coordinate on one shared board</a></h4>
@@ -1922,15 +1931,15 @@
           <div class="sources"><a href="https://ace.githubnext.com/">GitHub Next</a> &middot; <span class="via">via TLDR AI (Nov 9), The Code (Nov 12)</span></div>
         </article>
 
-        <article class="story" id="humanlayer">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://github.com/humanlayer/humanlayer">HumanLayer runs Claude Code, Codex, OpenCode and Pi agents across your machines from one console</a></h4>
-          <p><strong>HumanLayer</strong> (12.5k GitHub stars) runs Claude Code, Codex, OpenCode and Pi agents across a team&rsquo;s own machines and manages their tasks, sessions, plans and reviews from one place. It targets the parallel-session pattern this section describes, with one coordinator for several agents of different makes.</p>
-          <div class="sources"><a href="https://github.com/humanlayer/humanlayer">GitHub</a> &middot; <span class="via">via The Code (Oct 26)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="humanlayer">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://github.com/humanlayer/humanlayer">HumanLayer runs Claude Code, Codex, OpenCode and Pi agents across your machines from one console</a></h4>
+            <p><strong>HumanLayer</strong> (12.5k GitHub stars) runs Claude Code, Codex, OpenCode and Pi agents across a team&rsquo;s own machines and manages their tasks, sessions, plans and reviews from one place. It targets the parallel-session pattern this section describes, with one coordinator for several agents of different makes.</p>
+            <div class="sources"><a href="https://github.com/humanlayer/humanlayer">GitHub</a> &middot; <span class="via">via The Code (Oct 26)</span></div>
+          </article>
 
           <article class="story unlinked" id="claude-code-cloud-sessions-ga">
             <span class="when">2026-09-24</span>
@@ -1993,6 +2002,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#antigravity-btw-fork">Google Antigravity&rsquo;s /btw now forks a side thread with full context while the main agent keeps working</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#firecrawl-local">Firecrawl Local runs the scraper as one binary and an MCP server on localhost</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#openai-performance-factory">OpenAI&rsquo;s Performance Factory runs Codex on ChatGPT regressions; 70 of 100 root causes graded accurate</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#claude-docs-chaos-loop">A chaos loop held the Claude Docs launch to 60 server errors across 2 billion requests</a></span></li>

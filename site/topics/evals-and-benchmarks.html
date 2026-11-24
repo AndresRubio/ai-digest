@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Evals &amp; benchmarks</h1>
-      <div class="meta">Last updated: 2026-11-23</div>
+      <div class="meta">Last updated: 2026-11-24</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 20 to 23 cycle is OpenAI proposing two instruments of its own. Its <a href="#openai-perplexity-and-intelligence">perplexity post</a> asks labs to report held-out loss as a common scale and places GPT-3.5 at about 0.99, GPT-4 at about 0.91 and current models below 0.8, all measured on OpenAI&rsquo;s own evaluation dataset. <a href="#medchembench">MedChemBench</a> gives GPT-6.2 Astra 84.5% of the credit on 99 medicinal-chemistry problems, with structure reading at 95.4% and compound selection near half, and OpenAI says the score does not show that a model can find a drug.</p>
+        <p><a href="#metr-q4-2026-capability-update">METR&rsquo;s Q4 update</a> comes from the evaluator&rsquo;s side: task length doubling roughly every 3.6 months, human baseliners who typically cannot beat the frontier models, and a statement that public evidence cannot rule out a sharp speed-up in AI research. METR adds that its tasks are artificially unfriendly to humans, which is the caveat to read first.</p>
         <p>The Nov 20 cycle is two companies grading agents on their own ground. Stripe&rsquo;s <a href="#stripe-integration-evals">integration evals</a> show how much a scoring rule decides: 14 coding agents average 78.1% with partial credit and 29.4% when every required criterion must pass, a gap wider than any difference between the agents. Chrome&rsquo;s <a href="#chrome-mirror-dimension">mirror dimension</a> moves browser-agent testing off the live web into thousands of synthetic sites, where Google says one engineer now gets over 1,000 attack candidates a day; whether a pass in the mirror holds on the real web is not measured.</p>
         <p>The Nov 19 addition measures time rather than pass rate. On Kernel&rsquo;s private bug-fix benchmark, <a href="#gemini-4-carbon-step-count">Gemini 4 Carbon</a> took close to an hour where Opus 5.5 and GPT-6 Astra took minutes, using about seven times Astra&rsquo;s steps, half of them unnecessary by Kernel&rsquo;s count. The benchmark cannot be rerun from outside, but step count is exactly what a headline score hides and what an agent bill is made of.</p>
         <p>The Nov 18 cycle adds one harness study that makes the section&rsquo;s argument at scale. <a href="#frontierharness-eval-v1-1">FrontierHarness Eval v1.1</a> ran 22 harness configurations against five models over 27,280 runs: ranked by cost per task the median harness moved 11 of 22 places, and Codex CLI fell from first with GLM-5.3 to 16th with Kimi-K3. A harness score without its model is now visibly incomplete.</p>
-        <p>The Nov 17 cycle is three instruments that say more about the test than about the model. METR&rsquo;s <a href="#metr-eval-tells">eval-tells study</a> finds Opus 5.5 agents separating 19 alignment evals from 36 capability evals at AUC 1.00, and makes no claim about whether that changes behaviour. <a href="#dominobench">DominoBench</a> has frontier models at 34% or less on falling-domino pairs unaided and at 82&ndash;92% once told which calculation to run. <a href="#inclusionmed">InclusionMed</a> merges four clinical benchmarks and scores frontier models between 17.5 and 49.1 out of 100.</p>
-        <p>The Nov 16 cycle is a lab writing down its own eval practice. Anthropic&rsquo;s <a href="#anthropic-safety-eval-practice">safety-eval post</a> sets floors of 100 items for a multi-turn eval and 1,000 for a single-turn one, warns that multi-turn API intervals can exceed &plusmn;10 points, and shows the product surface changing a result: a romance-scam eval on claude.ai split Opus 5 and Opus 5.5 at 98% and 94%. Its single-turn suites, 16 policy areas in seven languages, put every recent model between 94% and 98% harmless, so the spread that remains is in multi-turn work.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 17 cycle is three instruments that say more about the test than about the model. METR&rsquo;s <a href="#metr-eval-tells">eval-tells study</a> finds Opus 5.5 agents separating 19 alignment evals from 36 capability evals at AUC 1.00, and makes no claim about whether that changes behaviour. <a href="#dominobench">DominoBench</a> has frontier models at 34% or less on falling-domino pairs unaided and at 82&ndash;92% once told which calculation to run. <a href="#inclusionmed">InclusionMed</a> merges four clinical benchmarks and scores frontier models between 17.5 and 49.1 out of 100.</p>
+          <p>The Nov 16 cycle is a lab writing down its own eval practice. Anthropic&rsquo;s <a href="#anthropic-safety-eval-practice">safety-eval post</a> sets floors of 100 items for a multi-turn eval and 1,000 for a single-turn one, warns that multi-turn API intervals can exceed &plusmn;10 points, and shows the product surface changing a result: a romance-scam eval on claude.ai split Opus 5 and Opus 5.5 at 98% and 94%. Its single-turn suites, 16 policy areas in seven languages, put every recent model between 94% and 98% harmless, so the spread that remains is in multi-turn work.</p>
           <p>The Nov 14 addition is a usage count that no benchmark matches. David Talby, citing Vishwanath et al., reports that <a href="#clinician-query-mix">documentation and administration made up 36.2%</a> of 127,833 clinician queries to a hospital LLM assistant and diagnosis 3.7%, while the median of 58 public clinical benchmarks contains no documentation request at all. The paper was not linked, so the figures rest on the note.</p>
           <p>The Nov 12 cycle adds a security benchmark that scores the defender&rsquo;s cost. <a href="#erosionbench">ErosionBench</a> runs 1,728 scenarios and finds perimeter defenses that post low attack rates refusing 54&ndash;92% of legitimate agent work, while its own reference auditor reaches 98.5% recall at a 2.9% false-positive rate. Two related instruments sit elsewhere: ScrapeBench on the <a href="safety-and-policy.html#scrapebench">safety page</a> and MCPHallu on the <a href="agents.html#mcphallu">agents page</a>.</p>
           <p>The Nov 10 cycle adds a third security benchmark, the first aimed at memory. <a href="#memorydojo">MemoryDojo</a> follows a poisoned instruction from the session where an agent stores it to the later session where it acts on it, over 155 trajectories, four domains and five memory systems, and finds every system susceptible. It is the attack-side counterpart to the memory entries on <a href="agents.html">Agents</a> and <a href="tools-and-devex.html">Tools</a>: whatever an agent remembers is an input an attacker can write to.</p>
@@ -109,7 +111,7 @@
           <li><a href="#from-vibes-to-discipline">From vibes to discipline <span class="n">12</span></a></li>
           <li><a href="#open-source-testing-frameworks">Open-source testing frameworks <span class="n">2</span></a></li>
           <li><a href="#retrieval-benchmarks-at-web-scale">Retrieval benchmarks at web scale <span class="n">3</span></a></li>
-          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">32</span></a></li>
+          <li><a href="#construct-validity-benchmark-scope">Construct validity &amp; benchmark scope <span class="n">35</span></a></li>
           <li><a href="#harness-versus-model">Harness versus model <span class="n">6</span></a></li>
           <li><a href="#automated-agentic-eval-systems">Automated &amp; agentic eval systems <span class="n">16</span></a></li>
           <li><a href="#security-benchmarks">Security benchmarks <span class="n">4</span></a></li>
@@ -501,30 +503,54 @@
         <h3>Construct validity &amp; benchmark scope</h3>
         <p class="lead">Before a score means anything, someone has to inspect the instrument that produced it &mdash; and almost nobody does. These stories are that inspection: some find the instrument broken, some find it sound with a scope much narrower than its name, and two find the observing condition itself disappearing.</p>
 
-        <article class="story" id="stripe-integration-evals">
+        <article class="story" id="openai-perplexity-and-intelligence">
+          <span class="when">2026-11-23</span>
+          <h4><a href="https://openai.com/index/perplexity-and-intelligence/">OpenAI proposes log-perplexity as a shared progress metric and places GPT-3.5 at about 0.99 and GPT-4 at about 0.91</a></h4>
+          <p>OpenAI published <strong>Perplexity and Intelligence</strong>, which argues that labs should report loss on held-out text as a common measure of progress and a basis for shared safety thresholds. It gives its own scale: GPT-3.5 at a log-perplexity of about <strong>0.99</strong>, GPT-4 at about 0.91, current models below 0.8, and a model at about 0.76 that it says started producing groundbreaking results.</p>
+          <p>OpenAI expects further capability jumps in the 0.68 to 0.70 window. The figures come from OpenAI&rsquo;s own evaluation dataset, and the post ties loss levels to capabilities by example and cites no benchmark correlation.</p>
+          <div class="sources"><a href="https://openai.com/index/perplexity-and-intelligence/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 23)</span></div>
+        </article>
+
+        <article class="story" id="metr-q4-2026-capability-update">
           <span class="when">2026-11-20</span>
-          <h4><a href="https://stripe.dev/blog/stripe-integration-evals-methodology">Stripe&rsquo;s integration evals: 14 coding agents average 78.1%, but 29.4% when every required criterion must pass</a></h4>
-          <p>Stripe published the methodology behind its integration benchmark, which has a role-playing agent drive coding agents through realistic Stripe integration scenarios and grades them against MUST and SHOULD criteria. The headline average across agents is <strong>78.1%</strong>; requiring every MUST criterion to pass drops it to <strong>29.4%</strong>.</p>
-          <p>Stripe&rsquo;s own plugin lifted all 14 agents by about 3 to 8 points, cut web searches 96% and outdated parameter references from 7% to 1.3%. The plugin result is a vendor measuring its own tool; the strict-versus-partial gap is the finding that travels.</p>
-          <div class="sources"><a href="https://stripe.dev/blog/stripe-integration-evals-methodology">Stripe</a> &middot; <span class="via">via TLDR AI (Nov 20)</span></div>
+          <h4><a href="https://metr.org/blog/2026-11-20-q4-2026-capability-update/">METR measures agent task length doubling roughly every 3.6 months and typically cannot recruit baseliners who beat frontier models</a></h4>
+          <p>METR&rsquo;s Q4 2026 update on capabilities relevant to AI R&amp;D says the length of task that frontier models can complete doubles <strong>roughly every 3.6 months</strong>, and that when it recruited its own human baseliners it typically failed to find any who outperform the current frontier models. On its composite metric it sees no strong acceleration or deceleration across the public models it tested.</p>
+          <p>Its conclusion is that public evidence is insufficient to rule out drastic AI R&amp;D acceleration in the next couple of years. The caveats are METR&rsquo;s own: the data is noisy, the tasks are artificially unfriendly to humans, and agents still appear to have worse judgment than human experts.</p>
+          <div class="sources"><a href="https://metr.org/blog/2026-11-20-q4-2026-capability-update/">METR</a> &middot; <span class="via">via TLDR AI (Nov 23)</span></div>
         </article>
 
-        <article class="story" id="inclusionmed">
-          <span class="when">2026-11-17</span>
-          <h4><a href="https://arxiv.org/abs/2611.21218">InclusionMed combines four clinical benchmarks picked from 388 candidates; frontier models score 17.5 to 49.1 out of 100</a></h4>
-          <p><strong>InclusionMed</strong> combines four public clinical benchmarks, selected from 388 candidates, into one score on which frontier models range from 17.5 to 49.1 out of 100. Every top-10 model did better at patient communication than at clinical decisions. MarkTechPost does not say which models sit at either end or how the four were chosen.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2611.21218">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
-        </article>
-
-        <article class="story" id="dominobench">
-          <span class="when">2026-11-17</span>
-          <h4><a href="https://arxiv.org/abs/2611.20385">DominoBench: frontier models get at most 34% of falling-domino pairs right unaided, and 82&ndash;92% once told which calculation to run</a></h4>
-          <p><strong>DominoBench</strong> asks about falling dominoes in 854 items arranged as 427 minimal pairs. The top models get at most <strong>34%</strong> of pairs right unaided and reach 82&ndash;92% when told which calculation to run, which places the failure in choosing the calculation, with the arithmetic intact. The data is on Hugging Face; MarkTechPost does not name the models tested.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2611.20385">arXiv</a> &middot; <a href="https://huggingface.co/datasets/emilioferrara/DominoBench">Dataset</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
+        <article class="story" id="medchembench">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://openai.com/index/introducing-medchembench/">OpenAI&rsquo;s MedChemBench gives GPT-6.2 Astra 84.5% of the credit on 99 medicinal-chemistry problems drawn from 117 papers and patents</a></h4>
+          <p>OpenAI released <strong>MedChemBench</strong>, 99 problems built from 117 papers and patents with 761 distinct molecular structures, graded on structures, scientific reasoning, ranking and selection, and property prediction. At the xhigh reasoning setting GPT-6.2 Astra earned <strong>84.5%</strong> of the available credit, against 83.3% for GPT-6 Astra, 82.0% for GPT-6.1 Sol, 75.1% for GPT-6.1 Terra and 58.2% for GPT-5.6 Sol.</p>
+          <p>The total hides an uneven profile: GPT-6 Astra earned 95.4% on the structure components, and AlphaSignal reports about half on compound selection and numerical prediction. OpenAI states that prior exposure to the source papers cannot be ruled out, that each answer was a single attempt without tools, and that the results do not establish whether models can discover new drugs.</p>
+          <div class="sources"><a href="https://openai.com/index/introducing-medchembench/">OpenAI</a> &middot; <a href="https://cdn.openai.com/pdf/09c4ec60-a32e-4652-837b-1811368a3bb0/medchembench-paper.pdf">paper</a> &middot; <span class="via">via AlphaSignal (Nov 23)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (29)</summary>
+          <summary>Earlier in this section (32)</summary>
+
+          <article class="story" id="stripe-integration-evals">
+            <span class="when">2026-11-20</span>
+            <h4><a href="https://stripe.dev/blog/stripe-integration-evals-methodology">Stripe&rsquo;s integration evals: 14 coding agents average 78.1%, but 29.4% when every required criterion must pass</a></h4>
+            <p>Stripe published the methodology behind its integration benchmark, which has a role-playing agent drive coding agents through realistic Stripe integration scenarios and grades them against MUST and SHOULD criteria. The headline average across agents is <strong>78.1%</strong>; requiring every MUST criterion to pass drops it to <strong>29.4%</strong>.</p>
+            <p>Stripe&rsquo;s own plugin lifted all 14 agents by about 3 to 8 points, cut web searches 96% and outdated parameter references from 7% to 1.3%. The plugin result is a vendor measuring its own tool; the strict-versus-partial gap is the finding that travels.</p>
+            <div class="sources"><a href="https://stripe.dev/blog/stripe-integration-evals-methodology">Stripe</a> &middot; <span class="via">via TLDR AI (Nov 20)</span></div>
+          </article>
+
+          <article class="story" id="inclusionmed">
+            <span class="when">2026-11-17</span>
+            <h4><a href="https://arxiv.org/abs/2611.21218">InclusionMed combines four clinical benchmarks picked from 388 candidates; frontier models score 17.5 to 49.1 out of 100</a></h4>
+            <p><strong>InclusionMed</strong> combines four public clinical benchmarks, selected from 388 candidates, into one score on which frontier models range from 17.5 to 49.1 out of 100. Every top-10 model did better at patient communication than at clinical decisions. MarkTechPost does not say which models sit at either end or how the four were chosen.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2611.21218">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
+          </article>
+
+          <article class="story" id="dominobench">
+            <span class="when">2026-11-17</span>
+            <h4><a href="https://arxiv.org/abs/2611.20385">DominoBench: frontier models get at most 34% of falling-domino pairs right unaided, and 82&ndash;92% once told which calculation to run</a></h4>
+            <p><strong>DominoBench</strong> asks about falling dominoes in 854 items arranged as 427 minimal pairs. The top models get at most <strong>34%</strong> of pairs right unaided and reach 82&ndash;92% when told which calculation to run, which places the failure in choosing the calculation, with the arithmetic intact. The data is on Hugging Face; MarkTechPost does not name the models tested.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2611.20385">arXiv</a> &middot; <a href="https://huggingface.co/datasets/emilioferrara/DominoBench">Dataset</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
+          </article>
 
           <article class="story" id="metr-eval-tells">
             <span class="when">2026-11-16</span>
@@ -1033,6 +1059,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-23</span><span class="label"><a href="#openai-perplexity-and-intelligence">OpenAI proposes log-perplexity as a shared progress metric and places GPT-3.5 at about 0.99 and GPT-4 at about 0.91</a></span></li>
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#metr-q4-2026-capability-update">METR measures agent task length doubling roughly every 3.6 months and typically cannot recruit baseliners who beat frontier models</a></span></li>
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#medchembench">OpenAI&rsquo;s MedChemBench gives GPT-6.2 Astra 84.5% of the credit on 99 medicinal-chemistry problems drawn from 117 papers and patents</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#chrome-mirror-dimension">Chrome&rsquo;s &ldquo;mirror dimension&rdquo; tests browser agents on thousands of synthetic sites, over 1,000 attack candidates a day per engineer</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#stripe-integration-evals">Stripe&rsquo;s integration evals: 14 coding agents average 78.1%, but 29.4% when every required criterion must pass</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#gemini-4-carbon-step-count">Gemini 4 Carbon takes about seven times GPT-6 Astra&rsquo;s steps on a private bug-fix benchmark</a></span></li>

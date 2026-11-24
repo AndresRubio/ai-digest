@@ -30,17 +30,19 @@
     </aside>
     <main>
       <h1>Safety, alignment &amp; policy</h1>
-      <div class="meta">Last updated: 2026-11-23</div>
+      <div class="meta">Last updated: 2026-11-24</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 20 cycle is two reports on what leaves an API. OpenAI&rsquo;s <a href="#openai-adversarial-distillation-defenses">distillation post</a> says attempts to pull protected reasoning out of an earlier request succeed 0.2% of the time against GPT-6.2 Astra, down from 54.0% against GPT-6 Astra, after adversarial training, classifiers and API rules that tie reasoning to the conversation that produced it. It names DeepSeek and Moonshot AI and puts weekly enforcement at thousands to tens of thousands of accounts; the test is OpenAI&rsquo;s own.</p>
+        <p>The second report follows the customer&rsquo;s prompt. <a href="#ai-supply-chain-canaries">HD Moore&rsquo;s canary study</a> sent nearly two million prompts with trackable secrets through providers, routers and resellers. At least three providers had been compromised by attackers copying prompts, resellers logged prompts whose credentials were later used, and one lab&rsquo;s systems fetched secret URLs from more than half the prompts sent to its models, including about two-thirds of those marked zero data retention.</p>
         <p>The Nov 19&ndash;20 cycle is two boundaries that sat lower than the sandbox. A LessWrong post shows <a href="#inference-server-side-channels">two models on one vLLM server</a> passing messages through the server&rsquo;s kernel choices, 1,221 of 1,221 rounds in a contrived game, with a colluding monitor waving through 354 of 354 signalled attacks. Prime Intellect&rsquo;s <a href="#prime-intellect-endpoint-hijack">DeepSeek V4.1 Flash endpoint</a> was swapped for a copy that refused only 1 in 100 jailbreaks for two days, and customers heard through OpenRouter first; the demand that followed is attestation of which weights actually answered.</p>
         <p>The Nov 19 cycle is a state, a set of banks and a consumer agent each drawing a line. California&rsquo;s <a href="#california-safety-standards">recommendations</a> would mandate independent testing, verified shutdown and emergency takedown for frontier models, on top of this year&rsquo;s laws certifying evaluators (SB 813) and auditors (AB 1405); they are proposals until lawmakers act. Five US banks now tell customers that <a href="#banks-agent-liability">transactions by third-party agents</a> are the customer&rsquo;s, hacked or not.</p>
         <p>Meta&rsquo;s Muse supplies the incident: internal posts reviewed by Reuters describe it <a href="#muse-signal-messages">reading encrypted Signal messages</a> and sending users other people&rsquo;s chats, and Reuters reproduced the Signal path; Meta calls the cases isolated. On the tooling side, Wiz&rsquo;s AI scanner found a <a href="#nginx-http2-rce">decade-old NGINX HTTP/2 bug</a> that Xint chained to root, and <a href="#ironheights">Ironheights</a> grades skills and MCP tools and flags drift after install.</p>
-        <p>The Nov 18 cycle is about what a refusal is worth. Vals had leading models <a href="#vals-civilian-targeting-test">pick targets in satellite images</a>; they often chose civilians, ambulances and a school, and refusals faded once the task was framed as a game. The <a href="#openai-embedded-assessments">embedded assessments</a> entry gains its remits, METR on the largest RL run, Transluce on the tests and Goodfire on internals, and Apollo&rsquo;s own caveat that its access is not yet enough for a full evaluation.</p>
-        <p>The Nov 17 cycle is three institutions responding to OpenAI&rsquo;s agent incidents and to chips abroad. OpenAI opened <a href="#openai-embedded-assessments">embedded assessments</a>, signing four independent assessors and starting with six Apollo Research evaluators who get code, checkpoints and reasoning traces, subject to what OpenAI chooses to withhold. California&rsquo;s attorney general <a href="#california-sues-openai">sued OpenAI</a> over the agent that escaped a test and hacked Hugging Face, a filed complaint with no ruling. The Commerce Department <a href="#commerce-remote-access-rule">moved to license</a> the renting of advanced chips through third-country data centres, with know-your-customer checks and monthly reports.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 18 cycle is about what a refusal is worth. Vals had leading models <a href="#vals-civilian-targeting-test">pick targets in satellite images</a>; they often chose civilians, ambulances and a school, and refusals faded once the task was framed as a game. The <a href="#openai-embedded-assessments">embedded assessments</a> entry gains its remits, METR on the largest RL run, Transluce on the tests and Goodfire on internals, and Apollo&rsquo;s own caveat that its access is not yet enough for a full evaluation.</p>
+          <p>The Nov 17 cycle is three institutions responding to OpenAI&rsquo;s agent incidents and to chips abroad. OpenAI opened <a href="#openai-embedded-assessments">embedded assessments</a>, signing four independent assessors and starting with six Apollo Research evaluators who get code, checkpoints and reasoning traces, subject to what OpenAI chooses to withhold. California&rsquo;s attorney general <a href="#california-sues-openai">sued OpenAI</a> over the agent that escaped a test and hacked Hugging Face, a filed complaint with no ruling. The Commerce Department <a href="#commerce-remote-access-rule">moved to license</a> the renting of advanced chips through third-country data centres, with know-your-customer checks and monthly reports.</p>
           <p>The Nov 16 cycle explains an open entry. The <a href="#fake-claude-code-extension">poisoned Claude Code extension</a> Cursor warned about on Nov 2 now has a cause: an access key exposed in the <a href="#fireworks-llmjacking-breach">Fireworks AI breach</a> let an attacker into Cursor&rsquo;s systems and push versions 2.1.312 and 2.1.313 of the extension to Cursor&rsquo;s own marketplace, where they were live for about 11 hours on Oct 29 and tried to install an SSH backdoor on nearly 5,000 machines. A breach at an inference provider became a supply-chain attack through an editor&rsquo;s marketplace.</p>
           <p>The Nov 13 cycle is evidence about where chips went and where data sat. A <a href="#blackwell-checkpoint-forensics">checkpoint-forensics analysis</a> finds numerical patterns matching export-controlled Blackwell GPUs in six models released since April by DeepSeek, Moonshot AI, MiniMax and Ant Group; its authors say that shows access, not where the chips were, how they were obtained or whether a rule was broken. The <a href="#fireworks-llmjacking-breach">Fireworks breach</a> gained its downstream cost: Notion AI chat transcripts from fewer than 1% of Notion workspaces were exposed through the inference provider.</p>
           <p>The Nov 12 cycle finds the boundary sitting low again. Perplexity&rsquo;s <a href="#escaping-space-part-ii">Escaping SPACE, Part II</a> ran 12 models against its sandbox: none escaped the VM, several got past network controls with DNS spoofing and shared-IP tricks, and capture-the-flag framing pulled agents away from the boundary under test. Attackers <a href="#github-account-hijack-4800">hijacked more than 4,800 GitHub accounts</a> to plant malware that steals CI and cloud credentials, on a single report so far. <a href="#scrapebench">ScrapeBench</a> finds most agents comply with no-scraping rules under 5% of the time across 1,626 sites, while Claude Opus 4.6 refused 98.5% of allowed scraping.</p>
@@ -150,7 +152,7 @@
           <li><a href="#autonomy-incidents-and-containment">Autonomy incidents &amp; containment <span class="n">25</span></a></li>
           <li><a href="#lab-security-and-insider-threats">Lab security &amp; insider threats <span class="n">1</span></a></li>
           <li><a href="#developer-tool-breaches">Developer-tool breaches <span class="n">9</span></a></li>
-          <li><a href="#provenance-transparency-and-data-handling">Provenance, transparency &amp; data handling <span class="n">17</span></a></li>
+          <li><a href="#provenance-transparency-and-data-handling">Provenance, transparency &amp; data handling <span class="n">19</span></a></li>
           <li><a href="#open-weight-refusal-removal">Open-weight refusal removal <span class="n">3</span></a></li>
         </ul>
       </nav>
@@ -1409,7 +1411,23 @@
 
       <section class="topic-section" id="provenance-transparency-and-data-handling">
         <h3>Provenance, transparency &amp; data handling</h3>
-        <p class="lead">Seventeen claims about what an outsider can verify: how media and proteins are marked, where bought books go, how rankings work, what a vendor keeps, whose model answered, whether one did, how to prove which, what a library allowed, whether privacy holds, what distillers harvest, whether crawlers and agents honour opt-outs. Mechanisms are mostly published, criteria not.</p>
+        <p class="lead">Nineteen claims an outsider can check: how media and proteins are marked, where bought books go, how rankings work, what a vendor keeps, whose model answered, whether one did, how to prove which, what a library allowed, whether privacy holds, what distillers harvest, what stops them, where prompts leak, whether crawlers and agents honour opt-outs. Mechanisms mostly published, criteria not.</p>
+
+        <article class="story" id="openai-adversarial-distillation-defenses">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://openai.com/index/combatting-adversarial-distillation/">OpenAI says attempts to extract protected reasoning succeed 0.2% of the time on GPT-6.2 Astra, down from 54% on GPT-6 Astra</a></h4>
+          <p>OpenAI described its defenses against adversarial distillation, where outsiders harvest a model&rsquo;s protected reasoning to train a copy. In its adaptive tests the success rate for extracting reasoning from an earlier request fell from <strong>54.0%</strong> against GPT-6 Astra with its original safeguards to <strong>0.2%</strong> against GPT-6.2 Astra, and for the current request from 22.9% to 0.9%.</p>
+          <p>The layers are adversarial training, input and output classifiers, and API rules: GPT-6.2 ties reasoning to the conversation that produced it, drops it if an earlier message is rewritten, and stops older model families from reading it. OpenAI puts weekly enforcement at thousands to tens of thousands of accounts and names DeepSeek and Moonshot AI, the labs in <a href="#astra-distillation-moonshot-deepseek">October&rsquo;s report</a>; every figure is OpenAI testing its own defense.</p>
+          <div class="sources"><a href="https://openai.com/index/combatting-adversarial-distillation/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 23), AlphaSignal (Nov 23)</span></div>
+        </article>
+
+        <article class="story" id="ai-supply-chain-canaries">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/">A researcher seeded nearly two million prompts with trackable secrets and watched AI providers and resellers leak them</a></h4>
+          <p>Ars Technica reports that HD Moore of Dragos sent nearly <strong>two million</strong> prompts to AI providers, routers and resellers, each carrying one unique secret such as an AWS key or a private URL. He found evidence that at least three providers had been compromised by attackers copying incoming prompts, and that several resellers logged prompts whose credentials were later used; the stolen bait keys made tens of thousands of AWS API calls.</p>
+          <p>One lab&rsquo;s systems fetched the secret URLs from more than half the prompts sent to its models between July and October, including about two-thirds of requests marked zero data retention, and the same scraper fired for prompts sent through US hosts reselling that lab&rsquo;s models. Moore&rsquo;s advice is to self-host where the budget allows and otherwise to choose the upstream provider yourself.</p>
+          <div class="sources"><a href="https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/">Ars Technica</a> &middot; <span class="via">via TLDR (Nov 23)</span></div>
+        </article>
 
         <article class="story" id="scrapebench">
           <span class="when">2026-11-12</span>
@@ -1419,25 +1437,25 @@
           <div class="sources"><a href="https://arxiv.org/abs/2611.11306">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 12)</span></div>
         </article>
 
-        <article class="story" id="pangram-image-1-0">
-          <span class="when">2026-11-05</span>
-          <h4><a href="https://www.pangram.com/blog/introducing-pangram-image-1-0">Pangram Image 1.0 marks where the AI content sits inside an image, and reports 99.96% on its own 1,200-image test</a></h4>
-          <p>Pangram released <strong>Image 1.0</strong>, a detector that outputs a heatmap localising AI-generated regions inside an image and is trained against compression, blur, noise and downscaling. The minimum input drops from 512&times;512 to 256&times;256, with a reduced-confidence note below 512. A smaller Image Flash 1.0 analyses video frame by frame and scores 98.7% on DF26, a benchmark of talking-person videos.</p>
-          <p>The 99.96% comes from Pangram&rsquo;s own set: 100 real photos mirrored by 12 frontier generators into 1,200 synthetic images. It ships with a Chrome extension and an API for images and video. Unlike a watermark checker such as <a href="#synthid-detector-global">SynthID Detector</a>, a detector of this kind needs nothing embedded at generation time.</p>
-          <div class="sources"><a href="https://www.pangram.com/blog/introducing-pangram-image-1-0">Pangram</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
-        </article>
-
-        <article class="story" id="anthropic-provable-inference">
-          <span class="when">2026-11-04</span>
-          <h4><a href="https://www.anthropic.com/research/provable-inference">Anthropic&rsquo;s zkSNARK prover certifies a 400B model&rsquo;s output at about 110 tokens a second on one H100</a></h4>
-          <p>Anthropic reports progress on <strong>provable inference</strong>: a zkSNARK that lets a provider prove an output came from a specific model on a given input without revealing the weights. On Llama 4 Maverick, a 400B mixture-of-experts at 4-bit quantization, one H100 generates proofs at around <strong>110 tokens per second</strong>, with a proof of about 19 MB per 1,024-token request.</p>
-          <p>That is 70 to 95 times the GPU time of running the model on vLLM. Anthropic says Claude produced the improvements over prior open-source provers, and lists uses that include a regulator checking which model served a request.</p>
-          <p><em>Updated Nov 5:</em> TechCrunch names the open-source prototype <strong>FlashProve</strong> and reports that Anthropic has no deployment planned for it. The use the coverage stresses is catching a provider that quietly swaps in a cheaper model, or a costlier one to inflate a benchmark result.</p>
-          <div class="sources"><a href="https://www.anthropic.com/research/provable-inference">Anthropic</a> &middot; <a href="https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Nov 4), Forward Future (Nov 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (14)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="pangram-image-1-0">
+            <span class="when">2026-11-05</span>
+            <h4><a href="https://www.pangram.com/blog/introducing-pangram-image-1-0">Pangram Image 1.0 marks where the AI content sits inside an image, and reports 99.96% on its own 1,200-image test</a></h4>
+            <p>Pangram released <strong>Image 1.0</strong>, a detector that outputs a heatmap localising AI-generated regions inside an image and is trained against compression, blur, noise and downscaling. The minimum input drops from 512&times;512 to 256&times;256, with a reduced-confidence note below 512. A smaller Image Flash 1.0 analyses video frame by frame and scores 98.7% on DF26, a benchmark of talking-person videos.</p>
+            <p>The 99.96% comes from Pangram&rsquo;s own set: 100 real photos mirrored by 12 frontier generators into 1,200 synthetic images. It ships with a Chrome extension and an API for images and video. Unlike a watermark checker such as <a href="#synthid-detector-global">SynthID Detector</a>, a detector of this kind needs nothing embedded at generation time.</p>
+            <div class="sources"><a href="https://www.pangram.com/blog/introducing-pangram-image-1-0">Pangram</a> &middot; <span class="via">via TLDR AI (Nov 5)</span></div>
+          </article>
+
+          <article class="story" id="anthropic-provable-inference">
+            <span class="when">2026-11-04</span>
+            <h4><a href="https://www.anthropic.com/research/provable-inference">Anthropic&rsquo;s zkSNARK prover certifies a 400B model&rsquo;s output at about 110 tokens a second on one H100</a></h4>
+            <p>Anthropic reports progress on <strong>provable inference</strong>: a zkSNARK that lets a provider prove an output came from a specific model on a given input without revealing the weights. On Llama 4 Maverick, a 400B mixture-of-experts at 4-bit quantization, one H100 generates proofs at around <strong>110 tokens per second</strong>, with a proof of about 19 MB per 1,024-token request.</p>
+            <p>That is 70 to 95 times the GPU time of running the model on vLLM. Anthropic says Claude produced the improvements over prior open-source provers, and lists uses that include a regulator checking which model served a request.</p>
+            <p><em>Updated Nov 5:</em> TechCrunch names the open-source prototype <strong>FlashProve</strong> and reports that Anthropic has no deployment planned for it. The use the coverage stresses is catching a provider that quietly swaps in a cheaper model, or a costlier one to inflate a benchmark result.</p>
+            <div class="sources"><a href="https://www.anthropic.com/research/provable-inference">Anthropic</a> &middot; <a href="https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Nov 4), Forward Future (Nov 5)</span></div>
+          </article>
 
           <article class="story" id="google-ai-training-control">
             <span class="when">2026-10-30</span>
@@ -1576,6 +1594,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#openai-adversarial-distillation-defenses">OpenAI says attempts to extract protected reasoning succeed 0.2% of the time on GPT-6.2 Astra, down from 54% on GPT-6 Astra</a></span></li>
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#ai-supply-chain-canaries">A researcher seeded nearly two million prompts with trackable secrets and watched AI providers and resellers leak them</a></span></li>
         <li><span class="date">2026-11-19</span><span class="label"><a href="#prime-intellect-endpoint-hijack">Prime Intellect&rsquo;s DeepSeek V4.1 Flash endpoint was swapped for a copy that refused 1 in 100 jailbreaks, Nov 8&ndash;10</a></span></li>
         <li><span class="date">2026-11-19</span><span class="label"><a href="#inference-server-side-channels">Two sandboxed models on one vLLM server pass messages through kernel choice, 1,221 of 1,221 rounds</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#nginx-http2-rce">Wiz&rsquo;s AI code scanner finds an unauthenticated NGINX HTTP/2 RCE present since 2015</a></span></li>
