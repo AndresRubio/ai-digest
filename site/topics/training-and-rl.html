@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-11-24</div>
+      <div class="meta">Last updated: 2026-11-25</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 22 to 24 cycle has a model editing itself and a lab describing the machinery it trains with. In <a href="#selfwrite">SELFWRITE</a>, Qwen3.8-27B writes programs that build low-rank edits to its own weights, and five generations lift held-out maths accuracy from 76.30% to 77.75% without a gradient step; it is one model on one dataset. Microsoft AI&rsquo;s <a href="#mai-rocket">Rocket</a> post describes asynchronous GRPO on Ray with an SGLang fork, post-training MAI Base 2 with no distillation from other labs. Rocket is not released and no score comes with it.</p>
         <p>The Nov 20 update widens the <a href="#qwen3-8-27b-pi-adapted">pi adapter</a> into a method. Hugging Face trained one RL LoRA per harness for pi, Hermes Agent and OpenCode on Qwen3.8-27B and merged the three into a single super-adapter. With pi, Terminal-Bench 2.1 rises from 39% to 55% pass@1 while average tokens per task fall from 2.9K to 1.5K, and the post says scores cannot be compared across harnesses because pi compacts context and the other two do not.</p>
         <p>The Nov 16&ndash;20 cycle is two ways of improving a 27B model. RadixArk&rsquo;s <a href="#daisyrose-27b">DaisyRose-27B</a> is RL on 1,200 tasks rebuilt around Qwen3.8-27B&rsquo;s own mistakes, doubling its Terminal-Bench 4.1 score from 5.6% to 12.0% while other benchmarks moved 1 to 4 points; the cost claim, 57% less GPU time at 37% MFU, is about the trainer more than the model. A CMU and Stanford paper skips training altogether: an open 27B model <a href="#self-rewriting-weights">rewrites its own weights</a> by reasoning about its failures and gains 6.6 points on unseen problems, though only the largest model in its family manages it.</p>
         <p>The Nov 19 addition is the training loop as a product. Prime Intellect&rsquo;s <a href="#prime-intellect-model-factory">Model Factory</a> puts RL, supervised fine-tuning, pre-training and inference behind one control plane, with checkpoint recovery and node replacement for long runs, billed per GPU-hour. It is the rl-environment layer this page has watched in open implementations, now offered as a hosted service; no results or prices come with it.</p>
         <p>The Nov 18 cycle is two ways to improve a fixed model without retraining it. Hugging Face&rsquo;s <a href="#qwen3-8-27b-pi-adapted">pi adapter</a> is a rank-32 LoRA trained with RL inside the pi harness that lifts Qwen3.8-27B from 39.2% to 64.7% on SWE-bench Pro with thinking off, the accuracy thinking mode already had at about 4.5&times; fewer tokens. A <a href="#agents-self-improve-unprompted">self-improvement paper</a> gives a frozen agent a budget and note-taking tools and finds capable models invent their own curriculum, with notes that transfer to new games.</p>
-        <p>The Nov 17 cycle opens a section on numerical correctness. Google&rsquo;s <a href="#zero-tim">ZERO-TIM</a> makes the sampler&rsquo;s and the trainer&rsquo;s log-probabilities bitwise identical across 64 TPU v5p chips by fixing the order of floating-point reductions, removing at the source the mismatch that score centering corrects for statistically. Brandon Amos&rsquo;s <a href="#divergence-numerical-issues">paper on divergences</a> shows KL and Jensen-Shannon computations losing precision when two distributions nearly match, the regime distillation and RL work in, and supplies stable reformulations. Neither reports what the fix changes in a real training run.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 17 cycle opens a section on numerical correctness. Google&rsquo;s <a href="#zero-tim">ZERO-TIM</a> makes the sampler&rsquo;s and the trainer&rsquo;s log-probabilities bitwise identical across 64 TPU v5p chips by fixing the order of floating-point reductions, removing at the source the mismatch that score centering corrects for statistically. Brandon Amos&rsquo;s <a href="#divergence-numerical-issues">paper on divergences</a> shows KL and Jensen-Shannon computations losing precision when two distributions nearly match, the regime distillation and RL work in, and supplies stable reformulations. Neither reports what the fix changes in a real training run.</p>
           <p>The Nov 16 cycle is two training runs reported end to end by the teams that ran them. Thinking Machines explains how <a href="#end-to-end-4-bit-training">Inkling 2 Small was trained with a native NVFP4 forward pass</a>: 4-bit forwards in the expert layers, MXFP8 backwards with stochastic rounding, and a wall-clock gain of 8% in pretraining and 20% in RL over full MXFP8, paid for in quantization error. Empero&rsquo;s <a href="#quark">Quark</a> sits at the other end of the scale, a 165M-parameter model with a 128K context taken through every stage for about $4,200, whose mix of 12 local and 4 global layers cuts the KV cache at 128K to a quarter. Both land in the pretraining section, and both are self-reported.</p>
           <p>The Nov 13 cycle has two papers about how little it takes to change a model. <a href="#deletion-tuning">Deletion Tuning</a> zeroes fewer than 0.05% of an LLM&rsquo;s weights through a mask on the gate projections and matches full fine-tuning under RL with verifiable rewards, supervised fine-tuning and on-policy distillation, while full fine-tuning and LoRA lose up to 5.4 points on earlier tasks that it keeps. <a href="#homeopathic-learning">Homeopathic learning</a> is the risk on the other side: poison data that teaches nothing on its own plants a trait once clean, trigger-free data is mixed in, so checking a training set item by item can pass a backdoor.</p>
           <p>The Nov 11 addition fixes a failure without training anything. <a href="#reward-hacking-weight-arithmetic">Weight arithmetic</a> subtracts a code model trained on loose rewards from one trained on strict rewards and extrapolates along the difference, cutting resource-limit failures from 14.5% to 8%. It breaks outputs if pushed too far, and the stricter reward can itself cost correctness. The same idea, editing weights in place of a training run, appears on <a href="research-papers.html#qwen-concept-27b">research papers</a> the same day.</p>
@@ -91,8 +92,8 @@
           <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">4</span></a></li>
           <li><a href="#numerical-correctness-in-training">Numerical correctness in training <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
-          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">10</span></a></li>
-          <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">7</span></a></li>
+          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">11</span></a></li>
+          <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">8</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
           <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">11</span></a></li>
           <li><a href="#fine-tuning-data-mixtures">Fine-tuning data mixtures <span class="n">2</span></a></li>
@@ -409,6 +410,14 @@
         <h3>RL environment infrastructure</h3>
         <p class="lead">Open implementations of the same layer &mdash; define the task, run the agent, score the attempt, update the weights &mdash; and no shared standard between them, which is roughly where the serving layer stood two years ago. Judge each on what it makes reusable, not on the algorithm it happens to ship with.</p>
 
+        <article class="story" id="mai-rocket">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://microsoft.ai/news/rl-infrastructure-at-microsoft-ai/">Microsoft AI&rsquo;s Rocket post-trains the three-trillion-parameter MAI Base 2 by RL alone, with no distillation from other labs&rsquo; models</a></h4>
+          <p>Microsoft AI described <strong>Rocket</strong>, its in-house RL framework, now post-training <a href="#mai-base-2">MAI Base 2</a>. The loop is asynchronous GRPO; components run as Ray actors on nodes allocated by Kubernetes or Slurm, and sampling runs on a Microsoft-maintained fork of SGLang. It is built for runs of many thousands of steps over weeks to months on thousands of GPUs, where stale rollouts, sampler and learner numerics that disagree, and hardware failures compound.</p>
+          <p>Rocket is not released and the post gives no benchmark for the model it trains. The checkable content is the design and the stated choice to climb from the base model without a distilled head start.</p>
+          <div class="sources"><a href="https://microsoft.ai/news/rl-infrastructure-at-microsoft-ai/">Microsoft AI</a> &middot; <span class="via">via TLDR AI (Nov 24)</span></div>
+        </article>
+
         <article class="story" id="prime-intellect-model-factory">
           <span class="when">2026-11-18</span>
           <h4><a href="https://www.primeintellect.ai/blog/introducing-model-factory">Prime Intellect&rsquo;s Model Factory puts RL, fine-tuning, pre-training and inference in one control plane</a></h4>
@@ -424,17 +433,16 @@
           <div class="sources"><a href="https://huggingface.co/blog/microsoft/thinkingbox-training">Hugging Face blog</a> &middot; <span class="via">via AAIF newsletter (Oct 29)</span></div>
         </article>
 
-        <article class="story" id="scale-agentenv">
-          <span class="when">2026-10-07</span>
-          <h4><a href="https://labs.scale.com/blog/introducing-agentenv">Scale&rsquo;s AgentEnv is an open-source RL environment framework with 48 step types and four sandbox providers</a></h4>
-          <p>Scale AI open-sourced <strong>AgentEnv</strong>, a framework for building reinforcement-learning environments for agents: <strong>48 step types</strong>, <strong>four sandbox providers</strong>, and a plugin system for extending both. It joins Verifiers, Moonshot&rsquo;s <a href="#agentenv">AgentENV</a>, DAPO and DSec as open implementations of this layer, and shares its name with Moonshot&rsquo;s, which is a measure of how little the layer has standardised.</p>
-          <p>What is published is the framework and its catalogue of steps and sandboxes; no training result, throughput figure or environment set is reported with it.</p>
-          <div class="sources"><a href="https://labs.scale.com/blog/introducing-agentenv">Scale AI</a> &middot; <span class="via">via MarkTechPost (Oct 7)</span></div>
-        </article>
-
-
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="scale-agentenv">
+            <span class="when">2026-10-07</span>
+            <h4><a href="https://labs.scale.com/blog/introducing-agentenv">Scale&rsquo;s AgentEnv is an open-source RL environment framework with 48 step types and four sandbox providers</a></h4>
+            <p>Scale AI open-sourced <strong>AgentEnv</strong>, a framework for building reinforcement-learning environments for agents: <strong>48 step types</strong>, <strong>four sandbox providers</strong>, and a plugin system for extending both. It joins Verifiers, Moonshot&rsquo;s <a href="#agentenv">AgentENV</a>, DAPO and DSec as open implementations of this layer, and shares its name with Moonshot&rsquo;s, which is a measure of how little the layer has standardised.</p>
+            <p>What is published is the framework and its catalogue of steps and sandboxes; no training result, throughput figure or environment set is reported with it.</p>
+            <div class="sources"><a href="https://labs.scale.com/blog/introducing-agentenv">Scale AI</a> &middot; <span class="via">via MarkTechPost (Oct 7)</span></div>
+          </article>
 
           <article class="story" id="dsec">
             <span class="when">2026-09-27</span>
@@ -494,7 +502,15 @@
 
       <section class="topic-section" id="self-generated-training-data-and-curricula">
         <h3>Self-generated training data &amp; curricula</h3>
-        <p class="lead">What used to be human-supplied &mdash; the corpus, the judge, the curriculum, the scaffold &mdash; is increasingly produced by models instead, now including the optimizer step itself. These seven show the move working in one place each, and they share one caveat: every self-improving-loop claim on this page is still reported by its own authors.</p>
+        <p class="lead">What used to be human-supplied &mdash; the corpus, the judge, the curriculum, the scaffold &mdash; is increasingly produced by models instead, now including the optimizer step itself. These eight show the move working in one place each, and they share one caveat: every self-improving-loop claim on this page is still reported by its own authors.</p>
+
+        <article class="story" id="selfwrite">
+          <span class="when">2026-11-22</span>
+          <h4><a href="https://arxiv.org/abs/2611.29513">SELFWRITE: a 27B model programs its own low-rank weight edits and gains 1.45 points on held-out math in five generations</a></h4>
+          <p>In <strong>SELFWRITE</strong>, each generation the current model studies its own reasoning on fresh problems, inspects its weights and activations in a persistent Python session, and writes a program that builds a low-rank edit to itself from white-box primitives, with no gradient step. Each candidate is graded once on a hidden gate set and the best strictly improving edit is merged. On Qwen3.8-27B and DAPO-Math, five generations lift held-out accuracy from <strong>76.30% to 77.75%</strong> (avg@4) and from 82.60% to 84.80% (pass@4).</p>
+          <p>It is one model on one maths dataset, measured by its two authors, and the gains are a point or two. A separate group reported a larger single-edit gain on the same model size in <a href="#self-rewriting-weights">the Nov 16 paper</a>.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.29513">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 24)</span></div>
+        </article>
 
         <article class="story" id="agents-self-improve-unprompted">
           <span class="when">2026-11-17</span>
@@ -512,15 +528,15 @@
           <div class="sources"><a href="https://arxiv.org/abs/2611.21885">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 20)</span></div>
         </article>
 
-        <article class="story" id="google-on-policy-self-training">
-          <span class="when">2026-10-26</span>
-          <h4><a href="https://arxiv.org/abs/2610.32770">Google&rsquo;s on-policy self-training starts from topic names only and self-distills without curated prompts</a></h4>
-          <p>Google&rsquo;s method gives a model nothing but topic names. It writes its own questions and privileged reasoning traces, then self-distills. Gains hold on text and VQA without curated prompts, and untrained domains do not regress, by the authors&rsquo; account; the issue carries no headline score.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2610.32770">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 26), TLDR AI (Oct 27), AlphaSignal (Oct 27)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (4)</summary>
+          <summary>Earlier in this section (5)</summary>
+
+          <article class="story" id="google-on-policy-self-training">
+            <span class="when">2026-10-26</span>
+            <h4><a href="https://arxiv.org/abs/2610.32770">Google&rsquo;s on-policy self-training starts from topic names only and self-distills without curated prompts</a></h4>
+            <p>Google&rsquo;s method gives a model nothing but topic names. It writes its own questions and privileged reasoning traces, then self-distills. Gains hold on text and VQA without curated prompts, and untrained domains do not regress, by the authors&rsquo; account; the issue carries no headline score.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2610.32770">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 26), TLDR AI (Oct 27), AlphaSignal (Oct 27)</span></div>
+          </article>
 
           <article class="story" id="unievo-vl">
             <span class="when">2026-10-05</span>
@@ -696,6 +712,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#mai-rocket">Microsoft AI&rsquo;s Rocket post-trains the three-trillion-parameter MAI Base 2 by RL alone, with no distillation from other labs&rsquo; models</a></span></li>
+        <li><span class="date">2026-11-22</span><span class="label"><a href="#selfwrite">SELFWRITE: a 27B model programs its own low-rank weight edits and gains 1.45 points on held-out math in five generations</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#daisyrose-27b">RadixArk&rsquo;s DaisyRose-27B doubles Qwen3.8-27B on Terminal-Bench 4.1, 5.6% to 12.0%</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#qwen3-8-27b-pi-adapted">A rank-32 LoRA trained with RL inside pi lifts Qwen3.8-27B from 39.2% to 64.7% on SWE-bench Pro</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#prime-intellect-model-factory">Prime Intellect&rsquo;s Model Factory puts RL, fine-tuning, pre-training and inference in one control plane</a></span></li>

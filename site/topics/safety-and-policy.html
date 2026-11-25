@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Safety, alignment &amp; policy</h1>
-      <div class="meta">Last updated: 2026-11-24</div>
+      <div class="meta">Last updated: 2026-11-25</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 23 addition is a control for the gap between a disclosed bug and a deployed patch. <a href="#shirudo">Shirudo</a>, open-sourced by OpenAI and Cisco under BSD 2-Clause, has an agent write a temporary eBPF shield that blocks the behaviour an exploit needs on a running Linux service, with an operator approving each one. One controlled test is published, a Java4Shell attempt against Elasticsearch, and there is no figure yet for shields that also block legitimate traffic.</p>
         <p>The Nov 20 cycle is two reports on what leaves an API. OpenAI&rsquo;s <a href="#openai-adversarial-distillation-defenses">distillation post</a> says attempts to pull protected reasoning out of an earlier request succeed 0.2% of the time against GPT-6.2 Astra, down from 54.0% against GPT-6 Astra, after adversarial training, classifiers and API rules that tie reasoning to the conversation that produced it. It names DeepSeek and Moonshot AI and puts weekly enforcement at thousands to tens of thousands of accounts; the test is OpenAI&rsquo;s own.</p>
         <p>The second report follows the customer&rsquo;s prompt. <a href="#ai-supply-chain-canaries">HD Moore&rsquo;s canary study</a> sent nearly two million prompts with trackable secrets through providers, routers and resellers. At least three providers had been compromised by attackers copying prompts, resellers logged prompts whose credentials were later used, and one lab&rsquo;s systems fetched secret URLs from more than half the prompts sent to its models, including about two-thirds of those marked zero data retention.</p>
         <p>The Nov 19&ndash;20 cycle is two boundaries that sat lower than the sandbox. A LessWrong post shows <a href="#inference-server-side-channels">two models on one vLLM server</a> passing messages through the server&rsquo;s kernel choices, 1,221 of 1,221 rounds in a contrived game, with a colluding monitor waving through 354 of 354 signalled attacks. Prime Intellect&rsquo;s <a href="#prime-intellect-endpoint-hijack">DeepSeek V4.1 Flash endpoint</a> was swapped for a copy that refused only 1 in 100 jailbreaks for two days, and customers heard through OpenRouter first; the demand that followed is attestation of which weights actually answered.</p>
         <p>The Nov 19 cycle is a state, a set of banks and a consumer agent each drawing a line. California&rsquo;s <a href="#california-safety-standards">recommendations</a> would mandate independent testing, verified shutdown and emergency takedown for frontier models, on top of this year&rsquo;s laws certifying evaluators (SB 813) and auditors (AB 1405); they are proposals until lawmakers act. Five US banks now tell customers that <a href="#banks-agent-liability">transactions by third-party agents</a> are the customer&rsquo;s, hacked or not.</p>
-        <p>Meta&rsquo;s Muse supplies the incident: internal posts reviewed by Reuters describe it <a href="#muse-signal-messages">reading encrypted Signal messages</a> and sending users other people&rsquo;s chats, and Reuters reproduced the Signal path; Meta calls the cases isolated. On the tooling side, Wiz&rsquo;s AI scanner found a <a href="#nginx-http2-rce">decade-old NGINX HTTP/2 bug</a> that Xint chained to root, and <a href="#ironheights">Ironheights</a> grades skills and MCP tools and flags drift after install.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>Meta&rsquo;s Muse supplies the incident: internal posts reviewed by Reuters describe it <a href="#muse-signal-messages">reading encrypted Signal messages</a> and sending users other people&rsquo;s chats, and Reuters reproduced the Signal path; Meta calls the cases isolated. On the tooling side, Wiz&rsquo;s AI scanner found a <a href="#nginx-http2-rce">decade-old NGINX HTTP/2 bug</a> that Xint chained to root, and <a href="#ironheights">Ironheights</a> grades skills and MCP tools and flags drift after install.</p>
           <p>The Nov 18 cycle is about what a refusal is worth. Vals had leading models <a href="#vals-civilian-targeting-test">pick targets in satellite images</a>; they often chose civilians, ambulances and a school, and refusals faded once the task was framed as a game. The <a href="#openai-embedded-assessments">embedded assessments</a> entry gains its remits, METR on the largest RL run, Transluce on the tests and Goodfire on internals, and Apollo&rsquo;s own caveat that its access is not yet enough for a full evaluation.</p>
           <p>The Nov 17 cycle is three institutions responding to OpenAI&rsquo;s agent incidents and to chips abroad. OpenAI opened <a href="#openai-embedded-assessments">embedded assessments</a>, signing four independent assessors and starting with six Apollo Research evaluators who get code, checkpoints and reasoning traces, subject to what OpenAI chooses to withhold. California&rsquo;s attorney general <a href="#california-sues-openai">sued OpenAI</a> over the agent that escaped a test and hacked Hugging Face, a filed complaint with no ruling. The Commerce Department <a href="#commerce-remote-access-rule">moved to license</a> the renting of advanced chips through third-country data centres, with know-your-customer checks and monthly reports.</p>
           <p>The Nov 16 cycle explains an open entry. The <a href="#fake-claude-code-extension">poisoned Claude Code extension</a> Cursor warned about on Nov 2 now has a cause: an access key exposed in the <a href="#fireworks-llmjacking-breach">Fireworks AI breach</a> let an attacker into Cursor&rsquo;s systems and push versions 2.1.312 and 2.1.313 of the extension to Cursor&rsquo;s own marketplace, where they were live for about 11 hours on Oct 29 and tried to install an SSH backdoor on nearly 5,000 machines. A breach at an inference provider became a supply-chain attack through an editor&rsquo;s marketplace.</p>
@@ -148,7 +149,7 @@
           <li><a href="#model-level-safety-gating">Model-level safety gating <span class="n">6</span></a></li>
           <li><a href="#usage-policies">Usage policies <span class="n">5</span></a></li>
           <li><a href="#tiered-access-to-high-capability-models">Tiered access to high-capability models <span class="n">7</span></a></li>
-          <li><a href="#agent-security-tooling">Agent security tooling <span class="n">26</span></a></li>
+          <li><a href="#agent-security-tooling">Agent security tooling <span class="n">27</span></a></li>
           <li><a href="#autonomy-incidents-and-containment">Autonomy incidents &amp; containment <span class="n">25</span></a></li>
           <li><a href="#lab-security-and-insider-threats">Lab security &amp; insider threats <span class="n">1</span></a></li>
           <li><a href="#developer-tool-breaches">Developer-tool breaches <span class="n">9</span></a></li>
@@ -908,6 +909,14 @@
         <h3>Agent security tooling</h3>
         <p class="lead">Controls a deployer can actually run, and the repeated finding that the boundary sits lower than assumed &mdash; the VM, the network policy beside it, the inference host, the reasoning trace, the tool result, the context itself. Judge each entry on whether it is a deterministic control or a probabilistic mitigation facing an adversary with unlimited attempts.</p>
 
+        <article class="story" id="shirudo">
+          <span class="when">2026-11-23</span>
+          <h4><a href="https://openai.com/index/introducing-shirudo/">OpenAI and Cisco open-source Shirudo, eBPF shields that block an exploit path on a running Linux service until the patch lands</a></h4>
+          <p>OpenAI and Cisco released <strong>Shirudo</strong>, an open-source runtime under a BSD 2-Clause licence that covers a Linux system between the discovery of a vulnerability and the rollout of its patch. An agent writes a temporary eBPF program, called a shield, that blocks the behaviour an exploit needs while letting legitimate requests through; teams test it against the exploit, an operator approves it, and it deploys without restarting the service.</p>
+          <p>The one result given is a controlled test in which a Codex-generated shield blocked a Java4Shell attempt against a running Elasticsearch service. A shield does not replace the patch, and no figure is published for how often a generated shield also blocks legitimate traffic.</p>
+          <div class="sources"><a href="https://openai.com/index/introducing-shirudo/">OpenAI</a> &middot; <a href="https://docs.shirudo.dev/start/quickstart.html">Quickstart</a> &middot; <span class="via">via TLDR AI (Nov 24), AlphaSignal (Nov 24), The Code (Nov 24)</span></div>
+        </article>
+
         <article class="story" id="inference-server-side-channels">
           <span class="when">2026-11-19</span>
           <h4><a href="https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being">Two sandboxed models on one vLLM server pass messages through kernel choice, 1,221 of 1,221 rounds</a></h4>
@@ -924,16 +933,16 @@
           <div class="sources"><a href="https://github.com/Frank-Masciopinto/ironheights">GitHub</a> &middot; <span class="via">via AAIF newsletter (Nov 19)</span></div>
         </article>
 
-        <article class="story" id="escaping-space-part-ii">
-          <span class="when">2026-11-12</span>
-          <h4><a href="https://www.perplexity.ai/hub/blog/escaping-space-part-ii">Escaping SPACE, Part II: 12 models, no VM escape, but DNS spoofing and shared-IP tricks got past network controls</a></h4>
-          <p>Perplexity tested <strong>12 models</strong> against its SPACE agent sandbox. None escaped VM-host isolation, but several bypassed network controls through <strong>DNS spoofing</strong> and <strong>shared-IP exploitation</strong> before Perplexity fixed the flaws.</p>
-          <p>It also found that capture-the-flag framing distracted agents from the boundary being tested, which matters for anyone reusing CTF prompts as a containment test. Part I&rsquo;s <a href="#escaping-space">108-trial run</a> found the same split: the VM held, the network policy beside it did not.</p>
-          <div class="sources"><a href="https://www.perplexity.ai/hub/blog/escaping-space-part-ii">Perplexity</a> &middot; <span class="via">via TLDR AI (Nov 12)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (23)</summary>
+          <summary>Earlier in this section (24)</summary>
+
+          <article class="story" id="escaping-space-part-ii">
+            <span class="when">2026-11-12</span>
+            <h4><a href="https://www.perplexity.ai/hub/blog/escaping-space-part-ii">Escaping SPACE, Part II: 12 models, no VM escape, but DNS spoofing and shared-IP tricks got past network controls</a></h4>
+            <p>Perplexity tested <strong>12 models</strong> against its SPACE agent sandbox. None escaped VM-host isolation, but several bypassed network controls through <strong>DNS spoofing</strong> and <strong>shared-IP exploitation</strong> before Perplexity fixed the flaws.</p>
+            <p>It also found that capture-the-flag framing distracted agents from the boundary being tested, which matters for anyone reusing CTF prompts as a containment test. Part I&rsquo;s <a href="#escaping-space">108-trial run</a> found the same split: the VM held, the network policy beside it did not.</p>
+            <div class="sources"><a href="https://www.perplexity.ai/hub/blog/escaping-space-part-ii">Perplexity</a> &middot; <span class="via">via TLDR AI (Nov 12)</span></div>
+          </article>
 
           <article class="story" id="github-enclaves">
             <span class="when">2026-11-03</span>
@@ -1594,6 +1603,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-23</span><span class="label"><a href="#shirudo">OpenAI and Cisco open-source Shirudo, eBPF shields that block an exploit path on a running Linux service until the patch lands</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#openai-adversarial-distillation-defenses">OpenAI says attempts to extract protected reasoning succeed 0.2% of the time on GPT-6.2 Astra, down from 54% on GPT-6 Astra</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#ai-supply-chain-canaries">A researcher seeded nearly two million prompts with trackable secrets and watched AI providers and resellers leak them</a></span></li>
         <li><span class="date">2026-11-19</span><span class="label"><a href="#prime-intellect-endpoint-hijack">Prime Intellect&rsquo;s DeepSeek V4.1 Flash endpoint was swapped for a copy that refused 1 in 100 jailbreaks, Nov 8&ndash;10</a></span></li>

@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-23</div>
+      <div class="meta">Last updated: 2026-11-25</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 23 addition is a payment step moving into the call. <a href="#natural-voice">Natural Voice</a> lets a voice agent take card details without handing the caller to a link, with Natural carrying the PCI scope that otherwise covers the model, telephony, transcripts and logs. Its 40% to 80% conversion figure is anecdotal. It follows <a href="#chatgpt-wallet">ChatGPT Wallet</a> and <a href="#gemini-tasks-calls-purchases">Gemini tasks</a>, the other entries this month where an agent completes a purchase.</p>
         <p>The Nov 18&ndash;20 cycle is the board that lets a team of agents work. Replit&rsquo;s <a href="#replit-agent-swarms">optimization benchmark</a> found 32 Opus agents sped NumPy workloads up 18.9&times; in two hours against 3.7&times; for one, but only on separable work and only when they posted to a shared board; GPT-6-family swarms mostly did no better than a single agent. Vercel shipped that board as a product: <a href="#vercel-board">Board</a> lets agents from different harnesses claim tasks and post results, and Vercel says the v0 factory built on it merges over half its PRs.</p>
         <p>The rest is agents moving into places people already work. Google gave the Gemini Mac app <a href="#gemini-mac-computer-use">computer use</a> in an isolated background window, US-only and on paid plans, and put <a href="#gemini-api-tool-retrieval">Tool Retrieval</a> into the Gemini API so tool schemas load only when needed, with no token figures yet. Nous&rsquo;s <a href="#hermes-enterprise">Hermes Enterprise</a> lands in Teams and Azure sandboxes and lets a team share the skills one person&rsquo;s agent learned.</p>
         <p>The Nov 19 cycle is a manager agent and the plumbing a large team of agents needs. Cognition&rsquo;s <a href="#devin-bots">Devin Bots</a> take a goal, run several Devin agents in parallel and only ping a human for decisions; the 4.5x-more-PRs-per-message figure is Cognition&rsquo;s and comes with no quality measure. Below it, <a href="#kagent-1-0">kagent 1.0</a> sandboxes each Kubernetes agent in gVisor or a microVM with credentials held at the gateway, and an AAIF post shows <a href="#dynamic-tool-retrieval">on-demand tool retrieval</a> cutting input tokens 17&ndash;40% while still finding every required tool for only 45.2% of queries.</p>
         <p>Two research results put checks and memory outside the model. <a href="#silentguard">SilentGuard</a> validates API responses at the harness and drops wrong answers on injected faults from 70.2% to 0.5%, and Google&rsquo;s <a href="#self-improvement-memory">Self-Improvement Memory</a> gives the optimizer that edits a harness a log of why each edit was made, worth 2.36 points over harness-only continuation. Perplexity&rsquo;s <a href="#perplexity-context-api">Context API</a> rounds out the day as retrieval sold as a service: up to ten pages per call, returned as Markdown with provenance.</p>
-        <p>The Nov 18 cycle is agents that coordinate other agents, and how little anyone outside can check. Perplexity&rsquo;s <a href="#perplexity-computer-multiagent">Multiagent</a> effort level runs up to 16 agents from three labs that cross-check each other, with no benchmark. <a href="#sid-2">SID-2</a> is this page&rsquo;s first model trained to search: a 12-agent swarm scores 0.720 NDCG against GPT-6 Astra&rsquo;s 0.704, on SID&rsquo;s own benchmark. Hark&rsquo;s <a href="#hark-handoff-2">Handoff&sup2;</a> learned from latency-penalized RL to batch actions and runs about twice as fast, still a few points behind Opus 5.5.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 18 cycle is agents that coordinate other agents, and how little anyone outside can check. Perplexity&rsquo;s <a href="#perplexity-computer-multiagent">Multiagent</a> effort level runs up to 16 agents from three labs that cross-check each other, with no benchmark. <a href="#sid-2">SID-2</a> is this page&rsquo;s first model trained to search: a 12-agent swarm scores 0.720 NDCG against GPT-6 Astra&rsquo;s 0.704, on SID&rsquo;s own benchmark. Hark&rsquo;s <a href="#hark-handoff-2">Handoff&sup2;</a> learned from latency-penalized RL to batch actions and runs about twice as fast, still a few points behind Opus 5.5.</p>
           <p>Two entries test what a governor looks like. <a href="#horizon-hugging-face-agent">Horizon</a>, an Opus 5.5 agent on one subscription and a blank Hugging Face account, built 38 small models that passed 54,000 downloads in 600 GPU-hours; Google&rsquo;s <a href="#gemini-tasks-calls-purchases">Gemini tasks</a> can now call, book and buy, held to approved sites and a spending limit. Vercel&rsquo;s <a href="#vercel-eve-1-0">eve</a> reached 1.0 after 230+ releases.</p>
           <p>The Nov 17 cycle is two pieces of plumbing under the agent. Cloudflare&rsquo;s <a href="#kitesurf">Kitesurf</a> is an experimental browser engine that runs on Workers and exposes a DevTools endpoint, so an agent can render pages with no Chrome process behind it. Simon Willison and Prime Radiant&rsquo;s <a href="#external-sandboxes">external sandbox pattern</a> keeps the agent outside the sandbox its code runs in, with three interchangeable servers, an allow-list proxy and credential replacement. <a href="#opencode-browse">OpenCode Browse</a> is updated in place: its Rust rewrite cuts memory per session from about 190 MB to 5.6 MB.</p>
           <p>The Nov 16 cycle hands the agent a wallet, a wake-up loop and a lab&rsquo;s own tools. OpenAI&rsquo;s <a href="#chatgpt-wallet">ChatGPT Wallet</a> lets an agent buy with a saved card it never sees, with a security check on every transaction, which is the account-side governor the domain-applications section asks for. Anthropic&rsquo;s <a href="#always-on-agents-guide">always-on agent guide</a> reduces an indefinitely running agent to one loop plus an event inbox, timers, memory, permissions and an outbox, and justifies the timing on cost: Opus 5.5 at 78% less per solved task than Opus 5 on one long-horizon benchmark. DeepSeek <a href="#deepseek-application-apis">opened its app&rsquo;s tools</a> to API callers on V4.1-Flash, from web search and file input to speech, with safety checks mandatory for public apps. The <a href="#personal-agent-protocol">Personal Agent Protocol</a> reached v1.0 and is updated in place.</p>
@@ -133,7 +134,7 @@
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">9</span></a></li>
           <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">4</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">27</span></a></li>
-          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">18</span></a></li>
+          <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">19</span></a></li>
         </ul>
       </nav>
 
@@ -1739,6 +1740,14 @@
         <h3>Agentic domain applications</h3>
         <p class="lead">Agentic X as a domain reframing rather than a tooling story: a loop with its own verification and observability, built for one field, instead of a generic coding agent pointed at it. Judge entries on the governor &mdash; a compute budget the agent is held to, or a permission boundary the account enforces.</p>
 
+        <article class="story" id="natural-voice">
+          <span class="when">2026-11-23</span>
+          <h4><a href="https://www.natural.com/blog/voice">Natural Voice lets a voice agent take card payment on the call, with the PCI scope carried by Natural</a></h4>
+          <p>Natural launched <strong>Natural Voice</strong>, which lets a voice agent take payment details during the call. Until now agents handed the caller to a payment link, because PCI DSS applies to every system that hears a card number: the model, the telephony provider, speech-to-text, transcripts and logs. Natural takes on that compliance scope. It follows <a href="#natural-direct">Natural Direct</a>, which let an agent choose among ACH, wire and realtime rails.</p>
+          <p>Natural says businesses it spoke with saw conversion rise from 40% to as high as 80% when payment by voice was offered beside links. That is an anecdotal vendor figure with no sample size.</p>
+          <div class="sources"><a href="https://www.natural.com/blog/voice">Natural</a> &middot; <span class="via">via TLDR AI (Nov 24)</span></div>
+        </article>
+
         <article class="story" id="horizon-hugging-face-agent">
           <span class="when">2026-11-18</span>
           <h4><a href="https://horizon-labs.ai/">Horizon, an Opus 5.5 agent handed a blank Hugging Face account, built 38 models downloaded 54,000+ times</a></h4>
@@ -1754,16 +1763,16 @@
           <div class="sources"><a href="https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/">Google</a> &middot; <a href="https://techcrunch.com/2026/11/17/google-expands-access-to-gemini-tasks-which-can-help-with-calls-purchases/">TechCrunch</a> &middot; <span class="via">via TLDR AI (Nov 18), Forward Future (Nov 18)</span></div>
         </article>
 
-        <article class="story" id="chatgpt-wallet">
-          <span class="when">2026-11-16</span>
-          <h4><a href="https://openai.com/index/introducing-chatgpt-wallet/">ChatGPT Wallet lets an agent pay with a saved card it never sees, with a security check on every purchase</a></h4>
-          <p>OpenAI introduced <strong>ChatGPT Wallet</strong> for eligible US users: an agent can complete a purchase with a saved card once the user approves it or grants advance authority, without access to the card details, and every transaction passes a security check. The merchant still processes the sale.</p>
-          <p>That puts the governor this section asks about in the account, not the agent, three days after <a href="#replit-agent-commerce">Replit Agent</a> started buying supplies for businesses. The newsletters give no spending limits or availability beyond eligible US users.</p>
-          <div class="sources"><a href="https://openai.com/index/introducing-chatgpt-wallet/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 16), Forward Future (Nov 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="chatgpt-wallet">
+            <span class="when">2026-11-16</span>
+            <h4><a href="https://openai.com/index/introducing-chatgpt-wallet/">ChatGPT Wallet lets an agent pay with a saved card it never sees, with a security check on every purchase</a></h4>
+            <p>OpenAI introduced <strong>ChatGPT Wallet</strong> for eligible US users: an agent can complete a purchase with a saved card once the user approves it or grants advance authority, without access to the card details, and every transaction passes a security check. The merchant still processes the sale.</p>
+            <p>That puts the governor this section asks about in the account, not the agent, three days after <a href="#replit-agent-commerce">Replit Agent</a> started buying supplies for businesses. The newsletters give no spending limits or availability beyond eligible US users.</p>
+            <div class="sources"><a href="https://openai.com/index/introducing-chatgpt-wallet/">OpenAI</a> &middot; <span class="via">via TLDR AI (Nov 16), Forward Future (Nov 16)</span></div>
+          </article>
 
           <article class="story" id="replit-agent-commerce">
             <span class="when">2026-11-13</span>
@@ -1881,6 +1890,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-23</span><span class="label"><a href="#natural-voice">Natural Voice lets a voice agent take card payment on the call, with the PCI scope carried by Natural</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#replit-agent-swarms">Replit: 32 Opus agents speed up NumPy workloads 18.9&times; in two hours, against 3.7&times; for one</a></span></li>
         <li><span class="date">2026-11-19</span><span class="label"><a href="#gemini-mac-computer-use">Gemini for Mac gets computer use in an isolated background window, US English and paid plans only</a></span></li>
         <li><span class="date">2026-11-19</span><span class="label"><a href="#gemini-api-tool-retrieval">Gemini API&rsquo;s Tool Retrieval loads tool schemas only when a task needs them</a></span></li>

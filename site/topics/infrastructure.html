@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-23</div>
+      <div class="meta">Last updated: 2026-11-25</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 24 addition is a claim to hold at arm&rsquo;s length. Architect Labs says its agents designed <a href="#frostbite-cpu">Frostbite</a>, a processor architecture averaging 4.59 times the performance per watt of a conventional core across 25 programs. It exists only in simulation and runs a new language instead of x86 or Arm software. It sits beside <a href="#openai-chip-design-models">OpenAI&rsquo;s chip-design work</a> as a second report of models designing silicon, and this one has not reached hardware.</p>
         <p>The Nov 18&ndash;19 cycle is two ways around a limit. A proposed <a href="#transformers-experts-offload">experts_offload</a> option in Transformers streams a 180B MoE&rsquo;s experts from SSD so it runs on a 32GB Mac, within 6% of a specialised runtime by the author&rsquo;s measure, and Perplexity&rsquo;s <a href="#perplexity-orchestrator">Orchestrator</a> puts 45+ models behind one key and retries a failed provider on another host, still in private preview. <a href="#suncatcher">Suncatcher</a> now has a launch vehicle: Blue Origin&rsquo;s New Glenn, targeted for Q1 2029.</p>
         <p>The Nov 19 cycle points models at the hardware and at the router. OpenAI says its models <a href="#openai-chip-design-models">cut 10&ndash;13% of circuit area</a> on its own Jalape&ntilde;o chip and found up to 14% power, performance and area on an AMD GPU, with some changes already in a design sent to the fab; the figures are the two companies&rsquo; own. Edgee&rsquo;s <a href="#ski-rental-model-switching">ski-rental framing</a> adds a second routing decision to the one this page already tracks: not which model takes a request, but when a running agent session should pay to switch.</p>
         <p>The Nov 18 cycle splits work across hardware. <a href="#cerebras-disaggregated-inference">Cerebras</a> now runs prefill on GPUs and decode on its own systems for five times the tokens per megawatt, against an unstated baseline. NVIDIA&rsquo;s <a href="#nvidia-sparse-attention-codesign">sparse-attention post</a> shows where the cost of skipping keys went: the indexer and Top-k are 47% of a DeepSeek V3.2 prefill layer at 128K tokens, and its Top-k kernel is 2.1&ndash;2.4&times; faster than a radix select. The <a href="#hf-inference-providers-openrouter">Hugging Face&ndash;OpenRouter</a> entry gains its terms: automatic retries, and no more custom provider keys for language models.</p>
         <p>The Nov 17 cycle is NVIDIA hardware, an open control plane and two routing moves. <a href="#nvidia-rubin-hpc">Rubin HPC</a>, a GPU with more than 50,000 cores for simulation, is due in 2028, and <a href="#vera-rubin-nvl72-mlperf-training">Vera Rubin NVL72</a> entered MLPerf Training v6.1 at up to 2&times; GB300 per GPU by NVIDIA&rsquo;s count. NVIDIA also open-sourced <a href="#nvidia-nvke-nvkr">NVKE and NVKR</a> for managed Kubernetes on owned GPUs, which ship with API authentication off.</p>
-        <p>Hugging Face now <a href="#hf-inference-providers-openrouter">routes Inference Providers through OpenRouter</a> on one token, and <a href="#sarvam-token-factory">Sarvam Token Factory</a> serves eight open models from clusters in India. Anthropic told investors it <a href="#anthropic-multi-chip-serving">trains and serves Claude on four chip families</a> and that Mythos ported it to AMD GPUs in three days, a claim with no data behind it yet.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>Hugging Face now <a href="#hf-inference-providers-openrouter">routes Inference Providers through OpenRouter</a> on one token, and <a href="#sarvam-token-factory">Sarvam Token Factory</a> serves eight open models from clusters in India. Anthropic told investors it <a href="#anthropic-multi-chip-serving">trains and serves Claude on four chip families</a> and that Mythos ported it to AMD GPUs in three days, a claim with no data behind it yet.</p>
           <p>The Nov 13 cycle is two kernel results and a survey. <a href="#detllm">DetLLM</a> gets one output hash across nine configurations by running inference in integer-only int8 arithmetic, with WikiText2 perplexity of 20.72 against fp16&rsquo;s 20.95 and C4 0.4% worse, but prefill at about 0.13&times; fp16. <a href="#helion-compile-time-heuristics">Helion&rsquo;s compile-time heuristics</a> pick kernel configurations without autotuning and beat hand-written FLA Triton by 1.18&times; and vLLM&rsquo;s CUDA reduction kernels by 1.27&times; on H100. A <a href="#model-swap-survey">VentureBeat survey</a> prices the lock-in the routers below are meant to remove: 69% of firms that swapped a production model spent weeks on it, 36% more than a month.</p>
           <p>The Nov 11 cycle runs from a power line to a browser tab. SemiAnalysis reports Envision built the first 120 MW of the 800 MW <a href="#galaxy-inner-mongolia-campus">Galaxy campus</a> in Inner Mongolia within a year at about a fifth of US cost, with its own wind, batteries and a 5 MW direct-to-800 V DC pilot. Amazon replaced Claude Sonnet 4.6 with <a href="#amazon-strands-decider-ticket-labels">Strands Decider</a> for ticket labelling at 98% lower cost, a decision model scoring 20 labels instead of generating JSON. <a href="#executorch-webgpu">ExecuTorch WebGPU</a> runs exported PyTorch models on the browser&rsquo;s GPU 2&ndash;10&times; faster on decode than its CPU path, and Apple&rsquo;s Claris is testing <a href="#claris-harbor">Harbor</a> to pool Macs into one private model server.</p>
           <p>The Nov 10 cycle is hardware and the code that runs on it. Google&rsquo;s <a href="#tpu-8tx-8i-max">TPU 8tx and TPU 8i Max</a> make four eighth-generation TPU systems in a year, one for confidential inference and one for long context, with nearly 100 TPU customers claimed and no specifications or prices. Below the chip, Zyphra&rsquo;s <a href="#zyfa">ZYFA</a> FP8 kernels beat AMD&rsquo;s own AITER by 1.16&ndash;1.76&times; on MI355X, NVIDIA&rsquo;s <a href="#autocompress">AutoCompress</a> prunes Nemotron 3.5 Super from 120B to 74B to fit one B200 at 128K context for 5% of its score, and Buoyant&rsquo;s <a href="#kinference">Kinference</a> cuts median time to first token 95% by routing on KV-cache state, but only when prompts share a prefix. Together Compiler gained its weakest case: about 4% on GLM 5.3 on MI355X.</p>
@@ -117,7 +118,7 @@
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">11</span></a></li>
           <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">9</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">3</span></a></li>
-          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">33</span></a></li>
+          <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">34</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
           <li><a href="#cache-and-context-economics">Cache &amp; context economics <span class="n">13</span></a></li>
           <li><a href="#kubernetes-as-the-ai-substrate">Kubernetes as the AI substrate <span class="n">7</span></a></li>
@@ -650,6 +651,14 @@
         <h3>Compute &amp; AI factories</h3>
         <p class="lead">Compute is the easy part. What binds here is memory &mdash; on-chip, commodity, or absent from retail &mdash; then grid capacity, air-cooled floor space, and someone willing to carry the financing. At the far end sits the serving cost a crawled site pays for content it gave away. The constraint keeps moving off the die.</p>
 
+        <article class="story" id="frostbite-cpu">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://www.techspot.com/news/114661-ai-agents-design-new-cpu-architecture-over-4x.html">Architect Labs says its agents designed Frostbite, a CPU architecture at 4.59x performance per watt, in simulation only</a></h4>
+          <p>Palo Alto startup Architect Labs says its AI agents designed <strong>Frostbite</strong>, a new processor architecture that averaged <strong>4.59 times</strong> the performance per watt of a conventional comparison core across 25 test programs.</p>
+          <p>The result exists only in simulation, the design runs a new programming language instead of x86 or Arm software, and it has not been tested on real hardware. The figures are the company&rsquo;s, as summarised by Forward Future from TechSpot&rsquo;s report.</p>
+          <div class="sources"><a href="https://www.techspot.com/news/114661-ai-agents-design-new-cpu-architecture-over-4x.html">TechSpot</a> (news report) &middot; <span class="via">via Forward Future (Nov 24)</span></div>
+        </article>
+
         <article class="story" id="openai-chip-design-models">
           <span class="when">2026-11-18</span>
           <h4><a href="https://openai.com/index/advancing-chip-design-with-our-models/">OpenAI&rsquo;s models cut 10&ndash;13% of circuit area on Jalape&ntilde;o and found up to 14% PPA on an AMD GPU</a></h4>
@@ -665,16 +674,15 @@
           <div class="sources"><a href="https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/">NVIDIA</a> &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="nvidia-rubin-hpc">
-          <span class="when">2026-11-17</span>
-          <h4><a href="https://blogs.nvidia.com/blog/rubin-hpc/">NVIDIA&rsquo;s Rubin HPC is a GPU with more than 50,000 cores for simulation workloads, due in 2028</a></h4>
-          <p>NVIDIA announced <strong>Rubin HPC</strong>, a GPU designed for the simulations that AI agents call in science, engineering and analytics. It has more than 50,000 cores, which NVIDIA calls a record for a single GPU, and is expected to be available in 2028. TLDR AI&rsquo;s summary gives no memory, power or price figure.</p>
-          <div class="sources"><a href="https://blogs.nvidia.com/blog/rubin-hpc/">NVIDIA</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
-        </article>
-
-
         <details>
-          <summary>Earlier in this section (30)</summary>
+          <summary>Earlier in this section (31)</summary>
+
+          <article class="story" id="nvidia-rubin-hpc">
+            <span class="when">2026-11-17</span>
+            <h4><a href="https://blogs.nvidia.com/blog/rubin-hpc/">NVIDIA&rsquo;s Rubin HPC is a GPU with more than 50,000 cores for simulation workloads, due in 2028</a></h4>
+            <p>NVIDIA announced <strong>Rubin HPC</strong>, a GPU designed for the simulations that AI agents call in science, engineering and analytics. It has more than 50,000 cores, which NVIDIA calls a record for a single GPU, and is expected to be available in 2028. TLDR AI&rsquo;s summary gives no memory, power or price figure.</p>
+            <div class="sources"><a href="https://blogs.nvidia.com/blog/rubin-hpc/">NVIDIA</a> &middot; <span class="via">via TLDR AI (Nov 17)</span></div>
+          </article>
 
           <article class="story" id="galaxy-inner-mongolia-campus">
             <span class="when">2026-11-11</span>
@@ -1492,6 +1500,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#frostbite-cpu">Architect Labs says its agents designed Frostbite, a CPU architecture at 4.59x performance per watt, in simulation only</a></span></li>
         <li><span class="date">2026-11-19</span><span class="label"><a href="#perplexity-orchestrator">Perplexity&rsquo;s Orchestrator puts 45+ models behind one API key and retries a failed provider elsewhere</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#transformers-experts-offload">A proposed experts_offload in Transformers streams a 180B MoE&rsquo;s experts from SSD on a 32GB Mac</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#nvidia-sparse-attention-codesign">NVIDIA: the sparse-attention indexer and Top-k take 47% of a DeepSeek V3.2 prefill layer at 128K tokens</a></span></li>
