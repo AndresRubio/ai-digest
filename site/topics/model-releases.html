@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Model releases &amp; updates</h1>
-      <div class="meta">Last updated: 2026-11-25</div>
+      <div class="meta">Last updated: 2026-11-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 24 to 25 cycle is small and specialised models closing on larger ones. Cognition&rsquo;s SWE-2.1, RL alone on Kimi K3, doubles SWE-2 on Terminal-Bench 4.1 to 50.0 and reaches 80.0 on ExploitBench, still behind Opus 5.5 on both. PrismML&rsquo;s Ternary Bonsai 2.5 keeps a 27B model at 5.9 GB and recovers most of what its predecessor lost on agent work, 75.6 on SWE-bench Verified against 80.6 for the full-precision base. Google&rsquo;s Gemma 4 E4B build for LiteRT-LM doubles phone decode speed with speculative decoding, and Inworld open-sourced a 48 kHz voice isolator with a 63 ms streaming checkpoint.</p>
         <p>The Nov 23 to 24 cycle is one release and one price note. Z.ai&rsquo;s <a href="#glm-5-4">GLM-5.4</a> is a 750B Loop Transformer that runs the same 28 layers twice, with a 1M-token context and vision, sold only through the GLM Coding Plan while the weights wait on safety work. Z.ai&rsquo;s claim that it matches models of 2T to 3T parameters has no published harness behind it. It is the second looped design in a week after <a href="#inkling-2-mini">Inkling 2 Mini</a>. Separately, <a href="#gemini-4-neon">Gemini 4 Neon</a> is for now the dearest Gemini 4 model, until Carbon&rsquo;s launch discount ends on December 1.</p>
         <p>The Nov 23 issues add facts to four existing entries and no new model. <a href="#tencent-hy4">Hy4</a>&rsquo;s weights are now on Hugging Face, a 770B backbone with 49B active per token, so Tencent&rsquo;s open-source label from Nov 5 is now a download. <a href="#nemotron-labs-sigma">Nemotron-Labs-Sigma</a> gains its speed figure, a 3.46&times; average throughput gain over autoregressive decoding on a GB200 for the 8B model. <a href="#inkling-2-mini">Inkling 2 Mini</a> is reported to lead open-weight models under 100B parameters on DeepSWE and to run in 16GB through Unsloth&rsquo;s builds, and <a href="#baseten-bison-1">Bison-1</a> now cites Baseten&rsquo;s own post.</p>
         <p>The Nov 19&ndash;21 cycle is the model that fits a machine you already own. Thinking Machines&rsquo; <a href="#inkling-2-mini">Inkling 2 Mini</a> runs a 26B looped MoE in about 20GB and reports 79.2% on SWE-bench Verified, ahead of Qwen3.8-27B, and SenseNova&rsquo;s <a href="#sensenova-loop-9b">Loop-9B</a> uses the same trick, reusing layers to buy depth, to tie a model three times its size on AutomationBench. Both sets of numbers are the vendors&rsquo; own.</p>
         <p>The rest of the cycle is narrow releases. OpenAI put <a href="#gpt-live-1-1-api">GPT-Live-1.1</a> in the API with a standby rate that bills a silent voice session at $0.02 a minute instead of $0.05; Baseten&rsquo;s <a href="#baseten-bison-1">Bison-1</a> took first of 19 on the Decision Index v2.1 at 76; NVIDIA&rsquo;s <a href="#nemotron-labs-sigma">Nemotron-Labs-Sigma</a> opened 14 continuous-diffusion checkpoints; and Apple&rsquo;s <a href="#apple-fastframes">FastFrames</a> generates 480p video at 36 ms a frame. Gemini 4 Neon gains its launch-post benchmarks, first on the Coding Agent Index at 58.6, and <a href="#cloudflare-clairic">Clairic</a> is now open-weight beside a 9B Clairic-flash.</p>
-        <p>The Nov 19 cycle is Google filling the middle of its own line. <a href="#gemini-4-neon">Gemini 4 Neon</a> sits between Hydrogen and Carbon, scores 61 on the Artificial Analysis Intelligence Index and lists at $3/$15 per million tokens with a 1M-token context and four thinking levels. Google puts it near Claude Opus 5.5 on two coding benchmarks for 25% less, which is a vendor claim on a vendor harness; the price is the part an outsider can check, and it lands below both GPT-6.2 Astra and Opus.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 19 cycle is Google filling the middle of its own line. <a href="#gemini-4-neon">Gemini 4 Neon</a> sits between Hydrogen and Carbon, scores 61 on the Artificial Analysis Intelligence Index and lists at $3/$15 per million tokens with a 1M-token context and four thinking levels. Google puts it near Claude Opus 5.5 on two coding benchmarks for 25% less, which is a vendor claim on a vendor harness; the price is the part an outsider can check, and it lands below both GPT-6.2 Astra and Opus.</p>
           <p>The Nov 18 cycle is about what the frontier costs once a rival prices against it. <a href="#gpt-6-2-astra-sol">GPT-6.2 Astra</a> now has outside numbers: second on the Artificial Analysis Intelligence Index at 62 behind Fable 5.2&rsquo;s 65, a 59% hallucination rate on AA-Omniscience, no gain on coding-agent scores, and Sol within half a point of Astra on FrontierCode 2.0 at a fifth of the cost. Microsoft answered the same day with seven <a href="#microsoft-mai-ignite-models">MAI models</a> quoted as shares of rivals, MAI Code 2 at 98% of GPT-6.1 Sol&rsquo;s coding quality for about 40% of the price, and made <a href="#microsoft-decision-1">Decision 1.1</a> generally available.</p>
           <p>Lower down the size range, Reson8&rsquo;s <a href="#rumble-2-flash">Rumble-2-Flash</a> puts a 0.5B Apache-2.0 recognizer for 40+ languages at 6.6% WER, and MarkTechPost adds a second Tencent claim to <a href="#tencent-hy4-flash">Hy4 flash</a>: the Hy4 preview&rsquo;s WorkIndex score at 1/13 of the cost, open weights still to come.</p>
           <p>The Nov 17 cycle is a frontier price cut and a run of small, cheap models. OpenAI&rsquo;s <a href="#gpt-6-2-astra-sol">GPT-6.2 Astra</a> lists at $8/$40, 80% of its predecessor and level with Fable 5.2, with Sol unchanged at $2/$10; Simon Willison reports Astra slightly behind Fable 5.2 on benchmarks so far. Liquid&rsquo;s <a href="#liquid-d1-2">d1.2 and d1.2-ultra</a> add audio and five structured answer types, and ultra scores 75 on the Decision Index v2.1. Tencent&rsquo;s <a href="#tencent-hy4-flash">Hy4 flash</a> activates 12B of 224B parameters at $0.07 per million input tokens.</p>
@@ -128,14 +129,14 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#frontier-proprietary-models">Frontier proprietary models <span class="n">34</span></a></li>
-          <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">21</span></a></li>
+          <li><a href="#open-efficient-frontier-challengers">Open / efficient frontier challengers <span class="n">22</span></a></li>
           <li><a href="#open-weights-releases">Open-weights releases <span class="n">26</span></a></li>
-          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">11</span></a></li>
+          <li><a href="#on-device-quantized-weights">On-device &amp; quantized weights <span class="n">13</span></a></li>
           <li><a href="#large-scale-efficient-moes">Large-scale efficient MoEs <span class="n">25</span></a></li>
           <li><a href="#alternative-decoding-architectures">Alternative decoding architectures <span class="n">34</span></a></li>
           <li><a href="#retrieval-embedding-models">Retrieval &amp; embedding models <span class="n">7</span></a></li>
           <li><a href="#document-parsing-models">Document parsing models <span class="n">4</span></a></li>
-          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">44</span></a></li>
+          <li><a href="#speech-audio-models">Speech &amp; audio models <span class="n">45</span></a></li>
           <li><a href="#video-omni-modal-generation">Video &amp; omni-modal generation <span class="n">6</span></a></li>
           <li><a href="#image-generation-models">Image generation models <span class="n">10</span></a></li>
           <li><a href="#time-series-forecasting-models">Time-series &amp; forecasting models <span class="n">2</span></a></li>
@@ -438,6 +439,14 @@
         <h3>Open / efficient frontier challengers</h3>
         <p class="lead">Chinese and open-leaning labs matching frontier context and integration while differentiating on positioning. Three routes recur here: post-training alone, distillation into a smaller sibling, and composition &mdash; routing work across a pool rather than sending everything to the largest model. Judge entries on active parameters, licence terms, and whether the harness behind a score was published.</p>
 
+        <article class="story" id="swe-2-1">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://cognition.com/blog/swe-2-1">Cognition&rsquo;s SWE-2.1 doubles SWE-2 on Terminal-Bench 4.1, 24.2 to 50.0, with RL alone on Kimi K3</a></h4>
+          <p>Cognition released <strong>SWE-2.1</strong>, trained like SWE-2 with reinforcement learning alone on top of Kimi K3. In Cognition&rsquo;s table it scores <strong>50.0 on Terminal-Bench 4.1</strong> against 24.2 for SWE-2, and 41.3 on FrontierCode 2.0 against 24.1. It still trails the Kimi K3.1 base it does not use (59.7) and Claude Opus 5.5 (65.8) on Terminal-Bench.</p>
+          <p>The largest gain is in security work: <strong>80.0 on ExploitBench</strong> against 36.1 for SWE-2, with Opus 5.5 at 91 and GPT-6.2 Sol at 100. The Code adds an Ultrafast variant it describes as 10&times; faster, a SWE-2.1 Cyber variant for security teams, and free use for Pro, Max and Teams users until December 8. Every figure is Cognition&rsquo;s own.</p>
+          <div class="sources"><a href="https://cognition.com/blog/swe-2-1">Cognition</a> &middot; <span class="via">via TLDR AI (Nov 25), The Code (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="glm-5-4">
           <span class="when">2026-11-23</span>
           <h4><a href="https://z.ai/blog/glm-5.4">Z.ai&rsquo;s GLM-5.4 is a 750B Loop Transformer that runs the same 28 layers twice, with weights held for safety work</a></h4>
@@ -455,16 +464,16 @@
           <div class="sources"><a href="https://qwen.ai/blog?id=qwen4-max">Qwen</a> &middot; <a href="https://www.qwencloud.com/models/qwen4-max?region=ap-southeast-1">Qwen Cloud API</a> &middot; <a href="https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Nov 16), The Code (Nov 16), AlphaSignal (Nov 16), MarkTechPost (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="swe-2-flash">
-          <span class="when">2026-11-05</span>
-          <h4><a href="https://cognition.com/blog/swe-2-flash">Cognition&rsquo;s SWE-2 Flash mid-trains Inkling-Small before RL and runs at 3&times; SWE-2&rsquo;s speed for a fifth of the price</a></h4>
-          <p><strong>SWE-2 Flash</strong> is built on Thinking Machines&rsquo; Inkling-Small (276B total, 12B active), with a mid-training stage added before reinforcement learning for the first time in Cognition&rsquo;s recipe. Against the base model it moves Terminal-Bench 4.0 from 0.9% to 20.0% and FrontierCode 2.0 from 3.2% to <strong>24.0%</strong>, a fraction above the 23.8 of the much larger <a href="#swe-2">SWE-2</a>.</p>
-          <p>Elsewhere in Cognition&rsquo;s table SWE-2 still leads, 27.3 to 20.0 on Terminal-Bench 4.0 and 73.0 to 60.1 on DeepSWE 1.1, and GLM 5.3 Flash and DeepSeek V4.1 Flash both score above 41 on Terminal-Bench 4.0. Flash runs in Devin Desktop and CLI at about 200 tokens a second against 60. The weights are not public; Cognition says it is building a programme to share them with industry partners and researchers.</p>
-          <div class="sources"><a href="https://cognition.com/blog/swe-2-flash">Cognition</a> &middot; <span class="via">via TLDR AI (Nov 5), The Code (Nov 5)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (18)</summary>
+          <summary>Earlier in this section (19)</summary>
+
+          <article class="story" id="swe-2-flash">
+            <span class="when">2026-11-05</span>
+            <h4><a href="https://cognition.com/blog/swe-2-flash">Cognition&rsquo;s SWE-2 Flash mid-trains Inkling-Small before RL and runs at 3&times; SWE-2&rsquo;s speed for a fifth of the price</a></h4>
+            <p><strong>SWE-2 Flash</strong> is built on Thinking Machines&rsquo; Inkling-Small (276B total, 12B active), with a mid-training stage added before reinforcement learning for the first time in Cognition&rsquo;s recipe. Against the base model it moves Terminal-Bench 4.0 from 0.9% to 20.0% and FrontierCode 2.0 from 3.2% to <strong>24.0%</strong>, a fraction above the 23.8 of the much larger <a href="#swe-2">SWE-2</a>.</p>
+            <p>Elsewhere in Cognition&rsquo;s table SWE-2 still leads, 27.3 to 20.0 on Terminal-Bench 4.0 and 73.0 to 60.1 on DeepSWE 1.1, and GLM 5.3 Flash and DeepSeek V4.1 Flash both score above 41 on Terminal-Bench 4.0. Flash runs in Devin Desktop and CLI at about 200 tokens a second against 60. The weights are not public; Cognition says it is building a programme to share them with industry partners and researchers.</p>
+            <div class="sources"><a href="https://cognition.com/blog/swe-2-flash">Cognition</a> &middot; <span class="via">via TLDR AI (Nov 5), The Code (Nov 5)</span></div>
+          </article>
 
           <article class="story" id="deepseek-v4-1-flash-1017">
             <span class="when">2026-10-17</span>
@@ -826,6 +835,22 @@
         <h3>On-device &amp; quantized weights</h3>
         <p class="lead">The open tier competing on local deployability rather than capability. &ldquo;Quantized&rdquo; is a range, not a property, so the number to judge an entry on is not the headline average but where the compression is measured &mdash; single-turn knowledge questions and multi-step agent work come apart sharply here.</p>
 
+        <article class="story" id="gemma-4-e4b-litert-lm">
+          <span class="when">2026-11-25</span>
+          <h4><a href="https://huggingface.co/litert-community/gemma-4-E4B-it-litert-lm">Gemma 4 E4B for LiteRT-LM adds speculative decoding: 21.9 to 49.4 tokens per second on a Galaxy S26 Ultra GPU</a></h4>
+          <p>Google&rsquo;s LiteRT community published a <strong>Gemma 4 E4B</strong> build in the <code>.litertlm</code> format for its on-device runtime. Speculative decoding lifts decode speed on a Samsung S26 Ultra GPU from <strong>21.9 to 49.4 tokens per second on code tasks</strong>, by AlphaSignal&rsquo;s reading of the model card, with 91 on an RTX 4090 and 44 in a WebGPU browser tab.</p>
+          <p>The file is 3.66 GB, Apache 2.0, with a 32k context (128k in the web build), and one file runs on Android, iOS, desktop, web and Raspberry Pi. The doubling is measured on code tasks; the write-up gives no figure for prose.</p>
+          <div class="sources"><a href="https://huggingface.co/litert-community/gemma-4-E4B-it-litert-lm">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 25)</span></div>
+        </article>
+
+        <article class="story" id="ternary-bonsai-2-5-27b">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://prismml.com/news/bonsai-2-5-27b">Ternary Bonsai 2.5 27B keeps a 5.9 GB footprint and recovers most of the agentic score its predecessor lost</a></h4>
+          <p>PrismML released <strong>Ternary Bonsai 2.5 27B</strong>, a ternary-weight version of Qwen3.8 27B that stays at <strong>5.9 GB</strong>. On SWE-bench Verified it scores 75.6 against 60.8 for Bonsai 2 and 80.6 for the full-precision base, and on DeepSWE v1.1 it goes from 0 to 27 against the base&rsquo;s 30.1.</p>
+          <p>The gap is widest where the work is long: Terminal-Bench 2.1 is 60.1 against 70.8 for the base, and LiveCodeBench v6 slipped slightly from Bonsai 2 (83.8 to 83.0). PrismML reports 291 tokens per second on one H100 and 204 on an RTX 4090. The numbers come from PrismML&rsquo;s whitepaper, and the weights are on Hugging Face.</p>
+          <div class="sources"><a href="https://prismml.com/news/bonsai-2-5-27b">PrismML</a> &middot; <a href="https://huggingface.co/collections/prism-ml/bonsai-25-27b">Hugging Face</a> &middot; <span class="via">via TLDR AI (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="inkling-2-mini">
           <span class="when">2026-11-21</span>
           <h4><a href="https://thinkingmachines.ai/news/inkling-2-mini/">Thinking Machines&rsquo; Inkling 2 Mini is a 26B looped MoE that fits a 32GB Mac and reports 79.2% on SWE-bench Verified</a></h4>
@@ -835,24 +860,24 @@
           <div class="sources"><a href="https://thinkingmachines.ai/news/inkling-2-mini/">Thinking Machines</a> &middot; <a href="https://www.marktechpost.com/2026/11/21/thinking-machines-inkling-2-mini-looped-transformer/">MarkTechPost write-up</a> &middot; <a href="https://github.com/unslothai/unsloth">Unsloth</a> &middot; <span class="via">via MarkTechPost (Nov 21), TLDR AI (Nov 23), AlphaSignal (Nov 23)</span></div>
         </article>
 
-        <article class="story" id="embla-1">
-          <span class="when">2026-11-16</span>
-          <h4><a href="https://sevren.ai/blog/embla-1">Sevren&rsquo;s Embla 1 averages 57.4 on five benchmarks at 4 bits and answers in 1.77 s on an iPhone 18 Pro</a></h4>
-          <p>Embla 1 is a reasoning model built to run offline on a phone: 32 layers at width 2048, 8 of 96 routed experts plus one shared expert per token, and a mix of 15 sliding-window, 12 sparse and 5 full-attention layers, with about 95% of attention weights exactly zero at decode. It was pretrained on 1.4T tokens, extended to 256K context, and quantization-aware trained over the last 2,000 SFT steps so that every later stage runs at 4 bits.</p>
-          <p>The 57.4 average covers BFCL, IFBench, AA-Omniscience, GPQA and MATH-500, all measured at 4 bits, which is where this section says to look; the comparison against other small models is Sevren&rsquo;s own.</p>
-          <div class="sources"><a href="https://sevren.ai/blog/embla-1">Sevren</a> &middot; <span class="via">via TLDR AI (Nov 16)</span></div>
-        </article>
-
-        <article class="story" id="lfm3">
-          <span class="when">2026-10-28</span>
-          <h4><a href="https://www.liquid.ai/blog/lfm3">LFM3: six open-weight on-device models around 2B parameters, the text model in about 1 GB with a 256K context</a></h4>
-          <p>Liquid AI released <strong>LFM3</strong>, a family of open-weight text, vision, audio, omni and decision models built on one tri-hybrid backbone, starting in the 2B range. The 1.7B text model beats its 2.6B predecessor with <strong>35% fewer parameters</strong>, fits in about <strong>1 GB</strong> at 4-bit precision and carries a <strong>256K context</strong>, and LFM3-VL-2B adds video input and is said to match Gemma 4 12B across 62 vision benchmarks.</p>
-          <p>The pitch is on-device agents: every model fine-tunes on a single GPU, and The Code relays a claim of beating Qwen3.5-9B on browser and business-app tasks, naming agentic coding and general knowledge as the weak spots. Every figure is Liquid&rsquo;s own. <em>Updated Nov 2:</em> MarkTechPost puts the Qwen comparison at a <strong>49.37</strong> average across 29 self-reported benchmarks against <strong>47.24</strong> for Qwen3.5-9B.</p>
-          <div class="sources"><a href="https://www.liquid.ai/blog/lfm3">Liquid AI</a> &middot; <a href="https://www.marktechpost.com/2026/10/27/liquid-ai-lfm3-open-weight-2b-multimodal-models/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 28), The Code (Oct 28), AlphaSignal (Oct 28), MarkTechPost (Oct 30)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (8)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="embla-1">
+            <span class="when">2026-11-16</span>
+            <h4><a href="https://sevren.ai/blog/embla-1">Sevren&rsquo;s Embla 1 averages 57.4 on five benchmarks at 4 bits and answers in 1.77 s on an iPhone 18 Pro</a></h4>
+            <p>Embla 1 is a reasoning model built to run offline on a phone: 32 layers at width 2048, 8 of 96 routed experts plus one shared expert per token, and a mix of 15 sliding-window, 12 sparse and 5 full-attention layers, with about 95% of attention weights exactly zero at decode. It was pretrained on 1.4T tokens, extended to 256K context, and quantization-aware trained over the last 2,000 SFT steps so that every later stage runs at 4 bits.</p>
+            <p>The 57.4 average covers BFCL, IFBench, AA-Omniscience, GPQA and MATH-500, all measured at 4 bits, which is where this section says to look; the comparison against other small models is Sevren&rsquo;s own.</p>
+            <div class="sources"><a href="https://sevren.ai/blog/embla-1">Sevren</a> &middot; <span class="via">via TLDR AI (Nov 16)</span></div>
+          </article>
+
+          <article class="story" id="lfm3">
+            <span class="when">2026-10-28</span>
+            <h4><a href="https://www.liquid.ai/blog/lfm3">LFM3: six open-weight on-device models around 2B parameters, the text model in about 1 GB with a 256K context</a></h4>
+            <p>Liquid AI released <strong>LFM3</strong>, a family of open-weight text, vision, audio, omni and decision models built on one tri-hybrid backbone, starting in the 2B range. The 1.7B text model beats its 2.6B predecessor with <strong>35% fewer parameters</strong>, fits in about <strong>1 GB</strong> at 4-bit precision and carries a <strong>256K context</strong>, and LFM3-VL-2B adds video input and is said to match Gemma 4 12B across 62 vision benchmarks.</p>
+            <p>The pitch is on-device agents: every model fine-tunes on a single GPU, and The Code relays a claim of beating Qwen3.5-9B on browser and business-app tasks, naming agentic coding and general knowledge as the weak spots. Every figure is Liquid&rsquo;s own. <em>Updated Nov 2:</em> MarkTechPost puts the Qwen comparison at a <strong>49.37</strong> average across 29 self-reported benchmarks against <strong>47.24</strong> for Qwen3.5-9B.</p>
+            <div class="sources"><a href="https://www.liquid.ai/blog/lfm3">Liquid AI</a> &middot; <a href="https://www.marktechpost.com/2026/10/27/liquid-ai-lfm3-open-weight-2b-multimodal-models/">MarkTechPost</a> &middot; <span class="via">via TLDR AI (Oct 28), The Code (Oct 28), AlphaSignal (Oct 28), MarkTechPost (Oct 30)</span></div>
+          </article>
 
           <article class="story" id="apple-on-device-20b">
             <span class="when">2026-10-26</span>
@@ -1518,6 +1543,14 @@
         <h3>Speech &amp; audio models</h3>
         <p class="lead">The stitched ASR&rarr;LLM&rarr;TTS pipeline is being collapsed from both ends: some releases fuse the stages, others fuse the audio kinds. Accuracy has stopped being the argument now that the leading transcribers all sit under 4% word error rate, so judge entries on latency, price per audio hour and language coverage.</p>
 
+        <article class="story" id="inworld-voice-isolator">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://github.com/inworld-ai/voice-isolator">Inworld open-sources Voice Isolator v1: 48 kHz speech isolation in a 58M streaming model with 63 ms latency</a></h4>
+          <p>Inworld released <strong>Voice Isolator v1</strong> under Apache 2.0: a 64M-parameter offline checkpoint and a <strong>58M causal streaming checkpoint with 63 ms of algorithmic latency</strong>, both working on full-band 48 kHz audio. The architecture is a band-split dual-path network mixing attention and Mamba blocks, trained on about 10,000 hours of paired clean and noisy speech.</p>
+          <p>It removes noise, music, competing talkers and late reverberation and does nothing else: no restoration and no speaker selection, with restoration planned for v2. AlphaSignal&rsquo;s headline says it beats Krisp, a closed product; the summary read for this entry gives no score for that comparison.</p>
+          <div class="sources"><a href="https://github.com/inworld-ai/voice-isolator">GitHub</a> &middot; <a href="https://huggingface.co/inworld/voice-isolator">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="gpt-live-1-1-api">
           <span class="when">2026-11-19</span>
           <h4><a href="https://developers.openai.com/api/docs/models/gpt-live-1.1">GPT-Live-1.1 reaches the API with a standby rate that cuts idle voice minutes from $0.05 to $0.02</a></h4>
@@ -1533,16 +1566,16 @@
           <div class="sources"><a href="https://huggingface.co/Reson8/Rumble-2-Flash">Hugging Face model card</a> &middot; <span class="via">via MarkTechPost (Nov 18)</span></div>
         </article>
 
-        <article class="story" id="tiny-voca">
-          <span class="when">2026-11-16</span>
-          <h4><a href="https://huggingface.co/n4ze3m/tiny-voca">tiny-voca is a 4.5M-parameter text-to-speech model trained only on synthetic speech, running 70&times; real time on four CPU threads</a></h4>
-          <p>The whole model, waveform generator included, has 4.5M parameters (about 18 MB) and was trained from scratch on roughly 18 hours of synthetic speech, so no recorded human voice is in its data. It runs about 70&times; faster than real time on four CPU threads, with two voices and controls for speed and pitch.</p>
-          <p>A four-block phoneme encoder, a duration predictor and two frame-level transformers drive a 25,862-parameter source-filter vocoder. The model card measures speed and footprint, not quality against larger systems.</p>
-          <div class="sources"><a href="https://huggingface.co/n4ze3m/tiny-voca">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 16)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (41)</summary>
+          <summary>Earlier in this section (42)</summary>
+
+          <article class="story" id="tiny-voca">
+            <span class="when">2026-11-16</span>
+            <h4><a href="https://huggingface.co/n4ze3m/tiny-voca">tiny-voca is a 4.5M-parameter text-to-speech model trained only on synthetic speech, running 70&times; real time on four CPU threads</a></h4>
+            <p>The whole model, waveform generator included, has 4.5M parameters (about 18 MB) and was trained from scratch on roughly 18 hours of synthetic speech, so no recorded human voice is in its data. It runs about 70&times; faster than real time on four CPU threads, with two voices and controls for speed and pitch.</p>
+            <p>A four-block phoneme encoder, a duration predictor and two frame-level transformers drive a 25,862-parameter source-filter vocoder. The model card measures speed and footprint, not quality against larger systems.</p>
+            <div class="sources"><a href="https://huggingface.co/n4ze3m/tiny-voca">Hugging Face</a> &middot; <span class="via">via AlphaSignal (Nov 16)</span></div>
+          </article>
 
           <article class="story" id="liquidcodec">
             <span class="when">2026-11-13</span>
@@ -2092,6 +2125,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-25</span><span class="label"><a href="#gemma-4-e4b-litert-lm">Gemma 4 E4B for LiteRT-LM adds speculative decoding: 21.9 to 49.4 tokens per second on a Galaxy S26 Ultra GPU</a></span></li>
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#inworld-voice-isolator">Inworld open-sources Voice Isolator v1: 48 kHz speech isolation in a 58M streaming model with 63 ms latency</a></span></li>
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#ternary-bonsai-2-5-27b">Ternary Bonsai 2.5 27B keeps a 5.9 GB footprint and recovers most of the agentic score its predecessor lost</a></span></li>
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#swe-2-1">Cognition&rsquo;s SWE-2.1 doubles SWE-2 on Terminal-Bench 4.1, 24.2 to 50.0, with RL alone on Kimi K3</a></span></li>
         <li><span class="date">2026-11-23</span><span class="label"><a href="#glm-5-4">Z.ai&rsquo;s GLM-5.4 is a 750B Loop Transformer that runs the same 28 layers twice, with weights held for safety work</a></span></li>
         <li><span class="date">2026-11-21</span><span class="label"><a href="#inkling-2-mini">Thinking Machines&rsquo; Inkling 2 Mini is a 26B looped MoE that fits a 32GB Mac and reports 79.2% on SWE-bench Verified</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#apple-fastframes">Apple&rsquo;s FastFrames generates 480p video at 36 ms a frame on one B200, about 8&times; faster at matched quality</a></span></li>

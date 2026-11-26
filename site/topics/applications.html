@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Applications &amp; case studies</h1>
-      <div class="meta">Last updated: 2026-11-25</div>
+      <div class="meta">Last updated: 2026-11-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 24 addition is a general model doing a specialist&rsquo;s job, with a lab result behind it. OpenAI reports that GPT-6.2 designs protein binders using reasoning and code alone, and that 35 of 322 designs bound across five targets in wet-lab tests with Onava. Specialised models still screened the candidates, structure prediction remains weak, and the preprint is not peer reviewed. It is one of the few entries in the drug-discovery section with something tested outside the model, and what was tested is binding in an assay.</p>
         <p>The Nov 24 cycle is two results where the check sits outside the model. Google DeepMind&rsquo;s <a href="#deepmind-quantum-lean-agents">Gemini 4 agent teams</a> wrote quantum programs whose correctness and cost are proven in Lean, with a 290x improvement on quantum arithmetic and 12x on a fusion-relevant simulation; nothing ran on quantum hardware. A historian reports that <a href="#gpt-6-2-astra-sketchbook">GPT-6.2 Astra</a> attributed an anonymous 1808 sketchbook in 22 minutes and named the paper journal that would confirm it, which a person then read.</p>
         <p>The Nov 19 change is an update to the ETH result. The three computer scientists reviewing <a href="#openai-academic-results-eth">OpenAI&rsquo;s and Anthropic&rsquo;s refutation</a> opened a public blog for the examination, posted the OpenAI prompt that produced it and plan conferences on the verification; nothing has been confirmed or refuted yet.</p>
         <p>The Nov 17 cycle is two claims about models and science, both on thin evidence. An <a href="#claude-protein-sequences">outside post</a> reports recent Claude models predicting the next amino acid in little-studied bacterial proteins and infers training on protein sequences at scale, with Fable 5.2 ahead of every open protein model tested. OpenAI&rsquo;s <a href="#openai-science-at-the-frontier">Science at the Frontier</a> study of 1,819 academic scientists reports work taking 1.9 times as long without ChatGPT, self-reported and observational by OpenAI&rsquo;s own account.</p>
         <p>The Nov 16 cycle adds one result in physics. OpenAI reports that physicist Nathaniel Craig and <a href="#gpt-6-astra-standard-model">GPT-6 Astra</a> produced a candidate lattice formulation of the Standard Model, with Astra helping build the framework and a supporting proof. It is a vendor write-up of one collaboration with no referee or independent check named, so on this page&rsquo;s test of what was checked outside the model it remains a candidate.</p>
-        <p>The Nov 13 cycle puts Claude in the meeting and agents over a forest. <a href="#claude-meetings">Claude Meetings</a> joins Google Meet as a visible participant, builds documents and whiteboards during the call and keeps a transcript but no audio, for Team and Enterprise plans. Forty-eight Google AI agents scanning NASA LiDAR <a href="#maya-site-lidar-agents">flagged a possible unmapped Maya site</a> in Mexico, a candidate under investigation known so far only from press coverage. <a href="#world-labs-atlas">World Labs&rsquo; Atlas</a>, recorded in September without a link, now points at World Labs&rsquo; own page.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 13 cycle puts Claude in the meeting and agents over a forest. <a href="#claude-meetings">Claude Meetings</a> joins Google Meet as a visible participant, builds documents and whiteboards during the call and keeps a transcript but no audio, for Team and Enterprise plans. Forty-eight Google AI agents scanning NASA LiDAR <a href="#maya-site-lidar-agents">flagged a possible unmapped Maya site</a> in Mexico, a candidate under investigation known so far only from press coverage. <a href="#world-labs-atlas">World Labs&rsquo; Atlas</a>, recorded in September without a link, now points at World Labs&rsquo; own page.</p>
           <p>The Nov 12 cycle is two results from labs and two from deployments. Google DeepMind&rsquo;s <a href="#alphagenome-2">AlphaGenome 2</a> predicts how DNA variants act in specific cell types, doubles the variants its predecessor identified by DeepMind&rsquo;s count, and adapts to new cell states without retraining, for non-commercial use only. The physics proof in OpenAI&rsquo;s <a href="#openai-academic-results-eth">three academic results</a> cleared its review: the appointed experts affirmed the Yang&ndash;Mills existence proof while saying they do not yet fully understand it.</p>
           <p><a href="#shopify-generative-discovery">Shopify</a> replaced separate search and recommendation with one generative model that emits products as semantic-ID tokens and reports a 9.85% conversion lift, and <a href="#airbnb-support-assistant">Airbnb</a> says its support assistant resolved about 40% of third-quarter issues without a human and cut cost per booking by more than 17%. Both numbers come from the company that benefits, and neither says how its denominator was chosen.</p>
           <p>The Nov 11 cycle is three platforms moving into the workplace and the storefront. Anthropic&rsquo;s <a href="#claude-sheets-whiteboards-data">Sheets, Whiteboards and Data</a> put spreadsheets of up to 100,000 cells, shared boards and warehouse-backed dashboards inside Claude, with Claude Meetings in beta. Google Cloud&rsquo;s <a href="#gemini-for-healthcare">Gemini for healthcare</a> connects its agent to EHR, billing and claims systems in preview, with no outcome figures. OpenAI&rsquo;s <a href="#businesses-in-chatgpt">Businesses in ChatGPT</a> lets merchants publish product feeds and, in the US, deploy agents in front of 1.2 billion weekly users while seeing only aggregate analytics. None of the three publishes a measured result yet.</p>
@@ -102,7 +103,7 @@
           <li><a href="#healthcare-ai-and-deployment-economics">Healthcare AI &amp; deployment economics <span class="n">14</span></a></li>
           <li><a href="#knowledge-work-productivity">Knowledge-work productivity <span class="n">15</span></a></li>
           <li><a href="#agentic-data-science">Agentic data science <span class="n">1</span></a></li>
-          <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">18</span></a></li>
+          <li><a href="#drug-discovery-and-biomedicine">Drug discovery &amp; biomedicine <span class="n">19</span></a></li>
           <li><a href="#scientific-discovery-beyond-biomedicine">Scientific discovery beyond biomedicine <span class="n">19</span></a></li>
           <li><a href="#product-search-and-e-commerce">Product search &amp; e-commerce <span class="n">4</span></a></li>
           <li><a href="#access-to-frontier-models-in-research">Access to frontier models in research <span class="n">2</span></a></li>
@@ -560,6 +561,14 @@
         <h3>Drug discovery &amp; biomedicine</h3>
         <p class="lead">Discovery runs on a different clock from a deployed agent: wet-lab validation, trials, and one result amortised across a whole drug programme. Most entries here announce a capability rather than report a validated outcome, so the question each one has to answer is what has been tested outside the model.</p>
 
+        <article class="story" id="gpt-6-protein-design">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/">OpenAI: GPT-6.2 designs protein binders with reasoning and code alone, and 35 of 322 bound in the lab</a></h4>
+          <p>OpenAI reports that its GPT-6 models design protein structures and sequences using only reasoning and general-purpose code, without calling a specialised biology model to generate them. In wet-lab tests with Onava, <strong>35 of 322 minibinders</strong> based on GPT-6.2&rsquo;s designs bound across five targets including PD-L1, and 14 of 107 proteins bound in a second experiment where the model also wrote the sequences.</p>
+          <p>AlphaSignal adds that 179 of 272 redesigned antibody fragments kept their binding, and that an internal model scored 43.7% on MotifBench against 27.8% for RFdiffusion. Specialised tools (ESMFold2, Boltz-2, ProteinMPNN) still supplied sequences and screened candidates, and full structure prediction remains weak. The preprint is not peer reviewed, and binding in an assay is not a therapeutic effect.</p>
+          <div class="sources"><a href="https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/">OpenAI</a> &middot; <a href="https://cdn.openai.com/pdf/gpt-6-a-universal-foundation-model-for-protein-biology.pdf">Preprint (PDF)</a> &middot; <span class="via">via TLDR AI (Nov 25), AlphaSignal (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="claude-protein-sequences">
           <span class="when">2026-11-17</span>
           <h4><a href="https://xinmingtu.cn/blog/2026/claude-opus-5-5-protein-sequences/">Outside tests suggest recent Claude models were trained on protein sequences at scale, with Fable 5.2 ahead of every open protein model tested</a></h4>
@@ -575,16 +584,16 @@
           <div class="sources"><a href="https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/">Google DeepMind</a> &middot; <span class="via">via TLDR AI (Nov 12), Forward Future (Nov 12)</span></div>
         </article>
 
-        <article class="story unlinked" id="claude-vault-proteins">
-          <span class="when">2026-11-06</span>
-          <h4>Anthropic&rsquo;s biology team used Claude to find vault-particle relatives across 29 bacterial groups and map a structure in days</h4>
-          <p>Vault particles are barrel-shaped protein shells known since 1986 with no established function. Anthropic&rsquo;s biology team had Claude search <strong>15 billion predicted proteins</strong> and found vault relatives across <strong>29 bacterial groups</strong>, where they had been known only in complex organisms such as animals and plants; Claude also helped with DNA design, purification and microscopy analysis, and structure mapping took days rather than weeks or months.</p>
-          <p>One Claude-generated protocol put an unsuitable additive in the bacterial growth medium and cost two weeks before a human caught it. AlphaSignal&rsquo;s link to Anthropic&rsquo;s write-up is a tracking redirect that had expired by the time it was followed, so the entry is unlinked.</p>
-          <div class="sources"><span class="via">via AlphaSignal (Nov 6) &mdash; no public URL given</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story unlinked" id="claude-vault-proteins">
+            <span class="when">2026-11-06</span>
+            <h4>Anthropic&rsquo;s biology team used Claude to find vault-particle relatives across 29 bacterial groups and map a structure in days</h4>
+            <p>Vault particles are barrel-shaped protein shells known since 1986 with no established function. Anthropic&rsquo;s biology team had Claude search <strong>15 billion predicted proteins</strong> and found vault relatives across <strong>29 bacterial groups</strong>, where they had been known only in complex organisms such as animals and plants; Claude also helped with DNA design, purification and microscopy analysis, and structure mapping took days rather than weeks or months.</p>
+            <p>One Claude-generated protocol put an unsuitable additive in the bacterial growth medium and cost two weeks before a human caught it. AlphaSignal&rsquo;s link to Anthropic&rsquo;s write-up is a tracking redirect that had expired by the time it was followed, so the entry is unlinked.</p>
+            <div class="sources"><span class="via">via AlphaSignal (Nov 6) &mdash; no public URL given</span></div>
+          </article>
 
           <article class="story" id="anthropic-drug-development">
             <span class="when">2026-10-28</span>
@@ -929,6 +938,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#gpt-6-protein-design">OpenAI: GPT-6.2 designs protein binders with reasoning and code alone, and 35 of 322 bound in the lab</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#gpt-6-2-astra-sketchbook">GPT-6.2 Astra attributes an anonymous 1808 sketchbook at Yale in 22 minutes, and a paper archive confirms it</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#deepmind-quantum-lean-agents">Teams of Gemini 4 agents find cheaper quantum algorithms, each proven in Lean, with a 290x gain on quantum arithmetic</a></span></li>
         <li><span class="date">2026-11-17</span><span class="label"><a href="#openai-science-at-the-frontier">OpenAI&rsquo;s study of 1,819 academic scientists on ChatGPT reports work taking 1.9 times as long without it, by their own estimate</a></span></li>

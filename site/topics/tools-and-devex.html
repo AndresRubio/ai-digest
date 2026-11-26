@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Tools, IDEs &amp; developer experience</h1>
-      <div class="meta">Last updated: 2026-11-25</div>
+      <div class="meta">Last updated: 2026-11-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 23 to 24 cycle is tools leaving the chat window. Claude artifacts now install as Mac and Windows apps, in beta, with permissions that reset on every update and no review by Anthropic before install. Google Antigravity lets the user choose the planner and the executor models separately, and moved Gemini 4 Carbon down to paid Pro. Uber described 5,000 agent skills run a million times a month, with agent-reported failures turned into eval cases; that entry rests on a summary, since the article sits behind a login.</p>
         <p>The Nov 23 to 24 cycle is about what happens after the agent has written the code. <a href="#claude-ship">Claude Ship</a> adds two beta agents to Code Review: one keeps a pull request green and records how to undo each fix, the other approves routine changes against a policy file the team keeps in the repo. Branch rules still decide what merges, and the doubled merge count is Anthropic reporting on its own team. <a href="#ladybird-wpt-agents">Ladybird</a> shipped its first alpha after agents added roughly 60,000 web-platform-test passes in five days; the project does not name the models.</p>
         <p>The Nov 20 addition is a small one. Google Antigravity&rsquo;s <a href="#antigravity-btw-fork">/btw</a> now forks the session into a parallel thread with full context, which can be explored and promoted back while the main agent keeps working. It puts the parallel-session habit of that section inside a single agent, and the post gives no token cost for a fork.</p>
         <p>The Nov 20 cycle is an agent checking another agent&rsquo;s diagnosis. OpenAI&rsquo;s <a href="#openai-performance-factory">Performance Factory</a> has Codex chase ChatGPT performance regressions and a second Codex session try to disprove each root cause; OpenAI graded 70 of 100 suggestions accurate, the useful number because it says how often a person still has to finish the job. <a href="#firecrawl-local">Firecrawl Local</a> packs the scraper into one binary and a localhost MCP server; the 37&times; speed claim is AlphaSignal&rsquo;s, not the README&rsquo;s.</p>
         <p>The Nov 19 cycle measures overhead the user never typed. A developer found that <a href="#antigravity-quota-measurement">Google Antigravity</a> drops its prompt cache after a five-minute pause and opens even a five-word prompt with 13,800 to 16,800 tokens of instructions, MCP schemas and skills, which is where its weekly quota goes. On the spec side, a paper finds that giving an agent a <a href="#program-skeletons">program skeleton</a> alongside tests cuts mean test error by 48.4% across four models, so the structure a human writes down still pays.</p>
-        <p>The Nov 18 cycle is the cost of the agent&rsquo;s own context. <a href="#claude-code-code-mode">Code Mode</a> has Claude write one JavaScript program that chains Bash, Read and Edit instead of a round-trip per call, terminal-only and with no published saving. <a href="#context-has-a-price">Context Has a Price</a> measures the other side over 20,000 runs: retrieved code cut searches 18&ndash;34% but raised cost 33&ndash;42% under a tenth-price cache, because cheaper prompts changed what the agent did next. Anthropic&rsquo;s <a href="#claude-docs-chaos-loop">chaos loop</a> had Claude load-test Claude Docs before launch, which then saw 60 server errors in 2 billion requests.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 18 cycle is the cost of the agent&rsquo;s own context. <a href="#claude-code-code-mode">Code Mode</a> has Claude write one JavaScript program that chains Bash, Read and Edit instead of a round-trip per call, terminal-only and with no published saving. <a href="#context-has-a-price">Context Has a Price</a> measures the other side over 20,000 runs: retrieved code cut searches 18&ndash;34% but raised cost 33&ndash;42% under a tenth-price cache, because cheaper prompts changed what the agent did next. Anthropic&rsquo;s <a href="#claude-docs-chaos-loop">chaos loop</a> had Claude load-test Claude Docs before launch, which then saw 60 server errors in 2 billion requests.</p>
           <p>The Nov 17 cycle is about agents checking their own work. <a href="#claude-code-ios-simulator">Claude Code</a> now drives the iOS Simulator, folding and unfolding a simulated iPhone Duo to check layouts. The Claude Code team&rsquo;s <a href="#claude-code-verification">verification post</a> describes end-to-end, property and differential tests, three rounds before a human is called and a 39-item reliability checklist. Meta&rsquo;s <a href="#meta-jittests">JiTTests</a> have an LLM write tests meant to fail on risky diffs, catching 74 privacy incidents at a 60% true-positive rate. <a href="#aws-emulator">AWS Emulator</a> gains its commit count: 29,684 in three weeks.</p>
           <p>The Nov 16 cycle is Claude Code and Devin each adding a surface. Cognition&rsquo;s <a href="#devin-apps">Devin Apps</a> builds internal tools from a description and hosts them on Devin&rsquo;s own machine, open only to signed-in Devin users, billed while the machine is awake and limited to one machine per app. Claude Code&rsquo;s <a href="#claude-code-projects">Projects</a> coordinator now answers in the project chat and reports on threads unprompted, with <code>/btw</code>, <code>/fork</code>, read-only thread sharing and reminders, and the desktop app gained themes built as <a href="#claude-mods">mods</a> that can react to the session. Both Claude Code changes are updates to existing entries.</p>
           <p>The Nov 12 cycle is two measurements of what agent tooling costs. OpenRouter ran <a href="#mcp-cli-skills-context-cost">one task on Sonnet 5.5</a> and counted 59,417 tokens through MCP with default tools loaded, 3,315 as a skill and 1,421 through a CLI, with Tool Search bringing a toolset&rsquo;s upfront cost under 600 tokens; one task sizes the overhead without ranking the mechanisms. <a href="#aws-emulator">AWS Emulator</a> gives coding agents a free CC0 copy of 200+ AWS services to test against offline. Agents wrote all of it from 438 API models, and it passes 56.6% of 42,857 fidelity tests, with no throttling, outages or regional behaviour yet. GitHub Next&rsquo;s <a href="#ace-github-next">Ace</a>, covered Nov 9, gained The Code&rsquo;s detail that its agents reach the host over Tailscale.</p>
@@ -125,12 +126,12 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#memory-and-configuration-patterns">Memory &amp; configuration patterns <span class="n">8</span></a></li>
-          <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">8</span></a></li>
+          <li><a href="#skills-vs-mcps-vs-custom-tools">Skills vs MCPs vs custom tools <span class="n">9</span></a></li>
           <li><a href="#token-economics-and-prompt-caching">Token economics &amp; prompt caching <span class="n">16</span></a></li>
           <li><a href="#knowledge-graphs-and-agent-memory-hygiene">Knowledge graphs &amp; agent memory hygiene <span class="n">6</span></a></li>
           <li><a href="#agent-native-tooling">Agent-native tooling <span class="n">49</span></a></li>
-          <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">18</span></a></li>
-          <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">18</span></a></li>
+          <li><a href="#plugin-and-extensibility-layers-for-coding-agents">Plugin &amp; extensibility layers for coding agents <span class="n">19</span></a></li>
+          <li><a href="#model-selection-inside-coding-agents">Model selection inside coding agents <span class="n">19</span></a></li>
           <li><a href="#small-models-and-inference-hardware">Small models &amp; inference hardware <span class="n">4</span></a></li>
           <li><a href="#open-source-agent-infrastructure">Open-source agent infrastructure <span class="n">19</span></a></li>
           <li><a href="#the-agentic-harness-build-vs-buy">The agentic harness: build vs buy <span class="n">21</span></a></li>
@@ -214,6 +215,14 @@
         <h3>Skills vs MCPs vs custom tools</h3>
         <p class="lead">Skills are the lightweight default for a recurring workflow. MCPs are preferred when the extension has to handle nuance the skill abstraction cannot express. CLIs and custom tools remain valid for deterministic, distribution-friendly work. Judge entries on which mechanism a release picks and what it says about the boundary between them.</p>
 
+        <article class="story" id="uber-agent-skills">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://x.com/UberEng/status/2125008806249930999">Uber runs 5,000 agent skills a million times a month and turns agent-reported failures into eval cases</a></h4>
+          <p>Uber Engineering described a software lifecycle built around agent skills. The Code puts the scale at <strong>5,000 skills run a million times a month</strong>. Agents report their own failures, the reports become eval cases, and agents draft the fixes for human review.</p>
+          <p>The post also covers skill versioning, trajectory evals, skill ablation and token-cost tuning. This entry rests on The Code&rsquo;s line and a reader&rsquo;s summary of the thread; the article itself sits behind an X login and was not read.</p>
+          <div class="sources"><a href="https://x.com/UberEng/status/2125008806249930999">Uber Engineering on X</a> &middot; <span class="via">via The Code (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="mcp-cli-skills-context-cost">
           <span class="when">2026-11-12</span>
           <h4><a href="https://openrouter.ai/blog/insights/mcp-vs-cli-vs-skills/">OpenRouter measures one task on Sonnet 5.5: 59,417 tokens through MCP, 3,315 as a skill, 1,421 via CLI</a></h4>
@@ -229,16 +238,16 @@
           <div class="sources"><a href="https://developer.chrome.com/blog/modern-web-guidance-v1">Chrome for Developers</a> &middot; <span class="via">via TLDR (Nov 11)</span></div>
         </article>
 
-        <article class="story" id="james-ward-mcp-tool-design">
-          <span class="when">2026-10-22</span>
-          <h4><a href="https://aaif.io/blog/james-ward-thinks-your-mcp-server-could-use-some-work">James Ward on MCP tool design: 100 records should not be 100 calls, and a DSL over 16,000 AWS APIs beats generated Python</a></h4>
-          <p>James Ward&rsquo;s AAIF post argues that an MCP server&rsquo;s token bill is set by tool design: fetching <strong>100 customer records as 100 single-record calls</strong> succeeds every time and hides the waste unless traces are correlated, so aggregate tools and observability have to arrive together. For the roughly <strong>16,000 AWS APIs</strong> he proposes a constrained DSL whose multi-step operations are easier to validate than generated Python, and reports that a helpful documentation notice tripped prompt-injection warnings after release despite hundreds of local wording tests.</p>
-          <p>The method he lands on is evaluating whole tasks across models and harnesses, which separates what the protocol cannot do from what the tool author got wrong; it is the MCP side of this section&rsquo;s boundary argued from cost.</p>
-          <div class="sources"><a href="https://aaif.io/blog/james-ward-thinks-your-mcp-server-could-use-some-work">AAIF blog</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (5)</summary>
+          <summary>Earlier in this section (6)</summary>
+
+          <article class="story" id="james-ward-mcp-tool-design">
+            <span class="when">2026-10-22</span>
+            <h4><a href="https://aaif.io/blog/james-ward-thinks-your-mcp-server-could-use-some-work">James Ward on MCP tool design: 100 records should not be 100 calls, and a DSL over 16,000 AWS APIs beats generated Python</a></h4>
+            <p>James Ward&rsquo;s AAIF post argues that an MCP server&rsquo;s token bill is set by tool design: fetching <strong>100 customer records as 100 single-record calls</strong> succeeds every time and hides the waste unless traces are correlated, so aggregate tools and observability have to arrive together. For the roughly <strong>16,000 AWS APIs</strong> he proposes a constrained DSL whose multi-step operations are easier to validate than generated Python, and reports that a helpful documentation notice tripped prompt-injection warnings after release despite hundreds of local wording tests.</p>
+            <p>The method he lands on is evaluating whole tasks across models and harnesses, which separates what the protocol cannot do from what the tool author got wrong; it is the MCP side of this section&rsquo;s boundary argued from cost.</p>
+            <div class="sources"><a href="https://aaif.io/blog/james-ward-thinks-your-mcp-server-could-use-some-work">AAIF blog</a> &middot; <span class="via">via AAIF newsletter (Oct 22)</span></div>
+          </article>
 
           <article class="story" id="vercel-state-of-agent-skills">
             <span class="when">2026-09-29</span>
@@ -864,6 +873,14 @@
         <h3>Plugin &amp; extensibility layers for coding agents</h3>
         <p class="lead">Beyond ad-hoc skills and MCP servers, coding agents are gaining formal package management. Two things to watch: whether a bundle targets an open specification or one client, and whether the surface answers only what can be added to a harness or also what can be centrally removed.</p>
 
+        <article class="story" id="claude-install-as-app">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://claude.com/resources/articles/install-as-app">Claude artifacts install as Mac and Windows apps, in beta, with three permission levels</a></h4>
+          <p><strong>Install as app</strong> turns a Claude artifact into a desktop app with its own icon and window, in beta in Claude for Mac and Windows on all plans. An installed app can use Claude and the user&rsquo;s connectors, send notifications, sit in the menu bar or system tray, and it updates when the underlying artifact is edited.</p>
+          <p>Permissions come in three levels: browser-equivalent by default, app permissions for things like global shortcuts, and full computer access to run programs and change files. <strong>Approval covers one version only</strong>, so Claude asks again after every update, and Team and Enterprise admins can switch the upper levels off. AlphaSignal notes that an app needs a signed-in Claude session to open and that Anthropic does not review apps before install.</p>
+          <div class="sources"><a href="https://claude.com/resources/articles/install-as-app">Claude</a> &middot; <span class="via">via TLDR AI (Nov 25), AlphaSignal (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="elephant-goldfish-plugin">
           <span class="when">2026-11-08</span>
           <h4><a href="https://www.marktechpost.com/2026/11/08/google-elephant-goldfish-model-plugin-spec-review-coding-agents/">Google open-sources the Elephant-Goldfish plugin: an agent writes a spec, then context-free subagents attack it before any code</a></h4>
@@ -880,15 +897,15 @@
           <div class="sources"><a href="https://github.com/postmanlabs/postman-app-support/issues/14370">GitHub issue</a> &middot; <span class="via">via The Code (Nov 4)</span></div>
         </article>
 
-        <article class="story" id="deepseek-harness-creator-mode">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://www.deepseek.com/en/harness/">DeepSeek Harness Creator Mode builds agent plugins from a text prompt</a></h4>
-          <p><strong>Creator Mode</strong> in DeepSeek&rsquo;s open-source Harness generates a plugin from a text description, and the harness treats tools, skills and interface changes alike as plugins. It is in preview, so expect API changes.</p>
-          <div class="sources"><a href="https://www.deepseek.com/en/harness/">DeepSeek</a> &middot; <span class="via">via The Code (Nov 3)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="deepseek-harness-creator-mode">
+            <span class="when">2026-11-03</span>
+            <h4><a href="https://www.deepseek.com/en/harness/">DeepSeek Harness Creator Mode builds agent plugins from a text prompt</a></h4>
+            <p><strong>Creator Mode</strong> in DeepSeek&rsquo;s open-source Harness generates a plugin from a text description, and the harness treats tools, skills and interface changes alike as plugins. It is in preview, so expect API changes.</p>
+            <div class="sources"><a href="https://www.deepseek.com/en/harness/">DeepSeek</a> &middot; <span class="via">via The Code (Nov 3)</span></div>
+          </article>
 
           <article class="story" id="appllama-skills">
             <span class="when">2026-10-28</span>
@@ -1016,6 +1033,14 @@
         <h3>Model selection inside coding agents</h3>
         <p class="lead">The harness is model-agnostic: swapping the underlying coding model is a one-line config change, and effort level is becoming a routing parameter too. What a tool sells is no longer the model it bundles but the integration surface &mdash; live documentation, reachable devices, enforced permissions, review put in front of you.</p>
 
+        <article class="story" id="antigravity-orchestrator-settings">
+          <span class="when">2026-11-23</span>
+          <h4><a href="https://www.testingcatalog.com/google-adds-task-checklists-to-antigravity-and-carbon-for-pro/">Google Antigravity lets users pick planner and executor models separately and moves Carbon down to Pro</a></h4>
+          <p>Antigravity gained an <strong>Orchestrator Settings</strong> panel: the user picks one model to plan, decide and review and another to search, edit, build and test, each with its own effort level. Varun Mohan, who leads the product, says he pairs Gemini 4 Neon High with Hydrogen High. Long tasks now show a live checklist.</p>
+          <p>Alongside it, paid Pro users get Gemini 4 Carbon, Hydrogen opens to all users, quotas were reset, and the separate Argon quota bucket for Pro was folded into the general Gemini one. The source is Testing Catalog&rsquo;s write-up of Mohan&rsquo;s posts on X, not Google documentation.</p>
+          <div class="sources"><a href="https://www.testingcatalog.com/google-adds-task-checklists-to-antigravity-and-carbon-for-pro/">Testing Catalog (news report)</a> &middot; <span class="via">via TLDR AI (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="github-copilot-fusion">
           <span class="when">2026-10-28</span>
           <h4><a href="https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/">GitHub Copilot Fusion routes each task across models; Artificial Analysis puts it within two points of Claude Code at half the cost</a></h4>
@@ -1031,15 +1056,15 @@
           <div class="sources"><a href="https://claude.dev/blog/spending-your-effort/">Claude</a> &middot; <span class="via">via The Code (Oct 5)</span></div>
         </article>
 
-        <article class="story" id="claude-api-prompt-audit">
-          <span class="when">2026-09-24</span>
-          <h4><a href="https://github.com/anthropics/skills">The claude-api skill&rsquo;s prompt-audit rewrites CLAUDE.md and skill files for a new model</a></h4>
-          <p>An Anthropic engineer shared <code>/claude-api prompt-audit</code>, run from a project root after <code>claude update</code>: it scans <code>CLAUDE.md</code>, skills, agent files and code calling the Claude API, flags anti-patterns for the current model and proposes a diff to review. The skill is open source, and the advice is to rerun it on every model switch &mdash; a model change now carries a context-file migration, the concrete form of the <a href="#opus-5-5-playbook">Opus 5.5 playbook</a>.</p>
-          <div class="sources"><a href="https://github.com/anthropics/skills">anthropics/skills</a> &middot; <a href="https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform">Claude blog (migration benchmark)</a> &middot; <span class="via">via The Code (Sep 24)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (15)</summary>
+          <summary>Earlier in this section (16)</summary>
+
+          <article class="story" id="claude-api-prompt-audit">
+            <span class="when">2026-09-24</span>
+            <h4><a href="https://github.com/anthropics/skills">The claude-api skill&rsquo;s prompt-audit rewrites CLAUDE.md and skill files for a new model</a></h4>
+            <p>An Anthropic engineer shared <code>/claude-api prompt-audit</code>, run from a project root after <code>claude update</code>: it scans <code>CLAUDE.md</code>, skills, agent files and code calling the Claude API, flags anti-patterns for the current model and proposes a diff to review. The skill is open source, and the advice is to rerun it on every model switch &mdash; a model change now carries a context-file migration, the concrete form of the <a href="#opus-5-5-playbook">Opus 5.5 playbook</a>.</p>
+            <div class="sources"><a href="https://github.com/anthropics/skills">anthropics/skills</a> &middot; <a href="https://claude.com/blog/reducing-cost-and-improving-performance-with-claude-platform">Claude blog (migration benchmark)</a> &middot; <span class="via">via The Code (Sep 24)</span></div>
+          </article>
 
           <article class="story" id="opus-5-5-playbook">
             <span class="when">2026-09-23</span>
@@ -2019,7 +2044,10 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#uber-agent-skills">Uber runs 5,000 agent skills a million times a month and turns agent-reported failures into eval cases</a></span></li>
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#claude-install-as-app">Claude artifacts install as Mac and Windows apps, in beta, with three permission levels</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#claude-ship">Claude Ship adds two beta agents that fix a pull request and approve it against a policy file in the repo</a></span></li>
+        <li><span class="date">2026-11-23</span><span class="label"><a href="#antigravity-orchestrator-settings">Google Antigravity lets users pick planner and executor models separately and moves Carbon down to Pro</a></span></li>
         <li><span class="date">2026-11-23</span><span class="label"><a href="#ladybird-wpt-agents">Ladybird ships its first alpha after coding agents added about 60,000 web-platform-test passes in five days</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#antigravity-btw-fork">Google Antigravity&rsquo;s /btw now forks a side thread with full context while the main agent keeps working</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#firecrawl-local">Firecrawl Local runs the scraper as one binary and an MCP server on localhost</a></span></li>

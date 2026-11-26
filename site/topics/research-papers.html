@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-11-25</div>
+      <div class="meta">Last updated: 2026-11-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 24 cycle is two more machine-produced proofs, from two labs on the same day. Anthropic posted a Lean-checked proof that VP &ne; VNP over every field, found by an internal Claude model, and says no human mathematician has checked it. OpenAI&rsquo;s math repository added a manuscript claiming the matrix multiplication exponent is exactly 9/4, with a Lean development for the division-free case, among 730 manuscripts it describes as raw research data at different stages of verification. Neither has outside review yet. Separately, IBM&rsquo;s GIST gives graph transformers linear-cost spectral attention and runs on meshes of 750,000 nodes.</p>
         <p>The Nov 23 to 24 cycle adds an architecture write-up and a second claim on the Riemann story. Google&rsquo;s <a href="#deepcrossattention">DeepCrossAttention</a> lets each layer weight and route the outputs of earlier layers and, by the authors&rsquo; figures, reaches the same quality up to three times faster; the paper is from ICML 2025 and only the post is new. On <a href="#riemann-hypothesis-lean-proof">the Lean proof</a>, Alp&ouml;ge&rsquo;s own note says he worked with Claude and that the method reaches the generalized hypothesis, and Ravi Vakil announced an unrelated human-only proposed proof by Alessandro Masullo on the same day.</p>
         <p>The Nov 20 to 23 cycle is led by a proof. Levent Alp&ouml;ge&rsquo;s <a href="#riemann-hypothesis-lean-proof">Riemann Hypothesis library</a> is 17 million lines of Lean that compile, and the Lean FRO and the Mathlib Initiative confirm with two independent tools that it proves Mathlib&rsquo;s statement. The Wall Street Journal reports that he is an Anthropic researcher who worked with AI; the Lean statement is silent on method, so the checker has settled the result and said nothing about how it was found.</p>
         <p>Two preprints fill out the cycle. NVIDIA&rsquo;s <a href="#cpu-arc">CPU-ARC</a> compiles a reasoning trace into a CPU-executable cache that is 16 to 291&times; cheaper to invoke than the model it came from, with parity claimed in the abstract and no benchmark named. A <a href="#ai-language-hard-to-understand">psycholinguistic study</a> opens a section on model-written text: all nine models tested use more hard-to-process constructions than human writers, and fine-tuning under a length penalty reproduces the drift. <a href="#tufazip">tufazip</a>&rsquo;s 105.39 MB turns out to include the weights and the decoder.</p>
         <p>The Nov 20&ndash;22 cycle adds a section and fills in one entry. <a href="#tufazip">tufazip</a> opens Lossless neural compression: 1 GB of Wikipedia in 105.39 MB, with the decompressor&rsquo;s size and run time still unstated. AlphaSignal&rsquo;s deep dive fills in <a href="#e-means">e-means</a>: 24 benchmarks, 8&ndash;15&times; faster than Faiss on CPU, shipped in Faiss 1.16.0 under MIT, but only for offline indexing and not inside managed vector databases.</p>
-        <p>The Nov 19 addition is a lab measuring its own researchers. OpenAI says its agents now <a href="#openai-research-acceleration">finish nearly half</a> of internal two-to-four-hour research tasks on their own, that the heaviest users are pulling ahead, and that more human effort is going to safety and alignment. It belongs with the productivity studies, and it carries their usual caveat in its strongest form: the tasks, the staff and the reporting are all OpenAI&rsquo;s.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 19 addition is a lab measuring its own researchers. OpenAI says its agents now <a href="#openai-research-acceleration">finish nearly half</a> of internal two-to-four-hour research tasks on their own, that the heaviest users are pulling ahead, and that more human effort is going to safety and alignment. It belongs with the productivity studies, and it carries their usual caveat in its strongest form: the tasks, the staff and the reporting are all OpenAI&rsquo;s.</p>
           <p>The Nov 17 addition is a compression result. Stanford&rsquo;s <a href="#memorilla">Memorilla</a> squeezes a corpus into 16 memory tokens for a frozen Qwen3-8B and reaches 84.33% on FactKG with 108&times; fewer document tokens than full context. The item that carried it does not give the full-context score, so the accuracy given up is unstated.</p>
           <p>The Nov 16 cycle opens a section for ablations against the standard recipe. <a href="#cram">CRAM</a>, a learned version of Hopfield and Tank&rsquo;s 1980s energy, solves 99.996% of Sudoku-Extreme after 42 ms of training on one GPU, at least 1,000&times; faster than looped models, on puzzles that come with an exact energy to minimise. Meta&rsquo;s <a href="#unbundling-vision-encoding">Unbundling study</a> takes a vision encoder apart and finds the pretrained prior optional and dedicated capacity decisive, with encoder-free models of 1.7B to 6.4B needing about 3&times; the compute to catch up. Both remove one ingredient and measure what is lost, which is why they share a section.</p>
           <p>The Nov 15 addition fills in a Nov 5 paper. AlphaSignal&rsquo;s deep dive on <a href="#you-dont-need-long-context">You don&rsquo;t need long context</a> supplies the numbers its abstract left out: cutting the configured context from 256K to 16K raised throughput 3.6&times; to 7&times; on three open models, threshold compaction kept or improved SWE-bench Verified accuracy for Claude Opus 4.5 and GPT-5.6 Sol, and Qwen 3 Coder Next collapsed from 53% to 3.6% under a 16K cap. Compaction also breaks prompt caching, so GPT-5.6 Sol&rsquo;s SWE-bench bill rose from $167.68 to $203.12.</p>
@@ -93,7 +94,7 @@
           <li><a href="#self-supervised-and-domain-foundation-models">Self-supervised &amp; domain foundation models <span class="n">3</span></a></li>
           <li><a href="#agent-productivity-studies">Agent productivity studies <span class="n">4</span></a></li>
           <li><a href="#learning-rules-beyond-backpropagation">Learning rules beyond backpropagation <span class="n">1</span></a></li>
-          <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">15</span></a></li>
+          <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">16</span></a></li>
           <li><a href="#retrieval-model-architecture">Retrieval-model architecture <span class="n">5</span></a></li>
           <li><a href="#decoding-and-inference">Decoding &amp; inference <span class="n">3</span></a></li>
           <li><a href="#io-aware-kernels-and-data-pipeline-primitives">IO-aware kernels &amp; data-pipeline primitives <span class="n">3</span></a></li>
@@ -102,7 +103,7 @@
           <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">5</span></a></li>
           <li><a href="#architecture-ablations-against-the-standard-recipe">Architecture ablations against the standard recipe <span class="n">2</span></a></li>
           <li><a href="#mechanistic-interpretability">Mechanistic interpretability <span class="n">6</span></a></li>
-          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">9</span></a></li>
+          <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">11</span></a></li>
           <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">4</span></a></li>
           <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
           <li><a href="#evaluate-then-act-decompositions">Evaluate-then-act decompositions <span class="n">3</span></a></li>
@@ -196,6 +197,14 @@
         <h3>Attention &amp; long-context architecture</h3>
         <p class="lead">Two constraints sit on the same mechanism: what attention costs per token once context is long, and the fact that latent computation is thrown away at every token boundary. Judge cost results on whether quality held at the claimed context length, and state-carrying results on whether anything was measured beyond the proposal.</p>
 
+        <article class="story" id="ibm-gist">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://github.com/IBM/gist-neurips-2026">IBM&rsquo;s GIST gives graph transformers linear-cost spectral attention and runs on meshes of 750,000 nodes</a></h4>
+          <p><strong>GIST</strong>, the Gauge-Invariant Spectral Transformer from IBM Research and ETH Zurich, replaces exact Laplacian eigenvectors with random spectral features whose inner products do not change with the choice of spectral basis. Preprocessing and attention then cost O(N) on sparse graphs, where an exact eigendecomposition costs O(N<sup>3</sup>) time.</p>
+          <p>By AlphaSignal&rsquo;s summary it reaches <strong>0.0017 MSE on AirfRANS against 0.0142 for Transolver</strong> and scales to DrivAerNet++ car meshes of up to 750,000 nodes. The paper, accepted at NeurIPS 2026, also bounds how far predictions drift when one surface is meshed differently. Code and reproduction scripts are public.</p>
+          <div class="sources"><a href="https://github.com/IBM/gist-neurips-2026">GitHub</a> &middot; <span class="via">via AlphaSignal (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="deepcrossattention">
           <span class="when">2026-11-23</span>
           <h4><a href="https://research.google/blog/supercharging-transformer-residual-connections/">Google&rsquo;s DeepCrossAttention lets each layer choose among earlier layers&rsquo; outputs and reaches the same quality up to three times faster</a></h4>
@@ -211,16 +220,16 @@
           <div class="sources"><a href="https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/">MarkTechPost</a> (write-up) &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
         </article>
 
-        <article class="story" id="you-dont-need-long-context">
-          <span class="when">2026-11-05</span>
-          <h4><a href="https://arxiv.org/abs/2611.05306">&ldquo;You don&rsquo;t need long context&rdquo;: with frequent compaction, frontier models lose little or no accuracy on long tasks</a></h4>
-          <p>The NVIDIA team (Peter Belcak, Pavlo Molchanov and ten co-authors) starts from cost: cutting the configured context from 256K to 16K tokens raised output throughput <strong>3.6&times;</strong> for GLM 5.2, <strong>5.6&times;</strong> for Kimi K2.6 and <strong>7&times;</strong> for Qwen 3 Coder Next on H100s. Compacting history at a threshold kept accuracy at or above full history on SWE-bench Verified (Claude Opus 4.5 70% &rarr; 74.8%, GPT-5.6 Sol 84.4% &rarr; 88.8% at their best settings), and even one action per context nearly matched, at a median peak context of 7,000&ndash;9,000 tokens.</p>
-          <p>Two limits: Qwen 3 Coder Next fell from 53% to 3.6% under a 16K cap because its verbose outputs left no room between compactions, and compaction breaks prompt caching, which raised GPT-5.6 Sol&rsquo;s SWE-bench bill from $167.68 to $203.12. From the result the authors sketch &ldquo;semantic state space models&rdquo;, a direction that cuts against the 1M-context releases the <a href="model-releases.html">model releases</a> page keeps recording.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2611.05306">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 5), AlphaSignal (Nov 15)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (12)</summary>
+          <summary>Earlier in this section (13)</summary>
+
+          <article class="story" id="you-dont-need-long-context">
+            <span class="when">2026-11-05</span>
+            <h4><a href="https://arxiv.org/abs/2611.05306">&ldquo;You don&rsquo;t need long context&rdquo;: with frequent compaction, frontier models lose little or no accuracy on long tasks</a></h4>
+            <p>The NVIDIA team (Peter Belcak, Pavlo Molchanov and ten co-authors) starts from cost: cutting the configured context from 256K to 16K tokens raised output throughput <strong>3.6&times;</strong> for GLM 5.2, <strong>5.6&times;</strong> for Kimi K2.6 and <strong>7&times;</strong> for Qwen 3 Coder Next on H100s. Compacting history at a threshold kept accuracy at or above full history on SWE-bench Verified (Claude Opus 4.5 70% &rarr; 74.8%, GPT-5.6 Sol 84.4% &rarr; 88.8% at their best settings), and even one action per context nearly matched, at a median peak context of 7,000&ndash;9,000 tokens.</p>
+            <p>Two limits: Qwen 3 Coder Next fell from 53% to 3.6% under a 16K cap because its verbose outputs left no room between compactions, and compaction breaks prompt caching, which raised GPT-5.6 Sol&rsquo;s SWE-bench bill from $167.68 to $203.12. From the result the authors sketch &ldquo;semantic state space models&rdquo;, a direction that cuts against the 1M-context releases the <a href="model-releases.html">model releases</a> page keeps recording.</p>
+            <div class="sources"><a href="https://arxiv.org/abs/2611.05306">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 5), AlphaSignal (Nov 15)</span></div>
+          </article>
 
           <article class="story" id="qwengpu">
             <span class="when">2026-11-03</span>
@@ -608,7 +617,23 @@
 
       <section class="topic-section" id="machine-produced-proof-and-its-provenance">
         <h3>Machine-produced proof and its provenance</h3>
-        <p class="lead">Nine machine-produced results checked by something other than the model: Lean for five proofs, a physicist for a nine-loop calculation, domain experts for a calculation toolkit, verification code for AlphaEvolve&rsquo;s constructions, formal proof for Signal&rsquo;s protocol code. Verification is not attribution: a checker confirms a result, not whose method it was. Judge on publication order and disclosed training data.</p>
+        <p class="lead">Eleven machine-produced results checked by something other than the model: Lean for seven proofs, a physicist for a nine-loop calculation, domain experts for a calculation toolkit, verification code for AlphaEvolve&rsquo;s constructions, formal proof for Signal&rsquo;s protocol code. Verification is not attribution: a checker confirms a result, not whose method it was. Judge on publication order and disclosed training data.</p>
+
+        <article class="story" id="vp-vnp-anthropic">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://github.com/anthropics/formal-math/blob/main/vp-vnp/paper.pdf">Anthropic posts a Lean-checked proof that VP &ne; VNP over every field, found by an internal Claude model</a></h4>
+          <p>Anthropic published a paper and Lean 4 formalization claiming <strong>VP &ne; VNP over every field</strong>: arithmetic circuits for the Hamiltonian cycle polynomial, and for the permanent outside characteristic 2, need more than m<sup>c(log m)<sup>1/3</sup></sup> gates. In plain terms, no polynomial-size circuit of additions and multiplications computes the permanent.</p>
+          <p>The repository says an internal research Claude model found the result, that AI models wrote both the paper and the formalization, and that <strong>no human mathematician has checked the proof</strong>. Lean checks the proofs, but nothing checks that the statement file says what is claimed. It does not settle P versus NP; as Gil Fried&rsquo;s explainer puts it, P = NP would now need a Boolean trick for the permanent that arithmetic cannot match.</p>
+          <div class="sources"><a href="https://github.com/anthropics/formal-math/blob/main/vp-vnp/paper.pdf">GitHub (paper)</a> &middot; <a href="https://www.friedgil.com/vpvnp">Gil Fried (explainer)</a> &middot; <span class="via">via TLDR AI (Nov 25)</span></div>
+        </article>
+
+        <article class="story" id="matrix-multiplication-exponent-nine-fourths">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf">OpenAI preprint claims the matrix multiplication exponent is exactly 9/4 over every field</a></h4>
+          <p>A manuscript in OpenAI&rsquo;s math repository, produced by an unnamed internal model, claims the exponent of square matrix multiplication is <strong>9/4 over every field</strong>. It proves a matching lower bound for formal arithmetic circuits: at least &lceil;n<sup>9/4</sup>/2&rceil; nonscalar multiplication or division gates at every side length n &ge; 2. The best published upper bound before it sat near 2.37.</p>
+          <p>A Lean development covers the square exponent for division-free circuits. The repository holds 730 manuscripts in 375 families, and its README says they are at different stages of verification, that unformalized results could have issues, and that OpenAI defers to mathematicians on credit and precedence. No outside review is cited. <a href="#alphaevolve-repo">AlphaEvolve&rsquo;s</a> earlier work on the same exponent was an upper bound.</p>
+          <div class="sources"><a href="https://github.com/openai/math/blob/main/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf">GitHub (paper)</a> &middot; <span class="via">via TLDR AI (Nov 25)</span></div>
+        </article>
 
         <article class="story" id="riemann-hypothesis-lean-proof">
           <span class="when">2026-11-20</span>
@@ -618,24 +643,24 @@
           <div class="sources"><a href="https://leanprover-community.github.io/blog/posts/riemann-hypothesis/">Lean community blog</a> &middot; <span class="via">via TLDR AI (Nov 23), TLDR (Nov 23), Simon Willison (Nov 24)</span></div>
         </article>
 
-        <article class="story" id="alphaproof-code">
-          <span class="when">2026-11-11</span>
-          <h4><a href="https://deepmind.google/blog/introducing-alphaproof-code/">AlphaProof Code formally verifies key security properties of the Signal protocol&rsquo;s implementation</a></h4>
-          <p>Google DeepMind&rsquo;s <strong>AlphaProof Code</strong> is a multi-LLM agentic framework in which human experts and models agree on what to prove and a group of agents writes the proofs. It proved key security properties of the code that implements the Signal protocol, which DeepMind calls the first formal verification of a widely deployed protocol&rsquo;s implementation by any method, with or without AI.</p>
-          <p>The post gives no proof size or compute figure; the technical paper is linked from it.</p>
-          <div class="sources"><a href="https://deepmind.google/blog/introducing-alphaproof-code/">Google DeepMind</a> &middot; <span class="via">via TLDR AI (Nov 11)</span></div>
-        </article>
-
-        <article class="story" id="aaronson-ambainis-proof">
-          <span class="when">2026-11-06</span>
-          <h4><a href="https://psi.inc/research/aaronson-ambainis/">The Aaronson-Ambainis conjecture is proved in Lean by PSI&rsquo;s research system on a non-public Anthropic model</a></h4>
-          <p>Physical Superintelligence says a research system it built, running instances of a non-public Anthropic model on its own infrastructure, produced a proof of the <strong>Aaronson-Ambainis conjecture</strong>, open since 2008, which implies quantum computers are at most polynomially faster than classical ones on random inputs. The system had a complete proof on the <strong>third day of the run</strong> and Lean accepted it; set to related problems, it improved the result twice, with Lean accepting the final version, building on ideas of Lovett and Zhang and of Reimer. Blanc, Docter, Strassle and Tan at Stanford, who settled a special case in August, have read the proof, sent comments and are writing a shorter exposition.</p>
-          <p>Scott Aaronson&rsquo;s own post says open problems are now falling faster than humans can validate them and that the Lean certificates are what carry the confidence. The provenance question this section judges on is open in the usual way: the model is unnamed and the system is PSI&rsquo;s, so the check confirms the theorem and says nothing about whose method it was.</p>
-          <div class="sources"><a href="https://psi.inc/research/aaronson-ambainis/">PSI</a> &middot; <a href="https://scottaaronson.blog/?p=10295">Scott Aaronson</a> (commentary) &middot; <span class="via">via TLDR AI (Nov 9), TLDR (Nov 9)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story" id="alphaproof-code">
+            <span class="when">2026-11-11</span>
+            <h4><a href="https://deepmind.google/blog/introducing-alphaproof-code/">AlphaProof Code formally verifies key security properties of the Signal protocol&rsquo;s implementation</a></h4>
+            <p>Google DeepMind&rsquo;s <strong>AlphaProof Code</strong> is a multi-LLM agentic framework in which human experts and models agree on what to prove and a group of agents writes the proofs. It proved key security properties of the code that implements the Signal protocol, which DeepMind calls the first formal verification of a widely deployed protocol&rsquo;s implementation by any method, with or without AI.</p>
+            <p>The post gives no proof size or compute figure; the technical paper is linked from it.</p>
+            <div class="sources"><a href="https://deepmind.google/blog/introducing-alphaproof-code/">Google DeepMind</a> &middot; <span class="via">via TLDR AI (Nov 11)</span></div>
+          </article>
+
+          <article class="story" id="aaronson-ambainis-proof">
+            <span class="when">2026-11-06</span>
+            <h4><a href="https://psi.inc/research/aaronson-ambainis/">The Aaronson-Ambainis conjecture is proved in Lean by PSI&rsquo;s research system on a non-public Anthropic model</a></h4>
+            <p>Physical Superintelligence says a research system it built, running instances of a non-public Anthropic model on its own infrastructure, produced a proof of the <strong>Aaronson-Ambainis conjecture</strong>, open since 2008, which implies quantum computers are at most polynomially faster than classical ones on random inputs. The system had a complete proof on the <strong>third day of the run</strong> and Lean accepted it; set to related problems, it improved the result twice, with Lean accepting the final version, building on ideas of Lovett and Zhang and of Reimer. Blanc, Docter, Strassle and Tan at Stanford, who settled a special case in August, have read the proof, sent comments and are writing a shorter exposition.</p>
+            <p>Scott Aaronson&rsquo;s own post says open problems are now falling faster than humans can validate them and that the Lean certificates are what carry the confidence. The provenance question this section judges on is open in the usual way: the model is unnamed and the system is PSI&rsquo;s, so the check confirms the theorem and says nothing about whose method it was.</p>
+            <div class="sources"><a href="https://psi.inc/research/aaronson-ambainis/">PSI</a> &middot; <a href="https://scottaaronson.blog/?p=10295">Scott Aaronson</a> (commentary) &middot; <span class="via">via TLDR AI (Nov 9), TLDR (Nov 9)</span></div>
+          </article>
 
           <article class="story" id="alphaevolve-repo">
             <span class="when">2026-11-05</span>
@@ -798,6 +823,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#ibm-gist">IBM&rsquo;s GIST gives graph transformers linear-cost spectral attention and runs on meshes of 750,000 nodes</a></span></li>
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#matrix-multiplication-exponent-nine-fourths">OpenAI preprint claims the matrix multiplication exponent is exactly 9/4 over every field</a></span></li>
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#vp-vnp-anthropic">Anthropic posts a Lean-checked proof that VP &ne; VNP over every field, found by an internal Claude model</a></span></li>
         <li><span class="date">2026-11-23</span><span class="label"><a href="#deepcrossattention">Google&rsquo;s DeepCrossAttention lets each layer choose among earlier layers&rsquo; outputs and reaches the same quality up to three times faster</a></span></li>
         <li><span class="date">2026-11-23</span><span class="label"><a href="#ai-language-hard-to-understand">All nine models in a psycholinguistic study use more hard-to-process constructions than human writers</a></span></li>
         <li><span class="date">2026-11-23</span><span class="label"><a href="#cpu-arc">NVIDIA&rsquo;s CPU-ARC turns LLM reasoning traces into CPU-executable caches that cost 16 to 291&times; less to invoke</a></span></li>

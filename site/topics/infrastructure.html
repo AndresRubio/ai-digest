@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-25</div>
+      <div class="meta">Last updated: 2026-11-26</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 24 additions are two serving packages for narrow jobs. vLLM-GR puts generative recommendation models on the vLLM stack and runs the whole beam search inside one request, sharing the cached user history across candidates, on NVIDIA GPUs and Ascend NPUs; the announcement gives no speed figure. Basalt packs Qwen3.8-Flash-Next and everything it needs into one file for Blackwell GPUs, keeps hot experts in VRAM and spills the rest, and reports 600 to 760 tokens per second on structured output on two consumer cards. That one is a single developer&rsquo;s release.</p>
         <p>The Nov 24 addition is a claim to hold at arm&rsquo;s length. Architect Labs says its agents designed <a href="#frostbite-cpu">Frostbite</a>, a processor architecture averaging 4.59 times the performance per watt of a conventional core across 25 programs. It exists only in simulation and runs a new language instead of x86 or Arm software. It sits beside <a href="#openai-chip-design-models">OpenAI&rsquo;s chip-design work</a> as a second report of models designing silicon, and this one has not reached hardware.</p>
         <p>The Nov 18&ndash;19 cycle is two ways around a limit. A proposed <a href="#transformers-experts-offload">experts_offload</a> option in Transformers streams a 180B MoE&rsquo;s experts from SSD so it runs on a 32GB Mac, within 6% of a specialised runtime by the author&rsquo;s measure, and Perplexity&rsquo;s <a href="#perplexity-orchestrator">Orchestrator</a> puts 45+ models behind one key and retries a failed provider on another host, still in private preview. <a href="#suncatcher">Suncatcher</a> now has a launch vehicle: Blue Origin&rsquo;s New Glenn, targeted for Q1 2029.</p>
         <p>The Nov 19 cycle points models at the hardware and at the router. OpenAI says its models <a href="#openai-chip-design-models">cut 10&ndash;13% of circuit area</a> on its own Jalape&ntilde;o chip and found up to 14% power, performance and area on an AMD GPU, with some changes already in a design sent to the fab; the figures are the two companies&rsquo; own. Edgee&rsquo;s <a href="#ski-rental-model-switching">ski-rental framing</a> adds a second routing decision to the one this page already tracks: not which model takes a request, but when a running agent session should pay to switch.</p>
         <p>The Nov 18 cycle splits work across hardware. <a href="#cerebras-disaggregated-inference">Cerebras</a> now runs prefill on GPUs and decode on its own systems for five times the tokens per megawatt, against an unstated baseline. NVIDIA&rsquo;s <a href="#nvidia-sparse-attention-codesign">sparse-attention post</a> shows where the cost of skipping keys went: the indexer and Top-k are 47% of a DeepSeek V3.2 prefill layer at 128K tokens, and its Top-k kernel is 2.1&ndash;2.4&times; faster than a radix select. The <a href="#hf-inference-providers-openrouter">Hugging Face&ndash;OpenRouter</a> entry gains its terms: automatic retries, and no more custom provider keys for language models.</p>
-        <p>The Nov 17 cycle is NVIDIA hardware, an open control plane and two routing moves. <a href="#nvidia-rubin-hpc">Rubin HPC</a>, a GPU with more than 50,000 cores for simulation, is due in 2028, and <a href="#vera-rubin-nvl72-mlperf-training">Vera Rubin NVL72</a> entered MLPerf Training v6.1 at up to 2&times; GB300 per GPU by NVIDIA&rsquo;s count. NVIDIA also open-sourced <a href="#nvidia-nvke-nvkr">NVKE and NVKR</a> for managed Kubernetes on owned GPUs, which ship with API authentication off.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 17 cycle is NVIDIA hardware, an open control plane and two routing moves. <a href="#nvidia-rubin-hpc">Rubin HPC</a>, a GPU with more than 50,000 cores for simulation, is due in 2028, and <a href="#vera-rubin-nvl72-mlperf-training">Vera Rubin NVL72</a> entered MLPerf Training v6.1 at up to 2&times; GB300 per GPU by NVIDIA&rsquo;s count. NVIDIA also open-sourced <a href="#nvidia-nvke-nvkr">NVKE and NVKR</a> for managed Kubernetes on owned GPUs, which ship with API authentication off.</p>
           <p>Hugging Face now <a href="#hf-inference-providers-openrouter">routes Inference Providers through OpenRouter</a> on one token, and <a href="#sarvam-token-factory">Sarvam Token Factory</a> serves eight open models from clusters in India. Anthropic told investors it <a href="#anthropic-multi-chip-serving">trains and serves Claude on four chip families</a> and that Mythos ported it to AMD GPUs in three days, a claim with no data behind it yet.</p>
           <p>The Nov 13 cycle is two kernel results and a survey. <a href="#detllm">DetLLM</a> gets one output hash across nine configurations by running inference in integer-only int8 arithmetic, with WikiText2 perplexity of 20.72 against fp16&rsquo;s 20.95 and C4 0.4% worse, but prefill at about 0.13&times; fp16. <a href="#helion-compile-time-heuristics">Helion&rsquo;s compile-time heuristics</a> pick kernel configurations without autotuning and beat hand-written FLA Triton by 1.18&times; and vLLM&rsquo;s CUDA reduction kernels by 1.27&times; on H100. A <a href="#model-swap-survey">VentureBeat survey</a> prices the lock-in the routers below are meant to remove: 69% of firms that swapped a production model spent weeks on it, 36% more than a month.</p>
           <p>The Nov 11 cycle runs from a power line to a browser tab. SemiAnalysis reports Envision built the first 120 MW of the 800 MW <a href="#galaxy-inner-mongolia-campus">Galaxy campus</a> in Inner Mongolia within a year at about a fifth of US cost, with its own wind, batteries and a 5 MW direct-to-800 V DC pilot. Amazon replaced Claude Sonnet 4.6 with <a href="#amazon-strands-decider-ticket-labels">Strands Decider</a> for ticket labelling at 98% lower cost, a decision model scoring 20 labels instead of generating JSON. <a href="#executorch-webgpu">ExecuTorch WebGPU</a> runs exported PyTorch models on the browser&rsquo;s GPU 2&ndash;10&times; faster on decode than its CPU path, and Apple&rsquo;s Claris is testing <a href="#claris-harbor">Harbor</a> to pool Macs into one private model server.</p>
@@ -113,10 +114,10 @@
         <h2>On this page</h2>
         <ul>
           <li><a href="#long-context-serving">Long-context serving <span class="n">10</span></a></li>
-          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">22</span></a></li>
+          <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">23</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">4</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">11</span></a></li>
-          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">9</span></a></li>
+          <li><a href="#serving-across-accelerators">Serving across accelerators <span class="n">10</span></a></li>
           <li><a href="#parallel-and-diffusion-decoding">Parallel &amp; diffusion decoding <span class="n">3</span></a></li>
           <li><a href="#compute-and-ai-factories">Compute &amp; AI factories <span class="n">34</span></a></li>
           <li><a href="#vector-index-and-rag-pipeline-economics">Vector-index &amp; RAG-pipeline economics <span class="n">12</span></a></li>
@@ -221,6 +222,14 @@
         <h3>Quantization &amp; on-device inference</h3>
         <p class="lead">Local inference is a memory-residency problem before it is a compute one. These entries move the same constraint three ways &mdash; fewer bits per value, fewer weights resident at once, more memory in the machine &mdash; and each is paid for in tokens per second. Note which hardware every rate was measured on.</p>
 
+        <article class="story" id="qwen3-8-flash-next-basalt">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://huggingface.co/jesdga/Qwen3.8-Flash-Next-Basalt">Basalt packs Qwen3.8-Flash-Next into one file for Blackwell GPUs: 600 to 760 tokens per second on structured output</a></h4>
+          <p><strong>Qwen3.8-Flash-Next-Basalt</strong> bundles the MoE model&rsquo;s weights, tokenizer, speculative drafter and vision projector into one <code>.basalt</code> file for local inference on NVIDIA Blackwell GPUs. Frequently used experts stay in VRAM and the rest spill to system RAM or a second GPU. The low-bit packs reach <strong>300 to 400 tokens per second on prose and 600 to 760 on structured output</strong> on a 5090 plus a 5060 Ti.</p>
+          <p>Quantizations run from IQ1 to Q8_0 plus NVFP4, each published with measured KL divergence and top-1 agreement. The engine is an MIT-licensed, Linux-only fork of Strata with OpenAI- and Anthropic-compatible APIs, while the weights keep the Qwen Community License. It is one developer&rsquo;s release, and the speeds are that developer&rsquo;s.</p>
+          <div class="sources"><a href="https://huggingface.co/jesdga/Qwen3.8-Flash-Next-Basalt">Hugging Face</a> &middot; <a href="https://github.com/jesdga95/basalt">GitHub</a> &middot; <span class="via">via AlphaSignal (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="transformers-experts-offload">
           <span class="when">2026-11-18</span>
           <h4><a href="https://huggingface.co/blog/moe-expert-streaming">A proposed experts_offload in Transformers streams a 180B MoE&rsquo;s experts from SSD on a 32GB Mac</a></h4>
@@ -237,16 +246,16 @@
           <div class="sources"><a href="https://nathan.rs/posts/detllm/">nathan.rs</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
         </article>
 
-        <article class="story" id="claris-harbor">
-          <span class="when">2026-11-11</span>
-          <h4><a href="https://www.macrumors.com/2026/11/10/apple-claris-harbor-app/">Apple&rsquo;s Claris tests Harbor, which pools Macs over Thunderbolt 5 into a private AI server</a></h4>
-          <p>Apple subsidiary Claris is testing <strong>Harbor</strong>, an app that turns Apple Silicon Macs into private AI servers and links several over Thunderbolt 5 to pool unified memory, so larger models fit and serve more concurrent users. It is in early access: its App Store listing has been pulled, pricing is unknown, and the sign-up form asks for a company name.</p>
-          <p>Apple has not announced it; the report rests on the brief listing and the sign-up page.</p>
-          <div class="sources"><a href="https://www.macrumors.com/2026/11/10/apple-claris-harbor-app/">MacRumors</a> &middot; <span class="via">via TLDR (Nov 11)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (19)</summary>
+          <summary>Earlier in this section (20)</summary>
+
+          <article class="story" id="claris-harbor">
+            <span class="when">2026-11-11</span>
+            <h4><a href="https://www.macrumors.com/2026/11/10/apple-claris-harbor-app/">Apple&rsquo;s Claris tests Harbor, which pools Macs over Thunderbolt 5 into a private AI server</a></h4>
+            <p>Apple subsidiary Claris is testing <strong>Harbor</strong>, an app that turns Apple Silicon Macs into private AI servers and links several over Thunderbolt 5 to pool unified memory, so larger models fit and serve more concurrent users. It is in early access: its App Store listing has been pulled, pricing is unknown, and the sign-up form asks for a company name.</p>
+            <p>Apple has not announced it; the report rests on the brief listing and the sign-up page.</p>
+            <div class="sources"><a href="https://www.macrumors.com/2026/11/10/apple-claris-harbor-app/">MacRumors</a> &middot; <span class="via">via TLDR (Nov 11)</span></div>
+          </article>
 
           <article class="story" id="autocompress">
             <span class="when">2026-11-10</span>
@@ -543,6 +552,14 @@
         <h3>Serving across accelerators</h3>
         <p class="lead">Portability as its own serving problem: write a model once and run it on whatever accelerator is in the rack, not only the GPU its kernels were tuned for. Judge entries on the efficiency given up against the native path, and on which hardware that figure was measured.</p>
 
+        <article class="story" id="vllm-gr">
+          <span class="when">2026-11-24</span>
+          <h4><a href="https://vllm.ai/blog/2026-11-24-vllm-gr-announcement">vLLM-GR serves generative recommendation models on vLLM, with beam search run inside one request</a></h4>
+          <p><strong>vLLM-GR</strong> is an open-source serving framework built on vLLM for generative recommendation models such as OneRec-1.7B, HSTU and OneTrans. It extends vLLM&rsquo;s paged KV cache with a beam search that explores many candidate item IDs in a single request, so every path shares the cached user history and candidates are selected on the accelerator.</p>
+          <p>The worked example goes from one viewer&rsquo;s history to 128 candidate semantic IDs, with catalog constraints keeping the search on IDs that map to real items. It runs on NVIDIA GPUs and Ascend NPUs. The announcement read for this entry describes the design and gives no latency or throughput figure.</p>
+          <div class="sources"><a href="https://vllm.ai/blog/2026-11-24-vllm-gr-announcement">vLLM blog</a> &middot; <a href="https://github.com/vllm-project/vllm-gr">GitHub</a> &middot; <span class="via">via TLDR AI (Nov 25)</span></div>
+        </article>
+
         <article class="story" id="cerebras-disaggregated-inference">
           <span class="when">2026-11-18</span>
           <h4><a href="https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference">Cerebras puts prefill on GPUs and decode on its own systems for 5&times; more tokens per megawatt</a></h4>
@@ -559,16 +576,16 @@
           <div class="sources"><a href="https://pytorch.org/blog/fast-by-default-compile-time-heuristics-for-helion-kernels/">PyTorch</a> &middot; <span class="via">via TLDR AI (Nov 13)</span></div>
         </article>
 
-        <article class="story" id="anthropic-multi-chip-serving">
-          <span class="when">2026-11-11</span>
-          <h4><a href="https://ipo.anthropic.com/us/#roadshow-video">Anthropic says it trains and serves Claude on four chip families, and that Mythos ported it to AMD GPUs in three days</a></h4>
-          <p>In Anthropic&rsquo;s IPO roadshow video, co-founder Tom Brown says the company trains and serves Claude across AWS Trainium, Google TPUs, NVIDIA GPUs and AMD GPUs, each with its own software and inference stack. Bringing up a new chip platform used to take dozens of engineers months; for AMD this year, he says, Mythos got Claude running in <strong>three days</strong> with almost no human intervention, porting or writing nearly all of the kernels.</p>
-          <p>The video also describes &ldquo;compute multipliers&rdquo;, efficiency gains that stack, so that a 4&times; multiplier trains the same model on a quarter of the compute. These are statements to investors with no supporting data, and there is no official transcript; the one linked is Simon Willison&rsquo;s.</p>
-          <div class="sources"><a href="https://ipo.anthropic.com/us/#roadshow-video">Anthropic</a> (roadshow video) &middot; <a href="https://gist.github.com/simonw/9806757fe8acec6221cb0a5cce4d720d">Transcript</a> &middot; <span class="via">via Simon Willison (Nov 17)</span></div>
-        </article>
-
         <details>
-          <summary>Earlier in this section (6)</summary>
+          <summary>Earlier in this section (7)</summary>
+
+          <article class="story" id="anthropic-multi-chip-serving">
+            <span class="when">2026-11-11</span>
+            <h4><a href="https://ipo.anthropic.com/us/#roadshow-video">Anthropic says it trains and serves Claude on four chip families, and that Mythos ported it to AMD GPUs in three days</a></h4>
+            <p>In Anthropic&rsquo;s IPO roadshow video, co-founder Tom Brown says the company trains and serves Claude across AWS Trainium, Google TPUs, NVIDIA GPUs and AMD GPUs, each with its own software and inference stack. Bringing up a new chip platform used to take dozens of engineers months; for AMD this year, he says, Mythos got Claude running in <strong>three days</strong> with almost no human intervention, porting or writing nearly all of the kernels.</p>
+            <p>The video also describes &ldquo;compute multipliers&rdquo;, efficiency gains that stack, so that a 4&times; multiplier trains the same model on a quarter of the compute. These are statements to investors with no supporting data, and there is no official transcript; the one linked is Simon Willison&rsquo;s.</p>
+            <div class="sources"><a href="https://ipo.anthropic.com/us/#roadshow-video">Anthropic</a> (roadshow video) &middot; <a href="https://gist.github.com/simonw/9806757fe8acec6221cb0a5cce4d720d">Transcript</a> &middot; <span class="via">via Simon Willison (Nov 17)</span></div>
+          </article>
 
           <article class="story" id="zyfa">
             <span class="when">2026-11-06</span>
@@ -1500,6 +1517,8 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#qwen3-8-flash-next-basalt">Basalt packs Qwen3.8-Flash-Next into one file for Blackwell GPUs: 600 to 760 tokens per second on structured output</a></span></li>
+        <li><span class="date">2026-11-24</span><span class="label"><a href="#vllm-gr">vLLM-GR serves generative recommendation models on vLLM, with beam search run inside one request</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#frostbite-cpu">Architect Labs says its agents designed Frostbite, a CPU architecture at 4.59x performance per watt, in simulation only</a></span></li>
         <li><span class="date">2026-11-19</span><span class="label"><a href="#perplexity-orchestrator">Perplexity&rsquo;s Orchestrator puts 45+ models behind one API key and retries a failed provider elsewhere</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#transformers-experts-offload">A proposed experts_offload in Transformers streams a 180B MoE&rsquo;s experts from SSD on a 32GB Mac</a></span></li>
