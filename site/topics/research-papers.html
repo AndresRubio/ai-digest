@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Research papers</h1>
-      <div class="meta">Last updated: 2026-11-26</div>
+      <div class="meta">Last updated: 2026-11-27</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 25 to 26 cycle is three papers on what moves between layers, loops and models. Hazy Research&rsquo;s <a href="#platos-key">Plato&rsquo;s Key</a> fits one rotation and one scale in closed form so one LLM can use another&rsquo;s hidden states, with 41% median transfer across 12 base models, and brings back 18% of facts a model stores but cannot recall. <a href="#mixture-of-loops-transformer">MoLT</a> reuses keys and values across loops and reports 1.7 times OLMo3&rsquo;s token efficiency at 700M; it is the third looped design in a week and the one with code. <a href="#stable-gated-deltanet-2">Stable Gated DeltaNet-2</a> traces long-context training blow-ups to non-normal erasure and, with a bounded state, lifts 128K RULER from 4.82 to 11.62 at 1.6B parameters.</p>
         <p>The Nov 24 cycle is two more machine-produced proofs, from two labs on the same day. Anthropic posted a Lean-checked proof that VP &ne; VNP over every field, found by an internal Claude model, and says no human mathematician has checked it. OpenAI&rsquo;s math repository added a manuscript claiming the matrix multiplication exponent is exactly 9/4, with a Lean development for the division-free case, among 730 manuscripts it describes as raw research data at different stages of verification. Neither has outside review yet. Separately, IBM&rsquo;s GIST gives graph transformers linear-cost spectral attention and runs on meshes of 750,000 nodes.</p>
         <p>The Nov 23 to 24 cycle adds an architecture write-up and a second claim on the Riemann story. Google&rsquo;s <a href="#deepcrossattention">DeepCrossAttention</a> lets each layer weight and route the outputs of earlier layers and, by the authors&rsquo; figures, reaches the same quality up to three times faster; the paper is from ICML 2025 and only the post is new. On <a href="#riemann-hypothesis-lean-proof">the Lean proof</a>, Alp&ouml;ge&rsquo;s own note says he worked with Claude and that the method reaches the generalized hypothesis, and Ravi Vakil announced an unrelated human-only proposed proof by Alessandro Masullo on the same day.</p>
         <p>The Nov 20 to 23 cycle is led by a proof. Levent Alp&ouml;ge&rsquo;s <a href="#riemann-hypothesis-lean-proof">Riemann Hypothesis library</a> is 17 million lines of Lean that compile, and the Lean FRO and the Mathlib Initiative confirm with two independent tools that it proves Mathlib&rsquo;s statement. The Wall Street Journal reports that he is an Anthropic researcher who worked with AI; the Lean statement is silent on method, so the checker has settled the result and said nothing about how it was found.</p>
         <p>Two preprints fill out the cycle. NVIDIA&rsquo;s <a href="#cpu-arc">CPU-ARC</a> compiles a reasoning trace into a CPU-executable cache that is 16 to 291&times; cheaper to invoke than the model it came from, with parity claimed in the abstract and no benchmark named. A <a href="#ai-language-hard-to-understand">psycholinguistic study</a> opens a section on model-written text: all nine models tested use more hard-to-process constructions than human writers, and fine-tuning under a length penalty reproduces the drift. <a href="#tufazip">tufazip</a>&rsquo;s 105.39 MB turns out to include the weights and the decoder.</p>
-        <p>The Nov 20&ndash;22 cycle adds a section and fills in one entry. <a href="#tufazip">tufazip</a> opens Lossless neural compression: 1 GB of Wikipedia in 105.39 MB, with the decompressor&rsquo;s size and run time still unstated. AlphaSignal&rsquo;s deep dive fills in <a href="#e-means">e-means</a>: 24 benchmarks, 8&ndash;15&times; faster than Faiss on CPU, shipped in Faiss 1.16.0 under MIT, but only for offline indexing and not inside managed vector databases.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 20&ndash;22 cycle adds a section and fills in one entry. <a href="#tufazip">tufazip</a> opens Lossless neural compression: 1 GB of Wikipedia in 105.39 MB, with the decompressor&rsquo;s size and run time still unstated. AlphaSignal&rsquo;s deep dive fills in <a href="#e-means">e-means</a>: 24 benchmarks, 8&ndash;15&times; faster than Faiss on CPU, shipped in Faiss 1.16.0 under MIT, but only for offline indexing and not inside managed vector databases.</p>
           <p>The Nov 19 addition is a lab measuring its own researchers. OpenAI says its agents now <a href="#openai-research-acceleration">finish nearly half</a> of internal two-to-four-hour research tasks on their own, that the heaviest users are pulling ahead, and that more human effort is going to safety and alignment. It belongs with the productivity studies, and it carries their usual caveat in its strongest form: the tasks, the staff and the reporting are all OpenAI&rsquo;s.</p>
           <p>The Nov 17 addition is a compression result. Stanford&rsquo;s <a href="#memorilla">Memorilla</a> squeezes a corpus into 16 memory tokens for a frozen Qwen3-8B and reaches 84.33% on FactKG with 108&times; fewer document tokens than full context. The item that carried it does not give the full-context score, so the accuracy given up is unstated.</p>
           <p>The Nov 16 cycle opens a section for ablations against the standard recipe. <a href="#cram">CRAM</a>, a learned version of Hopfield and Tank&rsquo;s 1980s energy, solves 99.996% of Sudoku-Extreme after 42 ms of training on one GPU, at least 1,000&times; faster than looped models, on puzzles that come with an exact energy to minimise. Meta&rsquo;s <a href="#unbundling-vision-encoding">Unbundling study</a> takes a vision encoder apart and finds the pretrained prior optional and dedicated capacity decisive, with encoder-free models of 1.7B to 6.4B needing about 3&times; the compute to catch up. Both remove one ingredient and measure what is lost, which is why they share a section.</p>
@@ -94,7 +95,7 @@
           <li><a href="#self-supervised-and-domain-foundation-models">Self-supervised &amp; domain foundation models <span class="n">3</span></a></li>
           <li><a href="#agent-productivity-studies">Agent productivity studies <span class="n">4</span></a></li>
           <li><a href="#learning-rules-beyond-backpropagation">Learning rules beyond backpropagation <span class="n">1</span></a></li>
-          <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">16</span></a></li>
+          <li><a href="#attention-and-long-context-architecture">Attention &amp; long-context architecture <span class="n">18</span></a></li>
           <li><a href="#retrieval-model-architecture">Retrieval-model architecture <span class="n">5</span></a></li>
           <li><a href="#decoding-and-inference">Decoding &amp; inference <span class="n">3</span></a></li>
           <li><a href="#io-aware-kernels-and-data-pipeline-primitives">IO-aware kernels &amp; data-pipeline primitives <span class="n">3</span></a></li>
@@ -102,7 +103,7 @@
           <li><a href="#rl-on-agents">RL on agents <span class="n">4</span></a></li>
           <li><a href="#architecture-analysis-and-practitioner-synthesis">Architecture analysis &amp; practitioner synthesis <span class="n">5</span></a></li>
           <li><a href="#architecture-ablations-against-the-standard-recipe">Architecture ablations against the standard recipe <span class="n">2</span></a></li>
-          <li><a href="#mechanistic-interpretability">Mechanistic interpretability <span class="n">6</span></a></li>
+          <li><a href="#mechanistic-interpretability">Mechanistic interpretability <span class="n">7</span></a></li>
           <li><a href="#machine-produced-proof-and-its-provenance">Machine-produced proof and its provenance <span class="n">11</span></a></li>
           <li><a href="#verifiers-and-runtime-monitors">Verifiers &amp; runtime monitors <span class="n">4</span></a></li>
           <li><a href="#pretraining-on-a-consumer-budget">Pretraining on a consumer budget <span class="n">1</span></a></li>
@@ -197,130 +198,146 @@
         <h3>Attention &amp; long-context architecture</h3>
         <p class="lead">Two constraints sit on the same mechanism: what attention costs per token once context is long, and the fact that latent computation is thrown away at every token boundary. Judge cost results on whether quality held at the claimed context length, and state-carrying results on whether anything was measured beyond the proposal.</p>
 
+        <article class="story" id="mixture-of-loops-transformer">
+          <span class="when">2026-11-26</span>
+          <h4><a href="https://arxiv.org/abs/2611.34923">Mixture-of-Loops Transformer reuses KV memory across loops and reports 1.7&times; token efficiency over OLMo3 at 700M</a></h4>
+          <p><strong>MoLT</strong> changes what a looped transformer passes between loops: its attention treats keys and values as memory that later loops and depths can selectively reuse. The U-shaped variant separates memory construction from prediction and skips decoder passes it does not need. In 400B-token pretraining it beats OLMo3 at 700M and 1.5B dense and 3B MoE, with <strong>1.7&times;</strong> cross-entropy token efficiency at 700M and 2.1 points of 10-task accuracy on the 3B MoE.</p>
+          <p>A 100B-token continued pretraining of Qwen3.5-0.8B-Base lowers loss on all 11 domains, and the hybrid decoding mode matches a non-looped baseline&rsquo;s inference latency; it is the third looped design in a week after <a href="model-releases.html">GLM-5.4 and Inkling 2 Mini</a>, and this one ships code.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.34923">arXiv</a> &middot; <a href="https://github.com/hustvl/MoLT">GitHub</a> &middot; <span class="via">via MarkTechPost (Nov 26)</span></div>
+        </article>
+
+        <article class="story" id="stable-gated-deltanet-2">
+                  <span class="when">2026-11-26</span>
+                  <h4><a href="https://arxiv.org/abs/2611.34051">Stable Gated DeltaNet-2 traces long-context training failures to non-normal erasure and lifts 128K RULER by 6.8 points</a></h4>
+                  <p>Gated DeltaNet-2 gives each channel independent control over erasing and writing, and it fails during long-context training. This paper traces the failure to an asymmetry between the read and modify directions of erasure, which makes state grow exponentially even with no new writes; MarkTechPost reports state entries reaching 3.157&times;10<sup>36</sup> before the fix. <strong>Stable GDN-2</strong> uses symmetric erasure and decay-regulated residual writing, with a proven O(&radic;T) bound on state growth and chunkwise parallel training kept.</p>
+                  <p>At about 1.6B parameters it trains stably, raises the 128K RULER average from 4.82 to 11.62 in the recurrent setting, and adds 0.62 points across nine downstream tasks in the hybrid one.</p>
+                  <div class="sources"><a href="https://arxiv.org/abs/2611.34051">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 26)</span></div>
+                </article>
+
         <article class="story" id="ibm-gist">
-          <span class="when">2026-11-24</span>
-          <h4><a href="https://github.com/IBM/gist-neurips-2026">IBM&rsquo;s GIST gives graph transformers linear-cost spectral attention and runs on meshes of 750,000 nodes</a></h4>
-          <p><strong>GIST</strong>, the Gauge-Invariant Spectral Transformer from IBM Research and ETH Zurich, replaces exact Laplacian eigenvectors with random spectral features whose inner products do not change with the choice of spectral basis. Preprocessing and attention then cost O(N) on sparse graphs, where an exact eigendecomposition costs O(N<sup>3</sup>) time.</p>
-          <p>By AlphaSignal&rsquo;s summary it reaches <strong>0.0017 MSE on AirfRANS against 0.0142 for Transolver</strong> and scales to DrivAerNet++ car meshes of up to 750,000 nodes. The paper, accepted at NeurIPS 2026, also bounds how far predictions drift when one surface is meshed differently. Code and reproduction scripts are public.</p>
-          <div class="sources"><a href="https://github.com/IBM/gist-neurips-2026">GitHub</a> &middot; <span class="via">via AlphaSignal (Nov 25)</span></div>
-        </article>
-
-        <article class="story" id="deepcrossattention">
-          <span class="when">2026-11-23</span>
-          <h4><a href="https://research.google/blog/supercharging-transformer-residual-connections/">Google&rsquo;s DeepCrossAttention lets each layer choose among earlier layers&rsquo; outputs and reaches the same quality up to three times faster</a></h4>
-          <p>Google Research wrote up <strong>DeepCrossAttention</strong> (DCA), which replaces the plain sum of a residual connection with learnable weights and depth-wise cross-attention, so each layer selects and routes features from the layers before it. Google says this avoids the dilution of early-layer detail in deep networks and reaches the same quality <strong>up to three times faster</strong> with a negligible increase in parameters; TLDR AI adds that it was tested on C4 and LM1B.</p>
-          <p>The paper is from ICML 2025 and the post is new, so the entry carries the post&rsquo;s date. Every figure is the authors&rsquo; own.</p>
-          <div class="sources"><a href="https://research.google/blog/supercharging-transformer-residual-connections/">Google Research</a> &middot; <span class="via">via TLDR AI (Nov 24)</span></div>
-        </article>
-
-        <article class="story" id="memorilla">
-          <span class="when">2026-11-14</span>
-          <h4><a href="https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/">Stanford&rsquo;s Memorilla compresses a corpus into 16 memory tokens for a frozen Qwen3-8B, reaching 84.33% on FactKG</a></h4>
-          <p>Stanford&rsquo;s <strong>Memorilla</strong> compresses a corpus into <strong>16</strong> memory tokens that are fed to a frozen Qwen3-8B, and reaches 84.33% on FactKG while using 108&times; fewer document tokens than putting the full context in the prompt. MarkTechPost&rsquo;s item does not give the full-context score it is compared with, so how much accuracy the compression costs is not stated. The headline link is MarkTechPost&rsquo;s write-up.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/">MarkTechPost</a> (write-up) &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
-        </article>
+                          <span class="when">2026-11-24</span>
+                          <h4><a href="https://github.com/IBM/gist-neurips-2026">IBM&rsquo;s GIST gives graph transformers linear-cost spectral attention and runs on meshes of 750,000 nodes</a></h4>
+                          <p><strong>GIST</strong>, the Gauge-Invariant Spectral Transformer from IBM Research and ETH Zurich, replaces exact Laplacian eigenvectors with random spectral features whose inner products do not change with the choice of spectral basis. Preprocessing and attention then cost O(N) on sparse graphs, where an exact eigendecomposition costs O(N<sup>3</sup>) time.</p>
+                          <p>By AlphaSignal&rsquo;s summary it reaches <strong>0.0017 MSE on AirfRANS against 0.0142 for Transolver</strong> and scales to DrivAerNet++ car meshes of up to 750,000 nodes. The paper, accepted at NeurIPS 2026, also bounds how far predictions drift when one surface is meshed differently. Code and reproduction scripts are public.</p>
+                          <div class="sources"><a href="https://github.com/IBM/gist-neurips-2026">GitHub</a> &middot; <span class="via">via AlphaSignal (Nov 25)</span></div>
+                        </article>
 
         <details>
-          <summary>Earlier in this section (13)</summary>
+          <summary>Earlier in this section (15)</summary>
+
+          <article class="story" id="deepcrossattention">
+                            <span class="when">2026-11-23</span>
+                            <h4><a href="https://research.google/blog/supercharging-transformer-residual-connections/">Google&rsquo;s DeepCrossAttention lets each layer choose among earlier layers&rsquo; outputs and reaches the same quality up to three times faster</a></h4>
+                            <p>Google Research wrote up <strong>DeepCrossAttention</strong> (DCA), which replaces the plain sum of a residual connection with learnable weights and depth-wise cross-attention, so each layer selects and routes features from the layers before it. Google says this avoids the dilution of early-layer detail in deep networks and reaches the same quality <strong>up to three times faster</strong> with a negligible increase in parameters; TLDR AI adds that it was tested on C4 and LM1B.</p>
+                            <p>The paper is from ICML 2025 and the post is new, so the entry carries the post&rsquo;s date. Every figure is the authors&rsquo; own.</p>
+                            <div class="sources"><a href="https://research.google/blog/supercharging-transformer-residual-connections/">Google Research</a> &middot; <span class="via">via TLDR AI (Nov 24)</span></div>
+                          </article>
+
+          <article class="story" id="memorilla">
+                              <span class="when">2026-11-14</span>
+                              <h4><a href="https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/">Stanford&rsquo;s Memorilla compresses a corpus into 16 memory tokens for a frozen Qwen3-8B, reaching 84.33% on FactKG</a></h4>
+                              <p>Stanford&rsquo;s <strong>Memorilla</strong> compresses a corpus into <strong>16</strong> memory tokens that are fed to a frozen Qwen3-8B, and reaches 84.33% on FactKG while using 108&times; fewer document tokens than putting the full context in the prompt. MarkTechPost&rsquo;s item does not give the full-context score it is compared with, so how much accuracy the compression costs is not stated. The headline link is MarkTechPost&rsquo;s write-up.</p>
+                              <div class="sources"><a href="https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/">MarkTechPost</a> (write-up) &middot; <span class="via">via MarkTechPost (Nov 17)</span></div>
+                            </article>
 
           <article class="story" id="you-dont-need-long-context">
-            <span class="when">2026-11-05</span>
-            <h4><a href="https://arxiv.org/abs/2611.05306">&ldquo;You don&rsquo;t need long context&rdquo;: with frequent compaction, frontier models lose little or no accuracy on long tasks</a></h4>
-            <p>The NVIDIA team (Peter Belcak, Pavlo Molchanov and ten co-authors) starts from cost: cutting the configured context from 256K to 16K tokens raised output throughput <strong>3.6&times;</strong> for GLM 5.2, <strong>5.6&times;</strong> for Kimi K2.6 and <strong>7&times;</strong> for Qwen 3 Coder Next on H100s. Compacting history at a threshold kept accuracy at or above full history on SWE-bench Verified (Claude Opus 4.5 70% &rarr; 74.8%, GPT-5.6 Sol 84.4% &rarr; 88.8% at their best settings), and even one action per context nearly matched, at a median peak context of 7,000&ndash;9,000 tokens.</p>
-            <p>Two limits: Qwen 3 Coder Next fell from 53% to 3.6% under a 16K cap because its verbose outputs left no room between compactions, and compaction breaks prompt caching, which raised GPT-5.6 Sol&rsquo;s SWE-bench bill from $167.68 to $203.12. From the result the authors sketch &ldquo;semantic state space models&rdquo;, a direction that cuts against the 1M-context releases the <a href="model-releases.html">model releases</a> page keeps recording.</p>
-            <div class="sources"><a href="https://arxiv.org/abs/2611.05306">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 5), AlphaSignal (Nov 15)</span></div>
-          </article>
+                                <span class="when">2026-11-05</span>
+                                <h4><a href="https://arxiv.org/abs/2611.05306">&ldquo;You don&rsquo;t need long context&rdquo;: with frequent compaction, frontier models lose little or no accuracy on long tasks</a></h4>
+                                <p>The NVIDIA team (Peter Belcak, Pavlo Molchanov and ten co-authors) starts from cost: cutting the configured context from 256K to 16K tokens raised output throughput <strong>3.6&times;</strong> for GLM 5.2, <strong>5.6&times;</strong> for Kimi K2.6 and <strong>7&times;</strong> for Qwen 3 Coder Next on H100s. Compacting history at a threshold kept accuracy at or above full history on SWE-bench Verified (Claude Opus 4.5 70% &rarr; 74.8%, GPT-5.6 Sol 84.4% &rarr; 88.8% at their best settings), and even one action per context nearly matched, at a median peak context of 7,000&ndash;9,000 tokens.</p>
+                                <p>Two limits: Qwen 3 Coder Next fell from 53% to 3.6% under a 16K cap because its verbose outputs left no room between compactions, and compaction breaks prompt caching, which raised GPT-5.6 Sol&rsquo;s SWE-bench bill from $167.68 to $203.12. From the result the authors sketch &ldquo;semantic state space models&rdquo;, a direction that cuts against the 1M-context releases the <a href="model-releases.html">model releases</a> page keeps recording.</p>
+                                <div class="sources"><a href="https://arxiv.org/abs/2611.05306">arXiv</a> &middot; <span class="via">via TLDR AI (Nov 5), AlphaSignal (Nov 15)</span></div>
+                              </article>
 
           <article class="story" id="qwengpu">
-            <span class="when">2026-11-03</span>
-            <h4><a href="https://github.com/vixhal-baraiya/qwenGPU">qwenGPU compiles a GPU into Qwen3.5-2B&rsquo;s weights with 45 untrained layers</a></h4>
-            <p><strong>qwenGPU</strong> adds 45 untrained layers to Qwen3.5-2B, and the model writes every step of real CUDA launches, under Apache 2.0. Like <a href="#qwenputer">Qwenputer</a>, it shows weights holding an exact program, and the issue reports no measurement beyond that.</p>
-            <div class="sources"><a href="https://github.com/vixhal-baraiya/qwenGPU">GitHub</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
-          </article>
+                                <span class="when">2026-11-03</span>
+                                <h4><a href="https://github.com/vixhal-baraiya/qwenGPU">qwenGPU compiles a GPU into Qwen3.5-2B&rsquo;s weights with 45 untrained layers</a></h4>
+                                <p><strong>qwenGPU</strong> adds 45 untrained layers to Qwen3.5-2B, and the model writes every step of real CUDA launches, under Apache 2.0. Like <a href="#qwenputer">Qwenputer</a>, it shows weights holding an exact program, and the issue reports no measurement beyond that.</p>
+                                <div class="sources"><a href="https://github.com/vixhal-baraiya/qwenGPU">GitHub</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
+                              </article>
 
           <article class="story" id="latent-sparse-attention">
-            <span class="when">2026-11-03</span>
-            <h4><a href="https://arxiv.org/abs/2610.42147">Latent Sparse Attention reaches 72.4x faster prefill than full attention at 10M tokens</a></h4>
-            <p><strong>Latent Sparse Attention</strong> clusters keys hierarchically in a learned latent space, and queries score the clusters instead of every key. On GLM-5.3-FLASH (Qwen-3.8-27B) at 10M tokens, the distilled variant speeds up one attention layer <strong>72.4x in prefill and 42.5x in decode</strong> over full attention, or 22.7x and 4.6x over the model&rsquo;s original sparse attention, with similar accuracy.</p>
-            <p>The speedups are per attention layer, so a whole-model figure will be lower. A natively trained variant matches full attention with a 1.6x training speedup per layer at 128K tokens.</p>
-            <p><em>Updated Nov 9:</em> AlphaSignal&rsquo;s deep dive, naming the authors as Prefrontal AI and ETH Zurich, adds the end-to-end numbers: serving across eight H200s at 10M tokens, Qwen-3.8-27B&rsquo;s time to first token improves <strong>9.2x</strong> and GLM-5.3-Flash&rsquo;s 2.2x, with GLM&rsquo;s time per output token 2.1x better. Qwen scores 63.9 on RULER at 10M tokens against 59.9 for full attention, but GLM loses up to eight points at two to five million tokens against its own sparse baseline. The natively trained 500M-parameter hybrid trained 1.24x faster end to end. Prefrontal AI has published the code under Apache 2.0 with distilled indexer weights for both models, native checkpoints, evaluation tools and an SGLang integration; the gains shrink sharply on shorter contexts.</p>
-            <div class="sources"><a href="https://arxiv.org/abs/2610.42147">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 3), AlphaSignal (Nov 8)</span></div>
-          </article>
+                                <span class="when">2026-11-03</span>
+                                <h4><a href="https://arxiv.org/abs/2610.42147">Latent Sparse Attention reaches 72.4x faster prefill than full attention at 10M tokens</a></h4>
+                                <p><strong>Latent Sparse Attention</strong> clusters keys hierarchically in a learned latent space, and queries score the clusters instead of every key. On GLM-5.3-FLASH (Qwen-3.8-27B) at 10M tokens, the distilled variant speeds up one attention layer <strong>72.4x in prefill and 42.5x in decode</strong> over full attention, or 22.7x and 4.6x over the model&rsquo;s original sparse attention, with similar accuracy.</p>
+                                <p>The speedups are per attention layer, so a whole-model figure will be lower. A natively trained variant matches full attention with a 1.6x training speedup per layer at 128K tokens.</p>
+                                <p><em>Updated Nov 9:</em> AlphaSignal&rsquo;s deep dive, naming the authors as Prefrontal AI and ETH Zurich, adds the end-to-end numbers: serving across eight H200s at 10M tokens, Qwen-3.8-27B&rsquo;s time to first token improves <strong>9.2x</strong> and GLM-5.3-Flash&rsquo;s 2.2x, with GLM&rsquo;s time per output token 2.1x better. Qwen scores 63.9 on RULER at 10M tokens against 59.9 for full attention, but GLM loses up to eight points at two to five million tokens against its own sparse baseline. The natively trained 500M-parameter hybrid trained 1.24x faster end to end. Prefrontal AI has published the code under Apache 2.0 with distilled indexer weights for both models, native checkpoints, evaluation tools and an SGLang integration; the gains shrink sharply on shorter contexts.</p>
+                                <div class="sources"><a href="https://arxiv.org/abs/2610.42147">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 3), AlphaSignal (Nov 8)</span></div>
+                              </article>
 
           <article class="story" id="zyphra-zha">
-            <span class="when">2026-11-02</span>
-            <h4><a href="https://www.marktechpost.com/2026/11/02/zyphra-hierarchical-attention-zha-sparse-attention/">Zyphra&rsquo;s ZHA searches a tree of key summaries instead of scoring every past token</a></h4>
-            <p>Most sparse-attention methods still score every past token to pick keys; <strong>ZHA</strong> walks a tree of compressed key summaries instead, retrofitted onto a frozen model with about 4B tokens of distillation and 81,920 new parameters. On RULER-13 at 256K it scores <strong>96.2%</strong> against 96.0% for dense attention. There are no kernels yet, so its speedups are modeled.</p>
-            <div class="sources"><a href="https://www.marktechpost.com/2026/11/02/zyphra-hierarchical-attention-zha-sparse-attention/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
-          </article>
+                                <span class="when">2026-11-02</span>
+                                <h4><a href="https://www.marktechpost.com/2026/11/02/zyphra-hierarchical-attention-zha-sparse-attention/">Zyphra&rsquo;s ZHA searches a tree of key summaries instead of scoring every past token</a></h4>
+                                <p>Most sparse-attention methods still score every past token to pick keys; <strong>ZHA</strong> walks a tree of compressed key summaries instead, retrofitted onto a frozen model with about 4B tokens of distillation and 81,920 new parameters. On RULER-13 at 256K it scores <strong>96.2%</strong> against 96.0% for dense attention. There are no kernels yet, so its speedups are modeled.</p>
+                                <div class="sources"><a href="https://www.marktechpost.com/2026/11/02/zyphra-hierarchical-attention-zha-sparse-attention/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Nov 3)</span></div>
+                              </article>
 
           <article class="story" id="nesformer">
-            <span class="when">2026-10-30</span>
-            <h4><a href="https://github.com/dbreunig/nesformer">Nesformer bakes a working NES 6502 emulator into Qwen3.5-4B&rsquo;s weights</a></h4>
-            <p>Inspired by <a href="#qwenputer">Qwenputer</a>, Drew Breunig built a Nintendo Entertainment System 6502 CPU emulator into the weights of <strong>Qwen3.5-4B</strong>, enough to play ROMs such as Super Mario Bros very slowly. He posted the Opus 5.5 prompts behind it, and Opus found and used a 15-year-old conformance test suite for the CPU.</p>
-            <div class="sources"><a href="https://github.com/dbreunig/nesformer">GitHub</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
-          </article>
+                                <span class="when">2026-10-30</span>
+                                <h4><a href="https://github.com/dbreunig/nesformer">Nesformer bakes a working NES 6502 emulator into Qwen3.5-4B&rsquo;s weights</a></h4>
+                                <p>Inspired by <a href="#qwenputer">Qwenputer</a>, Drew Breunig built a Nintendo Entertainment System 6502 CPU emulator into the weights of <strong>Qwen3.5-4B</strong>, enough to play ROMs such as Super Mario Bros very slowly. He posted the Opus 5.5 prompts behind it, and Opus found and used a 15-year-old conformance test suite for the CPU.</p>
+                                <div class="sources"><a href="https://github.com/dbreunig/nesformer">GitHub</a> &middot; <span class="via">via Simon Willison (Nov 3)</span></div>
+                              </article>
 
           <article class="story" id="qwenputer">
-            <span class="when">2026-10-29</span>
-            <h4><a href="https://divagr.com/blog/qwenputer">Qwenputer runs a deterministic RISC-V CPU inside Qwen3.5, using its Gated DeltaNet layers as RAM</a></h4>
-            <p>A developer built <strong>Qwenputer</strong>, a working, deterministic RISC-V CPU that executes inside <strong>Qwen3.5</strong>, with the model&rsquo;s Gated DeltaNet layers serving as its RAM. It runs arithmetic, C and MicroPython with no external runtime or tool call, and the post adds an experimental file store inside the model. It is a single-author demonstration rather than a paper, but a concrete case of recurrent-layer state carrying computation from one token to the next.</p>
-            <div class="sources"><a href="https://divagr.com/blog/qwenputer">divagr.com</a> &middot; <span class="via">via TLDR AI (Oct 29)</span></div>
-          </article>
+                                <span class="when">2026-10-29</span>
+                                <h4><a href="https://divagr.com/blog/qwenputer">Qwenputer runs a deterministic RISC-V CPU inside Qwen3.5, using its Gated DeltaNet layers as RAM</a></h4>
+                                <p>A developer built <strong>Qwenputer</strong>, a working, deterministic RISC-V CPU that executes inside <strong>Qwen3.5</strong>, with the model&rsquo;s Gated DeltaNet layers serving as its RAM. It runs arithmetic, C and MicroPython with no external runtime or tool call, and the post adds an experimental file store inside the model. It is a single-author demonstration rather than a paper, but a concrete case of recurrent-layer state carrying computation from one token to the next.</p>
+                                <div class="sources"><a href="https://divagr.com/blog/qwenputer">divagr.com</a> &middot; <span class="via">via TLDR AI (Oct 29)</span></div>
+                              </article>
 
           <article class="story" id="ttr-compressor">
-            <span class="when">2026-10-24</span>
-            <h4><a href="https://arxiv.org/abs/2610.31574">TTR-Compressor matches an MLP visual-token merger with 55.6% fewer visual tokens by treating compression as regression</a></h4>
-            <p><strong>TTR-Compressor</strong> treats a block of input tokens as a regression problem and keeps the closed-form regression coefficients as the compressed representation, instead of pooling. It matches the MLP visual-token merger with <strong>55.6% fewer visual tokens</strong> and the code is on GitHub, though the summary does not say on which benchmarks or at what context length the match holds.</p>
-            <div class="sources"><a href="https://arxiv.org/abs/2610.31574">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
-          </article>
+                                <span class="when">2026-10-24</span>
+                                <h4><a href="https://arxiv.org/abs/2610.31574">TTR-Compressor matches an MLP visual-token merger with 55.6% fewer visual tokens by treating compression as regression</a></h4>
+                                <p><strong>TTR-Compressor</strong> treats a block of input tokens as a regression problem and keeps the closed-form regression coefficients as the compressed representation, instead of pooling. It matches the MLP visual-token merger with <strong>55.6% fewer visual tokens</strong> and the code is on GitHub, though the summary does not say on which benchmarks or at what context length the match holds.</p>
+                                <div class="sources"><a href="https://arxiv.org/abs/2610.31574">arXiv</a> &middot; <span class="via">via MarkTechPost (Oct 24)</span></div>
+                              </article>
 
           <article class="story" id="amazon-priming">
-            <span class="when">2026-10-13</span>
-            <h4><a href="https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch">Amazon&rsquo;s Priming rebuilds pretrained Transformers into more efficient architectures for under 1% of the training cost</a></h4>
-            <p>Amazon Science describes <strong>Priming</strong>, which builds models with more efficient architectures from pretrained Transformer weights at <strong>under 1% of the original training cost</strong>, with throughput <strong>up to twice as high</strong>. Every variant starts from the same initialisation, so layer type, hybrid ratio and layer placement can be explored systematically, and Amazon says it extends to other Transformer families with no algorithmic changes.</p>
-            <p>The post reports cost and throughput, not quality at long context, which is what this section asks to see held.</p>
-            <div class="sources"><a href="https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch">Amazon Science</a> &middot; <span class="via">via TLDR AI (Oct 13)</span></div>
-          </article>
+                                <span class="when">2026-10-13</span>
+                                <h4><a href="https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch">Amazon&rsquo;s Priming rebuilds pretrained Transformers into more efficient architectures for under 1% of the training cost</a></h4>
+                                <p>Amazon Science describes <strong>Priming</strong>, which builds models with more efficient architectures from pretrained Transformer weights at <strong>under 1% of the original training cost</strong>, with throughput <strong>up to twice as high</strong>. Every variant starts from the same initialisation, so layer type, hybrid ratio and layer placement can be explored systematically, and Amazon says it extends to other Transformer families with no algorithmic changes.</p>
+                                <p>The post reports cost and throughput, not quality at long context, which is what this section asks to see held.</p>
+                                <div class="sources"><a href="https://www.amazon.science/blog/can-we-change-an-ai-models-architecture-without-retraining-it-from-scratch">Amazon Science</a> &middot; <span class="via">via TLDR AI (Oct 13)</span></div>
+                              </article>
 
           <article class="story" id="lift">
-            <span class="when">2026-10-01</span>
-            <h4><a href="https://arxiv.org/abs/2609.38149">LIFT passes a transformer&rsquo;s hidden state to the next token and beats token-matched baselines from 135M to 1B parameters</a></h4>
-            <p><strong>LIFT</strong> is a transformer that feeds its internal state back into the next generation step instead of squeezing everything through the single token it emits. Training stays parallel because the fed-back states are precomputed from an off-the-shelf model&rsquo;s next-token predictions, while at inference the model feeds back its own, and models from <strong>135M to 1B parameters</strong> beat token-matched standard transformers on language modelling, reasoning and procedural tasks.</p>
-            <p>The switch from borrowed states in training to its own at inference is the mechanism to watch, and nothing above 1B has been tested.</p>
-            <div class="sources"><a href="https://arxiv.org/abs/2609.38149">arXiv</a> &middot; <span class="via">via TLDR AI (Oct 1)</span></div>
-          </article>
+                                <span class="when">2026-10-01</span>
+                                <h4><a href="https://arxiv.org/abs/2609.38149">LIFT passes a transformer&rsquo;s hidden state to the next token and beats token-matched baselines from 135M to 1B parameters</a></h4>
+                                <p><strong>LIFT</strong> is a transformer that feeds its internal state back into the next generation step instead of squeezing everything through the single token it emits. Training stays parallel because the fed-back states are precomputed from an off-the-shelf model&rsquo;s next-token predictions, while at inference the model feeds back its own, and models from <strong>135M to 1B parameters</strong> beat token-matched standard transformers on language modelling, reasoning and procedural tasks.</p>
+                                <p>The switch from borrowed states in training to its own at inference is the mechanism to watch, and nothing above 1B has been tested.</p>
+                                <div class="sources"><a href="https://arxiv.org/abs/2609.38149">arXiv</a> &middot; <span class="via">via TLDR AI (Oct 1)</span></div>
+                              </article>
 
           <article class="story" id="recurrent-looped-transformer">
-            <span class="when">2026-09-14</span>
-            <h4><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/">Recurrent Looped Transformer carries latent state across every prompt and response token</a></h4>
-            <p>The Recurrent Looped Transformer pairs a causal encoder with a recurrent decoder that carries its final hidden state, and a layerwise sliding-window attention cache, across every prompt and response token rather than resetting per step. The encoder builds a global key&ndash;value memory while the decoder extends one continuous latent computation as the sequence grows, so reasoning depth is unbounded in time rather than fixed by the number of stacked layers.</p>
-            <p>The authors present it as three kinds of co-design at once &mdash; latent reasoning with unbounded temporal depth, model with hardware, and model with RL algorithm &mdash; and are explicit that reasoning gains, hardware efficiency and RL scaling all remain to be established. That candour is the reason to record it: it is the architectural form of the <a href="#gpt-6-astra-looped-transformer">looped-transformer reading</a> elsewhere on this page, published as a proposal with its claims unmade rather than as a result.</p>
-            <div class="sources"><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/">Project page</a> &middot; <span class="via">via TLDR AI (Sep 14)</span></div>
-          </article>
+                                <span class="when">2026-09-14</span>
+                                <h4><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/">Recurrent Looped Transformer carries latent state across every prompt and response token</a></h4>
+                                <p>The Recurrent Looped Transformer pairs a causal encoder with a recurrent decoder that carries its final hidden state, and a layerwise sliding-window attention cache, across every prompt and response token rather than resetting per step. The encoder builds a global key&ndash;value memory while the decoder extends one continuous latent computation as the sequence grows, so reasoning depth is unbounded in time rather than fixed by the number of stacked layers.</p>
+                                <p>The authors present it as three kinds of co-design at once &mdash; latent reasoning with unbounded temporal depth, model with hardware, and model with RL algorithm &mdash; and are explicit that reasoning gains, hardware efficiency and RL scaling all remain to be established. That candour is the reason to record it: it is the architectural form of the <a href="#gpt-6-astra-looped-transformer">looped-transformer reading</a> elsewhere on this page, published as a proposal with its claims unmade rather than as a result.</p>
+                                <div class="sources"><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/">Project page</a> &middot; <span class="via">via TLDR AI (Sep 14)</span></div>
+                              </article>
 
           <article class="story unlinked" id="random-attention">
-            <span class="when">2026-09-07</span>
-            <h4>Random Attention &mdash; uniformly sampling the KV cache matches learned eviction, with less overhead</h4>
-            <p>Salesforce AI Research kept a uniformly sampled subset of generated KV-cache entries instead of relying on learned importance signals or attention statistics. Across several reasoning benchmarks and model families it matched or exceeded more complex eviction methods while cutting the eviction overhead itself.</p>
-            <p>A negative result about the value of cleverness: if random selection is competitive with importance estimation, the estimation machinery in deployed cache-eviction schemes may be paying for itself in overhead rather than quality.</p>
-            <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
-          </article>
+                                <span class="when">2026-09-07</span>
+                                <h4>Random Attention &mdash; uniformly sampling the KV cache matches learned eviction, with less overhead</h4>
+                                <p>Salesforce AI Research kept a uniformly sampled subset of generated KV-cache entries instead of relying on learned importance signals or attention statistics. Across several reasoning benchmarks and model families it matched or exceeded more complex eviction methods while cutting the eviction overhead itself.</p>
+                                <p>A negative result about the value of cleverness: if random selection is competitive with importance estimation, the estimation machinery in deployed cache-eviction schemes may be paying for itself in overhead rather than quality.</p>
+                                <div class="sources"><span class="via">via TLDR AI (Sep 7) &mdash; no public URL given</span></div>
+                              </article>
 
           <article class="story unlinked" id="full-bandwidth-transformers">
-            <span class="when">2026-08-17</span>
-            <h4>Microsoft&rsquo;s full-bandwidth transformers let latent computation continue across decoding steps</h4>
-            <p>Full-bandwidth transformers feed the previous token&rsquo;s top-layer hidden state back into the model alongside the next token embedding. The consequence is that computation is no longer forced to terminate at each token boundary &mdash; latent state carries forward instead of being discarded and reconstructed from the token alone. It attacks the same constraint as recurrent-depth designs and test-time training, from the cheapest possible angle: an extra input rather than an architectural rewrite or a per-user weight set.</p>
-            <div class="sources"><span class="via">via TLDR AI (Aug 17) &mdash; no public URL given</span></div>
-          </article>
+                                <span class="when">2026-08-17</span>
+                                <h4>Microsoft&rsquo;s full-bandwidth transformers let latent computation continue across decoding steps</h4>
+                                <p>Full-bandwidth transformers feed the previous token&rsquo;s top-layer hidden state back into the model alongside the next token embedding. The consequence is that computation is no longer forced to terminate at each token boundary &mdash; latent state carries forward instead of being discarded and reconstructed from the token alone. It attacks the same constraint as recurrent-depth designs and test-time training, from the cheapest possible angle: an extra input rather than an architectural rewrite or a per-user weight set.</p>
+                                <div class="sources"><span class="via">via TLDR AI (Aug 17) &mdash; no public URL given</span></div>
+                              </article>
 
           <article class="story unlinked" id="minimax-sparse-attention">
-            <span class="when">2026-06-20</span>
-            <h4>MiniMax Sparse Attention &mdash; 28.4&times; less attention compute at 1M context</h4>
-            <p>MiniMax detailed MSA (June 17), a two-branch block-sparse attention &mdash; a local branch for recent context plus a global branch for long-range dependencies &mdash; that cuts per-token attention compute at 1M context by 28.4&times; versus dense GQA with quality reported on par. On an H800 it delivers 14.2&times; faster prefill and 7.6&times; faster decode; it was trained with a 3T-token budget on a 109B MoE.</p>
-            <p>Because it is GQA-native it drops into existing architectures without a redesign, which is why it is plausible this becomes a default in long-context serving stacks. (Serving angle on the <a href="infrastructure.html">Infrastructure</a> page.)</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
-          </article>
+                                <span class="when">2026-06-20</span>
+                                <h4>MiniMax Sparse Attention &mdash; 28.4&times; less attention compute at 1M context</h4>
+                                <p>MiniMax detailed MSA (June 17), a two-branch block-sparse attention &mdash; a local branch for recent context plus a global branch for long-range dependencies &mdash; that cuts per-token attention compute at 1M context by 28.4&times; versus dense GQA with quality reported on par. On an H800 it delivers 14.2&times; faster prefill and 7.6&times; faster decode; it was trained with a 3T-token budget on a 109B MoE.</p>
+                                <p>Because it is GQA-native it drops into existing architectures without a redesign, which is why it is plausible this becomes a default in long-context serving stacks. (Serving angle on the <a href="infrastructure.html">Infrastructure</a> page.)</p>
+                                <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+                              </article>
         </details>
       </section>
 
@@ -561,57 +578,65 @@
         <h3>Mechanistic interpretability</h3>
         <p class="lead">Work on what a network&rsquo;s internals actually encode, and whether the field&rsquo;s standing assumptions about them hold. The claims here come from whoever built the instrument, on models they chose, so judge each on the model organisms used and on whether the finding has been checked on a production-scale model.</p>
 
-        <article class="story" id="filler-token-reasoning">
-          <span class="when">2026-11-12</span>
-          <h4><a href="https://www.lesswrong.com/posts/EHkwCDAmhWPAWEziM/llms-can-learn-some-multi-step-reasoning-on-filler-tokens-2">LoRA-tuned Qwen3.6-35B-A3B and gpt-oss-20b learn some multi-step tasks while emitting only filler tokens</a></h4>
-          <p>Researchers changed the training setup and applied LoRAs to <strong>Qwen3.6-35B-A3B</strong> and <strong>gpt-oss-20b</strong> so the models solve some multi-step tasks while emitting only filler tokens instead of visible reasoning. They beat an answer-only baseline on <strong>three of seven</strong> tasks; some tasks were learned out to <strong>60 steps</strong>, others failed after one to three, against theoretical layer-depth limits the authors also map.</p>
-          <p>The aim is to separate filler-token computation from steganographic hidden reasoning when reading chain-of-thought. It is a LessWrong post on two open models, not yet checked at frontier scale.</p>
-          <div class="sources"><a href="https://www.lesswrong.com/posts/EHkwCDAmhWPAWEziM/llms-can-learn-some-multi-step-reasoning-on-filler-tokens-2">LessWrong</a> &middot; <span class="via">via TLDR AI (Nov 12)</span></div>
+        <article class="story" id="platos-key">
+          <span class="when">2026-11-25</span>
+          <h4><a href="https://hazyresearch.stanford.edu/blog/2026-11-25-platos-key">Plato&rsquo;s Key: one rotation and a scale, fit in closed form, let one LLM use another&rsquo;s hidden states, at 41% median transfer</a></h4>
+          <p>Stanford&rsquo;s Hazy Research tests whether models that learn similar representations can actually swap them. Across 12 base LLMs from eight families (1.5B to 27B), a rotation plus one global scale maps a donor&rsquo;s hidden state at &ldquo;France&rdquo; into a recipient prompted about Germany, and the answer flips to Paris. Median transfer accuracy is <strong>41%</strong>, against 55% when the recipient&rsquo;s own state is swapped in, and ridge regression rarely does better.</p>
+          <p>Rotations chain across models with 99% of a direct rotation&rsquo;s accuracy, keep 74% with 256 principal components, and recover <strong>18%</strong> of &ldquo;dark memories&rdquo;, facts a recipient stores but fails to recall, all within factual recall on base models.</p>
+          <div class="sources"><a href="https://hazyresearch.stanford.edu/blog/2026-11-25-platos-key">Hazy Research</a> &middot; <span class="via">via MarkTechPost (Nov 26)</span></div>
         </article>
+
+        <article class="story" id="filler-token-reasoning">
+                  <span class="when">2026-11-12</span>
+                  <h4><a href="https://www.lesswrong.com/posts/EHkwCDAmhWPAWEziM/llms-can-learn-some-multi-step-reasoning-on-filler-tokens-2">LoRA-tuned Qwen3.6-35B-A3B and gpt-oss-20b learn some multi-step tasks while emitting only filler tokens</a></h4>
+                  <p>Researchers changed the training setup and applied LoRAs to <strong>Qwen3.6-35B-A3B</strong> and <strong>gpt-oss-20b</strong> so the models solve some multi-step tasks while emitting only filler tokens instead of visible reasoning. They beat an answer-only baseline on <strong>three of seven</strong> tasks; some tasks were learned out to <strong>60 steps</strong>, others failed after one to three, against theoretical layer-depth limits the authors also map.</p>
+                  <p>The aim is to separate filler-token computation from steganographic hidden reasoning when reading chain-of-thought. It is a LessWrong post on two open models, not yet checked at frontier scale.</p>
+                  <div class="sources"><a href="https://www.lesswrong.com/posts/EHkwCDAmhWPAWEziM/llms-can-learn-some-multi-step-reasoning-on-filler-tokens-2">LessWrong</a> &middot; <span class="via">via TLDR AI (Nov 12)</span></div>
+                </article>
 
         <article class="story" id="qwen-concept-27b">
-          <span class="when">2026-11-11</span>
-          <h4><a href="https://huggingface.co/ConceptCountry/qwen-concept-27b">Qwen Concept 27B: nine rewritten weight matrices cut thinking tokens 27&ndash;54% and add 4.3 points on GPQA Diamond</a></h4>
-          <p>Concept Country published <strong>Qwen Concept 27B</strong>, Qwen3.8-27B with nine down-projection matrices rewritten by weight-space programming, the technique in the <a href="#weight-space-programming">Sparks paper</a>, using no gradient steps and no training data. Against the unmodified base on a pre-registered criterion it reports GPQA Diamond <strong>+4.3</strong> (interval +1.8 to +7.1) and LiveCodeBench v6 <strong>+13.0</strong>, with thinking tokens down 27&ndash;54%.</p>
-          <p>The control is the stronger evidence: a norm-matched random edit to the same layers moved nothing. Every number comes from bf16 weights served at Q8_0, the card marks the model experimental, and its FP8, NVFP4 and 4-bit builds were not evaluated separately.</p>
-          <div class="sources"><a href="https://huggingface.co/ConceptCountry/qwen-concept-27b">Model card</a> &middot; <a href="https://concept.country/research/weight-space-programming">Concept Country paper</a> &middot; <span class="via">via AlphaSignal (Nov 11)</span></div>
-        </article>
-
-        <article class="story" id="goodfire-neurons-interpretable-basis">
-          <span class="when">2026-11-11</span>
-          <h4><a href="https://www.goodfire.com/research/neurons-as-an-interpretable-basis">Goodfire: Qwen3.6-35B-A3B&rsquo;s neurons are sparse enough to study one at a time, without a sparse autoencoder</a></h4>
-          <p>Goodfire&rsquo;s <strong>Neurons as an Interpretable Basis</strong>, a companion to its <a href="#goodfire-already-clean">&ldquo;already clean&rdquo;</a> paper, studies the MLP neurons of Qwen3.6-35B-A3B directly. Ablating the weakest <strong>92.2%</strong> of MoE neuron activations on each forward pass raises language-model loss by only 2.9%, and most neurons have a single causally dominant mode. Research agents write a natural-language description of each neuron, and a judge model given that description can predict, simulate and activate it.</p>
-          <p>The evidence is one model, chosen and measured by the lab that proposed the framing.</p>
-          <div class="sources"><a href="https://www.goodfire.com/research/neurons-as-an-interpretable-basis">Goodfire</a> &middot; <span class="via">via TLDR AI (Nov 11)</span></div>
-        </article>
+                  <span class="when">2026-11-11</span>
+                  <h4><a href="https://huggingface.co/ConceptCountry/qwen-concept-27b">Qwen Concept 27B: nine rewritten weight matrices cut thinking tokens 27&ndash;54% and add 4.3 points on GPQA Diamond</a></h4>
+                  <p>Concept Country published <strong>Qwen Concept 27B</strong>, Qwen3.8-27B with nine down-projection matrices rewritten by weight-space programming, the technique in the <a href="#weight-space-programming">Sparks paper</a>, using no gradient steps and no training data. Against the unmodified base on a pre-registered criterion it reports GPQA Diamond <strong>+4.3</strong> (interval +1.8 to +7.1) and LiveCodeBench v6 <strong>+13.0</strong>, with thinking tokens down 27&ndash;54%.</p>
+                  <p>The control is the stronger evidence: a norm-matched random edit to the same layers moved nothing. Every number comes from bf16 weights served at Q8_0, the card marks the model experimental, and its FP8, NVFP4 and 4-bit builds were not evaluated separately.</p>
+                  <div class="sources"><a href="https://huggingface.co/ConceptCountry/qwen-concept-27b">Model card</a> &middot; <a href="https://concept.country/research/weight-space-programming">Concept Country paper</a> &middot; <span class="via">via AlphaSignal (Nov 11)</span></div>
+                </article>
 
         <details>
-          <summary>Earlier in this section (3)</summary>
+          <summary>Earlier in this section (4)</summary>
+
+          <article class="story" id="goodfire-neurons-interpretable-basis">
+                    <span class="when">2026-11-11</span>
+                    <h4><a href="https://www.goodfire.com/research/neurons-as-an-interpretable-basis">Goodfire: Qwen3.6-35B-A3B&rsquo;s neurons are sparse enough to study one at a time, without a sparse autoencoder</a></h4>
+                    <p>Goodfire&rsquo;s <strong>Neurons as an Interpretable Basis</strong>, a companion to its <a href="#goodfire-already-clean">&ldquo;already clean&rdquo;</a> paper, studies the MLP neurons of Qwen3.6-35B-A3B directly. Ablating the weakest <strong>92.2%</strong> of MoE neuron activations on each forward pass raises language-model loss by only 2.9%, and most neurons have a single causally dominant mode. Research agents write a natural-language description of each neuron, and a judge model given that description can predict, simulate and activate it.</p>
+                    <p>The evidence is one model, chosen and measured by the lab that proposed the framing.</p>
+                    <div class="sources"><a href="https://www.goodfire.com/research/neurons-as-an-interpretable-basis">Goodfire</a> &middot; <span class="via">via TLDR AI (Nov 11)</span></div>
+                  </article>
 
           <article class="story" id="platonic-representation-theorem">
-            <span class="when">2026-11-05</span>
-            <h4><a href="https://arxiv.org/abs/2610.39302">Balestriero and LeCun prove a Platonic Representation Theorem for JEPAs; good views need 42&times; fewer samples than next-token prediction</a></h4>
-            <p>The paper turns the conjecture that models trained on different modalities converge on one representation into a theorem for Joint-Embedding Predictive Architectures: trained separately, they learn the same representation up to one rotation when their positive pairs are two observations of one scene. Next-token prediction is cast as a JEPA with &ldquo;bad views&rdquo;, parts of a single document, which the authors offer as the reason language models align with vision only at scale.</p>
-            <p>Experiments run from 145k captions to the texts of 940M web images. Good views reach the same alignment with <strong>42 times fewer</strong> training samples, and a 109M-parameter text JEPA aligns with DINOv2 and CLIP image encoders better than every language model tested, up to 72B parameters. Submitted Oct 29; the guarantee holds under the good-view condition, with misalignment bounded otherwise.</p>
-            <div class="sources"><a href="https://arxiv.org/abs/2610.39302">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 5)</span></div>
-          </article>
+                      <span class="when">2026-11-05</span>
+                      <h4><a href="https://arxiv.org/abs/2610.39302">Balestriero and LeCun prove a Platonic Representation Theorem for JEPAs; good views need 42&times; fewer samples than next-token prediction</a></h4>
+                      <p>The paper turns the conjecture that models trained on different modalities converge on one representation into a theorem for Joint-Embedding Predictive Architectures: trained separately, they learn the same representation up to one rotation when their positive pairs are two observations of one scene. Next-token prediction is cast as a JEPA with &ldquo;bad views&rdquo;, parts of a single document, which the authors offer as the reason language models align with vision only at scale.</p>
+                      <p>Experiments run from 145k captions to the texts of 940M web images. Good views reach the same alignment with <strong>42 times fewer</strong> training samples, and a 109M-parameter text JEPA aligns with DINOv2 and CLIP image encoders better than every language model tested, up to 72B parameters. Submitted Oct 29; the guarantee holds under the good-view condition, with misalignment bounded otherwise.</p>
+                      <div class="sources"><a href="https://arxiv.org/abs/2610.39302">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 5)</span></div>
+                    </article>
 
           <article class="story" id="weight-space-programming">
-            <span class="when">2026-11-02</span>
-            <h4><a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-Space Programming: GPT-6 Astra reads raw weights, and a laptop Qwen repeats part of it</a></h4>
-            <p><strong>Sparks of Weight-Space Programming</strong> (Takehi, Teoh, Zhang and Khattab) reports GPT-6 Astra naming the game a network was trained on from its raw weights with no tools, and raising Qwen3.5-0.8B&rsquo;s MATH-500 from <strong>7.9% to 48.1%</strong> by editing 0.016% of its weights without gradients. Simon Willison ran the no-tools prompts on Qwen 3.8 27B on his laptop: it named Pac-Man, Pong and Breakout at 72% to 88% stated confidence, taking 46 to 65 minutes an answer, and missed Freeway.</p>
-            <p>Matthew Honnibal calls the paper misleading for conflating what models do with raw weights and what they do once armed with code, and Sean Goedecke argues the Qwen edit takes the steps a human ML researcher would. Willison expects a patient human with a pencil could get there too.</p>
-            <p><em>Updated Nov 4:</em> The edited Qwen checkpoint is on Hugging Face. Its card adds GSM8K rising from 13.8% to 67.1%, IFEval from 21.0% to 62.3% and answers hitting the token limit falling from 93.0% to 33.1%, and a re-run of the full MATH-500 on the published weights scored 51.0%. <em>Updated Nov 13:</em> The Batch reports the cases the first coverage left out. Given one failed episode and no tools, Astra edited <strong>3.5%</strong> of a 171,664-parameter driving policy that had failed all 256 episodes, and the car then succeeded in all <strong>1,024</strong>; writing roughly 20,000-parameter MinAtar players from all-zero weights, it led PPO on one game, tied on one and lost on the third. The same approach on Gemma 3 270M barely moved MATH-500, because Astra found no single component to switch off.</p>
-            <div class="sources"><a href="https://rikiyat.github.io/blog/weight-space-programming/">Authors&rsquo; post</a> &middot; <a href="https://github.com/RikiyaT/lm_understand-logs">GitHub logs</a> &middot; <a href="https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming">Edited checkpoint</a> &middot; <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison</a> &middot; <a href="https://honnibal.dev/blog/astra-read-write-misleading">Matthew Honnibal</a> &middot; <a href="https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/">Sean Goedecke</a> &middot; <span class="via">via Simon Willison (Nov 3), TLDR AI (Nov 3), TLDR (Nov 3), The Code (Nov 3), AlphaSignal (Nov 4), TLDR AI (Nov 4), The Batch (Nov 13)</span></div>
-          </article>
+                      <span class="when">2026-11-02</span>
+                      <h4><a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-Space Programming: GPT-6 Astra reads raw weights, and a laptop Qwen repeats part of it</a></h4>
+                      <p><strong>Sparks of Weight-Space Programming</strong> (Takehi, Teoh, Zhang and Khattab) reports GPT-6 Astra naming the game a network was trained on from its raw weights with no tools, and raising Qwen3.5-0.8B&rsquo;s MATH-500 from <strong>7.9% to 48.1%</strong> by editing 0.016% of its weights without gradients. Simon Willison ran the no-tools prompts on Qwen 3.8 27B on his laptop: it named Pac-Man, Pong and Breakout at 72% to 88% stated confidence, taking 46 to 65 minutes an answer, and missed Freeway.</p>
+                      <p>Matthew Honnibal calls the paper misleading for conflating what models do with raw weights and what they do once armed with code, and Sean Goedecke argues the Qwen edit takes the steps a human ML researcher would. Willison expects a patient human with a pencil could get there too.</p>
+                      <p><em>Updated Nov 4:</em> The edited Qwen checkpoint is on Hugging Face. Its card adds GSM8K rising from 13.8% to 67.1%, IFEval from 21.0% to 62.3% and answers hitting the token limit falling from 93.0% to 33.1%, and a re-run of the full MATH-500 on the published weights scored 51.0%. <em>Updated Nov 13:</em> The Batch reports the cases the first coverage left out. Given one failed episode and no tools, Astra edited <strong>3.5%</strong> of a 171,664-parameter driving policy that had failed all 256 episodes, and the car then succeeded in all <strong>1,024</strong>; writing roughly 20,000-parameter MinAtar players from all-zero weights, it led PPO on one game, tied on one and lost on the third. The same approach on Gemma 3 270M barely moved MATH-500, because Astra found no single component to switch off.</p>
+                      <div class="sources"><a href="https://rikiyat.github.io/blog/weight-space-programming/">Authors&rsquo; post</a> &middot; <a href="https://github.com/RikiyaT/lm_understand-logs">GitHub logs</a> &middot; <a href="https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming">Edited checkpoint</a> &middot; <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison</a> &middot; <a href="https://honnibal.dev/blog/astra-read-write-misleading">Matthew Honnibal</a> &middot; <a href="https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/">Sean Goedecke</a> &middot; <span class="via">via Simon Willison (Nov 3), TLDR AI (Nov 3), TLDR (Nov 3), The Code (Nov 3), AlphaSignal (Nov 4), TLDR AI (Nov 4), The Batch (Nov 13)</span></div>
+                    </article>
 
           <article class="story" id="goodfire-already-clean">
-            <span class="when">2026-10-16</span>
-            <h4><a href="https://already-clean.goodfire.com/">Goodfire argues neural networks are &ldquo;already clean&rdquo;: what looked like superposition was mostly recursive generalization</a></h4>
-            <p>Goodfire published a long analysis arguing that the polysemanticity seen in early model organisms, which the field attributed to <strong>superposition</strong> (networks packing unrelated concepts into shared directions), was mostly <strong>recursive generalization</strong>, a structured reuse of features that is far less concerning. If that holds, networks can be studied directly instead of being untangled first, and the authors say the outlook for mechanistic interpretability is better than assumed.</p>
-            <p>It is a reinterpretation of existing evidence rather than a new tool, published as a 65-minute essay, so the thing to check is which model organisms it re-examines and whether the claim survives on a production-scale model.</p>
-            <div class="sources"><a href="https://already-clean.goodfire.com/">Goodfire</a> &middot; <span class="via">via TLDR AI (Oct 16)</span></div>
-          </article>
+                      <span class="when">2026-10-16</span>
+                      <h4><a href="https://already-clean.goodfire.com/">Goodfire argues neural networks are &ldquo;already clean&rdquo;: what looked like superposition was mostly recursive generalization</a></h4>
+                      <p>Goodfire published a long analysis arguing that the polysemanticity seen in early model organisms, which the field attributed to <strong>superposition</strong> (networks packing unrelated concepts into shared directions), was mostly <strong>recursive generalization</strong>, a structured reuse of features that is far less concerning. If that holds, networks can be studied directly instead of being untangled first, and the authors say the outlook for mechanistic interpretability is better than assumed.</p>
+                      <p>It is a reinterpretation of existing evidence rather than a new tool, published as a 65-minute essay, so the thing to check is which model organisms it re-examines and whether the claim survives on a production-scale model.</p>
+                      <div class="sources"><a href="https://already-clean.goodfire.com/">Goodfire</a> &middot; <span class="via">via TLDR AI (Oct 16)</span></div>
+                    </article>
         </details>
       </section>
 
@@ -823,6 +848,9 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-26</span><span class="label"><a href="#mixture-of-loops-transformer">Mixture-of-Loops Transformer reuses KV memory across loops and reports 1.7&times; token efficiency over OLMo3 at 700M</a></span></li>
+        <li><span class="date">2026-11-26</span><span class="label"><a href="#stable-gated-deltanet-2">Stable Gated DeltaNet-2 traces long-context training failures to non-normal erasure and lifts 128K RULER by 6.8 points</a></span></li>
+        <li><span class="date">2026-11-25</span><span class="label"><a href="#platos-key">Plato&rsquo;s Key: one rotation and a scale let one LLM use another&rsquo;s hidden states, at 41% median transfer</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#ibm-gist">IBM&rsquo;s GIST gives graph transformers linear-cost spectral attention and runs on meshes of 750,000 nodes</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#matrix-multiplication-exponent-nine-fourths">OpenAI preprint claims the matrix multiplication exponent is exactly 9/4 over every field</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#vp-vnp-anthropic">Anthropic posts a Lean-checked proof that VP &ne; VNP over every field, found by an internal Claude model</a></span></li>

@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Training, post-training &amp; RL</h1>
-      <div class="meta">Last updated: 2026-11-26</div>
+      <div class="meta">Last updated: 2026-11-27</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 20 to 26 cycle is about where the signal comes from when rollouts fail or the reward can be fooled. <a href="#splice-all-fail-rollouts">SPLICE</a> turns all-fail groups, which give group-relative RL nothing, into training targets by splicing short options into failed trajectories, and beats GRPO by 2.8 to 9.8 points on SWE-bench Verified and BrowseComp-Plus. A <a href="#counterfactual-sql-rewards">counterfactual text-to-SQL reward</a> runs each query on hidden database copies and cuts fully paid reward hacks from 54.1% to 1.9%, though training on it did not raise in-domain accuracy and one seed reversed the result. ByteDance Seed and HKU&rsquo;s <a href="#bytedance-laminar">Laminar</a> decouples rollout, training and weight sync and takes Qwen3-Coder-30B-A3B from 46.6% to 52.2% on SWE-bench Verified. A March study resurfaced on Nov 25 shows <a href="#video-sft-temporal-trap">video fine-tuning eroding image skills</a> until each sample gets its own frame budget.</p>
         <p>The Nov 24 cycle is a recipe carried to new bases and an environment with a clock. Harvey applied its Tenet post-training recipe to four US open-weight models, and Muse Spark Open became the first model past 30% all-pass on Legal Agent Bench, with the other three above 20%; the benchmark and the recipe are both Harvey&rsquo;s. Epochal&rsquo;s Time Portal lets an agent browse the web as it stood on a past date, so forecasting evals and RL environments can run without later information leaking in. Its coverage claim is the company&rsquo;s own.</p>
         <p>The Nov 22 to 24 cycle has a model editing itself and a lab describing the machinery it trains with. In <a href="#selfwrite">SELFWRITE</a>, Qwen3.8-27B writes programs that build low-rank edits to its own weights, and five generations lift held-out maths accuracy from 76.30% to 77.75% without a gradient step; it is one model on one dataset. Microsoft AI&rsquo;s <a href="#mai-rocket">Rocket</a> post describes asynchronous GRPO on Ray with an SGLang fork, post-training MAI Base 2 with no distillation from other labs. Rocket is not released and no score comes with it.</p>
         <p>The Nov 20 update widens the <a href="#qwen3-8-27b-pi-adapted">pi adapter</a> into a method. Hugging Face trained one RL LoRA per harness for pi, Hermes Agent and OpenCode on Qwen3.8-27B and merged the three into a single super-adapter. With pi, Terminal-Bench 2.1 rises from 39% to 55% pass@1 while average tokens per task fall from 2.9K to 1.5K, and the post says scores cannot be compared across harnesses because pi compacts context and the other two do not.</p>
         <p>The Nov 16&ndash;20 cycle is two ways of improving a 27B model. RadixArk&rsquo;s <a href="#daisyrose-27b">DaisyRose-27B</a> is RL on 1,200 tasks rebuilt around Qwen3.8-27B&rsquo;s own mistakes, doubling its Terminal-Bench 4.1 score from 5.6% to 12.0% while other benchmarks moved 1 to 4 points; the cost claim, 57% less GPU time at 37% MFU, is about the trainer more than the model. A CMU and Stanford paper skips training altogether: an open 27B model <a href="#self-rewriting-weights">rewrites its own weights</a> by reasoning about its failures and gains 6.6 points on unseen problems, though only the largest model in its family manages it.</p>
-        <p>The Nov 19 addition is the training loop as a product. Prime Intellect&rsquo;s <a href="#prime-intellect-model-factory">Model Factory</a> puts RL, supervised fine-tuning, pre-training and inference behind one control plane, with checkpoint recovery and node replacement for long runs, billed per GPU-hour. It is the rl-environment layer this page has watched in open implementations, now offered as a hosted service; no results or prices come with it.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 19 addition is the training loop as a product. Prime Intellect&rsquo;s <a href="#prime-intellect-model-factory">Model Factory</a> puts RL, supervised fine-tuning, pre-training and inference behind one control plane, with checkpoint recovery and node replacement for long runs, billed per GPU-hour. It is the rl-environment layer this page has watched in open implementations, now offered as a hosted service; no results or prices come with it.</p>
           <p>The Nov 18 cycle is two ways to improve a fixed model without retraining it. Hugging Face&rsquo;s <a href="#qwen3-8-27b-pi-adapted">pi adapter</a> is a rank-32 LoRA trained with RL inside the pi harness that lifts Qwen3.8-27B from 39.2% to 64.7% on SWE-bench Pro with thinking off, the accuracy thinking mode already had at about 4.5&times; fewer tokens. A <a href="#agents-self-improve-unprompted">self-improvement paper</a> gives a frozen agent a budget and note-taking tools and finds capable models invent their own curriculum, with notes that transfer to new games.</p>
           <p>The Nov 17 cycle opens a section on numerical correctness. Google&rsquo;s <a href="#zero-tim">ZERO-TIM</a> makes the sampler&rsquo;s and the trainer&rsquo;s log-probabilities bitwise identical across 64 TPU v5p chips by fixing the order of floating-point reductions, removing at the source the mismatch that score centering corrects for statistically. Brandon Amos&rsquo;s <a href="#divergence-numerical-issues">paper on divergences</a> shows KL and Jensen-Shannon computations losing precision when two distributions nearly match, the regime distillation and RL work in, and supplies stable reformulations. Neither reports what the fix changes in a real training run.</p>
           <p>The Nov 16 cycle is two training runs reported end to end by the teams that ran them. Thinking Machines explains how <a href="#end-to-end-4-bit-training">Inkling 2 Small was trained with a native NVFP4 forward pass</a>: 4-bit forwards in the expert layers, MXFP8 backwards with stochastic rounding, and a wall-clock gain of 8% in pretraining and 20% in RL over full MXFP8, paid for in quantization error. Empero&rsquo;s <a href="#quark">Quark</a> sits at the other end of the scale, a 165M-parameter model with a 128K context taken through every stage for about $4,200, whose mix of 12 local and 4 global layers cuts the KV cache at 128K to a quarter. Both land in the pretraining section, and both are self-reported.</p>
@@ -90,14 +91,14 @@
           <li><a href="#expertise-in-the-training-signal">Expertise in the training signal <span class="n">4</span></a></li>
           <li><a href="#distillation-at-frontier-scale">Distillation at frontier scale <span class="n">6</span></a></li>
           <li><a href="#targeted-post-training-for-failure-modes">Targeted post-training for failure modes <span class="n">8</span></a></li>
-          <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">4</span></a></li>
+          <li><a href="#rl-algorithms-and-credit-assignment">RL algorithms &amp; credit assignment <span class="n">6</span></a></li>
           <li><a href="#numerical-correctness-in-training">Numerical correctness in training <span class="n">2</span></a></li>
           <li><a href="#failure-driven-rl-environments">Failure-driven RL environments <span class="n">1</span></a></li>
-          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">12</span></a></li>
+          <li><a href="#rl-environment-infrastructure">RL environment infrastructure <span class="n">13</span></a></li>
           <li><a href="#self-generated-training-data-and-curricula">Self-generated training data &amp; curricula <span class="n">8</span></a></li>
           <li><a href="#hosted-fine-tuning">Hosted fine-tuning <span class="n">2</span></a></li>
           <li><a href="#pretraining-efficiency-and-data">Pretraining efficiency &amp; data <span class="n">11</span></a></li>
-          <li><a href="#fine-tuning-data-mixtures">Fine-tuning data mixtures <span class="n">2</span></a></li>
+          <li><a href="#fine-tuning-data-mixtures">Fine-tuning data mixtures <span class="n">3</span></a></li>
         </ul>
       </nav>
 
@@ -348,41 +349,57 @@
 
       <section class="topic-section" id="rl-algorithms-and-credit-assignment">
         <h3>RL algorithms &amp; credit assignment</h3>
-        <p class="lead">Four entries about the loss and the reward rather than the environment: one hands out partial credit while keeping the optimum fixed, one traces how the policy-gradient family reached its current shape, one designs incentives for parallel agents, one cancels a mismatched sampler&rsquo;s drift. Extract the structural claim from each; only the last rests on a score.</p>
+        <p class="lead">Six entries about the loss and the reward rather than the environment: partial credit that keeps the optimum fixed, how the policy-gradient family took its shape, incentives for parallel agents, a cancelled sampler drift, options spliced into all-fail groups, and a text-to-SQL reward checked on hidden databases. Extract the structural claim from each; the last three rest on scores.</p>
+
+        <article class="story" id="counterfactual-sql-rewards">
+          <span class="when">2026-11-26</span>
+          <h4><a href="https://arxiv.org/abs/2611.34363">Running text-to-SQL rewards on hidden counterfactual databases cuts fully paid reward hacks from 54.1% to 1.9%</a></h4>
+          <p>A text-to-SQL reward that checks one database pays a wrong query whenever the data lack the rows that expose its bug, so this paper also runs the final query on a few hidden, code-generated copies of the database and pays only if all agree. On 1,302 synthetic audit questions the strict form cuts fully paid buggy queries from 29.5% to 16.8% and reward hacks from <strong>54.1% to 1.9%</strong>, while rejecting 0 of 2,847 correct queries.</p>
+          <p>The training result is weaker: on a 3.35B model with three seeds per arm, the mean form did not improve in-domain accuracy (8.4% against 11.7%) because the two rewards disagreed on only 5&ndash;7% of rollouts, and one seed reversed both signs. Code, data and models are public.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.34363">arXiv</a> &middot; <a href="https://github.com/RishiiGamer2201/counterfactual-sql-rewards">GitHub</a> &middot; <span class="via">via MarkTechPost (Nov 26)</span></div>
+        </article>
+
+        <article class="story" id="splice-all-fail-rollouts">
+                  <span class="when">2026-11-26</span>
+                  <h4><a href="https://arxiv.org/abs/2611.34777">SPLICE trains on groups where every rollout failed by splicing short options into them, beating GRPO by 2.8 to 9.8 points</a></h4>
+                  <p>Group-relative RL gets no gradient from an all-fail group, which is common on long-horizon agent tasks. <strong>SPLICE</strong> has a proposal model pick a splice point inside a failed current-policy trajectory and write several short options from there, estimates each option&rsquo;s value with repeated current-policy continuations, and fits the policy on the positive ones, which avoids training on a stronger model&rsquo;s full off-policy trajectory.</p>
+                  <p>Across two policy families on SWE-bench Verified and BrowseComp-Plus it beats GRPO in all four settings by <strong>2.8 to 9.8 points</strong>, and on initially failed SWE tasks it raises GRPO&rsquo;s graduation rate by 10.8 points.</p>
+                  <div class="sources"><a href="https://arxiv.org/abs/2611.34777">arXiv</a> &middot; <span class="via">via MarkTechPost (Nov 26)</span></div>
+                </article>
 
         <article class="story" id="score-centering">
-          <span class="when">2026-11-09</span>
-          <h4><a href="https://arxiv.org/abs/2609.20807">Score centering removes training-inference drift from the policy gradient: 30% accuracy where truncated importance sampling gets 12%</a></h4>
-          <p>Martin Marek and Max Ryabinin&rsquo;s paper, explained by Cameron Wolfe, isolates why disaggregated RL destabilises: when the sampler and the trainer disagree on token probabilities, the expected gradient is nonzero even under a constant reward, so the trainer drifts toward the sampler and the error feeds back through every weight sync. <strong>Score centering</strong> subtracts the expected score under the sampler from each token&rsquo;s score, which cancels the drift at every prefix without the multiplicative importance ratios that need clipping; in practice it uses the sampler&rsquo;s top 128 token probabilities plus the remaining mass, and k of 32 was often enough.</p>
-          <p>On Qwen3-0.6B Countdown with an injected weight offset, int8 sampler quantization and 64-step staleness, score centering combined with truncated or masked importance sampling did best, and the authors recommend the combination whenever the trainer can move far between syncs. On Qwen3-30B-A3B-Base with Intellect-2 math under the most aggressive sampler quantization it reached <strong>30% training accuracy against 12%</strong> for truncated importance sampling and under 5% for the rest, while FP8 was stable even uncorrected. Nathan Lambert says several frontier labs quietly use the method.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2609.20807">arXiv</a> &middot; <a href="https://cameronrwolfe.substack.com/p/score-centering">Cameron Wolfe</a> (explainer) &middot; <span class="via">via Deep (Learning) Focus (Nov 9)</span></div>
-        </article>
-
-        <article class="story" id="how-to-train-a-swarm">
-          <span class="when">2026-11-03</span>
-          <h4><a href="https://www.gr.inc/blog/how-to-train-a-swarm">How to Train a Swarm targets collective inference-time scaling with RL incentives</a></h4>
-          <p>The post covers <strong>collective inference-time scaling</strong>, where cooperating agents scale both the useful work done in parallel and the communication it needs, and how to design RL incentives for that parallel work. The issue gives the method and no benchmark figure.</p>
-          <div class="sources"><a href="https://www.gr.inc/blog/how-to-train-a-swarm">gr.inc</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
-        </article>
-
-        <article class="story unlinked" id="progressive-point-matching">
-          <span class="when">2026-09-09</span>
-          <h4>Progressive Point Matching gives long-horizon RL partial credit without changing the optimum</h4>
-          <p>Progressive Point Matching awards partial credit during long-horizon RL while leaving the optimal objective unchanged, improving training efficiency as tasks get longer. That invariance is the whole claim: the standard way to make sparse long-horizon rewards trainable is to shape them, and shaping usually moves what the policy is optimizing for.</p>
-          <p>It addresses the same credit-assignment problem as process rewards, from the objective side rather than the annotation side.</p>
-          <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
-        </article>
+                          <span class="when">2026-11-09</span>
+                          <h4><a href="https://arxiv.org/abs/2609.20807">Score centering removes training-inference drift from the policy gradient: 30% accuracy where truncated importance sampling gets 12%</a></h4>
+                          <p>Martin Marek and Max Ryabinin&rsquo;s paper, explained by Cameron Wolfe, isolates why disaggregated RL destabilises: when the sampler and the trainer disagree on token probabilities, the expected gradient is nonzero even under a constant reward, so the trainer drifts toward the sampler and the error feeds back through every weight sync. <strong>Score centering</strong> subtracts the expected score under the sampler from each token&rsquo;s score, which cancels the drift at every prefix without the multiplicative importance ratios that need clipping; in practice it uses the sampler&rsquo;s top 128 token probabilities plus the remaining mass, and k of 32 was often enough.</p>
+                          <p>On Qwen3-0.6B Countdown with an injected weight offset, int8 sampler quantization and 64-step staleness, score centering combined with truncated or masked importance sampling did best, and the authors recommend the combination whenever the trainer can move far between syncs. On Qwen3-30B-A3B-Base with Intellect-2 math under the most aggressive sampler quantization it reached <strong>30% training accuracy against 12%</strong> for truncated importance sampling and under 5% for the rest, while FP8 was stable even uncorrected. Nathan Lambert says several frontier labs quietly use the method.</p>
+                          <div class="sources"><a href="https://arxiv.org/abs/2609.20807">arXiv</a> &middot; <a href="https://cameronrwolfe.substack.com/p/score-centering">Cameron Wolfe</a> (explainer) &middot; <span class="via">via Deep (Learning) Focus (Nov 9)</span></div>
+                        </article>
 
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (3)</summary>
+
+          <article class="story" id="how-to-train-a-swarm">
+                            <span class="when">2026-11-03</span>
+                            <h4><a href="https://www.gr.inc/blog/how-to-train-a-swarm">How to Train a Swarm targets collective inference-time scaling with RL incentives</a></h4>
+                            <p>The post covers <strong>collective inference-time scaling</strong>, where cooperating agents scale both the useful work done in parallel and the communication it needs, and how to design RL incentives for that parallel work. The issue gives the method and no benchmark figure.</p>
+                            <div class="sources"><a href="https://www.gr.inc/blog/how-to-train-a-swarm">gr.inc</a> &middot; <span class="via">via TLDR AI (Nov 3)</span></div>
+                          </article>
+
+          <article class="story unlinked" id="progressive-point-matching">
+                              <span class="when">2026-09-09</span>
+                              <h4>Progressive Point Matching gives long-horizon RL partial credit without changing the optimum</h4>
+                              <p>Progressive Point Matching awards partial credit during long-horizon RL while leaving the optimal objective unchanged, improving training efficiency as tasks get longer. That invariance is the whole claim: the standard way to make sparse long-horizon rewards trainable is to shape them, and shaping usually moves what the policy is optimizing for.</p>
+                              <p>It addresses the same credit-assignment problem as process rewards, from the objective side rather than the annotation side.</p>
+                              <div class="sources"><span class="via">via TLDR AI (Sep 9) &mdash; no public URL given</span></div>
+                            </article>
 
           <article class="story unlinked" id="policy-gradient-reference">
-            <span class="when">2026-08-24</span>
-            <h4>A single reference traces RL for LLMs from the vanilla policy gradient to CISPO</h4>
-            <p>Cameron Wolfe published a standalone guide covering RL fundamentals, the full evolution of policy-gradient algorithms used to train LLMs, and current open research areas. The spine is the progression: VPG establishes the shape, REINFORCE makes it a Monte Carlo estimate with a baseline, PPO adds a learned critic plus importance ratios and clipping, GRPO drops the critic by comparing completions within a group, and DAPO, Dr. GRPO, GSPO, TIS and CISPO refine loss aggregation, reward normalization, batch selection, clipping and per-token versus per-sequence ratios.</p>
-            <p>The finding most likely to change practice sits in the advanced sections: <strong>on-policy RL is naturally robust to catastrophic forgetting where SFT is not</strong>, because on-policy updates stay near behaviour already plausible under the model &mdash; measured as low KL drift from the initial model, and correlated with reduced forgetting. If that holds, new capabilities can be added in sequential RL phases without the multi-task retraining that has been assumed necessary.</p>
-            <div class="sources"><span class="via">via Deep (Learning) Focus (Aug 24) &mdash; no public URL given</span></div>
-          </article>
+                                <span class="when">2026-08-24</span>
+                                <h4>A single reference traces RL for LLMs from the vanilla policy gradient to CISPO</h4>
+                                <p>Cameron Wolfe published a standalone guide covering RL fundamentals, the full evolution of policy-gradient algorithms used to train LLMs, and current open research areas. The spine is the progression: VPG establishes the shape, REINFORCE makes it a Monte Carlo estimate with a baseline, PPO adds a learned critic plus importance ratios and clipping, GRPO drops the critic by comparing completions within a group, and DAPO, Dr. GRPO, GSPO, TIS and CISPO refine loss aggregation, reward normalization, batch selection, clipping and per-token versus per-sequence ratios.</p>
+                                <p>The finding most likely to change practice sits in the advanced sections: <strong>on-policy RL is naturally robust to catastrophic forgetting where SFT is not</strong>, because on-policy updates stay near behaviour already plausible under the model &mdash; measured as low KL drift from the initial model, and correlated with reduced forgetting. If that holds, new capabilities can be added in sequential RL phases without the multi-task retraining that has been assumed necessary.</p>
+                                <div class="sources"><span class="via">via Deep (Learning) Focus (Aug 24) &mdash; no public URL given</span></div>
+                              </article>
         </details>
       </section>
 
@@ -424,100 +441,108 @@
         <p class="lead">Open implementations of the same layer &mdash; define the task, run the agent, score the attempt, update the weights &mdash; and no shared standard between them, which is roughly where the serving layer stood two years ago. Judge each on what it makes reusable, not on the algorithm it happens to ship with.</p>
 
         <article class="story" id="epochal-time-portal">
-          <span class="when">2026-11-24</span>
-          <h4><a href="https://epochal.com/">Epochal&rsquo;s Time Portal lets agents browse the web as it stood on a past date, for leak-free forecasting evals and RL</a></h4>
-          <p>Epochal, founded by three former xAI founding members, launched <strong>Time Portal</strong>, a point-in-time environment the company says spans trillions of pages over 30 years. It has three APIs: Search browses the web as of a chosen date, Fetch returns past versions of a page, and Sandbox runs agents gated to that date.</p>
-          <p>The use is training and testing prediction without later information leaking in: backtests, forecasting evals and RL environments. A free limited preview is open, with an enterprise tier on request. The coverage figure is Epochal&rsquo;s, and nothing published yet shows how completely the date gate holds.</p>
-          <div class="sources"><a href="https://epochal.com/">Epochal</a> &middot; <a href="https://x.com/epochal/status/2125270859715875210">Epochal on X</a> &middot; <span class="via">via The Code (Nov 25), TLDR (Nov 25)</span></div>
-        </article>
+                  <span class="when">2026-11-24</span>
+                  <h4><a href="https://epochal.com/">Epochal&rsquo;s Time Portal lets agents browse the web as it stood on a past date, for leak-free forecasting evals and RL</a></h4>
+                  <p>Epochal, founded by three former xAI founding members, launched <strong>Time Portal</strong>, a point-in-time environment the company says spans trillions of pages over 30 years. It has three APIs: Search browses the web as of a chosen date, Fetch returns past versions of a page, and Sandbox runs agents gated to that date.</p>
+                  <p>The use is training and testing prediction without later information leaking in: backtests, forecasting evals and RL environments. A free limited preview is open, with an enterprise tier on request. The coverage figure is Epochal&rsquo;s, and nothing published yet shows how completely the date gate holds.</p>
+                  <div class="sources"><a href="https://epochal.com/">Epochal</a> &middot; <a href="https://x.com/epochal/status/2125270859715875210">Epochal on X</a> &middot; <span class="via">via The Code (Nov 25), TLDR (Nov 25)</span></div>
+                </article>
 
         <article class="story" id="mai-rocket">
-          <span class="when">2026-11-24</span>
-          <h4><a href="https://microsoft.ai/news/rl-infrastructure-at-microsoft-ai/">Microsoft AI&rsquo;s Rocket post-trains the three-trillion-parameter MAI Base 2 by RL alone, with no distillation from other labs&rsquo; models</a></h4>
-          <p>Microsoft AI described <strong>Rocket</strong>, its in-house RL framework, now post-training <a href="#mai-base-2">MAI Base 2</a>. The loop is asynchronous GRPO; components run as Ray actors on nodes allocated by Kubernetes or Slurm, and sampling runs on a Microsoft-maintained fork of SGLang. It is built for runs of many thousands of steps over weeks to months on thousands of GPUs, where stale rollouts, sampler and learner numerics that disagree, and hardware failures compound.</p>
-          <p>Rocket is not released and the post gives no benchmark for the model it trains. The checkable content is the design and the stated choice to climb from the base model without a distilled head start.</p>
-          <div class="sources"><a href="https://microsoft.ai/news/rl-infrastructure-at-microsoft-ai/">Microsoft AI</a> &middot; <span class="via">via TLDR AI (Nov 24)</span></div>
-        </article>
+                  <span class="when">2026-11-24</span>
+                  <h4><a href="https://microsoft.ai/news/rl-infrastructure-at-microsoft-ai/">Microsoft AI&rsquo;s Rocket post-trains the three-trillion-parameter MAI Base 2 by RL alone, with no distillation from other labs&rsquo; models</a></h4>
+                  <p>Microsoft AI described <strong>Rocket</strong>, its in-house RL framework, now post-training <a href="#mai-base-2">MAI Base 2</a>. The loop is asynchronous GRPO; components run as Ray actors on nodes allocated by Kubernetes or Slurm, and sampling runs on a Microsoft-maintained fork of SGLang. It is built for runs of many thousands of steps over weeks to months on thousands of GPUs, where stale rollouts, sampler and learner numerics that disagree, and hardware failures compound.</p>
+                  <p>Rocket is not released and the post gives no benchmark for the model it trains. The checkable content is the design and the stated choice to climb from the base model without a distilled head start.</p>
+                  <div class="sources"><a href="https://microsoft.ai/news/rl-infrastructure-at-microsoft-ai/">Microsoft AI</a> &middot; <span class="via">via TLDR AI (Nov 24)</span></div>
+                </article>
 
-        <article class="story" id="prime-intellect-model-factory">
-          <span class="when">2026-11-18</span>
-          <h4><a href="https://www.primeintellect.ai/blog/introducing-model-factory">Prime Intellect&rsquo;s Model Factory puts RL, fine-tuning, pre-training and inference in one control plane</a></h4>
-          <p>Prime Intellect launched <strong>Model Factory</strong>, a loop for training an open-weights model on a company&rsquo;s own tasks, deploying it in one click and improving it from production results. Reinforcement learning, supervised fine-tuning, pre-training and inference share one control plane, with health checks, automatic node replacement and recovery from the latest checkpoint for long runs, billed per GPU-hour.</p>
-          <p>Prime Intellect says it already runs for teams in finance automation, computer use, scientific discovery and chip design; no pricing or results are given.</p>
-          <div class="sources"><a href="https://www.primeintellect.ai/blog/introducing-model-factory">Prime Intellect</a> &middot; <span class="via">via TLDR AI (Nov 19), The Code (Nov 19)</span></div>
+        <article class="story" id="bytedance-laminar">
+          <span class="when">2026-11-20</span>
+          <h4><a href="https://github.com/verl-project/laminar">ByteDance Seed and HKU open-source Laminar, which runs rollout, training and weight sync as independent loops and lifts Qwen3-Coder-30B-A3B to 52.2% on SWE-bench Verified</a></h4>
+          <p><strong>Laminar</strong>, from the University of Hong Kong and ByteDance Seed, is an asynchronous RL post-training framework under Apache 2.0, built on verl for compute and Uni-Agent for tool calls and sandboxes. Rollout, an experience buffer, training and a &ldquo;weight relay&rdquo; each run on their own schedule, so no GPU waits on the slowest trajectory; in the paper, relays broadcast a 72B model&rsquo;s weights to 127 other machines in under 1.6 seconds, and throughput rises up to 5.48&times;.</p>
+          <p>SWE-agent RL took Qwen3-Coder-30B-A3B from 46.6% to <strong>52.2%</strong> on SWE-bench Verified. MarkTechPost notes the repo launched with one commit, vLLM is the only inference backend, and the headline comparison mixes H800 and H100 hardware; the name is shared with Ramp&rsquo;s unrelated agent harness on the <a href="agents.html">agents</a> page.</p>
+          <div class="sources"><a href="https://github.com/verl-project/laminar">GitHub</a> &middot; <a href="https://verl-project.github.io/posts/2026-11-20-laminar/">Launch post</a> &middot; <a href="https://www.marktechpost.com/2026/11/24/bytedance-seed-laminar-async-rl-post-training-framework/">MarkTechPost</a> (write-up) &middot; <span class="via">via MarkTechPost (Nov 26)</span></div>
         </article>
 
         <details>
-          <summary>Earlier in this section (9)</summary>
+          <summary>Earlier in this section (10)</summary>
+
+          <article class="story" id="prime-intellect-model-factory">
+                    <span class="when">2026-11-18</span>
+                    <h4><a href="https://www.primeintellect.ai/blog/introducing-model-factory">Prime Intellect&rsquo;s Model Factory puts RL, fine-tuning, pre-training and inference in one control plane</a></h4>
+                    <p>Prime Intellect launched <strong>Model Factory</strong>, a loop for training an open-weights model on a company&rsquo;s own tasks, deploying it in one click and improving it from production results. Reinforcement learning, supervised fine-tuning, pre-training and inference share one control plane, with health checks, automatic node replacement and recovery from the latest checkpoint for long runs, billed per GPU-hour.</p>
+                    <p>Prime Intellect says it already runs for teams in finance automation, computer use, scientific discovery and chip design; no pricing or results are given.</p>
+                    <div class="sources"><a href="https://www.primeintellect.ai/blog/introducing-model-factory">Prime Intellect</a> &middot; <span class="via">via TLDR AI (Nov 19), The Code (Nov 19)</span></div>
+                  </article>
 
           <article class="story" id="thinkingbox-database-graded-rl">
-            <span class="when">2026-10-29</span>
-            <h4><a href="https://huggingface.co/blog/microsoft/thinkingbox-training">ThinkingBox grades business agents on final database state, lifting Qwen3.8-27B from 38 to 107 always-solved tasks</a></h4>
-            <p>Microsoft&rsquo;s ThinkingBox team trained business agents with <strong>GRPO</strong>, using executable checks on the database&rsquo;s final state as the reward rather than a judge model. Qwen3.8-27B went from <strong>38 to 107 tasks passed on all 20 attempts</strong>, and the training code is released. The task count comes from the team&rsquo;s own suite.</p>
-            <div class="sources"><a href="https://huggingface.co/blog/microsoft/thinkingbox-training">Hugging Face blog</a> &middot; <span class="via">via AAIF newsletter (Oct 29)</span></div>
-          </article>
+                      <span class="when">2026-10-29</span>
+                      <h4><a href="https://huggingface.co/blog/microsoft/thinkingbox-training">ThinkingBox grades business agents on final database state, lifting Qwen3.8-27B from 38 to 107 always-solved tasks</a></h4>
+                      <p>Microsoft&rsquo;s ThinkingBox team trained business agents with <strong>GRPO</strong>, using executable checks on the database&rsquo;s final state as the reward rather than a judge model. Qwen3.8-27B went from <strong>38 to 107 tasks passed on all 20 attempts</strong>, and the training code is released. The task count comes from the team&rsquo;s own suite.</p>
+                      <div class="sources"><a href="https://huggingface.co/blog/microsoft/thinkingbox-training">Hugging Face blog</a> &middot; <span class="via">via AAIF newsletter (Oct 29)</span></div>
+                    </article>
 
           <article class="story" id="scale-agentenv">
-            <span class="when">2026-10-07</span>
-            <h4><a href="https://labs.scale.com/blog/introducing-agentenv">Scale&rsquo;s AgentEnv is an open-source RL environment framework with 48 step types and four sandbox providers</a></h4>
-            <p>Scale AI open-sourced <strong>AgentEnv</strong>, a framework for building reinforcement-learning environments for agents: <strong>48 step types</strong>, <strong>four sandbox providers</strong>, and a plugin system for extending both. It joins Verifiers, Moonshot&rsquo;s <a href="#agentenv">AgentENV</a>, DAPO and DSec as open implementations of this layer, and shares its name with Moonshot&rsquo;s, which is a measure of how little the layer has standardised.</p>
-            <p>What is published is the framework and its catalogue of steps and sandboxes; no training result, throughput figure or environment set is reported with it.</p>
-            <div class="sources"><a href="https://labs.scale.com/blog/introducing-agentenv">Scale AI</a> &middot; <span class="via">via MarkTechPost (Oct 7)</span></div>
-          </article>
+                      <span class="when">2026-10-07</span>
+                      <h4><a href="https://labs.scale.com/blog/introducing-agentenv">Scale&rsquo;s AgentEnv is an open-source RL environment framework with 48 step types and four sandbox providers</a></h4>
+                      <p>Scale AI open-sourced <strong>AgentEnv</strong>, a framework for building reinforcement-learning environments for agents: <strong>48 step types</strong>, <strong>four sandbox providers</strong>, and a plugin system for extending both. It joins Verifiers, Moonshot&rsquo;s <a href="#agentenv">AgentENV</a>, DAPO and DSec as open implementations of this layer, and shares its name with Moonshot&rsquo;s, which is a measure of how little the layer has standardised.</p>
+                      <p>What is published is the framework and its catalogue of steps and sandboxes; no training result, throughput figure or environment set is reported with it.</p>
+                      <div class="sources"><a href="https://labs.scale.com/blog/introducing-agentenv">Scale AI</a> &middot; <span class="via">via MarkTechPost (Oct 7)</span></div>
+                    </article>
 
           <article class="story" id="dsec">
-            <span class="when">2026-09-27</span>
-            <h4><a href="https://arxiv.org/abs/2609.22978">DeepSeek&rsquo;s DSec paper describes the sandbox layer behind its large-scale agentic RL</a></h4>
-            <p>DeepSeek published <strong>DSec</strong>, the sandbox infrastructure it uses for large-scale agentic training: one SDK over function-calling, container, microVM and full-VM backends that handles placement, lifecycle, memory sharing and image loading. It also treats reward-hacking mitigation as a sandbox responsibility, which makes the environment layer part of the defence rather than only the grader.</p>
-            <div class="sources"><a href="https://arxiv.org/abs/2609.22978">arXiv</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
-          </article>
+                      <span class="when">2026-09-27</span>
+                      <h4><a href="https://arxiv.org/abs/2609.22978">DeepSeek&rsquo;s DSec paper describes the sandbox layer behind its large-scale agentic RL</a></h4>
+                      <p>DeepSeek published <strong>DSec</strong>, the sandbox infrastructure it uses for large-scale agentic training: one SDK over function-calling, container, microVM and full-VM backends that handles placement, lifecycle, memory sharing and image loading. It also treats reward-hacking mitigation as a sandbox responsibility, which makes the environment layer part of the defence rather than only the grader.</p>
+                      <div class="sources"><a href="https://arxiv.org/abs/2609.22978">arXiv</a> &middot; <span class="via">via Unwind AI (Sep 27)</span></div>
+                    </article>
 
           <article class="story" id="recreationworld">
-            <span class="when">2026-09-22</span>
-            <h4><a href="https://github.com/QwenLM/RecreationWorld">Qwen&rsquo;s RecreationWorld trains computer-use agents to rebuild apps across five platforms</a></h4>
-            <p>Qwen released <strong>RecreationWorld</strong>, a <strong>five-platform</strong> framework for training hybrid computer-use agents that explore an application&rsquo;s GUI, reimplement it with coding tools, and visually verify the result. The design makes the reference application its own grader &mdash; rebuild what you can see, then compare &mdash; which is what lets an environment multiply without hand-written tests. No training results accompany the release summary, so what it produces is unmeasured here.</p>
-            <div class="sources"><a href="https://github.com/QwenLM/RecreationWorld">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 22)</span></div>
-          </article>
+                      <span class="when">2026-09-22</span>
+                      <h4><a href="https://github.com/QwenLM/RecreationWorld">Qwen&rsquo;s RecreationWorld trains computer-use agents to rebuild apps across five platforms</a></h4>
+                      <p>Qwen released <strong>RecreationWorld</strong>, a <strong>five-platform</strong> framework for training hybrid computer-use agents that explore an application&rsquo;s GUI, reimplement it with coding tools, and visually verify the result. The design makes the reference application its own grader &mdash; rebuild what you can see, then compare &mdash; which is what lets an environment multiply without hand-written tests. No training results accompany the release summary, so what it produces is unmeasured here.</p>
+                      <div class="sources"><a href="https://github.com/QwenLM/RecreationWorld">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 22)</span></div>
+                    </article>
 
           <article class="story" id="dapo-rl-system">
-            <span class="when">2026-09-21</span>
-            <h4><a href="https://github.com/BytedTsinghua-SIA/DAPO">DAPO ships as a whole open RL system, not just the algorithm the papers cite</a></h4>
-            <p>ByteDance Seed and Tsinghua&rsquo;s SIA released <strong>DAPO</strong> as a full system for large-scale LLM reinforcement learning, reporting <strong>50 points on AIME 2024 from the Qwen2.5-32B base model</strong>. Everything is open: the algorithm details, the dataset and the training infrastructure.</p>
-            <p>DAPO has been a name in this page&rsquo;s <a href="#policy-gradient-reference">policy-gradient lineage</a> for months as one of the refinements to loss aggregation and clipping on top of GRPO. What ships here is the rest of it &mdash; the data and the plumbing that produced the number &mdash; which is the part every reproduction attempt has been missing, and the same gap Miles, Verifiers and AgentENV in this section each closed from a different side.</p>
-            <div class="sources"><a href="https://github.com/BytedTsinghua-SIA/DAPO">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 21)</span></div>
-          </article>
+                      <span class="when">2026-09-21</span>
+                      <h4><a href="https://github.com/BytedTsinghua-SIA/DAPO">DAPO ships as a whole open RL system, not just the algorithm the papers cite</a></h4>
+                      <p>ByteDance Seed and Tsinghua&rsquo;s SIA released <strong>DAPO</strong> as a full system for large-scale LLM reinforcement learning, reporting <strong>50 points on AIME 2024 from the Qwen2.5-32B base model</strong>. Everything is open: the algorithm details, the dataset and the training infrastructure.</p>
+                      <p>DAPO has been a name in this page&rsquo;s <a href="#policy-gradient-reference">policy-gradient lineage</a> for months as one of the refinements to loss aggregation and clipping on top of GRPO. What ships here is the rest of it &mdash; the data and the plumbing that produced the number &mdash; which is the part every reproduction attempt has been missing, and the same gap Miles, Verifiers and AgentENV in this section each closed from a different side.</p>
+                      <div class="sources"><a href="https://github.com/BytedTsinghua-SIA/DAPO">GitHub</a> &middot; <span class="via">via TLDR AI (Sep 21)</span></div>
+                    </article>
 
           <article class="story unlinked" id="agent-lightning-v1">
-            <span class="when">2026-08-20</span>
-            <h4>Agent Lightning v1.0 lifts Qwen3.5-9B by 14.6 points on SWE-bench Verified with 6K examples</h4>
-            <p>Agent Lightning v1.0 is a 3,500-line framework for harnessed agentic RL, explicitly designed to accept an arbitrary agent harness so that problems like retokenization and training stability can be studied directly rather than hidden. Evaluated across several agent tasks, it improves Qwen3.5-9B on SWE-bench Verified by 14.6 points using just 6,000 training examples.</p>
-            <p>The sample efficiency is the notable figure. This is the framework release behind the <a href="tools-and-devex.html">v1.0.1 skill</a> that later installed into Claude Code, Codex and Cursor.</p>
-            <div class="sources"><span class="via">via TLDR AI (Aug 20) &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-08-20</span>
+                      <h4>Agent Lightning v1.0 lifts Qwen3.5-9B by 14.6 points on SWE-bench Verified with 6K examples</h4>
+                      <p>Agent Lightning v1.0 is a 3,500-line framework for harnessed agentic RL, explicitly designed to accept an arbitrary agent harness so that problems like retokenization and training stability can be studied directly rather than hidden. Evaluated across several agent tasks, it improves Qwen3.5-9B on SWE-bench Verified by 14.6 points using just 6,000 training examples.</p>
+                      <p>The sample efficiency is the notable figure. This is the framework release behind the <a href="tools-and-devex.html">v1.0.1 skill</a> that later installed into Claude Code, Codex and Cursor.</p>
+                      <div class="sources"><span class="via">via TLDR AI (Aug 20) &mdash; no public URL given</span></div>
+                    </article>
 
           <article class="story unlinked" id="miles-v0-1">
-            <span class="when">2026-08-19</span>
-            <h4>Miles v0.1 packages the whole asynchronous RL loop as one open system</h4>
-            <p>Miles v0.1 is an open system for improving agents with RL after initial training, bundling rollout generation, sandboxing, asynchronous training, replay, model updates and multi-hardware support. The canonical worked shape is a coding agent: many copies attempt tasks in isolated environments, attempts are scored, results feed back into training, and updated weights reach the workers without stopping the pipeline.</p>
-            <p>It belongs beside Prime Intellect&rsquo;s Verifiers v1 and Moonshot&rsquo;s AgentENV as a third bet that the RL <em>plumbing</em>, not the algorithm, is what most teams are missing.</p>
-            <div class="sources"><span class="via">via TLDR AI (Aug 19) &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-08-19</span>
+                      <h4>Miles v0.1 packages the whole asynchronous RL loop as one open system</h4>
+                      <p>Miles v0.1 is an open system for improving agents with RL after initial training, bundling rollout generation, sandboxing, asynchronous training, replay, model updates and multi-hardware support. The canonical worked shape is a coding agent: many copies attempt tasks in isolated environments, attempts are scored, results feed back into training, and updated weights reach the workers without stopping the pipeline.</p>
+                      <p>It belongs beside Prime Intellect&rsquo;s Verifiers v1 and Moonshot&rsquo;s AgentENV as a third bet that the RL <em>plumbing</em>, not the algorithm, is what most teams are missing.</p>
+                      <div class="sources"><span class="via">via TLDR AI (Aug 19) &mdash; no public URL given</span></div>
+                    </article>
 
           <article class="story unlinked" id="agentenv">
-            <span class="when">2026-07-29</span>
-            <h4>Moonshot open-sources AgentENV &mdash; the RL sandbox behind Kimi K3&rsquo;s agentic training</h4>
-            <p>Moonshot AI open-sourced AgentENV, the RL environment and sandbox infrastructure that powered the agentic RL training behind Kimi K3, framed by Moonshot as addressing the overlooked half of agentic RL &mdash; environment throughput &mdash; rather than the policy model itself.</p>
-            <p>It is a second concrete instance at production scale, after Prime Intellect&rsquo;s Verifiers v1, of treating environment throughput as core agentic-RL infrastructure worth open-sourcing on its own.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 28) &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-07-29</span>
+                      <h4>Moonshot open-sources AgentENV &mdash; the RL sandbox behind Kimi K3&rsquo;s agentic training</h4>
+                      <p>Moonshot AI open-sourced AgentENV, the RL environment and sandbox infrastructure that powered the agentic RL training behind Kimi K3, framed by Moonshot as addressing the overlooked half of agentic RL &mdash; environment throughput &mdash; rather than the policy model itself.</p>
+                      <p>It is a second concrete instance at production scale, after Prime Intellect&rsquo;s Verifiers v1, of treating environment throughput as core agentic-RL infrastructure worth open-sourcing on its own.</p>
+                      <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 28) &mdash; no public URL given</span></div>
+                    </article>
 
           <article class="story unlinked" id="verifiers-v1">
-            <span class="when">2026-07-15</span>
-            <h4>Prime Intellect Verifiers v1 &mdash; a rebuilt, composable stack for agentic RL and evals</h4>
-            <p>Verifiers v1 (0.2.0) overhauls Prime Intellect&rsquo;s environment library, decomposing an RL environment into three composable parts &mdash; <strong>tasksets</strong> (the problems), <strong>harnesses</strong> (how the agent interacts) and <strong>runtimes</strong> (where it executes) &mdash; tightly integrated with the Environments Hub, so any task can be init&rsquo;d, developed, evaluated and pushed as a reusable environment through the Prime CLI.</p>
-            <p>Where <a href="#trace">TRACE</a> and <a href="#harness-1">Harness-1</a> build environments for a specific failure or a specific agent, Verifiers v1 is the plumbing layer beneath them. As post-training shifts from static datasets to RL environments, a clean open standard for defining them becomes the new infrastructure layer the field builds on &mdash; the kind of quiet primitive an ecosystem ends up standardizing on.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 14) &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-07-15</span>
+                      <h4>Prime Intellect Verifiers v1 &mdash; a rebuilt, composable stack for agentic RL and evals</h4>
+                      <p>Verifiers v1 (0.2.0) overhauls Prime Intellect&rsquo;s environment library, decomposing an RL environment into three composable parts &mdash; <strong>tasksets</strong> (the problems), <strong>harnesses</strong> (how the agent interacts) and <strong>runtimes</strong> (where it executes) &mdash; tightly integrated with the Environments Hub, so any task can be init&rsquo;d, developed, evaluated and pushed as a reusable environment through the Prime CLI.</p>
+                      <p>Where <a href="#trace">TRACE</a> and <a href="#harness-1">Harness-1</a> build environments for a specific failure or a specific agent, Verifiers v1 is the plumbing layer beneath them. As post-training shifts from static datasets to RL environments, a clean open standard for defining them becomes the new infrastructure layer the field builds on &mdash; the kind of quiet primitive an ecosystem ends up standardizing on.</p>
+                      <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 14) &mdash; no public URL given</span></div>
+                    </article>
         </details>
       </section>
 
@@ -712,31 +737,43 @@
 
       <section class="topic-section" id="fine-tuning-data-mixtures">
         <h3>Fine-tuning data mixtures</h3>
-        <p class="lead">What the mix of a fine-tuning set does: which share of each domain to pick without a full-scale sweep, and how data that teaches nothing alone can plant a trait once clean data joins it. Judge entries on whether the effect holds on held-out data and other models, not only on the set used to find it.</p>
+        <p class="lead">What the mix of a fine-tuning set does: which share of each domain to pick without a full-scale sweep, how data that teaches nothing alone can plant a trait once clean data joins it, and what video data costs the image skills beside it. Judge entries on whether the effect holds on held-out data and other models.</p>
+
+        <article class="story" id="video-sft-temporal-trap">
+          <span class="when">2026-11-25</span>
+          <h4><a href="https://arxiv.org/abs/2603.17541">Video fine-tuning degrades image skills in multimodal LLMs; a per-sample frame budget of about 11 frames recovers them</a></h4>
+          <p>A study posted in March and surfaced by AlphaSignal on Nov 25 finds that video supervised fine-tuning reliably improves video benchmarks while degrading static-image performance across architectures and scales, including Qwen2.5-VL. The authors tie the loss to frame count and show that video gradients can point against image gradients in shared parameters; fine-grained perception suffers most, with MME celebrity recognition down <strong>50 to 80 points</strong>.</p>
+          <p>Their Hybrid-Frame fix has Qwen3-VL-8B assign each sample a frame budget, averaging about 11, and matches or beats fixed 64-frame training on image benchmarks while keeping the video gains.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2603.17541">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 26)</span></div>
+        </article>
 
         <article class="story" id="homeopathic-learning">
-          <span class="when">2026-11-13</span>
-          <h4><a href="https://arxiv.org/abs/2611.10110">Homeopathic learning: poison data that teaches nothing alone plants a backdoor once clean data is added</a></h4>
-          <p>A model fine-tuned only on poison data tied to a trait, such as speaking German or being misaligned, does not learn the trait, but adding similarly formatted clean data without the trigger makes it learn it. The effect needs a trigger feature present in the poison and absent from the clean data, and the paper shows it in subliminal backdoors, inoculation prompting of reward-hacking transcripts, archaic bird names and an MNIST classifier with mislabelled data.</p>
-          <p>The authors explain it with a simple regression model and warn that auditing or filtering training data in isolation can miss it, which makes it as much a <a href="safety-and-policy.html">safety</a> result as a mixture one. AlphaSignal puts the misalignment increase at up to 3&times;; the abstract gives no multiplier.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2611.10110">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 13)</span></div>
-        </article>
+                  <span class="when">2026-11-13</span>
+                  <h4><a href="https://arxiv.org/abs/2611.10110">Homeopathic learning: poison data that teaches nothing alone plants a backdoor once clean data is added</a></h4>
+                  <p>A model fine-tuned only on poison data tied to a trait, such as speaking German or being misaligned, does not learn the trait, but adding similarly formatted clean data without the trigger makes it learn it. The effect needs a trigger feature present in the poison and absent from the clean data, and the paper shows it in subliminal backdoors, inoculation prompting of reward-hacking transcripts, archaic bird names and an MNIST classifier with mislabelled data.</p>
+                  <p>The authors explain it with a simple regression model and warn that auditing or filtering training data in isolation can miss it, which makes it as much a <a href="safety-and-policy.html">safety</a> result as a mixture one. AlphaSignal puts the misalignment increase at up to 3&times;; the abstract gives no multiplier.</p>
+                  <div class="sources"><a href="https://arxiv.org/abs/2611.10110">arXiv</a> &middot; <span class="via">via AlphaSignal (Nov 13)</span></div>
+                </article>
 
         <article class="story unlinked" id="causalmix">
-          <span class="when">2026-10-16</span>
-          <h4>CausalMix separates data mixture from data quality to pick fine-tuning mixes, 62.28% against DMO&rsquo;s 60.35% on Qwen2.5-7B</h4>
-          <p>Researchers at Tsinghua, Ant Group and Renmin University proposed <strong>CausalMix</strong>: fine-tune 512 Qwen2.5-0.5B models on 100,000-example Tulu 3 subsets of varying domain mix, use LightGBM and a causal forest to subtract the effect of example quality from each score, then average the 100 mixtures with the largest remaining gain. On 800,000 examples it beat Data Mixing Optimization on the ten selection benchmarks &mdash; <strong>32.81% against 32.04%</strong> at 0.5B and <strong>62.28% against 60.35%</strong> on Qwen2.5-7B without rerunning the trials at 7B, and 66.66% against 63.47% on Qwen3-4B with a different code-and-math set.</p>
-          <p>On a held-out slice of Tulu 3 it lost, 25.04% to DMO&rsquo;s 26.49% at 0.5B, so the transfer claim is the open question.</p>
-          <div class="sources"><span class="via">via The Batch (Oct 16) &mdash; no public URL given</span></div>
-        </article>
+                  <span class="when">2026-10-16</span>
+                  <h4>CausalMix separates data mixture from data quality to pick fine-tuning mixes, 62.28% against DMO&rsquo;s 60.35% on Qwen2.5-7B</h4>
+                  <p>Researchers at Tsinghua, Ant Group and Renmin University proposed <strong>CausalMix</strong>: fine-tune 512 Qwen2.5-0.5B models on 100,000-example Tulu 3 subsets of varying domain mix, use LightGBM and a causal forest to subtract the effect of example quality from each score, then average the 100 mixtures with the largest remaining gain. On 800,000 examples it beat Data Mixing Optimization on the ten selection benchmarks &mdash; <strong>32.81% against 32.04%</strong> at 0.5B and <strong>62.28% against 60.35%</strong> on Qwen2.5-7B without rerunning the trials at 7B, and 66.66% against 63.47% on Qwen3-4B with a different code-and-math set.</p>
+                  <p>On a held-out slice of Tulu 3 it lost, 25.04% to DMO&rsquo;s 26.49% at 0.5B, so the transfer claim is the open question.</p>
+                  <div class="sources"><span class="via">via The Batch (Oct 16) &mdash; no public URL given</span></div>
+                </article>
       </section>
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-26</span><span class="label"><a href="#counterfactual-sql-rewards">Running text-to-SQL rewards on hidden counterfactual databases cuts fully paid reward hacks from 54.1% to 1.9%</a></span></li>
+        <li><span class="date">2026-11-26</span><span class="label"><a href="#splice-all-fail-rollouts">SPLICE trains on groups where every rollout failed by splicing short options into them, beating GRPO by 2.8 to 9.8 points</a></span></li>
+        <li><span class="date">2026-11-25</span><span class="label"><a href="#video-sft-temporal-trap">Video fine-tuning degrades image skills in multimodal LLMs; a per-sample frame budget of about 11 frames recovers them</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#epochal-time-portal">Epochal&rsquo;s Time Portal lets agents browse the web as it stood on a past date, for leak-free forecasting evals and RL</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#harvey-tenet-us-open-weight">Harvey post-trains four US open-weight models on its Tenet recipe; Muse Spark Open is first past 30% all-pass on Legal Agent Bench</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#mai-rocket">Microsoft AI&rsquo;s Rocket post-trains the three-trillion-parameter MAI Base 2 by RL alone, with no distillation from other labs&rsquo; models</a></span></li>
         <li><span class="date">2026-11-22</span><span class="label"><a href="#selfwrite">SELFWRITE: a 27B model programs its own low-rank weight edits and gains 1.45 points on held-out math in five generations</a></span></li>
+        <li><span class="date">2026-11-20</span><span class="label"><a href="#bytedance-laminar">ByteDance Seed and HKU open-source Laminar, an async RL framework that lifts Qwen3-Coder-30B-A3B to 52.2% on SWE-bench Verified</a></span></li>
         <li><span class="date">2026-11-20</span><span class="label"><a href="#daisyrose-27b">RadixArk&rsquo;s DaisyRose-27B doubles Qwen3.8-27B on Terminal-Bench 4.1, 5.6% to 12.0%</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#qwen3-8-27b-pi-adapted">A rank-32 LoRA trained with RL inside pi lifts Qwen3.8-27B from 39.2% to 64.7% on SWE-bench Pro</a></span></li>
         <li><span class="date">2026-11-18</span><span class="label"><a href="#prime-intellect-model-factory">Prime Intellect&rsquo;s Model Factory puts RL, fine-tuning, pre-training and inference in one control plane</a></span></li>

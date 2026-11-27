@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Infrastructure &amp; compute</h1>
-      <div class="meta">Last updated: 2026-11-26</div>
+      <div class="meta">Last updated: 2026-11-27</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 26 addition is a draft model that stores nothing. Tencent&rsquo;s <a href="#dfly2">DFly2</a> is a 0.85B drafter that reads the target&rsquo;s own sparse KV cache and attends only to the positions the target&rsquo;s indexer already chose, so it adds no draft memory. Tencent reports up to 81% more throughput on DeepSeek-V4.1-Flash at 64K, and 1.73 times as many requests in the same memory at 32K. The weakest case is 3.9% over the DSpark baseline, and every figure is Tencent&rsquo;s own, measured on H20 GPUs.</p>
         <p>The Nov 24 additions are two serving packages for narrow jobs. vLLM-GR puts generative recommendation models on the vLLM stack and runs the whole beam search inside one request, sharing the cached user history across candidates, on NVIDIA GPUs and Ascend NPUs; the announcement gives no speed figure. Basalt packs Qwen3.8-Flash-Next and everything it needs into one file for Blackwell GPUs, keeps hot experts in VRAM and spills the rest, and reports 600 to 760 tokens per second on structured output on two consumer cards. That one is a single developer&rsquo;s release.</p>
         <p>The Nov 24 addition is a claim to hold at arm&rsquo;s length. Architect Labs says its agents designed <a href="#frostbite-cpu">Frostbite</a>, a processor architecture averaging 4.59 times the performance per watt of a conventional core across 25 programs. It exists only in simulation and runs a new language instead of x86 or Arm software. It sits beside <a href="#openai-chip-design-models">OpenAI&rsquo;s chip-design work</a> as a second report of models designing silicon, and this one has not reached hardware.</p>
         <p>The Nov 18&ndash;19 cycle is two ways around a limit. A proposed <a href="#transformers-experts-offload">experts_offload</a> option in Transformers streams a 180B MoE&rsquo;s experts from SSD so it runs on a 32GB Mac, within 6% of a specialised runtime by the author&rsquo;s measure, and Perplexity&rsquo;s <a href="#perplexity-orchestrator">Orchestrator</a> puts 45+ models behind one key and retries a failed provider on another host, still in private preview. <a href="#suncatcher">Suncatcher</a> now has a launch vehicle: Blue Origin&rsquo;s New Glenn, targeted for Q1 2029.</p>
         <p>The Nov 19 cycle points models at the hardware and at the router. OpenAI says its models <a href="#openai-chip-design-models">cut 10&ndash;13% of circuit area</a> on its own Jalape&ntilde;o chip and found up to 14% power, performance and area on an AMD GPU, with some changes already in a design sent to the fab; the figures are the two companies&rsquo; own. Edgee&rsquo;s <a href="#ski-rental-model-switching">ski-rental framing</a> adds a second routing decision to the one this page already tracks: not which model takes a request, but when a running agent session should pay to switch.</p>
-        <p>The Nov 18 cycle splits work across hardware. <a href="#cerebras-disaggregated-inference">Cerebras</a> now runs prefill on GPUs and decode on its own systems for five times the tokens per megawatt, against an unstated baseline. NVIDIA&rsquo;s <a href="#nvidia-sparse-attention-codesign">sparse-attention post</a> shows where the cost of skipping keys went: the indexer and Top-k are 47% of a DeepSeek V3.2 prefill layer at 128K tokens, and its Top-k kernel is 2.1&ndash;2.4&times; faster than a radix select. The <a href="#hf-inference-providers-openrouter">Hugging Face&ndash;OpenRouter</a> entry gains its terms: automatic retries, and no more custom provider keys for language models.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 18 cycle splits work across hardware. <a href="#cerebras-disaggregated-inference">Cerebras</a> now runs prefill on GPUs and decode on its own systems for five times the tokens per megawatt, against an unstated baseline. NVIDIA&rsquo;s <a href="#nvidia-sparse-attention-codesign">sparse-attention post</a> shows where the cost of skipping keys went: the indexer and Top-k are 47% of a DeepSeek V3.2 prefill layer at 128K tokens, and its Top-k kernel is 2.1&ndash;2.4&times; faster than a radix select. The <a href="#hf-inference-providers-openrouter">Hugging Face&ndash;OpenRouter</a> entry gains its terms: automatic retries, and no more custom provider keys for language models.</p>
           <p>The Nov 17 cycle is NVIDIA hardware, an open control plane and two routing moves. <a href="#nvidia-rubin-hpc">Rubin HPC</a>, a GPU with more than 50,000 cores for simulation, is due in 2028, and <a href="#vera-rubin-nvl72-mlperf-training">Vera Rubin NVL72</a> entered MLPerf Training v6.1 at up to 2&times; GB300 per GPU by NVIDIA&rsquo;s count. NVIDIA also open-sourced <a href="#nvidia-nvke-nvkr">NVKE and NVKR</a> for managed Kubernetes on owned GPUs, which ship with API authentication off.</p>
           <p>Hugging Face now <a href="#hf-inference-providers-openrouter">routes Inference Providers through OpenRouter</a> on one token, and <a href="#sarvam-token-factory">Sarvam Token Factory</a> serves eight open models from clusters in India. Anthropic told investors it <a href="#anthropic-multi-chip-serving">trains and serves Claude on four chip families</a> and that Mythos ported it to AMD GPUs in three days, a claim with no data behind it yet.</p>
           <p>The Nov 13 cycle is two kernel results and a survey. <a href="#detllm">DetLLM</a> gets one output hash across nine configurations by running inference in integer-only int8 arithmetic, with WikiText2 perplexity of 20.72 against fp16&rsquo;s 20.95 and C4 0.4% worse, but prefill at about 0.13&times; fp16. <a href="#helion-compile-time-heuristics">Helion&rsquo;s compile-time heuristics</a> pick kernel configurations without autotuning and beat hand-written FLA Triton by 1.18&times; and vLLM&rsquo;s CUDA reduction kernels by 1.27&times; on H100. A <a href="#model-swap-survey">VentureBeat survey</a> prices the lock-in the routers below are meant to remove: 69% of firms that swapped a production model spent weeks on it, 36% more than a month.</p>
@@ -113,7 +114,7 @@
       <nav class="section-index">
         <h2>On this page</h2>
         <ul>
-          <li><a href="#long-context-serving">Long-context serving <span class="n">10</span></a></li>
+          <li><a href="#long-context-serving">Long-context serving <span class="n">11</span></a></li>
           <li><a href="#quantization-and-on-device-inference">Quantization &amp; on-device inference <span class="n">23</span></a></li>
           <li><a href="#browser-and-edge-ml-deployment">Browser &amp; edge ML deployment <span class="n">4</span></a></li>
           <li><a href="#high-throughput-serving-of-large-moes">High-throughput serving of large MoEs <span class="n">11</span></a></li>
@@ -135,86 +136,94 @@
         <h3>Long-context serving</h3>
         <p class="lead">Every lever here buys long-context throughput by refusing to store or attend to everything: sparse attention, a flat cache, a compressed cache, a draft model. They compose across layers of the stack, but each speedup is quoted against a different baseline on different hardware &mdash; read the comparator before the multiple.</p>
 
-        <article class="story" id="nvidia-sparse-attention-codesign">
-          <span class="when">2026-11-18</span>
-          <h4><a href="https://developer.nvidia.com/blog/co-designing-sparse-attention-for-efficient-long-context-inference/">NVIDIA: the sparse-attention indexer and Top-k take 47% of a DeepSeek V3.2 prefill layer at 128K tokens</a></h4>
-          <p>NVIDIA&rsquo;s post argues sparse attention moves cost rather than removing it: the indexer still scores every key, and at a 128K-token input the indexer and Top-k take <strong>47%</strong> of a DeepSeek V3.2 prefill layer. Its guidelines keep group size times speculative draft length within one Tensor Core tile of about 200 rows and run the indexer epilogue in FP16, and its Guess-Verify-Refine Top-k in TensorRT-LLM is <strong>2.1&ndash;2.4&times;</strong> faster than a standard radix select on DeepSeek V3.2 and V4 decode.</p>
-          <p>All figures are NVIDIA&rsquo;s, measured on its own GPUs.</p>
-          <div class="sources"><a href="https://developer.nvidia.com/blog/co-designing-sparse-attention-for-efficient-long-context-inference/">NVIDIA Developer</a> &middot; <span class="via">via TLDR AI (Nov 18)</span></div>
+        <article class="story" id="dfly2">
+          <span class="when">2026-11-26</span>
+          <h4><a href="https://arxiv.org/abs/2611.34776">Tencent&rsquo;s DFly2 drafter keeps no KV cache of its own and reports up to 81% more throughput on DeepSeek-V4.1-Flash at 64K</a></h4>
+          <p>Tencent&rsquo;s Hunyuan AI Infra team open-sourced <strong>DFly2</strong>, a <strong>0.85B</strong>, five-layer block-parallel drafter for natively sparse targets. Each draft layer reads the latent KV cache of a paired target layer and attends only to the positions the target&rsquo;s indexer already picked, so drafting adds no draft KV memory and stays near 2K keys per token at any context length; at 32K, dropping the drafter&rsquo;s cache lets the same memory pool hold <strong>1.73&times;</strong> as many requests.</p>
+          <p>Against same-recipe DFlash and DSpark drafters it reports higher acceptance on all three targets (DeepSeek-V4.1-Flash, GLM-5.3-Flash and Hy4 flash), with the best case <strong>81% more throughput</strong> on DeepSeek-V4.1-Flash for SWE work at 64K and the weakest only 3.9% over DSpark on Hy4 flash general tasks. All figures are Tencent&rsquo;s own, measured on H20 GPUs under vLLM.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2611.34776">arXiv</a> &middot; <a href="https://github.com/Tencent/AngelSpec">GitHub</a> &middot; <a href="https://www.marktechpost.com/2026/11/26/tencent-dfly2-speculative-decoding-sparse-models/">MarkTechPost</a> (write-up) &middot; <span class="via">via MarkTechPost (Nov 26)</span></div>
         </article>
+
+        <article class="story" id="nvidia-sparse-attention-codesign">
+                  <span class="when">2026-11-18</span>
+                  <h4><a href="https://developer.nvidia.com/blog/co-designing-sparse-attention-for-efficient-long-context-inference/">NVIDIA: the sparse-attention indexer and Top-k take 47% of a DeepSeek V3.2 prefill layer at 128K tokens</a></h4>
+                  <p>NVIDIA&rsquo;s post argues sparse attention moves cost rather than removing it: the indexer still scores every key, and at a 128K-token input the indexer and Top-k take <strong>47%</strong> of a DeepSeek V3.2 prefill layer. Its guidelines keep group size times speculative draft length within one Tensor Core tile of about 200 rows and run the indexer epilogue in FP16, and its Guess-Verify-Refine Top-k in TensorRT-LLM is <strong>2.1&ndash;2.4&times;</strong> faster than a standard radix select on DeepSeek V3.2 and V4 decode.</p>
+                  <p>All figures are NVIDIA&rsquo;s, measured on its own GPUs.</p>
+                  <div class="sources"><a href="https://developer.nvidia.com/blog/co-designing-sparse-attention-for-efficient-long-context-inference/">NVIDIA Developer</a> &middot; <span class="via">via TLDR AI (Nov 18)</span></div>
+                </article>
 
         <article class="story" id="tokengate">
-          <span class="when">2026-10-25</span>
-          <h4><a href="https://www.marktechpost.com/2026/10/25/stanford-berkeley-tokengate-learned-token-pruning-llm-prefill/">TokenGate&rsquo;s learned gate prunes document tokens for 1.4&ndash;11.3&times; faster prefill on Qwen3-1.7B</a></h4>
-          <p>Stanford and UC Berkeley&rsquo;s <strong>TokenGate</strong> adds a small MLP gate to a pretrained LLM that scores each document token; only the top-K get full processing above the gate, and the question is never pruned. On Qwen3-1.7B, time to first token is <strong>1.4&times; to 11.3&times;</strong> faster than full prefill and peak memory 1.5&times; to 3.4&times; lower, reaching 13.0&times; at 128k.</p>
-          <p>The gate has to be trained with LoRA r=16, each training step runs 1.3&times; slower, and a gate is tied to its backbone. Code and checkpoints are Apache 2.0.</p>
-          <div class="sources"><a href="https://www.marktechpost.com/2026/10/25/stanford-berkeley-tokengate-learned-token-pruning-llm-prefill/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
-        </article>
-
-        <article class="story unlinked" id="angelspec">
-          <span class="when">2026-07-31</span>
-          <h4>Tencent open-sources AngelSpec, training two speculative drafters instead of one average-case compromise</h4>
-          <p>AngelSpec is a unified training framework for speculative decoding on Tencent&rsquo;s Hy3 models that ships an autoregressive MTP drafter for open-ended chat and a block-parallel drafter, <strong>DFly</strong>, for code and maths &mdash; on the observation that production traffic is not an average. DFly reaches a mean accepted length of 4.79 on Hy3-A21B against 3.69 for DFlash and 3.00 for MTP on the same model.</p>
-          <p>End to end it reports a 1.98&ndash;2.40&times; speedup on HY3-295B-A21B at tensor parallelism 8, measured across concurrency 4 to 64. Seven checkpoints and six draft architectures ship behind one config-driven pipeline. The figures are Tencent&rsquo;s own.</p>
-          <div class="sources"><span class="via">via MarkTechPost AI (Jul 30) &mdash; no public URL given</span></div>
-        </article>
+                  <span class="when">2026-10-25</span>
+                  <h4><a href="https://www.marktechpost.com/2026/10/25/stanford-berkeley-tokengate-learned-token-pruning-llm-prefill/">TokenGate&rsquo;s learned gate prunes document tokens for 1.4&ndash;11.3&times; faster prefill on Qwen3-1.7B</a></h4>
+                  <p>Stanford and UC Berkeley&rsquo;s <strong>TokenGate</strong> adds a small MLP gate to a pretrained LLM that scores each document token; only the top-K get full processing above the gate, and the question is never pruned. On Qwen3-1.7B, time to first token is <strong>1.4&times; to 11.3&times;</strong> faster than full prefill and peak memory 1.5&times; to 3.4&times; lower, reaching 13.0&times; at 128k.</p>
+                  <p>The gate has to be trained with LoRA r=16, each training step runs 1.3&times; slower, and a gate is tied to its backbone. Code and checkpoints are Apache 2.0.</p>
+                  <div class="sources"><a href="https://www.marktechpost.com/2026/10/25/stanford-berkeley-tokengate-learned-token-pruning-llm-prefill/">MarkTechPost</a> &middot; <span class="via">via MarkTechPost (Oct 26)</span></div>
+                </article>
 
         <details>
-          <summary>Earlier in this section (7)</summary>
+          <summary>Earlier in this section (8)</summary>
+
+          <article class="story unlinked" id="angelspec">
+                    <span class="when">2026-07-31</span>
+                    <h4>Tencent open-sources AngelSpec, training two speculative drafters instead of one average-case compromise</h4>
+                    <p>AngelSpec is a unified training framework for speculative decoding on Tencent&rsquo;s Hy3 models that ships an autoregressive MTP drafter for open-ended chat and a block-parallel drafter, <strong>DFly</strong>, for code and maths &mdash; on the observation that production traffic is not an average. DFly reaches a mean accepted length of 4.79 on Hy3-A21B against 3.69 for DFlash and 3.00 for MTP on the same model.</p>
+                    <p>End to end it reports a 1.98&ndash;2.40&times; speedup on HY3-295B-A21B at tensor parallelism 8, measured across concurrency 4 to 64. Seven checkpoints and six draft architectures ship behind one config-driven pipeline. The figures are Tencent&rsquo;s own.</p>
+                    <div class="sources"><span class="via">via MarkTechPost AI (Jul 30) &mdash; no public URL given</span></div>
+                  </article>
 
           <article class="story unlinked" id="nvidia-2x-serving-throughput">
-            <span class="when">2026-07-11</span>
-            <h4>NVIDIA flags a further roughly 2&times; serving-throughput gain, with no specifics attached</h4>
-            <p>A weekly brief headlined a roughly 2&times; improvement in NVIDIA serving throughput without publishing which product, which workload or which baseline it was measured against. Logged here as a directional data point rather than a quantified result: a multiple with no denominator is not a measurement.</p>
-            <p>It fits the running pattern of runtime and serving optimisations &mdash; <a href="#nvidia-dflash">DFlash</a>, <a href="#together-kv-cache-8x">KV-cache compression</a>, <a href="#minimax-sparse-attention">sparse attention</a> &mdash; chipping at cost per token from the serving layer rather than the model.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 10) &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-07-11</span>
+                      <h4>NVIDIA flags a further roughly 2&times; serving-throughput gain, with no specifics attached</h4>
+                      <p>A weekly brief headlined a roughly 2&times; improvement in NVIDIA serving throughput without publishing which product, which workload or which baseline it was measured against. Logged here as a directional data point rather than a quantified result: a multiple with no denominator is not a measurement.</p>
+                      <p>It fits the running pattern of runtime and serving optimisations &mdash; <a href="#nvidia-dflash">DFlash</a>, <a href="#together-kv-cache-8x">KV-cache compression</a>, <a href="#minimax-sparse-attention">sparse attention</a> &mdash; chipping at cost per token from the serving layer rather than the model.</p>
+                      <div class="sources"><span class="via">via MarkTechPost AI (weekly, Jul 10) &mdash; no public URL given</span></div>
+                    </article>
 
           <article class="story unlinked" id="nvidia-dflash">
-            <span class="when">2026-06-26</span>
-            <h4>NVIDIA&rsquo;s DFlash reports speculative decoding at up to 15&times; throughput on Blackwell</h4>
-            <p>DFlash is a speculative-decoding method reported to reach up to 15&times; throughput on Blackwell GPUs &mdash; a ceiling rather than a typical figure, and on one GPU generation. It is a serving-runtime result rather than a new model, and it composes with KV-cache compression and sparse or flat-cache attention because each acts at a different layer.</p>
-            <p>No baseline serving stack is named alongside the multiple, and the figure reached this page through a secondary brief rather than from a published benchmark.</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-06-26</span>
+                      <h4>NVIDIA&rsquo;s DFlash reports speculative decoding at up to 15&times; throughput on Blackwell</h4>
+                      <p>DFlash is a speculative-decoding method reported to reach up to 15&times; throughput on Blackwell GPUs &mdash; a ceiling rather than a typical figure, and on one GPU generation. It is a serving-runtime result rather than a new model, and it composes with KV-cache compression and sparse or flat-cache attention because each acts at a different layer.</p>
+                      <p>No baseline serving stack is named alongside the multiple, and the figure reached this page through a secondary brief rather than from a published benchmark.</p>
+                      <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+                    </article>
 
           <article class="story unlinked" id="baidu-unlimited-ocr">
-            <span class="when">2026-06-26</span>
-            <h4>Baidu&rsquo;s Unlimited OCR holds KV-cache memory flat regardless of document length</h4>
-            <p>Unlimited OCR is a 3B-parameter MoE with 500M active that parses whole long documents &mdash; tens to hundreds of pages &mdash; in a single prefill while keeping attention-cache memory constant no matter how long the document runs, using Recurrent Sliding Window Attention (R-SWA). What it removes is the choice standard OCR pipelines face between chunking, which loses cross-page context, and running out of memory.</p>
-            <p>It reportedly outperforms DeepSeek OCR on long-document benchmarks; the comparison is reported rather than independently reproduced here. Paper on arXiv. (Method angle on the <a href="research-papers.html">Research papers</a> page.)</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-06-26</span>
+                      <h4>Baidu&rsquo;s Unlimited OCR holds KV-cache memory flat regardless of document length</h4>
+                      <p>Unlimited OCR is a 3B-parameter MoE with 500M active that parses whole long documents &mdash; tens to hundreds of pages &mdash; in a single prefill while keeping attention-cache memory constant no matter how long the document runs, using Recurrent Sliding Window Attention (R-SWA). What it removes is the choice standard OCR pipelines face between chunking, which loses cross-page context, and running out of memory.</p>
+                      <p>It reportedly outperforms DeepSeek OCR on long-document benchmarks; the comparison is reported rather than independently reproduced here. Paper on arXiv. (Method angle on the <a href="research-papers.html">Research papers</a> page.)</p>
+                      <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief &mdash; no public URL given</span></div>
+                    </article>
 
           <article class="story unlinked" id="minimax-sparse-attention">
-            <span class="when">2026-06-20</span>
-            <h4>MiniMax Sparse Attention quantified: 28.4&times; less attention compute at 1M context than dense GQA</h4>
-            <p>MSA is a two-branch block-sparse attention design, local plus global, measured at a 28.4&times; reduction in per-token attention compute at 1M context against dense GQA at on-par quality &mdash; the comparator and the context length both being load-bearing. On an H800 that translates to 14.2&times; faster prefill and 7.6&times; faster decode. The measured configuration is a 109B MoE trained on 3T tokens.</p>
-            <p>MSA is GQA-native, so it drops into the attention block of an existing GQA model without an architectural redesign, which is what lowers adoption cost from retraining to swapping an implementation. It shipped in production three weeks earlier than this measurement, on <strong>MiniMax M3</strong> (June 1, launched on Ollama Cloud), supporting context windows up to 1M tokens. (Method angle on the <a href="research-papers.html">Research papers</a> page.)</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief; Ollama announcement email (Jun 1) &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-06-20</span>
+                      <h4>MiniMax Sparse Attention quantified: 28.4&times; less attention compute at 1M context than dense GQA</h4>
+                      <p>MSA is a two-branch block-sparse attention design, local plus global, measured at a 28.4&times; reduction in per-token attention compute at 1M context against dense GQA at on-par quality &mdash; the comparator and the context length both being load-bearing. On an H800 that translates to 14.2&times; faster prefill and 7.6&times; faster decode. The measured configuration is a 109B MoE trained on 3T tokens.</p>
+                      <p>MSA is GQA-native, so it drops into the attention block of an existing GQA model without an architectural redesign, which is what lowers adoption cost from retraining to swapping an implementation. It shipped in production three weeks earlier than this measurement, on <strong>MiniMax M3</strong> (June 1, launched on Ollama Cloud), supporting context windows up to 1M tokens. (Method angle on the <a href="research-papers.html">Research papers</a> page.)</p>
+                      <div class="sources"><span class="via">via MarkTechPost AI Intelligence Brief; Ollama announcement email (Jun 1) &mdash; no public URL given</span></div>
+                    </article>
 
           <article class="story unlinked" id="together-kv-cache-8x">
-            <span class="when">2026-05-28</span>
-            <h4>Together AI announces an 8&times; reduction in KV cache size for long-context serving</h4>
-            <p>Together AI announced an 8&times; reduction in KV cache size when serving long-context models, targeting what has become the dominant cost term in long-running agent workloads. No model, context length or quality comparison accompanied the figure, so it sits here as a vendor announcement rather than a measured result.</p>
-            <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-05-28</span>
+                      <h4>Together AI announces an 8&times; reduction in KV cache size for long-context serving</h4>
+                      <p>Together AI announced an 8&times; reduction in KV cache size when serving long-context models, targeting what has become the dominant cost term in long-running agent workloads. No model, context length or quality comparison accompanied the figure, so it sits here as a vendor announcement rather than a measured result.</p>
+                      <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
+                    </article>
 
           <article class="story unlinked" id="eagle-3-1">
-            <span class="when">2026-05-28</span>
-            <h4>EAGLE 3.1 addresses the attention drift undercutting speculative-decoding acceptance rates</h4>
-            <p>EAGLE 3.1 targets attention drift, which had been eroding draft-token acceptance rates on long-context decoding &mdash; the term that decides whether speculative decoding pays for itself at all. Described as addressing the drift rather than eliminating it; no acceptance-rate figures, before or after, were published with the announcement.</p>
-            <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-05-28</span>
+                      <h4>EAGLE 3.1 addresses the attention drift undercutting speculative-decoding acceptance rates</h4>
+                      <p>EAGLE 3.1 targets attention drift, which had been eroding draft-token acceptance rates on long-context decoding &mdash; the term that decides whether speculative decoding pays for itself at all. Described as addressing the drift rather than eliminating it; no acceptance-rate figures, before or after, were published with the announcement.</p>
+                      <div class="sources"><span class="via">via MarkTechPost newsletter &mdash; no public URL given</span></div>
+                    </article>
 
           <article class="story" id="turboquant">
-            <span class="when">2026-03-24</span>
-            <h4><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">Google&rsquo;s TurboQuant compresses the KV cache to 3 bits with no training and no reported accuracy loss</a></h4>
-            <p>Google Research&rsquo;s <strong>TurboQuant</strong> (ICLR 2026) quantizes vectors in two stages: a random rotation followed by <strong>PolarQuant</strong>, which stores coordinates as a radius and angles so no per-block scaling constants are needed, then a single bit of <strong>QJL</strong> on the residual to remove the bias left in attention scores. Google reports the KV cache at <strong>3 bits with no training or fine-tuning</strong> and no accuracy loss on Gemma and Mistral across LongBench, Needle-in-a-Haystack, ZeroSCROLLS, RULER and L-Eval, at least a <strong>6&times;</strong> smaller KV footprint on the needle tests, and up to <strong>8&times;</strong> faster attention-logit computation for 4-bit keys against 32-bit on an H100.</p>
-            <p>The removed overhead is the point: conventional block quantizers spend 1&ndash;2 extra bits per number on full-precision constants, which is why the same method also beats product quantization and RabbiQ on recall in vector search (GloVe, d=200) &mdash; see <a href="#vector-index-and-rag-pipeline-economics">Vector-index economics</a>. Every figure is Google&rsquo;s own, and the 8&times; is measured against a JAX baseline rather than a production serving kernel.</p>
-            <div class="sources"><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">Google Research</a> &middot; <a href="https://arxiv.org/abs/2504.19874">TurboQuant (arXiv)</a> &middot; <a href="https://arxiv.org/abs/2502.02617">PolarQuant (arXiv)</a> &middot; <a href="https://arxiv.org/abs/2406.03482">QJL (arXiv)</a> &middot; <span class="via">added by hand from a user-supplied link (Oct 7)</span></div>
-          </article>
+                      <span class="when">2026-03-24</span>
+                      <h4><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">Google&rsquo;s TurboQuant compresses the KV cache to 3 bits with no training and no reported accuracy loss</a></h4>
+                      <p>Google Research&rsquo;s <strong>TurboQuant</strong> (ICLR 2026) quantizes vectors in two stages: a random rotation followed by <strong>PolarQuant</strong>, which stores coordinates as a radius and angles so no per-block scaling constants are needed, then a single bit of <strong>QJL</strong> on the residual to remove the bias left in attention scores. Google reports the KV cache at <strong>3 bits with no training or fine-tuning</strong> and no accuracy loss on Gemma and Mistral across LongBench, Needle-in-a-Haystack, ZeroSCROLLS, RULER and L-Eval, at least a <strong>6&times;</strong> smaller KV footprint on the needle tests, and up to <strong>8&times;</strong> faster attention-logit computation for 4-bit keys against 32-bit on an H100.</p>
+                      <p>The removed overhead is the point: conventional block quantizers spend 1&ndash;2 extra bits per number on full-precision constants, which is why the same method also beats product quantization and RabbiQ on recall in vector search (GloVe, d=200) &mdash; see <a href="#vector-index-and-rag-pipeline-economics">Vector-index economics</a>. Every figure is Google&rsquo;s own, and the 8&times; is measured against a JAX baseline rather than a production serving kernel.</p>
+                      <div class="sources"><a href="https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/">Google Research</a> &middot; <a href="https://arxiv.org/abs/2504.19874">TurboQuant (arXiv)</a> &middot; <a href="https://arxiv.org/abs/2502.02617">PolarQuant (arXiv)</a> &middot; <a href="https://arxiv.org/abs/2406.03482">QJL (arXiv)</a> &middot; <span class="via">added by hand from a user-supplied link (Oct 7)</span></div>
+                    </article>
         </details>
       </section>
 
@@ -1517,6 +1526,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-26</span><span class="label"><a href="#dfly2">Tencent&rsquo;s DFly2 drafter keeps no KV cache of its own and reports up to 81% more throughput on DeepSeek-V4.1-Flash at 64K</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#qwen3-8-flash-next-basalt">Basalt packs Qwen3.8-Flash-Next into one file for Blackwell GPUs: 600 to 760 tokens per second on structured output</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#vllm-gr">vLLM-GR serves generative recommendation models on vLLM, with beam search run inside one request</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#frostbite-cpu">Architect Labs says its agents designed Frostbite, a CPU architecture at 4.59x performance per watt, in simulation only</a></span></li>

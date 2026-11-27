@@ -30,17 +30,18 @@
     </aside>
     <main>
       <h1>Agents &amp; agentic systems</h1>
-      <div class="meta">Last updated: 2026-11-26</div>
+      <div class="meta">Last updated: 2026-11-27</div>
 
       <h2>Current state</h2>
       <div class="current-state">
+        <p>The Nov 26 addition is an audit of what happens after retrieval. A paper on the graph-RAG system <a href="#graph-rag-reasoning-bottleneck">KET-RAG</a> finds its retriever covers the gold answer in 77 to 91% of multi-hop questions while final accuracy is 35 to 78%, so most errors come from reasoning over context that was already there. Splitting the question into SPARQL-style triple patterns adds up to 14 points, and a graph-walk compression cuts context by about 60%, enough for an 8B model to match an unaugmented 70B at about a twelfth of the cost. The paper dates from March and was surfaced now by AlphaSignal.</p>
         <p>The Nov 24 to 25 cycle widens the protocol and puts a number against the swarm. MCP now carries Skills in public beta, so a server ships its own instructions beside its tools, and Tasks and Elicitation are generally available for background jobs and mid-call approval. Paradigm 3 then tested the multi-agent pattern this page has been filling with: at equal token budgets, swarms finished about six times faster and scored about 7% lower than one agent, and a single agent allowed to restart with a fresh context beat them again. The authors read earlier swarm gains as one agent going stale.</p>
         <p>The Nov 23 addition is a payment step moving into the call. <a href="#natural-voice">Natural Voice</a> lets a voice agent take card details without handing the caller to a link, with Natural carrying the PCI scope that otherwise covers the model, telephony, transcripts and logs. Its 40% to 80% conversion figure is anecdotal. It follows <a href="#chatgpt-wallet">ChatGPT Wallet</a> and <a href="#gemini-tasks-calls-purchases">Gemini tasks</a>, the other entries this month where an agent completes a purchase.</p>
         <p>The Nov 18&ndash;20 cycle is the board that lets a team of agents work. Replit&rsquo;s <a href="#replit-agent-swarms">optimization benchmark</a> found 32 Opus agents sped NumPy workloads up 18.9&times; in two hours against 3.7&times; for one, but only on separable work and only when they posted to a shared board; GPT-6-family swarms mostly did no better than a single agent. Vercel shipped that board as a product: <a href="#vercel-board">Board</a> lets agents from different harnesses claim tasks and post results, and Vercel says the v0 factory built on it merges over half its PRs.</p>
         <p>The rest is agents moving into places people already work. Google gave the Gemini Mac app <a href="#gemini-mac-computer-use">computer use</a> in an isolated background window, US-only and on paid plans, and put <a href="#gemini-api-tool-retrieval">Tool Retrieval</a> into the Gemini API so tool schemas load only when needed, with no token figures yet. Nous&rsquo;s <a href="#hermes-enterprise">Hermes Enterprise</a> lands in Teams and Azure sandboxes and lets a team share the skills one person&rsquo;s agent learned.</p>
-        <p>The Nov 19 cycle is a manager agent and the plumbing a large team of agents needs. Cognition&rsquo;s <a href="#devin-bots">Devin Bots</a> take a goal, run several Devin agents in parallel and only ping a human for decisions; the 4.5x-more-PRs-per-message figure is Cognition&rsquo;s and comes with no quality measure. Below it, <a href="#kagent-1-0">kagent 1.0</a> sandboxes each Kubernetes agent in gVisor or a microVM with credentials held at the gateway, and an AAIF post shows <a href="#dynamic-tool-retrieval">on-demand tool retrieval</a> cutting input tokens 17&ndash;40% while still finding every required tool for only 45.2% of queries.</p>
         <details>
           <summary>Earlier cycles</summary>
+          <p>The Nov 19 cycle is a manager agent and the plumbing a large team of agents needs. Cognition&rsquo;s <a href="#devin-bots">Devin Bots</a> take a goal, run several Devin agents in parallel and only ping a human for decisions; the 4.5x-more-PRs-per-message figure is Cognition&rsquo;s and comes with no quality measure. Below it, <a href="#kagent-1-0">kagent 1.0</a> sandboxes each Kubernetes agent in gVisor or a microVM with credentials held at the gateway, and an AAIF post shows <a href="#dynamic-tool-retrieval">on-demand tool retrieval</a> cutting input tokens 17&ndash;40% while still finding every required tool for only 45.2% of queries.</p>
           <p>Two research results put checks and memory outside the model. <a href="#silentguard">SilentGuard</a> validates API responses at the harness and drops wrong answers on injected faults from 70.2% to 0.5%, and Google&rsquo;s <a href="#self-improvement-memory">Self-Improvement Memory</a> gives the optimizer that edits a harness a log of why each edit was made, worth 2.36 points over harness-only continuation. Perplexity&rsquo;s <a href="#perplexity-context-api">Context API</a> rounds out the day as retrieval sold as a service: up to ten pages per call, returned as Markdown with provenance.</p>
           <p>The Nov 18 cycle is agents that coordinate other agents, and how little anyone outside can check. Perplexity&rsquo;s <a href="#perplexity-computer-multiagent">Multiagent</a> effort level runs up to 16 agents from three labs that cross-check each other, with no benchmark. <a href="#sid-2">SID-2</a> is this page&rsquo;s first model trained to search: a 12-agent swarm scores 0.720 NDCG against GPT-6 Astra&rsquo;s 0.704, on SID&rsquo;s own benchmark. Hark&rsquo;s <a href="#hark-handoff-2">Handoff&sup2;</a> learned from latency-penalized RL to batch actions and runs about twice as fast, still a few points behind Opus 5.5.</p>
           <p>Two entries test what a governor looks like. <a href="#horizon-hugging-face-agent">Horizon</a>, an Opus 5.5 agent on one subscription and a blank Hugging Face account, built 38 small models that passed 54,000 downloads in 600 GPU-hours; Google&rsquo;s <a href="#gemini-tasks-calls-purchases">Gemini tasks</a> can now call, book and buy, held to approved sites and a spending limit. Vercel&rsquo;s <a href="#vercel-eve-1-0">eve</a> reached 1.0 after 230+ releases.</p>
@@ -133,7 +134,7 @@
           <li><a href="#browser-and-computer-use-agents">Browser &amp; computer-use agents <span class="n">22</span></a></li>
           <li><a href="#agent-extension-patterns">Agent extension patterns <span class="n">12</span></a></li>
           <li><a href="#on-device-and-local-agents">On-device &amp; local agents <span class="n">9</span></a></li>
-          <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">4</span></a></li>
+          <li><a href="#agentic-retrieval">Agentic retrieval <span class="n">5</span></a></li>
           <li><a href="#multi-agent-orchestration">Multi-agent orchestration <span class="n">28</span></a></li>
           <li><a href="#agentic-domain-applications">Agentic domain applications <span class="n">19</span></a></li>
         </ul>
@@ -1493,39 +1494,47 @@
         <h3>Agentic retrieval</h3>
         <p class="lead">Retrieval as an agent that plans and iterates rather than a single embedding lookup &mdash; rewrite the query, re-search, and refuse to answer until the context is sufficient. Judge entries on the baseline the gain is measured against, and on whether the figure quoted is a ceiling or an average.</p>
 
-        <article class="story" id="read-agentic-document-search">
-          <span class="when">2026-11-13</span>
-          <h4><a href="https://arxiv.org/abs/2608.06305">READ beats chunk-and-embed 58.8% to 15.7% on a 780-page report, but plain BM25 gets 51.0%</a></h4>
-          <p><strong>READ</strong> (Reliable Embedding-free Agentic Document-search), from IIT Patna and TwoSpoon, replaces vector retrieval with an agent holding three tools: keyword search returning line numbers, a section outline, and a line-range reader. On 51 questions about a 780-page Gujarat government financial report, all on Gemini 2.5 Pro, it answered <strong>58.8%</strong> correctly against <strong>15.7%</strong> for chunk-and-embed and 27.5% for chunk-and-embed inside an agent loop.</p>
-          <p>BM25 keyword ranking, with no model in retrieval, reached <strong>51.0%</strong>, which the authors call statistically indistinguishable from READ. The Batch&rsquo;s reading: on documents whose numbers depend on distant labels, test keyword search before building an agent.</p>
-          <div class="sources"><a href="https://arxiv.org/abs/2608.06305">arXiv</a> &middot; <span class="via">via The Batch (Nov 13)</span></div>
+        <article class="story" id="graph-rag-reasoning-bottleneck">
+          <span class="when">2026-11-26</span>
+          <h4><a href="https://arxiv.org/abs/2603.14045">An audit of KET-RAG finds retrieval surfaces the answer 77&ndash;91% of the time while reasoning gets 35&ndash;78% right</a></h4>
+          <p>An EACL paper, posted to arXiv in March and surfaced by AlphaSignal on Nov 26, audits the graph-RAG system <strong>KET-RAG</strong> on three multi-hop benchmarks. Retrieval covers the gold answer in 77&ndash;91% of cases, but final accuracy is 35&ndash;78%, so most errors happen after retrieval. Two inference-time fixes help: SPARQL-style chain-of-thought that breaks a question into triple patterns adds 2 to 14 points, and a graph-walk compression cuts context about 60% (10K to 4K tokens) with no LLM calls.</p>
+          <p>With question-type routing, an augmented Llama-8B matches an unaugmented Llama-70B at roughly 12&times; lower cost, though only the prompting fix transferred to LightRAG.</p>
+          <div class="sources"><a href="https://arxiv.org/abs/2603.14045">arXiv</a> &middot; <a href="https://github.com/thomouvic/graph-rag-qa-pub">GitHub</a> &middot; <span class="via">via AlphaSignal (Nov 26)</span></div>
         </article>
+
+        <article class="story" id="read-agentic-document-search">
+                  <span class="when">2026-11-13</span>
+                  <h4><a href="https://arxiv.org/abs/2608.06305">READ beats chunk-and-embed 58.8% to 15.7% on a 780-page report, but plain BM25 gets 51.0%</a></h4>
+                  <p><strong>READ</strong> (Reliable Embedding-free Agentic Document-search), from IIT Patna and TwoSpoon, replaces vector retrieval with an agent holding three tools: keyword search returning line numbers, a section outline, and a line-range reader. On 51 questions about a 780-page Gujarat government financial report, all on Gemini 2.5 Pro, it answered <strong>58.8%</strong> correctly against <strong>15.7%</strong> for chunk-and-embed and 27.5% for chunk-and-embed inside an agent loop.</p>
+                  <p>BM25 keyword ranking, with no model in retrieval, reached <strong>51.0%</strong>, which the authors call statistically indistinguishable from READ. The Batch&rsquo;s reading: on documents whose numbers depend on distant labels, test keyword search before building an agent.</p>
+                  <div class="sources"><a href="https://arxiv.org/abs/2608.06305">arXiv</a> &middot; <span class="via">via The Batch (Nov 13)</span></div>
+                </article>
 
         <article class="story" id="gpt-researcher-jev-context-filter">
-          <span class="when">2026-09-29</span>
-          <h4><a href="https://docs.gptr.dev/docs/gpt-researcher/gptr/context-filter">GPT Researcher swaps embedding similarity for Jev as its context filter, keeping 73% of relevant passages against 46%</a></h4>
-          <p>GPT Researcher now uses Jev as its default context filter when a TypeSafe key is present: instead of embedding similarity it scores whether each chunk is useful for the research question, falling back to keywords when Jev is unavailable. Its own benchmark has Jev keeping <strong>73% of relevant passages against 46% for embeddings</strong> at the same cost.</p>
-          <p>The baseline is the project&rsquo;s previous embedding filter on its own benchmark, which is the measurement this section says to check. The default path now runs through a closed API.</p>
-          <div class="sources"><a href="https://docs.gptr.dev/docs/gpt-researcher/gptr/context-filter">GPT Researcher docs</a> &middot; <span class="via">via Unwind AI (Sep 29)</span></div>
-        </article>
-
-        <article class="story unlinked" id="gemini-agentic-rag">
-          <span class="when">2026-06-09</span>
-          <h4>Google ships Agentic RAG into Gemini Enterprise &mdash; up to +34% factuality</h4>
-          <p>Google Research added an Agentic RAG framework to Gemini Enterprise: a multi-agent workflow that plans, rewrites and re-searches until the retrieved context is complete before answering. Against standard RAG it raises factuality accuracy by <strong>up to 34%</strong> and reaches <strong>90.1%</strong> accuracy on cross-corpus retrieval, and a &ldquo;Sufficient Context Agent&rdquo; declines to answer until it has enough information, which removes hallucinated citations caused by incomplete retrieval.</p>
-          <p>The factuality gain is reported as <em>up to</em> 34% rather than a flat 34%, so the weaker, hedged reading is the one used here.</p>
-          <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
-        </article>
+                  <span class="when">2026-09-29</span>
+                  <h4><a href="https://docs.gptr.dev/docs/gpt-researcher/gptr/context-filter">GPT Researcher swaps embedding similarity for Jev as its context filter, keeping 73% of relevant passages against 46%</a></h4>
+                  <p>GPT Researcher now uses Jev as its default context filter when a TypeSafe key is present: instead of embedding similarity it scores whether each chunk is useful for the research question, falling back to keywords when Jev is unavailable. Its own benchmark has Jev keeping <strong>73% of relevant passages against 46% for embeddings</strong> at the same cost.</p>
+                  <p>The baseline is the project&rsquo;s previous embedding filter on its own benchmark, which is the measurement this section says to check. The default path now runs through a closed API.</p>
+                  <div class="sources"><a href="https://docs.gptr.dev/docs/gpt-researcher/gptr/context-filter">GPT Researcher docs</a> &middot; <span class="via">via Unwind AI (Sep 29)</span></div>
+                </article>
 
         <details>
-          <summary>Earlier in this section (1)</summary>
+          <summary>Earlier in this section (2)</summary>
+
+          <article class="story unlinked" id="gemini-agentic-rag">
+                    <span class="when">2026-06-09</span>
+                    <h4>Google ships Agentic RAG into Gemini Enterprise &mdash; up to +34% factuality</h4>
+                    <p>Google Research added an Agentic RAG framework to Gemini Enterprise: a multi-agent workflow that plans, rewrites and re-searches until the retrieved context is complete before answering. Against standard RAG it raises factuality accuracy by <strong>up to 34%</strong> and reaches <strong>90.1%</strong> accuracy on cross-corpus retrieval, and a &ldquo;Sufficient Context Agent&rdquo; declines to answer until it has enough information, which removes hallucinated citations caused by incomplete retrieval.</p>
+                    <p>The factuality gain is reported as <em>up to</em> 34% rather than a flat 34%, so the weaker, hedged reading is the one used here.</p>
+                    <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+                  </article>
 
           <article class="story unlinked" id="harness-1">
-            <span class="when">2026-06-09</span>
-            <h4>Harness-1 &mdash; a 20B retrieval subagent trained with RL in a search harness</h4>
-            <p>Harness-1 is a 20B search agent trained with reinforcement learning <em>inside</em> a stateful search harness on GPT-OSS-20B, reaching <strong>0.730 average curated recall</strong>. The model learns how and when to search, not just what to retrieve; weights and harness code are fully open. (See <a href="training-and-rl.html">Training &amp; RL</a> for the training-harness angle and <a href="tools-and-devex.html">Tools &amp; DevEx</a> for the knowledge-graph memory substrate.)</p>
-            <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
-          </article>
+                      <span class="when">2026-06-09</span>
+                      <h4>Harness-1 &mdash; a 20B retrieval subagent trained with RL in a search harness</h4>
+                      <p>Harness-1 is a 20B search agent trained with reinforcement learning <em>inside</em> a stateful search harness on GPT-OSS-20B, reaching <strong>0.730 average curated recall</strong>. The model learns how and when to search, not just what to retrieve; weights and harness code are fully open. (See <a href="training-and-rl.html">Training &amp; RL</a> for the training-harness angle and <a href="tools-and-devex.html">Tools &amp; DevEx</a> for the knowledge-graph memory substrate.)</p>
+                      <div class="sources"><span class="via">via MarkTechPost AI Dev Brief &mdash; no public URL given</span></div>
+                    </article>
         </details>
       </section>
 
@@ -1907,6 +1916,7 @@
 
       <h2>Timeline</h2>
       <ul class="timeline index">
+        <li><span class="date">2026-11-26</span><span class="label"><a href="#graph-rag-reasoning-bottleneck">An audit of KET-RAG finds retrieval surfaces the answer 77&ndash;91% of the time while reasoning gets 35&ndash;78% right</a></span></li>
         <li><span class="date">2026-11-25</span><span class="label"><a href="#swarms-do-not-raise-the-roof">Paradigm 3: at equal token budgets, agent swarms run about 6&times; faster and score about 7% lower than one agent</a></span></li>
         <li><span class="date">2026-11-24</span><span class="label"><a href="#mcp-skills-tasks-elicitation">MCP gains Skills in public beta, with Tasks and Elicitation generally available and File Uploads to follow</a></span></li>
         <li><span class="date">2026-11-23</span><span class="label"><a href="#natural-voice">Natural Voice lets a voice agent take card payment on the call, with the PCI scope carried by Natural</a></span></li>
